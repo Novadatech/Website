@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LeadFormProvider from "@/components/LeadFormProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,9 +42,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <LeadFormProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </LeadFormProvider>
         <Script
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"

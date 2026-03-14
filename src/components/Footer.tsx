@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Mail, Phone, MapPin } from "lucide-react";
 import Logo from "./Logo";
 
 const BOOKING_URL = "/book";
@@ -62,24 +63,29 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wider">
               Contact
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               <li>
                 <a
-                  href="mailto:hello@novadatech.com.au"
-                  className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300"
+                  href="mailto:support@novadatech.com.au"
+                  className="flex items-center gap-3 text-sm text-white/40 hover:text-white/80 transition-colors duration-300"
                 >
-                  hello@novadatech.com.au
+                  <Mail className="w-4 h-4 flex-shrink-0" />
+                  support@novadatech.com.au
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+61370501042"
-                  className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300"
+                  href="tel:+61485000813"
+                  className="flex items-center gap-3 text-sm text-white/40 hover:text-white/80 transition-colors duration-300"
                 >
-                  (+61) 3 7050 1042
+                  <Phone className="w-4 h-4 flex-shrink-0" />
+                  (+61) 485 000 813
                 </a>
               </li>
-              <li className="text-sm text-white/40">Melbourne, Australia</li>
+              <li className="flex items-start gap-3 text-sm text-white/40">
+                <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                Suite 23/220 Collins Street, Melbourne VIC 3000
+              </li>
             </ul>
           </div>
         </div>
