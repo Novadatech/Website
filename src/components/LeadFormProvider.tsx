@@ -34,11 +34,13 @@ export default function LeadFormProvider({ children }: { children: React.ReactNo
       const target = (e.target as HTMLElement).closest('a[href="/book"]');
       if (target) {
         e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         openForm();
       }
     };
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
+    document.addEventListener("click", handleClick, true);
+    return () => document.removeEventListener("click", handleClick, true);
   }, [openForm]);
 
   return (

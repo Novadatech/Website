@@ -41,20 +41,21 @@ export default function Footer() {
               Navigate
             </h4>
             <ul className="space-y-3">
-              {[
-                { label: "Home", href: "/" },
-                { label: "About", href: "/about" },
-                { label: "Book a Call", href: BOOKING_URL },
-              ].map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="/" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                  About
+                </Link>
+              </li>
+              <li>
+                <a href="/book" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                  Book a Call
+                </a>
+              </li>
             </ul>
           </div>
 
