@@ -18,9 +18,11 @@ export default function LeadFormProvider({ children }: { children: React.ReactNo
   const openForm = useCallback(() => setIsOpen(true), []);
   const closeForm = useCallback(() => setIsOpen(false), []);
 
-  // Auto-pop on first visit after 3 seconds
+  // Auto-pop on first visit after 3 seconds (not on confirmed-call or book-call pages)
   useEffect(() => {
     if (autoShown) return;
+    const path = window.location.pathname;
+    if (path === "/confirmed-call" || path === "/book-call") return;
     const timer = setTimeout(() => {
       setIsOpen(true);
       setAutoShown(true);
