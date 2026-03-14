@@ -21,7 +21,7 @@ import {
 import AnimatedSection from "@/components/AnimatedSection";
 import { useState } from "react";
 
-const BOOKING_URL = "/book";
+const BOOKING_URL = "/book-call";
 
 /* ─── HERO ─── */
 function Hero() {

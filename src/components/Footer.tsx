@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import Logo from "./Logo";
 
-const BOOKING_URL = "/book";
+const BOOKING_URL = "/book-call";
 
 export default function Footer() {
   return (
@@ -52,7 +52,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="/book" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                <a href="/book-call" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
                   Book a Call
                 </a>
               </li>

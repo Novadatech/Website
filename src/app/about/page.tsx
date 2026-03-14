@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 
-const BOOKING_URL = "/book";
+const BOOKING_URL = "/book-call";
 
 /* ─── HERO ─── */
 function AboutHero() {

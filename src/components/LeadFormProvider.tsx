@@ -28,10 +28,10 @@ export default function LeadFormProvider({ children }: { children: React.ReactNo
     return () => clearTimeout(timer);
   }, [autoShown]);
 
-  // Intercept all CTA clicks (links with href="/book")
+  // Intercept all CTA clicks (links with href="/book-call")
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement).closest('a[href="/book"]');
+      const target = (e.target as HTMLElement).closest('a[href="/book-call"]');
       if (target) {
         e.preventDefault();
         e.stopPropagation();
