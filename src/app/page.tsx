@@ -356,8 +356,8 @@ function ProofSection() {
   const stats = [
     { number: "77+", label: "Verified 5-Star Reviews", sublabel: "Trustpilot" },
     { number: "87+", label: "Client Recommendations", sublabel: "Facebook" },
-    { number: "35%", label: "Average Revenue Increase", sublabel: "Client Results" },
-    { number: "30+", label: "Industries Served", sublabel: "Across Australia" },
+    { number: "$12.1M+", label: "Client Revenue Generated", sublabel: "Client Results" },
+    { number: "15+", label: "Industries Served", sublabel: "Across Australia" },
   ];
 
   return (
