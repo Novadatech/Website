@@ -5,10 +5,10 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Youtube } from "luc
 import Logo from "./Logo";
 
 const socials = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Facebook, href: "https://www.facebook.com/novadatech/", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/Novada_Tech", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/novada-tech/", label: "LinkedIn" },
+  { icon: Youtube, href: "https://www.youtube.com/@NovadaTech/videos", label: "YouTube" },
 ];
 
 const BOOKING_URL = "/book-call";
