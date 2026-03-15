@@ -164,61 +164,127 @@ function Hero() {
   );
 }
 
-/* ─── PROBLEM ─── */
+/* ─── WHY HIGH-TICKET ─── */
 function ProblemSection() {
-  const painPoints = [
-    "Your offer isn't positioned to attract high-value clients",
-    "Your acquisition relies on inconsistent, manual methods",
-    "You're spending money on marketing that doesn't convert",
-    "Your pipeline dries up the moment you stop doing outreach",
-    "You can't scale because there's no predictable client flow",
-  ];
-
   return (
     <section className="section-spacing section-padding border-t border-white/[0.04]">
       <div className="max-container">
         <AnimatedSection className="max-w-3xl mx-auto text-center">
           <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
-            The Real Problem
+            Why High-Ticket
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
-            Most Businesses Don&apos;t Have a Client Problem.
-            <br />
-            <span className="text-white/50">
-              They Have a Predictability Problem.
-            </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight italic text-balance">
+            Stop playing the low-ticket game
           </h2>
+          <p className="mt-4 text-white/50 text-lg max-w-2xl mx-auto">
+            You don&apos;t need more leads. You need better offers and a system that sells them.
+          </p>
         </AnimatedSection>
 
-        <AnimatedSection delay={0.2} className="mt-14 max-w-2xl mx-auto">
-          <div className="space-y-4">
-            {painPoints.map((point, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 * i }}
-                className="flex items-start gap-4 py-3"
-              >
-                <X className="w-5 h-5 text-red-400/70 mt-0.5 flex-shrink-0" />
-                <span className="text-white/60 text-base md:text-lg">
-                  {point}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </AnimatedSection>
+        <div className="mt-14 grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {/* Card 1 — The Low-Ticket Trap */}
+          <AnimatedSection delay={0.1}>
+            <div className="glass-card border border-white/[0.06] rounded-2xl p-7 h-full flex flex-col">
+              {/* Visual: tags */}
+              <div className="mb-6 min-h-[100px] flex flex-col justify-end gap-2">
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-medium text-red-400">
+                    <X className="w-3 h-3" /> 20+ clients/month
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-medium text-red-400">
+                    <X className="w-3 h-3" /> Price competition
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-medium text-red-400">
+                    <TrendingUp className="w-3 h-3" /> Leads ghost
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-medium text-red-400">
+                    <X className="w-3 h-3" /> Hours for dollars
+                  </span>
+                </div>
+              </div>
+              {/* Text */}
+              <div className="mt-auto">
+                <h3 className="text-lg font-bold text-white mb-2">
+                  The Low-Ticket Trap
+                </h3>
+                <p className="text-sm text-white/50 leading-relaxed">
+                  Coaches and consultants stuck selling $500 offers, needing 20+ clients just to hit $10K. Chasing leads who ghost, competing on price, and burning out.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
 
-        <AnimatedSection delay={0.4} className="mt-14 text-center">
-          <div className="glass-card gradient-border inline-block px-8 py-6 md:px-12 md:py-8 max-w-xl">
-            <p className="text-white/70 text-base md:text-lg leading-relaxed">
-              <span className="text-white font-semibold">The result?</span>{" "}
-              Unpredictable revenue. Random wins. Panic between clients. A
-              business that grows in spikes instead of a controlled climb.
-            </p>
-          </div>
-        </AnimatedSection>
+          {/* Card 2 — The High-Ticket System */}
+          <AnimatedSection delay={0.2}>
+            <div className="glass-card border border-white/[0.06] rounded-2xl p-7 h-full flex flex-col">
+              {/* Visual: bar chart */}
+              <div className="mb-6 min-h-[100px] flex items-end justify-center gap-1.5">
+                {[35, 45, 55, 50, 65, 75, 90].map((h, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ height: 0 }}
+                    whileInView={{ height: `${h}%` }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
+                    className="w-6 rounded-t-md bg-emerald-500/80"
+                    style={{ maxHeight: `${h}px` }}
+                  />
+                ))}
+                <div className="ml-2 self-start">
+                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-medium text-emerald-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    $3K-$10K offers
+                  </span>
+                </div>
+              </div>
+              {/* Text */}
+              <div className="mt-auto">
+                <h3 className="text-lg font-bold text-white mb-2">
+                  The High-Ticket System
+                </h3>
+                <p className="text-sm text-white/50 leading-relaxed">
+                  One AI system that handles everything — content, sales agents, data analysis, ads, and CRM. Launch $3K-$10K offers in 60 minutes.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Card 3 — 60-Minute Launch */}
+          <AnimatedSection delay={0.3}>
+            <div className="glass-card border border-white/[0.06] rounded-2xl p-7 h-full flex flex-col">
+              {/* Visual: tags */}
+              <div className="mb-6 min-h-[100px] flex flex-col justify-end gap-2">
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400">
+                    <Zap className="w-3 h-3" /> 2-5 clients to $10K+
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400">
+                    <Check className="w-3 h-3" /> Premium positioning
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400">
+                    <TrendingUp className="w-3 h-3" /> Full automation
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400">
+                    <Check className="w-3 h-3" /> AI-powered sales
+                  </span>
+                </div>
+              </div>
+              {/* Text */}
+              <div className="mt-auto">
+                <h3 className="text-lg font-bold text-white mb-2">
+                  60-Minute Launch
+                </h3>
+                <p className="text-sm text-white/50 leading-relaxed">
+                  Built-in leverage and full automation. Need only 2-5 clients to hit $10K+.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
       </div>
     </section>
   );
