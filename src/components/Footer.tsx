@@ -96,9 +96,18 @@ export default function Footer() {
           <p className="text-xs text-white/30">
             &copy; {new Date().getFullYear()} Novada Tech. All rights reserved.
           </p>
-          <p className="text-xs text-white/20">
-            Results. Growth. Partnership.
-          </p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/privacy-policy"
+              className="text-xs text-white/30 hover:text-white/60 transition-colors duration-300"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-white/10">|</span>
+            <p className="text-xs text-white/20">
+              Results. Growth. Partnership.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
