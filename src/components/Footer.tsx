@@ -111,6 +111,13 @@ export default function Footer() {
               Terms of Service
             </Link>
             <span className="text-white/10">|</span>
+            <Link
+              href="/security"
+              className="text-xs text-white/30 hover:text-white/60 transition-colors duration-300"
+            >
+              Security
+            </Link>
+            <span className="text-white/10">|</span>
             <p className="text-xs text-white/20">
               Results. Growth. Partnership.
             </p>
