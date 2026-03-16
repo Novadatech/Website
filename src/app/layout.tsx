@@ -13,6 +13,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
   title: "Novada Tech — We Build Your Client Acquisition System",
   description:
     "We build complete AI-powered client acquisition systems for businesses ready to scale. Pay only for results. No retainers. No guesswork. Melbourne, Australia.",
