@@ -62,11 +62,11 @@ function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-balance"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight text-balance max-w-5xl"
           >
             The AI System That Predictably{" "}
             <span className="gradient-text">Generates High-Value Clients</span>{" "}
-            For Your Business
+            Without Hiring, Guesswork, or Wasted Spend
           </motion.h1>
 
           {/* Subheading */}
@@ -76,9 +76,10 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-8 text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed"
           >
-            We build and deploy your entire AI-powered client acquisition
-            infrastructure in 7 Days. From lead sourcing to booked meetings.
-            You only pay when the system produces real results.
+            We install your AI-powered client acquisition infrastructure in 7
+            days. From lead sourcing to booked meetings, so getting clients
+            becomes inevitable. You only pay when the system produces real
+            results.
           </motion.p>
 
           {/* Value Props */}
