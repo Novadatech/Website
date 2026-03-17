@@ -356,8 +356,8 @@ function ProofSection() {
   const stats = [
     { number: "77+", label: "Verified 5-Star Reviews", sublabel: "Trustpilot" },
     { number: "87+", label: "Client Recommendations", sublabel: "Facebook" },
-    { number: "$12.1M+", label: "Client Revenue Generated", sublabel: "Client Results" },
-    { number: "15+", label: "Industries Served", sublabel: "Across Australia" },
+    { number: "$50M+", label: "Client Revenue Generated", sublabel: "Client Results" },
+    { number: "30+", label: "Industries Served", sublabel: "Across Australia" },
   ];
 
   return (
@@ -374,10 +374,10 @@ function ProofSection() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, i) => (
-            <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="glass-card gradient-border p-6 md:p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500">
-                <p className="stat-number gradient-text">{stat.number}</p>
-                <p className="mt-3 text-white/70 font-medium text-sm md:text-base">
+            <AnimatedSection key={i} delay={i * 0.1} className="h-full">
+              <div className="glass-card gradient-border p-6 md:p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500 h-full">
+                <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none gradient-text">{stat.number}</p>
+                <p className="mt-4 text-white/70 font-medium text-sm md:text-base min-h-[2.5rem] md:min-h-[3rem] flex items-center justify-center">
                   {stat.label}
                 </p>
                 <p className="mt-1 text-white/30 text-xs uppercase tracking-wider">
