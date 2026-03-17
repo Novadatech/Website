@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Shield, Star, TrendingUp, Clock, Check } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import Script from "next/script";
 
 export default function BookPage() {
   useEffect(() => {
@@ -19,6 +20,11 @@ export default function BookPage() {
 
   return (
     <>
+      {/* Google Ads: Submit Lead Form conversion */}
+      <Script id="gtag-conversion-book" strategy="afterInteractive">
+        {`gtag('event', 'conversion', {'send_to': 'AW-16650862607/p15dCIjGk4ocEI-A4IM-'});`}
+      </Script>
+
       {/* Hero */}
       <section className="relative pt-32 pb-10 md:pt-40 md:pb-14 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />

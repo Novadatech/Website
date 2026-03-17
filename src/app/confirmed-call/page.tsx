@@ -4,10 +4,16 @@ import { motion } from "framer-motion";
 import { CheckCircle, Mail, Calendar, Clock, ArrowRight, MessageSquare } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import Link from "next/link";
+import Script from "next/script";
 
 export default function ConfirmationPage() {
   return (
     <>
+      {/* Google Ads: Booked Call conversion */}
+      <Script id="gtag-conversion-confirmed" strategy="afterInteractive">
+        {`gtag('event', 'conversion', {'send_to': 'AW-16650862607/YmXMCIr3pYocEI-A4IM-'});`}
+      </Script>
+
       {/* Hero */}
       <section className="relative min-h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
