@@ -62,11 +62,11 @@ function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight text-balance max-w-5xl"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight text-balance max-w-4xl"
           >
             The AI System That Predictably{" "}
-            <span className="gradient-text">Generates High-Value Clients</span>{" "}
-            Without Hiring, Guesswork, or Wasted Spend
+            <span className="gradient-text">Generates High-Value Clients</span>
+            {" "}— Installed in 7 Days
           </motion.h1>
 
           {/* Subheading */}
