@@ -974,7 +974,7 @@ function VSLSection() {
           <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
             style={{ paddingBottom: "56.25%" }}>
             <iframe
-              src="https://www.youtube.com/embed/ydxmNrjv2po"
+              src="https://www.youtube.com/embed/w6atSnPDjJw"
               title="Novada Tech — How We Generate High-Value Clients"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
