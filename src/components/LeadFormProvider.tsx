@@ -13,22 +13,9 @@ export function useLeadForm() {
 
 export default function LeadFormProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [autoShown, setAutoShown] = useState(false);
 
   const openForm = useCallback(() => setIsOpen(true), []);
   const closeForm = useCallback(() => setIsOpen(false), []);
-
-  // Auto-pop on first visit after 3 seconds (not on confirmed-call or book-call pages)
-  useEffect(() => {
-    if (autoShown) return;
-    const path = window.location.pathname;
-    if (path === "/confirmed-call" || path === "/book-call") return;
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-      setAutoShown(true);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [autoShown]);
 
   // Intercept all CTA clicks (links with href="/book-call")
   useEffect(() => {
