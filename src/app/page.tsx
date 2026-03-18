@@ -356,9 +356,9 @@ function SolutionSection() {
 function ProofSection() {
   const stats = [
     { number: "77+", label: "Verified 5-Star Reviews", sublabel: "Trustpilot" },
-    { number: "350+", label: "Clients Served", sublabel: "And Growing" },
+    { number: "350+", label: "Businesses Scaled", sublabel: "And Growing" },
     { number: "$50M+", label: "Client Revenue Generated", sublabel: "Client Results" },
-    { number: "30+", label: "Industries Served", sublabel: "Across Australia" },
+    { number: "30+", label: "Industries Scaled", sublabel: "Across Australia" },
   ];
 
   return (
