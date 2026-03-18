@@ -955,11 +955,51 @@ function FinalCTA() {
   );
 }
 
+/* ─── VSL SECTION ─── */
+function VSLSection() {
+  return (
+    <section className="section-padding pb-0">
+      <div className="max-container max-w-4xl">
+        <AnimatedSection className="text-center mb-10">
+          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">
+            Watch This First
+          </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white">
+            See Exactly How We Generate High-Value Clients{" "}
+            <span className="gradient-text">for Your Business</span>
+          </h2>
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
+            style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              src="https://www.youtube.com/embed/ydxmNrjv2po"
+              title="Novada Tech — How We Generate High-Value Clients"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+            />
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+}
+
 /* ─── PAGE ─── */
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <VSLSection />
       <ProblemSection />
       <SolutionSection />
       <ProofSection />
