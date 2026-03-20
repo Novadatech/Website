@@ -88,7 +88,7 @@ export default function ApplyPage() {
           >
             Find Out Exactly How We&apos;d Generate{" "}
             <span className="gradient-text">High-Value Clients</span>{" "}
-            For Your Business — In 7 Days
+            For Your Business — In 30 Days
           </motion.h1>
 
           <motion.p
