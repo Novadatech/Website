@@ -12,8 +12,10 @@ import {
   Globe,
   Award,
   Star,
+  Quote,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import Image from "next/image";
 
 const BOOKING_URL = "/book-call";
 
@@ -156,6 +158,98 @@ function OriginStory() {
                   <p className="text-2xl font-bold gradient-text">
                     4.9★ · 77+ Reviews
                   </p>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── FOUNDER MESSAGE ─── */
+function FounderMessage() {
+  return (
+    <section className="section-spacing section-padding border-t border-white/[0.04]">
+      <div className="max-container max-w-5xl">
+        <AnimatedSection className="text-center mb-14">
+          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">
+            Meet the Founder
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            A Message From{" "}
+            <span className="gradient-text">Ade Eni</span>
+          </h2>
+        </AnimatedSection>
+
+        <div className="grid lg:grid-cols-5 gap-12 items-start">
+          {/* Photo column */}
+          <AnimatedSection direction="left" className="lg:col-span-2">
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl">
+                <Image
+                  src="/founder.jpg"
+                  alt="Ade Eni — Founder & CEO, Novada Tech"
+                  width={480}
+                  height={600}
+                  className="w-full object-cover object-top"
+                  unoptimized
+                />
+                {/* Gradient overlay at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy-950 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-lg font-bold text-white">Ade Eni</p>
+                  <p className="text-sm text-gold-400">Founder & CEO, Novada Tech</p>
+                </div>
+              </div>
+
+              {/* Floating stat card */}
+              <div className="absolute -right-4 top-8 glass-card gradient-border px-5 py-4 hidden lg:block">
+                <p className="text-2xl font-bold gradient-text">$50M+</p>
+                <p className="text-xs text-white/40 mt-0.5">Revenue Generated</p>
+              </div>
+              <div className="absolute -right-4 bottom-20 glass-card gradient-border px-5 py-4 hidden lg:block">
+                <p className="text-2xl font-bold gradient-text">350+</p>
+                <p className="text-xs text-white/40 mt-0.5">Businesses Scaled</p>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Message column */}
+          <AnimatedSection direction="right" delay={0.2} className="lg:col-span-3">
+            <div className="relative">
+              <Quote className="w-10 h-10 text-gold-500/20 mb-6" />
+
+              <div className="space-y-5 text-white/60 leading-relaxed text-base">
+                <p>
+                  I started Novada Tech after watching too many talented business owners — people with genuinely exceptional products and services — struggle to grow. Not because their offer wasn&apos;t good enough, but because they had no reliable, predictable system to bring in clients.
+                </p>
+                <p>
+                  They were doing everything right. Posting on LinkedIn. Running ads. Attending events. Cold emailing. And still — inconsistent revenue, feast and famine cycles, and an over-reliance on referrals that could dry up overnight.
+                </p>
+                <p>
+                  The problem wasn&apos;t effort. The problem was the model. Traditional agencies charge retainers whether you grow or not. They have no skin in the game. So I asked a different question:{" "}
+                  <span className="text-white font-medium">
+                    what if the people building your acquisition system only got paid when it actually worked?
+                  </span>
+                </p>
+                <p>
+                  That question became Novada Tech. We invest our time, our AI systems, and our expert team into your business — and we only win when you win. No retainers. No guesswork. No risk on your side.
+                </p>
+                <p>
+                  Today, we&apos;ve helped over <span className="text-white font-medium">350 business owners</span> across <span className="text-white font-medium">30+ industries</span> generate more than <span className="text-white font-medium">$50M in revenue</span> using our AI-powered client acquisition system. And we&apos;re just getting started.
+                </p>
+                <p>
+                  If you&apos;re a business owner who is tired of inconsistent leads and ready for a system that works — I&apos;d love to have a conversation.
+                </p>
+              </div>
+
+              <div className="mt-8 pt-8 border-t border-white/[0.06] flex items-center gap-5">
+                <div>
+                  <p className="text-white font-semibold text-lg">Ade Eni</p>
+                  <p className="text-sm text-white/40">Founder & CEO, Novada Tech</p>
+                  <div className="flex text-gold-400 text-sm mt-1">★★★★★</div>
                 </div>
               </div>
             </div>
@@ -463,6 +557,7 @@ export default function AboutPage() {
     <>
       <AboutHero />
       <OriginStory />
+      <FounderMessage />
       <Journey />
       <Principles />
       <TrustStats />

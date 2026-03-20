@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import ConditionalNav from "@/components/ConditionalNav";
 import LeadFormProvider from "@/components/LeadFormProvider";
 
 const inter = Inter({
@@ -57,9 +56,9 @@ export default function RootLayout({
         </noscript>
 
         <LeadFormProvider>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <ConditionalNav>
+            {children}
+          </ConditionalNav>
         </LeadFormProvider>
 
         {/* Google tag (gtag.js) */}
