@@ -435,82 +435,6 @@ export default function ApplyPage() {
             </motion.div>
           </div>
 
-          {/* ── Testimonials — full-width 3 columns, flush below the grid ── */}
-          <div className="mt-10 pt-8 border-t border-white/[0.06]">
-            <p className="text-xs uppercase tracking-[0.2em] text-gold-500/60 font-medium text-center mb-6">
-              What Our Clients Say
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {TESTIMONIALS.map((t, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="glass-card p-6 border border-white/[0.05] flex flex-col"
-                >
-                  <div className="text-gold-400 text-xs mb-3">★★★★★</div>
-                  <p className="text-sm text-white/60 leading-relaxed italic flex-1">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
-                    <Image
-                      src={t.photo}
-                      alt={t.name}
-                      width={36}
-                      height={36}
-                      className="rounded-full object-cover flex-shrink-0"
-                      unoptimized
-                    />
-                    <div>
-                      <p className="text-sm font-semibold text-white">{t.name}</p>
-                      <p className="text-xs text-white/40">{t.role}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── What Happens Next ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04] mt-12">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">
-              After You Submit
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Here&apos;s What Happens Next
-            </h2>
-            <p className="mt-3 text-white/40 text-sm max-w-lg mx-auto">
-              No guesswork — here&apos;s exactly what to expect the moment you hit submit.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {NEXT_STEPS.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass-card gradient-border p-6 text-center flex flex-col items-center"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mb-4">
-                  <step.icon className="w-6 h-6 text-gold-400" />
-                </div>
-                <span className="text-xs text-gold-500/60 font-medium uppercase tracking-wider mb-2">
-                  {step.step}
-                </span>
-                <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-xs text-white/40 leading-relaxed">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -549,6 +473,85 @@ export default function ApplyPage() {
                     style={{ border: "none" }}
                   />
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Testimonials ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container">
+          <p className="text-xs uppercase tracking-[0.2em] text-gold-500/60 font-medium text-center mb-6">
+            What Our Clients Say
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {TESTIMONIALS.map((t, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-card p-6 border border-white/[0.05] flex flex-col"
+              >
+                <div className="text-gold-400 text-xs mb-3">★★★★★</div>
+                <p className="text-sm text-white/60 leading-relaxed italic flex-1">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
+                  <Image
+                    src={t.photo}
+                    alt={t.name}
+                    width={36}
+                    height={36}
+                    className="rounded-full object-cover flex-shrink-0"
+                    unoptimized
+                  />
+                  <div>
+                    <p className="text-sm font-semibold text-white">{t.name}</p>
+                    <p className="text-xs text-white/40">{t.role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── What Happens Next ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-4xl">
+          <div className="text-center mb-10">
+            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">
+              After You Submit
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              Here&apos;s What Happens Next
+            </h2>
+            <p className="mt-3 text-white/40 text-sm max-w-lg mx-auto">
+              No guesswork — here&apos;s exactly what to expect the moment you hit submit.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {NEXT_STEPS.map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-card gradient-border p-6 text-center flex flex-col items-center"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mb-4">
+                  <step.icon className="w-6 h-6 text-gold-400" />
+                </div>
+                <span className="text-xs text-gold-500/60 font-medium uppercase tracking-wider mb-2">
+                  {step.step}
+                </span>
+                <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
+                <p className="text-xs text-white/40 leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>
