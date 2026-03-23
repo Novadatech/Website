@@ -460,9 +460,9 @@ export default function ApplyPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
           >
-            Walk Away With a Custom Plan Showing Exactly How We&apos;d Generate{" "}
+            Get a Free Custom Plan to Attract{" "}
             <span className="gradient-text">High-Value Clients</span>{" "}
-            For Your Business
+            in 14 Days
           </motion.h1>
 
           <motion.p
