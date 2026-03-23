@@ -53,7 +53,7 @@ function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
             <span className="text-sm text-gold-400 font-medium">
-              4 Spots Remaining This Quarter · Results Only · No Retainers
+              Limited Availability This Quarter · Results Only · No Retainers
             </span>
           </motion.div>
 
@@ -158,9 +158,9 @@ function Hero() {
             className="mt-8 pt-8 border-t border-white/[0.06] grid grid-cols-3 gap-6 max-w-lg"
           >
             {[
-              { day: "Day 1–2", label: "Offer refined & acquisition engine architected" },
-              { day: "Day 3–5", label: "Targeting, messaging & outreach go live" },
-              { day: "Day 6–7", label: "First conversations land in your pipeline" },
+              { day: "Day 1–3", label: "Offer refined & acquisition engine architected" },
+              { day: "Day 4–7", label: "Targeting, messaging & outreach go live" },
+              { day: "Day 8–14", label: "First qualified meetings land in your calendar" },
             ].map((item, i) => (
               <div key={i}>
                 <p className="text-xs font-semibold text-gold-400/80 mb-1">{item.day}</p>
@@ -323,7 +323,7 @@ function SolutionSection() {
 /* ─── STATS / PROOF ─── */
 function ProofSection() {
   const stats = [
-    { number: "77+", label: "Verified 5-Star Reviews", sublabel: "Trustpilot", href: "https://www.trustpilot.com/review/novadatech.com.au" },
+    { number: "77+", label: "Verified 5-Star Reviews", sublabel: "Trustpilot · Reviews are voluntary", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { number: "350+", label: "Businesses Scaled", sublabel: "And Growing" },
     { number: "$50M+", label: "Client Revenue Generated", sublabel: "Client Results" },
     { number: "30+", label: "Industries Scaled", sublabel: "Across Australia" },
@@ -751,24 +751,24 @@ function Testimonials() {
 /* ─── WRITTEN TESTIMONIALS ─── */
 function WrittenTestimonials() {
   const testimonials = [
-    { quote: "Within 30 days we had more qualified leads than the previous 6 months combined. The system just works.", name: "James Mitchell", role: "Founder, Apex Growth Partners" },
-    { quote: "I was sceptical at first but the results speak for themselves. Our revenue has grown by over 40% since partnering with Novada Tech.", name: "Sarah Thompson", role: "CEO, Meridian Advisory Group" },
-    { quote: "We went from chasing leads to having a full pipeline in under a month. Best investment we've made this year.", name: "David Clarke", role: "Director, Summit Consulting Co." },
-    { quote: "Finally a system that brings in clients on autopilot. We closed three high-ticket deals in our first month. Incredible ROI.", name: "Emily Watson", role: "Managing Director, Clearview Solutions" },
-    { quote: "Our cost per acquisition dropped by 60% and the quality of leads went through the roof. Novada Tech completely changed how we grow.", name: "Michael Reynolds", role: "Founder, Pinnacle Media Group" },
-    { quote: "We had tried every agency under the sun. Novada Tech was the first one to actually deliver and then keep delivering month after month.", name: "Jessica Andrews", role: "CEO, Luminary Digital" },
-    { quote: "The strategy call alone gave us more clarity than 6 months working with our previous agency. Signed up on the spot.", name: "Thomas Bennett", role: "Owner, Brentwood Financial Services" },
-    { quote: "I was spending a fortune on ads with zero consistency. Now our pipeline is full and we're turning away clients we don't want.", name: "Rachel Foster", role: "Founder, Coastal Strategy Partners" },
-    { quote: "Booked 11 discovery calls in the first two weeks. The system is genuinely different to anything else I've seen in the market.", name: "Andrew Morrison", role: "Director, Northgate Consulting Group" },
-    { quote: "We scaled from $30K to $85K monthly revenue in under 90 days. The AI acquisition system is unlike anything we've used before.", name: "Lauren Hayes", role: "CEO, BlueSky Ventures" },
-    { quote: "Pay for results only? That's what sold me. And they actually delivered. Our close rate on inbound leads is now over 70%.", name: "Christopher Hall", role: "Founder, Sterling Advisory" },
-    { quote: "The onboarding was seamless and within the first week we were already seeing movement. Month two we had our best revenue ever.", name: "Amanda Wilson", role: "Managing Director, Horizon Business Group" },
-    { quote: "I've worked with five agencies over four years. Novada Tech is the only one that treats my business like their own.", name: "Robert Carter", role: "Partner, Westfield Growth Co." },
-    { quote: "We went from two inbound leads a month to over twenty. Our sales team is busier than ever and morale is through the roof.", name: "Nicole Parker", role: "CEO, Elevate Business Solutions" },
-    { quote: "The team is responsive, transparent and genuinely invested in your results. That's rare. The numbers prove it too.", name: "Daniel Murphy", role: "Director, Granite Peak Consulting" },
-    { quote: "Within six weeks we had more booked calls than we knew what to do with. We actually had to pause the system to catch up.", name: "Samantha Reid", role: "Founder, Whitmore Partners" },
-    { quote: "The ROI is undeniable. For every dollar we put in, we're getting eight back. I wish we'd found them two years ago.", name: "Jonathan Brooks", role: "Owner, Lakewood Services Group" },
-    { quote: "Our old agency gave us vanity metrics. Novada Tech gives us revenue. The difference is night and day.", name: "Victoria Harrison", role: "CEO, Bridgepoint Advisory" },
+    { quote: "I was already running ads but the leads were all over the place — wrong industries, wrong budgets. Within three weeks we had 14 new meetings booked with exactly the type of client we wanted.", name: "Tony", role: "Founder, South Line Media" },
+    { quote: "We'd been burned by two agencies before and the pay-for-results pitch sounded too good to be true. It wasn't. We closed four new retainer clients in our first 45 days.", name: "Anthony", role: "Founder, Ripple Clarke" },
+    { quote: "Our biggest problem wasn't the product — it was getting in front of the right people consistently. The pipeline went from sporadic to predictable within the first month.", name: "Damian", role: "Founder, Groundwork Ventures" },
+    { quote: "We'd been growing mainly through referrals and the feast-and-famine cycle was exhausting. In 30 days Novada Tech had us booked out three weeks ahead. The system just keeps running.", name: "Jack", role: "Director, House Valley" },
+    { quote: "Finding quality B2B clients in our space isn't easy. Novada Tech built outreach that educated prospects before we even spoke to them. Our conversion rate on discovery calls jumped to over 60%.", name: "Nate", role: "Owner, Larsky Tach and Feed" },
+    { quote: "We went from $42K to over $91K monthly revenue in under 60 days. The team understood our space quickly and built a system that brought in high-quality leads consistently. The ROI speaks for itself.", name: "Josh", role: "Director, Maxicare Plus" },
+    { quote: "Within the first month the system brought in more clients than I'd converted in the previous six months combined. I actually had to pause it to catch up with demand.", name: "Jessica", role: "Founder, Jessica Teds Coaching" },
+    { quote: "We scaled from $28K to $76K monthly in 90 days. What impressed me most was how quickly they understood our positioning and built outreach that didn't sound generic.", name: "Gunendu", role: "Director, Growth-Loop Consulting" },
+    { quote: "In the NDIS space, trust is everything. I was worried outreach would feel cold. Instead Novada Tech built campaigns that led with our values and the right clients found us. We've doubled our active participants in four months.", name: "Malkin", role: "CEO, Support24" },
+    { quote: "I run two businesses and couldn't justify spending hours generating leads for both. Novada Tech runs acquisition for Recruitilon on autopilot. I show up to calls, close deals, and the pipeline refills itself.", name: "Malkin", role: "Founder, Recruitilon" },
+    { quote: "The targeting is incredibly precise — now we only speak to clients who are ready and already understand our value. Our close rate went from about 25% to over 65%.", name: "Terver", role: "Founder, CareJewel" },
+    { quote: "Growing a community services business requires a different approach. Novada Tech understood that and built outreach that connected with the right referral partners. We've tripled our referral network in six months.", name: "Uche", role: "CEO, Morning Star Community Services" },
+    { quote: "I was doing everything on Instagram and getting followers but not customers. Novada Tech flipped that around — actual bookings and catering enquiries. The first month alone more than paid for itself.", name: "Ella", role: "Founder, Ellaz Chop" },
+    { quote: "Before Novada Tech I spent two hours every morning trying to generate leads. Now I spend that time serving clients. The acquisition runs in the background and I focus on delivery.", name: "Peter", role: "Director, Support Link" },
+    { quote: "We operate in a niche that requires trust before a conversation starts. Novada Tech built warm outreach that positioned us as the authority before we spoke to a single prospect. Meeting quality went through the roof.", name: "Michael", role: "Managing Partner, Aaronson & Co Ventures" },
+    { quote: "Ironic that a marketing agency needed help with its own client acquisition — but it's true. Novada Tech brought structure and consistency to our pipeline. We've onboarded six new clients in the past quarter alone.", name: "Ola", role: "Founder, Simply Ads" },
+    { quote: "Family businesses like ours don't have time to chase leads. We're on the tools every day. The fact that this system runs in the background and books calls into our calendar is genuinely incredible.", name: "Lucas", role: "Director, J.R & Sons Ltd" },
+    { quote: "Health and wellness is a crowded space. Novada Tech helped us find the specific niche where demand was high and competition was low. First month we had 18 qualified consultations booked — our best month ever.", name: "Mo", role: "Founder, Framer Health" },
   ];
 
   const AVATAR_COLORS = [

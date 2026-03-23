@@ -17,7 +17,7 @@ import {
 import AnimatedSection from "@/components/AnimatedSection";
 import Image from "next/image";
 
-const BOOKING_URL = "/book-call";
+const BOOKING_URL = "/apply";
 
 /* ─── HERO ─── */
 function AboutHero() {
@@ -69,7 +69,7 @@ function AboutHero() {
               ★★★★★
             </div>
             <span className="text-sm text-white/40">
-              Trusted by 77+ businesses across 30+ industries
+              Trusted by 350+ businesses across 30+ industries
             </span>
           </motion.div>
         </div>
@@ -411,7 +411,7 @@ function Principles() {
 function TrustStats() {
   const stats = [
     { icon: Star, number: "4.9★", label: "Trustpilot Rating", href: "https://www.trustpilot.com/review/novadatech.com.au" },
-    { icon: Award, number: "77+", label: "Verified Reviews", href: "https://www.trustpilot.com/review/novadatech.com.au" },
+    { icon: Award, number: "77+", label: "Verified Reviews · voluntary", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { icon: Globe, number: "30+", label: "Industries Served" },
     { icon: TrendingUp, number: "35%", label: "Avg. Revenue Increase" },
   ];
@@ -557,7 +557,7 @@ function AboutCTA() {
               </p>
               <div className="mt-10">
                 <a href={BOOKING_URL} className="btn-primary text-base">
-                  Book Your Strategy Call
+                  See If You Qualify
                   <ArrowRight className="w-5 h-5" />
                 </a>
               </div>
