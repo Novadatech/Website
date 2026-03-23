@@ -649,69 +649,111 @@ function HomeVideoSlider() {
   const video = HOME_VIDEO_TESTIMONIALS[current];
 
   return (
-    <div className="relative max-w-4xl mx-auto">
-      {/* Arrow buttons — outside the video on each side */}
-      <motion.button
-        onClick={prev}
-        animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        whileHover={{ scale: 1.12 }}
-        whileTap={{ scale: 0.93 }}
-        className="absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 flex items-center justify-center text-gold-400 hover:border-gold-500/80 hover:bg-navy-800 transition-colors duration-200 z-10"
-        aria-label="Previous"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </motion.button>
+    <div className="max-w-4xl mx-auto">
+      {/* Desktop: side arrows + padded card. Mobile: full-width card */}
+      <div className="relative">
+        {/* Side arrows — desktop only */}
+        <motion.button
+          onClick={prev}
+          animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.12 }}
+          whileTap={{ scale: 0.93 }}
+          className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 items-center justify-center text-gold-400 hover:border-gold-500/80 hover:bg-navy-800 transition-colors duration-200 z-10"
+          aria-label="Previous"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </motion.button>
 
-      <motion.button
-        onClick={next}
-        animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }}
-        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-        whileHover={{ scale: 1.12 }}
-        whileTap={{ scale: 0.93 }}
-        className="absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 flex items-center justify-center text-gold-400 hover:bg-gold-500/25 hover:border-gold-500 transition-colors duration-200 z-10"
-        aria-label="Next"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </motion.button>
+        <motion.button
+          onClick={next}
+          animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.12 }}
+          whileTap={{ scale: 0.93 }}
+          className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 items-center justify-center text-gold-400 hover:bg-gold-500/25 hover:border-gold-500 transition-colors duration-200 z-10"
+          aria-label="Next"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </motion.button>
 
-      {/* Video card — padded inward so arrows have clear space */}
-      <div className="px-16">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={video.id}
-            initial={{ opacity: 0, x: direction * 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: direction * -40 }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="glass-card gradient-border p-3"
-          >
-            <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-              <iframe
-                src={`https://www.youtube.com/embed/${video.id}`}
-                title={video.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-                style={{ border: "none" }}
-              />
-            </div>
-            <div className="flex items-center gap-3 mt-3 px-1 pb-1">
-              <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
+        {/* Video card — full width on mobile, padded on desktop */}
+        <div className="sm:px-16">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={video.id}
+              initial={{ opacity: 0, x: direction * 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction * -40 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="glass-card gradient-border p-3"
+            >
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.id}`}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                  style={{ border: "none" }}
+                />
               </div>
-              <div>
-                <p className="text-xs font-semibold text-white/70">{video.name}</p>
-                <p className="text-[11px] text-white/35">{video.company}</p>
+              <div className="flex items-center gap-3 mt-3 px-1 pb-1">
+                <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-white/70">{video.name}</p>
+                  <p className="text-[11px] text-white/35">{video.company}</p>
+                </div>
+                <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
               </div>
-              <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
 
-      {/* Dot indicators */}
-      <div className="flex items-center justify-center gap-2 mt-5">
+      {/* Mobile arrows row — below video */}
+      <div className="flex sm:hidden items-center justify-center gap-4 mt-4">
+        <motion.button
+          onClick={prev}
+          animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          whileTap={{ scale: 0.93 }}
+          className="w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 flex items-center justify-center text-gold-400"
+          aria-label="Previous"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </motion.button>
+
+        {/* Dot indicators inline on mobile */}
+        <div className="flex items-center gap-2">
+          {HOME_VIDEO_TESTIMONIALS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i, i > current ? 1 : -1)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === current ? "w-6 bg-gold-400" : "w-2 bg-white/20"
+              }`}
+              aria-label={`Go to video ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        <motion.button
+          onClick={next}
+          animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          whileTap={{ scale: 0.93 }}
+          className="w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 flex items-center justify-center text-gold-400"
+          aria-label="Next"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </motion.button>
+      </div>
+
+      {/* Dot indicators — desktop only */}
+      <div className="hidden sm:flex items-center justify-center gap-2 mt-5">
         {HOME_VIDEO_TESTIMONIALS.map((_, i) => (
           <button
             key={i}
