@@ -916,9 +916,15 @@ export default function ApplyPage() {
                 <span className="flex items-center gap-1.5">
                   <Shield className="w-3.5 h-3.5" /> Zero Risk
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <Star className="w-3.5 h-3.5" /> 4.9★ Trustpilot
-                </span>
+                <a
+                  href="https://www.trustpilot.com/review/novadatech.com.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
+                >
+                  <Star className="w-3.5 h-3.5" />
+                  <span className="underline underline-offset-2 decoration-white/20">4.9★ Trustpilot</span>
+                </a>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5" /> 30-Min Call
                 </span>

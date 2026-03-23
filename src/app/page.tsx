@@ -66,7 +66,7 @@ function Hero() {
           >
             The AI System That Predictably{" "}
             <span className="gradient-text">Generates High-Value Clients</span>
-            {" "}— Installed in 7 Days
+            {" "}— First Qualified Meetings Within 14 Days
           </motion.h1>
 
           {/* Subheading */}
@@ -76,8 +76,8 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-8 text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed"
           >
-            We install your AI-powered client acquisition infrastructure in 7
-            days. From lead sourcing to booked meetings, so getting clients
+            We build and deploy your complete AI-powered client acquisition
+            system — from lead sourcing to booked meetings, so getting clients
             becomes inevitable. You only pay when the system produces real
             results.
           </motion.p>
@@ -1070,7 +1070,7 @@ function HowToStart() {
   const steps = [
     {
       num: "1",
-      title: "Book a Strategy Call",
+      title: "Apply for a Strategy Call",
       desc: "We analyze your offer, your market, and your current acquisition process to see if there's a fit.",
     },
     {
@@ -1334,6 +1334,20 @@ export default function HomePage() {
       <Flywheel />
       <Testimonials />
       <WrittenTestimonials />
+      <section className="section-padding py-10">
+        <div className="max-container">
+          <div className="rounded-2xl bg-white/[0.02] border border-gold-500/10 px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-5">
+            <div>
+              <p className="text-base font-semibold text-white">Ready to build a pipeline like theirs?</p>
+              <p className="text-sm text-white/40 mt-1">Every one of those businesses started with a single free strategy session.</p>
+            </div>
+            <a href={BOOKING_URL} className="btn-primary whitespace-nowrap flex-shrink-0">
+              See If You Qualify
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </section>
       <ComparisonSection />
       <QualificationSection />
       <RiskReversal />

@@ -285,8 +285,8 @@ function Journey() {
     },
     {
       period: "Today",
-      title: "77+ Businesses Trust Us to Drive Their Growth",
-      desc: "With a 4.9-star rating across 77+ reviews, partnerships spanning 30+ industries, and measurable revenue results for every partner, Novada Tech has become the growth engine Australian businesses rely on.",
+      title: "350+ Businesses Trust Us to Drive Their Growth",
+      desc: "With a 4.9-star rating across 77+ verified reviews, partnerships spanning 30+ industries, and measurable revenue results for every partner, Novada Tech has become the growth engine Australian businesses rely on.",
     },
   ];
 
