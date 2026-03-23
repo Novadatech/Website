@@ -28,115 +28,117 @@ const BOOKING_URL = "/apply";
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="relative pt-28 pb-8 overflow-hidden">
+    <section className="relative pt-28 pb-12 overflow-hidden">
       {/* Background layers */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(21,94,239,0.06)_0%,_transparent_60%)]" />
 
       <div className="relative max-container section-padding text-center">
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-6"
+        {/* Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-6"
+        >
+          <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
+          <span className="text-sm text-gold-400 font-medium">
+            Limited Availability This Quarter · Results Only · No Retainers
+          </span>
+        </motion.div>
+
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
+        >
+          The AI System That Predictably{" "}
+          <span className="gradient-text">Generates High-Value Clients</span>
+          {" "}— First Qualified Meetings Within 14 Days
+        </motion.h1>
+
+        {/* VSL — immediately below headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mt-10 max-w-4xl mx-auto"
+        >
+          <div
+            className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
+            style={{ paddingBottom: "56.25%" }}
           >
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
-            <span className="text-sm text-gold-400 font-medium">
-              Limited Availability This Quarter · Results Only · No Retainers
+            <iframe
+              src="https://www.youtube.com/embed/w6atSnPDjJw?autoplay=1&mute=1"
+              title="Novada Tech — How We Generate High-Value Clients"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+            />
+          </div>
+        </motion.div>
+
+        {/* Subheading — below video, bridges to CTA */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-6 text-lg text-white/50 max-w-2xl mx-auto leading-relaxed"
+        >
+          We build and deploy your complete AI-powered client acquisition
+          system — from lead sourcing to booked meetings, so getting clients
+          becomes inevitable. You only pay when the system produces real results.
+        </motion.p>
+
+        {/* Risk reversal badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-8 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-sm font-medium"
+        >
+          <Shield className="w-4 h-4 flex-shrink-0" />
+          If we don&apos;t generate revenue, you don&apos;t pay us — No retainers. No ad spend. No risk.
+        </motion.div>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+          className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <a href={BOOKING_URL} className="btn-primary text-base">
+            Apply for Your Free Strategy Session
+            <ArrowRight className="w-5 h-5" />
+          </a>
+          <a href="#how-it-works" className="btn-secondary text-base">
+            See How It Works
+          </a>
+        </motion.div>
+
+        {/* Trust Badge */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          className="mt-6 flex items-center justify-center gap-4"
+        >
+          <a
+            href="https://www.trustpilot.com/review/novadatech.com.au"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 hover:opacity-80 transition-opacity"
+          >
+            <div className="flex text-gold-400 text-sm tracking-wider">★★★★★</div>
+            <span className="text-sm text-white/40 underline underline-offset-2 decoration-white/20">
+              Rated 4.9/5 on Trustpilot · 77+ Verified Reviews
             </span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
-          >
-            The AI System That Predictably{" "}
-            <span className="gradient-text">Generates High-Value Clients</span>
-            {" "}— First Qualified Meetings Within 14 Days
-          </motion.h1>
-
-          {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-4 text-lg text-white/50 max-w-2xl mx-auto leading-relaxed"
-          >
-            We build and deploy your complete AI-powered client acquisition
-            system — from lead sourcing to booked meetings, so getting clients
-            becomes inevitable. You only pay when the system produces real results.
-          </motion.p>
-
-          {/* Value Props */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
-          >
-            {[
-              "Revenue on Autopilot",
-              "Pay for Results Only",
-              "We Win When You Win",
-            ].map((item) => (
-              <div key={item} className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                <span className="text-sm text-white/70 font-medium">{item}</span>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Risk reversal badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-6 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-sm font-medium"
-          >
-            <Shield className="w-4 h-4 flex-shrink-0" />
-            If we don&apos;t generate revenue, you don&apos;t pay us — No retainers. No ad spend. No risk.
-          </motion.div>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <a href={BOOKING_URL} className="btn-primary text-base">
-              Apply for Your Free Strategy Session
-              <ArrowRight className="w-5 h-5" />
-            </a>
-            <a href="#how-it-works" className="btn-secondary text-base">
-              See How It Works
-            </a>
-          </motion.div>
-
-          {/* Trust Badge */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            className="mt-6 flex items-center justify-center gap-4"
-          >
-            <a
-              href="https://www.trustpilot.com/review/novadatech.com.au"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 hover:opacity-80 transition-opacity"
-            >
-              <div className="flex text-gold-400 text-sm tracking-wider">★★★★★</div>
-              <span className="text-sm text-white/40 underline underline-offset-2 decoration-white/20">
-                Rated 4.9/5 on Trustpilot · 77+ Verified Reviews
-              </span>
-            </a>
-          </motion.div>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
@@ -1381,7 +1383,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <VSLSection />
       <ProblemSection />
       <SolutionSection />
       <ProofSection />

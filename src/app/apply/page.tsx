@@ -469,70 +469,61 @@ export default function ApplyPage() {
             <span className="gradient-text">High-Value Clients</span>{" "}
             For Your Business
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-4 text-lg text-white/50 max-w-2xl mx-auto leading-relaxed"
-          >
-            In 30 minutes, we map out the exact system — channels, targeting, and messaging —
-            tailored to your business. Completely free. No obligation. No hard sell.
-          </motion.p>
-
-          {/* 4-point proof bar */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto"
-          >
-            {PROOF_POINTS.map(({ icon: Icon, text, href }, i) => {
-              const inner = (
-                <div className="flex flex-col items-center gap-2 rounded-xl bg-white/[0.03] border border-white/[0.06] py-4 px-3 w-full">
-                  <Icon className="w-5 h-5 text-gold-400" />
-                  <span className="text-xs text-white/50 text-center leading-snug">{text}</span>
-                </div>
-              );
-              return href ? (
-                <a
-                  key={i}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
-                >
-                  {inner}
-                </a>
-              ) : (
-                <div key={i}>{inner}</div>
-              );
-            })}
-          </motion.div>
         </div>
       </section>
 
       {/* ── VSL ── */}
-      <section className="section-padding pt-2 pb-8">
+      <section className="section-padding pt-6 pb-0">
         <div className="max-container max-w-3xl">
-          <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-sm font-medium">
-              <TrendingUp className="w-4 h-4 flex-shrink-0" />
-              See exactly how we&apos;ve helped 350+ businesses build predictable pipelines — before you apply
-            </div>
-          </div>
-          <div
-            className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
-            style={{ paddingBottom: "56.25%" }}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
           >
-            <iframe
-              src="https://www.youtube.com/embed/w6atSnPDjJw?autoplay=1&mute=1"
-              title="How Novada Tech Generates High-Value Clients"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
-            />
-          </div>
+            <div
+              className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
+              style={{ paddingBottom: "56.25%" }}
+            >
+              <iframe
+                src="https://www.youtube.com/embed/w6atSnPDjJw?autoplay=1&mute=1"
+                title="How Novada Tech Generates High-Value Clients"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Subheadline + proof bar — below video */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-8 text-center"
+          >
+            <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
+              In 30 minutes, we map out the exact system — channels, targeting, and messaging —
+              tailored to your business. Completely free. No obligation. No hard sell.
+            </p>
+
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
+              {PROOF_POINTS.map(({ icon: Icon, text, href }, i) => {
+                const inner = (
+                  <div className="flex flex-col items-center gap-2 rounded-xl bg-white/[0.03] border border-white/[0.06] py-4 px-3 w-full">
+                    <Icon className="w-5 h-5 text-gold-400" />
+                    <span className="text-xs text-white/50 text-center leading-snug">{text}</span>
+                  </div>
+                );
+                return href ? (
+                  <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={i}>{inner}</div>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
       </section>
 
