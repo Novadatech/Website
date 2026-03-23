@@ -519,6 +519,185 @@ export default function ApplyPage() {
         </div>
       </section>
 
+      {/* ── Is This Right for You? ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-4xl">
+          <div className="text-center mb-10">
+            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">
+              Is This Right for You?
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              We&apos;re Selective About Who We Partner With
+            </h2>
+            <p className="mt-3 text-white/40 text-sm max-w-lg mx-auto">
+              We only take on clients we know we can get results for. Check both columns honestly.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Good fit */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="glass-card gradient-border p-7"
+            >
+              <h3 className="text-base font-semibold text-emerald-400 mb-5 flex items-center gap-2">
+                <CheckCircle className="w-4 h-4" /> We&apos;re a Fit If You Are...
+              </h3>
+              <div className="space-y-3">
+                {[
+                  "A business owner selling a high-value service ($3K–$50K+)",
+                  "Ready to scale but lack the system or team to get there",
+                  "Tired of inconsistent referrals, random leads, and wasted ad spend",
+                  "Looking for a real partner — not another agency sending you reports",
+                  "Willing to follow a proven process and take calls with qualified prospects",
+                  "Want results without retainers, setup fees, or long-term contracts",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm text-white/70 leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Not a fit */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="glass-card p-7 border border-white/[0.04]"
+            >
+              <h3 className="text-base font-semibold text-white/50 mb-5 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-red-400/60" /> We Are NOT a Fit If You...
+              </h3>
+              <div className="space-y-3">
+                {[
+                  "Don't have a deliverable product or service ready to sell",
+                  "Expect overnight results without following a proven process",
+                  "Refuse to take calls or engage with qualified prospects",
+                  "Are looking for a cheap, one-size-fits-all solution",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center">
+                      <div className="w-3 h-[2px] bg-red-400/50 rounded-full" />
+                    </div>
+                    <span className="text-sm text-white/40 leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-xs text-white/30 leading-relaxed">
+                If the left column describes you — stop scrolling and fill in the form above. This session is free and there&apos;s zero obligation.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Risk Reversal ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-4xl">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+              We Take the Risk.{" "}
+              <span className="gradient-text">You Reap the Rewards.</span>
+            </h2>
+            <p className="mt-3 text-white/40 text-sm max-w-lg mx-auto">
+              Every other agency charges you regardless of results. We don&apos;t.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            {/* Traditional */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-7 rounded-2xl border border-red-400/10 bg-red-400/[0.02]"
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">
+                Traditional Agencies Charge
+              </p>
+              <div className="space-y-3">
+                {[
+                  "Monthly retainers — paid whether you win or lose",
+                  "Upfront ad budgets — often with no accountability",
+                  "Setup fees — just to get started",
+                  "Long-term contracts — locking you in for 12 months",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
+                      <div className="w-3 h-[2px] bg-red-400/50 rounded-full" />
+                    </div>
+                    <span className="text-sm text-white/40">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-xs text-red-400/50 font-medium">
+                None of that guarantees you a single client.
+              </p>
+            </motion.div>
+
+            {/* Our model */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="glass-card gradient-border p-7"
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">
+                Our Growth Partnership
+              </p>
+              <div className="space-y-3">
+                {[
+                  "You only pay for qualified meetings booked",
+                  "You only share revenue on deals we help you close",
+                  "You only invest when real money comes in",
+                  "We handle the entire acquisition and sales cycle",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <CheckCircle className="w-4 h-4 text-gold-400 flex-shrink-0" />
+                    <span className="text-sm text-white/80 font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-xs text-gold-400/70 font-medium">
+                We don&apos;t win unless you win. That&apos;s how partnerships should work.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Guarantee strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl bg-white/[0.02] border border-white/[0.06] p-6 flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left"
+          >
+            <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
+              <Shield className="w-6 h-6 text-gold-400" />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-white mb-1">Zero risk to get started</p>
+              <p className="text-xs text-white/40 leading-relaxed">
+                Your strategy session is 100% free. No credit card. No commitment. If we can&apos;t map out a clear path to results for your business, you&apos;ll know within the first call — and owe us nothing.
+              </p>
+            </div>
+            <button
+              className="btn-primary whitespace-nowrap flex-shrink-0"
+              onClick={() =>
+                document.getElementById("apply-form-embed")?.scrollIntoView({ behavior: "smooth", block: "center" })
+              }
+            >
+              Claim My Free Session
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── What Happens Next ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container max-w-4xl">
