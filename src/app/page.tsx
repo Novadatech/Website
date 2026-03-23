@@ -122,7 +122,7 @@ function Hero() {
             className="mt-10 flex flex-col sm:flex-row gap-4"
           >
             <a href={BOOKING_URL} className="btn-primary text-base">
-              Book Your Growth Strategy Call
+              Apply for Your Free Strategy Session
               <ArrowRight className="w-5 h-5" />
             </a>
             <a href="#how-it-works" className="btn-secondary text-base">
