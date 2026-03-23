@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/about", label: "About" },
 ];
 
-const BOOKING_URL = "/apply";
+const BOOKING_URL = "/book-call";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

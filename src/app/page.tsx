@@ -24,7 +24,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { useState, useCallback } from "react";
 
 
-const BOOKING_URL = "/apply";
+const BOOKING_URL = "/book-call";
 
 /* ─── HERO ─── */
 function Hero() {
