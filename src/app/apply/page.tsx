@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
-  Clock, AlertCircle, Calendar, MessageSquare, ChevronDown, ArrowRight, ExternalLink
+  Clock, AlertCircle, Calendar, MessageSquare, ChevronDown, ArrowRight, ExternalLink,
+  ChevronLeft, ChevronRight
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,26 +45,6 @@ function scrollToForm() {
   document.getElementById("apply-form-embed")?.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
-// ─── Mid-page CTA strip ─────────────────────────────────────────────────────
-function MidPageCTA({ headline, sub }: { headline: string; sub: string }) {
-  return (
-    <div className="max-container my-6">
-      <div className="rounded-2xl bg-white/[0.02] border border-gold-500/10 px-7 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-          <p className="text-sm font-semibold text-white">{headline}</p>
-          <p className="text-xs text-white/40 mt-0.5">{sub}</p>
-        </div>
-        <button
-          onClick={scrollToForm}
-          className="btn-primary text-sm whitespace-nowrap flex-shrink-0"
-        >
-          Claim My Free Session
-          <ArrowRight className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
-  );
-}
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 const PROOF_POINTS = [
@@ -281,6 +262,102 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   );
 }
 
+// ─── Video Slider ────────────────────────────────────────────────────────────
+function VideoSlider() {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const total = VIDEO_TESTIMONIALS.length;
+
+  const goTo = useCallback((index: number, dir: number) => {
+    setDirection(dir);
+    setCurrent(index);
+  }, []);
+
+  const prev = () => goTo((current - 1 + total) % total, -1);
+  const next = useCallback(() => goTo((current + 1) % total, 1), [current, total, goTo]);
+
+  const video = VIDEO_TESTIMONIALS[current];
+
+  return (
+    <div className="relative max-w-4xl mx-auto">
+      {/* Arrow buttons — outside the video on each side */}
+      <motion.button
+        onClick={prev}
+        animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.12 }}
+        whileTap={{ scale: 0.93 }}
+        className="absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 flex items-center justify-center text-gold-400 hover:border-gold-500/80 hover:bg-navy-800 transition-colors duration-200 z-10"
+        aria-label="Previous"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </motion.button>
+
+      <motion.button
+        onClick={next}
+        animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.12 }}
+        whileTap={{ scale: 0.93 }}
+        className="absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 flex items-center justify-center text-gold-400 hover:bg-gold-500/25 hover:border-gold-500 transition-colors duration-200 z-10"
+        aria-label="Next"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </motion.button>
+
+      {/* Video card — padded inward so arrows have clear space */}
+      <div className="px-16">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={video.id}
+            initial={{ opacity: 0, x: direction * 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: direction * -40 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="glass-card gradient-border p-3"
+          >
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+              <iframe
+                src={`https://www.youtube.com/embed/${video.id}`}
+                title={video.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                style={{ border: "none" }}
+              />
+            </div>
+            {/* Caption */}
+            <div className="flex items-center gap-3 mt-3 px-2 pb-1">
+              <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-white/70">{video.name}</p>
+                <p className="text-[11px] text-white/35">{video.company}</p>
+              </div>
+              <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex items-center justify-center gap-2 mt-5">
+        {VIDEO_TESTIMONIALS.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i, i > current ? 1 : -1)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === current ? "w-6 bg-gold-400" : "w-2 bg-white/20 hover:bg-white/40"
+            }`}
+            aria-label={`Go to video ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ─── Page ───────────────────────────────────────────────────────────────────
 export default function ApplyPage() {
   useEffect(() => {
@@ -396,15 +473,18 @@ export default function ApplyPage() {
       {/* ── VSL ── */}
       <section className="section-padding pt-2 pb-8">
         <div className="max-container max-w-3xl">
-          <p className="text-xs text-white/30 text-center mb-4 uppercase tracking-widest">
-            See exactly how we&apos;ve helped 350+ businesses build predictable pipelines — before you apply
-          </p>
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-sm font-medium">
+              <TrendingUp className="w-4 h-4 flex-shrink-0" />
+              See exactly how we&apos;ve helped 350+ businesses build predictable pipelines — before you apply
+            </div>
+          </div>
           <div
             className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
             style={{ paddingBottom: "56.25%" }}
           >
             <iframe
-              src="https://www.youtube.com/embed/w6atSnPDjJw"
+              src="https://www.youtube.com/embed/w6atSnPDjJw?autoplay=1&mute=1"
               title="How Novada Tech Generates High-Value Clients"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -481,9 +561,9 @@ export default function ApplyPage() {
                   {TRUST_ITEMS.map(({ icon: Icon, label }, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-2 text-xs text-white/30 bg-white/[0.02] border border-white/[0.04] rounded-lg px-3 py-2"
+                      className="flex items-center gap-2.5 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium"
                     >
-                      <Icon className="w-3.5 h-3.5 flex-shrink-0 text-white/20" />
+                      <Icon className="w-3.5 h-3.5 flex-shrink-0 text-gold-400" />
                       <span>{label}</span>
                     </div>
                   ))}
@@ -494,9 +574,9 @@ export default function ApplyPage() {
                   href="https://www.trustpilot.com/review/novadatech.com.au"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 flex items-center justify-center gap-2 text-xs text-white/25 hover:text-white/50 transition-colors"
+                  className="mt-3 flex items-center justify-center gap-2 text-xs text-white/60 hover:text-white transition-colors font-medium"
                 >
-                  <span className="text-gold-400/60">★★★★★</span>
+                  <span className="text-gold-400">★★★★★</span>
                   <span>Verified 4.9/5 — 77+ reviews on Trustpilot</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
@@ -599,58 +679,49 @@ export default function ApplyPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {VIDEO_TESTIMONIALS.map((video, i) => (
-              <motion.div
-                key={video.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass-card gradient-border p-3"
-              >
-                <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${video.id}`}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                    style={{ border: "none" }}
-                  />
-                </div>
-                {/* Caption below video */}
-                <div className="flex items-center gap-3 mt-3 px-2 pb-1">
-                  <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-                    <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-white/70">{video.name}</p>
-                    <p className="text-[11px] text-white/35">{video.company}</p>
-                  </div>
-                  <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
-                </div>
-              </motion.div>
-            ))}
+          <VideoSlider />
+
+          {/* CTA — sits directly under the slider */}
+          <div className="mt-12 text-center">
+            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
+            <h3 className="text-2xl md:text-3xl font-bold text-white">
+              Seen enough? Your spot is waiting.
+            </h3>
+            <p className="mt-3 text-white/50 text-sm max-w-sm mx-auto leading-relaxed">
+              The call is free, the plan is custom, and the risk is zero.
+            </p>
+            <button
+              onClick={scrollToForm}
+              className="btn-primary mt-6 mx-auto"
+            >
+              Claim My Free Strategy Session
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
+              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Zero obligation</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Under 2 min to apply</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Mid-page CTA — after videos */}
-      <MidPageCTA
-        headline="Seen enough? Your spot is waiting."
-        sub="The call is free, the plan is custom, and the risk is zero."
-      />
-
       {/* ── Testimonials ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container">
-          <p className="text-xs uppercase tracking-[0.2em] text-gold-500/60 font-medium text-center mb-2">
-            What Our Clients Say
-          </p>
-          <p className="text-center text-white/30 text-xs mb-8 max-w-lg mx-auto">
-            350+ businesses have made this same decision. Here&apos;s what they say on the other side.
-          </p>
+          <div className="text-center mb-10">
+            <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">
+              What Our Clients Say
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              350+ businesses have made this same decision.
+            </h2>
+            <p className="mt-3 text-white/50 text-sm max-w-lg mx-auto leading-relaxed">
+              Here&apos;s what they say on the other side.
+            </p>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {TESTIMONIALS.map((t, i) => (
               <motion.div
@@ -675,14 +746,33 @@ export default function ApplyPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* CTA — sits directly under written testimonials */}
+          <div className="mt-12 text-center">
+            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
+            <h3 className="text-2xl md:text-3xl font-bold text-white">
+              Your story could be next.
+            </h3>
+            <p className="mt-3 text-white/50 text-sm max-w-sm mx-auto leading-relaxed">
+              Every one of those business owners started by filling in the same form you&apos;re looking at now.
+            </p>
+            <button
+              onClick={scrollToForm}
+              className="btn-primary mt-6 mx-auto"
+            >
+              Claim My Free Strategy Session
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
+              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Zero obligation</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Under 2 min to apply</span>
+            </div>
+          </div>
         </div>
       </section>
-
-      {/* Mid-page CTA — after testimonials */}
-      <MidPageCTA
-        headline="Your story could be next."
-        sub="Every one of those business owners started by filling in the same form you're looking at now."
-      />
 
       {/* ── Is This Right for You? ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">
@@ -835,29 +925,33 @@ export default function ApplyPage() {
             </motion.div>
           </div>
 
-          {/* Guarantee strip */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl bg-white/[0.02] border border-white/[0.06] p-6 flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left"
-          >
-            <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
-              <Shield className="w-6 h-6 text-gold-400" />
+          {/* CTA — sits directly under the risk section */}
+          <div className="mt-12 text-center">
+            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 mb-5">
+              <Shield className="w-7 h-7 text-gold-400" />
             </div>
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-white mb-1">Zero risk to get started</p>
-              <p className="text-xs text-white/40 leading-relaxed">
-                Your strategy session is 100% free. No credit card. No commitment. If we can&apos;t map out a clear path to results for your business, you&apos;ll know within the first call — and owe us nothing.
-              </p>
-            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">
+              Zero risk to get started.
+            </h3>
+            <p className="mt-3 text-white/50 text-sm max-w-md mx-auto leading-relaxed">
+              Your strategy session is 100% free. No credit card. No commitment. If we can&apos;t map out a clear path to results, you owe us nothing.
+            </p>
             <button
-              className="btn-primary whitespace-nowrap flex-shrink-0"
               onClick={scrollToForm}
+              className="btn-primary mt-6 mx-auto"
             >
-              Claim My Free Session
+              Claim My Free Strategy Session
+              <ArrowRight className="w-4 h-4" />
             </button>
-          </motion.div>
+            <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
+              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Zero obligation</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Under 2 min to apply</span>
+            </div>
+          </div>
         </div>
       </section>
 

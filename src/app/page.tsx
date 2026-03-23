@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   Check,
@@ -14,42 +14,33 @@ import {
   Phone,
   Layers,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Star,
   Shield,
   TrendingUp,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const BOOKING_URL = "/apply";
 
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative pt-28 pb-8 overflow-hidden">
       {/* Background layers */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(21,94,239,0.06)_0%,_transparent_60%)]" />
 
-      {/* Grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
-
-      <div className="relative max-container section-padding pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="max-w-4xl">
+      <div className="relative max-container section-padding text-center">
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-6"
           >
             <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
             <span className="text-sm text-gold-400 font-medium">
@@ -62,7 +53,7 @@ function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight text-balance max-w-4xl"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
           >
             The AI System That Predictably{" "}
             <span className="gradient-text">Generates High-Value Clients</span>
@@ -74,12 +65,11 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8 text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed"
+            className="mt-4 text-lg text-white/50 max-w-2xl mx-auto leading-relaxed"
           >
             We build and deploy your complete AI-powered client acquisition
             system — from lead sourcing to booked meetings, so getting clients
-            becomes inevitable. You only pay when the system produces real
-            results.
+            becomes inevitable. You only pay when the system produces real results.
           </motion.p>
 
           {/* Value Props */}
@@ -87,7 +77,7 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-8"
+            className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
           >
             {[
               "Revenue on Autopilot",
@@ -96,30 +86,28 @@ function Hero() {
             ].map((item) => (
               <div key={item} className="flex items-center gap-2">
                 <Check className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                <span className="text-sm text-white/70 font-medium">
-                  {item}
-                </span>
+                <span className="text-sm text-white/70 font-medium">{item}</span>
               </div>
             ))}
           </motion.div>
 
-          {/* Risk reversal line */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          {/* Risk reversal badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-6 text-sm text-white/40"
+            className="mt-6 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-sm font-medium"
           >
-            If we don&apos;t generate revenue, you don&apos;t pay us. No
-            retainers. No ad spend required. No risk.
-          </motion.p>
+            <Shield className="w-4 h-4 flex-shrink-0" />
+            If we don&apos;t generate revenue, you don&apos;t pay us — No retainers. No ad spend. No risk.
+          </motion.div>
 
           {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4"
+            className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <a href={BOOKING_URL} className="btn-primary text-base">
               Apply for Your Free Strategy Session
@@ -135,7 +123,7 @@ function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1 }}
-            className="mt-10 flex items-center gap-4"
+            className="mt-6 flex items-center justify-center gap-4"
           >
             <a
               href="https://www.trustpilot.com/review/novadatech.com.au"
@@ -149,42 +137,7 @@ function Hero() {
               </span>
             </a>
           </motion.div>
-
-          {/* 7-Day substantiation */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-            className="mt-8 pt-8 border-t border-white/[0.06] grid grid-cols-3 gap-6 max-w-lg"
-          >
-            {[
-              { day: "Day 1–3", label: "Offer refined & acquisition engine architected" },
-              { day: "Day 4–7", label: "Targeting, messaging & outreach go live" },
-              { day: "Day 8–14", label: "First qualified meetings land in your calendar" },
-            ].map((item, i) => (
-              <div key={i}>
-                <p className="text-xs font-semibold text-gold-400/80 mb-1">{item.day}</p>
-                <p className="text-xs text-white/35 leading-snug">{item.label}</p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-        >
-          <ChevronDown className="w-5 h-5 text-white/20" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
@@ -512,10 +465,10 @@ function TrustBar() {
   ];
 
   return (
-    <section className="py-10 border-t border-b border-white/[0.04] overflow-hidden">
-      <div className="max-container section-padding mb-6">
-        <p className="text-xs uppercase tracking-[0.2em] text-white/25 font-medium text-center">
-          Trusted by businesses across 30+ industries in Australia
+    <section className="py-12 border-t border-b border-white/[0.08] overflow-hidden bg-white/[0.02]">
+      <div className="max-container section-padding mb-8">
+        <p className="text-sm font-semibold text-white/70 text-center uppercase tracking-[0.2em]">
+          Trusted by 350+ businesses across <span className="text-gold-400">30+ industries</span> in Australia
         </p>
       </div>
       <div className="flex overflow-hidden">
@@ -527,7 +480,7 @@ function TrustBar() {
           {[...industries, ...industries].map((industry, i) => (
             <div
               key={i}
-              className="flex-shrink-0 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/[0.06] text-sm text-white/30 whitespace-nowrap"
+              className="flex-shrink-0 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-sm text-white/60 whitespace-nowrap font-medium"
             >
               {industry}
             </div>
@@ -595,12 +548,6 @@ function WhatWeBuild() {
           ))}
         </div>
 
-        <AnimatedSection delay={0.4} className="text-center mt-12">
-          <a href={BOOKING_URL} className="btn-primary text-base">
-            See If You Qualify
-            <ArrowRight className="w-5 h-5" />
-          </a>
-        </AnimatedSection>
       </div>
     </section>
   );
@@ -678,15 +625,109 @@ function Flywheel() {
 }
 
 /* ─── TESTIMONIALS ─── */
-function Testimonials() {
-  const videoTestimonials = [
-    { id: "upgMW2nwwpk", title: "Tony — South Line Media", name: "Tony", company: "Founder, South Line Media" },
-    { id: "0qabR5mfAfQ", title: "Anthony — Ripple Clarke", name: "Anthony", company: "Founder, Ripple Clarke" },
-    { id: "JXEvONrDaOk", title: "Damian — Groundwork Ventures", name: "Damian", company: "Founder, Groundwork Ventures" },
-    { id: "O3HUPQyflH8", title: "Jack — House Valley", name: "Jack", company: "Founder, House Valley" },
-    { id: "w5iJNOADdXU", title: "Nate — Larsky Tach and Feed", name: "Nate", company: "Founder, Larsky Tach and Feed" },
-  ];
+const HOME_VIDEO_TESTIMONIALS = [
+  { id: "upgMW2nwwpk", title: "Tony — South Line Media", name: "Tony", company: "Founder, South Line Media" },
+  { id: "0qabR5mfAfQ", title: "Anthony — Ripple Clarke", name: "Anthony", company: "Founder, Ripple Clarke" },
+  { id: "JXEvONrDaOk", title: "Damian — Groundwork Ventures", name: "Damian", company: "Founder, Groundwork Ventures" },
+  { id: "O3HUPQyflH8", title: "Jack — House Valley", name: "Jack", company: "Founder, House Valley" },
+  { id: "w5iJNOADdXU", title: "Nate — Larsky Tach and Feed", name: "Nate", company: "Founder, Larsky Tach and Feed" },
+];
 
+function HomeVideoSlider() {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const total = HOME_VIDEO_TESTIMONIALS.length;
+
+  const goTo = useCallback((index: number, dir: number) => {
+    setDirection(dir);
+    setCurrent(index);
+  }, []);
+
+  const prev = () => goTo((current - 1 + total) % total, -1);
+  const next = () => goTo((current + 1) % total, 1);
+
+  const video = HOME_VIDEO_TESTIMONIALS[current];
+
+  return (
+    <div className="relative max-w-4xl mx-auto">
+      {/* Arrow buttons — outside the video on each side */}
+      <motion.button
+        onClick={prev}
+        animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.12 }}
+        whileTap={{ scale: 0.93 }}
+        className="absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 flex items-center justify-center text-gold-400 hover:border-gold-500/80 hover:bg-navy-800 transition-colors duration-200 z-10"
+        aria-label="Previous"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </motion.button>
+
+      <motion.button
+        onClick={next}
+        animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ scale: 1.12 }}
+        whileTap={{ scale: 0.93 }}
+        className="absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 flex items-center justify-center text-gold-400 hover:bg-gold-500/25 hover:border-gold-500 transition-colors duration-200 z-10"
+        aria-label="Next"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </motion.button>
+
+      {/* Video card — padded inward so arrows have clear space */}
+      <div className="px-16">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={video.id}
+            initial={{ opacity: 0, x: direction * 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: direction * -40 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="glass-card gradient-border p-3"
+          >
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+              <iframe
+                src={`https://www.youtube.com/embed/${video.id}`}
+                title={video.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                style={{ border: "none" }}
+              />
+            </div>
+            <div className="flex items-center gap-3 mt-3 px-1 pb-1">
+              <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-white/70">{video.name}</p>
+                <p className="text-[11px] text-white/35">{video.company}</p>
+              </div>
+              <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex items-center justify-center gap-2 mt-5">
+        {HOME_VIDEO_TESTIMONIALS.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i, i > current ? 1 : -1)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === current ? "w-6 bg-gold-400" : "w-2 bg-white/20 hover:bg-white/40"
+            }`}
+            aria-label={`Go to video ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Testimonials() {
   return (
     <section className="section-spacing section-padding border-t border-white/[0.04]">
       <div className="max-container">
@@ -702,33 +743,7 @@ function Testimonials() {
           </p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {videoTestimonials.map((video, i) => (
-            <AnimatedSection key={video.id} delay={i * 0.1}>
-              <div className="glass-card gradient-border p-3 h-full group hover:bg-white/[0.05] transition-all duration-500">
-                <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${video.id}`}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                  />
-                </div>
-                <div className="flex items-center gap-3 mt-3 px-1 pb-1">
-                  <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-                    <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-white/70">{video.name}</p>
-                    <p className="text-[11px] text-white/35">{video.company}</p>
-                  </div>
-                  <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
+        <HomeVideoSlider />
 
         <AnimatedSection delay={0.3} className="text-center mt-10">
           <a
@@ -1299,7 +1314,7 @@ function VSLSection() {
           <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
             style={{ paddingBottom: "56.25%" }}>
             <iframe
-              src="https://www.youtube.com/embed/w6atSnPDjJw"
+              src="https://www.youtube.com/embed/w6atSnPDjJw?autoplay=1&mute=1"
               title="Novada Tech — How We Generate High-Value Clients"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -1324,9 +1339,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <VSLSection />
       <ProblemSection />
       <SolutionSection />
-      <VSLSection />
       <ProofSection />
       <CaseStudies />
       <TrustBar />
@@ -1334,17 +1349,25 @@ export default function HomePage() {
       <Flywheel />
       <Testimonials />
       <WrittenTestimonials />
-      <section className="section-padding py-10">
-        <div className="max-container">
-          <div className="rounded-2xl bg-white/[0.02] border border-gold-500/10 px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-5">
-            <div>
-              <p className="text-base font-semibold text-white">Ready to build a pipeline like theirs?</p>
-              <p className="text-sm text-white/40 mt-1">Every one of those businesses started with a single free strategy session.</p>
-            </div>
-            <a href={BOOKING_URL} className="btn-primary whitespace-nowrap flex-shrink-0">
-              See If You Qualify
-              <ArrowRight className="w-4 h-4" />
-            </a>
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container text-center">
+          <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
+          <h2 className="text-2xl md:text-3xl font-bold text-white">
+            Ready to build a pipeline like theirs?
+          </h2>
+          <p className="mt-3 text-white/50 text-sm max-w-sm mx-auto leading-relaxed">
+            Every one of those businesses started with a single free strategy session.
+          </p>
+          <a href={BOOKING_URL} className="btn-primary mt-6 mx-auto inline-flex">
+            See If You Qualify
+            <ArrowRight className="w-4 h-4" />
+          </a>
+          <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
+            <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Zero obligation</span>
+            <span className="text-white/15">|</span>
+            <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-gold-500/60" /> 4.9 on Trustpilot</span>
+            <span className="text-white/15">|</span>
+            <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-gold-500/60" /> No retainers</span>
           </div>
         </div>
       </section>
