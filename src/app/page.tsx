@@ -72,7 +72,7 @@ const BOOKING_URL = "/apply";
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="relative pt-28 pb-12 overflow-hidden">
+    <section className="relative pt-20 pb-12 overflow-hidden">
       {/* Background layers */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
@@ -84,7 +84,7 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-4"
         >
           <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
           <span className="text-sm text-gold-400 font-medium">
@@ -97,7 +97,7 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
+          className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
         >
           The AI System That Predictably{" "}
           <span className="gradient-text">Generates High-Value Clients</span>
@@ -109,7 +109,7 @@ function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-4 text-sm text-white/35"
+          className="mt-3 text-sm text-white/35"
         >
           Maxicare went from{" "}
           <span className="text-gold-400 font-semibold">$42K → $91K/mo in 60 days</span>
@@ -123,7 +123,7 @@ function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="mt-8 max-w-4xl mx-auto"
+          className="mt-5 max-w-4xl mx-auto"
         >
           <VSLPlayer videoId="w6atSnPDjJw" />
         </motion.div>

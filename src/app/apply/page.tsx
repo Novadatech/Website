@@ -477,36 +477,30 @@ export default function ApplyPage() {
 
       <div className="h-16" />
 
-      {/* ── Urgency bar ── */}
-      <div className="bg-gold-500/10 border-b border-gold-500/20 py-3 px-4">
-        <p className="text-sm text-gold-400 font-medium flex items-center justify-center gap-2 text-center">
-          <AlertCircle className="w-4 h-4 flex-shrink-0" />
-          <span>
-            <strong>Limited new partnerships open each month</strong> — we review applications on a rolling basis and only take on clients we can genuinely help
-          </span>
-        </p>
-      </div>
-
-      {/* ── Hero ── */}
-      <section className="relative pt-12 pb-6 overflow-hidden">
+      {/* ── Hero + VSL ── */}
+      <section className="relative pt-6 pb-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
 
         <div className="relative max-container section-padding text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
+          {/* Eyebrow pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-4"
           >
-            Free Growth Strategy Session
-          </motion.p>
+            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
+            <span className="text-sm text-gold-400 font-medium">
+              Limited new partnerships open each month
+            </span>
+          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
           >
             Walk Away With a Custom Plan Showing Exactly How We&apos;d Generate{" "}
             <span className="gradient-text">High-Value Clients</span>{" "}
@@ -516,8 +510,8 @@ export default function ApplyPage() {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-4 text-sm text-white/35"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-3 text-sm text-white/35"
           >
             Maxicare went from{" "}
             <span className="text-gold-400 font-semibold">$42K → $91K/mo in 60 days</span>
@@ -529,7 +523,7 @@ export default function ApplyPage() {
       </section>
 
       {/* ── VSL ── */}
-      <section className="section-padding pt-6 pb-0">
+      <section className="section-padding pt-4 pb-0">
         <div className="max-container max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
