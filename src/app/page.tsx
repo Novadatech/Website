@@ -19,53 +19,10 @@ import {
   Star,
   Shield,
   TrendingUp,
-  Play,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useState, useCallback } from "react";
 
-/* ─── LAZY VSL PLAYER ─── */
-function VSLPlayer({ videoId }: { videoId: string }) {
-  const [playing, setPlaying] = useState(false);
-
-  if (playing) {
-    return (
-      <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
-        <iframe
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-          title="Novada Tech — How We Generate High-Value Clients"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div
-      className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl cursor-pointer group"
-      style={{ paddingBottom: "56.25%" }}
-      onClick={() => setPlaying(true)}
-    >
-      <img
-        src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
-        alt="Watch how Novada Tech generates high-value clients"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300" />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div
-          animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 40px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-20 h-20 rounded-full bg-white/10 border-2 border-gold-400/70 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform duration-300"
-        >
-          <Play className="w-8 h-8 text-gold-400 fill-gold-400 ml-1" />
-        </motion.div>
-      </div>
-    </div>
-  );
-}
 
 const BOOKING_URL = "/apply";
 
@@ -125,7 +82,15 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.6 }}
           className="mt-5 max-w-4xl mx-auto"
         >
-          <VSLPlayer videoId="w6atSnPDjJw" />
+          <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              src="https://www.youtube.com/embed/w6atSnPDjJw?autoplay=1&mute=1"
+              title="Novada Tech — How We Generate High-Value Clients"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+            />
+          </div>
         </motion.div>
 
         {/* Subheading — below video, bridges to CTA */}
