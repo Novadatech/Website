@@ -137,12 +137,17 @@ function Hero() {
             transition={{ duration: 0.6, delay: 1 }}
             className="mt-10 flex items-center gap-4"
           >
-            <div className="flex text-gold-400 text-sm tracking-wider">
-              ★★★★★
-            </div>
-            <span className="text-sm text-white/40">
-              Rated 4.9/5 on Trustpilot · 77+ Verified Reviews
-            </span>
+            <a
+              href="https://www.trustpilot.com/review/novadatech.com.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 hover:opacity-80 transition-opacity"
+            >
+              <div className="flex text-gold-400 text-sm tracking-wider">★★★★★</div>
+              <span className="text-sm text-white/40 underline underline-offset-2 decoration-white/20">
+                Rated 4.9/5 on Trustpilot · 77+ Verified Reviews
+              </span>
+            </a>
           </motion.div>
 
           {/* 7-Day substantiation */}
@@ -318,7 +323,7 @@ function SolutionSection() {
 /* ─── STATS / PROOF ─── */
 function ProofSection() {
   const stats = [
-    { number: "77+", label: "Verified 5-Star Reviews", sublabel: "Trustpilot" },
+    { number: "77+", label: "Verified 5-Star Reviews", sublabel: "Trustpilot", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { number: "350+", label: "Businesses Scaled", sublabel: "And Growing" },
     { number: "$50M+", label: "Client Revenue Generated", sublabel: "Client Results" },
     { number: "30+", label: "Industries Scaled", sublabel: "Across Australia" },
@@ -339,15 +344,29 @@ function ProofSection() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, i) => (
             <AnimatedSection key={i} delay={i * 0.1} className="h-full">
-              <div className="glass-card gradient-border p-6 md:p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500 h-full">
-                <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none gradient-text">{stat.number}</p>
-                <p className="mt-4 text-white/70 font-medium text-sm md:text-base min-h-[2.5rem] md:min-h-[3rem] flex items-center justify-center">
-                  {stat.label}
-                </p>
-                <p className="mt-1 text-white/30 text-xs uppercase tracking-wider">
-                  {stat.sublabel}
-                </p>
-              </div>
+              {stat.href ? (
+                <a href={stat.href} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <div className="glass-card gradient-border p-6 md:p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500 h-full">
+                    <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none gradient-text">{stat.number}</p>
+                    <p className="mt-4 text-white/70 font-medium text-sm md:text-base min-h-[2.5rem] md:min-h-[3rem] flex items-center justify-center">
+                      {stat.label}
+                    </p>
+                    <p className="mt-1 text-white/30 text-xs uppercase tracking-wider underline underline-offset-2 decoration-white/20">
+                      {stat.sublabel} ↗
+                    </p>
+                  </div>
+                </a>
+              ) : (
+                <div className="glass-card gradient-border p-6 md:p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500 h-full">
+                  <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none gradient-text">{stat.number}</p>
+                  <p className="mt-4 text-white/70 font-medium text-sm md:text-base min-h-[2.5rem] md:min-h-[3rem] flex items-center justify-center">
+                    {stat.label}
+                  </p>
+                  <p className="mt-1 text-white/30 text-xs uppercase tracking-wider">
+                    {stat.sublabel}
+                  </p>
+                </div>
+              )}
             </AnimatedSection>
           ))}
         </div>
@@ -661,6 +680,7 @@ function Flywheel() {
 /* ─── TESTIMONIALS ─── */
 function Testimonials() {
   const videoTestimonials = [
+    { id: "upgMW2nwwpk", title: "Tony — South Line Media", name: "Tony", company: "Founder, South Line Media" },
     { id: "0qabR5mfAfQ", title: "Anthony — Ripple Clarke", name: "Anthony", company: "Founder, Ripple Clarke" },
     { id: "JXEvONrDaOk", title: "Damian — Groundwork Ventures", name: "Damian", company: "Founder, Groundwork Ventures" },
     { id: "O3HUPQyflH8", title: "Jack — House Valley", name: "Jack", company: "Founder, House Valley" },
@@ -711,12 +731,17 @@ function Testimonials() {
         </div>
 
         <AnimatedSection delay={0.3} className="text-center mt-10">
-          <div className="inline-flex items-center gap-3 text-sm text-white/40">
+          <a
+            href="https://www.trustpilot.com/review/novadatech.com.au"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 text-sm text-white/40 hover:text-white/60 transition-colors"
+          >
             <div className="flex text-gold-400">★★★★★</div>
-            <span>
+            <span className="underline underline-offset-2 decoration-white/20">
               Rated 4.9/5 from 77+ verified reviews on Trustpilot
             </span>
-          </div>
+          </a>
         </AnimatedSection>
       </div>
     </section>
@@ -1233,10 +1258,15 @@ function FinalCTA() {
                   <Shield className="w-4 h-4" />
                   <span>No Risk</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <a
+                  href="https://www.trustpilot.com/review/novadatech.com.au"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-white/50 transition-colors"
+                >
                   <Star className="w-4 h-4" />
-                  <span>4.9★ Trustpilot</span>
-                </div>
+                  <span className="underline underline-offset-2 decoration-white/20">4.9★ Trustpilot</span>
+                </a>
                 <div className="flex items-center gap-2">
                   <TrendingUp className="w-4 h-4" />
                   <span>Results in 14 Days</span>

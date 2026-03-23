@@ -155,9 +155,14 @@ function OriginStory() {
                   <p className="text-xs uppercase tracking-[0.2em] text-gold-400/60">
                     Track Record
                   </p>
-                  <p className="text-2xl font-bold gradient-text">
+                  <a
+                    href="https://www.trustpilot.com/review/novadatech.com.au"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity underline underline-offset-2 decoration-gold-500/30"
+                  >
                     4.9★ · 77+ Reviews
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>
@@ -405,8 +410,8 @@ function Principles() {
 /* ─── TRUST STATS ─── */
 function TrustStats() {
   const stats = [
-    { icon: Star, number: "4.9★", label: "Trustpilot Rating" },
-    { icon: Award, number: "77+", label: "Verified Reviews" },
+    { icon: Star, number: "4.9★", label: "Trustpilot Rating", href: "https://www.trustpilot.com/review/novadatech.com.au" },
+    { icon: Award, number: "77+", label: "Verified Reviews", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { icon: Globe, number: "30+", label: "Industries Served" },
     { icon: TrendingUp, number: "35%", label: "Avg. Revenue Increase" },
   ];
@@ -423,17 +428,33 @@ function TrustStats() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="glass-card gradient-border p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500">
-                <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <stat.icon className="w-6 h-6 text-gold-400" />
+              {stat.href ? (
+                <a href={stat.href} target="_blank" rel="noopener noreferrer" className="block">
+                  <div className="glass-card gradient-border p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500">
+                    <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <stat.icon className="w-6 h-6 text-gold-400" />
+                    </div>
+                    <p className="text-4xl md:text-5xl font-bold gradient-text">
+                      {stat.number}
+                    </p>
+                    <p className="mt-2 text-white/50 text-sm font-medium underline underline-offset-2 decoration-white/20">
+                      {stat.label} ↗
+                    </p>
+                  </div>
+                </a>
+              ) : (
+                <div className="glass-card gradient-border p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500">
+                  <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <stat.icon className="w-6 h-6 text-gold-400" />
+                  </div>
+                  <p className="text-4xl md:text-5xl font-bold gradient-text">
+                    {stat.number}
+                  </p>
+                  <p className="mt-2 text-white/50 text-sm font-medium">
+                    {stat.label}
+                  </p>
                 </div>
-                <p className="text-4xl md:text-5xl font-bold gradient-text">
-                  {stat.number}
-                </p>
-                <p className="mt-2 text-white/50 text-sm font-medium">
-                  {stat.label}
-                </p>
-              </div>
+              )}
             </AnimatedSection>
           ))}
         </div>
