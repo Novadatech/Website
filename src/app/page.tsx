@@ -21,7 +21,7 @@ import {
 import AnimatedSection from "@/components/AnimatedSection";
 import { useState } from "react";
 
-const BOOKING_URL = "/book-call";
+const BOOKING_URL = "/apply";
 
 /* ─── HERO ─── */
 function Hero() {
@@ -53,7 +53,7 @@ function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
             <span className="text-sm text-gold-400 font-medium">
-              Growth Partnership · Results Only · Limited Spots
+              4 Spots Remaining This Quarter · Results Only · No Retainers
             </span>
           </motion.div>
 
