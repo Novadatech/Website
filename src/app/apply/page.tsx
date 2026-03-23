@@ -229,23 +229,27 @@ const FAQS = [
 const VIDEO_TESTIMONIALS = [
   {
     id: "0qabR5mfAfQ",
-    title: "Client Testimonial 1",
-    caption: "B2B Services — 0 to 14 qualified calls booked in the first 30 days",
+    title: "Anthony — Ripple Clarke",
+    name: "Anthony",
+    company: "Founder, Ripple Clarke",
   },
   {
     id: "JXEvONrDaOk",
-    title: "Client Testimonial 2",
-    caption: "Coaching Business — 3 new high-ticket clients signed in month one",
+    title: "Damian — Groundwork Ventures",
+    name: "Damian",
+    company: "Founder, Groundwork Ventures",
   },
   {
     id: "O3HUPQyflH8",
-    title: "Client Testimonial 3",
-    caption: "Professional Services — Revenue more than doubled in 60 days",
+    title: "Jack — House Valley",
+    name: "Jack",
+    company: "Founder, House Valley",
   },
   {
     id: "w5iJNOADdXU",
-    title: "Client Testimonial 4",
-    caption: "Consulting Firm — Full pipeline built within 6 weeks of launch",
+    title: "Nate — Larsky Tach and Feed",
+    name: "Nate",
+    company: "Founder, Larsky Tach and Feed",
   },
 ];
 
@@ -610,9 +614,15 @@ export default function ApplyPage() {
                   />
                 </div>
                 {/* Caption below video */}
-                <div className="flex items-center gap-2 mt-3 px-2 pb-1">
-                  <div className="text-gold-400 text-xs">★★★★★</div>
-                  <p className="text-xs text-white/40 leading-snug">{video.caption}</p>
+                <div className="flex items-center gap-3 mt-3 px-2 pb-1">
+                  <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-white/70">{video.name}</p>
+                    <p className="text-[11px] text-white/35">{video.company}</p>
+                  </div>
+                  <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
                 </div>
               </motion.div>
             ))}

@@ -642,10 +642,10 @@ function Flywheel() {
 /* ─── TESTIMONIALS ─── */
 function Testimonials() {
   const videoTestimonials = [
-    { id: "0qabR5mfAfQ", title: "Client Testimonial" },
-    { id: "JXEvONrDaOk", title: "Client Testimonial" },
-    { id: "O3HUPQyflH8", title: "Client Testimonial" },
-    { id: "w5iJNOADdXU", title: "Client Testimonial" },
+    { id: "0qabR5mfAfQ", title: "Anthony — Ripple Clarke", name: "Anthony", company: "Founder, Ripple Clarke" },
+    { id: "JXEvONrDaOk", title: "Damian — Groundwork Ventures", name: "Damian", company: "Founder, Groundwork Ventures" },
+    { id: "O3HUPQyflH8", title: "Jack — House Valley", name: "Jack", company: "Founder, House Valley" },
+    { id: "w5iJNOADdXU", title: "Nate — Larsky Tach and Feed", name: "Nate", company: "Founder, Larsky Tach and Feed" },
   ];
 
   return (
@@ -670,11 +670,21 @@ function Testimonials() {
                 <div className="relative w-full aspect-video rounded-xl overflow-hidden">
                   <iframe
                     src={`https://www.youtube.com/embed/${video.id}`}
-                    title={`${video.title} ${i + 1}`}
+                    title={video.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="absolute inset-0 w-full h-full"
                   />
+                </div>
+                <div className="flex items-center gap-3 mt-3 px-1 pb-1">
+                  <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
+                    <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-white/70">{video.name}</p>
+                    <p className="text-[11px] text-white/35">{video.company}</p>
+                  </div>
+                  <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
                 </div>
               </div>
             </AnimatedSection>
