@@ -144,6 +144,25 @@ function Hero() {
               Rated 4.9/5 on Trustpilot · 77+ Verified Reviews
             </span>
           </motion.div>
+
+          {/* 7-Day substantiation */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+            className="mt-8 pt-8 border-t border-white/[0.06] grid grid-cols-3 gap-6 max-w-lg"
+          >
+            {[
+              { day: "Day 1–2", label: "Offer refined & acquisition engine architected" },
+              { day: "Day 3–5", label: "Targeting, messaging & outreach go live" },
+              { day: "Day 6–7", label: "First conversations land in your pipeline" },
+            ].map((item, i) => (
+              <div key={i}>
+                <p className="text-xs font-semibold text-gold-400/80 mb-1">{item.day}</p>
+                <p className="text-xs text-white/35 leading-snug">{item.label}</p>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
@@ -704,6 +723,85 @@ function Testimonials() {
   );
 }
 
+/* ─── WRITTEN TESTIMONIALS ─── */
+function WrittenTestimonials() {
+  const testimonials = [
+    { quote: "Within 30 days we had more qualified leads than the previous 6 months combined. The system just works.", name: "James Mitchell", role: "Founder, Apex Growth Partners" },
+    { quote: "I was sceptical at first but the results speak for themselves. Our revenue has grown by over 40% since partnering with Novada Tech.", name: "Sarah Thompson", role: "CEO, Meridian Advisory Group" },
+    { quote: "We went from chasing leads to having a full pipeline in under a month. Best investment we've made this year.", name: "David Clarke", role: "Director, Summit Consulting Co." },
+    { quote: "Finally a system that brings in clients on autopilot. We closed three high-ticket deals in our first month. Incredible ROI.", name: "Emily Watson", role: "Managing Director, Clearview Solutions" },
+    { quote: "Our cost per acquisition dropped by 60% and the quality of leads went through the roof. Novada Tech completely changed how we grow.", name: "Michael Reynolds", role: "Founder, Pinnacle Media Group" },
+    { quote: "We had tried every agency under the sun. Novada Tech was the first one to actually deliver and then keep delivering month after month.", name: "Jessica Andrews", role: "CEO, Luminary Digital" },
+    { quote: "The strategy call alone gave us more clarity than 6 months working with our previous agency. Signed up on the spot.", name: "Thomas Bennett", role: "Owner, Brentwood Financial Services" },
+    { quote: "I was spending a fortune on ads with zero consistency. Now our pipeline is full and we're turning away clients we don't want.", name: "Rachel Foster", role: "Founder, Coastal Strategy Partners" },
+    { quote: "Booked 11 discovery calls in the first two weeks. The system is genuinely different to anything else I've seen in the market.", name: "Andrew Morrison", role: "Director, Northgate Consulting Group" },
+    { quote: "We scaled from $30K to $85K monthly revenue in under 90 days. The AI acquisition system is unlike anything we've used before.", name: "Lauren Hayes", role: "CEO, BlueSky Ventures" },
+    { quote: "Pay for results only? That's what sold me. And they actually delivered. Our close rate on inbound leads is now over 70%.", name: "Christopher Hall", role: "Founder, Sterling Advisory" },
+    { quote: "The onboarding was seamless and within the first week we were already seeing movement. Month two we had our best revenue ever.", name: "Amanda Wilson", role: "Managing Director, Horizon Business Group" },
+    { quote: "I've worked with five agencies over four years. Novada Tech is the only one that treats my business like their own.", name: "Robert Carter", role: "Partner, Westfield Growth Co." },
+    { quote: "We went from two inbound leads a month to over twenty. Our sales team is busier than ever and morale is through the roof.", name: "Nicole Parker", role: "CEO, Elevate Business Solutions" },
+    { quote: "The team is responsive, transparent and genuinely invested in your results. That's rare. The numbers prove it too.", name: "Daniel Murphy", role: "Director, Granite Peak Consulting" },
+    { quote: "Within six weeks we had more booked calls than we knew what to do with. We actually had to pause the system to catch up.", name: "Samantha Reid", role: "Founder, Whitmore Partners" },
+    { quote: "The ROI is undeniable. For every dollar we put in, we're getting eight back. I wish we'd found them two years ago.", name: "Jonathan Brooks", role: "Owner, Lakewood Services Group" },
+    { quote: "Our old agency gave us vanity metrics. Novada Tech gives us revenue. The difference is night and day.", name: "Victoria Harrison", role: "CEO, Bridgepoint Advisory" },
+  ];
+
+  const AVATAR_COLORS = [
+    "bg-gold-500/20 text-gold-300",
+    "bg-blue-500/20 text-blue-300",
+    "bg-emerald-500/20 text-emerald-300",
+    "bg-purple-500/20 text-purple-300",
+    "bg-rose-500/20 text-rose-300",
+    "bg-amber-500/20 text-amber-300",
+    "bg-cyan-500/20 text-cyan-300",
+    "bg-indigo-500/20 text-indigo-300",
+  ];
+
+  return (
+    <section className="section-spacing section-padding border-t border-white/[0.04]">
+      <div className="max-container">
+        <AnimatedSection className="text-center mb-12">
+          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+            What Clients Say
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Don&apos;t Just Take Our Word for It
+          </h2>
+          <p className="mt-4 text-white/40 text-lg max-w-2xl mx-auto">
+            350+ businesses have been through this. Here&apos;s what they say on the other side.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {testimonials.map((t, i) => {
+            const initials = t.name.split(" ").map((n) => n[0]).join("").slice(0, 2);
+            const color = AVATAR_COLORS[i % AVATAR_COLORS.length];
+            return (
+              <AnimatedSection key={i} delay={(i % 6) * 0.07}>
+                <div className="glass-card border border-white/[0.05] p-6 h-full flex flex-col">
+                  <div className="text-gold-400 text-xs mb-3">★★★★★</div>
+                  <p className="text-sm text-white/60 leading-relaxed italic flex-1">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
+                    <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${color}`}>
+                      {initials}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-white">{t.name}</p>
+                      <p className="text-xs text-white/40">{t.role}</p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── COMPARISON ─── */
 function ComparisonSection() {
   const rows = [
@@ -1205,6 +1303,7 @@ export default function HomePage() {
       <WhatWeBuild />
       <Flywheel />
       <Testimonials />
+      <WrittenTestimonials />
       <ComparisonSection />
       <QualificationSection />
       <RiskReversal />

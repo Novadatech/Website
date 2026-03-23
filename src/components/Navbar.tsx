@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/about", label: "About" },
 ];
 
-const BOOKING_URL = "/book-call";
+const BOOKING_URL = "/apply";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -58,7 +58,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <a href={BOOKING_URL} className="btn-primary text-sm !px-6 !py-3">
-                Book a Strategy Call
+                See If You Qualify
               </a>
             </div>
 
@@ -112,7 +112,7 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="btn-primary w-full text-center"
                 >
-                  Book a Strategy Call
+                  See If You Qualify
                 </a>
               </motion.div>
             </nav>
