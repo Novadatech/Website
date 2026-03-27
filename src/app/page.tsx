@@ -799,22 +799,13 @@ function WrittenTestimonials() {
   const testimonials = [
     { quote: "14 qualified meetings booked in 3 weeks. Every single one was the right type of client — right budget, right fit. Nothing like the leads we were getting from ads.", name: "Tony", role: "Founder, South Line Media" },
     { quote: "4 new retainer clients closed in the first 45 days. After being burned by two agencies, the pay-for-results model was the only thing that made sense — and it delivered.", name: "Anthony", role: "Founder, Ripple Clarke" },
-    { quote: "Went from 2–3 sporadic leads a month to 11 qualified calls in the first 30 days. First time we've had a pipeline we could actually forecast from.", name: "Damian", role: "Founder, Groundwork Ventures" },
-    { quote: "Booked out 3 weeks ahead within a month. The feast-and-famine cycle is gone. The system runs in the background and the calendar fills itself.", name: "Jack", role: "Director, House Valley" },
-    { quote: "Discovery call conversion jumped from 28% to over 60%. Prospects arrived already educated on our value — we just had to confirm the fit.", name: "Nate", role: "Owner, Larsky Tach and Feed" },
     { quote: "$42K to $91K monthly revenue in under 60 days. 18 new high-value clients per month. The ROI was clear within the first fortnight.", name: "Josh", role: "Director, Maxicare Plus" },
-    { quote: "More clients in month one than the previous 6 months combined. Had to pause the system at week 5 just to catch up with demand.", name: "Jessica", role: "Founder, Jessica Teds Coaching" },
     { quote: "$28K to $76K in 90 days. 8–12 qualified calls per week. They understood our positioning faster than any agency we'd worked with.", name: "Gunendu", role: "Director, Growth-Loop Consulting" },
-    { quote: "Doubled our active participants in 4 months. The outreach led with our values — the right clients found us without it ever feeling cold.", name: "Malkin", role: "CEO, Support24" },
-    { quote: "Acquisition runs on autopilot across both my businesses. I show up to calls, close deals, and the pipeline refills itself. That's it.", name: "Malkin", role: "Founder, Recruitilon" },
+    { quote: "Discovery call conversion jumped from 28% to over 60%. Prospects arrived already educated on our value — we just had to confirm the fit.", name: "Nate", role: "Owner, Larsky Tach and Feed" },
     { quote: "Close rate went from 25% to 67%. We only speak to clients who are already sold on the category — we just have to confirm we're the right fit.", name: "Terver", role: "Founder, CareJewel" },
-    { quote: "Tripled our referral partner network in 6 months. The outreach was warm, values-driven, and connected with exactly the right people in our space.", name: "Uche", role: "CEO, Morning Star Community Services" },
-    { quote: "First month more than paid for itself — real bookings and catering enquiries, not just Instagram followers. Best ROI decision I've made for the business.", name: "Ella", role: "Founder, Ellaz Chop" },
-    { quote: "Saved 2 hours every morning. Used to spend that time chasing leads. Now I spend it delivering for clients. The system does the hunting — I just close.", name: "Peter", role: "Director, Support Link" },
-    { quote: "6 new clients in a single quarter. Prospects arrived pre-sold — they already understood our value before we got on a call. Meeting quality is completely different now.", name: "Michael", role: "Managing Partner, Aaronson & Co Ventures" },
-    { quote: "6 new clients onboarded in the last quarter. Ironic that a marketing agency needed this — but the pipeline consistency we have now is something we couldn't build ourselves.", name: "Ola", role: "Founder, Simply Ads" },
-    { quote: "We're tradespeople — we're on the tools all day. Calls now book straight into our calendar while we work. Best thing we've done for the business.", name: "Lucas", role: "Director, J.R & Sons Ltd" },
+    { quote: "More clients in month one than the previous 6 months combined. Had to pause the system at week 5 just to catch up with demand.", name: "Jessica", role: "Founder, Jessica Teds Coaching" },
     { quote: "18 qualified consultations in month one — our best month ever. Found the exact niche where demand was high and competition was low. Wish we'd done this sooner.", name: "Mo", role: "Founder, Framer Health" },
+    { quote: "Doubled our active participants in 4 months. The outreach led with our values — the right clients found us without it ever feeling cold.", name: "Malkin", role: "CEO, Support24" },
   ];
 
   const AVATAR_COLORS = [

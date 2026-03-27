@@ -68,29 +68,9 @@ const TESTIMONIALS = [
     role: "Founder, Ripple Clarke",
   },
   {
-    quote: "The pipeline went from sporadic to predictable within the first month. We went from hoping for meetings to having more than we could handle.",
-    name: "Damian",
-    role: "Founder, Groundwork Ventures",
-  },
-  {
-    quote: "In 30 days Novada Tech had us booked out three weeks ahead. The meetings just kept coming. We haven't had a quiet week since.",
-    name: "Jack",
-    role: "Director, House Valley",
-  },
-  {
-    quote: "Our conversion rate on discovery calls jumped to over 60%. The meetings are with people who are ready to buy — not tyre-kickers.",
-    name: "Nate",
-    role: "Owner, Larsky Tach and Feed",
-  },
-  {
     quote: "We went from $42K to over $91K monthly revenue in under 60 days. The qualified meetings drove everything — consistent, high-quality, every single week.",
     name: "Josh",
     role: "Director, Maxicare Plus",
-  },
-  {
-    quote: "More qualified meetings in month one than the previous six months combined. I actually had to pause the system to catch up with demand.",
-    name: "Jessica",
-    role: "Founder, Jessica Teds Coaching",
   },
   {
     quote: "We scaled from $28K to $76K monthly in 90 days. 8–12 qualified meetings per week — every one of them was the right fit.",
@@ -98,14 +78,9 @@ const TESTIMONIALS = [
     role: "Director, Growth-Loop Consulting",
   },
   {
-    quote: "Doubled our active participants in 4 months. The meetings were with exactly the right referral partners — warm, values-driven, and high-converting.",
-    name: "Malkin",
-    role: "CEO, Support24",
-  },
-  {
-    quote: "I show up to qualified meetings, close deals, and the pipeline refills itself. The system runs on autopilot across both my businesses.",
-    name: "Malkin",
-    role: "Founder, Recruitilon",
+    quote: "Our conversion rate on discovery calls jumped to over 60%. The meetings are with people who are ready to buy — not tyre-kickers.",
+    name: "Nate",
+    role: "Owner, Larsky Tach and Feed",
   },
   {
     quote: "Close rate went from 25% to 67%. Every meeting is with someone who already understands our value — we just confirm the fit.",
@@ -113,39 +88,19 @@ const TESTIMONIALS = [
     role: "Founder, CareJewel",
   },
   {
-    quote: "Tripled our referral partner network in 6 months. Every meeting was warm and connected with exactly the right people in our space.",
-    name: "Uche",
-    role: "CEO, Morning Star Community Services",
-  },
-  {
-    quote: "First month more than paid for itself — real bookings, real meetings, real revenue. Not followers. Not impressions. Actual business.",
-    name: "Ella",
-    role: "Founder, Ellaz Chop",
-  },
-  {
-    quote: "Saved 2 hours every morning I used to spend chasing leads. Now qualified meetings book themselves into my calendar while I focus on delivery.",
-    name: "Peter",
-    role: "Director, Support Link",
-  },
-  {
-    quote: "Prospects arrived pre-sold — they already understood our value before the meeting. Meeting quality is on another level now.",
-    name: "Michael",
-    role: "Managing Partner, Aaronson & Co Ventures",
-  },
-  {
-    quote: "6 new clients onboarded in the last quarter. The meetings Novada Tech books are with decision-makers who are ready to move.",
-    name: "Ola",
-    role: "Founder, Simply Ads",
-  },
-  {
-    quote: "We're tradespeople — on the tools all day. Qualified meetings now book straight into our calendar while we work. Best decision we've made.",
-    name: "Lucas",
-    role: "Director, J.R & Sons Ltd",
+    quote: "More qualified meetings in month one than the previous six months combined. I actually had to pause the system to catch up with demand.",
+    name: "Jessica",
+    role: "Founder, Jessica Teds Coaching",
   },
   {
     quote: "18 qualified meetings in month one — our best month ever. Found the exact niche where demand was high and competition was low.",
     name: "Mo",
     role: "Founder, Framer Health",
+  },
+  {
+    quote: "Doubled our active participants in 4 months. The meetings were with exactly the right referral partners — warm, values-driven, and high-converting.",
+    name: "Malkin",
+    role: "CEO, Support24",
   },
 ];
 

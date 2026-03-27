@@ -70,29 +70,9 @@ const TESTIMONIALS = [
     role: "Founder, Ripple Clarke",
   },
   {
-    quote: "Our biggest problem wasn't the product — it was getting in front of the right people consistently. The pipeline went from sporadic to predictable within the first month.",
-    name: "Damian",
-    role: "Founder, Groundwork Ventures",
-  },
-  {
-    quote: "We'd been growing mainly through referrals and the feast-and-famine cycle was exhausting. In 30 days Novada Tech had us booked out three weeks ahead. The system just keeps running.",
-    name: "Jack",
-    role: "Director, House Valley",
-  },
-  {
-    quote: "Finding quality B2B clients in our space isn't easy. Novada Tech built outreach that educated prospects before we even spoke to them. Our conversion rate on discovery calls jumped to over 60%.",
-    name: "Nate",
-    role: "Owner, Larsky Tach and Feed",
-  },
-  {
     quote: "We went from $42K to over $91K monthly revenue in under 60 days. The team understood our space quickly and built a system that brought in high-quality leads consistently. The ROI speaks for itself.",
     name: "Josh",
     role: "Director, Maxicare Plus",
-  },
-  {
-    quote: "Within the first month the system brought in more clients than I'd converted in the previous six months combined. I actually had to pause it to catch up with demand.",
-    name: "Jessica",
-    role: "Founder, Jessica Teds Coaching",
   },
   {
     quote: "We scaled from $28K to $76K monthly in 90 days. What impressed me most was how quickly they understood our positioning and built outreach that didn't sound generic.",
@@ -100,14 +80,9 @@ const TESTIMONIALS = [
     role: "Director, Growth-Loop Consulting",
   },
   {
-    quote: "In the NDIS space, trust is everything. I was worried outreach would feel cold. Instead Novada Tech built campaigns that led with our values and the right clients found us. We've doubled our active participants in four months.",
-    name: "Malkin",
-    role: "CEO, Support24",
-  },
-  {
-    quote: "I run two businesses and couldn't justify spending hours generating leads for both. Novada Tech runs acquisition for Recruitilon on autopilot. I show up to calls, close deals, and the pipeline refills itself.",
-    name: "Malkin",
-    role: "Founder, Recruitilon",
+    quote: "Finding quality B2B clients in our space isn't easy. Novada Tech built outreach that educated prospects before we even spoke to them. Our conversion rate on discovery calls jumped to over 60%.",
+    name: "Nate",
+    role: "Owner, Larsky Tach and Feed",
   },
   {
     quote: "The targeting is incredibly precise — now we only speak to clients who are ready and already understand our value. Our close rate went from about 25% to over 65%.",
@@ -115,39 +90,19 @@ const TESTIMONIALS = [
     role: "Founder, CareJewel",
   },
   {
-    quote: "Growing a community services business requires a different approach. Novada Tech understood that and built outreach that connected with the right referral partners. We've tripled our referral network in six months.",
-    name: "Uche",
-    role: "CEO, Morning Star Community Services",
-  },
-  {
-    quote: "I was doing everything on Instagram and getting followers but not customers. Novada Tech flipped that around — actual bookings and catering enquiries. The first month alone more than paid for itself.",
-    name: "Ella",
-    role: "Founder, Ellaz Chop",
-  },
-  {
-    quote: "Before Novada Tech I spent two hours every morning trying to generate leads. Now I spend that time serving clients. The acquisition runs in the background and I focus on delivery.",
-    name: "Peter",
-    role: "Director, Support Link",
-  },
-  {
-    quote: "We operate in a niche that requires trust before a conversation starts. Novada Tech built warm outreach that positioned us as the authority before we spoke to a single prospect. Meeting quality went through the roof.",
-    name: "Michael",
-    role: "Managing Partner, Aaronson & Co Ventures",
-  },
-  {
-    quote: "Ironic that a marketing agency needed help with its own client acquisition — but it's true. Novada Tech brought structure and consistency to our pipeline. We've onboarded six new clients in the past quarter alone.",
-    name: "Ola",
-    role: "Founder, Simply Ads",
-  },
-  {
-    quote: "Family businesses like ours don't have time to chase leads. We're on the tools every day. The fact that this system runs in the background and books calls into our calendar is genuinely incredible.",
-    name: "Lucas",
-    role: "Director, J.R & Sons Ltd",
+    quote: "Within the first month the system brought in more clients than I'd converted in the previous six months combined. I actually had to pause it to catch up with demand.",
+    name: "Jessica",
+    role: "Founder, Jessica Teds Coaching",
   },
   {
     quote: "Health and wellness is a crowded space. Novada Tech helped us find the specific niche where demand was high and competition was low. First month we had 18 qualified consultations booked — our best month ever.",
     name: "Mo",
     role: "Founder, Framer Health",
+  },
+  {
+    quote: "In the NDIS space, trust is everything. I was worried outreach would feel cold. Instead Novada Tech built campaigns that led with our values and the right clients found us. We've doubled our active participants in four months.",
+    name: "Malkin",
+    role: "CEO, Support24",
   },
 ];
 

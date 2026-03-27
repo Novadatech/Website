@@ -88,29 +88,9 @@ const TESTIMONIALS = [
     role: "Founder, Ripple Clarke",
   },
   {
-    quote: "I was doing all the sales myself and it was killing my delivery. Having an expert closer handle every call changed everything — revenue went up and I got my time back.",
-    name: "Damian",
-    role: "Founder, Groundwork Ventures",
-  },
-  {
-    quote: "Booked out three weeks ahead within a month. The closer handles every call and closes at over 40%. I focus entirely on fulfilment now.",
-    name: "Jack",
-    role: "Director, House Valley",
-  },
-  {
-    quote: "Discovery call conversion jumped from 28% to over 60%. The closer pre-handles objections and closes with a structure we never had before.",
-    name: "Nate",
-    role: "Owner, Larsky Tach and Feed",
-  },
-  {
     quote: "$42K to $91K monthly revenue in under 60 days. The closer was on calls within the first week and closed 3 deals in the first 10 days.",
     name: "Josh",
     role: "Director, Maxicare Plus",
-  },
-  {
-    quote: "More clients closed in month one than the previous six months combined. The closer actually had to pause taking calls because we couldn't fulfil fast enough.",
-    name: "Jessica",
-    role: "Founder, Jessica Teds Coaching",
   },
   {
     quote: "$28K to $76K monthly in 90 days. The closer understood our positioning faster than any hire we've made. 8–12 qualified calls per week, all handled.",
@@ -118,14 +98,9 @@ const TESTIMONIALS = [
     role: "Director, Growth-Loop Consulting",
   },
   {
-    quote: "Doubled our active participants in 4 months. The closer handles every sales conversation — warm, values-driven, and high-converting.",
-    name: "Malkin",
-    role: "CEO, Support24",
-  },
-  {
-    quote: "I run two businesses. Having a dedicated closer means I show up to nothing — they close the deals and the revenue just flows.",
-    name: "Malkin",
-    role: "Founder, Recruitilon",
+    quote: "Discovery call conversion jumped from 28% to over 60%. The closer pre-handles objections and closes with a structure we never had before.",
+    name: "Nate",
+    role: "Owner, Larsky Tach and Feed",
   },
   {
     quote: "Close rate went from 25% to 67%. The closer only speaks to pre-qualified prospects and converts at a level our internal team never could.",
@@ -133,39 +108,19 @@ const TESTIMONIALS = [
     role: "Founder, CareJewel",
   },
   {
-    quote: "Tripled our referral partner network in 6 months. The closer handles all partner calls — professional, warm, and high-converting.",
-    name: "Uche",
-    role: "CEO, Morning Star Community Services",
-  },
-  {
-    quote: "First month the closer paid for themselves three times over. Real deals, real revenue — not promises and reports.",
-    name: "Ella",
-    role: "Founder, Ellaz Chop",
-  },
-  {
-    quote: "I used to spend two hours every morning doing sales. Now the closer handles every call and I focus on serving clients. Best hire I never had to make.",
-    name: "Peter",
-    role: "Director, Support Link",
-  },
-  {
-    quote: "Prospects arrived pre-sold and the closer sealed the deal. Meeting quality went through the roof. We closed 6 new clients in one quarter.",
-    name: "Michael",
-    role: "Managing Partner, Aaronson & Co Ventures",
-  },
-  {
-    quote: "6 new clients onboarded in the last quarter — all closed by our assigned closer. They handle everything from first call to signed contract.",
-    name: "Ola",
-    role: "Founder, Simply Ads",
-  },
-  {
-    quote: "We're tradespeople — on the tools all day. Having a closer handle all our sales calls while we work is genuinely life-changing.",
-    name: "Lucas",
-    role: "Director, J.R & Sons Ltd",
+    quote: "More clients closed in month one than the previous six months combined. The closer actually had to pause taking calls because we couldn't fulfil fast enough.",
+    name: "Jessica",
+    role: "Founder, Jessica Teds Coaching",
   },
   {
     quote: "18 deals closed in month one — our best month ever. The closer found the right messaging and ran with it from day one.",
     name: "Mo",
     role: "Founder, Framer Health",
+  },
+  {
+    quote: "Doubled our active participants in 4 months. The closer handles every sales conversation — warm, values-driven, and high-converting.",
+    name: "Malkin",
+    role: "CEO, Support24",
   },
 ];
 
