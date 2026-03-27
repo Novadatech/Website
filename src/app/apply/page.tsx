@@ -486,18 +486,6 @@ export default function ApplyPage() {
               30–60 qualified sales calls every month for your business. Completely free.
             </p>
 
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/40">
-              <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/60 transition-colors">
-                <Star className="w-3.5 h-3.5 text-gold-400" />
-                <span className="text-gold-400 font-medium">4.9★</span> on Trustpilot
-              </a>
-              <span className="text-white/15">·</span>
-              <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-gold-500/50" /> 350+ Businesses Scaled</span>
-              <span className="text-white/15">·</span>
-              <span className="flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 text-gold-500/50" /> $50M+ Revenue Generated</span>
-              <span className="text-white/15">·</span>
-              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/50" /> 100% Free Strategy Call</span>
-            </div>
           </motion.div>
         </div>
       </section>
