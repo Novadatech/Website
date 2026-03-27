@@ -348,7 +348,7 @@ export default function GetMeetingsPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-b border-white/[0.06]">
         <div className="max-container section-padding">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center">
+            <Link href="/get-meetings" className="flex items-center">
               <Logo variant="light" className="h-9 w-auto" />
             </Link>
             <div className="flex items-center gap-2 text-xs text-white/40">
