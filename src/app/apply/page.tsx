@@ -181,6 +181,24 @@ const VIDEO_TESTIMONIALS = [
     name: "Nate",
     company: "Founder, Larsky Tach and Feed",
   },
+  {
+    id: "G44OKPVh3Uk",
+    title: "Michael — Aaronson Investigations",
+    name: "Michael",
+    company: "Founder, Aaronson Investigations",
+  },
+  {
+    id: "Ef4YTXOnCP0",
+    title: "Jeff — Vertical Axis",
+    name: "Jeff",
+    company: "Founder, Vertical Axis",
+  },
+  {
+    id: "CBL83P7OYgI",
+    title: "Nicole — Morasco Media Services",
+    name: "Nicole",
+    company: "Founder, Morasco Media Services",
+  },
 ];
 
 const TRUST_ITEMS = [
