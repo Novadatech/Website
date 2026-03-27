@@ -427,7 +427,7 @@ export default function GetMeetingsPage() {
             className="mt-8 text-center"
           >
             <p className="text-xl md:text-2xl font-semibold text-white/90 max-w-2xl mx-auto leading-relaxed">
-              We build and manage a done-for-you system that puts 30–60 qualified sales meetings on your calendar every month. If we don&apos;t deliver, you don&apos;t pay.
+              We install a Proven Client Acquisition System into your business that puts 30–60 qualified sales meetings on your calendar every month. If we don&apos;t deliver, you don&apos;t pay.
             </p>
           </motion.div>
         </div>
