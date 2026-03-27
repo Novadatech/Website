@@ -52,7 +52,7 @@ function AboutHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8 text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed"
+            className="mt-8 text-base md:text-xl text-white/80 max-w-2xl leading-relaxed"
           >
             We&apos;re the growth partnership that builds, runs, and scales
             complete client acquisition systems — so business owners can focus on
@@ -68,7 +68,7 @@ function AboutHero() {
             <div className="flex text-gold-400 text-sm tracking-wider">
               ★★★★★
             </div>
-            <span className="text-sm text-white/40">
+            <span className="text-sm text-white/80">
               Trusted by 350+ businesses across 30+ industries
             </span>
           </motion.div>
@@ -93,7 +93,7 @@ function OriginStory() {
               <br />
               <span className="text-white/50">So We Built a Better One.</span>
             </h2>
-            <div className="mt-8 space-y-5 text-white/50 leading-relaxed">
+            <div className="mt-8 space-y-5 text-white/80 leading-relaxed">
               <p>
                 Most businesses are stuck in the same cycle: hire an agency, pay
                 retainers, hope for leads, get inconsistent results, start over.
@@ -212,11 +212,11 @@ function FounderMessage() {
               {/* Floating stat card */}
               <div className="absolute -right-4 top-8 glass-card gradient-border px-5 py-4 hidden lg:block">
                 <p className="text-2xl font-bold gradient-text">$50M+</p>
-                <p className="text-xs text-white/40 mt-0.5">Revenue Generated</p>
+                <p className="text-xs text-white/80 mt-0.5">Revenue Generated</p>
               </div>
               <div className="absolute -right-4 bottom-20 glass-card gradient-border px-5 py-4 hidden lg:block">
                 <p className="text-2xl font-bold gradient-text">350+</p>
-                <p className="text-xs text-white/40 mt-0.5">Businesses Scaled</p>
+                <p className="text-xs text-white/80 mt-0.5">Businesses Scaled</p>
               </div>
             </div>
           </AnimatedSection>
@@ -226,7 +226,7 @@ function FounderMessage() {
             <div className="relative">
               <Quote className="w-10 h-10 text-gold-500/20 mb-6" />
 
-              <div className="space-y-5 text-white/60 leading-relaxed text-base">
+              <div className="space-y-5 text-white/80 leading-relaxed text-base">
                 <p>
                   I started Novada Tech after watching too many talented business owners — people with genuinely exceptional products and services — struggle to grow. Not because their offer wasn&apos;t good enough, but because they had no reliable, predictable system to bring in clients.
                 </p>
@@ -253,7 +253,7 @@ function FounderMessage() {
               <div className="mt-8 pt-8 border-t border-white/[0.06] flex items-center gap-5">
                 <div>
                   <p className="text-white font-semibold text-lg">Ade Eni</p>
-                  <p className="text-sm text-white/40">Founder & CEO, Novada Tech</p>
+                  <p className="text-sm text-white/80">Founder & CEO, Novada Tech</p>
                   <div className="flex text-gold-400 text-sm mt-1">★★★★★</div>
                 </div>
               </div>
@@ -324,7 +324,7 @@ function Journey() {
                     <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-white/45 leading-relaxed">
+                    <p className="mt-3 text-base text-white/80 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -395,7 +395,7 @@ function Principles() {
                 <h3 className="text-lg font-semibold text-white mb-3">
                   {item.title}
                 </h3>
-                <p className="text-sm text-white/40 leading-relaxed">
+                <p className="text-base text-white/80 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -437,7 +437,7 @@ function TrustStats() {
                     <p className="text-4xl md:text-5xl font-bold gradient-text">
                       {stat.number}
                     </p>
-                    <p className="mt-2 text-white/50 text-sm font-medium underline underline-offset-2 decoration-white/20">
+                    <p className="mt-2 text-white/80 text-base font-medium underline underline-offset-2 decoration-white/20">
                       {stat.label} ↗
                     </p>
                   </div>
@@ -450,7 +450,7 @@ function TrustStats() {
                   <p className="text-4xl md:text-5xl font-bold gradient-text">
                     {stat.number}
                   </p>
-                  <p className="mt-2 text-white/50 text-sm font-medium">
+                  <p className="mt-2 text-white/80 text-base font-medium">
                     {stat.label}
                   </p>
                 </div>
@@ -478,7 +478,7 @@ function WhatMakesUsDifferent() {
               <br />
               <span className="text-white/50">We Stake Our Revenue on It.</span>
             </h2>
-            <div className="mt-8 space-y-5 text-white/50 leading-relaxed">
+            <div className="mt-8 space-y-5 text-white/80 leading-relaxed">
               <p>
                 Every growth partner talks about results. We&apos;re the ones
                 who only get paid when they happen. Our pay-for-results model
@@ -523,7 +523,7 @@ function WhatMakesUsDifferent() {
                   className="glass-card gradient-border p-6 group hover:bg-white/[0.04] transition-all duration-500"
                 >
                   <h4 className="text-white font-semibold">{item.label}</h4>
-                  <p className="mt-1 text-sm text-white/40">{item.desc}</p>
+                  <p className="mt-1 text-base text-white/80">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -550,7 +550,7 @@ function AboutCTA() {
                 <br />
                 <span className="gradient-text">Start Building.</span>
               </h2>
-              <p className="mt-6 text-white/50 text-lg max-w-xl mx-auto">
+              <p className="mt-6 text-white/80 text-base max-w-xl mx-auto">
                 If you&apos;re ready for predictable revenue growth without the
                 risk of retainers, let&apos;s talk. One call is all it takes to
                 see if we&apos;re the right fit.

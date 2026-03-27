@@ -26,7 +26,7 @@ export default function Footer() {
                 className="h-9 w-auto"
               />
             </Link>
-            <p className="text-white/50 text-sm max-w-md leading-relaxed">
+            <p className="text-white/80 text-base max-w-md leading-relaxed">
               We build complete client acquisition systems for businesses ready to scale.
               You only pay when we deliver results. No retainers. No guesswork.
             </p>
@@ -36,7 +36,7 @@ export default function Footer() {
                   <span key={i}>{s}</span>
                 ))}
               </div>
-              <span className="text-white/40 text-sm">
+              <span className="text-white/80 text-base">
                 4.9 on Trustpilot · 77+ Reviews
               </span>
             </div>
@@ -105,7 +105,7 @@ export default function Footer() {
                   (+61) 485 000 813
                 </a>
               </li>
-              <li className="flex items-start gap-3 text-sm text-white/40">
+              <li className="flex items-start gap-3 text-base text-white/80">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
                 Suite 23/220 Collins Street, Melbourne VIC 3000
               </li>

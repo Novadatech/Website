@@ -52,7 +52,7 @@ export default function BookPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-lg text-white/50 max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-base text-white/80 max-w-2xl mx-auto leading-relaxed"
           >
             In 30 minutes, we&apos;ll map out exactly how to build a predictable
             client acquisition system for your business — no obligation, no hard sell.
@@ -105,7 +105,7 @@ export default function BookPage() {
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-gold-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-white/60 leading-relaxed">
+                      <span className="text-base text-white/80 leading-relaxed">
                         {item}
                       </span>
                     </div>
@@ -113,7 +113,7 @@ export default function BookPage() {
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-white/[0.06]">
-                  <p className="text-sm text-white/40 leading-relaxed">
+                  <p className="text-base text-white/80 leading-relaxed">
                     This call is best suited for business owners selling
                     high-value services ($3K–$50K+) who are ready to scale with
                     a proven system.
@@ -153,7 +153,7 @@ export default function BookPage() {
               <div className="flex text-gold-400 justify-center text-sm mb-4">
                 ★★★★★
               </div>
-              <p className="text-white/60 leading-relaxed max-w-lg mx-auto">
+              <p className="text-white/80 leading-relaxed max-w-lg mx-auto">
                 &ldquo;The strategy call alone gave us more clarity than 6 months
                 of working with our previous agency. Highly recommend.&rdquo;
               </p>

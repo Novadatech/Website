@@ -29,7 +29,7 @@ const BOOKING_URL = "/book-call";
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="relative pt-20 pb-12 overflow-hidden">
+    <section className="relative pt-16 pb-12 overflow-hidden">
       {/* Background layers */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
@@ -56,31 +56,17 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
         >
-          The AI System That Predictably{" "}
-          <span className="gradient-text">Generates High-Value Clients</span>
-          {" "}— First Qualified Meetings Within 14 Days
+          10X Your Revenue In 30 – 60 Days With Our Proven{" "}
+          <span className="gradient-text">Client Acquisition Engine</span>.{" "}
+          If You Don&apos;t Get Results You Don&apos;t Pay
         </motion.h1>
-
-        {/* Case study anchor */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-3 text-sm text-white/35"
-        >
-          Maxicare went from{" "}
-          <span className="text-gold-400 font-semibold">$42K → $91K/mo in 60 days</span>
-          {" "}— Jessica Ted closed{" "}
-          <span className="text-gold-400 font-semibold">3 × $8,500 clients in her first month</span>
-          .
-        </motion.p>
 
         {/* VSL — immediately below headline */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="mt-5 max-w-4xl mx-auto"
+          className="mt-4 max-w-4xl mx-auto"
         >
           <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
             <iframe
@@ -98,24 +84,10 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-6 text-lg text-white/50 max-w-2xl mx-auto leading-relaxed"
+          className="mt-6 text-xl md:text-2xl font-semibold text-white/90 max-w-2xl mx-auto leading-relaxed"
         >
-          We build and deploy your complete AI-powered client acquisition
-          system — from lead sourcing to booked meetings, so getting clients
-          becomes inevitable. You only pay when the system produces real results.
+          We install our complete client acquisition system into your business to 10x your revenue in 30 – 60 days. If we don&apos;t generate revenue you don&apos;t pay.
         </motion.p>
-
-        {/* Risk reversal badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-8 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-sm font-medium"
-        >
-          <Shield className="w-4 h-4 flex-shrink-0" />
-          If we don&apos;t generate revenue, you don&apos;t pay us — No retainers. No ad spend. No risk.
-        </motion.div>
-
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -146,7 +118,7 @@ function Hero() {
             className="flex items-center gap-4 hover:opacity-80 transition-opacity"
           >
             <div className="flex text-gold-400 text-sm tracking-wider">★★★★★</div>
-            <span className="text-sm text-white/40 underline underline-offset-2 decoration-white/20">
+            <span className="text-sm text-white/80 underline underline-offset-2 decoration-white/20">
               Rated 4.9/5 on Trustpilot · 77+ Verified Reviews
             </span>
           </a>
@@ -160,22 +132,22 @@ function Hero() {
 function ProblemSection() {
   const problems = [
     {
-      tag: "The Referral Trap",
-      headline: "Your pipeline depends on who you know",
-      body: "Referrals feel safe — until they stop. You can't scale a business on conversations that happen by accident. Every month is a gamble on who your network happens to know.",
-      pills: ["Unpredictable revenue", "Zero pipeline control", "Growth hits a ceiling"],
+      tag: "The Lead Quality Problem",
+      headline: "You're getting leads — but they're the wrong ones",
+      body: "Enquiries come in but they're time-wasters. Wrong budget. Wrong fit. You spend hours on discovery calls that go nowhere. The volume is there. The quality isn't.",
+      pills: ["Low conversion rate", "Wasted sales time", "Wrong-fit clients"],
     },
     {
-      tag: "The Paid Ads Gamble",
-      headline: "You're paying for clicks, not clients",
-      body: "Agencies charge retainers, burn your ad budget, and send you reports. Some months you get leads. Most months you get excuses. The spend never stops. The certainty never comes.",
-      pills: ["Wasted ad spend", "Low-quality leads", "No accountability"],
+      tag: "The Conversion Problem",
+      headline: "You're having calls — but they don't close",
+      body: "Prospects seem interested. They ask good questions. Then they go quiet. Without a system that pre-qualifies and pre-sells before the call, you're doing all the hard work on the call itself.",
+      pills: ["High no-show rate", "Long sales cycles", "Deals stall or ghost"],
     },
     {
-      tag: "The Hiring Mistake",
-      headline: "More headcount, same problem",
-      body: "A BDM. A marketing hire. Salary, super, onboarding, management — and still no guaranteed results. You've traded one inconsistency for a much more expensive one.",
-      pills: ["High fixed cost", "Slow ramp-up", "Still no system"],
+      tag: "The Pipeline Problem",
+      headline: "Your pipeline is inconsistent and unpredictable",
+      body: "Some months are great. Others are dead. You can't forecast revenue, plan capacity, or invest in growth when you have no idea where the next client is coming from.",
+      pills: ["Feast and famine cycle", "No revenue visibility", "Growth stalls"],
     },
   ];
 
@@ -190,7 +162,7 @@ function ProblemSection() {
             Your Business Is Great.{" "}
             <span className="text-white/40">Your Pipeline Isn&apos;t.</span>
           </h2>
-          <p className="mt-4 text-white/50 text-lg max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
             Most businesses don&apos;t have a growth problem. They have a system
             problem. Here&apos;s what&apos;s keeping you stuck.
           </p>
@@ -206,12 +178,12 @@ function ProblemSection() {
                   </span>
                 </div>
                 <h3 className="text-lg font-bold text-white mb-3">{p.headline}</h3>
-                <p className="text-sm text-white/50 leading-relaxed flex-1">{p.body}</p>
+                <p className="text-base text-white/80 leading-relaxed flex-1">{p.body}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {p.pills.map((pill, j) => (
                     <span
                       key={j}
-                      className="text-xs px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-white/30"
+                      className="text-xs px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-white/50"
                     >
                       {pill}
                     </span>
@@ -246,7 +218,7 @@ function SolutionSection() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               The Growth Partnership Model
             </h2>
-            <p className="mt-6 text-white/50 text-lg leading-relaxed">
+            <p className="mt-6 text-lg text-white/80 leading-relaxed">
               We don&apos;t sell courses, software, or complicated funnels. We
               partner with you to{" "}
               <span className="text-white font-medium">
@@ -254,7 +226,7 @@ function SolutionSection() {
               </span>{" "}
               a complete client acquisition engine.
             </p>
-            <p className="mt-6 text-white/50 text-lg leading-relaxed">
+            <p className="mt-6 text-lg text-white/80 leading-relaxed">
               You only pay for results. And only pay when deals close.
             </p>
             <a
@@ -306,6 +278,9 @@ function ProofSection() {
           <h2 className="text-3xl md:text-4xl font-bold">
             Results That Speak for Themselves
           </h2>
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            Consistently generating qualified meetings and predictable revenue pipelines for service-based businesses across Australia.
+          </p>
         </AnimatedSection>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -402,7 +377,7 @@ function CaseStudies() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
             Real Businesses. Real Numbers.
           </h2>
-          <p className="mt-4 text-white/40 text-lg max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
             These are not projections. These are documented results from
             partners who were exactly where you are now.
           </p>
@@ -416,7 +391,7 @@ function CaseStudies() {
                 <div className="flex items-start justify-between mb-5">
                   <div>
                     <p className="font-bold text-white text-base">{c.company}</p>
-                    <p className="text-xs text-white/40 mt-0.5">{c.industry}</p>
+                    <p className="text-base text-white/80 mt-0.5">{c.industry}</p>
                   </div>
                   <span className="text-xs px-2.5 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 whitespace-nowrap flex-shrink-0 ml-3">
                     {c.timeframe}
@@ -426,13 +401,13 @@ function CaseStudies() {
                 {/* Metric */}
                 <div className="mb-5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center">
                   <p className="text-3xl font-bold gradient-text">{c.metric}</p>
-                  <p className="text-xs text-white/40 mt-1">{c.metricLabel}</p>
+                  <p className="text-base text-white/80 mt-1">{c.metricLabel}</p>
                   <p className="text-xs text-gold-400/60 mt-1 font-medium">{c.result}</p>
                 </div>
 
                 {/* Challenge */}
-                <p className="text-xs text-white/40 leading-relaxed mb-5 flex-1">
-                  <span className="text-white/60 font-medium">Before: </span>
+                <p className="text-base text-white/80 leading-relaxed mb-5 flex-1">
+                  <span className="text-white/80 font-medium">Before: </span>
                   {c.challenge}
                 </p>
 
@@ -441,7 +416,7 @@ function CaseStudies() {
                   {c.highlights.map((h, j) => (
                     <div key={j} className="flex items-center gap-2">
                       <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                      <span className="text-xs text-white/60">{h}</span>
+                      <span className="text-base text-white/80">{h}</span>
                     </div>
                   ))}
                 </div>
@@ -494,7 +469,7 @@ function TrustBar() {
           {[...industries, ...industries].map((industry, i) => (
             <div
               key={i}
-              className="flex-shrink-0 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-sm text-white/60 whitespace-nowrap font-medium"
+              className="flex-shrink-0 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-base text-white/80 whitespace-nowrap font-medium"
             >
               {industry}
             </div>
@@ -511,22 +486,22 @@ function WhatWeBuild() {
     {
       icon: Target,
       title: "Offer & Positioning",
-      desc: "We refine your offer into an irresistible, premium solution that commands attention and premium fees — before we send a single message.",
+      desc: "We audit your offer, sharpen your positioning, and craft a compelling message that stops your ideal client mid-scroll — before we send a single outreach.",
     },
     {
       icon: Settings,
       title: "Acquisition Engine",
-      desc: "The full outbound architecture — targeting, messaging, and sequencing — built from scratch and managed daily. Completely done for you.",
+      desc: "We launch LinkedIn, email and outbound campaigns targeting high-intent prospects. Built from scratch, managed daily, fully done for you.",
     },
     {
       icon: Phone,
       title: "Expert Sales Closing",
-      desc: "A professional closer handles every qualified call. You stay focused on delivery. We turn meetings into signed deals.",
+      desc: "A professional closer handles every qualified call so you stay focused on delivery. We convert meetings into signed deals — you only pay when they close.",
     },
     {
       icon: BarChart3,
       title: "Scale & Optimise",
-      desc: "We track, test, and scale what's working. Your acquisition system compounds over time — getting more efficient as it grows.",
+      desc: "We track results weekly, double down on what's working, and scale the system month over month. Your pipeline gets stronger over time — not weaker.",
     },
   ];
 
@@ -554,7 +529,7 @@ function WhatWeBuild() {
                 <h3 className="text-lg font-semibold text-white mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-white/40 leading-relaxed">
+                <p className="text-base text-white/80 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -607,12 +582,12 @@ function Flywheel() {
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
           <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
-            The Revenue Flywheel
+            The System
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
-            From Zero Pipeline to
+            How This Becomes a
             <br />
-            <span className="gradient-text">Predictable Revenue Machine</span>
+            <span className="gradient-text">Predictable Revenue Engine</span>
           </h2>
         </AnimatedSection>
 
@@ -626,7 +601,7 @@ function Flywheel() {
                 <h3 className="mt-3 text-lg font-semibold text-white">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm text-white/40 leading-relaxed">
+                <p className="mt-2 text-base text-white/80 leading-relaxed">
                   {step.desc}
                 </p>
               </div>
@@ -794,7 +769,7 @@ function Testimonials() {
           <h2 className="text-3xl md:text-4xl font-bold">
             Hear It Directly From Our Partners
           </h2>
-          <p className="mt-4 text-white/40 text-lg max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
             Real business owners. Real results. No scripts.
           </p>
         </AnimatedSection>
@@ -806,7 +781,7 @@ function Testimonials() {
             href="https://www.trustpilot.com/review/novadatech.com.au"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 text-sm text-white/40 hover:text-white/60 transition-colors"
+            className="inline-flex items-center gap-3 text-base text-white/80 hover:text-white/70 transition-colors"
           >
             <div className="flex text-gold-400">★★★★★</div>
             <span className="underline underline-offset-2 decoration-white/20">
@@ -822,24 +797,24 @@ function Testimonials() {
 /* ─── WRITTEN TESTIMONIALS ─── */
 function WrittenTestimonials() {
   const testimonials = [
-    { quote: "I was already running ads but the leads were all over the place — wrong industries, wrong budgets. Within three weeks we had 14 new meetings booked with exactly the type of client we wanted.", name: "Tony", role: "Founder, South Line Media" },
-    { quote: "We'd been burned by two agencies before and the pay-for-results pitch sounded too good to be true. It wasn't. We closed four new retainer clients in our first 45 days.", name: "Anthony", role: "Founder, Ripple Clarke" },
-    { quote: "Our biggest problem wasn't the product — it was getting in front of the right people consistently. The pipeline went from sporadic to predictable within the first month.", name: "Damian", role: "Founder, Groundwork Ventures" },
-    { quote: "We'd been growing mainly through referrals and the feast-and-famine cycle was exhausting. In 30 days Novada Tech had us booked out three weeks ahead. The system just keeps running.", name: "Jack", role: "Director, House Valley" },
-    { quote: "Finding quality B2B clients in our space isn't easy. Novada Tech built outreach that educated prospects before we even spoke to them. Our conversion rate on discovery calls jumped to over 60%.", name: "Nate", role: "Owner, Larsky Tach and Feed" },
-    { quote: "We went from $42K to over $91K monthly revenue in under 60 days. The team understood our space quickly and built a system that brought in high-quality leads consistently. The ROI speaks for itself.", name: "Josh", role: "Director, Maxicare Plus" },
-    { quote: "Within the first month the system brought in more clients than I'd converted in the previous six months combined. I actually had to pause it to catch up with demand.", name: "Jessica", role: "Founder, Jessica Teds Coaching" },
-    { quote: "We scaled from $28K to $76K monthly in 90 days. What impressed me most was how quickly they understood our positioning and built outreach that didn't sound generic.", name: "Gunendu", role: "Director, Growth-Loop Consulting" },
-    { quote: "In the NDIS space, trust is everything. I was worried outreach would feel cold. Instead Novada Tech built campaigns that led with our values and the right clients found us. We've doubled our active participants in four months.", name: "Malkin", role: "CEO, Support24" },
-    { quote: "I run two businesses and couldn't justify spending hours generating leads for both. Novada Tech runs acquisition for Recruitilon on autopilot. I show up to calls, close deals, and the pipeline refills itself.", name: "Malkin", role: "Founder, Recruitilon" },
-    { quote: "The targeting is incredibly precise — now we only speak to clients who are ready and already understand our value. Our close rate went from about 25% to over 65%.", name: "Terver", role: "Founder, CareJewel" },
-    { quote: "Growing a community services business requires a different approach. Novada Tech understood that and built outreach that connected with the right referral partners. We've tripled our referral network in six months.", name: "Uche", role: "CEO, Morning Star Community Services" },
-    { quote: "I was doing everything on Instagram and getting followers but not customers. Novada Tech flipped that around — actual bookings and catering enquiries. The first month alone more than paid for itself.", name: "Ella", role: "Founder, Ellaz Chop" },
-    { quote: "Before Novada Tech I spent two hours every morning trying to generate leads. Now I spend that time serving clients. The acquisition runs in the background and I focus on delivery.", name: "Peter", role: "Director, Support Link" },
-    { quote: "We operate in a niche that requires trust before a conversation starts. Novada Tech built warm outreach that positioned us as the authority before we spoke to a single prospect. Meeting quality went through the roof.", name: "Michael", role: "Managing Partner, Aaronson & Co Ventures" },
-    { quote: "Ironic that a marketing agency needed help with its own client acquisition — but it's true. Novada Tech brought structure and consistency to our pipeline. We've onboarded six new clients in the past quarter alone.", name: "Ola", role: "Founder, Simply Ads" },
-    { quote: "Family businesses like ours don't have time to chase leads. We're on the tools every day. The fact that this system runs in the background and books calls into our calendar is genuinely incredible.", name: "Lucas", role: "Director, J.R & Sons Ltd" },
-    { quote: "Health and wellness is a crowded space. Novada Tech helped us find the specific niche where demand was high and competition was low. First month we had 18 qualified consultations booked — our best month ever.", name: "Mo", role: "Founder, Framer Health" },
+    { quote: "14 qualified meetings booked in 3 weeks. Every single one was the right type of client — right budget, right fit. Nothing like the leads we were getting from ads.", name: "Tony", role: "Founder, South Line Media" },
+    { quote: "4 new retainer clients closed in the first 45 days. After being burned by two agencies, the pay-for-results model was the only thing that made sense — and it delivered.", name: "Anthony", role: "Founder, Ripple Clarke" },
+    { quote: "Went from 2–3 sporadic leads a month to 11 qualified calls in the first 30 days. First time we've had a pipeline we could actually forecast from.", name: "Damian", role: "Founder, Groundwork Ventures" },
+    { quote: "Booked out 3 weeks ahead within a month. The feast-and-famine cycle is gone. The system runs in the background and the calendar fills itself.", name: "Jack", role: "Director, House Valley" },
+    { quote: "Discovery call conversion jumped from 28% to over 60%. Prospects arrived already educated on our value — we just had to confirm the fit.", name: "Nate", role: "Owner, Larsky Tach and Feed" },
+    { quote: "$42K to $91K monthly revenue in under 60 days. 18 new high-value clients per month. The ROI was clear within the first fortnight.", name: "Josh", role: "Director, Maxicare Plus" },
+    { quote: "More clients in month one than the previous 6 months combined. Had to pause the system at week 5 just to catch up with demand.", name: "Jessica", role: "Founder, Jessica Teds Coaching" },
+    { quote: "$28K to $76K in 90 days. 8–12 qualified calls per week. They understood our positioning faster than any agency we'd worked with.", name: "Gunendu", role: "Director, Growth-Loop Consulting" },
+    { quote: "Doubled our active participants in 4 months. The outreach led with our values — the right clients found us without it ever feeling cold.", name: "Malkin", role: "CEO, Support24" },
+    { quote: "Acquisition runs on autopilot across both my businesses. I show up to calls, close deals, and the pipeline refills itself. That's it.", name: "Malkin", role: "Founder, Recruitilon" },
+    { quote: "Close rate went from 25% to 67%. We only speak to clients who are already sold on the category — we just have to confirm we're the right fit.", name: "Terver", role: "Founder, CareJewel" },
+    { quote: "Tripled our referral partner network in 6 months. The outreach was warm, values-driven, and connected with exactly the right people in our space.", name: "Uche", role: "CEO, Morning Star Community Services" },
+    { quote: "First month more than paid for itself — real bookings and catering enquiries, not just Instagram followers. Best ROI decision I've made for the business.", name: "Ella", role: "Founder, Ellaz Chop" },
+    { quote: "Saved 2 hours every morning. Used to spend that time chasing leads. Now I spend it delivering for clients. The system does the hunting — I just close.", name: "Peter", role: "Director, Support Link" },
+    { quote: "6 new clients in a single quarter. Prospects arrived pre-sold — they already understood our value before we got on a call. Meeting quality is completely different now.", name: "Michael", role: "Managing Partner, Aaronson & Co Ventures" },
+    { quote: "6 new clients onboarded in the last quarter. Ironic that a marketing agency needed this — but the pipeline consistency we have now is something we couldn't build ourselves.", name: "Ola", role: "Founder, Simply Ads" },
+    { quote: "We're tradespeople — we're on the tools all day. Calls now book straight into our calendar while we work. Best thing we've done for the business.", name: "Lucas", role: "Director, J.R & Sons Ltd" },
+    { quote: "18 qualified consultations in month one — our best month ever. Found the exact niche where demand was high and competition was low. Wish we'd done this sooner.", name: "Mo", role: "Founder, Framer Health" },
   ];
 
   const AVATAR_COLORS = [
@@ -863,7 +838,7 @@ function WrittenTestimonials() {
           <h2 className="text-3xl md:text-4xl font-bold">
             Don&apos;t Just Take Our Word for It
           </h2>
-          <p className="mt-4 text-white/40 text-lg max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
             350+ businesses have been through this. Here&apos;s what they say on the other side.
           </p>
         </AnimatedSection>
@@ -876,7 +851,7 @@ function WrittenTestimonials() {
               <AnimatedSection key={i} delay={(i % 6) * 0.07}>
                 <div className="glass-card border border-white/[0.05] p-6 h-full flex flex-col">
                   <div className="text-gold-400 text-xs mb-3">★★★★★</div>
-                  <p className="text-sm text-white/60 leading-relaxed italic flex-1">
+                  <p className="text-base text-white/80 leading-relaxed italic flex-1">
                     &ldquo;{t.quote}&rdquo;
                   </p>
                   <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
@@ -885,7 +860,7 @@ function WrittenTestimonials() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-white">{t.name}</p>
-                      <p className="text-xs text-white/40">{t.role}</p>
+                      <p className="text-base text-white/80">{t.role}</p>
                     </div>
                   </div>
                 </div>
@@ -919,7 +894,7 @@ function ComparisonSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-balance">
             How We Compare
           </h2>
-          <p className="mt-4 text-white/40 text-lg">
+          <p className="mt-4 text-lg text-white/80">
             Every option has a cost. Only one of them guarantees results.
           </p>
         </AnimatedSection>
@@ -930,10 +905,10 @@ function ComparisonSection() {
             <div className="grid grid-cols-4 bg-white/[0.03] border-b border-white/[0.06]">
               <div className="p-4 col-span-1" />
               <div className="p-4 text-center">
-                <p className="text-sm font-medium text-white/40">Traditional Agency</p>
+                <p className="text-sm font-medium text-white/55">Traditional Agency</p>
               </div>
               <div className="p-4 text-center">
-                <p className="text-sm font-medium text-white/40">In-House Team</p>
+                <p className="text-sm font-medium text-white/55">In-House Team</p>
               </div>
               <div className="p-4 text-center bg-gold-500/[0.04] border-l border-gold-500/10">
                 <p className="text-sm font-semibold text-gold-400">Novada Tech</p>
@@ -947,7 +922,7 @@ function ComparisonSection() {
                 className={`grid grid-cols-4 border-b border-white/[0.04] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
               >
                 <div className="p-4 flex items-center">
-                  <span className="text-sm text-white/50">{row.label}</span>
+                  <span className="text-sm text-white/60">{row.label}</span>
                 </div>
                 <div className="p-4 flex items-center justify-center">
                   {typeof row.agency === "boolean" ? (
@@ -957,7 +932,7 @@ function ComparisonSection() {
                       <X className="w-4 h-4 text-red-400/50" />
                     )
                   ) : (
-                    <span className="text-xs text-white/30 text-center">{row.agency}</span>
+                    <span className="text-sm text-white/50 text-center">{row.agency}</span>
                   )}
                 </div>
                 <div className="p-4 flex items-center justify-center">
@@ -968,7 +943,7 @@ function ComparisonSection() {
                       <X className="w-4 h-4 text-red-400/50" />
                     )
                   ) : (
-                    <span className="text-xs text-white/30 text-center">{row.inhouse}</span>
+                    <span className="text-sm text-white/50 text-center">{row.inhouse}</span>
                   )}
                 </div>
                 <div className="p-4 flex items-center justify-center bg-gold-500/[0.04] border-l border-gold-500/10">
@@ -1037,7 +1012,7 @@ function QualificationSection() {
                 {goodFit.map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-white/70 text-sm">{item}</span>
+                    <span className="text-white/80 text-base">{item}</span>
                   </div>
                 ))}
               </div>
@@ -1053,7 +1028,7 @@ function QualificationSection() {
                 {notFit.map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <X className="w-5 h-5 text-red-400/60 mt-0.5 flex-shrink-0" />
-                    <span className="text-white/40 text-sm">{item}</span>
+                    <span className="text-white/80 text-base">{item}</span>
                   </div>
                 ))}
               </div>
@@ -1101,11 +1076,11 @@ function RiskReversal() {
                 {traditional.map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <X className="w-4 h-4 text-red-400/50 flex-shrink-0" />
-                    <span className="text-white/40">{item}</span>
+                    <span className="text-white/80">{item}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-6 text-sm text-red-400/50">
+              <p className="mt-6 text-base text-red-400/65">
                 None of that guarantees results.
               </p>
             </div>
@@ -1124,7 +1099,7 @@ function RiskReversal() {
                   </div>
                 ))}
               </div>
-              <p className="mt-6 text-sm text-gold-400/70 font-medium">
+              <p className="mt-6 text-base text-gold-400/70 font-medium">
                 We don&apos;t win unless you win. This is how partnerships
                 should work.
               </p>
@@ -1166,7 +1141,7 @@ function HowToStart() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
             Three Steps to Predictable Growth
           </h2>
-          <p className="mt-4 text-white/40 text-lg">
+          <p className="mt-4 text-lg text-white/80">
             We only work with a small number of partners each quarter.
           </p>
         </AnimatedSection>
@@ -1182,7 +1157,7 @@ function HowToStart() {
                   <h3 className="text-xl font-semibold text-white">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-white/50 leading-relaxed">
+                  <p className="mt-2 text-white/80 text-base leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -1196,7 +1171,7 @@ function HowToStart() {
             Apply for Your Strategy Call
             <ArrowRight className="w-5 h-5" />
           </a>
-          <p className="mt-4 text-sm text-white/30">
+          <p className="mt-4 text-base text-white/80">
             Spots limited — selective partner program
           </p>
         </AnimatedSection>
@@ -1209,20 +1184,28 @@ function HowToStart() {
 function FAQ() {
   const faqs = [
     {
-      q: "How can you afford to take on the risk?",
-      a: "Because our system works — and we only partner with businesses we've qualified and believe we can grow. Our model is designed to create win-win outcomes.",
+      q: "Is this too good to be true?",
+      a: "We understand the scepticism — most agencies have conditioned business owners to expect promises without delivery. Our model is different by design: we don't charge retainers, we don't run ads on your budget, and we only earn when you do. If it didn't work, we wouldn't eat. That's the only reason we can make this offer.",
+    },
+    {
+      q: "What's the catch?",
+      a: "There isn't one — but there is a qualifier. We only work with businesses we genuinely believe we can grow. We turn down more partnerships than we accept. If we don't think we can deliver, we'll tell you on the strategy call rather than take your money.",
+    },
+    {
+      q: "How do you get results without ads?",
+      a: "We use precision outbound — targeted LinkedIn and email campaigns that reach high-intent prospects directly. No ad spend, no bidding wars, no wasted budget. We build your pipeline through direct outreach to the exact type of client you want.",
     },
     {
       q: "Do I need to spend on ads?",
-      a: "No. Your outreach system is fully done for you. Paid advertising is optional and only recommended if it accelerates an already-working system.",
+      a: "No. Your outreach system is fully done for you. Paid advertising is optional and only recommended if it accelerates an already-working organic system.",
     },
     {
       q: "What if no deals close?",
-      a: "Nothing. Our model is entirely performance-based — you don't pay us unless we generate results for your business. That's not marketing language, it's how our agreements are structured. We only earn when you earn.",
+      a: "Nothing. Our model is entirely performance-based — you don't pay us unless we generate results. That's not marketing language, it's how our agreements are structured. We only earn when you earn.",
     },
     {
       q: "What makes this different from a marketing agency?",
-      a: "Agencies charge retainers regardless of results. We only get paid when you get paid. We're a growth partner, not a vendor — our success is directly tied to yours.",
+      a: "Agencies charge retainers regardless of results. We only get paid when you get paid. We're a growth partner, not a vendor — and we handle the entire acquisition and closing process, not just the top of funnel.",
     },
     {
       q: "How soon can results start?",
@@ -1230,7 +1213,7 @@ function FAQ() {
     },
     {
       q: "What kind of businesses do you work with?",
-      a: "We work best with businesses selling high-value products or services ($3K–$50K+) who are ready to scale but need a proven acquisition system and team to get there.",
+      a: "We work best with service businesses selling $3K–$50K+ offers who are ready to scale but need a proven acquisition system to get there. If that's you, the strategy call will confirm it.",
     },
   ];
 
@@ -1284,7 +1267,7 @@ function FAQItem({
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="overflow-hidden"
         >
-          <p className="px-6 pb-6 text-white/50 leading-relaxed">{answer}</p>
+          <p className="px-6 pb-6 text-base text-white/80 leading-relaxed">{answer}</p>
         </motion.div>
       </div>
     </AnimatedSection>
@@ -1313,7 +1296,7 @@ function FinalCTA() {
                   Let&apos;s Build It Together.
                 </span>
               </h2>
-              <p className="mt-6 text-white/50 text-lg max-w-xl mx-auto">
+              <p className="mt-6 text-lg text-white/80 max-w-xl mx-auto">
                 One call. No pressure. No hard sell. Just a clear plan showing
                 exactly how we&apos;d generate high-value clients for your
                 business — on a performance basis.
@@ -1324,7 +1307,7 @@ function FinalCTA() {
                   <ArrowRight className="w-5 h-5" />
                 </a>
               </div>
-              <div className="mt-8 flex items-center justify-center gap-6 text-sm text-white/30">
+              <div className="mt-8 flex items-center justify-center gap-6 text-sm text-white/50">
                 <div className="flex items-center gap-2">
                   <Shield className="w-4 h-4" />
                   <span>No Risk</span>
@@ -1410,7 +1393,7 @@ export default function HomePage() {
           <h2 className="text-2xl md:text-3xl font-bold text-white">
             Ready to build a pipeline like theirs?
           </h2>
-          <p className="mt-3 text-white/50 text-sm max-w-sm mx-auto leading-relaxed">
+          <p className="mt-3 text-lg text-white/80 max-w-sm mx-auto leading-relaxed">
             Every one of those businesses started with a single free strategy session.
           </p>
           <a href={BOOKING_URL} className="btn-primary mt-6 mx-auto inline-flex">

@@ -7,7 +7,7 @@ import {
   Clock, AlertCircle, Calendar, MessageSquare, ChevronDown, ArrowRight, ExternalLink,
   ChevronLeft, ChevronRight
 } from "lucide-react";
-import Image from "next/image";
+
 import Link from "next/link";
 import Logo from "@/components/Logo";
 
@@ -48,28 +48,15 @@ function scrollToForm() {
 
 
 // ─── Data ───────────────────────────────────────────────────────────────────
-const PROOF_POINTS = [
-  { icon: Star, text: "4.9★ Trustpilot", href: "https://www.trustpilot.com/review/novadatech.com.au" },
-  { icon: Users, text: "350+ Businesses Scaled", href: null },
-  { icon: TrendingUp, text: "$50M+ Revenue Generated", href: null },
-  { icon: Shield, text: "Pay Only For Results", href: null },
-];
 
 const BENEFITS = [
-  "A custom acquisition plan — the exact channels, targeting, and messaging we'd use for your business specifically",
-  "A clear revenue projection based on your offer, market, and current pipeline",
-  "Honest feedback on what's blocking your growth and the fastest path to fix it",
-  "How to stop relying on referrals and build a predictable system that fills your calendar",
-  "Whether a Growth Partnership is the right fit — and if not, we'll tell you why",
+  "The exact system we'd deploy to generate 30–60 qualified sales calls every month for your business",
+  "A custom acquisition plan — the channels, targeting, and messaging tailored to your market",
+  "A clear revenue projection showing what 30–60 monthly sales calls means for your bottom line",
+  "How to stop relying on referrals and build a predictable pipeline that fills your calendar every month",
+  "Whether we're the right fit — and if not, you still walk away with a strategy you can execute yourself",
 ];
 
-const WHO_ITS_FOR = [
-  "You sell a high-value service ($3K–$50K+)",
-  "You're tired of chasing referrals or inconsistent leads",
-  "You want a predictable system that fills your pipeline",
-  "You're ready to scale without hiring a big sales team",
-  "You want real results — not just reports and excuses",
-];
 
 const TESTIMONIALS = [
   {
@@ -180,23 +167,23 @@ const NEXT_STEPS = [
   {
     icon: MessageSquare,
     step: "Step 3",
-    title: "We Arrive Ready With Your Strategy",
-    desc: "Before the call, our team reviews your business so we arrive with a tailored growth plan — not a generic pitch.",
+    title: "We Arrive With Your Custom Plan",
+    desc: "Before the call, our team reviews your business and prepares the exact system we'd use to generate 30–60 qualified sales calls monthly — tailored to your market.",
   },
 ];
 
 const FAQS = [
   {
     q: "Is this call really free?",
-    a: "Yes, 100% free. There is no charge for the strategy call and no obligation to work with us afterwards.",
+    a: "Yes, 100% free. We'll show you the exact system to generate 30–60 qualified sales calls every month — no charge, no obligation to work with us afterwards.",
   },
   {
     q: "Will I be pressured to buy anything?",
-    a: "Absolutely not. We only work with businesses we're genuinely confident we can help. If we're not a fit, we'll tell you honestly — and you still walk away with a clear strategy.",
+    a: "Absolutely not. We only work with businesses we're confident we can generate 30–60 qualified sales calls for. If we're not a fit, we'll tell you — and you still walk away with a clear plan.",
   },
   {
     q: "How long does the call take?",
-    a: "30 minutes. We keep it focused and actionable — no fluff, no hard sell. Just a clear plan for your business.",
+    a: "30 minutes. We show you the exact system we'd use to generate 30–60 qualified sales calls monthly for your business. No fluff, no hard sell.",
   },
   {
     q: "What do I need to prepare?",
@@ -204,7 +191,7 @@ const FAQS = [
   },
   {
     q: "What if I've been burned by agencies before?",
-    a: "We hear this on almost every call. The key difference: we don't charge retainers or upfront fees. We only earn when you earn. If we don't generate results, you don't pay us. That's not a line — it's how our agreements are structured.",
+    a: "We hear this on almost every call. That's exactly why this strategy call is free — no retainers, no upfront fees, no commitment. We show you the exact system to get 30–60 qualified sales calls monthly. If it makes sense to work together, great. If not, you keep the plan.",
   },
 ];
 
@@ -242,10 +229,10 @@ const VIDEO_TESTIMONIALS = [
 ];
 
 const TRUST_ITEMS = [
-  { icon: Shield, label: "Zero Risk, Zero Obligation" },
-  { icon: CheckCircle, label: "No Spam, Ever" },
+  { icon: Shield, label: "100% Free — No Credit Card" },
+  { icon: CheckCircle, label: "Custom Plan for Your Business" },
   { icon: Star, label: "Rated 4.9★ on Trustpilot" },
-  { icon: Clock, label: "Under 2 Minutes to Complete" },
+  { icon: Clock, label: "Takes Under 2 Minutes" },
 ];
 
 // ─── FAQ Item ───────────────────────────────────────────────────────────────
@@ -256,7 +243,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         <span className="text-sm font-medium text-white">{q}</span>
         <ChevronDown className="w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
       </summary>
-      <div className="px-5 pb-5 text-sm text-white/50 leading-relaxed border-t border-white/[0.05] pt-4">
+      <div className="px-5 pb-5 text-base text-white/80 leading-relaxed border-t border-white/[0.05] pt-4">
         {a}
       </div>
     </details>
@@ -450,7 +437,7 @@ export default function ApplyPage() {
           >
             <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
             <span className="text-sm text-gold-400 font-medium">
-              Limited new partnerships open each month
+              Free Strategy Call — Limited Spots Available
             </span>
           </motion.div>
 
@@ -460,28 +447,16 @@ export default function ApplyPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
           >
-            Get a Free Custom Plan to Attract{" "}
-            <span className="gradient-text">High-Value Clients</span>{" "}
-            in 14 Days
+            We&apos;ll Show You Exactly How to Get{" "}
+            <span className="gradient-text">30 – 60 Qualified Sales Calls</span>{" "}
+            Every Month For Free
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-3 text-sm text-white/35"
-          >
-            Maxicare went from{" "}
-            <span className="text-gold-400 font-semibold">$42K → $91K/mo in 60 days</span>
-            {" "}— Jessica Ted closed{" "}
-            <span className="text-gold-400 font-semibold">3 × $8,500 clients in her first month</span>
-            .
-          </motion.p>
         </div>
       </section>
 
       {/* ── VSL ── */}
-      <section className="section-padding pt-4 pb-0">
+      <section className="section-padding pt-3 pb-0">
         <div className="max-container max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -506,45 +481,37 @@ export default function ApplyPage() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="mt-8 text-center"
           >
-            <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
-              In 30 minutes, we map out the exact system — channels, targeting, and messaging —
-              tailored to your business. Completely free. No obligation. No hard sell.
+            <p className="text-xl md:text-2xl font-semibold text-white/90 max-w-2xl mx-auto leading-relaxed">
+              In 30 minutes, we&apos;ll map out the exact system we&apos;d use to generate
+              30–60 qualified sales calls every month for your business. Completely free.
             </p>
 
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
-              {PROOF_POINTS.map(({ icon: Icon, text, href }, i) => {
-                const inner = (
-                  <div className="flex flex-col items-center gap-2 rounded-xl bg-white/[0.03] border border-white/[0.06] py-4 px-3 w-full">
-                    <Icon className="w-5 h-5 text-gold-400" />
-                    <span className="text-xs text-white/50 text-center leading-snug">{text}</span>
-                  </div>
-                );
-                return href ? (
-                  <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                    {inner}
-                  </a>
-                ) : (
-                  <div key={i}>{inner}</div>
-                );
-              })}
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/40">
+              <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/60 transition-colors">
+                <Star className="w-3.5 h-3.5 text-gold-400" />
+                <span className="text-gold-400 font-medium">4.9★</span> on Trustpilot
+              </a>
+              <span className="text-white/15">·</span>
+              <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-gold-500/50" /> 350+ Businesses Scaled</span>
+              <span className="text-white/15">·</span>
+              <span className="flex items-center gap-1.5"><TrendingUp className="w-3.5 h-3.5 text-gold-500/50" /> $50M+ Revenue Generated</span>
+              <span className="text-white/15">·</span>
+              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/50" /> 100% Free Strategy Call</span>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ── MAIN 2-COLUMN: Benefits LEFT · Form RIGHT ── */}
+      {/* ── FORM — standalone, centred ── */}
       <section className="section-padding pt-8 pb-0">
         <div className="max-container">
-          <div className="grid lg:grid-cols-5 gap-8 items-start">
-
-            {/* Form — first on mobile, right on desktop */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="lg:col-span-3 order-first lg:order-last"
-            >
-              <div className="sticky top-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="max-w-2xl mx-auto"
+          >
+              <div>
                 {/* Form card header */}
                 <div className="glass-card gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
                   <div className="flex items-center gap-2 mb-2">
@@ -554,10 +521,10 @@ export default function ApplyPage() {
                     </span>
                   </div>
                   <h2 className="text-xl md:text-2xl font-bold text-white">
-                    Claim Your Free Strategy Session
+                    See How to Get 30–60 Sales Calls Monthly — Free
                   </h2>
-                  <p className="mt-1.5 text-sm text-white/50">
-                    Complete the short form — takes under 2 minutes. Zero risk, zero obligation.
+                  <p className="mt-1.5 text-base text-white/80">
+                    Complete the short form below and we&apos;ll show you the exact system. Takes under 2 minutes.
                   </p>
                   {/* Step indicator — honest 2-step flow */}
                   <div className="mt-4">
@@ -580,14 +547,14 @@ export default function ApplyPage() {
                 <div className="glass-card rounded-t-none rounded-b-2xl overflow-hidden" style={{ borderTop: "none" }}>
                   <iframe
                     src="https://link.novadatech.com/widget/form/2UikgU0iSTsy1ax334cR"
-                    style={{ width: "100%", minHeight: "480px", border: "none", display: "block" }}
+                    style={{ width: "100%", minHeight: "380px", border: "none", display: "block" }}
                     id="apply-form-embed"
                     data-layout="{'id':'INLINE'}"
                     data-trigger-type="alwaysShow"
                     data-activation-type="alwaysActivated"
                     data-deactivation-type="neverDeactivate"
                     data-form-name="Novada Tech Apply Form"
-                    data-height="480"
+                    data-height="380"
                     data-layout-iframe-id="apply-form-embed"
                     data-form-id="2UikgU0iSTsy1ax334cR"
                     title="Apply for Strategy Session"
@@ -619,47 +586,34 @@ export default function ApplyPage() {
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
-            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
-            {/* Left — benefit cards */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="lg:col-span-2 space-y-5 order-last lg:order-first"
-            >
-              {/* What you'll walk away with */}
-              <div className="glass-card gradient-border p-6">
-                <h3 className="text-base font-semibold text-white mb-1">
-                  What You&apos;ll Walk Away With
-                </h3>
-                <p className="text-xs text-white/40 mb-4">From your free 30-minute strategy call</p>
-                <ul className="space-y-3">
-                  {BENEFITS.map((benefit, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-white/60 leading-relaxed">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Who it's for */}
-              <div className="glass-card gradient-border p-6">
-                <h3 className="text-base font-semibold text-white mb-4">
-                  This Is For You If...
-                </h3>
-                <ul className="space-y-3">
-                  {WHO_ITS_FOR.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-white/60 leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          </div>
+      {/* ── What You'll Walk Away With — below form, single centred box ── */}
+      <section className="section-padding pt-12 pb-0">
+        <div className="max-container max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6"
+          >
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-0.5">
+              What You&apos;ll Walk Away With
+            </h3>
+            <p className="text-base text-white/80 mb-4">From your free 30-minute strategy call</p>
+            <p className="text-base text-emerald-400/80 italic mb-4 leading-relaxed">Most businesses leave this call knowing exactly how to fill their calendar with qualified sales calls — even if we don&apos;t work together.</p>
+            <ul className="space-y-2.5">
+              {BENEFITS.map((benefit, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <CheckCircle className="w-3.5 h-3.5 text-gold-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-base text-white/80 leading-relaxed">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </section>
 
@@ -673,7 +627,7 @@ export default function ApplyPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               Here&apos;s What Happens Next
             </h2>
-            <p className="mt-3 text-white/40 text-sm max-w-lg mx-auto">
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">
               No guesswork — here&apos;s exactly what to expect the moment you hit submit.
             </p>
           </div>
@@ -695,7 +649,7 @@ export default function ApplyPage() {
                   {step.step}
                 </span>
                 <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-xs text-white/40 leading-relaxed">{step.desc}</p>
+                <p className="text-base text-white/80 leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -712,8 +666,8 @@ export default function ApplyPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               Real Results From Real Businesses
             </h2>
-            <p className="mt-3 text-white/40 text-sm max-w-lg mx-auto">
-              Don&apos;t take our word for it — hear directly from business owners we&apos;ve helped scale.
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">
+              These business owners now get 30–60 qualified sales calls every month. Hear how it started.
             </p>
           </div>
 
@@ -723,16 +677,16 @@ export default function ApplyPage() {
           <div className="mt-12 text-center">
             <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
             <h3 className="text-2xl md:text-3xl font-bold text-white">
-              Seen enough? Your spot is waiting.
+              Ready to see how we&apos;d fill your calendar?
             </h3>
-            <p className="mt-3 text-white/50 text-sm max-w-sm mx-auto leading-relaxed">
-              The call is free, the plan is custom, and the risk is zero.
+            <p className="mt-3 text-white/80 text-lg max-w-sm mx-auto leading-relaxed">
+              We&apos;ll show you exactly how to get 30–60 qualified sales calls every month. The call is free.
             </p>
             <button
               onClick={scrollToForm}
               className="btn-primary mt-6 mx-auto"
             >
-              Claim My Free Strategy Session
+              Get My Free Sales Call Plan
               <ArrowRight className="w-4 h-4" />
             </button>
             <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
@@ -740,7 +694,7 @@ export default function ApplyPage() {
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
               <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Under 2 min to apply</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
             </div>
           </div>
         </div>
@@ -754,10 +708,10 @@ export default function ApplyPage() {
               What Our Clients Say
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
-              350+ businesses have made this same decision.
+              350+ Businesses Now Get Qualified Sales Calls Every Month.
             </h2>
-            <p className="mt-3 text-white/50 text-sm max-w-lg mx-auto leading-relaxed">
-              Here&apos;s what they say on the other side.
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto leading-relaxed">
+              It started with the same free call you&apos;re about to book.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -771,14 +725,14 @@ export default function ApplyPage() {
                 className="glass-card p-6 border border-white/[0.05] flex flex-col"
               >
                 <div className="text-gold-400 text-xs mb-3">★★★★★</div>
-                <p className="text-sm text-white/60 leading-relaxed italic flex-1">
+                <p className="text-base text-white/80 leading-relaxed italic flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
                   <InitialsAvatar name={t.name} index={i} />
                   <div>
                     <p className="text-sm font-semibold text-white">{t.name}</p>
-                    <p className="text-xs text-white/40">{t.role}</p>
+                    <p className="text-base text-white/80">{t.role}</p>
                   </div>
                 </div>
               </motion.div>
@@ -789,16 +743,16 @@ export default function ApplyPage() {
           <div className="mt-12 text-center">
             <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
             <h3 className="text-2xl md:text-3xl font-bold text-white">
-              Your story could be next.
+              They all started with one free call.
             </h3>
-            <p className="mt-3 text-white/50 text-sm max-w-sm mx-auto leading-relaxed">
-              Every one of those business owners started by filling in the same form you&apos;re looking at now.
+            <p className="mt-3 text-white/80 text-lg max-w-sm mx-auto leading-relaxed">
+              Every one of these business owners now gets 30–60 qualified sales calls monthly. Your plan is waiting.
             </p>
             <button
               onClick={scrollToForm}
               className="btn-primary mt-6 mx-auto"
             >
-              Claim My Free Strategy Session
+              Get My Free Sales Call Plan
               <ArrowRight className="w-4 h-4" />
             </button>
             <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
@@ -806,7 +760,7 @@ export default function ApplyPage() {
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
               <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Under 2 min to apply</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
             </div>
           </div>
         </div>
@@ -822,8 +776,8 @@ export default function ApplyPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               We&apos;re Selective About Who We Partner With
             </h2>
-            <p className="mt-3 text-white/40 text-sm max-w-lg mx-auto">
-              We only take on clients we know we can get results for. Check both columns honestly.
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">
+              We only take on businesses we can generate 30–60 qualified sales calls for. Check both columns honestly.
             </p>
           </div>
 
@@ -840,16 +794,16 @@ export default function ApplyPage() {
               </h3>
               <div className="space-y-3">
                 {[
-                  "A business owner selling a high-value service ($3K–$50K+)",
-                  "Ready to scale but lack the system or team to get there",
-                  "Tired of inconsistent referrals, random leads, and wasted ad spend",
-                  "Looking for a real partner — not another agency sending you reports",
-                  "Willing to follow a proven process and take calls with qualified prospects",
-                  "Want results without retainers, setup fees, or long-term contracts",
+                  "You sell a high-value service or product ($3K–$50K+)",
+                  "You want 30–60 qualified sales calls on your calendar every month",
+                  "You're tired of inconsistent leads, referrals, and wasted ad spend",
+                  "You want a predictable system — not another agency sending you reports",
+                  "You're ready to take sales calls with pre-qualified prospects",
+                  "You want results without retainers, setup fees, or long-term contracts",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm text-white/70 leading-relaxed">{item}</span>
+                    <span className="text-base text-white/80 leading-relaxed">{item}</span>
                   </div>
                 ))}
               </div>
@@ -877,12 +831,12 @@ export default function ApplyPage() {
                     <div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center">
                       <div className="w-3 h-[2px] bg-red-400/50 rounded-full" />
                     </div>
-                    <span className="text-sm text-white/40 leading-relaxed">{item}</span>
+                    <span className="text-base text-white/80 leading-relaxed">{item}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-6 text-xs text-white/30 leading-relaxed">
-                If the left column describes you — stop scrolling and fill in the form above. This session is free and there&apos;s zero obligation.
+              <p className="mt-6 text-base text-white/80 leading-relaxed">
+                If the left column describes you — stop scrolling and fill in the form above. We&apos;ll show you how to get 30–60 qualified sales calls monthly. It&apos;s free.
               </p>
             </motion.div>
           </div>
@@ -897,8 +851,8 @@ export default function ApplyPage() {
               We Take the Risk.{" "}
               <span className="gradient-text">You Reap the Rewards.</span>
             </h2>
-            <p className="mt-3 text-white/40 text-sm max-w-lg mx-auto">
-              Every other agency charges you regardless of results. We don&apos;t.
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">
+              Other agencies charge you thousands before you see a single qualified call. We show you the system for free.
             </p>
           </div>
 
@@ -924,11 +878,11 @@ export default function ApplyPage() {
                     <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
                       <div className="w-3 h-[2px] bg-red-400/50 rounded-full" />
                     </div>
-                    <span className="text-sm text-white/40">{item}</span>
+                    <span className="text-base text-white/80">{item}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-6 text-xs text-red-400/50 font-medium">
+              <p className="mt-6 text-base text-red-400/65 font-medium">
                 None of that guarantees you a single client.
               </p>
             </motion.div>
@@ -946,19 +900,19 @@ export default function ApplyPage() {
               </p>
               <div className="space-y-3">
                 {[
-                  "You only pay for qualified meetings booked",
-                  "You only share revenue on deals we help you close",
-                  "You only invest when real money comes in",
-                  "We handle the entire acquisition and sales cycle",
+                  "Free strategy call — we show you the exact system to get 30–60 sales calls monthly",
+                  "No retainers, no ad spend, no upfront fees — ever",
+                  "We build and manage the entire system — you just show up to calls",
+                  "If we can't help, you walk away with a free plan you can use yourself",
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <CheckCircle className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                    <span className="text-sm text-white/80 font-medium">{item}</span>
+                    <span className="text-base text-white/80 font-medium">{item}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-6 text-xs text-gold-400/70 font-medium">
-                We don&apos;t win unless you win. That&apos;s how partnerships should work.
+              <p className="mt-6 text-base text-gold-400/85 font-medium">
+                You get the plan for free. We only win when you win.
               </p>
             </motion.div>
           </div>
@@ -970,16 +924,16 @@ export default function ApplyPage() {
               <Shield className="w-7 h-7 text-gold-400" />
             </div>
             <h3 className="text-2xl md:text-3xl font-bold text-white">
-              Zero risk to get started.
+              Zero risk. Just a plan to fill your calendar.
             </h3>
-            <p className="mt-3 text-white/50 text-sm max-w-md mx-auto leading-relaxed">
-              Your strategy session is 100% free. No credit card. No commitment. If we can&apos;t map out a clear path to results, you owe us nothing.
+            <p className="mt-3 text-white/80 text-lg max-w-md mx-auto leading-relaxed">
+              We&apos;ll show you the exact system to get 30–60 qualified sales calls monthly. No credit card. No commitment. If we can&apos;t help, you owe us nothing.
             </p>
             <button
               onClick={scrollToForm}
               className="btn-primary mt-6 mx-auto"
             >
-              Claim My Free Strategy Session
+              Get My Free Sales Call Plan
               <ArrowRight className="w-4 h-4" />
             </button>
             <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
@@ -987,7 +941,7 @@ export default function ApplyPage() {
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
               <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Under 2 min to apply</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
             </div>
           </div>
         </div>
@@ -1030,17 +984,17 @@ export default function ApplyPage() {
                 You&apos;ve Seen the Proof
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight text-balance">
-                Now It&apos;s Your Turn.
+                Your First 30–60 Qualified Sales Calls Are One Form Away.
               </h2>
-              <p className="mt-4 text-white/40 text-sm max-w-lg mx-auto leading-relaxed">
-                350+ businesses chose to fill this form. The only difference between them and you is they took the first step. The call is free. The plan is custom. The risk is zero.
+              <p className="mt-4 text-white/80 text-lg max-w-lg mx-auto leading-relaxed">
+                350+ businesses now get qualified sales calls every month using this system. The call is free. The plan is custom. The risk is zero.
               </p>
 
               <button
                 onClick={scrollToForm}
                 className="btn-primary mt-8 inline-flex text-base"
               >
-                Claim My Free Strategy Session
+                Get My Free Sales Call Plan
                 <ArrowRight className="w-5 h-5" />
               </button>
 

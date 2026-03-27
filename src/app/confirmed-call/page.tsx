@@ -46,7 +46,7 @@ export default function ConfirmationPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-6 text-lg text-white/50 max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-base text-white/80 max-w-2xl mx-auto leading-relaxed"
           >
             Thank you for booking a Growth Strategy Call with Novada Tech.
             We&apos;re looking forward to learning about your business and showing
@@ -99,7 +99,7 @@ export default function ConfirmationPage() {
                     <h3 className="text-lg font-semibold text-white">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-sm text-white/50 leading-relaxed">
+                    <p className="mt-2 text-base text-white/80 leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -125,7 +125,7 @@ export default function ConfirmationPage() {
                 <h3 className="text-2xl md:text-3xl font-bold mb-4">
                   Learn More About How We Work
                 </h3>
-                <p className="text-white/50 max-w-lg mx-auto mb-8">
+                <p className="text-white/80 max-w-lg mx-auto mb-8">
                   Explore our approach and see why business owners trust Novada Tech
                   to build their client acquisition systems.
                 </p>
