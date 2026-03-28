@@ -553,7 +553,6 @@ export default function GetMeetingsPage() {
           <div className="mt-12 text-center">
             <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
             <h3 className="text-2xl md:text-3xl font-bold text-white">Want the same guaranteed results?</h3>
-            <p className="mt-3 text-white/80 text-lg max-w-sm mx-auto leading-relaxed">30–60 qualified sales meetings every month — guaranteed, or you don&apos;t pay. See if your business qualifies.</p>
             <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">
               Get My Guaranteed Meetings Plan
               <ArrowRight className="w-4 h-4" />
@@ -599,7 +598,6 @@ export default function GetMeetingsPage() {
           <div className="mt-12 text-center">
             <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
             <h3 className="text-2xl md:text-3xl font-bold text-white">They all have one thing in common.</h3>
-            <p className="mt-3 text-white/80 text-lg max-w-sm mx-auto leading-relaxed">30–60 qualified sales meetings on their calendar. Every month. Guaranteed — or they don&apos;t pay.</p>
             <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">
               Get My Guaranteed Meetings Plan
               <ArrowRight className="w-4 h-4" />
@@ -712,7 +710,6 @@ export default function GetMeetingsPage() {
             <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 mb-5"><Shield className="w-7 h-7 text-gold-400" /></div>
             <h3 className="text-2xl md:text-3xl font-bold text-white">The guarantee is simple.</h3>
-            <p className="mt-3 text-white/80 text-lg max-w-md mx-auto leading-relaxed">30–60 qualified sales meetings on your calendar every month. If we don&apos;t deliver, you don&apos;t pay. No fine print.</p>
             <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">
               Get My Guaranteed Meetings Plan
               <ArrowRight className="w-4 h-4" />
