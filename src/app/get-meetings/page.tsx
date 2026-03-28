@@ -585,6 +585,31 @@ export default function GetMeetingsPage() {
         </div>
       </section>
 
+      {/* ── How It Works ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">How It Works</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">How We Guarantee 30–60 Qualified Meetings Every Month</h2>
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">A proven 4-step system — backed by a written performance guarantee.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { num: "01", title: "We Analyse Your Market & ICP", desc: "We audit your offer, ideal client profile, and competitive landscape to build an acquisition strategy designed to deliver 30–60 qualified meetings monthly." },
+              { num: "02", title: "We Build Your Acquisition System", desc: "We design the exact outreach channels, targeting criteria, and messaging sequences that reach decision-makers who are ready to buy — specific to your market." },
+              { num: "03", title: "Qualified Meetings Fill Your Calendar", desc: "The system launches and qualified prospects start booking meetings directly into your calendar. 30–60 every month, like clockwork." },
+              { num: "04", title: "We Scale It — Or You Don't Pay", desc: "We optimise, scale, and keep your calendar full month after month. If we don't deliver 30–60 qualified meetings, you don't pay us. Written guarantee." },
+            ].map((step, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass-card gradient-border p-6 h-full flex flex-col">
+                <span className="text-3xl font-bold text-gold-500/20 mb-3">{step.num}</span>
+                <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
+                <p className="text-base text-white/80 leading-relaxed flex-1">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Is This Right for You? ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container max-w-4xl">
