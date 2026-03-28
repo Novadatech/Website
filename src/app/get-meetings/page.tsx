@@ -540,7 +540,7 @@ export default function GetMeetingsPage() {
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-red-400/10 bg-red-400/[0.02]">
-              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">The Risk Is on You</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">Other Agencies — The Risk Is on You</p>
               <div className="space-y-3">
                 {["You pay thousands upfront — whether meetings come or not", "You absorb all the risk if the agency underperforms", "No guarantee on meeting volume, quality, or timing", "If it fails, you lose the money and start over from scratch"].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
@@ -553,7 +553,7 @@ export default function GetMeetingsPage() {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card gradient-border p-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">The Risk Is on Us</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">Novada Tech — The Risk Is on Us</p>
               <div className="space-y-3">
                 {["We guarantee 30–60 qualified sales meetings on your calendar monthly", "If we don't deliver, you don't pay — written into the agreement", "We absorb all the risk of underperformance, not you", "You only invest when qualified meetings are sitting on your calendar"].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">

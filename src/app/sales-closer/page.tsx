@@ -417,7 +417,7 @@ export default function SalesCloserPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-red-400/10 bg-red-400/[0.02]">
-              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">The Risk Is on You</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">Other Agencies — The Risk Is on You</p>
               <div className="space-y-3">
                 {["You pay thousands upfront — whether the closer performs or not", "You absorb all the risk if they underperform or quit", "No guarantee on deals closed, conversion rates, or timeline", "If it fails, you lose the money and start the search again", "Months of recruiting before a single deal is closed"].map((item, i) => (
                   <div key={i} className="flex items-center gap-3"><div className="w-4 h-4 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div><span className="text-base text-white/80">{item}</span></div>
@@ -426,7 +426,7 @@ export default function SalesCloserPage() {
               <p className="mt-6 text-base text-red-400/65 font-medium">All the risk sits with you. None of it sits with them.</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card gradient-border p-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">The Risk Is on Us</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">Novada Tech — The Risk Is on Us</p>
               <div className="space-y-3">
                 {["Expert closer placed in your business within 7 days", "If they don't close deals, you don't pay — written into the agreement", "We absorb all the risk of underperformance, not you", "We replace the closer at no cost if the fit isn't right", "You only invest when closed deals hit your account"].map((item, i) => (
                   <div key={i} className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-gold-400 flex-shrink-0" /><span className="text-base text-white/80 font-medium">{item}</span></div>
