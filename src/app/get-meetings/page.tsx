@@ -48,11 +48,11 @@ function scrollToForm() {
 
 // AUDIT: Every benefit must reinforce "30–60 qualified sales meetings monthly, or you don't pay"
 const BENEFITS = [
-  "The exact system we deploy to generate 30–60 qualified sales meetings every month for your business",
-  "A custom acquisition plan — channels, targeting, and messaging built specifically for your market",
-  "A clear revenue projection showing what 30–60 monthly sales meetings means for your bottom line",
-  "How we eliminate cold outreach guesswork and fill your calendar with pre-qualified prospects every month",
-  "Our performance guarantee in writing — if we don't deliver qualified meetings, you don't pay",
+  "30–60 qualified sales meetings on your calendar every single month — guaranteed",
+  "Every meeting is with a decision-maker who fits your ideal client profile and has the budget",
+  "A predictable pipeline you can forecast revenue from — no more feast-and-famine cycles",
+  "You only pay when qualified meetings are delivered. If we don't perform, you owe us nothing.",
+  "The performance guarantee is written into the agreement — not a marketing line, a contractual commitment",
 ];
 
 // AUDIT: Testimonials are real client quotes — they naturally align (meetings, pipeline, calendar)
@@ -121,8 +121,8 @@ const NEXT_STEPS = [
   {
     icon: MessageSquare,
     step: "Step 3",
-    title: "We Show You the Guaranteed Meetings System",
-    desc: "Our team reviews your business and shows you exactly how we'd generate 30–60 qualified sales meetings monthly — with a performance guarantee.",
+    title: "We Confirm Your Guarantee & Onboarding",
+    desc: "We review your business, confirm you qualify for the performance guarantee, and map out your onboarding timeline. Meetings start within 7–14 days.",
   },
 ];
 
@@ -385,7 +385,7 @@ export default function GetMeetingsPage() {
             className="mt-8 text-center"
           >
             <p className="text-xl md:text-2xl font-semibold text-white/90 max-w-2xl mx-auto leading-relaxed">
-              We install a Proven Client Acquisition System into your business that puts 30–60 qualified sales meetings on your calendar every month. If we don&apos;t deliver, you don&apos;t pay.
+              30–60 qualified sales meetings on your calendar. Every month. If we don&apos;t deliver, you don&apos;t pay us a cent. The risk is entirely on us — not on you.
             </p>
           </motion.div>
         </div>
@@ -416,7 +416,7 @@ export default function GetMeetingsPage() {
                   Get 30–60 Guaranteed Sales Meetings Monthly
                 </h2>
                 <p className="mt-1.5 text-base text-white/80">
-                  Tell us about your business and we&apos;ll show you exactly how we&apos;d fill your calendar. Takes under 2 minutes.
+                  Tell us about your business to see if you qualify for our performance guarantee. Takes under 2 minutes.
                 </p>
                 <div className="mt-4">
                   <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
@@ -465,6 +465,24 @@ export default function GetMeetingsPage() {
                 <span>Verified 4.9/5 — 77+ reviews on Trustpilot</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
+
+              {/* Social proof near form */}
+              <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-[10px] font-bold text-gold-300">J</span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;$42K to $91K monthly revenue in under 60 days. The qualified meetings drove everything — consistent, high-quality, every single week.&rdquo;</p>
+                    <p className="mt-1.5 text-xs text-white/40">Josh — Director, Maxicare Plus</p>
+                  </div>
+                </div>
+                <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-center justify-center gap-4 text-xs text-white/35">
+                  <span className="flex items-center gap-1.5"><Users className="w-3 h-3 text-gold-500/50" /> 350+ businesses scaled</span>
+                  <span className="text-white/15">·</span>
+                  <span className="flex items-center gap-1.5"><Shield className="w-3 h-3 text-gold-500/50" /> Performance guaranteed</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -527,7 +545,7 @@ export default function GetMeetingsPage() {
           <div className="text-center mb-10">
             <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Client Success</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">They Get 30–60 Qualified Meetings Monthly. Every Month.</h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">Hear directly from business owners who now have a guaranteed flow of qualified sales meetings.</p>
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">They get 30–60 guaranteed qualified meetings every month. Here&apos;s what that looks like.</p>
           </div>
 
           <VideoSlider />
@@ -535,7 +553,7 @@ export default function GetMeetingsPage() {
           <div className="mt-12 text-center">
             <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
             <h3 className="text-2xl md:text-3xl font-bold text-white">Want the same guaranteed results?</h3>
-            <p className="mt-3 text-white/80 text-lg max-w-sm mx-auto leading-relaxed">We&apos;ll show you how we&apos;d generate 30–60 qualified sales meetings for your business every month — or you don&apos;t pay.</p>
+            <p className="mt-3 text-white/80 text-lg max-w-sm mx-auto leading-relaxed">30–60 qualified sales meetings every month — guaranteed, or you don&apos;t pay. See if your business qualifies.</p>
             <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">
               Get My Guaranteed Meetings Plan
               <ArrowRight className="w-4 h-4" />
@@ -560,7 +578,7 @@ export default function GetMeetingsPage() {
           <div className="text-center mb-10">
             <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">What Our Partners Say</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">350+ Businesses. Guaranteed Meetings. Every Month.</h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto leading-relaxed">Every one of them started exactly where you are right now.</p>
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto leading-relaxed">They all took the same step — and now they get guaranteed qualified meetings every month.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {TESTIMONIALS.map((t, i) => (
@@ -664,29 +682,29 @@ export default function GetMeetingsPage() {
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-red-400/10 bg-red-400/[0.02]">
-              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">Traditional Agencies</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">The Risk Is on You</p>
               <div className="space-y-3">
-                {["Monthly retainers — paid whether you get meetings or not", "Upfront ad budgets — often with zero accountability", "Setup fees — before a single meeting is booked", "Long-term contracts — locked in with no performance guarantee"].map((item, i) => (
+                {["You pay thousands upfront — whether meetings come or not", "You absorb all the risk if the agency underperforms", "No guarantee on meeting volume, quality, or timing", "If it fails, you lose the money and start over from scratch"].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div>
                     <span className="text-base text-white/80">{item}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-6 text-base text-red-400/65 font-medium">None of that guarantees you a single qualified meeting.</p>
+              <p className="mt-6 text-base text-red-400/65 font-medium">All the risk sits with you. None of it sits with them.</p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card gradient-border p-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">Our Performance Guarantee</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">The Risk Is on Us</p>
               <div className="space-y-3">
-                {["30–60 qualified sales meetings delivered to your calendar monthly", "You only pay when meetings are booked — not before", "No retainers, no ad spend, no setup fees", "If we don't deliver, you don't pay — written into the agreement"].map((item, i) => (
+                {["We guarantee 30–60 qualified sales meetings on your calendar monthly", "If we don't deliver, you don't pay — written into the agreement", "We absorb all the risk of underperformance, not you", "You only invest when qualified meetings are sitting on your calendar"].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <CheckCircle className="w-4 h-4 text-gold-400 flex-shrink-0" />
                     <span className="text-base text-white/80 font-medium">{item}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-6 text-base text-gold-400/85 font-medium">We don&apos;t eat unless you eat. That&apos;s a real guarantee.</p>
+              <p className="mt-6 text-base text-gold-400/85 font-medium">All the risk sits with us. None of it sits with you.</p>
             </motion.div>
           </div>
 
