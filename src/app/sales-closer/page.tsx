@@ -385,31 +385,6 @@ export default function SalesCloserPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════════
-          HOW IT WORKS — 4-step process. AUDIT: Steps = analyse → match →
-          place in 7 days → close or don't pay. Inspired by closers.io
-          4-pillar layout but with guarantee + speed. ✅
-          ══════════════════════════════════════════════════════════════════════ */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container max-w-5xl">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">How It Works</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">From Application to Closed Deals in 7 Days</h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">Other companies take months to recruit. We place a proven closer in days.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {PROCESS_STEPS.map((step, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass-card gradient-border p-6 h-full flex flex-col">
-                <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mb-4"><step.icon className="w-6 h-6 text-gold-400" /></div>
-                <span className="text-3xl font-bold text-gold-500/20 mb-2">{step.num}</span>
-                <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-base text-white/80 leading-relaxed flex-1">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════════════
           WHAT HAPPENS NEXT — AUDIT: Step 3 = "closer placement plan" +
           "performance guarantee". ✅
           ══════════════════════════════════════════════════════════════════════ */}
@@ -472,6 +447,27 @@ export default function SalesCloserPage() {
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-gold-500/60" /> Placed in 7 days</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── How It Works ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">How It Works</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">From Application to Closed Deals in 7 Days</h2>
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">Other companies take months to recruit. We place a proven closer in days.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {PROCESS_STEPS.map((step, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass-card gradient-border p-6 h-full flex flex-col">
+                <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mb-4"><step.icon className="w-6 h-6 text-gold-400" /></div>
+                <span className="text-3xl font-bold text-gold-500/20 mb-2">{step.num}</span>
+                <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
+                <p className="text-base text-white/80 leading-relaxed flex-1">{step.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
