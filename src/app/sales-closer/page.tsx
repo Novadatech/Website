@@ -40,11 +40,11 @@ function scrollToForm() {
 
 // AUDIT: Every benefit must reinforce "expert closer placed in 7 days" + "don't close don't pay"
 const BENEFITS = [
-  "A vetted, expert sales closer placed into your business within 7 days — trained on your offer",
-  "Your closer handles every qualified sales call so you stay focused on delivery and growth",
-  "A custom closing strategy built around your offer, market, and sales cycle",
-  "Full performance tracking — you see every call, every close, every dollar generated",
-  "Our guarantee in writing: if our closer doesn't close deals, you don't pay us a cent",
+  "An expert sales closer placed into your business within 7 days — ready to close from day one",
+  "Deals closing on your pipeline while you focus on delivery and growth — not sales calls",
+  "You get off the phone permanently — your closer handles every qualified conversation",
+  "You only pay when deals are closed. If the closer doesn't perform, you owe us nothing.",
+  "The performance guarantee is written into the agreement — not a marketing line, a contractual commitment",
 ];
 
 // AUDIT: How it works — 4 steps aligned to "placed in 7 days" speed + guarantee
@@ -140,8 +140,8 @@ const NEXT_STEPS = [
   {
     icon: MessageSquare,
     step: "Step 3",
-    title: "We Show You the Closer Placement Plan",
-    desc: "You'll see exactly how we'd place an expert closer into your business within 7 days — and the performance guarantee that backs it.",
+    title: "We Confirm Your Placement & Guarantee",
+    desc: "We review your business, confirm you qualify for a guaranteed closer placement, and map out your onboarding. Your closer starts within 7 days.",
   },
 ];
 
@@ -309,7 +309,7 @@ export default function SalesCloserPage() {
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className="mt-8 text-center">
             <p className="text-xl md:text-2xl font-semibold text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Stop losing deals to weak follow-up and unstructured sales calls. We place a proven, expert closer into your business within 7 days — and if they don&apos;t close, you don&apos;t pay.
+              An expert sales closer in your business within 7 days. Closing deals on your pipeline. If they don&apos;t close, you don&apos;t pay us a cent. The risk is entirely on us.
             </p>
           </motion.div>
         </div>
@@ -326,7 +326,7 @@ export default function SalesCloserPage() {
               <div className="glass-card gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
                 <div className="flex items-center gap-2 mb-2"><div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /><span className="text-xs text-emerald-400 font-medium uppercase tracking-wider">Closers Available Now</span></div>
                 <h2 className="text-xl md:text-2xl font-bold text-white">Get an Expert Closer in Your Business Within 7 Days</h2>
-                <p className="mt-1.5 text-base text-white/80">Tell us about your business and we&apos;ll show you how we&apos;d place a closer who converts. Takes under 2 minutes.</p>
+                <p className="mt-1.5 text-base text-white/80">Tell us about your business to see if you qualify for a guaranteed closer placement. Takes under 2 minutes.</p>
                 <div className="mt-4">
                   <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
                     <span className="flex items-center gap-1.5"><span className="text-gold-400 font-medium">Step 1</span><span>— Your details</span><span className="text-white/20">→</span><span>Step 2 — Pick your time</span></span>
@@ -343,7 +343,23 @@ export default function SalesCloserPage() {
                   <div key={i} className="flex items-center gap-2.5 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium"><Icon className="w-3.5 h-3.5 flex-shrink-0 text-gold-400" /><span>{label}</span></div>
                 ))}
               </div>
-              <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-center gap-2 text-xs text-white/60 hover:text-white transition-colors font-medium"><span className="text-gold-400">★★★★★</span><span>Verified 4.9/5 — 77+ reviews on Trustpilot</span><ExternalLink className="w-3 h-3" /></a>
+              {/* Social proof near form */}
+              <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-[10px] font-bold text-gold-300">J</span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;$42K to $91K monthly revenue in under 60 days. The closer was on calls within the first week and closed 3 deals in the first 10 days.&rdquo;</p>
+                    <p className="mt-1.5 text-xs text-white/40">Josh — Director, Maxicare Plus</p>
+                  </div>
+                </div>
+                <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-center justify-center gap-4 text-xs text-white/35">
+                  <span className="flex items-center gap-1.5"><Users className="w-3 h-3 text-gold-500/50" /> 350+ businesses scaled</span>
+                  <span className="text-white/15">·</span>
+                  <span className="flex items-center gap-1.5"><Shield className="w-3 h-3 text-gold-500/50" /> Don&apos;t close, don&apos;t pay</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -417,6 +433,79 @@ export default function SalesCloserPage() {
         </div>
       </section>
 
+      {/* ── Risk Reversal ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-4xl">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">We Take the Risk.{" "}<span className="gradient-text">You Get the Closer.</span></h2>
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">With other companies, you absorb all the risk. With us, the risk is entirely on our side.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-red-400/10 bg-red-400/[0.02]">
+              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">The Risk Is on You</p>
+              <div className="space-y-3">
+                {["You pay thousands upfront — whether the closer performs or not", "You absorb all the risk if they underperform or quit", "No guarantee on deals closed, conversion rates, or timeline", "If it fails, you lose the money and start the search again", "Months of recruiting before a single deal is closed"].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3"><div className="w-4 h-4 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div><span className="text-base text-white/80">{item}</span></div>
+                ))}
+              </div>
+              <p className="mt-6 text-base text-red-400/65 font-medium">All the risk sits with you. None of it sits with them.</p>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card gradient-border p-7">
+              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">The Risk Is on Us</p>
+              <div className="space-y-3">
+                {["Expert closer placed in your business within 7 days", "If they don't close deals, you don't pay — written into the agreement", "We absorb all the risk of underperformance, not you", "We replace the closer at no cost if the fit isn't right", "You only invest when closed deals hit your account"].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-gold-400 flex-shrink-0" /><span className="text-base text-white/80 font-medium">{item}</span></div>
+                ))}
+              </div>
+              <p className="mt-6 text-base text-gold-400/85 font-medium">All the risk sits with us. None of it sits with you.</p>
+            </motion.div>
+          </div>
+          <div className="mt-12 text-center">
+            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 mb-5"><Shield className="w-7 h-7 text-gold-400" /></div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">The guarantee is simple.</h3>
+            <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">Get My Expert Closer<ArrowRight className="w-4 h-4" /></button>
+            <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
+              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Don&apos;t close, don&apos;t pay</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-gold-500/60" /> Placed in 7 days</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Is This Right for You? ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-4xl">
+          <div className="text-center mb-10">
+            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Is This Right for You?</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">We Only Place Closers for Businesses That Qualify</h2>
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">Not every business is ready for an expert closer. Check both columns honestly.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card gradient-border p-7">
+              <h3 className="text-base font-semibold text-emerald-400 mb-5 flex items-center gap-2"><CheckCircle className="w-4 h-4" /> We Can Place a Closer If You...</h3>
+              <div className="space-y-3">
+                {["Sell a high-value service or product ($3K–$50K+)", "Have qualified meetings but need someone to close them into revenue", "Want an expert closer in your business within 7 days — not months", "Are tired of losing deals to weak follow-up and unstructured calls", "Want a performance guarantee — don't close, don't pay", "Want to get off the sales calls and focus on delivery and growth"].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{item}</span></div>
+                ))}
+              </div>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card p-7 border border-white/[0.04]">
+              <h3 className="text-base font-semibold text-white/50 mb-5 flex items-center gap-2"><AlertCircle className="w-4 h-4 text-red-400/60" /> A Closer Won&apos;t Work If You...</h3>
+              <div className="space-y-3">
+                {["Don't have a validated offer or deliverable product", "Don't have qualified meetings coming in for the closer to work", "Expect instant results without giving the closer time to learn your offer", "Aren't willing to share your sales process and pipeline data"].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3"><div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div><span className="text-base text-white/80 leading-relaxed">{item}</span></div>
+                ))}
+              </div>
+              <p className="mt-6 text-base text-white/80 leading-relaxed">If the left column describes you — fill in the form above. We&apos;ll place an expert closer within 7 days, guaranteed.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ══════════════════════════════════════════════════════════════════════
           VIDEO TESTIMONIALS — AUDIT: Header = "closer" + "close deals".
           CTA = "expert closer" + "don't pay". ✅
@@ -432,7 +521,6 @@ export default function SalesCloserPage() {
           <div className="mt-12 text-center">
             <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
             <h3 className="text-2xl md:text-3xl font-bold text-white">Want an expert closer in your business?</h3>
-            <p className="mt-3 text-white/80 text-lg max-w-sm mx-auto leading-relaxed">Placed within 7 days. Closing deals on your calendar. If they don&apos;t close, you don&apos;t pay.</p>
             <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">Get My Expert Closer<ArrowRight className="w-4 h-4" /></button>
             <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
               <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Don&apos;t close, don&apos;t pay</span>
@@ -471,89 +559,6 @@ export default function SalesCloserPage() {
           <div className="mt-12 text-center">
             <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
             <h3 className="text-2xl md:text-3xl font-bold text-white">They all have one thing in common.</h3>
-            <p className="mt-3 text-white/80 text-lg max-w-sm mx-auto leading-relaxed">An expert closer in their business. Closing deals every week. Placed in 7 days — with a guarantee.</p>
-            <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">Get My Expert Closer<ArrowRight className="w-4 h-4" /></button>
-            <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
-              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Don&apos;t close, don&apos;t pay</span>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-gold-500/60" /> Placed in 7 days</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════════════
-          IS THIS RIGHT FOR YOU — AUDIT: Good-fit = "closer", "close deals",
-          "7 days", "guarantee". Directly counters closers.io weaknesses
-          (no guarantee, months to hire, $8K+ upfront). ✅
-          ══════════════════════════════════════════════════════════════════════ */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Is This Right for You?</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">We Only Place Closers for Businesses That Qualify</h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">Not every business is ready for an expert closer. Check both columns honestly.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card gradient-border p-7">
-              <h3 className="text-base font-semibold text-emerald-400 mb-5 flex items-center gap-2"><CheckCircle className="w-4 h-4" /> We Can Place a Closer If You...</h3>
-              <div className="space-y-3">
-                {["Sell a high-value service or product ($3K–$50K+)", "Have qualified meetings but need someone to close them into revenue", "Want an expert closer in your business within 7 days — not months", "Are tired of losing deals to weak follow-up and unstructured calls", "Want a performance guarantee — don't close, don't pay", "Want to get off the sales calls and focus on delivery and growth"].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{item}</span></div>
-                ))}
-              </div>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card p-7 border border-white/[0.04]">
-              <h3 className="text-base font-semibold text-white/50 mb-5 flex items-center gap-2"><AlertCircle className="w-4 h-4 text-red-400/60" /> A Closer Won&apos;t Work If You...</h3>
-              <div className="space-y-3">
-                {["Don't have a validated offer or deliverable product", "Don't have qualified meetings coming in for the closer to work", "Expect instant results without giving the closer time to learn your offer", "Aren't willing to share your sales process and pipeline data"].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3"><div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div><span className="text-base text-white/80 leading-relaxed">{item}</span></div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-white/80 leading-relaxed">If the left column describes you — fill in the form above. We&apos;ll place an expert closer within 7 days, guaranteed.</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════════════
-          RISK REVERSAL / COMPARISON — AUDIT: Directly exploits closers.io
-          weaknesses: no guarantee vs our guarantee, months vs 7 days,
-          $8K+ upfront vs don't pay until close. ✅
-          ══════════════════════════════════════════════════════════════════════ */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">We Take the Risk.{" "}<span className="gradient-text">You Get the Closer.</span></h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">Other companies charge $8K–$18K upfront to recruit a closer — with no guarantee they&apos;ll close a single deal. We do it differently.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-red-400/10 bg-red-400/[0.02]">
-              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">The Old Way (Recruiting Agencies)</p>
-              <div className="space-y-3">
-                {["$8K–$18K+ upfront — before your closer takes a single call", "Months of recruiting, vetting, and onboarding", "No performance guarantee — you absorb all the risk", "62% of placed reps leave within 6 months", "If the closer quits, you start over and pay again"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3"><div className="w-4 h-4 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div><span className="text-base text-white/80">{item}</span></div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-red-400/65 font-medium">All that money. All that time. Zero guarantee they&apos;ll close.</p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card gradient-border p-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">The Novada Tech Way</p>
-              <div className="space-y-3">
-                {["Expert closer placed in your business within 7 days", "Zero upfront cost — you don't pay until deals are closed", "Written performance guarantee — don't close, don't pay", "We replace the closer at no cost if the fit isn't right", "Your closer is trained on your offer before they take a single call"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-gold-400 flex-shrink-0" /><span className="text-base text-white/80 font-medium">{item}</span></div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-gold-400/85 font-medium">7 days. Zero risk. Deals closed — or you don&apos;t pay.</p>
-            </motion.div>
-          </div>
-          <div className="mt-12 text-center">
-            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 mb-5"><Shield className="w-7 h-7 text-gold-400" /></div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white">The guarantee is simple.</h3>
-            <p className="mt-3 text-white/80 text-lg max-w-md mx-auto leading-relaxed">We place an expert closer into your business within 7 days. They close deals on your pipeline. If they don&apos;t close, you don&apos;t pay. No fine print.</p>
             <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">Get My Expert Closer<ArrowRight className="w-4 h-4" /></button>
             <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
               <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Don&apos;t close, don&apos;t pay</span>
