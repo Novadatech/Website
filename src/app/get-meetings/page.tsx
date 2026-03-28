@@ -536,6 +536,110 @@ export default function GetMeetingsPage() {
         </div>
       </section>
 
+      {/* ── Risk Reversal ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-4xl">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">We Take the Risk.{" "}<span className="gradient-text">You Get the Meetings.</span></h2>
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">Other agencies charge you thousands with no guarantee. We guarantee 30–60 qualified meetings — or you don&apos;t pay.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-red-400/10 bg-red-400/[0.02]">
+              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">The Risk Is on You</p>
+              <div className="space-y-3">
+                {["You pay thousands upfront — whether meetings come or not", "You absorb all the risk if the agency underperforms", "No guarantee on meeting volume, quality, or timing", "If it fails, you lose the money and start over from scratch"].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div>
+                    <span className="text-base text-white/80">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-base text-red-400/65 font-medium">All the risk sits with you. None of it sits with them.</p>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card gradient-border p-7">
+              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">The Risk Is on Us</p>
+              <div className="space-y-3">
+                {["We guarantee 30–60 qualified sales meetings on your calendar monthly", "If we don't deliver, you don't pay — written into the agreement", "We absorb all the risk of underperformance, not you", "You only invest when qualified meetings are sitting on your calendar"].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <CheckCircle className="w-4 h-4 text-gold-400 flex-shrink-0" />
+                    <span className="text-base text-white/80 font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-base text-gold-400/85 font-medium">All the risk sits with us. None of it sits with you.</p>
+            </motion.div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 mb-5"><Shield className="w-7 h-7 text-gold-400" /></div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">The guarantee is simple.</h3>
+            <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">
+              Get My Guaranteed Meetings Plan
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
+              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Performance guaranteed</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Is This Right for You? ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-4xl">
+          <div className="text-center mb-10">
+            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Is This Right for You?</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">We Only Guarantee Meetings for Businesses That Qualify</h2>
+            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">We can&apos;t guarantee 30–60 qualified meetings for everyone. Check both columns honestly.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card gradient-border p-7">
+              <h3 className="text-base font-semibold text-emerald-400 mb-5 flex items-center gap-2"><CheckCircle className="w-4 h-4" /> We Can Guarantee Meetings If You...</h3>
+              <div className="space-y-3">
+                {[
+                  "Sell a high-value service or product ($3K–$50K+)",
+                  "Want 30–60 qualified sales meetings filling your calendar every month",
+                  "Are tired of unpredictable revenue, cold leads, and wasted ad spend",
+                  "Want a system that delivers meetings on autopilot — not another marketing agency",
+                  "Are ready to show up to pre-qualified meetings and close deals",
+                  "Want a performance guarantee — you only pay when meetings are delivered",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-base text-white/80 leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card p-7 border border-white/[0.04]">
+              <h3 className="text-base font-semibold text-white/50 mb-5 flex items-center gap-2"><AlertCircle className="w-4 h-4 text-red-400/60" /> We Can&apos;t Guarantee Meetings If You...</h3>
+              <div className="space-y-3">
+                {[
+                  "Don't have a deliverable product or service ready to sell",
+                  "Expect results without following a proven process",
+                  "Refuse to show up to qualified meetings or engage with prospects",
+                  "Are looking for a cheap, one-size-fits-all solution",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div>
+                    <span className="text-base text-white/80 leading-relaxed">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-base text-white/80 leading-relaxed">If the left column describes you — fill in the form above. We&apos;ll guarantee 30–60 qualified sales meetings every month, or you don&apos;t pay.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ══════════════════════════════════════════════════════════════════════
           VIDEO TESTIMONIALS — AUDIT: Subtitle ties to "qualified meetings
           every month" + guarantee. CTA reinforces "guaranteed meetings". ✅
@@ -598,118 +702,6 @@ export default function GetMeetingsPage() {
           <div className="mt-12 text-center">
             <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
             <h3 className="text-2xl md:text-3xl font-bold text-white">They all have one thing in common.</h3>
-            <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">
-              Get My Guaranteed Meetings Plan
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
-              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Performance guaranteed</span>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════════════
-          IS THIS RIGHT FOR YOU — AUDIT: Good-fit items reference "qualified
-          meetings", "every month", "guaranteed". Not-fit CTA reinforces
-          guarantee. ✅
-          ══════════════════════════════════════════════════════════════════════ */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Is This Right for You?</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">We Only Guarantee Meetings for Businesses That Qualify</h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">We can&apos;t guarantee 30–60 qualified meetings for everyone. Check both columns honestly.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card gradient-border p-7">
-              <h3 className="text-base font-semibold text-emerald-400 mb-5 flex items-center gap-2"><CheckCircle className="w-4 h-4" /> We Can Guarantee Meetings If You...</h3>
-              <div className="space-y-3">
-                {[
-                  "Sell a high-value service or product ($3K–$50K+)",
-                  "Want 30–60 qualified sales meetings filling your calendar every month",
-                  "Are tired of unpredictable revenue, cold leads, and wasted ad spend",
-                  "Want a system that delivers meetings on autopilot — not another marketing agency",
-                  "Are ready to show up to pre-qualified meetings and close deals",
-                  "Want a performance guarantee — you only pay when meetings are delivered",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-base text-white/80 leading-relaxed">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card p-7 border border-white/[0.04]">
-              <h3 className="text-base font-semibold text-white/50 mb-5 flex items-center gap-2"><AlertCircle className="w-4 h-4 text-red-400/60" /> We Can&apos;t Guarantee Meetings If You...</h3>
-              <div className="space-y-3">
-                {[
-                  "Don't have a deliverable product or service ready to sell",
-                  "Expect results without following a proven process",
-                  "Refuse to show up to qualified meetings or engage with prospects",
-                  "Are looking for a cheap, one-size-fits-all solution",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div>
-                    <span className="text-base text-white/80 leading-relaxed">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-white/80 leading-relaxed">If the left column describes you — fill in the form above. We&apos;ll guarantee 30–60 qualified sales meetings every month, or you don&apos;t pay.</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════════════
-          RISK REVERSAL — AUDIT: This is where the guarantee shines.
-          Traditional = risk on you. Ours = risk on us. "Or you don't pay"
-          is the throughline. ✅
-          ══════════════════════════════════════════════════════════════════════ */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">We Take the Risk.{" "}<span className="gradient-text">You Get the Meetings.</span></h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">Other agencies charge you thousands with no guarantee. We guarantee 30–60 qualified meetings — or you don&apos;t pay.</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-red-400/10 bg-red-400/[0.02]">
-              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">The Risk Is on You</p>
-              <div className="space-y-3">
-                {["You pay thousands upfront — whether meetings come or not", "You absorb all the risk if the agency underperforms", "No guarantee on meeting volume, quality, or timing", "If it fails, you lose the money and start over from scratch"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div>
-                    <span className="text-base text-white/80">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-red-400/65 font-medium">All the risk sits with you. None of it sits with them.</p>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card gradient-border p-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">The Risk Is on Us</p>
-              <div className="space-y-3">
-                {["We guarantee 30–60 qualified sales meetings on your calendar monthly", "If we don't deliver, you don't pay — written into the agreement", "We absorb all the risk of underperformance, not you", "You only invest when qualified meetings are sitting on your calendar"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <CheckCircle className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                    <span className="text-base text-white/80 font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-gold-400/85 font-medium">All the risk sits with us. None of it sits with you.</p>
-            </motion.div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/20 mb-5"><Shield className="w-7 h-7 text-gold-400" /></div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white">The guarantee is simple.</h3>
             <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">
               Get My Guaranteed Meetings Plan
               <ArrowRight className="w-4 h-4" />
