@@ -460,12 +460,6 @@ export default function GetMeetingsPage() {
                 ))}
               </div>
 
-              <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-center gap-2 text-xs text-white/60 hover:text-white transition-colors font-medium">
-                <span className="text-gold-400">★★★★★</span>
-                <span>Verified 4.9/5 — 77+ reviews on Trustpilot</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-
               {/* Social proof near form */}
               <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
                 <div className="flex items-start gap-3">
