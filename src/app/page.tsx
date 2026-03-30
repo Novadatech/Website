@@ -1121,7 +1121,7 @@ function HowToStart() {
   ];
 
   return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950">
+    <section className="py-16 section-padding bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950">
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-16">
           <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
@@ -1207,7 +1207,7 @@ function FAQ() {
   ];
 
   return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
+    <section className="py-16 section-padding border-t border-white/[0.04]">
       <div className="max-container max-w-3xl">
         <AnimatedSection className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold">
