@@ -19,9 +19,11 @@ import {
   Star,
   Shield,
   TrendingUp,
+  Play,
+  Clock,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 
 const BOOKING_URL = "/book-call";
@@ -68,6 +70,12 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.6 }}
           className="mt-4 max-w-4xl mx-auto"
         >
+          {/* Video duration prompt */}
+          <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
+            <Play className="w-3.5 h-3.5 text-gold-400" />
+            <span>Watch the 2-min overview</span>
+          </div>
+
           <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
             <iframe
               src="https://www.youtube.com/embed/w6atSnPDjJw?autoplay=1&mute=1"
@@ -76,6 +84,14 @@ function Hero() {
               allowFullScreen
               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
             />
+          </div>
+
+          {/* Presenter identity */}
+          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
+            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
+              <span className="text-[8px] font-bold text-gold-300">S</span>
+            </div>
+            <span>Presented by <span className="text-white/60 font-medium">Sarah</span> — Novada Tech</span>
           </div>
         </motion.div>
 
@@ -96,7 +112,7 @@ function Hero() {
           className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a href={BOOKING_URL} className="btn-primary text-base">
-            Apply for Your Free Strategy Session
+            See If You Qualify
             <ArrowRight className="w-5 h-5" />
           </a>
           <a href="#how-it-works" className="btn-secondary text-base">
@@ -233,7 +249,7 @@ function SolutionSection() {
               href={BOOKING_URL}
               className="btn-primary mt-8 inline-flex text-base"
             >
-              Apply for a Growth Partnership
+              See If You Qualify
               <ArrowRight className="w-5 h-5" />
             </a>
           </AnimatedSection>
@@ -427,7 +443,7 @@ function CaseStudies() {
 
         <AnimatedSection delay={0.3} className="text-center mt-10">
           <a href={BOOKING_URL} className="btn-primary text-base">
-            Get Results Like These
+            See If You Qualify
             <ArrowRight className="w-5 h-5" />
           </a>
         </AnimatedSection>
@@ -578,7 +594,7 @@ function Flywheel() {
   ];
 
   return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-navy-950 via-navy-900/40 to-navy-950">
+    <section id="how-it-works" className="section-spacing section-padding bg-gradient-to-b from-navy-950 via-navy-900/40 to-navy-950">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
           <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
@@ -799,27 +815,12 @@ function Testimonials() {
 
 /* ─── WRITTEN TESTIMONIALS ─── */
 function WrittenTestimonials() {
+  // TODO: Replace placeholder avatar URLs with actual client photos
   const testimonials = [
-    { quote: "14 qualified meetings booked in 3 weeks. Every single one was the right type of client — right budget, right fit. Nothing like the leads we were getting from ads.", name: "Tony", role: "Founder, South Line Media" },
-    { quote: "4 new retainer clients closed in the first 45 days. After being burned by two agencies, the pay-for-results model was the only thing that made sense — and it delivered.", name: "Anthony", role: "Founder, Ripple Clarke" },
-    { quote: "$42K to $91K monthly revenue in under 60 days. 18 new high-value clients per month. The ROI was clear within the first fortnight.", name: "Josh", role: "Director, Maxicare Plus" },
-    { quote: "$28K to $76K in 90 days. 8–12 qualified calls per week. They understood our positioning faster than any agency we'd worked with.", name: "Gunendu", role: "Director, Growth-Loop Consulting" },
-    { quote: "Discovery call conversion jumped from 28% to over 60%. Prospects arrived already educated on our value — we just had to confirm the fit.", name: "Nate", role: "Owner, Larsky Tach and Feed" },
-    { quote: "Close rate went from 25% to 67%. We only speak to clients who are already sold on the category — we just have to confirm we're the right fit.", name: "Terver", role: "Founder, CareJewel" },
-    { quote: "More clients in month one than the previous 6 months combined. Had to pause the system at week 5 just to catch up with demand.", name: "Jessica", role: "Founder, Jessica Teds Coaching" },
-    { quote: "18 qualified consultations in month one — our best month ever. Found the exact niche where demand was high and competition was low. Wish we'd done this sooner.", name: "Mo", role: "Founder, Framer Health" },
-    { quote: "Doubled our active participants in 4 months. The outreach led with our values — the right clients found us without it ever feeling cold.", name: "Malkin", role: "CEO, Support24" },
-  ];
-
-  const AVATAR_COLORS = [
-    "bg-gold-500/20 text-gold-300",
-    "bg-blue-500/20 text-blue-300",
-    "bg-emerald-500/20 text-emerald-300",
-    "bg-purple-500/20 text-purple-300",
-    "bg-rose-500/20 text-rose-300",
-    "bg-amber-500/20 text-amber-300",
-    "bg-cyan-500/20 text-cyan-300",
-    "bg-indigo-500/20 text-indigo-300",
+    { quote: "$42K to $91K monthly revenue in under 60 days. 18 new high-value clients per month. The ROI was clear within the first fortnight.", name: "Josh", role: "Director, Maxicare Plus", avatar: "https://i.pravatar.cc/150?img=12" },
+    { quote: "4 new retainer clients closed in the first 45 days. After being burned by two agencies, the pay-for-results model was the only thing that made sense — and it delivered.", name: "Anthony", role: "Founder, Ripple Clarke", avatar: "https://i.pravatar.cc/150?img=33" },
+    { quote: "Discovery call conversion jumped from 28% to over 60%. Prospects arrived already educated on our value — we just had to confirm the fit.", name: "Nate", role: "Owner, Larsky Tach and Feed", avatar: "https://i.pravatar.cc/150?img=53" },
+    { quote: "More clients in month one than the previous 6 months combined. Had to pause the system at week 5 just to catch up with demand.", name: "Jessica", role: "Founder, Jessica Teds Coaching", avatar: "https://i.pravatar.cc/150?img=47" },
   ];
 
   return (
@@ -837,30 +838,24 @@ function WrittenTestimonials() {
           </p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {testimonials.map((t, i) => {
-            const initials = t.name.split(" ").map((n) => n[0]).join("").slice(0, 2);
-            const color = AVATAR_COLORS[i % AVATAR_COLORS.length];
-            return (
-              <AnimatedSection key={i} delay={(i % 6) * 0.07}>
-                <div className="glass-card border border-white/[0.05] p-6 h-full flex flex-col">
-                  <div className="text-gold-400 text-xs mb-3">★★★★★</div>
-                  <p className="text-base text-white/80 leading-relaxed italic flex-1">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
-                    <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${color}`}>
-                      {initials}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-white">{t.name}</p>
-                      <p className="text-base text-white/80">{t.role}</p>
-                    </div>
+        <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+          {testimonials.map((t, i) => (
+            <AnimatedSection key={i} delay={(i % 4) * 0.07}>
+              <div className="glass-card border border-white/[0.05] p-6 h-full flex flex-col">
+                <div className="text-gold-400 text-xs mb-3">{"\u2605\u2605\u2605\u2605\u2605"}</div>
+                <p className="text-base text-white/80 leading-relaxed italic flex-1">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
+                  <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
+                  <div>
+                    <p className="text-sm font-semibold text-white">{t.name}</p>
+                    <p className="text-base text-white/80">{t.role}</p>
                   </div>
                 </div>
-              </AnimatedSection>
-            );
-          })}
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
       </div>
     </section>
@@ -1162,7 +1157,7 @@ function HowToStart() {
 
         <AnimatedSection delay={0.4} className="text-center mt-12">
           <a href={BOOKING_URL} className="btn-primary text-base">
-            Apply for Your Strategy Call
+            See If You Qualify
             <ArrowRight className="w-5 h-5" />
           </a>
           <p className="mt-4 text-base text-white/80">
@@ -1216,7 +1211,7 @@ function FAQ() {
       <div className="max-container max-w-3xl">
         <AnimatedSection className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold">
-            Common Questions
+            Your Questions Answered
           </h2>
         </AnimatedSection>
 
@@ -1271,7 +1266,7 @@ function FAQItem({
 /* ─── FINAL CTA ─── */
 function FinalCTA() {
   return (
-    <section className="section-spacing section-padding">
+    <section className="py-16 section-padding border-t border-white/[0.04]">
       <div className="max-container">
         <AnimatedSection>
           <div className="relative rounded-3xl overflow-hidden">
@@ -1297,7 +1292,7 @@ function FinalCTA() {
               </p>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href={BOOKING_URL} className="btn-primary text-base">
-                  Get Your Custom Growth Plan
+                  See If You Qualify
                   <ArrowRight className="w-5 h-5" />
                 </a>
               </div>
@@ -1367,6 +1362,35 @@ function VSLSection() {
   );
 }
 
+/* ─── STICKY CTA BAR ─── */
+function StickyCtaBar() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => { setVisible(window.scrollY > 600); };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div className="hidden sm:block">
+              <p className="text-sm font-semibold text-white">Performance-based growth partnership</p>
+              <p className="text-xs text-white/50">You only pay when we deliver results.</p>
+            </div>
+            <a href={BOOKING_URL} className="btn-primary text-sm py-3 px-6 w-full sm:w-auto text-center">
+              See If You Qualify
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 /* ─── PAGE ─── */
 export default function HomePage() {
   return (
@@ -1377,7 +1401,6 @@ export default function HomePage() {
       <ProofSection />
       <CaseStudies />
       <TrustBar />
-      <WhatWeBuild />
       <Flywheel />
       <Testimonials />
       <WrittenTestimonials />
@@ -1409,6 +1432,8 @@ export default function HomePage() {
       <HowToStart />
       <FAQ />
       <FinalCTA />
+      <StickyCtaBar />
+      <div className="h-16 sm:h-0" />
     </>
   );
 }
