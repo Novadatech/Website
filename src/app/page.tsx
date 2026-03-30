@@ -58,10 +58,26 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
         >
-          10X Your Revenue In 30 – 60 Days With Our Proven{" "}
-          <span className="gradient-text">Client Acquisition Engine</span>.{" "}
-          If You Don&apos;t Get Results You Don&apos;t Pay
+          From $28K to $91K in 90 Days.{" "}
+          We Build the{" "}
+          <span className="gradient-text">Client Acquisition System</span>{" "}
+          That Gets You There — Without Retainers
         </motion.h1>
+
+        {/* Above-fold social proof */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.45 }}
+          className="mt-3 flex items-center justify-center gap-3 text-sm text-white/50"
+        >
+          <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-gold-500/50" /> Join 350+ service businesses scaled</span>
+          <span className="text-white/15">·</span>
+          <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/60 transition-colors">
+            <span className="text-gold-400">{"\u2605\u2605\u2605\u2605\u2605"}</span>
+            <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
+          </a>
+        </motion.div>
 
         {/* VSL — immediately below headline */}
         <motion.div
@@ -102,7 +118,7 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-6 text-xl md:text-2xl font-semibold text-white/90 max-w-2xl mx-auto leading-relaxed"
         >
-          We install our complete client acquisition system into your business to 10x your revenue in 30 – 60 days. If we don&apos;t generate revenue you don&apos;t pay.
+          We install a complete client acquisition system into your business — from lead generation to sales closing. You only pay when we deliver results.
         </motion.p>
         {/* CTAs */}
         <motion.div
