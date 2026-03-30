@@ -1207,7 +1207,7 @@ function FAQ() {
   ];
 
   return (
-    <section className="pt-16 pb-10 section-padding border-t border-white/[0.04]">
+    <section className="pt-16 pb-0 section-padding border-t border-white/[0.04]">
       <div className="max-container max-w-3xl">
         <AnimatedSection className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold">
