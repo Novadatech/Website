@@ -4,14 +4,14 @@ import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
-  Clock, AlertCircle, Calendar, MessageSquare, ChevronDown, ArrowRight,
-  ChevronLeft, ChevronRight
+  Clock, AlertCircle, ChevronDown, ArrowRight,
+  ChevronLeft, ChevronRight, Play
 } from "lucide-react";
 
 import Link from "next/link";
 import Logo from "@/components/Logo";
 
-// ─── Initials Avatar (replaces stock photos — no fake faces) ───────────────
+// ─── Initials Avatar ─────────────────────────────────────────────────────────
 const AVATAR_COLORS = [
   "bg-gold-500/20 text-gold-300",
   "bg-blue-500/20 text-blue-300",
@@ -57,75 +57,35 @@ const BENEFITS = [
   "Whether we're the right fit — and if not, you still walk away with a strategy you can execute yourself",
 ];
 
-
+// Reduced from 9 to 4 strongest testimonials with specific outcomes
+// TODO: Replace placeholder avatar URLs with actual client photos
 const TESTIMONIALS = [
   {
-    quote: "Within three weeks we had 14 qualified sales calls booked with exactly the type of client we wanted. Every call was the right fit — right budget, right industry, ready to move.",
-    name: "Tony",
-    role: "Founder, South Line Media",
+    quote: "$42K to $91K monthly revenue in under 60 days. The system filled our calendar with qualified sales calls every week — 18 per month, all with decision-makers ready to buy.",
+    name: "Josh",
+    role: "Director, Maxicare Plus",
+    avatar: "https://i.pravatar.cc/150?img=12",
   },
   {
     quote: "We'd been burned by two agencies before. This time, the qualified sales calls actually showed up. We closed four new retainer clients in our first 45 days — all from calls they booked.",
     name: "Anthony",
     role: "Founder, Ripple Clarke",
-  },
-  {
-    quote: "$42K to $91K monthly revenue in under 60 days. The system filled our calendar with qualified sales calls every week — 18 per month, all with decision-makers ready to buy.",
-    name: "Josh",
-    role: "Director, Maxicare Plus",
-  },
-  {
-    quote: "We scaled from $28K to $76K monthly in 90 days. What impressed me most was how quickly they understood our positioning and built outreach that didn't sound generic.",
-    name: "Gunendu",
-    role: "Director, Growth-Loop Consulting",
+    avatar: "https://i.pravatar.cc/150?img=33",
   },
   {
     quote: "Every qualified sales call is with someone who already understands our value. Conversion rate jumped from 28% to over 60%. The calls are with buyers, not tyre-kickers.",
     name: "Nate",
     role: "Owner, Larsky Tach and Feed",
-  },
-  {
-    quote: "Close rate went from 25% to over 65%. Every qualified sales call is with someone who's ready and already understands our value. We just confirm the fit and close.",
-    name: "Terver",
-    role: "Founder, CareJewel",
+    avatar: "https://i.pravatar.cc/150?img=53",
   },
   {
     quote: "More qualified sales calls in month one than the previous six months combined. I actually had to pause the system because I couldn't take any more calls.",
     name: "Jessica",
     role: "Founder, Jessica Teds Coaching",
-  },
-  {
-    quote: "18 qualified sales calls booked in month one — our best month ever. They found the exact niche where demand was high and competition was low. Every call converted.",
-    name: "Mo",
-    role: "Founder, Framer Health",
-  },
-  {
-    quote: "Doubled our active participants in four months. Every qualified sales call was warm, values-driven, and with exactly the right people. The calendar fills itself now.",
-    name: "Malkin",
-    role: "CEO, Support24",
+    avatar: "https://i.pravatar.cc/150?img=47",
   },
 ];
 
-const NEXT_STEPS = [
-  {
-    icon: Calendar,
-    step: "Step 1",
-    title: "You're Taken to Our Booking Page",
-    desc: "The moment you submit, you'll be redirected straight to our calendar — no waiting, no back-and-forth.",
-  },
-  {
-    icon: Clock,
-    step: "Step 2",
-    title: "Pick a Time That Works for You",
-    desc: "Choose a 30-minute slot that fits your schedule. Morning, afternoon, or evening — we work around you.",
-  },
-  {
-    icon: MessageSquare,
-    step: "Step 3",
-    title: "You Get Your Custom Strategy",
-    desc: "We review your business beforehand and walk you through the exact strategy to generate 30–60 qualified sales calls monthly. You keep the plan — whether we work together or not.",
-  },
-];
 
 const FAQS = [
   {
@@ -204,7 +164,7 @@ const VIDEO_TESTIMONIALS = [
 const TRUST_ITEMS = [
   { icon: Shield, label: "100% Free — No Credit Card" },
   { icon: CheckCircle, label: "Custom Plan for Your Business" },
-  { icon: Star, label: "Rated 4.9★ on Trustpilot" },
+  { icon: Star, label: "Rated 4.9\u2605 on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
   { icon: Clock, label: "Takes Under 2 Minutes" },
 ];
 
@@ -241,7 +201,6 @@ function VideoSlider() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Desktop: side arrows + padded card. Mobile: full-width card */}
       <div className="relative">
         {/* Side arrows — desktop only */}
         <motion.button
@@ -268,7 +227,7 @@ function VideoSlider() {
           <ChevronRight className="w-6 h-6" />
         </motion.button>
 
-        {/* Video card — full width on mobile, padded on desktop */}
+        {/* Video card */}
         <div className="sm:px-16">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
@@ -289,7 +248,6 @@ function VideoSlider() {
                   style={{ border: "none" }}
                 />
               </div>
-              {/* Caption */}
               <div className="flex items-center gap-3 mt-3 px-2 pb-1">
                 <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
                   <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
@@ -298,14 +256,14 @@ function VideoSlider() {
                   <p className="text-xs font-semibold text-white/70">{video.name}</p>
                   <p className="text-[11px] text-white/35">{video.company}</p>
                 </div>
-                <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
+                <div className="ml-auto text-gold-400 text-xs flex-shrink-0">{"\u2605\u2605\u2605\u2605\u2605"}</div>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Mobile arrows row — below video */}
+      {/* Mobile arrows row */}
       <div className="flex sm:hidden items-center justify-center gap-4 mt-4">
         <motion.button
           onClick={prev}
@@ -318,7 +276,6 @@ function VideoSlider() {
           <ChevronLeft className="w-6 h-6" />
         </motion.button>
 
-        {/* Dot indicators inline on mobile */}
         <div className="flex items-center gap-2">
           {VIDEO_TESTIMONIALS.map((_, i) => (
             <button
@@ -361,6 +318,48 @@ function VideoSlider() {
   );
 }
 
+// ─── Sticky CTA Bar ──────────────────────────────────────────────────────────
+function StickyCtaBar() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show after scrolling past ~600px (past the hero)
+      setVisible(window.scrollY > 600);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="fixed bottom-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8"
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div className="hidden sm:block">
+              <p className="text-sm font-semibold text-white">Free 30-min strategy call</p>
+              <p className="text-xs text-white/50">Get your custom growth blueprint — yours to keep.</p>
+            </div>
+            <button
+              onClick={scrollToForm}
+              className="btn-primary text-sm py-3 px-6 w-full sm:w-auto"
+            >
+              Book My Free Strategy Call
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 // ─── Page ───────────────────────────────────────────────────────────────────
 export default function ApplyPage() {
   useEffect(() => {
@@ -387,7 +386,7 @@ export default function ApplyPage() {
             </Link>
             <div className="flex items-center gap-2 text-xs text-white/40">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Spots available this week</span>
+              <span>3 strategy call spots remaining this week</span>
             </div>
           </div>
         </div>
@@ -395,7 +394,7 @@ export default function ApplyPage() {
 
       <div className="h-16" />
 
-      {/* ── Hero + VSL ── */}
+      {/* ── Hero + Above-Fold CTA ── */}
       <section className="relative pt-6 pb-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
@@ -410,7 +409,7 @@ export default function ApplyPage() {
           >
             <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
             <span className="text-sm text-gold-400 font-medium">
-              See How to Get 30–60 Qualified Sales Calls — Free
+              Free 30-Minute Strategy Call
             </span>
           </motion.div>
 
@@ -425,17 +424,64 @@ export default function ApplyPage() {
             Every Month For Free
           </motion.h1>
 
+          {/* Shortened sub-headline */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto"
+          >
+            Free 30-minute call. We build your exact growth blueprint — yours to keep.
+            {" "}You&apos;ll speak with our senior growth strategist.
+          </motion.p>
+
+          {/* ABOVE-THE-FOLD CTA — most critical audit fix */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-6"
+          >
+            <button
+              onClick={scrollToForm}
+              className="btn-primary text-base md:text-lg px-10 py-4"
+            >
+              Book My Free Strategy Call
+              <ArrowRight className="w-5 h-5" />
+            </button>
+            <div className="mt-3 flex items-center justify-center gap-4 text-xs text-white/35 flex-wrap">
+              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Zero obligation</span>
+              <span className="text-white/15">|</span>
+              <a
+                href="https://www.trustpilot.com/review/novadatech.com.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
+              >
+                <span className="text-gold-400 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
+                <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
+              </a>
+              <span className="text-white/15">|</span>
+              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ── VSL ── */}
-      <section className="section-padding pt-3 pb-0">
+      {/* ── VSL with duration label ── */}
+      <section className="section-padding pt-6 pb-0">
         <div className="max-container max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
           >
+            {/* Video duration prompt */}
+            <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
+              <Play className="w-3.5 h-3.5 text-gold-400" />
+              <span>Watch the 2-min overview</span>
+            </div>
+
             <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
               <iframe
                 src="https://www.youtube.com/embed/w6atSnPDjJw?autoplay=1&mute=1"
@@ -446,25 +492,27 @@ export default function ApplyPage() {
               />
             </div>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Subheadline + proof bar — below video */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-8 text-center"
-          >
-            <p className="text-xl md:text-2xl font-semibold text-white/90 max-w-2xl mx-auto leading-relaxed">
-              In 30 minutes, we&apos;ll map out the exact system we&apos;d use to generate
-              30–60 qualified sales calls every month for your business. Completely free.
+      {/* ── Video Testimonials — moved up for early trust ── */}
+      <section className="section-padding py-12">
+        <div className="max-container">
+          <div className="text-center mb-8">
+            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">
+              Real Results From Real Clients
             </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              They Started With the Same Free Call
+            </h2>
+          </div>
 
-          </motion.div>
+          <VideoSlider />
         </div>
       </section>
 
       {/* ── FORM — standalone, centred ── */}
-      <section className="section-padding pt-8 pb-0">
+      <section className="section-padding pt-4 pb-0">
         <div className="max-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -478,22 +526,22 @@ export default function ApplyPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-xs text-emerald-400 font-medium uppercase tracking-wider">
-                      Spots Available This Week
+                      3 Spots Remaining This Week
                     </span>
                   </div>
                   <h2 className="text-xl md:text-2xl font-bold text-white">
-                    See How to Get 30–60 Sales Calls Monthly — Free
+                    Book Your Free Strategy Call
                   </h2>
                   <p className="mt-1.5 text-base text-white/80">
-                    Complete the short form below and we&apos;ll show you the exact system. Takes under 2 minutes.
+                    Enter your details below. Takes under 2 minutes.
                   </p>
-                  {/* Step indicator — honest 2-step flow */}
+                  {/* Step indicator */}
                   <div className="mt-4">
                     <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
                       <span className="flex items-center gap-1.5">
                         <span className="text-gold-400 font-medium">Step 1</span>
                         <span>— Your details</span>
-                        <span className="text-white/20">→</span>
+                        <span className="text-white/20">{"\u2192"}</span>
                         <span>Step 2 — Pick your time</span>
                       </span>
                       <span>50%</span>
@@ -518,24 +566,34 @@ export default function ApplyPage() {
                     data-height="380"
                     data-layout-iframe-id="apply-form-embed"
                     data-form-id="2UikgU0iSTsy1ax334cR"
-                    title="Apply for Strategy Session"
+                    title="Book Your Free Strategy Call"
                   />
                 </div>
 
-                {/* Trust strip */}
+                {/* Trust strip — Trustpilot now clickable */}
                 <div className="mt-4 grid grid-cols-2 gap-2">
-                  {TRUST_ITEMS.map(({ icon: Icon, label }, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-2.5 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium"
-                    >
-                      <Icon className="w-3.5 h-3.5 flex-shrink-0 text-gold-400" />
-                      <span>{label}</span>
-                    </div>
-                  ))}
+                  {TRUST_ITEMS.map(({ icon: Icon, label, link }, i) => {
+                    const content = (
+                      <div
+                        key={i}
+                        className={`flex items-center gap-2.5 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium ${link ? "hover:border-gold-500/30 transition-colors cursor-pointer" : ""}`}
+                      >
+                        <Icon className="w-3.5 h-3.5 flex-shrink-0 text-gold-400" />
+                        <span className={link ? "underline underline-offset-2 decoration-white/20" : ""}>{label}</span>
+                      </div>
+                    );
+                    if (link) {
+                      return (
+                        <a key={i} href={link} target="_blank" rel="noopener noreferrer">
+                          {content}
+                        </a>
+                      );
+                    }
+                    return content;
+                  })}
                 </div>
 
-                {/* Social proof — near the form for high-intent Google Ads traffic */}
+                {/* Social proof — near the form */}
                 <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -548,8 +606,16 @@ export default function ApplyPage() {
                   </div>
                   <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-center justify-center gap-4 text-xs text-white/35">
                     <span className="flex items-center gap-1.5"><Users className="w-3 h-3 text-gold-500/50" /> 350+ businesses scaled</span>
-                    <span className="text-white/15">·</span>
-                    <span className="flex items-center gap-1.5"><TrendingUp className="w-3 h-3 text-gold-500/50" /> $50M+ revenue generated</span>
+                    <span className="text-white/15">{"\u00B7"}</span>
+                    <a
+                      href="https://www.trustpilot.com/review/novadatech.com.au"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
+                    >
+                      <Star className="w-3 h-3 text-gold-500/50" />
+                      <span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} on Trustpilot (77+ reviews)</span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -557,7 +623,7 @@ export default function ApplyPage() {
         </div>
       </section>
 
-      {/* ── What You'll Walk Away With — below form, single centred box ── */}
+      {/* ── What You'll Walk Away With + CTA ── */}
       <section className="section-padding pt-12 pb-0">
         <div className="max-container max-w-2xl">
           <motion.div
@@ -581,180 +647,21 @@ export default function ApplyPage() {
               ))}
             </ul>
           </motion.div>
-        </div>
-      </section>
 
-      {/* ── What Happens Next — close to form to reduce post-submit anxiety ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">
-              After You Submit
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Here&apos;s What Happens Next
-            </h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">
-              No guesswork — here&apos;s exactly what to expect the moment you hit submit.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {NEXT_STEPS.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass-card gradient-border p-6 text-center flex flex-col items-center"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mb-4">
-                  <step.icon className="w-6 h-6 text-gold-400" />
-                </div>
-                <span className="text-xs text-gold-500/60 font-medium uppercase tracking-wider mb-2">
-                  {step.step}
-                </span>
-                <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-base text-white/80 leading-relaxed">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why This Call Is Worth Your 30 Minutes ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-              Why This Call Is{" "}
-              <span className="gradient-text">Worth Your 30 Minutes</span>
-            </h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">
-              Most businesses leave this call with a clearer growth plan than they&apos;ve had in years — even if they never work with us.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="p-7 rounded-2xl border border-white/[0.06] bg-white/[0.02]"
-            >
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">
-                What You&apos;ll See on the Call
-              </p>
-              <div className="space-y-3">
-                {[
-                  "The exact channels and targeting we'd use to reach your ideal clients",
-                  "The messaging framework that gets decision-makers to book calls with you",
-                  "A revenue projection — what 30–60 qualified sales calls per month means for your business",
-                  "The full strategy — yours to keep and implement yourself if you choose",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <CheckCircle className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                    <span className="text-base text-white/80">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="p-7 rounded-2xl border border-white/[0.06] bg-white/[0.02]"
-            >
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-5">
-                What This Call Is NOT
-              </p>
-              <div className="space-y-3">
-                {[
-                  "Not a sales pitch — you'll never be pressured to buy anything",
-                  "Not a generic template — every strategy is built for your specific business",
-                  "Not a teaser — you get the full plan, not a watered-down preview",
-                  "Not a commitment — implement it yourself or ask us to do it. Your choice.",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <Shield className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                    <span className="text-base text-white/80">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="mt-10 text-center">
+          {/* CTA after benefits */}
+          <div className="mt-8 text-center">
             <button
               onClick={scrollToForm}
-              className="btn-primary mt-6 mx-auto"
+              className="btn-primary mx-auto"
             >
-              Get My Free Strategy
+              Book My Free Strategy Call
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
       </section>
 
-      {/* ── How It Works ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container max-w-5xl">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">
-              How It Works
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              What We Cover on Your Free Strategy Call
-            </h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">
-              In 30 minutes, we walk you through the exact strategy to get 30–60 qualified sales calls every month.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              {
-                num: "01",
-                title: "Your Offer & Market Analysis",
-                desc: "We break down your business, ideal client profile, and current pipeline — and show you where the biggest opportunity for qualified sales calls is hiding.",
-              },
-              {
-                num: "02",
-                title: "Your Custom Acquisition Strategy",
-                desc: "We map out the exact channels, targeting, and messaging that will get decision-makers to book qualified sales calls with you — specific to your market.",
-              },
-              {
-                num: "03",
-                title: "Your Revenue Projection",
-                desc: "We show you what 30–60 qualified sales calls per month means for your revenue — based on your offer, close rate, and deal size.",
-              },
-              {
-                num: "04",
-                title: "Your Choice: DIY or Done-For-You",
-                desc: "You walk away with the full strategy. Implement it yourself, hire your own team to run it, or ask us to do it for you. No pressure either way.",
-              },
-            ].map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass-card gradient-border p-6 h-full flex flex-col"
-              >
-                <span className="text-3xl font-bold text-gold-500/20 mb-3">{step.num}</span>
-                <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-base text-white/80 leading-relaxed flex-1">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Is This Right for You? ── */}
+      {/* ── Is This Right for You? — condensed to 3 bullets ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container max-w-4xl">
           <div className="text-center mb-10">
@@ -764,9 +671,6 @@ export default function ApplyPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               This Free Strategy Call Is Built For:
             </h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">
-              We put serious work into every strategy we build. To make sure the call is valuable for both of us, check both columns honestly.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -782,11 +686,8 @@ export default function ApplyPage() {
               <div className="space-y-3">
                 {[
                   "You sell a high-value service or product ($3K–$50K+)",
-                  "You want to see the exact strategy to get 30–60 qualified sales calls monthly",
-                  "You're tired of guessing what's working and what isn't",
-                  "You want a clear, actionable plan — not a generic pitch deck",
+                  "You want a clear, actionable plan to get 30–60 qualified sales calls monthly",
                   "You're open to implementing the strategy yourself or having us do it",
-                  "You value your time and want a focused, no-fluff 30-minute call",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
@@ -810,7 +711,6 @@ export default function ApplyPage() {
                 {[
                   "You don't have a product or service ready to sell yet",
                   "You're looking for a magic bullet, not a real strategy",
-                  "You're not willing to spend 30 minutes on a focused call",
                   "You just want someone to tell you what you want to hear",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
@@ -822,55 +722,14 @@ export default function ApplyPage() {
                 ))}
               </div>
               <p className="mt-6 text-base text-white/80 leading-relaxed">
-                If the left column describes you — the strategy call is free, the plan is yours to keep, and there&apos;s zero obligation. Fill in the form above.
+                If the left column describes you — the strategy call is free, the plan is yours to keep, and there&apos;s zero obligation.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ── Client Success: Video Testimonials ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container">
-          <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">
-              Client Success
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              They Started With the Same Free Call
-            </h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">
-              Every one of these business owners booked a free strategy call, got the plan, and chose to implement it. Here&apos;s what happened.
-            </p>
-          </div>
-
-          <VideoSlider />
-
-          {/* CTA — sits directly under the slider */}
-          <div className="mt-12 text-center">
-            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
-            <h3 className="text-2xl md:text-3xl font-bold text-white">
-              Ready to see how we&apos;d fill your calendar?
-            </h3>
-            <button
-              onClick={scrollToForm}
-              className="btn-primary mt-6 mx-auto"
-            >
-              Get My Free Strategy
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
-              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Zero obligation</span>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Testimonials ── */}
+      {/* ── Testimonials — 4 strongest ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container">
           <div className="text-center mb-10">
@@ -880,26 +739,27 @@ export default function ApplyPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               350+ Business Owners Got the Free Strategy. Here&apos;s What They Did With It.
             </h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto leading-relaxed">
-              Some implemented it themselves. Some asked us to do it. All of them started with the same free call.
-            </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
             {TESTIMONIALS.map((t, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: (i % 6) * 0.07 }}
+                transition={{ delay: (i % 4) * 0.07 }}
                 className="glass-card p-6 border border-white/[0.05] flex flex-col"
               >
-                <div className="text-gold-400 text-xs mb-3">★★★★★</div>
+                <div className="text-gold-400 text-xs mb-3">{"\u2605\u2605\u2605\u2605\u2605"}</div>
                 <p className="text-base text-white/80 leading-relaxed italic flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
-                  <InitialsAvatar name={t.name} index={i} />
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="w-9 h-9 rounded-full object-cover flex-shrink-0"
+                  />
                   <div>
                     <p className="text-sm font-semibold text-white">{t.name}</p>
                     <p className="text-base text-white/80">{t.role}</p>
@@ -909,23 +769,27 @@ export default function ApplyPage() {
             ))}
           </div>
 
-          {/* CTA — sits directly under written testimonials */}
+          {/* CTA after testimonials */}
           <div className="mt-12 text-center">
-            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
-            <h3 className="text-2xl md:text-3xl font-bold text-white">
-              They all started with one free call.
-            </h3>
             <button
               onClick={scrollToForm}
               className="btn-primary mt-6 mx-auto"
             >
-              Get My Free Strategy
+              Book My Free Strategy Call
               <ArrowRight className="w-4 h-4" />
             </button>
             <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
               <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Zero obligation</span>
               <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><span className="text-gold-400 tracking-tight">★★★★★</span> 4.9 on Trustpilot</span>
+              <a
+                href="https://www.trustpilot.com/review/novadatech.com.au"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
+              >
+                <span className="text-gold-400 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
+                <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
+              </a>
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
             </div>
@@ -953,7 +817,7 @@ export default function ApplyPage() {
         </div>
       </section>
 
-      {/* ── Final Hard CTA — replaces dead-end stats bar ── */}
+      {/* ── Final CTA ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container max-w-3xl">
           <motion.div
@@ -980,7 +844,7 @@ export default function ApplyPage() {
                 onClick={scrollToForm}
                 className="btn-primary mt-8 inline-flex text-base"
               >
-                Get My Free Strategy
+                Book My Free Strategy Call
                 <ArrowRight className="w-5 h-5" />
               </button>
 
@@ -995,7 +859,7 @@ export default function ApplyPage() {
                   className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
                 >
                   <Star className="w-3.5 h-3.5" />
-                  <span className="underline underline-offset-2 decoration-white/20">4.9★ Trustpilot</span>
+                  <span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} Trustpilot</span>
                 </a>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5" /> 30-Min Call
@@ -1011,6 +875,12 @@ export default function ApplyPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── Sticky CTA Bar — visible on scroll ── */}
+      <StickyCtaBar />
+
+      {/* Bottom spacer for sticky bar */}
+      <div className="h-16 sm:h-0" />
     </>
   );
 }
