@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
   Clock, AlertCircle, ChevronDown, ArrowRight,
-  ChevronLeft, ChevronRight, Play
+  ChevronLeft, ChevronRight, Play, ExternalLink
 } from "lucide-react";
 
 import Link from "next/link";
@@ -491,6 +491,13 @@ export default function ApplyPage() {
                 style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
               />
             </div>
+            {/* Presenter identity — builds credibility */}
+            <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
+              <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-[8px] font-bold text-gold-300">S</span>
+              </div>
+              <span>Presented by <span className="text-white/60 font-medium">Sarah</span> — Novada Tech</span>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -570,7 +577,7 @@ export default function ApplyPage() {
                   />
                 </div>
 
-                {/* Trust strip — Trustpilot now clickable */}
+                {/* Trust strip — Trustpilot visually distinct as clickable */}
                 <div className="mt-4 grid grid-cols-2 gap-2">
                   {TRUST_ITEMS.map(({ icon: Icon, label, link }, i) => {
                     const content = (
@@ -580,6 +587,7 @@ export default function ApplyPage() {
                       >
                         <Icon className="w-3.5 h-3.5 flex-shrink-0 text-gold-400" />
                         <span className={link ? "underline underline-offset-2 decoration-white/20" : ""}>{label}</span>
+                        {link && <ExternalLink className="w-3 h-3 flex-shrink-0 text-white/30" />}
                       </div>
                     );
                     if (link) {
@@ -593,19 +601,21 @@ export default function ApplyPage() {
                   })}
                 </div>
 
-                {/* Social proof — near the form */}
+                {/* Social proof — near the form (different client than testimonial grid to avoid repetition) */}
                 <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-[10px] font-bold text-gold-300">J</span>
+                    <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-[10px] font-bold text-purple-300">G</span>
                     </div>
                     <div>
-                      <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;$42K to $91K monthly revenue in under 60 days. The system filled our calendar with qualified sales calls every week.&rdquo;</p>
-                      <p className="mt-1.5 text-xs text-white/40">Josh — Director, Maxicare Plus</p>
+                      <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;We scaled from $28K to $76K monthly in 90 days. They understood our positioning and built outreach that didn&apos;t sound generic.&rdquo;</p>
+                      <p className="mt-1.5 text-xs text-white/40">Gunendu — Director, Growth-Loop Consulting</p>
                     </div>
                   </div>
                   <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-center justify-center gap-4 text-xs text-white/35">
                     <span className="flex items-center gap-1.5"><Users className="w-3 h-3 text-gold-500/50" /> 350+ businesses scaled</span>
+                    <span className="text-white/15">{"\u00B7"}</span>
+                    <span className="flex items-center gap-1.5"><TrendingUp className="w-3 h-3 text-gold-500/50" /> $50M+ tracked revenue across 350+ clients</span>
                     <span className="text-white/15">{"\u00B7"}</span>
                     <a
                       href="https://www.trustpilot.com/review/novadatech.com.au"
