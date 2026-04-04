@@ -94,7 +94,7 @@ function Hero() {
 
           <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
             <iframe
-              src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&rel=0"
+              src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1&rel=0"
               title="Novada Tech — How We Generate High-Value Clients"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -1358,7 +1358,7 @@ function VSLSection() {
           <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
             style={{ paddingBottom: "56.25%" }}>
             <iframe
-              src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&rel=0"
+              src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1&rel=0"
               title="Novada Tech — How We Generate High-Value Clients"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

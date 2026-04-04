@@ -257,7 +257,7 @@ export default function SalesCloserPage() {
               <span>Watch the 2-min overview</span>
             </div>
             <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
-              <iframe src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&rel=0" title="How Novada Tech Places Expert Sales Closers" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }} />
+              <iframe src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1&rel=0" title="How Novada Tech Places Expert Sales Closers" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }} />
             </div>
             <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
               <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
