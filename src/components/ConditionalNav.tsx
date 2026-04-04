@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import LandingFooter from "./LandingFooter";
 
-const STANDALONE_ROUTES = ["/apply", "/get-meetings", "/sales-closer"];
+const STANDALONE_ROUTES = ["/apply", "/get-meetings", "/sales-closer", "/sales-closer2"];
 
 export default function ConditionalNav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
