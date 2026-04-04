@@ -484,7 +484,7 @@ export default function ApplyPage() {
 
             <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
               <iframe
-                src="https://www.youtube.com/embed/w6atSnPDjJw?autoplay=1&mute=1"
+                src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1"
                 title="How Novada Tech Generates High-Value Clients"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -494,9 +494,9 @@ export default function ApplyPage() {
             {/* Presenter identity — builds credibility */}
             <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
               <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-[8px] font-bold text-gold-300">S</span>
+                <span className="text-[8px] font-bold text-gold-300">A</span>
               </div>
-              <span>Presented by <span className="text-white/60 font-medium">Sarah</span> — Novada Tech</span>
+              <span>Presented by <span className="text-white/60 font-medium">Ade</span> — Novada Tech</span>
             </div>
           </motion.div>
         </div>
