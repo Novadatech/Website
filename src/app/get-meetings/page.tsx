@@ -291,7 +291,7 @@ export default function GetMeetingsPage() {
 
             <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
               <iframe
-                src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1"
+                src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&rel=0"
                 title="How Novada Tech Generates Qualified Sales Meetings"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
