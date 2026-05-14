@@ -1,16 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Phone, Star, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { Mail, Phone, ExternalLink } from "lucide-react";
 import Logo from "./Logo";
 
 export default function LandingFooter() {
+  const pathname = usePathname();
+  const useNewLogo = pathname === "/growth-infrastructure";
+
   return (
     <footer className="border-t border-white/[0.06] bg-navy-950">
       <div className="max-container section-padding py-10">
         <div className="flex flex-col items-center gap-6">
           {/* Logo */}
-          <Logo variant="light" className="h-9 w-auto" />
+          {useNewLogo ? (
+            <div className="bg-white rounded-lg px-2.5 py-1.5 flex items-center">
+              <Image
+                src="/Novada Logo.png"
+                alt="Novada Tech"
+                width={220}
+                height={64}
+                className="h-14 w-auto"
+              />
+            </div>
+          ) : (
+            <Logo variant="light" className="h-9 w-auto" />
+          )}
 
           {/* Trustpilot */}
           <a

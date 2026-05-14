@@ -8,7 +8,7 @@ import {
   ChevronLeft, ChevronRight, Play
 } from "lucide-react";
 import Link from "next/link";
-import Logo from "@/components/Logo";
+import Image from "next/image";
 
 function scrollToForm() {
   document.getElementById("growth-form-embed")?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -18,9 +18,8 @@ function scrollToForm() {
 
 const OUTCOMES = [
   "20 qualified appointments on your calendar every month — guaranteed",
-  "A dedicated outbound operations team running your pipeline daily",
-  "Authority content built around you that pre-qualifies before the call",
-  "Multi-platform content engine that compounds your visibility",
+  "Authority video content built around you that grows your brand",
+  "Multi-platform video content engine that compounds your visibility",
   "Pre-qualified appointment booking — no tyre-kickers on your calendar",
   "Complete CRM and pipeline infrastructure — yours to keep",
   "A predictable, forecastable monthly pipeline you can build a business on",
@@ -75,14 +74,14 @@ const TESTIMONIALS = [
   },
   {
     quote: "We'd been burned by two agencies before. Growth Infrastructure was different — it was a system, not a service. 4 new retainer clients in the first 45 days.",
-    name: "Anthony",
-    role: "Founder, Ripple Clarke",
+    name: "Uche",
+    role: "Founder, The Morning Star Community Services",
     avatar: "https://i.pravatar.cc/150?img=33",
   },
   {
     quote: "Discovery call conversion jumped from 28% to over 60%. The authority content meant prospects arrived already sold on us — we just confirmed fit.",
-    name: "Nate",
-    role: "Owner, Larsky Tach and Feed",
+    name: "Malkin",
+    role: "Founder, Support24",
     avatar: "https://i.pravatar.cc/150?img=53",
   },
   {
@@ -140,7 +139,7 @@ const FAQS = [
 ];
 
 const QUALIFIES = [
-  "You sell a high-value service or product ($5K+)",
+  "You sell a high-value service or product ($3K+)",
   "You want 20 qualified appointments filling your calendar every month",
   "You're ready to install a system, not hire another vendor",
 ];
@@ -261,8 +260,12 @@ export default function GrowthInfrastructurePage() {
       {/* ── Minimal sticky header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-b border-white/[0.06]">
         <div className="max-container section-padding">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/growth-infrastructure" className="flex items-center"><Logo variant="light" className="h-9 w-auto" /></Link>
+          <div className="flex items-center justify-between h-20">
+            <Link href="/growth-infrastructure" className="flex items-center">
+              <div className="bg-white rounded-lg px-2.5 py-1.5 flex items-center">
+                <Image src="/Novada Logo.png" alt="Novada Tech" width={220} height={64} className="h-14 w-auto" priority />
+              </div>
+            </Link>
             <div className="flex items-center gap-2 text-xs text-white/40">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>3 partner spots available this quarter</span>
@@ -270,7 +273,7 @@ export default function GrowthInfrastructurePage() {
           </div>
         </div>
       </header>
-      <div className="h-16" />
+      <div className="h-20" />
 
       {/* ── Hero + Above-Fold CTA ── */}
       <section className="relative pt-6 pb-0 overflow-hidden">
@@ -288,7 +291,7 @@ export default function GrowthInfrastructurePage() {
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
-            We install a complete client acquisition infrastructure into your business — outbound system, authority content, and appointment booking. Live in 14 days. If we don&apos;t hit 20 qualified appointments in any month, you don&apos;t pay.
+            We install a complete client acquisition infrastructure into your business — outbound system, authority video content, and appointment booking — designed to generate consistent pipeline in as little as 14 days.
           </motion.p>
 
           {/* ABOVE-THE-FOLD CTA */}
@@ -337,7 +340,7 @@ export default function GrowthInfrastructurePage() {
         <div className="max-container">
           <div className="text-center mb-8">
             <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Real Operators · Real Results</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Hear From Businesses Running Growth Infrastructure&trade;</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Hear From Businesses Scaling Using Our System</h2>
           </div>
           <VideoSlider />
         </div>
@@ -350,7 +353,7 @@ export default function GrowthInfrastructurePage() {
             <div>
               <div className="glass-card gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
                 <div className="flex items-center gap-2 mb-2"><div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /><span className="text-xs text-emerald-400 font-medium uppercase tracking-wider">3 Partner Spots Available This Quarter</span></div>
-                <h2 className="text-xl md:text-2xl font-bold text-white">See If You Qualify For Growth Infrastructure&trade;</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-white">See If You Qualify For Our Partnership Program</h2>
                 <p className="mt-1.5 text-base text-white/80">Tell us about your business. If we&apos;re a fit, we&apos;ll guarantee 20 qualified appointments every month — or you don&apos;t pay.</p>
                 <div className="mt-4">
                   <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
@@ -390,10 +393,10 @@ export default function GrowthInfrastructurePage() {
               {/* Social proof near form */}
               <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
                 <div className="flex items-start gap-3">
-                  <img src="https://i.pravatar.cc/150?img=33" alt="Anthony" className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
+                  <img src="https://i.pravatar.cc/150?img=12" alt="Josh" className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;We&apos;d been burned by two agencies before. Growth Infrastructure was different — it was a system, not a service. 4 new retainer clients in the first 45 days.&rdquo;</p>
-                    <p className="mt-1.5 text-xs text-white/40">Anthony — Founder, Ripple Clarke</p>
+                    <p className="mt-1.5 text-xs text-white/40">Josh — Founder, Maxicare Australia</p>
                   </div>
                 </div>
                 <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-center justify-center gap-4 text-xs text-white/35 flex-wrap">
@@ -442,7 +445,7 @@ export default function GrowthInfrastructurePage() {
               <span className="gradient-text">A System</span>
             </h2>
             <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Agencies rent you attention. Lead-gen tools sell you data. Growth Infrastructure&trade; installs a complete acquisition system into your business — and guarantees it performs.
+              Agencies rent you attention. Lead-gen tools sell you data. Novada Tech installs a complete acquisition system into your business — and guarantees it performs.
             </p>
           </div>
 
@@ -453,7 +456,7 @@ export default function GrowthInfrastructurePage() {
               <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Marketing Agency</p></div>
               <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Lead-Gen Tool</p></div>
               <div className="p-4 text-center bg-gold-500/[0.05] border-l border-gold-500/15">
-                <p className="text-xs md:text-sm font-semibold text-gold-400">Growth Infrastructure&trade;</p>
+                <p className="text-xs md:text-sm font-semibold text-gold-400">Novada Tech</p>
               </div>
             </div>
             {DIFFERENTIATION.map((row, i) => (
@@ -509,7 +512,7 @@ export default function GrowthInfrastructurePage() {
         <div className="max-container">
           <div className="text-center mb-10">
             <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">What Our Partners Say</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">350+ Businesses Have Installed Growth Infrastructure&trade;</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">350+ Businesses Have Installed Our Growth Infrastructure</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
             {TESTIMONIALS.map((t, i) => (
