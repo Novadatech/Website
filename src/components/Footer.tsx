@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
-import Logo from "./Logo";
+import NovadaLogo from "./NovadaLogo";
 
 const socials = [
   { icon: Facebook, href: "https://www.facebook.com/novadatech/", label: "Facebook" },
@@ -21,9 +21,9 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-6">
             <Link href="/" className="flex items-center">
-              <Logo
+              <NovadaLogo
                 variant="light"
-                className="h-9 w-auto"
+                className="h-12 w-auto"
               />
             </Link>
             <p className="text-white/80 text-base max-w-md leading-relaxed">

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import Logo from "./Logo";
+import NovadaLogo from "./NovadaLogo";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -39,9 +39,9 @@ export default function Navbar() {
           <nav className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center group">
-              <Logo
+              <NovadaLogo
                 variant="light"
-                className="h-9 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
+                className="h-12 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
               />
             </Link>
 

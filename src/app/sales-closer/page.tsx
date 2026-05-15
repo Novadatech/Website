@@ -8,7 +8,7 @@ import {
   ChevronLeft, ChevronRight, Zap, Play
 } from "lucide-react";
 import Link from "next/link";
-import Logo from "@/components/Logo";
+import NovadaLogo from "@/components/NovadaLogo";
 
 function scrollToForm() {
   document.getElementById("closer-form-embed")?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -202,13 +202,13 @@ export default function SalesCloserPage() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-b border-white/[0.06]">
         <div className="max-container section-padding">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/sales-closer" className="flex items-center"><Logo variant="light" className="h-9 w-auto" /></Link>
+          <div className="flex items-center justify-between h-20">
+            <Link href="/sales-closer" className="flex items-center"><NovadaLogo variant="light" className="h-12 w-auto" /></Link>
             <div className="flex items-center gap-2 text-xs text-white/40"><div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /><span>3 placement spots available this month</span></div>
           </div>
         </div>
       </header>
-      <div className="h-16" />
+      <div className="h-20" />
 
       {/* ── Hero + Above-Fold CTA ── */}
       <section className="relative pt-6 pb-0 overflow-hidden">

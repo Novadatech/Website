@@ -8,7 +8,7 @@ import {
   ChevronLeft, ChevronRight, Play
 } from "lucide-react";
 import Link from "next/link";
-import Logo from "@/components/Logo";
+import NovadaLogo from "@/components/NovadaLogo";
 
 // ─── Scroll to form helper ──────────────────────────────────────────────────
 function scrollToForm() {
@@ -225,9 +225,9 @@ export default function GetMeetingsPage() {
       {/* ── Minimal sticky header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-b border-white/[0.06]">
         <div className="max-container section-padding">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
             <Link href="/get-meetings" className="flex items-center">
-              <Logo variant="light" className="h-9 w-auto" />
+              <NovadaLogo variant="light" className="h-12 w-auto" />
             </Link>
             <div className="flex items-center gap-2 text-xs text-white/40">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -237,7 +237,7 @@ export default function GetMeetingsPage() {
         </div>
       </header>
 
-      <div className="h-16" />
+      <div className="h-20" />
 
       {/* ── Hero + Above-Fold CTA ── */}
       <section className="relative pt-6 pb-0 overflow-hidden">
