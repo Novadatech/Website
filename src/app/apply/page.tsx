@@ -50,9 +50,9 @@ function scrollToForm() {
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const BENEFITS = [
-  "The exact system we'd deploy to generate 30–60 qualified sales calls every month for your business",
+  "The exact system we'd deploy to generate 20+ qualified sales calls every month for your business",
   "A custom acquisition plan — the channels, targeting, and messaging tailored to your market",
-  "A clear revenue projection showing what 30–60 monthly sales calls means for your bottom line",
+  "A clear revenue projection showing what 20+ monthly sales calls means for your bottom line",
   "How to stop relying on referrals and build a predictable pipeline that fills your calendar every month",
   "Whether we're the right fit — and if not, you still walk away with a strategy you can execute yourself",
 ];
@@ -99,15 +99,15 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     q: "Is this call really free?",
-    a: "Yes, 100% free. We'll show you the exact system to generate 30–60 qualified sales calls every month — no charge, no obligation to work with us afterwards.",
+    a: "Yes, 100% free. We'll show you the exact system to generate 20+ qualified sales calls every month — no charge, no obligation to work with us afterwards.",
   },
   {
     q: "Will I be pressured to buy anything?",
-    a: "Absolutely not. We only work with businesses we're confident we can generate 30–60 qualified sales calls for. If we're not a fit, we'll tell you — and you still walk away with a clear plan.",
+    a: "Absolutely not. We only work with businesses we're confident we can generate 20+ qualified sales calls for. If we're not a fit, we'll tell you — and you still walk away with a clear plan.",
   },
   {
     q: "How long does the call take?",
-    a: "30 minutes. We show you the exact system we'd use to generate 30–60 qualified sales calls monthly for your business. No fluff, no hard sell.",
+    a: "30 minutes. We show you the exact system we'd use to generate 20+ qualified sales calls monthly for your business. No fluff, no hard sell.",
   },
   {
     q: "What do I need to prepare?",
@@ -115,7 +115,7 @@ const FAQS = [
   },
   {
     q: "What if I've been burned by agencies before?",
-    a: "We hear this on almost every call. That's exactly why this strategy call is free — no retainers, no upfront fees, no commitment. We show you the exact system to get 30–60 qualified sales calls monthly. If it makes sense to work together, great. If not, you keep the plan.",
+    a: "We hear this on almost every call. That's exactly why this strategy call is free — no retainers, no upfront fees, no commitment. We show you the exact system to get 20+ qualified sales calls monthly. If it makes sense to work together, great. If not, you keep the plan.",
   },
 ];
 
@@ -429,7 +429,7 @@ export default function ApplyPage() {
             className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
           >
             We&apos;ll Show You Exactly How to Get{" "}
-            <span className="gradient-text">30 – 60 Qualified Sales Calls</span>{" "}
+            <span className="gradient-text">20+ Qualified Sales Calls</span>{" "}
             Every Month For Free
           </motion.h1>
 
@@ -749,7 +749,7 @@ export default function ApplyPage() {
               <div className="space-y-3">
                 {[
                   "You sell a high-value service or product ($3K–$50K+)",
-                  "You want a clear, actionable plan to get 30–60 qualified sales calls monthly",
+                  "You want a clear, actionable plan to get 20+ qualified sales calls monthly",
                   "You're open to implementing the strategy yourself or having us do it",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
@@ -897,7 +897,7 @@ export default function ApplyPage() {
                 You&apos;ve Seen the Proof
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight text-balance">
-                Your Free Strategy to Get 30–60 Qualified Sales Calls Is One Form Away.
+                Your Free Strategy to Get 20+ Qualified Sales Calls Is One Form Away.
               </h2>
               <p className="mt-4 text-white/80 text-lg max-w-lg mx-auto leading-relaxed">
                 350+ business owners have already seen this strategy. The call is free. The plan is yours. Implement it yourself or let us do it for you.
