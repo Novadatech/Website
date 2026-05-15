@@ -57,6 +57,15 @@ const BENEFITS = [
   "Whether we're the right fit — and if not, you still walk away with a strategy you can execute yourself",
 ];
 
+const DIFFERENTIATION = [
+  { label: "Payment Model", agency: "Monthly retainer", leadgen: "Pay-per-lead", novada: "Performance guaranteed" },
+  { label: "What You Get", agency: "Reports & dashboards", leadgen: "Raw lead data", novada: "Booked appointments + system" },
+  { label: "Performance Guarantee", agency: "None", leadgen: "None", novada: "20 appointments/mo or you don't pay" },
+  { label: "Authority Building", agency: "Optional add-on", leadgen: "Not included", novada: "Built into the system" },
+  { label: "Asset Ownership", agency: "Theirs", leadgen: "Theirs", novada: "Yours — installed in your business" },
+  { label: "Time to Pipeline", agency: "60–90 days", leadgen: "Variable", novada: "Live in 14 days" },
+];
+
 // Reduced from 9 to 4 strongest testimonials with specific outcomes
 // TODO: Replace placeholder avatar URLs with actual client photos
 const TESTIMONIALS = [
@@ -664,6 +673,50 @@ export default function ApplyPage() {
               onClick={scrollToForm}
               className="btn-primary mx-auto"
             >
+              Book My Free Strategy Call
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Why This Isn't Another Agency (Differentiation) ── */}
+      <section className="section-padding py-16 border-t border-white/[0.04]">
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Why This Isn&apos;t Another Agency</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              The Difference Between{" "}
+              <span className="gradient-text">A Service</span> and{" "}
+              <span className="gradient-text">A System</span>
+            </h2>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
+              Agencies rent you attention. Lead-gen tools sell you data. Novada Tech installs a complete acquisition system into your business — and guarantees it performs.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
+            {/* Header */}
+            <div className="grid grid-cols-4 bg-white/[0.03] border-b border-white/[0.06]">
+              <div className="p-4 col-span-1" />
+              <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Marketing Agency</p></div>
+              <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Lead-Gen Tool</p></div>
+              <div className="p-4 text-center bg-gold-500/[0.05] border-l border-gold-500/15">
+                <p className="text-xs md:text-sm font-semibold text-gold-400">Novada Tech</p>
+              </div>
+            </div>
+            {DIFFERENTIATION.map((row, i) => (
+              <div key={i} className={`grid grid-cols-4 border-b border-white/[0.04] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}>
+                <div className="p-4 flex items-center"><span className="text-xs md:text-sm text-white/60">{row.label}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.agency}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.leadgen}</span></div>
+                <div className="p-4 flex items-center justify-center text-center bg-gold-500/[0.04] border-l border-gold-500/10"><span className="text-xs text-gold-400/90 font-medium">{row.novada}</span></div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <button onClick={scrollToForm} className="btn-primary mx-auto">
               Book My Free Strategy Call
               <ArrowRight className="w-4 h-4" />
             </button>
