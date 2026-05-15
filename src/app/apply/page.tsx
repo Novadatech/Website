@@ -70,25 +70,25 @@ const DIFFERENTIATION = [
 // TODO: Replace placeholder avatar URLs with actual client photos
 const TESTIMONIALS = [
   {
-    quote: "$42K to $91K monthly revenue in under 60 days. The system filled our calendar with qualified sales calls every week — 18 per month, all with decision-makers ready to buy.",
+    quote: "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.",
     name: "Josh",
     role: "Director, Maxicare Plus",
     avatar: "https://i.pravatar.cc/150?img=12",
   },
   {
-    quote: "We'd been burned by two agencies before. This time, the qualified sales calls actually showed up. We closed four new retainer clients in our first 45 days — all from calls they booked.",
-    name: "Anthony",
-    role: "Founder, Ripple Clarke",
+    quote: "We'd been burned by two agencies before. Growth Infrastructure was different — it was a system, not a service. 4 new retainer clients in the first 45 days.",
+    name: "Uche",
+    role: "Founder, The Morning Star Community Services",
     avatar: "https://i.pravatar.cc/150?img=33",
   },
   {
-    quote: "Every qualified sales call is with someone who already understands our value. Conversion rate jumped from 28% to over 60%. The calls are with buyers, not tyre-kickers.",
-    name: "Nate",
-    role: "Owner, Larsky Tach and Feed",
+    quote: "Discovery call conversion jumped from 28% to over 60%. The authority content meant prospects arrived already sold on us — we just confirmed fit.",
+    name: "Malkin",
+    role: "Founder, Support24",
     avatar: "https://i.pravatar.cc/150?img=53",
   },
   {
-    quote: "More qualified sales calls in month one than the previous six months combined. I actually had to pause the system because I couldn't take any more calls.",
+    quote: "More qualified appointments in month one than in the previous six months combined. The infrastructure ran on its own — I went back to delivery.",
     name: "Jessica",
     role: "Founder, Jessica Teds Coaching",
     avatar: "https://i.pravatar.cc/150?img=47",
@@ -610,15 +610,13 @@ export default function ApplyPage() {
                   })}
                 </div>
 
-                {/* Social proof — near the form (different client than testimonial grid to avoid repetition) */}
+                {/* Social proof — near the form */}
                 <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-[10px] font-bold text-purple-300">G</span>
-                    </div>
+                    <img src="https://i.pravatar.cc/150?img=12" alt="Josh" className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;We scaled from $28K to $76K monthly in 90 days. They understood our positioning and built outreach that didn&apos;t sound generic.&rdquo;</p>
-                      <p className="mt-1.5 text-xs text-white/40">Gunendu — Director, Growth-Loop Consulting</p>
+                      <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;We&apos;d been burned by two agencies before. Growth Infrastructure was different — it was a system, not a service. 4 new retainer clients in the first 45 days.&rdquo;</p>
+                      <p className="mt-1.5 text-xs text-white/40">Josh — Founder, Maxicare Australia</p>
                     </div>
                   </div>
                   <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-center justify-center gap-4 text-xs text-white/35">
