@@ -8,7 +8,7 @@ import {
   ChevronLeft, ChevronRight, Play
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import NovadaLogo from "@/components/NovadaLogo";
 
 function scrollToForm() {
   document.getElementById("growth-form-embed")?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -262,9 +262,7 @@ export default function GrowthInfrastructurePage() {
         <div className="max-container section-padding">
           <div className="flex items-center justify-between h-20">
             <Link href="/growth-infrastructure" className="flex items-center">
-              <div className="bg-white rounded-lg px-2.5 py-1.5 flex items-center">
-                <Image src="/Novada Logo.png" alt="Novada Tech" width={220} height={64} className="h-14 w-auto" priority />
-              </div>
+              <NovadaLogo variant="light" className="h-12 w-auto" />
             </Link>
             <div className="flex items-center gap-2 text-xs text-white/40">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
