@@ -17,7 +17,7 @@ function scrollToForm() {
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const OUTCOMES = [
-  "20 qualified appointments on your calendar every month — guaranteed",
+  "20+ qualified appointments on your calendar every month — guaranteed",
   "Authority video content built around you that grows your brand",
   "Multi-platform video content engine that compounds your visibility",
   "Pre-qualified appointment booking — no tyre-kickers on your calendar",
@@ -43,7 +43,7 @@ const DIFFERENTIATION = [
     label: "Performance Guarantee",
     agency: "None",
     leadgen: "None",
-    novada: "20 appointments/mo or you don't pay",
+    novada: "20+ appointments/mo or you don't pay",
   },
   {
     label: "Authority Building",
@@ -106,23 +106,23 @@ const VIDEO_TESTIMONIALS = [
 const FAQS = [
   {
     q: "What counts as a 'qualified appointment'?",
-    a: "A qualified appointment is with a decision-maker who fits your ideal client profile, has budget for your offer, and has confirmed interest in your service. The criteria is agreed and signed off with you before activation — not invented after the fact. If it doesn't meet the criteria, it doesn't count toward the 20.",
+    a: "A qualified appointment is with a decision-maker who fits your ideal client profile, has budget for your offer, and has confirmed interest in your service. The criteria is agreed and signed off with you before activation — not invented after the fact. If it doesn't meet the criteria, it doesn't count toward the 20+.",
   },
   {
     q: "What does the guarantee actually mean?",
-    a: "If we don't deliver 20 qualified appointments in any given month, you don't pay us for that month. The guarantee is written into the agreement — not a marketing line. We absorb the risk, not you.",
+    a: "If we don't deliver 20+ qualified appointments in any given month, you don't pay us for that month. The guarantee is written into the agreement — not a marketing line. We absorb the risk, not you.",
   },
   {
     q: "How is this different from a marketing agency?",
     a: "Agencies sell campaigns — you pay every month and the moment you stop, the leads stop. Growth Infrastructure is a system installed into your business. It produces appointments daily, builds an authority asset you own, and is engineered to compound. You're buying a permanent capability, not renting attention.",
   },
   {
-    q: "Why 20 appointments specifically?",
-    a: "20 qualified appointments per month is the threshold where most premium-ticket service businesses scale predictably. It's enough volume to forecast revenue, hire confidently, and turn growth into a system rather than a guess. Less than that and your pipeline is fragile; more than that requires deeper sales infrastructure first.",
+    q: "Why 20+ appointments specifically?",
+    a: "20+ qualified appointments per month is the threshold where most premium-ticket service businesses scale predictably. It's enough volume to forecast revenue, hire confidently, and turn growth into a system rather than a guess. Less than that and your pipeline is fragile; more than that requires deeper sales infrastructure first.",
   },
   {
     q: "How long until I see the first appointments?",
-    a: "The infrastructure is fully live within 14 days of activation. First qualified appointments typically land on your calendar inside that window, with the full 20/month target hit by the end of month one. We move fast because the system is already proven — we just install it into your specific business.",
+    a: "The infrastructure is fully live within 14 days of activation. First qualified appointments typically land on your calendar inside that window, with the full 20+/month target hit by the end of month one. We move fast because the system is already proven — we just install it into your specific business.",
   },
   {
     q: "Will I have to be on every call?",
@@ -140,7 +140,7 @@ const FAQS = [
 
 const QUALIFIES = [
   "You sell a high-value service or product ($3K+)",
-  "You want 20 qualified appointments filling your calendar every month",
+  "You want 20+ qualified appointments filling your calendar every month",
   "You're ready to install a system, not hire another vendor",
 ];
 
@@ -230,7 +230,7 @@ function StickyCtaBar() {
         <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-white">20 qualified appointments every month</p>
+              <p className="text-sm font-semibold text-white">20+ qualified appointments every month</p>
               <p className="text-xs text-white/50">Guaranteed. Or you don&apos;t pay.</p>
             </div>
             <button onClick={scrollToForm} className="btn-primary text-sm py-3 px-6 w-full sm:w-auto">
@@ -285,7 +285,7 @@ export default function GrowthInfrastructurePage() {
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
             Get{" "}
-            <span className="gradient-text">20 Qualified Appointments</span>{" "}Every Month — Guaranteed Or You Don&apos;t Pay.
+            <span className="gradient-text">20+ Qualified Appointments</span>{" "}Every Month — Guaranteed Or You Don&apos;t Pay.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
@@ -299,7 +299,7 @@ export default function GrowthInfrastructurePage() {
               <ArrowRight className="w-5 h-5" />
             </button>
             <div className="mt-3 flex items-center justify-center gap-4 text-xs text-white/35 flex-wrap">
-              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> 20 appointments guaranteed monthly</span>
+              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> 20+ appointments guaranteed monthly</span>
               <span className="text-white/15">|</span>
               <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors">
                 <span className="text-gold-400 tracking-tight">{"★★★★★"}</span>
@@ -352,7 +352,7 @@ export default function GrowthInfrastructurePage() {
               <div className="glass-card gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
                 <div className="flex items-center gap-2 mb-2"><div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /><span className="text-xs text-emerald-400 font-medium uppercase tracking-wider">3 Partner Spots Available This Quarter</span></div>
                 <h2 className="text-xl md:text-2xl font-bold text-white">See If You Qualify For Our Partnership Program</h2>
-                <p className="mt-1.5 text-base text-white/80">Tell us about your business. If we&apos;re a fit, we&apos;ll guarantee 20 qualified appointments every month — or you don&apos;t pay.</p>
+                <p className="mt-1.5 text-base text-white/80">Tell us about your business. If we&apos;re a fit, we&apos;ll guarantee 20+ qualified appointments every month — or you don&apos;t pay.</p>
                 <div className="mt-4">
                   <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
                     <span className="flex items-center gap-1.5"><span className="text-gold-400 font-medium">Step 1</span><span>— Your details</span><span className="text-white/20">{"→"}</span><span>Step 2 — Pick your time</span></span>
@@ -368,7 +368,7 @@ export default function GrowthInfrastructurePage() {
               {/* Trust strip */}
               <div className="mt-4 grid grid-cols-2 gap-2">
                 {[
-                  { icon: Shield, label: "20 Appointments Guaranteed", micro: "Written into your agreement" },
+                  { icon: Shield, label: "20+ Appointments Guaranteed", micro: "Written into your agreement" },
                   { icon: CheckCircle, label: "If We Miss, You Don't Pay" },
                   { icon: Star, label: "Rated 4.9★ on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
                   { icon: Clock, label: "Live In 14 Days" },
@@ -414,7 +414,7 @@ export default function GrowthInfrastructurePage() {
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-7">
             <h3 className="text-xl md:text-2xl font-bold text-white mb-1">What You Walk Away With</h3>
             <p className="text-base text-white/80 mb-4">Inside the Growth Infrastructure&trade; partnership</p>
-            <p className="text-base text-emerald-400/80 italic mb-2 leading-relaxed">Live in 14 days. 20 qualified appointments by month one.</p>
+            <p className="text-base text-emerald-400/80 italic mb-2 leading-relaxed">Live in 14 days. 20+ qualified appointments by month one.</p>
             <p className="text-base text-emerald-400/80 italic mb-5 leading-relaxed">If we don&apos;t deliver — you don&apos;t pay.</p>
             <ul className="space-y-3">
               {OUTCOMES.map((o, i) => (
@@ -499,7 +499,7 @@ export default function GrowthInfrastructurePage() {
                   <div key={i} className="flex items-start gap-3"><div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div><span className="text-base text-white/80 leading-relaxed">{item}</span></div>
                 ))}
               </div>
-              <p className="mt-6 text-base text-white/80 leading-relaxed">If the left column describes you — apply above. If we&apos;re a fit, we guarantee 20 qualified appointments every month.</p>
+              <p className="mt-6 text-base text-white/80 leading-relaxed">If the left column describes you — apply above. If we&apos;re a fit, we guarantee 20+ qualified appointments every month.</p>
             </motion.div>
           </div>
         </div>
@@ -557,7 +557,7 @@ export default function GrowthInfrastructurePage() {
                 Your Pipeline Doesn&apos;t Need More Effort.{" "}
                 <span className="gradient-text">It Needs Infrastructure.</span>
               </h2>
-              <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ businesses have made the switch from campaigns to infrastructure. 20 qualified appointments every month, guaranteed. Or you don&apos;t pay.</p>
+              <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ businesses have made the switch from campaigns to infrastructure. 20+ qualified appointments every month, guaranteed. Or you don&apos;t pay.</p>
 
               <button onClick={scrollToForm} className="btn-primary mt-8 inline-flex text-base">
                 See If You Qualify
@@ -565,7 +565,7 @@ export default function GrowthInfrastructurePage() {
               </button>
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
-                <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 20 Appointments Guaranteed</span>
+                <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 20+ Appointments Guaranteed</span>
                 <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"★"} Trustpilot</span></a>
                 <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" /> Written Guarantee</span>
                 <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> 350+ Businesses</span>

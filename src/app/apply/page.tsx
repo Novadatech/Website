@@ -60,7 +60,7 @@ const BENEFITS = [
 const DIFFERENTIATION = [
   { label: "Payment Model", agency: "Monthly retainer", leadgen: "Pay-per-lead", novada: "Performance guaranteed" },
   { label: "What You Get", agency: "Reports & dashboards", leadgen: "Raw lead data", novada: "Booked appointments + system" },
-  { label: "Performance Guarantee", agency: "None", leadgen: "None", novada: "20 appointments/mo or you don't pay" },
+  { label: "Performance Guarantee", agency: "None", leadgen: "None", novada: "20+ appointments/mo or you don't pay" },
   { label: "Authority Building", agency: "Optional add-on", leadgen: "Not included", novada: "Built into the system" },
   { label: "Asset Ownership", agency: "Theirs", leadgen: "Theirs", novada: "Yours — installed in your business" },
   { label: "Time to Pipeline", agency: "60–90 days", leadgen: "Variable", novada: "Live in 14 days" },
