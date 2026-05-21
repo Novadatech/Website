@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Shield, Star, TrendingUp, Clock, Check } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
-import Script from "next/script";
 
 export default function BookPage() {
   useEffect(() => {
@@ -20,10 +19,14 @@ export default function BookPage() {
 
   return (
     <>
-      {/* Google Ads: Submit Lead Form conversion */}
-      <Script id="gtag-conversion-book" strategy="afterInteractive">
-        {`gtag('event', 'conversion', {'send_to': 'AW-16650862607/p15dCIjGk4ocEI-A4IM-'});`}
-      </Script>
+      {/* NOTE: No conversion tag on /book-call by design.
+          This page is linked directly from site CTAs (a page view here is
+          NOT a form submission), so firing a conversion on load would count
+          non-converters and corrupt Google Ads smart bidding. The genuine
+          conversion — the completed booking — fires on /confirmed-call,
+          which is the post-booking redirect destination. If a separate
+          "lead form submit" conversion is wanted, configure it on the GHL
+          form's submission/redirect, not on this directly-linkable page. */}
 
       {/* Hero */}
       <section className="relative pt-32 pb-10 md:pt-40 md:pb-14 overflow-hidden">

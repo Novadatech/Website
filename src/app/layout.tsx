@@ -47,6 +47,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased">
+        {/* Google Tag Manager — main snippet.
+            Uses next/script with strategy="beforeInteractive" — Next.js
+            injects this into <head> and ensures it loads before page
+            becomes interactive, mirroring Google's recommended placement
+            of the GTM snippet "as high up in <head> as possible". */}
+        <Script id="gtm-init" strategy="beforeInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5CL2Q8M8');`}
+        </Script>
+
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -63,17 +76,10 @@ export default function RootLayout({
           </ConditionalNav>
         </LeadFormProvider>
 
-        {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-16650862607"
-          strategy="afterInteractive"
-        />
-        <Script id="google-ads" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'AW-16650862607');`}
-        </Script>
+        {/* NOTE: Removed direct gtag.js loader for AW-16650862607.
+            GTM (above) now loads the Google Ads tag via the container,
+            so a hardcoded loader here would cause double-firing. All
+            Google Ads / GA4 tags are now managed inside GTM. */}
 
         {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">

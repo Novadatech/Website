@@ -9,9 +9,34 @@ import Script from "next/script";
 export default function ConfirmationPage() {
   return (
     <>
-      {/* Google Ads: Booked Call conversion */}
+      {/* Google Ads: Booked Call conversion.
+          Re-declares the dataLayer/gtag stub so the event is always queued —
+          even if this runs before the base gtag tag in layout.tsx. gtag.js
+          drains the dataLayer queue once it loads, so the conversion is
+          never lost to a script load-order race. */}
       <Script id="gtag-conversion-confirmed" strategy="afterInteractive">
-        {`gtag('event', 'conversion', {'send_to': 'AW-16650862607/YmXMCIr3pYocEI-A4IM-'});`}
+        {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('event', 'conversion', {'send_to': 'AW-16650862607/YmXMCIr3pYocEI-A4IM-'});`}
+      </Script>
+
+      {/* Meta Pixel: Schedule conversion (booked strategy call).
+          Re-runs the pixel bootstrap defensively — the IIFE's `if(f.fbq)return`
+          guard makes it a no-op if the base pixel from layout.tsx already
+          loaded, and sets up the fbq queue if this runs first. Either way the
+          Schedule event is never lost to a script load-order race. Repeated
+          fbq('init') on the same pixel ID is safely deduped by Meta. */}
+      <Script id="meta-conversion-confirmed" strategy="afterInteractive">
+        {`!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3515804598723791');
+fbq('track', 'Schedule');`}
       </Script>
 
       {/* Hero */}
