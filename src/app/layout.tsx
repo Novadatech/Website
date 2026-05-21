@@ -46,21 +46,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="font-sans antialiased">
-        {/* Google Tag Manager — main snippet.
-            Uses next/script with strategy="beforeInteractive" — Next.js
-            injects this into <head> and ensures it loads before page
-            becomes interactive, mirroring Google's recommended placement
-            of the GTM snippet "as high up in <head> as possible". */}
-        <Script id="gtm-init" strategy="beforeInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      <head>
+        {/* Google Tag Manager — main snippet, in <head> only.
+            Using a raw <script> tag (not next/script) so it lives ONLY in
+            <head>. next/script with strategy="beforeInteractive" was
+            causing Next.js to inject the snippet into both <head> AND
+            <body>, which interferes with GTM tag firing. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5CL2Q8M8');`}
-        </Script>
-
-        {/* Google Tag Manager (noscript) */}
+})(window,document,'script','dataLayer','GTM-5CL2Q8M8');`,
+          }}
+        />
+      </head>
+      <body className="font-sans antialiased">
+        {/* Google Tag Manager (noscript) — body has ONLY this, no JS script */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-5CL2Q8M8"
