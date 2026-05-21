@@ -135,15 +135,16 @@ export default function OnboardingSupportPage() {
                 className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-2 min-h-[600px] relative z-10"
               >
                 <iframe
-                  src="https://link.novadatech.com/widget/booking/8j4TVe5uOcjxbNfVC3kp"
+                  src="https://link.novadatech.com/widget/booking/QO8M58PsBFu5aP11Ewek"
                   style={{
                     width: "100%",
                     minHeight: "700px",
                     border: "none",
+                    overflow: "hidden",
                     display: "block",
                   }}
-                  scrolling="yes"
-                  id="onboarding-calendar-embed"
+                  scrolling="no"
+                  id="QO8M58PsBFu5aP11Ewek_1779377905612"
                 />
               </div>
             </div>
