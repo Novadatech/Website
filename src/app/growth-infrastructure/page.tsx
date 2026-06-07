@@ -308,7 +308,6 @@ export default function GrowthInfrastructurePage() {
             >
               <span className="text-gold-400 text-lg leading-none tracking-tight">{"★★★★★"}</span>
               <span className="text-sm sm:text-base text-white font-semibold">4.9 on Trustpilot</span>
-              <span className="text-xs text-white/50 hidden sm:inline">· 77+ reviews</span>
             </a>
 
             <div className="hidden sm:block w-px h-6 bg-white/15" />
