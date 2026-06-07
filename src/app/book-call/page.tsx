@@ -58,8 +58,7 @@ export default function BookPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-base text-white/80 max-w-2xl mx-auto leading-relaxed"
           >
-            In 30 minutes, we&apos;ll map out exactly how to build a predictable
-            client acquisition system for your business — no obligation, no hard sell.
+            In 30 minutes, we will show you exactly how we generate 20+ qualified sales calls every month for your business.
           </motion.p>
 
           {/* STANDALONE TRUST BAR — prominent social proof */}
@@ -118,7 +117,7 @@ export default function BookPage() {
                 <div className="mt-8 pt-6 border-t border-white/[0.06]">
                   <p className="text-base text-white/80 leading-relaxed">
                     This call is best suited for business owners selling
-                    high-value services ($3K–$50K+) who are ready to scale with
+                    high-value services ($3K+) who are ready to scale with
                     a proven system.
                   </p>
                 </div>
@@ -156,13 +155,20 @@ export default function BookPage() {
               <div className="flex text-gold-400 justify-center text-sm mb-4">
                 ★★★★★
               </div>
-              <p className="text-white/80 leading-relaxed max-w-lg mx-auto">
-                &ldquo;The strategy call alone gave us more clarity than 6 months
-                of working with our previous agency. Highly recommend.&rdquo;
+              <p className="text-white/80 leading-relaxed max-w-lg mx-auto italic">
+                &ldquo;We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.&rdquo;
               </p>
-              <p className="mt-4 text-sm text-white/30">
-                Rated 5.0 on Trustpilot
-              </p>
+              <div className="mt-5 flex items-center justify-center gap-3">
+                <img
+                  src="https://i.pravatar.cc/150?img=12"
+                  alt="Josh"
+                  className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                />
+                <div className="text-left">
+                  <p className="text-sm font-semibold text-white">Josh</p>
+                  <p className="text-xs text-white/50">Director, Maxicare Plus</p>
+                </div>
+              </div>
             </div>
           </AnimatedSection>
         </div>
