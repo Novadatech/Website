@@ -292,6 +292,33 @@ export default function GrowthInfrastructurePage() {
             We install a complete client acquisition infrastructure into your business — outbound system, authority video content, and appointment booking — designed to generate consistent pipeline in as little as 14 days.
           </motion.p>
 
+          {/* STANDALONE TRUST BAR — prominent social proof above the CTA so it
+              registers in the 3-second cold-traffic window and primes the click. */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+          >
+            <a
+              href="https://www.trustpilot.com/review/novadatech.com.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/[0.04] border border-white/[0.10] hover:bg-white/[0.07] hover:border-gold-500/30 transition-all"
+            >
+              <span className="text-gold-400 text-lg leading-none tracking-tight">{"★★★★★"}</span>
+              <span className="text-sm sm:text-base text-white font-semibold">4.9 on Trustpilot</span>
+              <span className="text-xs text-white/50 hidden sm:inline">· 77+ reviews</span>
+            </a>
+
+            <div className="hidden sm:block w-px h-6 bg-white/15" />
+
+            <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/[0.04] border border-white/[0.10]">
+              <Users className="w-5 h-5 text-gold-400" />
+              <span className="text-sm sm:text-base text-white font-semibold">Join 350+ service businesses</span>
+            </div>
+          </motion.div>
+
           {/* ABOVE-THE-FOLD CTA */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-6">
             <button onClick={scrollToForm} className="btn-primary text-base md:text-lg px-10 py-4">
@@ -301,12 +328,7 @@ export default function GrowthInfrastructurePage() {
             <div className="mt-3 flex items-center justify-center gap-4 text-xs text-white/35 flex-wrap">
               <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> 20+ appointments guaranteed monthly</span>
               <span className="text-white/15">|</span>
-              <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors">
-                <span className="text-gold-400 tracking-tight">{"★★★★★"}</span>
-                <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
-              </a>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-gold-500/60" /> Join 350+ service businesses</span>
+              <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-gold-500/60" /> You don&apos;t pay until we deliver</span>
             </div>
           </motion.div>
         </div>
