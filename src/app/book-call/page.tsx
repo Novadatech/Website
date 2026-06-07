@@ -2,8 +2,9 @@
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Shield, Star, TrendingUp, Clock, Check } from "lucide-react";
+import { Shield, TrendingUp, Clock, Check } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import HeroTrustBar from "@/components/HeroTrustBar";
 
 export default function BookPage() {
   useEffect(() => {
@@ -61,7 +62,10 @@ export default function BookPage() {
             client acquisition system for your business — no obligation, no hard sell.
           </motion.p>
 
-          {/* Trust signals */}
+          {/* STANDALONE TRUST BAR — prominent social proof */}
+          <HeroTrustBar className="mt-8" />
+
+          {/* Trust signals (call-feature reassurance, Trustpilot moved into HeroTrustBar above) */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -75,10 +79,6 @@ export default function BookPage() {
             <div className="flex items-center gap-2">
               <Shield className="w-4 h-4" />
               <span>No Obligation</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Star className="w-4 h-4" />
-              <span>4.9★ Trustpilot</span>
             </div>
             <div className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />

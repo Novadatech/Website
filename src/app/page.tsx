@@ -23,6 +23,7 @@ import {
   Clock,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import HeroTrustBar from "@/components/HeroTrustBar";
 import { useState, useCallback, useEffect } from "react";
 
 
@@ -64,7 +65,7 @@ function Hero() {
           That Gets You There — Without Retainers
         </motion.h1>
 
-        {/* Above-fold social proof */}
+        {/* Above-fold social proof — replaced by HeroTrustBar below subheading */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -120,6 +121,10 @@ function Hero() {
         >
           We install a complete client acquisition system into your business — from lead generation to sales closing. You only pay when we deliver results.
         </motion.p>
+
+        {/* STANDALONE TRUST BAR — prominent social proof above the CTAs */}
+        <HeroTrustBar className="mt-6" />
+
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

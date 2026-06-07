@@ -10,6 +10,7 @@ import {
 
 import Link from "next/link";
 import NovadaLogo from "@/components/NovadaLogo";
+import HeroTrustBar from "@/components/HeroTrustBar";
 
 // ─── Initials Avatar ─────────────────────────────────────────────────────────
 const AVATAR_COLORS = [
@@ -443,6 +444,9 @@ export default function ApplyPage() {
             Free 30-minute call. We build your exact growth blueprint — yours to keep.
             {" "}You&apos;ll speak with our senior growth strategist.
           </motion.p>
+
+          {/* STANDALONE TRUST BAR — prominent social proof above the CTA */}
+          <HeroTrustBar className="mt-7" />
 
           {/* ABOVE-THE-FOLD CTA — most critical audit fix */}
           <motion.div
