@@ -305,7 +305,7 @@ export default function GrowthInfrastructurePage() {
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.10] hover:bg-white/[0.07] hover:border-[#00B67A]/40 transition-all"
-              aria-label="4.9 on Trustpilot"
+              aria-label="5.0 on Trustpilot"
             >
               {/* Trustpilot wordmark with brand star */}
               <span className="flex items-center gap-1">
@@ -340,7 +340,7 @@ export default function GrowthInfrastructurePage() {
                 ))}
               </span>
 
-              <span className="text-sm font-bold text-white">4.9</span>
+              <span className="text-sm font-bold text-white">5.0</span>
             </a>
 
             <div className="hidden sm:block w-px h-6 bg-white/15" />
