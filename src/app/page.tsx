@@ -7,7 +7,6 @@ import {
   X,
   Target,
   Zap,
-  Users,
   BarChart3,
   MessageSquare,
   Settings,
@@ -64,21 +63,6 @@ function Hero() {
           <span className="gradient-text">Client Acquisition System</span>{" "}
           That Gets You There — Without Retainers
         </motion.h1>
-
-        {/* Above-fold social proof — replaced by HeroTrustBar below subheading */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.45 }}
-          className="mt-3 flex items-center justify-center gap-3 text-sm text-white/50"
-        >
-          <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-gold-500/50" /> Join 350+ service businesses scaled</span>
-          <span className="text-white/15">·</span>
-          <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/60 transition-colors">
-            <span className="text-gold-400">{"\u2605\u2605\u2605\u2605\u2605"}</span>
-            <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
-          </a>
-        </motion.div>
 
         {/* VSL — immediately below headline */}
         <motion.div
@@ -141,25 +125,6 @@ function Hero() {
           </a>
         </motion.div>
 
-        {/* Trust Badge */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="mt-6 flex items-center justify-center gap-4"
-        >
-          <a
-            href="https://www.trustpilot.com/review/novadatech.com.au"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-4 hover:opacity-80 transition-opacity"
-          >
-            <div className="flex text-gold-400 text-sm tracking-wider">★★★★★</div>
-            <span className="text-sm text-white/80 underline underline-offset-2 decoration-white/20">
-              Rated 4.9/5 on Trustpilot · 77+ Verified Reviews
-            </span>
-          </a>
-        </motion.div>
       </div>
     </section>
   );
