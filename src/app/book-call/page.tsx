@@ -161,7 +161,7 @@ export default function BookPage() {
                 of working with our previous agency. Highly recommend.&rdquo;
               </p>
               <p className="mt-4 text-sm text-white/30">
-                Rated 4.9/5 from 77+ verified reviews on Trustpilot
+                Rated 5.0 on Trustpilot
               </p>
             </div>
           </AnimatedSection>

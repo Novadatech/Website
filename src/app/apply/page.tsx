@@ -174,7 +174,7 @@ const VIDEO_TESTIMONIALS = [
 const TRUST_ITEMS = [
   { icon: Shield, label: "100% Free — No Credit Card" },
   { icon: CheckCircle, label: "Custom Plan for Your Business" },
-  { icon: Star, label: "Rated 4.9\u2605 on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
+  { icon: Star, label: "Rated 5.0\u2605 on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
   { icon: Clock, label: "Takes Under 2 Minutes" },
 ];
 
@@ -472,7 +472,7 @@ export default function ApplyPage() {
                 className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
               >
                 <span className="text-gold-400 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
-                <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
+                <span className="underline underline-offset-2 decoration-white/20">5.0 on Trustpilot</span>
               </a>
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
@@ -635,7 +635,7 @@ export default function ApplyPage() {
                       className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
                     >
                       <Star className="w-3 h-3 text-gold-500/50" />
-                      <span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} on Trustpilot (77+ reviews)</span>
+                      <span className="underline underline-offset-2 decoration-white/20">5.0{"\u2605"} on Trustpilot</span>
                     </a>
                   </div>
                 </div>
@@ -853,7 +853,7 @@ export default function ApplyPage() {
                 className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
               >
                 <span className="text-gold-400 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
-                <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
+                <span className="underline underline-offset-2 decoration-white/20">5.0 on Trustpilot</span>
               </a>
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
@@ -924,7 +924,7 @@ export default function ApplyPage() {
                   className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
                 >
                   <Star className="w-3.5 h-3.5" />
-                  <span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} Trustpilot</span>
+                  <span className="underline underline-offset-2 decoration-white/20">5.0{"\u2605"} Trustpilot</span>
                 </a>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5" /> 30-Min Call

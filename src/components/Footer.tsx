@@ -37,7 +37,7 @@ export default function Footer() {
                 ))}
               </div>
               <span className="text-white/80 text-base">
-                4.9 on Trustpilot · 77+ Reviews
+                5.0 on Trustpilot
               </span>
             </div>
             {/* Social Icons */}

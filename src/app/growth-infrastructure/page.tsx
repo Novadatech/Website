@@ -370,7 +370,7 @@ export default function GrowthInfrastructurePage() {
                 {[
                   { icon: Shield, label: "20+ Appointments Guaranteed", micro: "Written into your agreement" },
                   { icon: CheckCircle, label: "If We Miss, You Don't Pay" },
-                  { icon: Star, label: "Rated 4.9★ on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
+                  { icon: Star, label: "Rated 5.0★ on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
                   { icon: Clock, label: "Live In 14 Days" },
                 ].map(({ icon: Icon, label, link, micro }, i) => {
                   const content = (
@@ -566,7 +566,7 @@ export default function GrowthInfrastructurePage() {
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
                 <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 20+ Appointments Guaranteed</span>
-                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"★"} Trustpilot</span></a>
+                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">5.0{"★"} Trustpilot</span></a>
                 <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" /> Written Guarantee</span>
                 <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> 350+ Businesses</span>
               </div>
