@@ -462,21 +462,6 @@ export default function ApplyPage() {
               Book My Free Strategy Call
               <ArrowRight className="w-5 h-5" />
             </button>
-            <div className="mt-3 flex items-center justify-center gap-4 text-xs text-white/35 flex-wrap">
-              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Zero obligation</span>
-              <span className="text-white/15">|</span>
-              <a
-                href="https://www.trustpilot.com/review/novadatech.com.au"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
-              >
-                <span className="text-gold-400 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
-                <span className="underline underline-offset-2 decoration-white/20">5.0 on Trustpilot</span>
-              </a>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-500/60" /> Takes under 2 min</span>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -623,19 +608,19 @@ export default function ApplyPage() {
                       <p className="mt-1.5 text-xs text-white/40">Josh — Founder, Maxicare Australia</p>
                     </div>
                   </div>
-                  <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-center justify-center gap-4 text-xs text-white/35">
-                    <span className="flex items-center gap-1.5"><Users className="w-3 h-3 text-gold-500/50" /> 350+ businesses scaled</span>
-                    <span className="text-white/15">{"\u00B7"}</span>
-                    <span className="flex items-center gap-1.5"><TrendingUp className="w-3 h-3 text-gold-500/50" /> $50M+ tracked revenue across 350+ clients</span>
-                    <span className="text-white/15">{"\u00B7"}</span>
+                  <div className="mt-3 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/80 font-medium">
+                    <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-gold-400" /> 350+ businesses scaled</span>
+                    <span className="text-white/25">{"\u00B7"}</span>
+                    <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-gold-400" /> $50M+ tracked revenue across 350+ clients</span>
+                    <span className="text-white/25">{"\u00B7"}</span>
                     <a
                       href="https://www.trustpilot.com/review/novadatech.com.au"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
+                      className="flex items-center gap-1.5 hover:text-white transition-colors"
                     >
-                      <Star className="w-3 h-3 text-gold-500/50" />
-                      <span className="underline underline-offset-2 decoration-white/20">5.0{"\u2605"} on Trustpilot</span>
+                      <Star className="w-4 h-4 text-gold-400" />
+                      <span className="underline underline-offset-2 decoration-white/30">5.0{"\u2605"} on Trustpilot</span>
                     </a>
                   </div>
                 </div>
@@ -750,7 +735,7 @@ export default function ApplyPage() {
               </h3>
               <div className="space-y-3">
                 {[
-                  "You sell a high-value service or product ($3K–$50K+)",
+                  "You sell a high-value service or product ($3K+)",
                   "You want a clear, actionable plan to get 20+ qualified sales calls monthly",
                   "You're open to implementing the strategy yourself or having us do it",
                 ].map((item, i) => (

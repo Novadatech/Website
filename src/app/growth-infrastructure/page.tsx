@@ -135,7 +135,7 @@ const FAQS = [
   },
   {
     q: "Who is this NOT for?",
-    a: "If your offer is under $5K, if you don't have a deliverable service ready, or if you're looking for a magic-button solution that requires zero involvement — this isn't the right fit. We're selective because the guarantee only works when the underlying business is ready to scale.",
+    a: "If your offer is under $3K, if you don't have a deliverable service ready, or if you're looking for a magic-button solution that requires zero involvement — this isn't the right fit. We're selective because the guarantee only works when the underlying business is ready to scale.",
   },
 ];
 
@@ -146,7 +146,7 @@ const QUALIFIES = [
 ];
 
 const NOT_FOR = [
-  "Your offer is under $5K or not yet validated",
+  "Your offer is under $3K or not yet validated",
   "You're looking for a quick fix or a magic-button solution",
   "You don't have capacity to handle 20+ qualified appointments monthly",
 ];
@@ -303,11 +303,6 @@ export default function GrowthInfrastructurePage() {
               See If You Qualify
               <ArrowRight className="w-5 h-5" />
             </button>
-            <div className="mt-3 flex items-center justify-center gap-4 text-xs text-white/35 flex-wrap">
-              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> 20+ appointments guaranteed monthly</span>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5 text-gold-500/60" /> You don&apos;t pay until we deliver</span>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -397,10 +392,20 @@ export default function GrowthInfrastructurePage() {
                     <p className="mt-1.5 text-xs text-white/40">Josh — Founder, Maxicare Australia</p>
                   </div>
                 </div>
-                <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-center justify-center gap-4 text-xs text-white/35 flex-wrap">
-                  <span className="flex items-center gap-1.5"><Users className="w-3 h-3 text-gold-500/50" /> 350+ businesses scaled</span>
-                  <span className="text-white/15">{"·"}</span>
-                  <span className="flex items-center gap-1.5"><TrendingUp className="w-3 h-3 text-gold-500/50" /> $50M+ tracked revenue across 350+ clients</span>
+                <div className="mt-3 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/80 font-medium">
+                  <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-gold-400" /> 350+ businesses scaled</span>
+                  <span className="text-white/25">{"·"}</span>
+                  <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-gold-400" /> $50M+ tracked revenue across 350+ clients</span>
+                  <span className="text-white/25">{"·"}</span>
+                  <a
+                    href="https://www.trustpilot.com/review/novadatech.com.au"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 hover:text-white transition-colors"
+                  >
+                    <Star className="w-4 h-4 text-gold-400" />
+                    <span className="underline underline-offset-2 decoration-white/30">5.0{"★"} on Trustpilot</span>
+                  </a>
                 </div>
               </div>
             </div>
