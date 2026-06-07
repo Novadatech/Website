@@ -347,7 +347,7 @@ export default function GrowthInfrastructurePage() {
 
             <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-white/[0.04] border border-white/[0.10]">
               <Users className="w-5 h-5 text-gold-400" />
-              <span className="text-sm sm:text-base text-white font-semibold">Join 350+ service businesses</span>
+              <span className="text-sm sm:text-base text-white font-semibold">350+ businesses scaled</span>
             </div>
           </motion.div>
 
