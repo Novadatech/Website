@@ -499,6 +499,14 @@ export default function LinkedinGrowthPage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Inline CTA — CTA cadence between sections */}
+          <div className="mt-12 text-center">
+            <button onClick={scrollToForm} className="btn-primary mx-auto">
+              See If You Qualify
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </section>
 
@@ -563,7 +571,7 @@ export default function LinkedinGrowthPage() {
               { icon: Send, title: "Targeted Outreach", desc: "Daily, precise outreach to ICP-matched prospects. Reply handling done for you, sequences trained on your voice, optimised weekly." },
               { icon: CalendarCheck, title: "Pre-Qualified Booking", desc: "Only decision-makers with budget and fit make it to your calendar. Pre-qualified, pre-sold, and ready to buy when the call starts." },
             ].map((p, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass-card gradient-border p-6 h-full">
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 h-full">
                 <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mb-4"><p.icon className="w-6 h-6 text-gold-400" /></div>
                 <h3 className="text-base font-semibold text-white mb-2">{p.title}</h3>
                 <p className="text-sm text-white/70 leading-relaxed">{p.desc}</p>
@@ -589,7 +597,7 @@ export default function LinkedinGrowthPage() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {HOW_IT_WORKS.map((step, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass-card gradient-border p-6 h-full flex flex-col">
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 h-full flex flex-col">
                 <span className="text-3xl font-bold text-gold-500/30 mb-1">{step.num}</span>
                 <p className="text-xs text-gold-500/70 font-semibold uppercase tracking-wider mb-2">{step.subtitle}</p>
                 <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
@@ -626,9 +634,9 @@ export default function LinkedinGrowthPage() {
             {DIFFERENTIATION.map((row, i) => (
               <div key={i} className={`grid grid-cols-4 border-b border-white/[0.04] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}>
                 <div className="p-4 flex items-center"><span className="text-xs md:text-sm text-white/60">{row.label}</span></div>
-                <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.agency}</span></div>
-                <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.diy}</span></div>
-                <div className="p-4 flex items-center justify-center text-center bg-gold-500/[0.04] border-l border-gold-500/10"><span className="text-xs text-gold-400/90 font-medium">{row.novada}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-sm text-white/55">{row.agency}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-sm text-white/55">{row.diy}</span></div>
+                <div className="p-4 flex items-center justify-center text-center bg-gold-500/[0.04] border-l border-gold-500/10"><span className="text-sm text-gold-400 font-medium">{row.novada}</span></div>
               </div>
             ))}
           </div>
