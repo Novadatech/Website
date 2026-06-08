@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
-  Clock, AlertCircle, ChevronDown, ArrowRight,
+  Clock, ChevronDown, ArrowRight,
   ChevronLeft, ChevronRight, Play, CalendarCheck, Send
 } from "lucide-react";
 import Link from "next/link";
@@ -486,50 +486,6 @@ return (
 
 
 
-
-      {/* ── Is This Right for You? — condensed to 3 bullets ── */}
-      <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Is This Right for You?</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">We Only Guarantee Meetings for Businesses That Qualify</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card gradient-border p-7">
-              <h3 className="text-base font-semibold text-emerald-400 mb-5 flex items-center gap-2"><CheckCircle className="w-4 h-4" /> We Can Guarantee Meetings If You...</h3>
-              <div className="space-y-3">
-                {[
-                  "Sell a high-value service or product ($3K–$50K+)",
-                  "Want 30–60 qualified sales meetings filling your calendar every month",
-                  "Are ready to show up to pre-qualified meetings and close deals",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-base text-white/80 leading-relaxed">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card p-7 border border-white/[0.04]">
-              <h3 className="text-base font-semibold text-white/50 mb-5 flex items-center gap-2"><AlertCircle className="w-4 h-4 text-red-400/60" /> We Can&apos;t Guarantee Meetings If You...</h3>
-              <div className="space-y-3">
-                {[
-                  "Don't have a product or service ready to sell yet",
-                  "Expect results without following a proven process",
-                  "Are looking for a cheap, one-size-fits-all solution",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div>
-                    <span className="text-base text-white/80 leading-relaxed">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-white/80 leading-relaxed">If the left column describes you — fill in the form above. We&apos;ll guarantee 30–60 qualified sales meetings every month, or you don&apos;t pay.</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* ── Testimonials — 4 strongest with photos ── */}
       <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">

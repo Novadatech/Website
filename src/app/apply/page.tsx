@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
-  Clock, AlertCircle, ChevronDown, ArrowRight,
+  Clock, ChevronDown, ArrowRight,
   ChevronLeft, ChevronRight, Play, Target, Phone
 } from "lucide-react";
 
