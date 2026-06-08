@@ -34,7 +34,7 @@ export default function HeroTrustBar({
   // Static class strings so Tailwind JIT picks them up
   const iconColorClass =
     accent === "dark-red"
-      ? "text-red-600"
+      ? "text-ember-500"
       : accent === "red"
         ? "text-red-400"
         : "text-gold-400";

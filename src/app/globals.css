@@ -40,9 +40,10 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-red-400 to-red-500;
   }
 
-  /* Dark-red-accent palette variants — brand test on /linkedin-growth */
+  /* Dark-red-accent palette variants — brand test on /linkedin-growth.
+     Backed by the ember palette (#FF5A30 anchor) for a warm vermilion read. */
   .dark-red-gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-red-500 to-red-700;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-ember-500 to-ember-600;
   }
 
   .dark-red-gradient-border {
@@ -52,14 +53,14 @@
   .dark-red-gradient-border::before {
     content: "";
     @apply absolute inset-0 rounded-2xl p-[1px];
-    background: linear-gradient(135deg, rgba(185, 28, 28, 0.5), rgba(60, 4, 4, 0.3), rgba(185, 28, 28, 0.15));
+    background: linear-gradient(135deg, rgba(255, 90, 48, 0.5), rgba(199, 56, 21, 0.3), rgba(255, 90, 48, 0.15));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
 
   .btn-primary-dark-red {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-red-700 hover:bg-red-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(185,28,28,0.4)] hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-ember-500 hover:bg-ember-400 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,90,48,0.45)] hover:-translate-y-0.5;
   }
 
   .gradient-border {

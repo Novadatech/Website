@@ -25,6 +25,18 @@ const config: Config = {
           blue: "#155eef",
           cyan: "#06b6d4",
         },
+        // Ember palette — warm vermilion red for bold dark-bg landing pages.
+        // 500 is the brand anchor used on /linkedin-growth.
+        ember: {
+          400: "#FF7A55",
+          500: "#FF5A30",
+          600: "#E84620",
+          700: "#C73815",
+        },
+        // Surface palette — near-black warm background (slightly warmer than #000).
+        surface: {
+          950: "#0A0A0A",
+        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
