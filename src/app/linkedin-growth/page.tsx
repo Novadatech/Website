@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
-  Clock, AlertCircle, ChevronDown, ArrowRight, ExternalLink,
+  Clock, ChevronDown, ArrowRight,
   ChevronLeft, ChevronRight, Play, Video, Send, CalendarCheck,
   XCircle,
 } from "lucide-react";
@@ -13,7 +13,8 @@ import NovadaLogo from "@/components/NovadaLogo";
 import HeroTrustBar from "@/components/HeroTrustBar";
 
 function scrollToForm() {
-  document.getElementById("linkedin-growth-form-embed")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  // Form was removed from this page; route the CTA to the dedicated booking page.
+  window.location.assign("/book-call");
 }
 
 // ─── Data ───────────────────────────────────────────────────────────────────
@@ -102,7 +103,7 @@ const AUTHORITY_MATH = {
     ],
     stats: [
       { label: "Reply rate", value: "8 – 12%" },
-      { label: "Qualified rate", value: "30%+ of replies" },
+      { label: "Qualified rate", value: "85.4% of replies" },
       { label: "Meetings per 10,000 messages", value: "~150" },
     ],
   },
@@ -221,18 +222,6 @@ const FAQS = [
   },
 ];
 
-const QUALIFIES = [
-  "You sell a high-value service or product ($3K+)",
-  "You want 20+ qualified meetings booked into your calendar every month",
-  "You're done with the referral lottery and ready to install a real system",
-];
-
-const NOT_FOR = [
-  "Your offer is under $3K or not yet validated",
-  "You expect zero involvement (we need 30 min/week from you)",
-  "You can't handle 20+ qualified meetings every month",
-];
-
 // ─── FAQ Item ───────────────────────────────────────────────────────────────
 function FAQItem({ q, a }: { q: string; a: string }) {
   return (
@@ -329,15 +318,6 @@ function StickyCtaBar() {
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 export default function LinkedinGrowthPage() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://link.novadatech.com/js/form_embed.js";
-    script.type = "text/javascript";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => { if (document.body.contains(script)) document.body.removeChild(script); };
-  }, []);
-
   return (
     <div className="bg-surface-950">
       {/* ── Header ── */}
@@ -411,8 +391,8 @@ export default function LinkedinGrowthPage() {
         <div className="max-container max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
             {[
-              { num: "$50M+", label: "Tracked Pipeline Generated*" },
-              { num: "30%+", label: "Qualified Reply Rate" },
+              { num: "$45.7M+", label: "Tracked Pipeline Generated*" },
+              { num: "85.4%", label: "Qualified Reply Rate" },
               { num: "14 days", label: "Avg Time To First Meeting" },
               { num: "$0", label: "Ad Spend Required" },
             ].map((s, i) => (
@@ -434,75 +414,6 @@ export default function LinkedinGrowthPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-white">Founders Already Running The System</h2>
           </div>
           <VideoSlider />
-        </div>
-      </section>
-
-      {/* ── FORM ── */}
-      <section className="section-padding pb-24 md:pb-32">
-        <div className="max-container">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="max-w-2xl mx-auto">
-            <div>
-              <div className="glass-card dark-red-gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
-                <div className="flex items-center gap-2 mb-2"><div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /><span className="text-xs text-emerald-400 font-medium uppercase tracking-wider">3 Partner Spots Available This Quarter</span></div>
-                <h2 className="text-xl md:text-2xl font-bold text-white">See If You Qualify For LinkedIn Growth System&trade;</h2>
-                <p className="mt-1.5 text-base text-white/80">Tell us about your business. If we&apos;re a fit, we&apos;ll guarantee 20+ qualified meetings every month — or you don&apos;t pay.</p>
-                <div className="mt-4">
-                  <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
-                    <span className="flex items-center gap-1.5"><span className="text-ember-500 font-medium">Step 1</span><span>— Your details</span><span className="text-white/20">{"→"}</span><span>Step 2 — Pick your time</span></span>
-                    <span>50%</span>
-                  </div>
-                  <div className="h-1.5 rounded-full bg-white/10"><div className="h-1.5 rounded-full bg-gradient-to-r from-ember-600 to-ember-500 w-1/2" /></div>
-                </div>
-              </div>
-              <div className="glass-card rounded-t-none rounded-b-2xl overflow-hidden" style={{ borderTop: "none" }}>
-                <iframe src="https://link.novadatech.com/widget/form/2UikgU0iSTsy1ax334cR" style={{ width: "100%", minHeight: "380px", border: "none", display: "block" }} id="linkedin-growth-form-embed" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" data-form-name="Novada Tech LinkedIn Growth Form" data-height="380" data-layout-iframe-id="linkedin-growth-form-embed" data-form-id="2UikgU0iSTsy1ax334cR" title="See If You Qualify" />
-              </div>
-
-              {/* Trust strip — guarantee-focused */}
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                {[
-                  { icon: Shield, label: "20+ Meetings Guaranteed", micro: "Written into your agreement" },
-                  { icon: CheckCircle, label: "If We Miss, You Don’t Pay" },
-                  { icon: Star, label: "Rated 5.0★ on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
-                  { icon: Clock, label: "Live In 14 Days" },
-                ].map(({ icon: Icon, label, link, micro }, i) => {
-                  const content = (
-                    <div key={i} className={`flex flex-col gap-1 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium ${link ? "hover:border-ember-500/30 transition-colors cursor-pointer" : ""}`}>
-                      <div className="flex items-center gap-2.5">
-                        <Icon className="w-3.5 h-3.5 flex-shrink-0 text-ember-500" />
-                        <span className={link ? "underline underline-offset-2 decoration-white/20" : ""}>{label}</span>
-                        {link && <ExternalLink className="w-3 h-3 flex-shrink-0 text-white/30" />}
-                      </div>
-                      {micro && <span className="text-[10px] text-white/35 ml-6">{micro}</span>}
-                    </div>
-                  );
-                  if (link) return <a key={i} href={link} target="_blank" rel="noopener noreferrer">{content}</a>;
-                  return content;
-                })}
-              </div>
-
-              {/* Social proof pull-quote */}
-              <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
-                <div className="flex items-start gap-3">
-                  <img src="https://i.pravatar.cc/150?img=12" alt="Josh" className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.&rdquo;</p>
-                    <p className="mt-1.5 text-xs text-white/40">Josh — Director, Maxicare Plus</p>
-                  </div>
-                </div>
-                <div className="mt-3 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/80 font-medium">
-                  <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-ember-500" /> 350+ businesses scaled</span>
-                  <span className="text-white/25">{"·"}</span>
-                  <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-ember-500" /> $50M+ tracked revenue across 350+ clients</span>
-                  <span className="text-white/25">{"·"}</span>
-                  <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
-                    <Star className="w-4 h-4 text-ember-500" />
-                    <span className="underline underline-offset-2 decoration-white/30">5.0{"★"} on Trustpilot</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -752,65 +663,11 @@ export default function LinkedinGrowthPage() {
         </div>
       </section>
 
-      {/* ── QUALIFICATION ── */}
-      <section className="section-padding py-24 md:py-32">
-        <div className="max-container max-w-5xl">
-          <div className="text-center mb-14">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Is This Right For You?</p>
-            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight text-balance">We&apos;re Selective. The Guarantee Only Works When The Business Is Ready.</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* For-you column */}
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-3xl border border-emerald-500/20 bg-emerald-500/[0.03] p-7 md:p-8 flex flex-col">
-              <div className="flex items-center gap-3 mb-7">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-6 h-6 text-emerald-400" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-emerald-400/85 font-semibold mb-0.5">A Match</p>
-                  <h3 className="text-lg md:text-xl font-bold text-white">This Is For You If…</h3>
-                </div>
-              </div>
-              <div className="space-y-3 flex-1">
-                {QUALIFIES.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.025] p-4 hover:bg-white/[0.04] transition-colors">
-                    <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm md:text-base text-white/90 leading-relaxed font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Not-for column */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="rounded-3xl border border-white/[0.08] bg-white/[0.015] p-7 md:p-8 flex flex-col">
-              <div className="flex items-center gap-3 mb-7">
-                <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.10] flex items-center justify-center flex-shrink-0">
-                  <AlertCircle className="w-6 h-6 text-white/45" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-white/40 font-semibold mb-0.5">Not A Fit</p>
-                  <h3 className="text-lg md:text-xl font-bold text-white/85">This Isn&apos;t For You If…</h3>
-                </div>
-              </div>
-              <div className="space-y-3 flex-1">
-                {NOT_FOR.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.05] bg-white/[0.015] p-4">
-                    <XCircle className="w-5 h-5 text-white/35 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm md:text-base text-white/60 leading-relaxed">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-sm text-white/55 italic leading-relaxed">If the left column describes you — apply above. If we&apos;re a fit, we guarantee 20+ qualified meetings every month.</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* ── WRITTEN TESTIMONIALS (big-photo cards) ── */}
       <section className="section-padding py-24 md:py-32">
         <div className="max-container">
           <div className="text-center mb-14">
-            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">350+ Businesses · $50M+ Tracked Revenue</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">350+ Businesses · $45.7M+ Tracked Revenue</p>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">We build outbound that <span className="text-ember-500">compounds.</span></h2>
             <p className="mt-5 text-base text-white/55 max-w-xl mx-auto">Every result below is from a named client engagement.</p>
           </div>
