@@ -334,7 +334,7 @@ export default function LinkedinGrowthPage() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            350+ B2B Founders Use Our{" "}<span className="dark-red-gradient-text">Authority-Based System</span>{" "}To Book{" "}<span className="dark-red-gradient-text">20+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or Spam Outreach.
+            350+ B2B Founders Use Our{" "}<span className="text-ember-500">Authority-Based System</span>{" "}To Book{" "}<span className="text-ember-500">20+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or Spam Outreach.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
@@ -517,7 +517,7 @@ export default function LinkedinGrowthPage() {
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">The Authority Difference</p>
             <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">
               Why Outreach Alone Stopped Working — And{" "}
-              <span className="dark-red-gradient-text">What Replaced It.</span>
+              <span className="text-ember-500">What Replaced It.</span>
             </h2>
             <p className="mt-4 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
               Without authority, your message is one of 100. With authority, you&apos;re the one they were waiting to hear from. Same outreach. Different math.
@@ -615,7 +615,7 @@ export default function LinkedinGrowthPage() {
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Why This Beats Every Other Option</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               The Difference Between Sending Messages — And{" "}
-              <span className="dark-red-gradient-text">Owning Your Industry</span>
+              <span className="text-ember-500">Owning Your Industry</span>
             </h2>
             <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
               Generic LinkedIn agencies sell volume. DIY drains your time. LinkedIn Growth System&trade; installs a permanent authority engine into your business — and guarantees the result.
@@ -729,7 +729,7 @@ export default function LinkedinGrowthPage() {
               <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">Performance Guaranteed</p>
               <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight text-balance">
                 Stop Sending Messages.{" "}
-                <span className="dark-red-gradient-text">Start Owning Your Industry.</span>
+                <span className="text-ember-500">Start Owning Your Industry.</span>
               </h2>
               <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ founders have made the switch from cold outreach to authority + outreach. 20+ qualified meetings every month, guaranteed. Or you don&apos;t pay.</p>
 
