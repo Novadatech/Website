@@ -248,8 +248,8 @@ function VideoSlider() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="relative">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(52,114,253,0)", "0 0 16px rgba(52,114,253,0.5)", "0 0 0px rgba(52,114,253,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900/90 border border-azure-500/35 items-center justify-center text-azure-500 hover:border-azure-500/80 hover:bg-zinc-800 transition-colors duration-200 z-10" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(52,114,253,0)", "0 0 24px rgba(52,114,253,0.7)", "0 0 0px rgba(52,114,253,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-azure-500/15 border border-azure-500/60 items-center justify-center text-azure-500 hover:bg-azure-500/25 hover:border-azure-400 transition-colors duration-200 z-10" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
+        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(14,165,233,0)", "0 0 16px rgba(14,165,233,0.5)", "0 0 0px rgba(14,165,233,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900/90 border border-azure-500/35 items-center justify-center text-azure-500 hover:border-azure-500/80 hover:bg-zinc-800 transition-colors duration-200 z-10" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
+        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(14,165,233,0)", "0 0 24px rgba(14,165,233,0.7)", "0 0 0px rgba(14,165,233,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-azure-500/15 border border-azure-500/60 items-center justify-center text-azure-500 hover:bg-azure-500/25 hover:border-azure-400 transition-colors duration-200 z-10" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
 
         <div className="sm:px-16">
           <AnimatePresence mode="wait" initial={false}>
@@ -273,11 +273,11 @@ function VideoSlider() {
       </div>
 
       <div className="flex sm:hidden items-center justify-center gap-4 mt-4">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(52,114,253,0)", "0 0 16px rgba(52,114,253,0.5)", "0 0 0px rgba(52,114,253,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-zinc-900/90 border border-azure-500/35 flex items-center justify-center text-azure-500" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
+        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(14,165,233,0)", "0 0 16px rgba(14,165,233,0.5)", "0 0 0px rgba(14,165,233,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-zinc-900/90 border border-azure-500/35 flex items-center justify-center text-azure-500" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
         <div className="flex items-center gap-2">
           {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-azure-500" : "w-2 bg-white/20"}`} aria-label={`Go to video ${i + 1}`} />))}
         </div>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(52,114,253,0)", "0 0 24px rgba(52,114,253,0.7)", "0 0 0px rgba(52,114,253,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-azure-500/15 border border-azure-500/60 flex items-center justify-center text-azure-500" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
+        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(14,165,233,0)", "0 0 24px rgba(14,165,233,0.7)", "0 0 0px rgba(14,165,233,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-azure-500/15 border border-azure-500/60 flex items-center justify-center text-azure-500" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
       </div>
 
       <div className="hidden sm:flex items-center justify-center gap-2 mt-5">
@@ -337,7 +337,7 @@ export default function LinkedinGrowthPage() {
       {/* ── HERO ── */}
       <section className="relative pt-6 pb-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(52,114,253,0.14)_0%,_transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(14,165,233,0.14)_0%,_transparent_60%)]" />
         <div className="relative max-container section-padding text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-azure-500/20 bg-azure-500/5 mb-4">
             <span className="w-2 h-2 rounded-full bg-azure-500 animate-pulse-slow" />
@@ -580,7 +580,7 @@ export default function LinkedinGrowthPage() {
 
       {/* ── HOW IT WORKS ── */}
       <section className="section-padding py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(52,114,253,0.06)_0%,_transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(14,165,233,0.06)_0%,_transparent_60%)] pointer-events-none" />
         <div className="relative max-container max-w-5xl">
           <div className="mb-14 md:mb-20 text-center">
             <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-4">How It Works</p>
@@ -737,7 +737,7 @@ export default function LinkedinGrowthPage() {
         <div className="max-container max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl overflow-hidden text-center">
             <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(52,114,253,0.16)_0%,_transparent_70%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(14,165,233,0.16)_0%,_transparent_70%)]" />
             <div className="relative px-8 py-14 md:px-14">
               <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-4">Performance Guaranteed</p>
               <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight text-balance">

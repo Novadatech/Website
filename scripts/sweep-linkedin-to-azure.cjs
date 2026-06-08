@@ -18,7 +18,7 @@ const TARGET = path.resolve(
 const FROM = "ember";
 const TO = "azure";
 const FROM_RGBA = "rgba(255,90,48,"; // ember
-const TO_RGBA = "rgba(52,114,253,"; // azure-500 = #3472FD
+const TO_RGBA = "rgba(14,165,233,"; // azure-500 = #0EA5E9 (Tailwind sky-500)
 
 let src = fs.readFileSync(TARGET, "utf8");
 
