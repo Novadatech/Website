@@ -480,7 +480,7 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── PROBLEM AGITATION ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-10">
             <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">The Real Problem</p>
@@ -503,7 +503,7 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── AUTHORITY MATH (UNIQUE MECHANISM) ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">The Authority Difference</p>
@@ -581,7 +581,7 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">How It Works</p>
@@ -601,7 +601,7 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── DIFFERENTIATION TABLE ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Why This Beats Every Other Option</p>
@@ -643,7 +643,7 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── QUALIFICATION ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-4xl">
           <div className="text-center mb-10">
             <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Is This Right For You?</p>
@@ -672,7 +672,7 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── WRITTEN TESTIMONIALS ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-28">
         <div className="max-container">
           <div className="text-center mb-10">
             <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">What Our Partners Say</p>
