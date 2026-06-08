@@ -4,9 +4,18 @@ import Link from "next/link";
 import { Mail, Phone, ExternalLink } from "lucide-react";
 import NovadaLogo from "./NovadaLogo";
 
-export default function LandingFooter() {
+interface LandingFooterProps {
+  /** Visual palette. "default" = navy/gold, "ember" = surface-950/ember-500 (used on /linkedin-growth). */
+  variant?: "default" | "ember";
+}
+
+export default function LandingFooter({ variant = "default" }: LandingFooterProps) {
+  const isEmber = variant === "ember";
+  const bgClass = isEmber ? "bg-surface-950" : "bg-navy-950";
+  const starColorClass = isEmber ? "text-ember-500" : "text-gold-400";
+
   return (
-    <footer className="border-t border-white/[0.06] bg-navy-950">
+    <footer className={`border-t border-white/[0.06] ${bgClass}`}>
       <div className="max-container section-padding py-10">
         <div className="flex flex-col items-center gap-6">
           {/* Logo */}
@@ -19,7 +28,7 @@ export default function LandingFooter() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-white/60 hover:text-white/80 transition-colors"
           >
-            <div className="flex text-gold-400 text-sm">★★★★★</div>
+            <div className={`flex ${starColorClass} text-sm`}>★★★★★</div>
             <span>5.0 on Trustpilot</span>
             <ExternalLink className="w-3 h-3" />
           </a>

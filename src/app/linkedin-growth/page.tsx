@@ -325,10 +325,10 @@ export default function LinkedinGrowthPage() {
         <div className="max-container section-padding">
           <div className="flex items-center justify-between h-20">
             <Link href="/linkedin-growth" className="flex items-center"><NovadaLogo variant="light" className="h-12 w-auto" /></Link>
-            <div className="flex items-center gap-2 text-xs text-white/40">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>3 partner spots available this quarter</span>
-            </div>
+            <button onClick={scrollToForm} className="btn-primary-dark-red text-sm py-2.5 px-5">
+              Apply Now
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </header>
@@ -341,7 +341,7 @@ export default function LinkedinGrowthPage() {
         <div className="relative max-container section-padding text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-4">
             <span className="w-2 h-2 rounded-full bg-ember-500 animate-pulse-slow" />
-            <span className="text-sm text-ember-500 font-medium">LinkedIn Growth System&trade; — Authority + Outreach</span>
+            <span className="text-sm text-ember-500 font-medium">For B2B service businesses that want to scale on LinkedIn</span>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
