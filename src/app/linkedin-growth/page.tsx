@@ -248,8 +248,8 @@ function VideoSlider() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="relative">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(14,165,233,0)", "0 0 16px rgba(14,165,233,0.5)", "0 0 0px rgba(14,165,233,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900/90 border border-azure-500/35 items-center justify-center text-azure-500 hover:border-azure-500/80 hover:bg-zinc-800 transition-colors duration-200 z-10" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(14,165,233,0)", "0 0 24px rgba(14,165,233,0.7)", "0 0 0px rgba(14,165,233,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-azure-500/15 border border-azure-500/60 items-center justify-center text-azure-500 hover:bg-azure-500/25 hover:border-azure-400 transition-colors duration-200 z-10" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
+        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 16px rgba(255,90,48,0.5)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900/90 border border-ember-500/35 items-center justify-center text-ember-500 hover:border-ember-500/80 hover:bg-zinc-800 transition-colors duration-200 z-10" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
+        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 24px rgba(255,90,48,0.7)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-ember-500/15 border border-ember-500/60 items-center justify-center text-ember-500 hover:bg-ember-500/25 hover:border-ember-400 transition-colors duration-200 z-10" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
 
         <div className="sm:px-16">
           <AnimatePresence mode="wait" initial={false}>
@@ -258,14 +258,14 @@ function VideoSlider() {
                 <iframe src={`https://www.youtube.com/embed/${video.id}`} title={video.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 w-full h-full" style={{ border: "none" }} />
               </div>
               <div className="flex items-center gap-3 mt-3 px-2 pb-1">
-                <div className="w-7 h-7 rounded-full bg-azure-500/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-[10px] font-bold text-azure-400">{video.name[0]}</span>
+                <div className="w-7 h-7 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[10px] font-bold text-ember-400">{video.name[0]}</span>
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-white/70">{video.name}</p>
                   <p className="text-[11px] text-white/35">{video.company}</p>
                 </div>
-                <div className="ml-auto text-azure-500 text-xs flex-shrink-0">{"★★★★★"}</div>
+                <div className="ml-auto text-ember-500 text-xs flex-shrink-0">{"★★★★★"}</div>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -273,15 +273,15 @@ function VideoSlider() {
       </div>
 
       <div className="flex sm:hidden items-center justify-center gap-4 mt-4">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(14,165,233,0)", "0 0 16px rgba(14,165,233,0.5)", "0 0 0px rgba(14,165,233,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-zinc-900/90 border border-azure-500/35 flex items-center justify-center text-azure-500" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
+        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 16px rgba(255,90,48,0.5)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-zinc-900/90 border border-ember-500/35 flex items-center justify-center text-ember-500" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
         <div className="flex items-center gap-2">
-          {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-azure-500" : "w-2 bg-white/20"}`} aria-label={`Go to video ${i + 1}`} />))}
+          {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-ember-500" : "w-2 bg-white/20"}`} aria-label={`Go to video ${i + 1}`} />))}
         </div>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(14,165,233,0)", "0 0 24px rgba(14,165,233,0.7)", "0 0 0px rgba(14,165,233,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-azure-500/15 border border-azure-500/60 flex items-center justify-center text-azure-500" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
+        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 24px rgba(255,90,48,0.7)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-ember-500/15 border border-ember-500/60 flex items-center justify-center text-ember-500" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
       </div>
 
       <div className="hidden sm:flex items-center justify-center gap-2 mt-5">
-        {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-azure-500" : "w-2 bg-white/20 hover:bg-white/40"}`} aria-label={`Go to video ${i + 1}`} />))}
+        {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-ember-500" : "w-2 bg-white/20 hover:bg-white/40"}`} aria-label={`Go to video ${i + 1}`} />))}
       </div>
     </div>
   );
@@ -337,15 +337,15 @@ export default function LinkedinGrowthPage() {
       {/* ── HERO ── */}
       <section className="relative pt-6 pb-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(14,165,233,0.14)_0%,_transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.14)_0%,_transparent_60%)]" />
         <div className="relative max-container section-padding text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-azure-500/20 bg-azure-500/5 mb-4">
-            <span className="w-2 h-2 rounded-full bg-azure-500 animate-pulse-slow" />
-            <span className="text-sm text-azure-500 font-medium">For B2B service businesses that want to scale on LinkedIn</span>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-4">
+            <span className="w-2 h-2 rounded-full bg-ember-500 animate-pulse-slow" />
+            <span className="text-sm text-ember-500 font-medium">For B2B service businesses that want to scale on LinkedIn</span>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            350+ B2B Founders Use Our{" "}<span className="text-azure-500">Authority-Based System</span>{" "}To Book{" "}<span className="text-azure-500">20+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or Spam Outreach.
+            350+ B2B Founders Use Our{" "}<span className="text-ember-500">Authority-Based System</span>{" "}To Book{" "}<span className="text-ember-500">20+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or Spam Outreach.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
@@ -353,7 +353,7 @@ export default function LinkedinGrowthPage() {
           </motion.p>
 
           {/* Hero Trust Bar */}
-          <HeroTrustBar className="mt-7" accent="azure" />
+          <HeroTrustBar className="mt-7" />
 
           {/* Above-fold CTA */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-6">
@@ -370,15 +370,15 @@ export default function LinkedinGrowthPage() {
         <div className="max-container max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }}>
             <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
-              <Play className="w-3.5 h-3.5 text-azure-500" />
+              <Play className="w-3.5 h-3.5 text-ember-500" />
               <span>Watch the 2-min overview</span>
             </div>
             <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
               <iframe src="https://www.youtube.com/embed/-mQwJS3ZCBg?autoplay=1&mute=1&rel=0" title="How LinkedIn Growth System works" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }} />
             </div>
             <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
-              <div className="w-5 h-5 rounded-full bg-azure-500/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-[8px] font-bold text-azure-400">A</span>
+              <div className="w-5 h-5 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-[8px] font-bold text-ember-400">A</span>
               </div>
               <span>Presented by <span className="text-white/60 font-medium">Ade</span> — Novada Tech</span>
             </div>
@@ -397,7 +397,7 @@ export default function LinkedinGrowthPage() {
               { num: "$0", label: "Ad Spend Required" },
             ].map((s, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-                <p className="text-3xl md:text-5xl font-bold text-azure-500 tracking-tight leading-none">{s.num}</p>
+                <p className="text-3xl md:text-5xl font-bold text-ember-500 tracking-tight leading-none">{s.num}</p>
                 <p className="mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-white/45 font-medium">{s.label}</p>
               </motion.div>
             ))}
@@ -410,7 +410,7 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding pb-24 md:pb-32">
         <div className="max-container">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-3">Real Operators · Real Results</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Real Operators · Real Results</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">Founders Already Running The System</h2>
           </div>
           <VideoSlider />
@@ -421,21 +421,21 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding pb-24 md:pb-32">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-3">What You Walk Away With</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">What You Walk Away With</p>
             <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">Inside The LinkedIn Growth System&trade; Partnership</h2>
             <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">Live in 14 days. 20+ qualified meetings by month one. If we don&apos;t deliver — you don&apos;t pay.</p>
           </div>
 
           {/* Featured outcome — the guarantee */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl border border-azure-500/25 bg-gradient-to-br from-azure-500/[0.08] via-azure-500/[0.02] to-transparent p-8 md:p-10 mb-6 overflow-hidden">
-            <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-azure-500/10 blur-3xl pointer-events-none" />
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl border border-ember-500/25 bg-gradient-to-br from-ember-500/[0.08] via-ember-500/[0.02] to-transparent p-8 md:p-10 mb-6 overflow-hidden">
+            <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-ember-500/10 blur-3xl pointer-events-none" />
             <div className="relative grid md:grid-cols-5 gap-8 md:gap-10 items-center">
               <div className="md:col-span-2">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-azure-500/15 border border-azure-500/35 flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-azure-500" />
+                  <div className="w-10 h-10 rounded-xl bg-ember-500/15 border border-ember-500/35 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-ember-500" />
                   </div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-azure-500/85 font-semibold">The Guarantee</p>
+                  <p className="text-xs uppercase tracking-[0.18em] text-ember-500/85 font-semibold">The Guarantee</p>
                 </div>
                 <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">{OUTCOMES_FEATURED.metric}</p>
                 <p className="mt-3 text-lg text-white/80 font-medium leading-snug">{OUTCOMES_FEATURED.metricLabel}</p>
@@ -450,9 +450,9 @@ export default function LinkedinGrowthPage() {
           {/* Supporting outcome tiles */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {OUTCOMES_GRID.map((o, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:border-azure-500/30 hover:bg-white/[0.035] transition-colors">
-                <div className="w-11 h-11 rounded-xl bg-azure-500/10 border border-azure-500/20 flex items-center justify-center mb-4 group-hover:bg-azure-500/15 transition-colors">
-                  <o.icon className="w-5 h-5 text-azure-500" />
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors">
+                <div className="w-11 h-11 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-4 group-hover:bg-ember-500/15 transition-colors">
+                  <o.icon className="w-5 h-5 text-ember-500" />
                 </div>
                 <h4 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">{o.title}</h4>
                 <p className="text-sm text-white/65 leading-relaxed">{o.desc}</p>
@@ -473,17 +473,17 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-3">The Real Problem</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">The Real Problem</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">LinkedIn Isn&apos;t Broken. The Way Everyone&apos;s Using It Is.</h2>
             <p className="mt-3 text-base text-white/70 max-w-2xl mx-auto">If any of these sound familiar, you&apos;re running the 2020 playbook in a 2026 inbox.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {PROBLEMS.map((p, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 flex flex-col">
-                <div className="w-12 h-12 rounded-xl bg-azure-500/10 border border-azure-500/20 flex items-center justify-center mb-4">
-                  <p.icon className="w-6 h-6 text-azure-500/80" />
+                <div className="w-12 h-12 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-4">
+                  <p.icon className="w-6 h-6 text-ember-500/80" />
                 </div>
-                <p className="text-xs uppercase tracking-[0.15em] text-azure-500/70 font-semibold mb-2">{p.tag}</p>
+                <p className="text-xs uppercase tracking-[0.15em] text-ember-500/70 font-semibold mb-2">{p.tag}</p>
                 <h3 className="text-base font-bold text-white mb-2 leading-snug">{p.title}</h3>
                 <p className="text-sm text-white/70 leading-relaxed">{p.desc}</p>
               </motion.div>
@@ -504,10 +504,10 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-3">The Authority Difference</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">The Authority Difference</p>
             <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">
               Why Outreach Alone Stopped Working — And{" "}
-              <span className="text-azure-500">What Replaced It.</span>
+              <span className="text-ember-500">What Replaced It.</span>
             </h2>
             <p className="mt-4 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
               Without authority, your message is one of 100. With authority, you&apos;re the one they were waiting to hear from. Same outreach. Different math.
@@ -516,41 +516,41 @@ export default function LinkedinGrowthPage() {
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             {/* Old way */}
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-azure-500/15 bg-azure-500/[0.02]">
-              <p className="text-xs uppercase tracking-[0.2em] text-azure-500/60 font-semibold mb-5">{AUTHORITY_MATH.oldWay.title}</p>
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-ember-500/15 bg-ember-500/[0.02]">
+              <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60 font-semibold mb-5">{AUTHORITY_MATH.oldWay.title}</p>
               <div className="space-y-3 mb-6">
                 {AUTHORITY_MATH.oldWay.rows.map((row, i) => (
-                  <div key={i} className="flex items-start gap-3"><XCircle className="w-4 h-4 text-azure-500/60 mt-0.5 flex-shrink-0" /><span className="text-sm text-white/70 leading-relaxed">{row}</span></div>
+                  <div key={i} className="flex items-start gap-3"><XCircle className="w-4 h-4 text-ember-500/60 mt-0.5 flex-shrink-0" /><span className="text-sm text-white/70 leading-relaxed">{row}</span></div>
                 ))}
               </div>
               <div className="pt-5 border-t border-white/[0.06] space-y-2.5">
                 {AUTHORITY_MATH.oldWay.stats.map((s, i) => (
                   <div key={i} className="flex items-center justify-between text-sm">
                     <span className="text-white/60">{s.label}</span>
-                    <span className="text-azure-500/80 font-bold">{s.value}</span>
+                    <span className="text-ember-500/80 font-bold">{s.value}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-5 text-xs text-azure-500/65 font-medium">Brutal math. And reply rates keep falling.</p>
+              <p className="mt-5 text-xs text-ember-500/65 font-medium">Brutal math. And reply rates keep falling.</p>
             </motion.div>
 
             {/* New way */}
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card dark-red-gradient-border p-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-azure-500/80 font-semibold mb-5">{AUTHORITY_MATH.newWay.title}</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-semibold mb-5">{AUTHORITY_MATH.newWay.title}</p>
               <div className="space-y-3 mb-6">
                 {AUTHORITY_MATH.newWay.rows.map((row, i) => (
-                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-azure-500 mt-0.5 flex-shrink-0" /><span className="text-sm text-white/85 leading-relaxed font-medium">{row}</span></div>
+                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-ember-500 mt-0.5 flex-shrink-0" /><span className="text-sm text-white/85 leading-relaxed font-medium">{row}</span></div>
                 ))}
               </div>
               <div className="pt-5 border-t border-white/[0.08] space-y-2.5">
                 {AUTHORITY_MATH.newWay.stats.map((s, i) => (
                   <div key={i} className="flex items-center justify-between text-sm">
                     <span className="text-white/60">{s.label}</span>
-                    <span className="text-azure-500 font-bold">{s.value}</span>
+                    <span className="text-ember-500 font-bold">{s.value}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-5 text-xs text-azure-500/80 font-medium">Same outreach. ~12x more qualified meetings.</p>
+              <p className="mt-5 text-xs text-ember-500/80 font-medium">Same outreach. ~12x more qualified meetings.</p>
             </motion.div>
           </div>
 
@@ -562,7 +562,7 @@ export default function LinkedinGrowthPage() {
               { icon: CalendarCheck, title: "Pre-Qualified Booking", desc: "Only decision-makers with budget and fit make it to your calendar. Pre-qualified, pre-sold, and ready to buy when the call starts." },
             ].map((p, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 h-full">
-                <div className="w-12 h-12 rounded-xl bg-azure-500/10 flex items-center justify-center mb-4"><p.icon className="w-6 h-6 text-azure-500" /></div>
+                <div className="w-12 h-12 rounded-xl bg-ember-500/10 flex items-center justify-center mb-4"><p.icon className="w-6 h-6 text-ember-500" /></div>
                 <h3 className="text-base font-semibold text-white mb-2">{p.title}</h3>
                 <p className="text-sm text-white/70 leading-relaxed">{p.desc}</p>
               </motion.div>
@@ -580,29 +580,29 @@ export default function LinkedinGrowthPage() {
 
       {/* ── HOW IT WORKS ── */}
       <section className="section-padding py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(14,165,233,0.06)_0%,_transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.06)_0%,_transparent_60%)] pointer-events-none" />
         <div className="relative max-container max-w-5xl">
           <div className="mb-14 md:mb-20 text-center">
-            <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-4">How It Works</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">How It Works</p>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">
-              From application to <span className="text-azure-500">live pipeline.</span>
+              From application to <span className="text-ember-500">live pipeline.</span>
             </h2>
           </div>
 
           {/* Horizontal connected timeline */}
           <div className="relative">
             {/* Dashed connector line behind icons — desktop only */}
-            <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] border-t border-dashed border-azure-500/40" />
+            <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] border-t border-dashed border-ember-500/40" />
 
             <div className="grid md:grid-cols-3 gap-y-12 md:gap-x-6">
               {HOW_IT_WORKS.map((step, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12 }} className="relative text-center px-4">
                   {/* Ember-bordered icon ring */}
-                  <div className="relative z-10 mx-auto w-20 h-20 rounded-full border-2 border-azure-500/60 bg-surface-950 flex items-center justify-center mb-5">
-                    <step.icon className="w-8 h-8 text-azure-500" />
+                  <div className="relative z-10 mx-auto w-20 h-20 rounded-full border-2 border-ember-500/60 bg-surface-950 flex items-center justify-center mb-5">
+                    <step.icon className="w-8 h-8 text-ember-500" />
                   </div>
                   <p className="text-xs uppercase tracking-[0.18em] text-white/45 font-semibold mb-2">
-                    Step {i + 1} <span className="text-azure-500/80">· {step.days}</span>
+                    Step {i + 1} <span className="text-ember-500/80">· {step.days}</span>
                   </p>
                   <h3 className="text-lg md:text-xl font-bold text-white mb-3">{step.title}</h3>
                   <p className="text-sm md:text-base text-white/65 leading-relaxed max-w-[280px] mx-auto">{step.desc}</p>
@@ -625,10 +625,10 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-3">Why This Beats Every Other Option</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Why This Beats Every Other Option</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               The Difference Between Sending Messages — And{" "}
-              <span className="text-azure-500">Owning Your Industry</span>
+              <span className="text-ember-500">Owning Your Industry</span>
             </h2>
             <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
               Generic LinkedIn agencies sell volume. DIY drains your time. LinkedIn Growth System&trade; installs a permanent authority engine into your business — and guarantees the result.
@@ -640,8 +640,8 @@ export default function LinkedinGrowthPage() {
               <div className="p-4 col-span-1" />
               <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Generic LinkedIn Agency</p></div>
               <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">DIY (You)</p></div>
-              <div className="p-4 text-center bg-azure-500/[0.05] border-l border-azure-500/15">
-                <p className="text-xs md:text-sm font-semibold text-azure-500">LinkedIn Growth System&trade;</p>
+              <div className="p-4 text-center bg-ember-500/[0.05] border-l border-ember-500/15">
+                <p className="text-xs md:text-sm font-semibold text-ember-500">LinkedIn Growth System&trade;</p>
               </div>
             </div>
             {DIFFERENTIATION.map((row, i) => (
@@ -649,7 +649,7 @@ export default function LinkedinGrowthPage() {
                 <div className="p-4 flex items-center"><span className="text-xs md:text-sm text-white/60">{row.label}</span></div>
                 <div className="p-4 flex items-center justify-center text-center"><span className="text-sm text-white/55">{row.agency}</span></div>
                 <div className="p-4 flex items-center justify-center text-center"><span className="text-sm text-white/55">{row.diy}</span></div>
-                <div className="p-4 flex items-center justify-center text-center bg-azure-500/[0.04] border-l border-azure-500/10"><span className="text-sm text-azure-500 font-medium">{row.novada}</span></div>
+                <div className="p-4 flex items-center justify-center text-center bg-ember-500/[0.04] border-l border-ember-500/10"><span className="text-sm text-ember-500 font-medium">{row.novada}</span></div>
               </div>
             ))}
           </div>
@@ -667,8 +667,8 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-32">
         <div className="max-container">
           <div className="text-center mb-14">
-            <p className="text-xs uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-4">350+ Businesses · $45.7M+ Tracked Revenue</p>
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">We build outbound that <span className="text-azure-500">compounds.</span></h2>
+            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">350+ Businesses · $45.7M+ Tracked Revenue</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">We build outbound that <span className="text-ember-500">compounds.</span></h2>
             <p className="mt-5 text-base text-white/55 max-w-xl mx-auto">Every result below is from a named client engagement.</p>
           </div>
 
@@ -688,7 +688,7 @@ export default function LinkedinGrowthPage() {
                     <p className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-none">{t.metric}</p>
                     <p className="text-sm text-white/40 font-medium">/ {t.metricLabel}</p>
                   </div>
-                  <div className="text-azure-500 text-sm mb-4 tracking-widest">{"★★★★★"}</div>
+                  <div className="text-ember-500 text-sm mb-4 tracking-widest">{"★★★★★"}</div>
                   <p className="text-base md:text-lg text-white/90 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
                 </div>
 
@@ -725,7 +725,7 @@ export default function LinkedinGrowthPage() {
       <section className="pt-16 pb-0 section-padding border-t border-white/[0.04]">
         <div className="max-container max-w-2xl">
           <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-3">Your Questions Answered</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Your Questions Answered</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">The Questions Serious Operators Ask</h2>
           </div>
           <div className="space-y-3">{FAQS.map((faq, i) => (<FAQItem key={i} q={faq.q} a={faq.a} />))}</div>
@@ -737,12 +737,12 @@ export default function LinkedinGrowthPage() {
         <div className="max-container max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl overflow-hidden text-center">
             <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(14,165,233,0.16)_0%,_transparent_70%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.16)_0%,_transparent_70%)]" />
             <div className="relative px-8 py-14 md:px-14">
-              <p className="text-sm uppercase tracking-[0.2em] text-azure-500/80 font-medium mb-4">Performance Guaranteed</p>
+              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">Performance Guaranteed</p>
               <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight text-balance">
                 Stop Sending Messages.{" "}
-                <span className="text-azure-500">Start Owning Your Industry.</span>
+                <span className="text-ember-500">Start Owning Your Industry.</span>
               </h2>
               <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ founders have made the switch from cold outreach to authority + outreach. 20+ qualified meetings every month, guaranteed. Or you don&apos;t pay.</p>
 

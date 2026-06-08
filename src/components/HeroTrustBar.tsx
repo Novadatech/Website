@@ -13,7 +13,7 @@ interface HeroTrustBarProps {
   /** Extra Tailwind classes (e.g. spacing override). */
   className?: string;
   /** Accent colour for the businesses-scaled badge icon. Default "ember" (site-wide brand). */
-  accent?: "ember" | "azure";
+  accent?: "ember";
 }
 
 /**
@@ -29,10 +29,10 @@ export default function HeroTrustBar({
   businessesCount = "350+",
   rating = "5.0",
   className = "",
-  accent = "ember",
 }: HeroTrustBarProps) {
-  // Static class strings so Tailwind JIT picks them up
-  const iconColorClass = accent === "azure" ? "text-azure-500" : "text-ember-500";
+  // Single brand accent — ember (preserved for revertability if we test
+  // a variant again later).
+  const iconColorClass = "text-ember-500";
 
   return (
     <motion.div

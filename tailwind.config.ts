@@ -37,17 +37,6 @@ const config: Config = {
         surface: {
           950: "#0A0A0A",
         },
-        // Azure palette — light SaaS sky-blue (Tailwind sky-500 anchor).
-        // Lighter / brighter than the logo cobalt — common SaaS feel
-        // (Calendly, Twitter/X, Salesforce all sit in this range).
-        // Used on /linkedin-growth as a brand-strategy variant. Ember
-        // is preserved in this config for one-script revert.
-        azure: {
-          400: "#38BDF8",
-          500: "#0EA5E9",
-          600: "#0284C7",
-          700: "#0369A1",
-        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

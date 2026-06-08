@@ -15,10 +15,11 @@ const TARGET = path.resolve(
 );
 
 // Map FROM -> TO so it's trivial to flip for a revert.
-const FROM = "ember";
-const TO = "azure";
-const FROM_RGBA = "rgba(255,90,48,"; // ember
-const TO_RGBA = "rgba(14,165,233,"; // azure-500 = #0EA5E9 (Tailwind sky-500)
+// Currently flipped: reverting azure brand test back to ember.
+const FROM = "azure";
+const TO = "ember";
+const FROM_RGBA = "rgba(14,165,233,"; // azure-500 = #0EA5E9 (Tailwind sky-500)
+const TO_RGBA = "rgba(255,90,48,"; // ember
 
 let src = fs.readFileSync(TARGET, "utf8");
 
@@ -57,11 +58,11 @@ for (const shade of SHADES) {
   }
 }
 
-// HeroTrustBar accent prop: dark-red is the legacy alias we'd previously
-// passed for ember. Switch to explicit "azure".
+// HeroTrustBar accent prop: explicit revert from "azure" back to nothing
+// (ember is the component's default now, so the prop is redundant).
 {
-  const before = `accent="dark-red"`;
-  const after = `accent="azure"`;
+  const before = ` accent="azure"`;
+  const after = ``;
   const matches = src.split(before).length - 1;
   if (matches > 0) {
     src = src.split(before).join(after);
