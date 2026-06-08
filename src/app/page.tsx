@@ -33,9 +33,9 @@ function Hero() {
   return (
     <section className="relative pt-16 pb-12 overflow-hidden">
       {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(21,94,239,0.06)_0%,_transparent_60%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(255,90,48,0.06)_0%,_transparent_60%)]" />
 
       <div className="relative max-container section-padding text-center">
         {/* Eyebrow */}
@@ -43,10 +43,10 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-4"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-4"
         >
-          <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
-          <span className="text-sm text-gold-400 font-medium">
+          <span className="w-2 h-2 rounded-full bg-ember-500 animate-pulse-slow" />
+          <span className="text-sm text-ember-500 font-medium">
             Limited Availability This Quarter · Results Only · No Retainers
           </span>
         </motion.div>
@@ -73,7 +73,7 @@ function Hero() {
         >
           {/* Video duration prompt */}
           <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
-            <Play className="w-3.5 h-3.5 text-gold-400" />
+            <Play className="w-3.5 h-3.5 text-ember-500" />
             <span>Watch the 2-min overview</span>
           </div>
 
@@ -89,8 +89,8 @@ function Hero() {
 
           {/* Presenter identity */}
           <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
-            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-[8px] font-bold text-gold-300">A</span>
+            <div className="w-5 h-5 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
+              <span className="text-[8px] font-bold text-ember-400">A</span>
             </div>
             <span>Presented by <span className="text-white/60 font-medium">Ade</span> — Novada Tech</span>
           </div>
@@ -157,7 +157,7 @@ function ProblemSection() {
     <section className="section-spacing section-padding border-t border-white/[0.04]">
       <div className="max-container">
         <AnimatedSection className="max-w-3xl mx-auto text-center">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             The Problem
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
@@ -175,7 +175,7 @@ function ProblemSection() {
             <AnimatedSection key={i} delay={i * 0.1}>
               <div className="glass-card border border-white/[0.06] rounded-2xl p-7 h-full flex flex-col">
                 <div className="mb-5">
-                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-medium text-red-400">
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ember-500/10 border border-ember-500/25 text-xs font-medium text-ember-500">
                     <X className="w-3 h-3" /> {p.tag}
                   </span>
                 </div>
@@ -210,11 +210,11 @@ function SolutionSection() {
   ];
 
   return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-navy-950 via-navy-900/50 to-navy-950">
+    <section className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/50 to-surface-950">
       <div className="max-container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
               The Solution
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
@@ -247,8 +247,8 @@ function SolutionSection() {
                   key={i}
                   className="glass-card gradient-border px-6 py-5 flex items-center gap-4"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-5 h-5 text-gold-400" />
+                  <div className="w-10 h-10 rounded-xl bg-ember-500/10 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-5 h-5 text-ember-500" />
                   </div>
                   <p className="text-white/80 font-medium">{item}</p>
                 </div>
@@ -274,7 +274,7 @@ function ProofSection() {
     <section className="section-spacing section-padding border-t border-b border-white/[0.04]">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             Proof Over Promises
           </p>
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -373,7 +373,7 @@ function CaseStudies() {
     <section className="section-spacing section-padding border-t border-white/[0.04]">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             Client Results
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
@@ -395,7 +395,7 @@ function CaseStudies() {
                     <p className="font-bold text-white text-base">{c.company}</p>
                     <p className="text-base text-white/80 mt-0.5">{c.industry}</p>
                   </div>
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 whitespace-nowrap flex-shrink-0 ml-3">
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-ember-500/10 border border-ember-500/20 text-ember-500 whitespace-nowrap flex-shrink-0 ml-3">
                     {c.timeframe}
                   </span>
                 </div>
@@ -404,7 +404,7 @@ function CaseStudies() {
                 <div className="mb-5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center">
                   <p className="text-3xl font-bold gradient-text">{c.metric}</p>
                   <p className="text-base text-white/80 mt-1">{c.metricLabel}</p>
-                  <p className="text-xs text-gold-400/60 mt-1 font-medium">{c.result}</p>
+                  <p className="text-xs text-ember-500/60 mt-1 font-medium">{c.result}</p>
                 </div>
 
                 {/* Challenge */}
@@ -459,7 +459,7 @@ function TrustBar() {
     <section className="py-12 border-t border-b border-white/[0.08] overflow-hidden bg-white/[0.02]">
       <div className="max-container section-padding mb-8">
         <p className="text-sm font-semibold text-white/70 text-center uppercase tracking-[0.2em]">
-          Trusted by 350+ businesses across <span className="text-gold-400">30+ industries</span> in Australia
+          Trusted by 350+ businesses across <span className="text-ember-500">30+ industries</span> in Australia
         </p>
       </div>
       <div className="flex overflow-hidden">
@@ -511,7 +511,7 @@ function WhatWeBuild() {
     <section id="how-it-works" className="section-spacing section-padding">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             Your Revenue Engine
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
@@ -525,8 +525,8 @@ function WhatWeBuild() {
           {mechanisms.map((item, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
               <div className="glass-card gradient-border p-6 md:p-7 h-full group hover:bg-white/[0.05] transition-all duration-500">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-500/10 to-accent-blue/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                  <item.icon className="w-6 h-6 text-gold-400" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-ember-500/10 to-accent-blue/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                  <item.icon className="w-6 h-6 text-ember-500" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">
                   {item.title}
@@ -580,10 +580,10 @@ function Flywheel() {
   ];
 
   return (
-    <section id="how-it-works" className="section-spacing section-padding bg-gradient-to-b from-navy-950 via-navy-900/40 to-navy-950">
+    <section id="how-it-works" className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/40 to-surface-950">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             The System
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
@@ -596,8 +596,8 @@ function Flywheel() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {steps.map((step, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="glass-card p-7 h-full border border-white/[0.04] group hover:border-gold-500/20 transition-all duration-500">
-                <span className="text-3xl font-bold text-gold-500/20 group-hover:text-gold-500/40 transition-colors duration-500">
+              <div className="glass-card p-7 h-full border border-white/[0.04] group hover:border-ember-500/20 transition-all duration-500">
+                <span className="text-3xl font-bold text-ember-500/20 group-hover:text-ember-500/40 transition-colors duration-500">
                   {step.num}
                 </span>
                 <h3 className="mt-3 text-lg font-semibold text-white">
@@ -649,11 +649,11 @@ function HomeVideoSlider() {
         {/* Side arrows — desktop only */}
         <motion.button
           onClick={prev}
-          animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }}
+          animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 16px rgba(255,90,48,0.4)", "0 0 0px rgba(255,90,48,0)"] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           whileHover={{ scale: 1.12 }}
           whileTap={{ scale: 0.93 }}
-          className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 items-center justify-center text-gold-400 hover:border-gold-500/80 hover:bg-navy-800 transition-colors duration-200 z-10"
+          className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900/90 border border-ember-500/35 items-center justify-center text-ember-500 hover:border-ember-500/80 hover:bg-zinc-800 transition-colors duration-200 z-10"
           aria-label="Previous"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -661,11 +661,11 @@ function HomeVideoSlider() {
 
         <motion.button
           onClick={next}
-          animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }}
+          animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 24px rgba(255,90,48,0.6)", "0 0 0px rgba(255,90,48,0)"] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
           whileHover={{ scale: 1.12 }}
           whileTap={{ scale: 0.93 }}
-          className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 items-center justify-center text-gold-400 hover:bg-gold-500/25 hover:border-gold-500 transition-colors duration-200 z-10"
+          className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-ember-500/15 border border-ember-500/60 items-center justify-center text-ember-500 hover:bg-ember-500/25 hover:border-ember-500 transition-colors duration-200 z-10"
           aria-label="Next"
         >
           <ChevronRight className="w-6 h-6" />
@@ -693,14 +693,14 @@ function HomeVideoSlider() {
                 />
               </div>
               <div className="flex items-center gap-3 mt-3 px-1 pb-1">
-                <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
+                <div className="w-7 h-7 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[10px] font-bold text-ember-400">{video.name[0]}</span>
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-white/70">{video.name}</p>
                   <p className="text-[11px] text-white/35">{video.company}</p>
                 </div>
-                <div className="ml-auto text-gold-400 text-xs flex-shrink-0">★★★★★</div>
+                <div className="ml-auto text-ember-500 text-xs flex-shrink-0">★★★★★</div>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -711,10 +711,10 @@ function HomeVideoSlider() {
       <div className="flex sm:hidden items-center justify-center gap-4 mt-4">
         <motion.button
           onClick={prev}
-          animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }}
+          animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 16px rgba(255,90,48,0.4)", "0 0 0px rgba(255,90,48,0)"] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           whileTap={{ scale: 0.93 }}
-          className="w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 flex items-center justify-center text-gold-400"
+          className="w-12 h-12 rounded-full bg-zinc-900/90 border border-ember-500/35 flex items-center justify-center text-ember-500"
           aria-label="Previous"
         >
           <ChevronLeft className="w-6 h-6" />
@@ -727,7 +727,7 @@ function HomeVideoSlider() {
               key={i}
               onClick={() => goTo(i, i > current ? 1 : -1)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                i === current ? "w-6 bg-gold-400" : "w-2 bg-white/20"
+                i === current ? "w-6 bg-ember-500" : "w-2 bg-white/20"
               }`}
               aria-label={`Go to video ${i + 1}`}
             />
@@ -736,10 +736,10 @@ function HomeVideoSlider() {
 
         <motion.button
           onClick={next}
-          animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }}
+          animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 24px rgba(255,90,48,0.6)", "0 0 0px rgba(255,90,48,0)"] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
           whileTap={{ scale: 0.93 }}
-          className="w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 flex items-center justify-center text-gold-400"
+          className="w-12 h-12 rounded-full bg-ember-500/15 border border-ember-500/60 flex items-center justify-center text-ember-500"
           aria-label="Next"
         >
           <ChevronRight className="w-6 h-6" />
@@ -753,7 +753,7 @@ function HomeVideoSlider() {
             key={i}
             onClick={() => goTo(i, i > current ? 1 : -1)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              i === current ? "w-6 bg-gold-400" : "w-2 bg-white/20 hover:bg-white/40"
+              i === current ? "w-6 bg-ember-500" : "w-2 bg-white/20 hover:bg-white/40"
             }`}
             aria-label={`Go to video ${i + 1}`}
           />
@@ -768,7 +768,7 @@ function Testimonials() {
     <section className="section-spacing section-padding border-t border-white/[0.04]">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             Client Success
           </p>
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -788,7 +788,7 @@ function Testimonials() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 text-base text-white/80 hover:text-white/70 transition-colors"
           >
-            <div className="flex text-gold-400">★★★★★</div>
+            <div className="flex text-ember-500">★★★★★</div>
             <span className="underline underline-offset-2 decoration-white/20">
               Rated 4.9/5 from 77+ verified reviews on Trustpilot
             </span>
@@ -799,47 +799,89 @@ function Testimonials() {
   );
 }
 
-/* ─── WRITTEN TESTIMONIALS ─── */
+/* ─── WRITTEN TESTIMONIALS (big-photo cards) ─── */
 function WrittenTestimonials() {
-  // TODO: Replace placeholder avatar URLs with actual client photos
   const testimonials = [
-    { quote: "$42K to $91K monthly revenue in under 60 days. 18 new high-value clients per month. The ROI was clear within the first fortnight.", name: "Josh", role: "Director, Maxicare Plus", avatar: "https://i.pravatar.cc/150?img=12" },
-    { quote: "4 new retainer clients closed in the first 45 days. After being burned by two agencies, the pay-for-results model was the only thing that made sense — and it delivered.", name: "Anthony", role: "Founder, Ripple Clarke", avatar: "https://i.pravatar.cc/150?img=33" },
-    { quote: "Discovery call conversion jumped from 28% to over 60%. Prospects arrived already educated on our value — we just had to confirm the fit.", name: "Nate", role: "Owner, Larsky Tach and Feed", avatar: "https://i.pravatar.cc/150?img=53" },
-    { quote: "More clients in month one than the previous 6 months combined. Had to pause the system at week 5 just to catch up with demand.", name: "Jessica", role: "Founder, Jessica Teds Coaching", avatar: "https://i.pravatar.cc/150?img=47" },
+    {
+      metric: "$91K/mo",
+      metricLabel: "monthly revenue",
+      quote: "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.",
+      name: "Josh",
+      role: "Director, Maxicare Plus",
+      avatar: "/testimonials/josh-maxicare.jpg",
+    },
+    {
+      metric: "4 clients",
+      metricLabel: "in first 45 days",
+      quote: "We'd been burned by two agencies before. This was different — it was a system, not a service. 4 new retainer clients in the first 45 days.",
+      name: "Uche",
+      role: "Founder, The Morning Star Community Services",
+      avatar: "/testimonials/uche-morningstar.jpg",
+    },
+    {
+      metric: "28% → 60%",
+      metricLabel: "discovery call close rate",
+      quote: "Discovery call conversion jumped from 28% to over 60%. The authority content meant prospects arrived already sold — we just confirmed fit.",
+      name: "Malkin",
+      role: "Founder, Support24",
+      avatar: "/testimonials/malkin-support24.jpg",
+    },
+    {
+      metric: "6 months",
+      metricLabel: "of meetings in month one",
+      quote: "More qualified meetings in month one than the previous six months combined. The system ran on its own — I went back to delivery.",
+      name: "Jessica",
+      role: "Founder, Jessica Teds Coaching",
+      avatar: "/testimonials/jessica-teds.jpg",
+    },
   ];
 
   return (
     <section className="section-spacing section-padding border-t border-white/[0.04]">
       <div className="max-container">
-        <AnimatedSection className="text-center mb-12">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
-            What Clients Say
+        <AnimatedSection className="text-center mb-14">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
+            350+ Businesses &middot; $45.7M+ Tracked Revenue
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Don&apos;t Just Take Our Word for It
+          <h2 className="text-3xl md:text-5xl font-bold text-balance leading-[1.05]">
+            Real numbers from <span className="text-ember-500">real partners.</span>
           </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
-            350+ businesses have been through this. Here&apos;s what they say on the other side.
+          <p className="mt-5 text-base text-white/55 max-w-xl mx-auto">
+            Every result below is from a named client engagement.
           </p>
         </AnimatedSection>
 
-        <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {testimonials.map((t, i) => (
-            <AnimatedSection key={i} delay={(i % 4) * 0.07}>
-              <div className="glass-card border border-white/[0.05] p-6 h-full flex flex-col">
-                <div className="text-gold-400 text-xs mb-3">{"\u2605\u2605\u2605\u2605\u2605"}</div>
-                <p className="text-base text-white/80 leading-relaxed italic flex-1">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
-                  <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-white">{t.name}</p>
-                    <p className="text-base text-white/80">{t.role}</p>
+            <AnimatedSection key={i} delay={(i % 2) * 0.1}>
+              <article className="rounded-3xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col h-full">
+                {/* Top: metric + stars + quote */}
+                <div className="p-7 md:p-8">
+                  <div className="flex items-baseline gap-2 mb-4 flex-wrap">
+                    <p className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-none">{t.metric}</p>
+                    <p className="text-sm text-white/40 font-medium">/ {t.metricLabel}</p>
                   </div>
+                  <div className="text-ember-500 text-sm mb-4 tracking-widest">{"\u2605\u2605\u2605\u2605\u2605"}</div>
+                  <p className="text-base md:text-lg text-white/90 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
                 </div>
-              </div>
+
+                {/* Big customer image */}
+                <div className="relative aspect-[4/5] bg-white/[0.02] overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Name + role */}
+                <div className="px-7 md:px-8 py-5 border-t border-white/[0.06]">
+                  <p className="text-base font-semibold text-white">{t.name}</p>
+                  <p className="text-sm text-white/55">{t.role}</p>
+                </div>
+              </article>
             </AnimatedSection>
           ))}
         </div>
@@ -863,7 +905,7 @@ function ComparisonSection() {
     <section className="section-spacing section-padding border-t border-white/[0.04]">
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-12">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             Why Novada Tech
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-balance">
@@ -885,8 +927,8 @@ function ComparisonSection() {
               <div className="p-4 text-center">
                 <p className="text-sm font-medium text-white/55">In-House Team</p>
               </div>
-              <div className="p-4 text-center bg-gold-500/[0.04] border-l border-gold-500/10">
-                <p className="text-sm font-semibold text-gold-400">Novada Tech</p>
+              <div className="p-4 text-center bg-ember-500/[0.04] border-l border-ember-500/10">
+                <p className="text-sm font-semibold text-ember-500">Novada Tech</p>
               </div>
             </div>
 
@@ -921,15 +963,15 @@ function ComparisonSection() {
                     <span className="text-sm text-white/50 text-center">{row.inhouse}</span>
                   )}
                 </div>
-                <div className="p-4 flex items-center justify-center bg-gold-500/[0.04] border-l border-gold-500/10">
+                <div className="p-4 flex items-center justify-center bg-ember-500/[0.04] border-l border-ember-500/10">
                   {typeof row.novada === "boolean" ? (
                     row.novada ? (
-                      <Check className="w-4 h-4 text-gold-400" />
+                      <Check className="w-4 h-4 text-ember-500" />
                     ) : (
                       <X className="w-4 h-4 text-red-400/50" />
                     )
                   ) : (
-                    <span className="text-xs text-gold-400/80 font-medium text-center">{row.novada}</span>
+                    <span className="text-xs text-ember-500/80 font-medium text-center">{row.novada}</span>
                   )}
                 </div>
               </div>
@@ -948,7 +990,7 @@ function ComparisonSection() {
   );
 }
 
-/* ─── WHO THIS IS FOR ─── */
+/* ─── WHO THIS IS FOR (icon-header tile design) ─── */
 function QualificationSection() {
   const goodFit = [
     "A business owner who wants predictable revenue growth",
@@ -966,44 +1008,58 @@ function QualificationSection() {
   ];
 
   return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950">
-      <div className="max-container">
-        <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+    <section className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/30 to-surface-950">
+      <div className="max-container max-w-5xl">
+        <AnimatedSection className="text-center mb-14">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             Is This Right for You?
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance leading-tight">
             We&apos;re Selective About Who We Partner With
           </h2>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* For-you column */}
           <AnimatedSection direction="left">
-            <div className="glass-card gradient-border p-8 h-full">
-              <h3 className="text-xl font-semibold text-gold-400 mb-6">
-                We&apos;re a Fit If You Are...
-              </h3>
-              <div className="space-y-4">
+            <div className="rounded-3xl border border-emerald-500/20 bg-emerald-500/[0.03] p-7 md:p-8 flex flex-col h-full">
+              <div className="flex items-center gap-3 mb-7">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-6 h-6 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-emerald-400/85 font-semibold mb-0.5">A Match</p>
+                  <h3 className="text-lg md:text-xl font-bold text-white">We&apos;re a Fit If You Are…</h3>
+                </div>
+              </div>
+              <div className="space-y-3 flex-1">
                 {goodFit.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
+                  <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.025] p-4 hover:bg-white/[0.04] transition-colors">
                     <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-white/80 text-base">{item}</span>
+                    <span className="text-sm md:text-base text-white/90 leading-relaxed font-medium">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
           </AnimatedSection>
 
+          {/* Not-for column */}
           <AnimatedSection direction="right" delay={0.15}>
-            <div className="glass-card p-8 h-full border border-white/[0.04]">
-              <h3 className="text-xl font-semibold text-white/60 mb-6">
-                We Are NOT a Fit If You...
-              </h3>
-              <div className="space-y-4">
+            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.015] p-7 md:p-8 flex flex-col h-full">
+              <div className="flex items-center gap-3 mb-7">
+                <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.10] flex items-center justify-center flex-shrink-0">
+                  <X className="w-6 h-6 text-white/45" />
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-white/40 font-semibold mb-0.5">Not A Fit</p>
+                  <h3 className="text-lg md:text-xl font-bold text-white/85">We Are NOT a Fit If You…</h3>
+                </div>
+              </div>
+              <div className="space-y-3 flex-1">
                 {notFit.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <X className="w-5 h-5 text-red-400/60 mt-0.5 flex-shrink-0" />
-                    <span className="text-white/80 text-base">{item}</span>
+                  <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.05] bg-white/[0.015] p-4">
+                    <X className="w-5 h-5 text-white/35 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm md:text-base text-white/60 leading-relaxed">{item}</span>
                   </div>
                 ))}
               </div>
@@ -1063,18 +1119,18 @@ function RiskReversal() {
 
           <AnimatedSection direction="right" delay={0.15}>
             <div className="glass-card gradient-border p-8 h-full">
-              <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
                 Our Growth Partnership
               </p>
               <div className="space-y-4">
                 {partnership.map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <Check className="w-5 h-5 text-gold-400 flex-shrink-0" />
+                    <Check className="w-5 h-5 text-ember-500 flex-shrink-0" />
                     <span className="text-white/80 font-medium">{item}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-6 text-base text-gold-400/70 font-medium">
+              <p className="mt-6 text-base text-ember-500/70 font-medium">
                 We don&apos;t win unless you win. This is how partnerships
                 should work.
               </p>
@@ -1107,10 +1163,10 @@ function HowToStart() {
   ];
 
   return (
-    <section className="py-16 section-padding bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950">
+    <section className="py-16 section-padding bg-gradient-to-b from-surface-950 via-zinc-900/30 to-surface-950">
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             Getting Started
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
@@ -1125,7 +1181,7 @@ function HowToStart() {
           {steps.map((step, i) => (
             <AnimatedSection key={i} delay={i * 0.15}>
               <div className="glass-card gradient-border p-8 flex gap-6 items-start group hover:bg-white/[0.04] transition-all duration-500">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-500 to-gold-400 flex items-center justify-center text-navy-950 font-bold text-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-ember-500 flex items-center justify-center text-white font-bold text-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                   {step.num}
                 </div>
                 <div>
@@ -1257,11 +1313,11 @@ function FinalCTA() {
         <AnimatedSection>
           <div className="relative rounded-3xl overflow-hidden">
             {/* Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,162,63,0.1)_0%,_transparent_70%)]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.1)_0%,_transparent_70%)]" />
 
             <div className="relative px-8 py-16 md:px-16 md:py-24 text-center">
-              <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
                 Ready to Scale?
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance max-w-3xl mx-auto">
@@ -1315,7 +1371,7 @@ function VSLSection() {
     <section className="section-padding pb-0">
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-10">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
             Watch This First
           </p>
           <h2 className="text-2xl md:text-3xl font-bold text-white">
@@ -1360,7 +1416,7 @@ function StickyCtaBar() {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
+        <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
               <p className="text-sm font-semibold text-white">Performance-based growth partnership</p>
@@ -1404,11 +1460,11 @@ export default function HomePage() {
             <ArrowRight className="w-4 h-4" />
           </a>
           <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
-            <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-gold-500/60" /> Zero obligation</span>
+            <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-ember-500/60" /> Zero obligation</span>
             <span className="text-white/15">|</span>
-            <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-gold-500/60" /> 4.9 on Trustpilot</span>
+            <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-ember-500/60" /> 4.9 on Trustpilot</span>
             <span className="text-white/15">|</span>
-            <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-gold-500/60" /> No retainers</span>
+            <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-ember-500/60" /> No retainers</span>
           </div>
         </div>
       </section>
