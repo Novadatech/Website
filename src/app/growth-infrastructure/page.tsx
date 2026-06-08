@@ -71,25 +71,25 @@ const TESTIMONIALS = [
     quote: "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.",
     name: "Josh",
     role: "Director, Maxicare Plus",
-    avatar: "https://i.pravatar.cc/150?img=12",
+    avatar: "/testimonials/josh-maxicare.jpg",
   },
   {
     quote: "We'd been burned by two agencies before. Growth Infrastructure was different — it was a system, not a service. 4 new retainer clients in the first 45 days.",
     name: "Uche",
     role: "Founder, The Morning Star Community Services",
-    avatar: "https://i.pravatar.cc/150?img=33",
+    avatar: "/testimonials/uche-morningstar.jpg",
   },
   {
     quote: "Discovery call conversion jumped from 28% to over 60%. The authority content meant prospects arrived already sold on us — we just confirmed fit.",
     name: "Malkin",
     role: "Founder, Support24",
-    avatar: "https://i.pravatar.cc/150?img=53",
+    avatar: "/testimonials/malkin-support24.jpg",
   },
   {
     quote: "More qualified appointments in month one than in the previous six months combined. The infrastructure ran on its own — I went back to delivery.",
     name: "Jessica",
     role: "Founder, Jessica Teds Coaching",
-    avatar: "https://i.pravatar.cc/150?img=47",
+    avatar: "/testimonials/jessica-teds.jpg",
   },
 ];
 
@@ -177,8 +177,8 @@ function VideoSlider() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="relative">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 items-center justify-center text-gold-400 hover:border-gold-500/80 hover:bg-navy-800 transition-colors duration-200 z-10" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 items-center justify-center text-gold-400 hover:bg-gold-500/25 hover:border-gold-500 transition-colors duration-200 z-10" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
+        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 16px rgba(255,90,48,0.4)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900/90 border border-ember-500/35 items-center justify-center text-ember-500 hover:border-ember-500/80 hover:bg-zinc-800 transition-colors duration-200 z-10" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
+        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 24px rgba(255,90,48,0.6)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-ember-500/15 border border-ember-500/60 items-center justify-center text-ember-500 hover:bg-ember-500/25 hover:border-ember-500 transition-colors duration-200 z-10" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
 
         <div className="sm:px-16">
           <AnimatePresence mode="wait" initial={false}>
@@ -187,14 +187,14 @@ function VideoSlider() {
                 <iframe src={`https://www.youtube.com/embed/${video.id}`} title={video.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 w-full h-full" style={{ border: "none" }} />
               </div>
               <div className="flex items-center gap-3 mt-3 px-2 pb-1">
-                <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
+                <div className="w-7 h-7 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[10px] font-bold text-ember-400">{video.name[0]}</span>
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-white/70">{video.name}</p>
                   <p className="text-[11px] text-white/35">{video.company}</p>
                 </div>
-                <div className="ml-auto text-gold-400 text-xs flex-shrink-0">{"★★★★★"}</div>
+                <div className="ml-auto text-ember-500 text-xs flex-shrink-0">{"★★★★★"}</div>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -202,15 +202,15 @@ function VideoSlider() {
       </div>
 
       <div className="flex sm:hidden items-center justify-center gap-4 mt-4">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 flex items-center justify-center text-gold-400" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
+        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 16px rgba(255,90,48,0.4)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-zinc-900/90 border border-ember-500/35 flex items-center justify-center text-ember-500" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
         <div className="flex items-center gap-2">
-          {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-gold-400" : "w-2 bg-white/20"}`} aria-label={`Go to video ${i + 1}`} />))}
+          {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-ember-500" : "w-2 bg-white/20"}`} aria-label={`Go to video ${i + 1}`} />))}
         </div>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 flex items-center justify-center text-gold-400" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
+        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 24px rgba(255,90,48,0.6)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-ember-500/15 border border-ember-500/60 flex items-center justify-center text-ember-500" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
       </div>
 
       <div className="hidden sm:flex items-center justify-center gap-2 mt-5">
-        {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-gold-400" : "w-2 bg-white/20 hover:bg-white/40"}`} aria-label={`Go to video ${i + 1}`} />))}
+        {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-ember-500" : "w-2 bg-white/20 hover:bg-white/40"}`} aria-label={`Go to video ${i + 1}`} />))}
       </div>
     </div>
   );
@@ -228,7 +228,7 @@ function StickyCtaBar() {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
+        <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
               <p className="text-sm font-semibold text-white">20+ qualified appointments every month</p>
@@ -259,7 +259,7 @@ export default function GrowthInfrastructurePage() {
   return (
     <>
       {/* ── Minimal sticky header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-xl border-b border-white/[0.06]">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-b border-white/[0.06]">
         <div className="max-container section-padding">
           <div className="flex items-center justify-between h-20">
             <Link href="/growth-infrastructure" className="flex items-center">
@@ -276,12 +276,12 @@ export default function GrowthInfrastructurePage() {
 
       {/* ── Hero + Above-Fold CTA ── */}
       <section className="relative pt-6 pb-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
         <div className="relative max-container section-padding text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-4">
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
-            <span className="text-sm text-gold-400 font-medium">Growth Infrastructure&trade; — Performance Guaranteed</span>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-4">
+            <span className="w-2 h-2 rounded-full bg-ember-500 animate-pulse-slow" />
+            <span className="text-sm text-ember-500 font-medium">Growth Infrastructure&trade; — Performance Guaranteed</span>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
@@ -312,15 +312,15 @@ export default function GrowthInfrastructurePage() {
         <div className="max-container max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }}>
             <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
-              <Play className="w-3.5 h-3.5 text-gold-400" />
+              <Play className="w-3.5 h-3.5 text-ember-500" />
               <span>Watch the 2-min overview</span>
             </div>
             <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
               <iframe src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1&rel=0" title="Growth Infrastructure — How It Works" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }} />
             </div>
             <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
-              <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-[8px] font-bold text-gold-300">A</span>
+              <div className="w-5 h-5 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-[8px] font-bold text-ember-400">A</span>
               </div>
               <span>Presented by <span className="text-white/60 font-medium">Ade</span> — Novada Tech</span>
             </div>
@@ -332,7 +332,7 @@ export default function GrowthInfrastructurePage() {
       <section className="section-padding py-12">
         <div className="max-container">
           <div className="text-center mb-8">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Real Operators · Real Results</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Real Operators · Real Results</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">Hear From Businesses Scaling Using Our System</h2>
           </div>
           <VideoSlider />
@@ -350,10 +350,10 @@ export default function GrowthInfrastructurePage() {
                 <p className="mt-1.5 text-base text-white/80">Tell us about your business. If we&apos;re a fit, we&apos;ll guarantee 20+ qualified appointments every month — or you don&apos;t pay.</p>
                 <div className="mt-4">
                   <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
-                    <span className="flex items-center gap-1.5"><span className="text-gold-400 font-medium">Step 1</span><span>— Your details</span><span className="text-white/20">{"→"}</span><span>Step 2 — Pick your time</span></span>
+                    <span className="flex items-center gap-1.5"><span className="text-ember-500 font-medium">Step 1</span><span>— Your details</span><span className="text-white/20">{"→"}</span><span>Step 2 — Pick your time</span></span>
                     <span>50%</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-white/10"><div className="h-1.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-400 w-1/2" /></div>
+                  <div className="h-1.5 rounded-full bg-white/10"><div className="h-1.5 rounded-full bg-gradient-to-r from-ember-500 to-ember-500 w-1/2" /></div>
                 </div>
               </div>
               <div className="glass-card rounded-t-none rounded-b-2xl overflow-hidden" style={{ borderTop: "none" }}>
@@ -369,9 +369,9 @@ export default function GrowthInfrastructurePage() {
                   { icon: Clock, label: "Live In 14 Days" },
                 ].map(({ icon: Icon, label, link, micro }, i) => {
                   const content = (
-                    <div key={i} className={`flex flex-col gap-1 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium ${link ? "hover:border-gold-500/30 transition-colors cursor-pointer" : ""}`}>
+                    <div key={i} className={`flex flex-col gap-1 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium ${link ? "hover:border-ember-500/30 transition-colors cursor-pointer" : ""}`}>
                       <div className="flex items-center gap-2.5">
-                        <Icon className="w-3.5 h-3.5 flex-shrink-0 text-gold-400" />
+                        <Icon className="w-3.5 h-3.5 flex-shrink-0 text-ember-500" />
                         <span className={link ? "underline underline-offset-2 decoration-white/20" : ""}>{label}</span>
                         {link && <ExternalLink className="w-3 h-3 flex-shrink-0 text-white/30" />}
                       </div>
@@ -386,16 +386,16 @@ export default function GrowthInfrastructurePage() {
               {/* Social proof near form */}
               <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
                 <div className="flex items-start gap-3">
-                  <img src="https://i.pravatar.cc/150?img=12" alt="Josh" className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
+                  <img src="/testimonials/josh-maxicare.jpg" alt="Josh" className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;We&apos;d been burned by two agencies before. Growth Infrastructure was different — it was a system, not a service. 4 new retainer clients in the first 45 days.&rdquo;</p>
                     <p className="mt-1.5 text-xs text-white/40">Josh — Founder, Maxicare Australia</p>
                   </div>
                 </div>
                 <div className="mt-3 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/80 font-medium">
-                  <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-gold-400" /> 350+ businesses scaled</span>
+                  <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-ember-500" /> 350+ businesses scaled</span>
                   <span className="text-white/25">{"·"}</span>
-                  <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-gold-400" /> $50M+ tracked revenue across 350+ clients</span>
+                  <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-ember-500" /> $50M+ tracked revenue across 350+ clients</span>
                   <span className="text-white/25">{"·"}</span>
                   <a
                     href="https://www.trustpilot.com/review/novadatech.com.au"
@@ -403,7 +403,7 @@ export default function GrowthInfrastructurePage() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 hover:text-white transition-colors"
                   >
-                    <Star className="w-4 h-4 text-gold-400" />
+                    <Star className="w-4 h-4 text-ember-500" />
                     <span className="underline underline-offset-2 decoration-white/30">5.0{"★"} on Trustpilot</span>
                   </a>
                 </div>
@@ -423,7 +423,7 @@ export default function GrowthInfrastructurePage() {
             <p className="text-base text-emerald-400/80 italic mb-5 leading-relaxed">If we don&apos;t deliver — you don&apos;t pay.</p>
             <ul className="space-y-3">
               {OUTCOMES.map((o, i) => (
-                <li key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{o}</span></li>
+                <li key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-ember-500 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{o}</span></li>
               ))}
             </ul>
           </motion.div>
@@ -441,7 +441,7 @@ export default function GrowthInfrastructurePage() {
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Why This Isn&apos;t Another Agency</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Why This Isn&apos;t Another Agency</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               The Difference Between{" "}
               <span className="gradient-text">A Service</span> and{" "}
@@ -458,8 +458,8 @@ export default function GrowthInfrastructurePage() {
               <div className="p-4 col-span-1" />
               <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Marketing Agency</p></div>
               <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Lead-Gen Tool</p></div>
-              <div className="p-4 text-center bg-gold-500/[0.05] border-l border-gold-500/15">
-                <p className="text-xs md:text-sm font-semibold text-gold-400">Novada Tech</p>
+              <div className="p-4 text-center bg-ember-500/[0.05] border-l border-ember-500/15">
+                <p className="text-xs md:text-sm font-semibold text-ember-500">Novada Tech</p>
               </div>
             </div>
             {DIFFERENTIATION.map((row, i) => (
@@ -467,7 +467,7 @@ export default function GrowthInfrastructurePage() {
                 <div className="p-4 flex items-center"><span className="text-xs md:text-sm text-white/60">{row.label}</span></div>
                 <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.agency}</span></div>
                 <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.leadgen}</span></div>
-                <div className="p-4 flex items-center justify-center text-center bg-gold-500/[0.04] border-l border-gold-500/10"><span className="text-xs text-gold-400/90 font-medium">{row.novada}</span></div>
+                <div className="p-4 flex items-center justify-center text-center bg-ember-500/[0.04] border-l border-ember-500/10"><span className="text-xs text-ember-500/90 font-medium">{row.novada}</span></div>
               </div>
             ))}
           </div>
@@ -485,7 +485,7 @@ export default function GrowthInfrastructurePage() {
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container max-w-4xl">
           <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Is This Right for You?</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Is This Right for You?</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">We&apos;re Selective. The Guarantee Only Works When The Business Is Ready.</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
@@ -514,13 +514,13 @@ export default function GrowthInfrastructurePage() {
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container">
           <div className="text-center mb-10">
-            <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">What Our Partners Say</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">What Our Partners Say</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">350+ Businesses Have Installed Our Growth Infrastructure</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
             {TESTIMONIALS.map((t, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: (i % 4) * 0.07 }} className="glass-card p-6 border border-white/[0.05] flex flex-col">
-                <div className="text-gold-400 text-xs mb-3">{"★★★★★"}</div>
+                <div className="text-ember-500 text-xs mb-3">{"★★★★★"}</div>
                 <p className="text-base text-white/80 leading-relaxed italic flex-1">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
                   <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
@@ -543,7 +543,7 @@ export default function GrowthInfrastructurePage() {
       <section className="pt-16 pb-0 section-padding border-t border-white/[0.04]">
         <div className="max-container max-w-2xl">
           <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Your Questions Answered</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Your Questions Answered</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">The Questions Serious Operators Ask</h2>
           </div>
           <div className="space-y-3">{FAQS.map((faq, i) => (<FAQItem key={i} q={faq.q} a={faq.a} />))}</div>
@@ -554,10 +554,10 @@ export default function GrowthInfrastructurePage() {
       <section className="pt-6 pb-16 section-padding">
         <div className="max-container max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl overflow-hidden text-center">
-            <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,162,63,0.1)_0%,_transparent_70%)]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.1)_0%,_transparent_70%)]" />
             <div className="relative px-8 py-14 md:px-14">
-              <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">Performance Guaranteed</p>
+              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">Performance Guaranteed</p>
               <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight text-balance">
                 Your Pipeline Doesn&apos;t Need More Effort.{" "}
                 <span className="gradient-text">It Needs Infrastructure.</span>
