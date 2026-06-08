@@ -435,6 +435,58 @@ return (
 
 
 
+            {/* ── Why This Isn't Another Agency (Differentiation) ── */}
+      <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Why This Isn&apos;t Another Agency</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              The Difference Between <span className="text-ember-500">Paying for Activity</span> and <span className="text-ember-500">Paying for Meetings</span>
+            </h2>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">Most lead-gen agencies and in-house SDRs charge whether qualified meetings land or not. We don't get paid unless they do.</p>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
+            <div className="grid grid-cols-4 bg-white/[0.03] border-b border-white/[0.06]">
+              <div className="p-4 col-span-1" />
+              <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Lead-Gen Agency</p></div>
+              <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">In-House SDR</p></div>
+              <div className="p-4 text-center bg-ember-500/[0.05] border-l border-ember-500/15">
+                <p className="text-xs md:text-sm font-semibold text-ember-500">Novada Tech — Meetings</p>
+              </div>
+            </div>
+            {[
+              { label: "Payment Model", a: "Monthly retainer", b: "$80K+ salary + comm", novada: "Pay per qualified meeting" },
+              { label: "What You Get", a: "Lead lists", b: "Cold calls + follow-up", novada: "30–60 qualified meetings/mo" },
+              { label: "Performance Guarantee", a: "None", b: "None", novada: "30–60/mo or you don't pay" },
+              { label: "Time to First Meeting", a: "30–60 days", b: "3–6 months ramp", novada: "7–14 days" },
+              { label: "Your Time Investment", a: "High (oversight)", b: "Very high (manage rep)", novada: "Under 30 min/week" },
+              { label: "Meeting Quality", a: "Variable / unverified", b: "Variable / variable", novada: "Pre-qualified decision-makers" },
+              { label: "Reply Handling", a: "You handle it", b: "SDR handles it", novada: "Done for you" },
+              { label: "Ad Spend Required", a: "Often required", b: "Sometimes", novada: "$0 ad spend" }
+            ].map((row, i) => (
+              <div key={i} className={`grid grid-cols-4 border-b border-white/[0.04] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}>
+                <div className="p-4 flex items-center"><span className="text-xs md:text-sm text-white/60">{row.label}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.a}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.b}</span></div>
+                <div className="p-4 flex items-center justify-center text-center bg-ember-500/[0.04] border-l border-ember-500/10"><span className="text-xs text-ember-500/90 font-medium">{row.novada}</span></div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <button onClick={scrollToForm} className="btn-primary mx-auto">
+              See If You Qualify
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
       {/* ── Is This Right for You? — condensed to 3 bullets ── */}
       <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
         <div className="max-container max-w-4xl">

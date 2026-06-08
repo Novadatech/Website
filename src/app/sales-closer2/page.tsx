@@ -398,45 +398,54 @@ return (
         </div>
       </section>
 
-
-
-
-      {/* ── Is This Right for You? — condensed to 3 bullets ── */}
+            {/* ── Why This Isn't Another Agency (Differentiation) ── */}
       <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Is This Right for You?</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">We Only Place Closers for Businesses That Qualify</h2>
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Why This Isn&apos;t Another Agency</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              The Difference Between <span className="text-ember-500">Hiring a Closer</span> and <span className="text-ember-500">Placing One</span>
+            </h2>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">Hiring in-house takes 3–6 months of ramp and all the risk. Sales training is hit-or-miss. We place a pre-vetted closer in 7 days — and you pay only when deals close.</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card gradient-border p-7">
-              <h3 className="text-base font-semibold text-emerald-400 mb-5 flex items-center gap-2"><CheckCircle className="w-4 h-4" /> We Can Place a Closer If You...</h3>
-              <div className="space-y-3">
-                {[
-                  "Sell a high-value service or product ($3K\u2013$50K+)",
-                  "Have qualified meetings but need someone to close them into revenue",
-                  "Want an expert closer in your business within 7 days — not months",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{item}</span></div>
-                ))}
+
+          <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
+            <div className="grid grid-cols-4 bg-white/[0.03] border-b border-white/[0.06]">
+              <div className="p-4 col-span-1" />
+              <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">In-House Hire</p></div>
+              <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Sales Trainer</p></div>
+              <div className="p-4 text-center bg-ember-500/[0.05] border-l border-ember-500/15">
+                <p className="text-xs md:text-sm font-semibold text-ember-500">Novada Tech — Closer Placement</p>
               </div>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card p-7 border border-white/[0.04]">
-              <h3 className="text-base font-semibold text-white/50 mb-5 flex items-center gap-2"><AlertCircle className="w-4 h-4 text-red-400/60" /> A Closer Won&apos;t Work If You...</h3>
-              <div className="space-y-3">
-                {[
-                  "Don't have a validated offer or deliverable product",
-                  "Don't have qualified meetings coming in for the closer to work",
-                  "Aren't willing to share your sales process and pipeline data",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3"><div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div><span className="text-base text-white/80 leading-relaxed">{item}</span></div>
-                ))}
+            </div>
+            {[
+              { label: "Payment Model", a: "$80–120K salary + comm", b: "$5–25K upfront fee", novada: "Pay per closed deal" },
+              { label: "Time to Productive", a: "3–6 months ramp", b: "Weeks of practice", novada: "7 days" },
+              { label: "Performance Guarantee", a: "None", b: "None", novada: "Pay only when deals close" },
+              { label: "Risk Sits With", a: "You", b: "You", novada: "Us" },
+              { label: "Vetting", a: "You vet alone", b: "You vet alone", novada: "Pre-vetted closers" },
+              { label: "Training", a: "You build curriculum", b: "Generic playbooks", novada: "Trained on your offer" },
+              { label: "Replacement", a: "Re-hire (90+ days)", b: "You hire new", novada: "Zero-cost replacement" },
+              { label: "Sales Cycle Owned", a: "You manage", b: "You implement", novada: "Closer owns end-to-end" }
+            ].map((row, i) => (
+              <div key={i} className={`grid grid-cols-4 border-b border-white/[0.04] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}>
+                <div className="p-4 flex items-center"><span className="text-xs md:text-sm text-white/60">{row.label}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.a}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-xs text-white/45">{row.b}</span></div>
+                <div className="p-4 flex items-center justify-center text-center bg-ember-500/[0.04] border-l border-ember-500/10"><span className="text-xs text-ember-500/90 font-medium">{row.novada}</span></div>
               </div>
-              <p className="mt-6 text-base text-white/80 leading-relaxed">If the left column describes you — fill in the form above. We&apos;ll place an expert closer within 7 days, guaranteed.</p>
-            </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <button onClick={scrollToForm} className="btn-primary mx-auto">
+              Get Your Closer
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </section>
+
 
       {/* ── Testimonials — 4 strongest with photos ── */}
       <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
