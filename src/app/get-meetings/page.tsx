@@ -299,6 +299,28 @@ return (
         </div>
       </section>
 
+            {/* ── STATS BAR ── */}
+      <section className="section-padding pb-24 md:pb-32">
+        <div className="max-container max-w-5xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
+            {[
+              { num: "$45.7M+", label: "Tracked Pipeline Generated*" },
+              { num: "85.4%", label: "Qualified Reply Rate" },
+              { num: "14 days", label: "Avg Time To First Meeting" },
+              { num: "$0", label: "Ad Spend Required" },
+            ].map((s, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
+                <p className="text-3xl md:text-5xl font-bold text-ember-500 tracking-tight leading-none">{s.num}</p>
+                <p className="mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-white/45 font-medium">{s.label}</p>
+              </motion.div>
+            ))}
+          </div>
+          <p className="mt-10 text-center text-[11px] text-white/30 italic">*Estimated lifetime pipeline across live and historical clients. An estimate, not a guarantee.</p>
+        </div>
+      </section>
+
+
+
       {/* ── Video Testimonials — moved up for early trust ── */}
       <section className="section-padding py-12">
         <div className="max-container">
@@ -368,6 +390,54 @@ return (
           </div>
         </div>
       </section>
+
+
+
+            {/* ── HOW IT WORKS (horizontal connected timeline) ── */}
+      <section className="section-padding py-24 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.06)_0%,_transparent_60%)] pointer-events-none" />
+        <div className="relative max-container max-w-5xl">
+          <div className="mb-14 md:mb-20 text-center">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">How It Works</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">
+              From application to <span className="text-ember-500">30–60 qualified meetings.</span>
+            </h2>
+          </div>
+
+          <div className="relative">
+            {/* Dashed connector line behind icons — desktop only */}
+            <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] border-t border-dashed border-ember-500/40" />
+
+            <div className="grid md:grid-cols-3 gap-y-12 md:gap-x-6">
+              {[
+              { icon: Shield, days: "Days 1 – 4", title: "System build.", desc: "We build your outbound sequences, ICP filters and reply-handling flows on our internal platform." },
+              { icon: Send, days: "Days 5 – 10", title: "Outreach activates.", desc: "Targeted outreach starts. Replies handled by our team. First qualified conversations appear in your inbox." },
+              { icon: CalendarCheck, days: "Day 11 +", title: "Meetings booked.", desc: "Pre-qualified, decision-maker meetings land on your calendar. Target hit by end of month one." }
+              ].map((step, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12 }} className="relative text-center px-4">
+                  <div className="relative z-10 mx-auto w-20 h-20 rounded-full border-2 border-ember-500/60 bg-surface-950 flex items-center justify-center mb-5">
+                    <step.icon className="w-8 h-8 text-ember-500" />
+                  </div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-white/45 font-semibold mb-2">
+                    Step {i + 1} <span className="text-ember-500/80">· {step.days}</span>
+                  </p>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">{step.title}</h3>
+                  <p className="text-sm md:text-base text-white/65 leading-relaxed max-w-[280px] mx-auto">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-14 md:mt-20 text-center">
+            <button onClick={scrollToForm} className="btn-primary mx-auto">
+              See If You Qualify
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <p className="mt-5 text-xs text-white/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 30–60 qualified meetings.</p>
+          </div>
+        </div>
+      </section>
+
 
 
 
