@@ -27,18 +27,18 @@ export default function OnboardingSupportPage() {
 
       {/* Hero */}
       <section className="relative pt-32 pb-10 md:pt-40 md:pb-14 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
 
         <div className="relative max-container section-padding text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-6"
           >
-            <Sparkles className="w-4 h-4 text-gold-400" />
-            <span className="text-sm text-gold-400 font-medium uppercase tracking-[0.15em]">
+            <Sparkles className="w-4 h-4 text-ember-500" />
+            <span className="text-sm text-ember-500 font-medium uppercase tracking-[0.15em]">
               Welcome to Novada Tech · Client Onboarding
             </span>
           </motion.div>
@@ -110,7 +110,7 @@ export default function OnboardingSupportPage() {
                     "Confirm next steps and your activation timeline",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-gold-400 mt-0.5 flex-shrink-0" />
+                      <Check className="w-5 h-5 text-ember-500 mt-0.5 flex-shrink-0" />
                       <span className="text-base text-white/80 leading-relaxed">
                         {item}
                       </span>
@@ -157,7 +157,7 @@ export default function OnboardingSupportPage() {
         <div className="max-container max-w-3xl">
           <AnimatedSection>
             <div className="glass-card p-8 border border-white/[0.04]">
-              <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4 text-center">
+              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4 text-center">
                 Before The Call
               </p>
               <h3 className="text-xl md:text-2xl font-bold text-white text-center mb-6">
@@ -178,7 +178,7 @@ export default function OnboardingSupportPage() {
                   "Any questions you'd like answered before activation",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-gold-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-ember-500 mt-0.5 flex-shrink-0" />
                     <span className="text-base text-white/80 leading-relaxed">
                       {item}
                     </span>

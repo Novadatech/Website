@@ -16,8 +16,8 @@ export default function OnboardingBookedPage() {
 
       {/* Hero */}
       <section className="relative min-h-[70vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
 
         <div className="relative max-container section-padding text-center py-32">
           {/* Success icon */}
@@ -36,7 +36,7 @@ export default function OnboardingBookedPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6"
+            className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6"
           >
             Welcome To The Team
           </motion.p>
@@ -69,7 +69,7 @@ export default function OnboardingBookedPage() {
       <section className="section-padding pb-20">
         <div className="max-container max-w-3xl">
           <AnimatedSection className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
               What Happens Next
             </p>
             <h2 className="text-2xl md:text-3xl font-bold">
@@ -102,8 +102,8 @@ export default function OnboardingBookedPage() {
             ].map((step, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
                 <div className="glass-card gradient-border p-7 flex gap-5 items-start group hover:bg-white/[0.04] transition-all duration-500">
-                  <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <step.icon className="w-6 h-6 text-gold-400" />
+                  <div className="w-12 h-12 rounded-xl bg-ember-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <step.icon className="w-6 h-6 text-ember-500" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white">
@@ -125,11 +125,11 @@ export default function OnboardingBookedPage() {
         <div className="max-container max-w-3xl">
           <AnimatedSection>
             <div className="relative rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,162,63,0.08)_0%,_transparent_70%)]" />
+              <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.08)_0%,_transparent_70%)]" />
 
               <div className="relative px-8 py-14 md:px-14 text-center">
-                <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">
+                <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
                   Need Anything Before The Call?
                 </p>
                 <h3 className="text-2xl md:text-3xl font-bold mb-4">

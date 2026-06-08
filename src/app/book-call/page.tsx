@@ -31,15 +31,15 @@ export default function BookPage() {
 
       {/* Hero */}
       <section className="relative pt-32 pb-10 md:pt-40 md:pb-14 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
 
         <div className="relative max-container section-padding text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6"
+            className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6"
           >
             Limited Spots Available
           </motion.p>
@@ -106,7 +106,7 @@ export default function BookPage() {
                     "No pressure — just an honest conversation",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-gold-400 mt-0.5 flex-shrink-0" />
+                      <Check className="w-5 h-5 text-ember-500 mt-0.5 flex-shrink-0" />
                       <span className="text-base text-white/80 leading-relaxed">
                         {item}
                       </span>
@@ -152,15 +152,16 @@ export default function BookPage() {
         <div className="max-container max-w-3xl">
           <AnimatedSection className="text-center">
             <div className="glass-card p-8 border border-white/[0.04]">
-              <div className="flex text-gold-400 justify-center text-sm mb-4">
+              <div className="flex text-ember-500 justify-center text-sm mb-4">
                 ★★★★★
               </div>
               <p className="text-white/80 leading-relaxed max-w-lg mx-auto italic">
                 &ldquo;We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.&rdquo;
               </p>
               <div className="mt-5 flex items-center justify-center gap-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://i.pravatar.cc/150?img=12"
+                  src="/testimonials/josh-maxicare.jpg"
                   alt="Josh"
                   className="w-10 h-10 rounded-full object-cover flex-shrink-0"
                 />

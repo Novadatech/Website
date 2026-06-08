@@ -8,7 +8,7 @@ export default function TermsOfServicePage() {
     <>
       {/* Hero */}
       <section className="relative pt-32 pb-10 md:pt-40 md:pb-14 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
         <div className="relative max-container section-padding text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -92,7 +92,7 @@ export default function TermsOfServicePage() {
                   <p className="text-white/80 leading-relaxed">
                     If you are experiencing issues with the messaging program you can reply with the keyword
                     &quot;HELP&quot; for more assistance, or you can get help directly at{" "}
-                    <a href="mailto:support@novadatech.com.au" className="text-gold-400 hover:text-gold-300 transition-colors">
+                    <a href="mailto:support@novadatech.com.au" className="text-ember-500 hover:text-ember-400 transition-colors">
                       support@novadatech.com.au
                     </a>.
                   </p>
@@ -176,7 +176,7 @@ export default function TermsOfServicePage() {
                 <li className="text-white/80 leading-relaxed">
                   <span className="text-white font-semibold">7.1.</span> By using our Services, you agree not
                   to initiate a chargeback or dispute without first contacting us at{" "}
-                  <a href="mailto:support@novadatech.com.au" className="text-gold-400 hover:text-gold-300 transition-colors">
+                  <a href="mailto:support@novadatech.com.au" className="text-ember-500 hover:text-ember-400 transition-colors">
                     support@novadatech.com.au
                   </a>{" "}
                   to resolve the matter in good faith.
@@ -299,13 +299,13 @@ export default function TermsOfServicePage() {
               <div className="space-y-2">
                 <p className="text-white/80">
                   <span className="text-white font-semibold">Email:</span>{" "}
-                  <a href="mailto:support@novadatech.com.au" className="text-gold-400 hover:text-gold-300 transition-colors">
+                  <a href="mailto:support@novadatech.com.au" className="text-ember-500 hover:text-ember-400 transition-colors">
                     support@novadatech.com.au
                   </a>
                 </p>
                 <p className="text-white/80">
                   <span className="text-white font-semibold">Phone:</span>{" "}
-                  <a href="tel:+61485000813" className="text-gold-400 hover:text-gold-300 transition-colors">
+                  <a href="tel:+61485000813" className="text-ember-500 hover:text-ember-400 transition-colors">
                     (+61) 485 000 813
                   </a>
                 </p>
@@ -321,7 +321,7 @@ export default function TermsOfServicePage() {
               <h2 className="text-xl font-bold text-white mb-4">17. Privacy Policy</h2>
               <p className="text-white/80 leading-relaxed">
                 Please review our full privacy policy at:{" "}
-                <Link href="/privacy-policy" className="text-gold-400 hover:text-gold-300 transition-colors">
+                <Link href="/privacy-policy" className="text-ember-500 hover:text-ember-400 transition-colors">
                   novadatech.com.au/privacy-policy
                 </Link>
               </p>

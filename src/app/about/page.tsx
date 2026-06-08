@@ -23,8 +23,8 @@ const BOOKING_URL = "/apply";
 function AboutHero() {
   return (
     <section className="relative min-h-[70vh] flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
 
       <div className="relative max-container section-padding pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="max-w-3xl">
@@ -32,7 +32,7 @@ function AboutHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6"
+            className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6"
           >
             About Novada Tech
           </motion.p>
@@ -65,7 +65,7 @@ function AboutHero() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="mt-8 flex items-center gap-4"
           >
-            <div className="flex text-gold-400 text-sm tracking-wider">
+            <div className="flex text-ember-500 text-sm tracking-wider">
               ★★★★★
             </div>
             <span className="text-sm text-white/80">
@@ -85,7 +85,7 @@ function OriginStory() {
       <div className="max-container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
               Why We Exist
             </p>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight">
@@ -127,14 +127,14 @@ function OriginStory() {
               {/* Decorative card stack representing the "system" */}
               <div className="glass-card gradient-border p-10 space-y-8">
                 <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-[0.2em] text-gold-400/60">
+                  <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60">
                     Founded
                   </p>
                   <p className="text-2xl font-bold text-white">Melbourne, Australia</p>
                 </div>
                 <div className="w-full h-px bg-white/[0.06]" />
                 <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-[0.2em] text-gold-400/60">
+                  <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60">
                     Model
                   </p>
                   <p className="text-2xl font-bold text-white">
@@ -143,7 +143,7 @@ function OriginStory() {
                 </div>
                 <div className="w-full h-px bg-white/[0.06]" />
                 <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-[0.2em] text-gold-400/60">
+                  <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60">
                     Focus
                   </p>
                   <p className="text-2xl font-bold text-white">
@@ -152,16 +152,16 @@ function OriginStory() {
                 </div>
                 <div className="w-full h-px bg-white/[0.06]" />
                 <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-[0.2em] text-gold-400/60">
+                  <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60">
                     Track Record
                   </p>
                   <a
                     href="https://www.trustpilot.com/review/novadatech.com.au"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity underline underline-offset-2 decoration-gold-500/30"
+                    className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity underline underline-offset-2 decoration-ember-500/30"
                   >
-                    4.9★ · 77+ Reviews
+                    5.0★ · 77+ Reviews
                   </a>
                 </div>
               </div>
@@ -179,7 +179,7 @@ function FounderMessage() {
     <section className="section-spacing section-padding border-t border-white/[0.04]">
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-14">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
             Meet the Founder
           </p>
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -202,16 +202,16 @@ function FounderMessage() {
                   unoptimized
                 />
                 {/* Gradient overlay at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-navy-950 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-surface-950 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <p className="text-lg font-bold text-white">Ade Eni</p>
-                  <p className="text-sm text-gold-400">Founder & CEO, Novada Tech</p>
+                  <p className="text-sm text-ember-500">Founder & CEO, Novada Tech</p>
                 </div>
               </div>
 
               {/* Floating stat card */}
               <div className="absolute -right-4 top-8 glass-card gradient-border px-5 py-4 hidden lg:block">
-                <p className="text-2xl font-bold gradient-text">$50M+</p>
+                <p className="text-2xl font-bold gradient-text">$45.7M+</p>
                 <p className="text-xs text-white/80 mt-0.5">Revenue Generated</p>
               </div>
               <div className="absolute -right-4 bottom-20 glass-card gradient-border px-5 py-4 hidden lg:block">
@@ -224,7 +224,7 @@ function FounderMessage() {
           {/* Message column */}
           <AnimatedSection direction="right" delay={0.2} className="lg:col-span-3">
             <div className="relative">
-              <Quote className="w-10 h-10 text-gold-500/20 mb-6" />
+              <Quote className="w-10 h-10 text-ember-500/20 mb-6" />
 
               <div className="space-y-5 text-white/80 leading-relaxed text-base">
                 <p>
@@ -243,7 +243,7 @@ function FounderMessage() {
                   That question became Novada Tech. We invest our time, our AI systems, and our expert team into your business — and we only win when you win. No retainers. No guesswork. No risk on your side.
                 </p>
                 <p>
-                  Today, we&apos;ve helped over <span className="text-white font-medium">350 business owners</span> across <span className="text-white font-medium">30+ industries</span> generate more than <span className="text-white font-medium">$50M in revenue</span> using our AI-powered client acquisition system. And we&apos;re just getting started.
+                  Today, we&apos;ve helped over <span className="text-white font-medium">350 business owners</span> across <span className="text-white font-medium">30+ industries</span> generate more than <span className="text-white font-medium">$45.7M in revenue</span> using our AI-powered client acquisition system. And we&apos;re just getting started.
                 </p>
                 <p>
                   If you&apos;re a business owner who is tired of inconsistent leads and ready for a system that works — I&apos;d love to have a conversation.
@@ -254,7 +254,7 @@ function FounderMessage() {
                 <div>
                   <p className="text-white font-semibold text-lg">Ade Eni</p>
                   <p className="text-sm text-white/80">Founder & CEO, Novada Tech</p>
-                  <div className="flex text-gold-400 text-sm mt-1">★★★★★</div>
+                  <div className="flex text-ember-500 text-sm mt-1">★★★★★</div>
                 </div>
               </div>
             </div>
@@ -286,15 +286,15 @@ function Journey() {
     {
       period: "Today",
       title: "350+ Businesses Trust Us to Drive Their Growth",
-      desc: "With a 4.9-star rating across 77+ verified reviews, partnerships spanning 30+ industries, and measurable revenue results for every partner, Novada Tech has become the growth engine Australian businesses rely on.",
+      desc: "With a 5.0-star rating across 77+ verified reviews, partnerships spanning 30+ industries, and measurable revenue results for every partner, Novada Tech has become the growth engine Australian businesses rely on.",
     },
   ];
 
   return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-navy-950 via-navy-900/40 to-navy-950">
+    <section className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/40 to-surface-950">
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             The Journey
           </p>
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -304,21 +304,21 @@ function Journey() {
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-gold-500/40 via-gold-500/10 to-transparent" />
+          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-ember-500/40 via-ember-500/10 to-transparent" />
 
           <div className="space-y-12">
             {milestones.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.15}>
                 <div className="flex gap-6 md:gap-10 group">
                   <div className="relative flex-shrink-0">
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-gold-500/20 to-gold-500/5 border border-gold-500/20 flex items-center justify-center group-hover:border-gold-500/40 group-hover:from-gold-500/30 transition-all duration-500">
-                      <span className="text-gold-400 font-bold text-sm">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-ember-500/20 to-ember-500/5 border border-ember-500/20 flex items-center justify-center group-hover:border-ember-500/40 group-hover:from-ember-500/30 transition-all duration-500">
+                      <span className="text-ember-500 font-bold text-sm">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
                   </div>
                   <div className="pb-2">
-                    <p className="text-xs uppercase tracking-[0.2em] text-gold-400/60 mb-2">
+                    <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60 mb-2">
                       {item.period}
                     </p>
                     <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight">
@@ -377,7 +377,7 @@ function Principles() {
     <section className="section-spacing section-padding border-t border-white/[0.04]">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
             What We Stand For
           </p>
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -389,8 +389,8 @@ function Principles() {
           {principles.map((item, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
               <div className="glass-card gradient-border p-8 h-full group hover:bg-white/[0.04] transition-all duration-500">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-500/10 to-accent-blue/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <item.icon className="w-6 h-6 text-gold-400" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-ember-500/10 to-accent-blue/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <item.icon className="w-6 h-6 text-ember-500" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-3">
                   {item.title}
@@ -410,14 +410,14 @@ function Principles() {
 /* ─── TRUST STATS ─── */
 function TrustStats() {
   const stats = [
-    { icon: Star, number: "4.9★", label: "Trustpilot Rating", href: "https://www.trustpilot.com/review/novadatech.com.au" },
+    { icon: Star, number: "5.0★", label: "Trustpilot Rating", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { icon: Award, number: "77+", label: "Verified Reviews · voluntary", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { icon: Globe, number: "30+", label: "Industries Served" },
     { icon: TrendingUp, number: "35%", label: "Avg. Revenue Increase" },
   ];
 
   return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-navy-950 via-navy-900/30 to-navy-950">
+    <section className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/30 to-surface-950">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -431,8 +431,8 @@ function TrustStats() {
               {stat.href ? (
                 <a href={stat.href} target="_blank" rel="noopener noreferrer" className="block">
                   <div className="glass-card gradient-border p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500">
-                    <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <stat.icon className="w-6 h-6 text-gold-400" />
+                    <div className="w-12 h-12 rounded-xl bg-ember-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <stat.icon className="w-6 h-6 text-ember-500" />
                     </div>
                     <p className="text-4xl md:text-5xl font-bold gradient-text">
                       {stat.number}
@@ -444,8 +444,8 @@ function TrustStats() {
                 </a>
               ) : (
                 <div className="glass-card gradient-border p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500">
-                  <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <stat.icon className="w-6 h-6 text-gold-400" />
+                  <div className="w-12 h-12 rounded-xl bg-ember-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <stat.icon className="w-6 h-6 text-ember-500" />
                   </div>
                   <p className="text-4xl md:text-5xl font-bold gradient-text">
                     {stat.number}
@@ -470,7 +470,7 @@ function WhatMakesUsDifferent() {
       <div className="max-container max-w-5xl">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-6">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
               Why Clients Trust Us
             </p>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight">
@@ -541,8 +541,8 @@ function AboutCTA() {
       <div className="max-container">
         <AnimatedSection>
           <div className="relative rounded-3xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,162,63,0.1)_0%,_transparent_70%)]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.1)_0%,_transparent_70%)]" />
 
             <div className="relative px-8 py-16 md:px-16 md:py-24 text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance max-w-3xl mx-auto">

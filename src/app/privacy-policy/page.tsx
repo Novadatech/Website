@@ -7,7 +7,7 @@ export default function PrivacyPolicyPage() {
     <>
       {/* Hero */}
       <section className="relative pt-32 pb-10 md:pt-40 md:pb-14 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
         <div className="relative max-container section-padding text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -122,7 +122,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-white/80 leading-relaxed mb-4">
                 If you experience issues with the SMS program, reply with &quot;HELP&quot; for assistance, or
                 contact us at{" "}
-                <a href="mailto:support@novadatech.com.au" className="text-gold-400 hover:text-gold-300 transition-colors">
+                <a href="mailto:support@novadatech.com.au" className="text-ember-500 hover:text-ember-400 transition-colors">
                   support@novadatech.com.au
                 </a>.
               </p>
@@ -173,7 +173,7 @@ export default function PrivacyPolicyPage() {
                 <li className="text-white/80 leading-relaxed">
                   <span className="text-white font-semibold">Opt-Out:</span> You may unsubscribe from
                   marketing emails by clicking the &quot;unsubscribe&quot; link in any email or emailing us at{" "}
-                  <a href="mailto:support@novadatech.com.au" className="text-gold-400 hover:text-gold-300 transition-colors">
+                  <a href="mailto:support@novadatech.com.au" className="text-ember-500 hover:text-ember-400 transition-colors">
                     support@novadatech.com.au
                   </a>. For SMS opt-out, see Section 3.2.
                 </li>
@@ -194,7 +194,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-white/80 leading-relaxed">
                 You have the right to request the deletion of your personal data at any time. To request the
                 deletion of your account and all associated data, please email us at{" "}
-                <a href="mailto:support@novadatech.com.au" className="text-gold-400 hover:text-gold-300 transition-colors">
+                <a href="mailto:support@novadatech.com.au" className="text-ember-500 hover:text-ember-400 transition-colors">
                   support@novadatech.com.au
                 </a>{" "}
                 with the subject line &quot;Data Deletion Request.&quot; We will verify your identity and
@@ -239,13 +239,13 @@ export default function PrivacyPolicyPage() {
               <div className="mt-4 space-y-2">
                 <p className="text-white/80">
                   <span className="text-white font-semibold">Email:</span>{" "}
-                  <a href="mailto:support@novadatech.com.au" className="text-gold-400 hover:text-gold-300 transition-colors">
+                  <a href="mailto:support@novadatech.com.au" className="text-ember-500 hover:text-ember-400 transition-colors">
                     support@novadatech.com.au
                   </a>
                 </p>
                 <p className="text-white/80">
                   <span className="text-white font-semibold">Phone:</span>{" "}
-                  <a href="tel:+61485000813" className="text-gold-400 hover:text-gold-300 transition-colors">
+                  <a href="tel:+61485000813" className="text-ember-500 hover:text-ember-400 transition-colors">
                     (+61) 485 000 813
                   </a>
                 </p>

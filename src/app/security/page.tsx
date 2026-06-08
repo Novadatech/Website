@@ -7,7 +7,7 @@ export default function SecurityPage() {
     <>
       {/* Hero */}
       <section className="relative pt-32 pb-10 md:pt-40 md:pb-14 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
         <div className="relative max-container section-padding text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -119,7 +119,7 @@ export default function SecurityPage() {
               <h2 className="text-xl font-bold text-white mb-4">7. Report a Vulnerability</h2>
               <p className="text-white/80 leading-relaxed">
                 If you believe you have discovered a security vulnerability, please contact us at{" "}
-                <a href="mailto:support@novadatech.com.au" className="text-gold-400 hover:text-gold-300 transition-colors">
+                <a href="mailto:support@novadatech.com.au" className="text-ember-500 hover:text-ember-400 transition-colors">
                   support@novadatech.com.au
                 </a>{" "}
                 with details to help us investigate.
