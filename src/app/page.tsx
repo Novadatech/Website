@@ -6,12 +6,9 @@ import {
   Check,
   X,
   Target,
-  Zap,
   BarChart3,
-  MessageSquare,
   Settings,
   Phone,
-  Layers,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -19,7 +16,6 @@ import {
   Shield,
   TrendingUp,
   Play,
-  Clock,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import HeroTrustBar from "@/components/HeroTrustBar";
@@ -58,7 +54,7 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
         >
-          From $28K to $91K in 90 Days.{" "}
+          From $0 to $91K in 90 Days.{" "}
           We Build the{" "}
           <span className="gradient-text">Client Acquisition System</span>{" "}
           That Gets You There — Without Retainers
@@ -266,7 +262,7 @@ function ProofSection() {
   const stats = [
     { number: "77+", label: "Verified 5-Star Reviews", sublabel: "Trustpilot · Reviews are voluntary", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { number: "350+", label: "Businesses Scaled", sublabel: "And Growing" },
-    { number: "$50M+", label: "Client Revenue Generated", sublabel: "Client Results" },
+    { number: "$45.7M+", label: "Client Revenue Generated", sublabel: "Client Results" },
     { number: "30+", label: "Industries Scaled", sublabel: "Across Australia" },
   ];
 
@@ -990,158 +986,6 @@ function ComparisonSection() {
   );
 }
 
-/* ─── WHO THIS IS FOR (icon-header tile design) ─── */
-function QualificationSection() {
-  const goodFit = [
-    "A business owner who wants predictable revenue growth",
-    "Selling a high-value product or service ($3K–$50K+)",
-    "Ready to scale but lack the system or team to get there",
-    "Tired of inconsistent outreach, random leads, and expensive ads",
-    "Looking for a partner — not another marketing agency",
-    "Wanting results without retainers or long-term contracts",
-  ];
-
-  const notFit = [
-    "Don't have a deliverable product or service ready",
-    "Expect overnight results without following a proven process",
-    "Refuse to take calls or engage with qualified prospects",
-  ];
-
-  return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/30 to-surface-950">
-      <div className="max-container max-w-5xl">
-        <AnimatedSection className="text-center mb-14">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            Is This Right for You?
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance leading-tight">
-            We&apos;re Selective About Who We Partner With
-          </h2>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* For-you column */}
-          <AnimatedSection direction="left">
-            <div className="rounded-3xl border border-emerald-500/20 bg-emerald-500/[0.03] p-7 md:p-8 flex flex-col h-full">
-              <div className="flex items-center gap-3 mb-7">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-6 h-6 text-emerald-400" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-emerald-400/85 font-semibold mb-0.5">A Match</p>
-                  <h3 className="text-lg md:text-xl font-bold text-white">We&apos;re a Fit If You Are…</h3>
-                </div>
-              </div>
-              <div className="space-y-3 flex-1">
-                {goodFit.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.025] p-4 hover:bg-white/[0.04] transition-colors">
-                    <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm md:text-base text-white/90 leading-relaxed font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* Not-for column */}
-          <AnimatedSection direction="right" delay={0.15}>
-            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.015] p-7 md:p-8 flex flex-col h-full">
-              <div className="flex items-center gap-3 mb-7">
-                <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.10] flex items-center justify-center flex-shrink-0">
-                  <X className="w-6 h-6 text-white/45" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-white/40 font-semibold mb-0.5">Not A Fit</p>
-                  <h3 className="text-lg md:text-xl font-bold text-white/85">We Are NOT a Fit If You…</h3>
-                </div>
-              </div>
-              <div className="space-y-3 flex-1">
-                {notFit.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.05] bg-white/[0.015] p-4">
-                    <X className="w-5 h-5 text-white/35 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm md:text-base text-white/60 leading-relaxed">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── RISK REVERSAL ─── */
-function RiskReversal() {
-  const traditional = [
-    "Monthly retainers",
-    "Upfront ad budgets",
-    "Setup fees",
-    "Long-term contracts",
-  ];
-  const partnership = [
-    "You only pay for qualified meetings",
-    "You only share revenue on closed deals",
-    "You only invest when money comes in",
-    "We handle the entire acquisition + sales cycle",
-  ];
-
-  return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
-      <div className="max-container max-w-5xl">
-        <AnimatedSection className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-            We Take the Risk.
-            <br />
-            <span className="gradient-text">You Reap the Rewards.</span>
-          </h2>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          <AnimatedSection direction="left">
-            <div className="p-8 rounded-2xl border border-red-400/10 bg-red-400/[0.02] h-full">
-              <p className="text-sm uppercase tracking-[0.2em] text-red-400/60 font-medium mb-6">
-                Traditional Agencies Charge
-              </p>
-              <div className="space-y-4">
-                {traditional.map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <X className="w-4 h-4 text-red-400/50 flex-shrink-0" />
-                    <span className="text-white/80">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-red-400/65">
-                None of that guarantees results.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection direction="right" delay={0.15}>
-            <div className="glass-card gradient-border p-8 h-full">
-              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-                Our Growth Partnership
-              </p>
-              <div className="space-y-4">
-                {partnership.map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <Check className="w-5 h-5 text-ember-500 flex-shrink-0" />
-                    <span className="text-white/80 font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-ember-500/70 font-medium">
-                We don&apos;t win unless you win. This is how partnerships
-                should work.
-              </p>
-            </div>
-          </AnimatedSection>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── HOW TO START ─── */
 function HowToStart() {
   const steps = [
@@ -1469,8 +1313,6 @@ export default function HomePage() {
         </div>
       </section>
       <ComparisonSection />
-      <QualificationSection />
-      <RiskReversal />
       <HowToStart />
       <FAQ />
       <FinalCTA />
