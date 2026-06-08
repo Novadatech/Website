@@ -12,36 +12,6 @@ import Link from "next/link";
 import NovadaLogo from "@/components/NovadaLogo";
 import HeroTrustBar from "@/components/HeroTrustBar";
 
-// ─── Initials Avatar ─────────────────────────────────────────────────────────
-const AVATAR_COLORS = [
-  "bg-ember-500/20 text-ember-400",
-  "bg-blue-500/20 text-blue-300",
-  "bg-emerald-500/20 text-emerald-300",
-  "bg-purple-500/20 text-purple-300",
-  "bg-rose-500/20 text-rose-300",
-  "bg-amber-500/20 text-amber-300",
-  "bg-cyan-500/20 text-cyan-300",
-  "bg-indigo-500/20 text-indigo-300",
-];
-
-function InitialsAvatar({ name, index }: { name: string; index: number }) {
-  const initials = name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-  const color = AVATAR_COLORS[index % AVATAR_COLORS.length];
-  return (
-    <div
-      className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold ${color}`}
-    >
-      {initials}
-    </div>
-  );
-}
-
-
 // ─── Scroll to form helper ──────────────────────────────────────────────────
 function scrollToForm() {
   // Form was removed from this page; route the CTA to the dedicated booking page.

@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import NovadaLogo from "@/components/NovadaLogo";
+import HeroTrustBar from "@/components/HeroTrustBar";
 
 function scrollToForm() {
   // Form was removed from this page; route the CTA to the dedicated booking page.
@@ -224,22 +225,15 @@ return (
             An expert sales closer in your business within 7 days. Closing deals on your pipeline. If they don&apos;t close, you don&apos;t pay us a cent. The risk is entirely on us.
           </motion.p>
 
+          <HeroTrustBar className="mt-7" />
+
+
           {/* ABOVE-THE-FOLD CTA */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-6">
             <button onClick={scrollToForm} className="btn-primary text-base md:text-lg px-10 py-4">
               Get My Expert Closer
               <ArrowRight className="w-5 h-5" />
             </button>
-            <div className="mt-3 flex items-center justify-center gap-4 text-xs text-white/35 flex-wrap">
-              <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-ember-500/60" /> Placed in 7 days</span>
-              <span className="text-white/15">|</span>
-              <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors">
-                <span className="text-ember-500 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
-                <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
-              </a>
-              <span className="text-white/15">|</span>
-              <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-ember-500/60" /> Don&apos;t close, don&apos;t pay</span>
-            </div>
           </motion.div>
         </div>
       </section>
