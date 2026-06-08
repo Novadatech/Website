@@ -18,15 +18,44 @@ function scrollToForm() {
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
-const OUTCOMES = [
-  "20+ qualified sales meetings booked into your calendar every month — guaranteed",
-  "Authority video content that pre-sells your expertise before the first message lands",
-  "A LinkedIn profile positioned as the obvious choice in your industry",
-  "Daily targeted outreach to ICP-matched prospects — reply handling included",
-  "Pre-qualified prospects: they know your offer before they show up to the call",
-  "Multi-platform content engine compounding across LinkedIn, YouTube and shorts",
-  "A predictable monthly pipeline you can finally forecast revenue from",
-  "Built into your business, run for you, owned by you",
+const OUTCOMES_FEATURED = {
+  metric: "20+",
+  metricLabel: "qualified meetings every month",
+  title: "Predictable pipeline. Written guarantee. Zero ad spend.",
+  desc: "A monthly calendar of pre-qualified, decision-maker meetings you can finally forecast revenue from. Built into your business, owned by you. If we don't deliver — you don't pay.",
+};
+
+const OUTCOMES_GRID = [
+  {
+    icon: Video,
+    title: "Authority Video Engine",
+    desc: "4 – 6 short videos a month featuring you. Pre-sells expertise across LinkedIn, YouTube and shorts before outreach ever lands.",
+  },
+  {
+    icon: Send,
+    title: "Done-For-You Outreach",
+    desc: "Daily targeted outreach to ICP-matched prospects. Sequences trained on your voice. Reply handling fully included.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Pre-Qualified Bookings",
+    desc: "Only decision-makers with budget and fit hit your calendar. Pre-sold before the call ever starts.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Compounding Authority",
+    desc: "Profile + content stack positioned as the obvious choice in your industry. The system gets stronger every month.",
+  },
+  {
+    icon: Users,
+    title: "Owned By You",
+    desc: "Built into your business, not held hostage by an agency. Profile, content, sequences — all yours forever.",
+  },
+  {
+    icon: Clock,
+    title: "Under 30 Min A Week",
+    desc: "Record content on a flexible schedule. We run the rest. Your only job: show up to qualified calls.",
+  },
 ];
 
 const PROBLEMS = [
@@ -81,28 +110,22 @@ const AUTHORITY_MATH = {
 
 const HOW_IT_WORKS = [
   {
-    num: "01",
-    title: "Authority Positioning Build",
-    subtitle: "Days 1 – 4",
-    desc: "We audit your profile, offer, and ICP. Build your authority video content plan, brand storyline, and content calendar. Profile rewritten and authority assets ready before week one ends.",
+    icon: Shield,
+    days: "Days 1 – 4",
+    title: "Authority build.",
+    desc: "We audit your profile, ICP and offer. Authority video plan, content calendar and a rewritten profile shipped before week one ends.",
   },
   {
-    num: "02",
-    title: "System Build + Launch",
-    subtitle: "Days 5 – 10",
-    desc: "We build your outbound sequences, targeting filters, and reply-handling flows on our internal platform. Authority videos start publishing across LinkedIn. The engine goes live.",
+    icon: Send,
+    days: "Days 5 – 10",
+    title: "System goes live.",
+    desc: "Outbound sequences, ICP filters and reply-handling flows built on our internal platform. Authority content starts publishing.",
   },
   {
-    num: "03",
-    title: "Activation + First Meetings",
-    subtitle: "Days 11 – 14",
-    desc: "Outreach scales. Prospects research you and find authority content already positioning you as the obvious choice. Pre-qualified meetings start landing on your calendar inside the 14-day window.",
-  },
-  {
-    num: "04",
-    title: "Optimise + Scale",
-    subtitle: "Month 1 +",
-    desc: "Weekly optimisation across sequences, content, and reply handling. The system compounds — and your calendar stays at 20+ qualified meetings every single month. Guaranteed.",
+    icon: CalendarCheck,
+    days: "Days 11 – 14",
+    title: "Meetings booked.",
+    desc: "Outreach scales. Prospects research you and find proof. Pre-qualified meetings land on your calendar inside the 14-day window.",
   },
 ];
 
@@ -119,28 +142,36 @@ const DIFFERENTIATION = [
 
 const TESTIMONIALS = [
   {
+    metric: "$91K/mo",
+    metricLabel: "monthly revenue",
     quote: "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.",
     name: "Josh",
     role: "Director, Maxicare Plus",
-    avatar: "https://i.pravatar.cc/150?img=12",
+    avatar: "https://i.pravatar.cc/600?img=12",
   },
   {
+    metric: "4 clients",
+    metricLabel: "in first 45 days",
     quote: "We'd been burned by two agencies before. This was different — it was a system, not a service. 4 new retainer clients in the first 45 days.",
     name: "Uche",
     role: "Founder, The Morning Star Community Services",
-    avatar: "https://i.pravatar.cc/150?img=33",
+    avatar: "https://i.pravatar.cc/600?img=33",
   },
   {
+    metric: "28% → 60%",
+    metricLabel: "discovery call close rate",
     quote: "Discovery call conversion jumped from 28% to over 60%. The authority content meant prospects arrived already sold — we just confirmed fit.",
     name: "Malkin",
     role: "Founder, Support24",
-    avatar: "https://i.pravatar.cc/150?img=53",
+    avatar: "https://i.pravatar.cc/600?img=53",
   },
   {
+    metric: "6 months",
+    metricLabel: "of meetings in month one",
     quote: "More qualified meetings in month one than the previous six months combined. The system ran on its own — I went back to delivery.",
     name: "Jessica",
     role: "Founder, Jessica Teds Coaching",
-    avatar: "https://i.pravatar.cc/150?img=47",
+    avatar: "https://i.pravatar.cc/600?img=47",
   },
 ];
 
@@ -355,7 +386,7 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── VSL ── */}
-      <section className="section-padding pt-6 pb-0">
+      <section className="section-padding pt-8 pb-24 md:pb-32">
         <div className="max-container max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }}>
             <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
@@ -375,10 +406,30 @@ export default function LinkedinGrowthPage() {
         </div>
       </section>
 
+      {/* ── STATS BAR ── */}
+      <section className="section-padding pb-24 md:pb-32">
+        <div className="max-container max-w-5xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
+            {[
+              { num: "$50M+", label: "Tracked Pipeline Generated*" },
+              { num: "30%+", label: "Qualified Reply Rate" },
+              { num: "14 days", label: "Avg Time To First Meeting" },
+              { num: "$0", label: "Ad Spend Required" },
+            ].map((s, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
+                <p className="text-3xl md:text-5xl font-bold text-ember-500 tracking-tight leading-none">{s.num}</p>
+                <p className="mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-white/45 font-medium">{s.label}</p>
+              </motion.div>
+            ))}
+          </div>
+          <p className="mt-10 text-center text-[11px] text-white/30 italic">*Estimated lifetime pipeline across live and historical clients. An estimate, not a guarantee.</p>
+        </div>
+      </section>
+
       {/* ── Video Testimonials (early trust) ── */}
-      <section className="section-padding py-12">
+      <section className="section-padding pb-24 md:pb-32">
         <div className="max-container">
-          <div className="text-center mb-8">
+          <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Real Operators · Real Results</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">Founders Already Running The System</h2>
           </div>
@@ -387,7 +438,7 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── FORM ── */}
-      <section className="section-padding pt-4 pb-0">
+      <section className="section-padding pb-24 md:pb-32">
         <div className="max-container">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="max-w-2xl mx-auto">
             <div>
@@ -456,21 +507,49 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── What You Walk Away With ── */}
-      <section className="section-padding pt-12 pb-0">
-        <div className="max-container max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-7">
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-1">What You Walk Away With</h3>
-            <p className="text-base text-white/80 mb-4">Inside the LinkedIn Growth System&trade; partnership</p>
-            <p className="text-base text-emerald-400/80 italic mb-2 leading-relaxed">Live in 14 days. 20+ qualified meetings by month one.</p>
-            <p className="text-base text-emerald-400/80 italic mb-5 leading-relaxed">If we don&apos;t deliver — you don&apos;t pay.</p>
-            <ul className="space-y-3">
-              {OUTCOMES.map((o, i) => (
-                <li key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-ember-500 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{o}</span></li>
-              ))}
-            </ul>
+      <section className="section-padding pb-24 md:pb-32">
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">What You Walk Away With</p>
+            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">Inside The LinkedIn Growth System&trade; Partnership</h2>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">Live in 14 days. 20+ qualified meetings by month one. If we don&apos;t deliver — you don&apos;t pay.</p>
+          </div>
+
+          {/* Featured outcome — the guarantee */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl border border-ember-500/25 bg-gradient-to-br from-ember-500/[0.08] via-ember-500/[0.02] to-transparent p-8 md:p-10 mb-6 overflow-hidden">
+            <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-ember-500/10 blur-3xl pointer-events-none" />
+            <div className="relative grid md:grid-cols-5 gap-8 md:gap-10 items-center">
+              <div className="md:col-span-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-ember-500/15 border border-ember-500/35 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-ember-500" />
+                  </div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-ember-500/85 font-semibold">The Guarantee</p>
+                </div>
+                <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">{OUTCOMES_FEATURED.metric}</p>
+                <p className="mt-3 text-lg text-white/80 font-medium leading-snug">{OUTCOMES_FEATURED.metricLabel}</p>
+              </div>
+              <div className="md:col-span-3 md:border-l md:border-white/[0.10] md:pl-10">
+                <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-4">{OUTCOMES_FEATURED.title}</h3>
+                <p className="text-base text-white/75 leading-relaxed">{OUTCOMES_FEATURED.desc}</p>
+              </div>
+            </div>
           </motion.div>
 
-          <div className="mt-8 text-center">
+          {/* Supporting outcome tiles */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {OUTCOMES_GRID.map((o, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors">
+                <div className="w-11 h-11 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-4 group-hover:bg-ember-500/15 transition-colors">
+                  <o.icon className="w-5 h-5 text-ember-500" />
+                </div>
+                <h4 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">{o.title}</h4>
+                <p className="text-sm text-white/65 leading-relaxed">{o.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
             <button onClick={scrollToForm} className="btn-primary-dark-red mx-auto">
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
@@ -589,21 +668,44 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section className="section-padding py-24 md:py-28">
-        <div className="max-container max-w-5xl">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">How It Works</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">From Application To 20+ Booked Meetings In 14 Days</h2>
+      <section className="section-padding py-24 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.06)_0%,_transparent_60%)] pointer-events-none" />
+        <div className="relative max-container max-w-5xl">
+          <div className="mb-14 md:mb-20 text-center">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">How It Works</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">
+              From application to <span className="text-ember-500">live pipeline.</span>
+            </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {HOW_IT_WORKS.map((step, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 h-full flex flex-col">
-                <span className="text-3xl font-bold text-ember-500/30 mb-1">{step.num}</span>
-                <p className="text-xs text-ember-500/70 font-semibold uppercase tracking-wider mb-2">{step.subtitle}</p>
-                <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-base text-white/80 leading-relaxed flex-1">{step.desc}</p>
-              </motion.div>
-            ))}
+
+          {/* Horizontal connected timeline */}
+          <div className="relative">
+            {/* Dashed connector line behind icons — desktop only */}
+            <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] border-t border-dashed border-ember-500/40" />
+
+            <div className="grid md:grid-cols-3 gap-y-12 md:gap-x-6">
+              {HOW_IT_WORKS.map((step, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12 }} className="relative text-center px-4">
+                  {/* Ember-bordered icon ring */}
+                  <div className="relative z-10 mx-auto w-20 h-20 rounded-full border-2 border-ember-500/60 bg-surface-950 flex items-center justify-center mb-5">
+                    <step.icon className="w-8 h-8 text-ember-500" />
+                  </div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-white/45 font-semibold mb-2">
+                    Step {i + 1} <span className="text-ember-500/80">· {step.days}</span>
+                  </p>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">{step.title}</h3>
+                  <p className="text-sm md:text-base text-white/65 leading-relaxed max-w-[280px] mx-auto">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-14 md:mt-20 text-center">
+            <button onClick={scrollToForm} className="btn-primary-dark-red mx-auto">
+              See If You Qualify
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <p className="mt-5 text-xs text-white/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 20+ qualified meetings.</p>
           </div>
         </div>
       </section>
@@ -651,56 +753,110 @@ export default function LinkedinGrowthPage() {
       </section>
 
       {/* ── QUALIFICATION ── */}
-      <section className="section-padding py-24 md:py-28">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
+      <section className="section-padding py-24 md:py-32">
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-14">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Is This Right For You?</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">We&apos;re Selective. The Guarantee Only Works When The Business Is Ready.</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight text-balance">We&apos;re Selective. The Guarantee Only Works When The Business Is Ready.</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card dark-red-gradient-border p-7">
-              <h3 className="text-base font-semibold text-emerald-400 mb-5 flex items-center gap-2"><CheckCircle className="w-4 h-4" /> LinkedIn Growth System Is For You If...</h3>
-              <div className="space-y-3">
+            {/* For-you column */}
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-3xl border border-emerald-500/20 bg-emerald-500/[0.03] p-7 md:p-8 flex flex-col">
+              <div className="flex items-center gap-3 mb-7">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-6 h-6 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-emerald-400/85 font-semibold mb-0.5">A Match</p>
+                  <h3 className="text-lg md:text-xl font-bold text-white">This Is For You If…</h3>
+                </div>
+              </div>
+              <div className="space-y-3 flex-1">
                 {QUALIFIES.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{item}</span></div>
+                  <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.025] p-4 hover:bg-white/[0.04] transition-colors">
+                    <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm md:text-base text-white/90 leading-relaxed font-medium">{item}</span>
+                  </div>
                 ))}
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card p-7 border border-white/[0.04]">
-              <h3 className="text-base font-semibold text-white/50 mb-5 flex items-center gap-2"><AlertCircle className="w-4 h-4 text-ember-500/60" /> This Isn&apos;t For You If...</h3>
-              <div className="space-y-3">
+
+            {/* Not-for column */}
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="rounded-3xl border border-white/[0.08] bg-white/[0.015] p-7 md:p-8 flex flex-col">
+              <div className="flex items-center gap-3 mb-7">
+                <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/[0.10] flex items-center justify-center flex-shrink-0">
+                  <AlertCircle className="w-6 h-6 text-white/45" />
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-white/40 font-semibold mb-0.5">Not A Fit</p>
+                  <h3 className="text-lg md:text-xl font-bold text-white/85">This Isn&apos;t For You If…</h3>
+                </div>
+              </div>
+              <div className="space-y-3 flex-1">
                 {NOT_FOR.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3"><div className="w-4 h-4 mt-0.5 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-ember-500/50 rounded-full" /></div><span className="text-base text-white/80 leading-relaxed">{item}</span></div>
+                  <div key={i} className="flex items-start gap-3 rounded-xl border border-white/[0.05] bg-white/[0.015] p-4">
+                    <XCircle className="w-5 h-5 text-white/35 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm md:text-base text-white/60 leading-relaxed">{item}</span>
+                  </div>
                 ))}
               </div>
-              <p className="mt-6 text-base text-white/80 leading-relaxed">If the left column describes you — apply above. If we&apos;re a fit, we guarantee 20+ qualified meetings every month.</p>
+              <p className="mt-6 text-sm text-white/55 italic leading-relaxed">If the left column describes you — apply above. If we&apos;re a fit, we guarantee 20+ qualified meetings every month.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ── WRITTEN TESTIMONIALS ── */}
-      <section className="section-padding py-24 md:py-28">
+      {/* ── WRITTEN TESTIMONIALS (big-photo cards) ── */}
+      <section className="section-padding py-24 md:py-32">
         <div className="max-container">
-          <div className="text-center mb-10">
-            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">What Our Partners Say</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">350+ Businesses Already Run This System</h2>
+          <div className="text-center mb-14">
+            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">350+ Businesses · $50M+ Tracked Revenue</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">We build outbound that <span className="text-ember-500">compounds.</span></h2>
+            <p className="mt-5 text-base text-white/55 max-w-xl mx-auto">Every result below is from a named client engagement.</p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {TESTIMONIALS.map((t, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: (i % 4) * 0.07 }} className="glass-card p-6 border border-white/[0.05] flex flex-col">
-                <div className="text-ember-500 text-xs mb-3">{"★★★★★"}</div>
-                <p className="text-base text-white/80 leading-relaxed italic flex-1">&ldquo;{t.quote}&rdquo;</p>
-                <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
-                  <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
-                  <div><p className="text-sm font-semibold text-white">{t.name}</p><p className="text-base text-white/80">{t.role}</p></div>
+              <motion.article
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (i % 2) * 0.1 }}
+                className="rounded-3xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col"
+              >
+                {/* Top: metric + stars + quote */}
+                <div className="p-7 md:p-8">
+                  <div className="flex items-baseline gap-2 mb-4 flex-wrap">
+                    <p className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-none">{t.metric}</p>
+                    <p className="text-sm text-white/40 font-medium">/ {t.metricLabel}</p>
+                  </div>
+                  <div className="text-ember-500 text-sm mb-4 tracking-widest">{"★★★★★"}</div>
+                  <p className="text-base md:text-lg text-white/90 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
                 </div>
-              </motion.div>
+
+                {/* Big customer image */}
+                <div className="relative aspect-[5/4] bg-white/[0.02] overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Name + role */}
+                <div className="px-7 md:px-8 py-5 border-t border-white/[0.06]">
+                  <p className="text-base font-semibold text-white">{t.name}</p>
+                  <p className="text-sm text-white/55">{t.role}</p>
+                </div>
+              </motion.article>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <button onClick={scrollToForm} className="btn-primary-dark-red mt-6 mx-auto">
+          <div className="mt-14 text-center">
+            <button onClick={scrollToForm} className="btn-primary-dark-red mx-auto">
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
