@@ -15,7 +15,7 @@ const BOOKING_URL = "/book-call";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] bg-navy-950">
+    <footer className="border-t border-white/[0.06] bg-surface-950">
       <div className="max-container section-padding py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand Column */}
@@ -31,7 +31,7 @@ export default function Footer() {
               You only pay when we deliver results. No retainers. No guesswork.
             </p>
             <div className="flex items-center gap-2">
-              <div className="flex text-gold-400 text-sm">
+              <div className="flex text-ember-500 text-sm">
                 {"★★★★★".split("").map((s, i) => (
                   <span key={i}>{s}</span>
                 ))}

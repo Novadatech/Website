@@ -31,7 +31,7 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-navy-950/90 backdrop-blur-xl border-b border-white/[0.06] shadow-2xl"
+            ? "bg-surface-950/90 backdrop-blur-xl border-b border-white/[0.06] shadow-2xl"
             : "bg-transparent"
         }`}
       >
@@ -54,7 +54,7 @@ export default function Navbar() {
                   className="text-sm text-white/70 hover:text-white font-medium transition-colors duration-300 relative group"
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold-500 transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-ember-500 transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
               <a href={BOOKING_URL} className="btn-primary text-sm !px-6 !py-3">
@@ -82,7 +82,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-navy-950/98 backdrop-blur-2xl pt-24 px-8 md:hidden"
+            className="fixed inset-0 z-40 bg-surface-950/98 backdrop-blur-2xl pt-24 px-8 md:hidden"
           >
             <nav className="flex flex-col gap-6">
               {navLinks.map((link, i) => (
