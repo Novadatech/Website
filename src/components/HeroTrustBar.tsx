@@ -12,6 +12,8 @@ interface HeroTrustBarProps {
   rating?: string;
   /** Extra Tailwind classes (e.g. spacing override). */
   className?: string;
+  /** Accent colour for the businesses-scaled badge icon. Default "gold". */
+  accent?: "gold" | "red";
 }
 
 /**
@@ -27,7 +29,11 @@ export default function HeroTrustBar({
   businessesCount = "350+",
   rating = "5.0",
   className = "",
+  accent = "gold",
 }: HeroTrustBarProps) {
+  // Static class strings so Tailwind JIT picks them up
+  const iconColorClass = accent === "red" ? "text-red-400" : "text-gold-400";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

@@ -35,6 +35,11 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-gold-400 to-gold-500;
   }
 
+  /* Red-accent palette variants — page-scoped (used on /linkedin-growth only) */
+  .red-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-red-400 to-red-500;
+  }
+
   .gradient-border {
     @apply relative;
   }
@@ -48,12 +53,29 @@
     mask-composite: exclude;
   }
 
+  .red-gradient-border {
+    @apply relative;
+  }
+
+  .red-gradient-border::before {
+    content: "";
+    @apply absolute inset-0 rounded-2xl p-[1px];
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(21, 94, 239, 0.2), rgba(239, 68, 68, 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
   .glass-card {
     @apply bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl;
   }
 
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(201,162,63,0.3)] hover:-translate-y-0.5;
+  }
+
+  .btn-primary-red {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-red-500 hover:bg-red-400 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.35)] hover:-translate-y-0.5;
   }
 
   .btn-secondary {

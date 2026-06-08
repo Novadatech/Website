@@ -228,24 +228,24 @@ function VideoSlider() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="relative">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 items-center justify-center text-gold-400 hover:border-gold-500/80 hover:bg-navy-800 transition-colors duration-200 z-10" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 items-center justify-center text-gold-400 hover:bg-gold-500/25 hover:border-gold-500 transition-colors duration-200 z-10" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
+        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-navy-900/90 border border-red-500/35 items-center justify-center text-red-400 hover:border-red-500/80 hover:bg-navy-800 transition-colors duration-200 z-10" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
+        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-red-500/15 border border-red-500/60 items-center justify-center text-red-400 hover:bg-red-500/25 hover:border-red-500 transition-colors duration-200 z-10" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
 
         <div className="sm:px-16">
           <AnimatePresence mode="wait" initial={false}>
-            <motion.div key={video.id} initial={{ opacity: 0, x: direction * 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: direction * -40 }} transition={{ duration: 0.35, ease: "easeInOut" }} className="glass-card gradient-border p-3">
+            <motion.div key={video.id} initial={{ opacity: 0, x: direction * 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: direction * -40 }} transition={{ duration: 0.35, ease: "easeInOut" }} className="glass-card red-gradient-border p-3">
               <div className="relative w-full aspect-video rounded-xl overflow-hidden">
                 <iframe src={`https://www.youtube.com/embed/${video.id}`} title={video.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 w-full h-full" style={{ border: "none" }} />
               </div>
               <div className="flex items-center gap-3 mt-3 px-2 pb-1">
-                <div className="w-7 h-7 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-[10px] font-bold text-gold-300">{video.name[0]}</span>
+                <div className="w-7 h-7 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[10px] font-bold text-red-300">{video.name[0]}</span>
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-white/70">{video.name}</p>
                   <p className="text-[11px] text-white/35">{video.company}</p>
                 </div>
-                <div className="ml-auto text-gold-400 text-xs flex-shrink-0">{"★★★★★"}</div>
+                <div className="ml-auto text-red-400 text-xs flex-shrink-0">{"★★★★★"}</div>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -253,15 +253,15 @@ function VideoSlider() {
       </div>
 
       <div className="flex sm:hidden items-center justify-center gap-4 mt-4">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-navy-900/90 border border-gold-500/35 flex items-center justify-center text-gold-400" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
+        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 16px rgba(212,175,55,0.4)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-navy-900/90 border border-red-500/35 flex items-center justify-center text-red-400" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
         <div className="flex items-center gap-2">
-          {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-gold-400" : "w-2 bg-white/20"}`} aria-label={`Go to video ${i + 1}`} />))}
+          {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-red-400" : "w-2 bg-white/20"}`} aria-label={`Go to video ${i + 1}`} />))}
         </div>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-gold-500/15 border border-gold-500/60 flex items-center justify-center text-gold-400" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
+        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(212,175,55,0)", "0 0 24px rgba(212,175,55,0.6)", "0 0 0px rgba(212,175,55,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-red-500/15 border border-red-500/60 flex items-center justify-center text-red-400" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
       </div>
 
       <div className="hidden sm:flex items-center justify-center gap-2 mt-5">
-        {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-gold-400" : "w-2 bg-white/20 hover:bg-white/40"}`} aria-label={`Go to video ${i + 1}`} />))}
+        {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-red-400" : "w-2 bg-white/20 hover:bg-white/40"}`} aria-label={`Go to video ${i + 1}`} />))}
       </div>
     </div>
   );
@@ -285,7 +285,7 @@ function StickyCtaBar() {
               <p className="text-sm font-semibold text-white">20+ qualified meetings every month</p>
               <p className="text-xs text-white/50">Authority + Outreach. Guaranteed or you don&apos;t pay.</p>
             </div>
-            <button onClick={scrollToForm} className="btn-primary text-sm py-3 px-6 w-full sm:w-auto">
+            <button onClick={scrollToForm} className="btn-primary-red text-sm py-3 px-6 w-full sm:w-auto">
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -328,13 +328,13 @@ export default function LinkedinGrowthPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-950 to-navy-950" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,162,63,0.08)_0%,_transparent_60%)]" />
         <div className="relative max-container section-padding text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/20 bg-gold-500/5 mb-4">
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-slow" />
-            <span className="text-sm text-gold-400 font-medium">LinkedIn Growth System&trade; — Authority + Outreach</span>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/20 bg-red-500/5 mb-4">
+            <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse-slow" />
+            <span className="text-sm text-red-400 font-medium">LinkedIn Growth System&trade; — Authority + Outreach</span>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            350+ B2B Founders Use Our{" "}<span className="gradient-text">Authority-Based System</span>{" "}To Book{" "}<span className="gradient-text">20+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or Spam Outreach.
+            350+ B2B Founders Use Our{" "}<span className="red-gradient-text">Authority-Based System</span>{" "}To Book{" "}<span className="red-gradient-text">20+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or Spam Outreach.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
@@ -342,11 +342,11 @@ export default function LinkedinGrowthPage() {
           </motion.p>
 
           {/* Hero Trust Bar */}
-          <HeroTrustBar className="mt-7" />
+          <HeroTrustBar className="mt-7" accent="red" />
 
           {/* Above-fold CTA */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-6">
-            <button onClick={scrollToForm} className="btn-primary text-base md:text-lg px-10 py-4">
+            <button onClick={scrollToForm} className="btn-primary-red text-base md:text-lg px-10 py-4">
               See If You Qualify
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -359,15 +359,15 @@ export default function LinkedinGrowthPage() {
         <div className="max-container max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }}>
             <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
-              <Play className="w-3.5 h-3.5 text-gold-400" />
+              <Play className="w-3.5 h-3.5 text-red-400" />
               <span>Watch the 2-min overview</span>
             </div>
             <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
               <iframe src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1&rel=0" title="How LinkedIn Growth System works" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }} />
             </div>
             <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
-              <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-[8px] font-bold text-gold-300">A</span>
+              <div className="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-[8px] font-bold text-red-300">A</span>
               </div>
               <span>Presented by <span className="text-white/60 font-medium">Ade</span> — Novada Tech</span>
             </div>
@@ -379,7 +379,7 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-12">
         <div className="max-container">
           <div className="text-center mb-8">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Real Operators · Real Results</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-red-500/80 font-medium mb-3">Real Operators · Real Results</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">Founders Already Running The System</h2>
           </div>
           <VideoSlider />
@@ -391,16 +391,16 @@ export default function LinkedinGrowthPage() {
         <div className="max-container">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="max-w-2xl mx-auto">
             <div>
-              <div className="glass-card gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
+              <div className="glass-card red-gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
                 <div className="flex items-center gap-2 mb-2"><div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /><span className="text-xs text-emerald-400 font-medium uppercase tracking-wider">3 Partner Spots Available This Quarter</span></div>
                 <h2 className="text-xl md:text-2xl font-bold text-white">See If You Qualify For LinkedIn Growth System&trade;</h2>
                 <p className="mt-1.5 text-base text-white/80">Tell us about your business. If we&apos;re a fit, we&apos;ll guarantee 20+ qualified meetings every month — or you don&apos;t pay.</p>
                 <div className="mt-4">
                   <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
-                    <span className="flex items-center gap-1.5"><span className="text-gold-400 font-medium">Step 1</span><span>— Your details</span><span className="text-white/20">{"→"}</span><span>Step 2 — Pick your time</span></span>
+                    <span className="flex items-center gap-1.5"><span className="text-red-400 font-medium">Step 1</span><span>— Your details</span><span className="text-white/20">{"→"}</span><span>Step 2 — Pick your time</span></span>
                     <span>50%</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-white/10"><div className="h-1.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-400 w-1/2" /></div>
+                  <div className="h-1.5 rounded-full bg-white/10"><div className="h-1.5 rounded-full bg-gradient-to-r from-red-500 to-red-400 w-1/2" /></div>
                 </div>
               </div>
               <div className="glass-card rounded-t-none rounded-b-2xl overflow-hidden" style={{ borderTop: "none" }}>
@@ -416,9 +416,9 @@ export default function LinkedinGrowthPage() {
                   { icon: Clock, label: "Live In 14 Days" },
                 ].map(({ icon: Icon, label, link, micro }, i) => {
                   const content = (
-                    <div key={i} className={`flex flex-col gap-1 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium ${link ? "hover:border-gold-500/30 transition-colors cursor-pointer" : ""}`}>
+                    <div key={i} className={`flex flex-col gap-1 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium ${link ? "hover:border-red-500/30 transition-colors cursor-pointer" : ""}`}>
                       <div className="flex items-center gap-2.5">
-                        <Icon className="w-3.5 h-3.5 flex-shrink-0 text-gold-400" />
+                        <Icon className="w-3.5 h-3.5 flex-shrink-0 text-red-400" />
                         <span className={link ? "underline underline-offset-2 decoration-white/20" : ""}>{label}</span>
                         {link && <ExternalLink className="w-3 h-3 flex-shrink-0 text-white/30" />}
                       </div>
@@ -440,12 +440,12 @@ export default function LinkedinGrowthPage() {
                   </div>
                 </div>
                 <div className="mt-3 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/80 font-medium">
-                  <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-gold-400" /> 350+ businesses scaled</span>
+                  <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-red-400" /> 350+ businesses scaled</span>
                   <span className="text-white/25">{"·"}</span>
-                  <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-gold-400" /> $50M+ tracked revenue across 350+ clients</span>
+                  <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-red-400" /> $50M+ tracked revenue across 350+ clients</span>
                   <span className="text-white/25">{"·"}</span>
                   <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors">
-                    <Star className="w-4 h-4 text-gold-400" />
+                    <Star className="w-4 h-4 text-red-400" />
                     <span className="underline underline-offset-2 decoration-white/30">5.0{"★"} on Trustpilot</span>
                   </a>
                 </div>
@@ -465,13 +465,13 @@ export default function LinkedinGrowthPage() {
             <p className="text-base text-emerald-400/80 italic mb-5 leading-relaxed">If we don&apos;t deliver — you don&apos;t pay.</p>
             <ul className="space-y-3">
               {OUTCOMES.map((o, i) => (
-                <li key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{o}</span></li>
+                <li key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{o}</span></li>
               ))}
             </ul>
           </motion.div>
 
           <div className="mt-8 text-center">
-            <button onClick={scrollToForm} className="btn-primary mx-auto">
+            <button onClick={scrollToForm} className="btn-primary-red mx-auto">
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -483,7 +483,7 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">The Real Problem</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-red-500/80 font-medium mb-3">The Real Problem</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">LinkedIn Isn&apos;t Broken. The Way Everyone&apos;s Using It Is.</h2>
             <p className="mt-3 text-base text-white/70 max-w-2xl mx-auto">If any of these sound familiar, you&apos;re running the 2020 playbook in a 2026 inbox.</p>
           </div>
@@ -502,7 +502,7 @@ export default function LinkedinGrowthPage() {
 
           {/* Inline CTA — CTA cadence between sections */}
           <div className="mt-12 text-center">
-            <button onClick={scrollToForm} className="btn-primary mx-auto">
+            <button onClick={scrollToForm} className="btn-primary-red mx-auto">
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -514,10 +514,10 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">The Authority Difference</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-red-500/80 font-medium mb-3">The Authority Difference</p>
             <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">
               Why Outreach Alone Stopped Working — And{" "}
-              <span className="gradient-text">What Replaced It.</span>
+              <span className="red-gradient-text">What Replaced It.</span>
             </h2>
             <p className="mt-4 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
               Without authority, your message is one of 100. With authority, you&apos;re the one they were waiting to hear from. Same outreach. Different math.
@@ -545,22 +545,22 @@ export default function LinkedinGrowthPage() {
             </motion.div>
 
             {/* New way */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card gradient-border p-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-semibold mb-5">{AUTHORITY_MATH.newWay.title}</p>
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card red-gradient-border p-7">
+              <p className="text-xs uppercase tracking-[0.2em] text-red-500/80 font-semibold mb-5">{AUTHORITY_MATH.newWay.title}</p>
               <div className="space-y-3 mb-6">
                 {AUTHORITY_MATH.newWay.rows.map((row, i) => (
-                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0" /><span className="text-sm text-white/85 leading-relaxed font-medium">{row}</span></div>
+                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" /><span className="text-sm text-white/85 leading-relaxed font-medium">{row}</span></div>
                 ))}
               </div>
               <div className="pt-5 border-t border-white/[0.08] space-y-2.5">
                 {AUTHORITY_MATH.newWay.stats.map((s, i) => (
                   <div key={i} className="flex items-center justify-between text-sm">
                     <span className="text-white/60">{s.label}</span>
-                    <span className="text-gold-400 font-bold">{s.value}</span>
+                    <span className="text-red-400 font-bold">{s.value}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-5 text-xs text-gold-400/80 font-medium">Same outreach. ~12x more qualified meetings.</p>
+              <p className="mt-5 text-xs text-red-400/80 font-medium">Same outreach. ~12x more qualified meetings.</p>
             </motion.div>
           </div>
 
@@ -572,7 +572,7 @@ export default function LinkedinGrowthPage() {
               { icon: CalendarCheck, title: "Pre-Qualified Booking", desc: "Only decision-makers with budget and fit make it to your calendar. Pre-qualified, pre-sold, and ready to buy when the call starts." },
             ].map((p, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 h-full">
-                <div className="w-12 h-12 rounded-xl bg-gold-500/10 flex items-center justify-center mb-4"><p.icon className="w-6 h-6 text-gold-400" /></div>
+                <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-4"><p.icon className="w-6 h-6 text-red-400" /></div>
                 <h3 className="text-base font-semibold text-white mb-2">{p.title}</h3>
                 <p className="text-sm text-white/70 leading-relaxed">{p.desc}</p>
               </motion.div>
@@ -580,7 +580,7 @@ export default function LinkedinGrowthPage() {
           </div>
 
           <div className="mt-10 text-center">
-            <button onClick={scrollToForm} className="btn-primary mx-auto">
+            <button onClick={scrollToForm} className="btn-primary-red mx-auto">
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -592,14 +592,14 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">How It Works</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-red-500/80 font-medium mb-3">How It Works</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">From Application To 20+ Booked Meetings In 14 Days</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {HOW_IT_WORKS.map((step, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 h-full flex flex-col">
-                <span className="text-3xl font-bold text-gold-500/30 mb-1">{step.num}</span>
-                <p className="text-xs text-gold-500/70 font-semibold uppercase tracking-wider mb-2">{step.subtitle}</p>
+                <span className="text-3xl font-bold text-red-500/30 mb-1">{step.num}</span>
+                <p className="text-xs text-red-500/70 font-semibold uppercase tracking-wider mb-2">{step.subtitle}</p>
                 <h3 className="text-sm font-semibold text-white mb-2">{step.title}</h3>
                 <p className="text-base text-white/80 leading-relaxed flex-1">{step.desc}</p>
               </motion.div>
@@ -612,10 +612,10 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Why This Beats Every Other Option</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-red-500/80 font-medium mb-3">Why This Beats Every Other Option</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               The Difference Between Sending Messages — And{" "}
-              <span className="gradient-text">Owning Your Industry</span>
+              <span className="red-gradient-text">Owning Your Industry</span>
             </h2>
             <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
               Generic LinkedIn agencies sell volume. DIY drains your time. LinkedIn Growth System&trade; installs a permanent authority engine into your business — and guarantees the result.
@@ -627,8 +627,8 @@ export default function LinkedinGrowthPage() {
               <div className="p-4 col-span-1" />
               <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Generic LinkedIn Agency</p></div>
               <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">DIY (You)</p></div>
-              <div className="p-4 text-center bg-gold-500/[0.05] border-l border-gold-500/15">
-                <p className="text-xs md:text-sm font-semibold text-gold-400">LinkedIn Growth System&trade;</p>
+              <div className="p-4 text-center bg-red-500/[0.05] border-l border-red-500/15">
+                <p className="text-xs md:text-sm font-semibold text-red-400">LinkedIn Growth System&trade;</p>
               </div>
             </div>
             {DIFFERENTIATION.map((row, i) => (
@@ -636,13 +636,13 @@ export default function LinkedinGrowthPage() {
                 <div className="p-4 flex items-center"><span className="text-xs md:text-sm text-white/60">{row.label}</span></div>
                 <div className="p-4 flex items-center justify-center text-center"><span className="text-sm text-white/55">{row.agency}</span></div>
                 <div className="p-4 flex items-center justify-center text-center"><span className="text-sm text-white/55">{row.diy}</span></div>
-                <div className="p-4 flex items-center justify-center text-center bg-gold-500/[0.04] border-l border-gold-500/10"><span className="text-sm text-gold-400 font-medium">{row.novada}</span></div>
+                <div className="p-4 flex items-center justify-center text-center bg-red-500/[0.04] border-l border-red-500/10"><span className="text-sm text-red-400 font-medium">{row.novada}</span></div>
               </div>
             ))}
           </div>
 
           <div className="mt-10 text-center">
-            <button onClick={scrollToForm} className="btn-primary mx-auto">
+            <button onClick={scrollToForm} className="btn-primary-red mx-auto">
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -654,11 +654,11 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-4xl">
           <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Is This Right For You?</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-red-500/80 font-medium mb-3">Is This Right For You?</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">We&apos;re Selective. The Guarantee Only Works When The Business Is Ready.</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card gradient-border p-7">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="glass-card red-gradient-border p-7">
               <h3 className="text-base font-semibold text-emerald-400 mb-5 flex items-center gap-2"><CheckCircle className="w-4 h-4" /> LinkedIn Growth System Is For You If...</h3>
               <div className="space-y-3">
                 {QUALIFIES.map((item, i) => (
@@ -683,13 +683,13 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container">
           <div className="text-center mb-10">
-            <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">What Our Partners Say</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-red-500/80 font-medium mb-4">What Our Partners Say</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">350+ Businesses Already Run This System</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
             {TESTIMONIALS.map((t, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: (i % 4) * 0.07 }} className="glass-card p-6 border border-white/[0.05] flex flex-col">
-                <div className="text-gold-400 text-xs mb-3">{"★★★★★"}</div>
+                <div className="text-red-400 text-xs mb-3">{"★★★★★"}</div>
                 <p className="text-base text-white/80 leading-relaxed italic flex-1">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
                   <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
@@ -700,7 +700,7 @@ export default function LinkedinGrowthPage() {
           </div>
 
           <div className="mt-12 text-center">
-            <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">
+            <button onClick={scrollToForm} className="btn-primary-red mt-6 mx-auto">
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -712,7 +712,7 @@ export default function LinkedinGrowthPage() {
       <section className="pt-16 pb-0 section-padding border-t border-white/[0.04]">
         <div className="max-container max-w-2xl">
           <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-3">Your Questions Answered</p>
+            <p className="text-sm uppercase tracking-[0.2em] text-red-500/80 font-medium mb-3">Your Questions Answered</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">The Questions Serious Operators Ask</h2>
           </div>
           <div className="space-y-3">{FAQS.map((faq, i) => (<FAQItem key={i} q={faq.q} a={faq.a} />))}</div>
@@ -726,14 +726,14 @@ export default function LinkedinGrowthPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(201,162,63,0.1)_0%,_transparent_70%)]" />
             <div className="relative px-8 py-14 md:px-14">
-              <p className="text-sm uppercase tracking-[0.2em] text-gold-500/80 font-medium mb-4">Performance Guaranteed</p>
+              <p className="text-sm uppercase tracking-[0.2em] text-red-500/80 font-medium mb-4">Performance Guaranteed</p>
               <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight text-balance">
                 Stop Sending Messages.{" "}
-                <span className="gradient-text">Start Owning Your Industry.</span>
+                <span className="red-gradient-text">Start Owning Your Industry.</span>
               </h2>
               <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ founders have made the switch from cold outreach to authority + outreach. 20+ qualified meetings every month, guaranteed. Or you don&apos;t pay.</p>
 
-              <button onClick={scrollToForm} className="btn-primary mt-8 inline-flex text-base">
+              <button onClick={scrollToForm} className="btn-primary-red mt-8 inline-flex text-base">
                 See If You Qualify
                 <ArrowRight className="w-5 h-5" />
               </button>
