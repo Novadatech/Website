@@ -148,7 +148,7 @@ const TESTIMONIALS = [
     quote: "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.",
     name: "Josh",
     role: "Director, Maxicare Plus",
-    avatar: "https://i.pravatar.cc/600?img=12",
+    avatar: "/testimonials/josh-maxicare.jpg",
   },
   {
     metric: "4 clients",
@@ -156,7 +156,7 @@ const TESTIMONIALS = [
     quote: "We'd been burned by two agencies before. This was different — it was a system, not a service. 4 new retainer clients in the first 45 days.",
     name: "Uche",
     role: "Founder, The Morning Star Community Services",
-    avatar: "https://i.pravatar.cc/600?img=33",
+    avatar: "/testimonials/uche-morningstar.jpg",
   },
   {
     metric: "28% → 60%",
@@ -164,7 +164,7 @@ const TESTIMONIALS = [
     quote: "Discovery call conversion jumped from 28% to over 60%. The authority content meant prospects arrived already sold — we just confirmed fit.",
     name: "Malkin",
     role: "Founder, Support24",
-    avatar: "https://i.pravatar.cc/600?img=53",
+    avatar: "/testimonials/malkin-support24.jpg",
   },
   {
     metric: "6 months",
@@ -172,7 +172,7 @@ const TESTIMONIALS = [
     quote: "More qualified meetings in month one than the previous six months combined. The system ran on its own — I went back to delivery.",
     name: "Jessica",
     role: "Founder, Jessica Teds Coaching",
-    avatar: "https://i.pravatar.cc/600?img=47",
+    avatar: "/testimonials/jessica-teds.jpg",
   },
 ];
 
@@ -693,7 +693,7 @@ export default function LinkedinGrowthPage() {
                 </div>
 
                 {/* Big customer image */}
-                <div className="relative aspect-[5/4] bg-white/[0.02] overflow-hidden">
+                <div className="relative aspect-[4/5] bg-white/[0.02] overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={t.avatar}
