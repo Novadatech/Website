@@ -451,7 +451,7 @@ return (
       </section>
 
       {/* ── VSL with duration label ── */}
-      <section className="section-padding pt-6 pb-0">
+      <section className="section-padding pt-8 pb-24 md:pb-32">
         <div className="max-container max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -507,7 +507,7 @@ return (
 
 
       {/* ── Video Testimonials — moved up for early trust ── */}
-      <section className="section-padding py-12">
+      <section className="section-padding pb-24 md:pb-32">
         <div className="max-container">
           <div className="text-center mb-8">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">
@@ -633,7 +633,7 @@ return (
 
 
       {/* ── Why This Isn't Another Agency (Differentiation) ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Why This Isn&apos;t Another Agency</p>
@@ -677,7 +677,7 @@ return (
       </section>
 
       {/* ── Is This Right for You? — condensed to 3 bullets ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
         <div className="max-container max-w-4xl">
           <div className="text-center mb-10">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">
@@ -745,7 +745,7 @@ return (
       </section>
 
       {/* ── Testimonials — 4 strongest ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
         <div className="max-container">
           <div className="text-center mb-10">
             <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
@@ -819,7 +819,7 @@ return (
       </section>
 
       {/* ── FAQ ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
         <div className="max-container max-w-2xl">
           <div className="text-center mb-10">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">
@@ -839,7 +839,7 @@ return (
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
         <div className="max-container max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

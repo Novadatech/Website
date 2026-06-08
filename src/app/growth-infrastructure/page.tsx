@@ -299,7 +299,7 @@ return (
       </section>
 
       {/* ── VSL with duration label + presenter identity ── */}
-      <section className="section-padding pt-6 pb-0">
+      <section className="section-padding pt-8 pb-24 md:pb-32">
         <div className="max-container max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }}>
             <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
@@ -342,7 +342,7 @@ return (
 
 
       {/* ── Video Testimonials (early trust) ── */}
-      <section className="section-padding py-12">
+      <section className="section-padding pb-24 md:pb-32">
         <div className="max-container">
           <div className="text-center mb-8">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Real Operators · Real Results</p>
@@ -463,7 +463,7 @@ return (
 
 
       {/* ── Why This Isn't Another Agency (Differentiation) ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Why This Isn&apos;t Another Agency</p>
@@ -507,7 +507,7 @@ return (
       </section>
 
       {/* ── Written Testimonials ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
+      <section className="section-padding py-24 md:py-32 border-t border-white/[0.04]">
         <div className="max-container">
           <div className="text-center mb-10">
             <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">What Our Partners Say</p>
