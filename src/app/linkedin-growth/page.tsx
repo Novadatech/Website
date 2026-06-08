@@ -334,11 +334,11 @@ export default function LinkedinGrowthPage() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            Become The{" "}<span className="gradient-text">Obvious Choice</span>{" "}In Your Industry — And Wake Up To{" "}<span className="gradient-text">Qualified Sales Meetings</span>{" "}Already Booked On Your Calendar.
+            350+ B2B Founders Use Our{" "}<span className="gradient-text">Authority-Based System</span>{" "}To Book{" "}<span className="gradient-text">20+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or Spam Outreach.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
-            We install a complete LinkedIn authority + outreach engine — daily prospecting, authority video content, and done-for-you appointment setting. So you stop chasing leads, and prospects start coming to you pre-sold.
+            Watch the 2-minute breakdown below to see how we transform your LinkedIn profile into an authority asset, position you as the obvious choice in your market, and fill your calendar with pre-sold prospects in as little as 14 days.
           </motion.p>
 
           {/* Hero Trust Bar */}
