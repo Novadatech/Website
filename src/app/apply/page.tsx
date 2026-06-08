@@ -71,24 +71,32 @@ const DIFFERENTIATION = [
 // TODO: Replace placeholder avatar URLs with actual client photos
 const TESTIMONIALS = [
   {
+    metric: "$91K/mo",
+    metricLabel: "monthly revenue",
     quote: "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.",
     name: "Josh",
     role: "Director, Maxicare Plus",
     avatar: "/testimonials/josh-maxicare.jpg",
   },
   {
+    metric: "4 clients",
+    metricLabel: "in first 45 days",
     quote: "We'd been burned by two agencies before. Growth Infrastructure was different — it was a system, not a service. 4 new retainer clients in the first 45 days.",
     name: "Uche",
     role: "Founder, The Morning Star Community Services",
     avatar: "/testimonials/uche-morningstar.jpg",
   },
   {
+    metric: "28% → 60%",
+    metricLabel: "discovery call close rate",
     quote: "Discovery call conversion jumped from 28% to over 60%. The authority content meant prospects arrived already sold on us — we just confirmed fit.",
     name: "Malkin",
     role: "Founder, Support24",
     avatar: "/testimonials/malkin-support24.jpg",
   },
   {
+    metric: "6 months",
+    metricLabel: "of meetings in month one",
     quote: "More qualified appointments in month one than in the previous six months combined. The infrastructure ran on its own — I went back to delivery.",
     name: "Jessica",
     role: "Founder, Jessica Teds Coaching",
@@ -790,32 +798,38 @@ export default function ApplyPage() {
               350+ Business Owners Got the Free Strategy. Here&apos;s What They Did With It.
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {TESTIMONIALS.map((t, i) => (
-              <motion.div
+              <motion.article
                 key={i}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: (i % 4) * 0.07 }}
-                className="glass-card p-6 border border-white/[0.05] flex flex-col"
+                transition={{ delay: (i % 2) * 0.1 }}
+                className="rounded-3xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col h-full"
               >
-                <div className="text-ember-500 text-xs mb-3">{"\u2605\u2605\u2605\u2605\u2605"}</div>
-                <p className="text-base text-white/80 leading-relaxed italic flex-1">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
+                <div className="p-7 md:p-8">
+                  <div className="flex items-baseline gap-2 mb-4 flex-wrap">
+                    <p className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-none">{t.metric}</p>
+                    <p className="text-sm text-white/40 font-medium">/ {t.metricLabel}</p>
+                  </div>
+                  <div className="text-ember-500 text-sm mb-4 tracking-widest">{"\u2605\u2605\u2605\u2605\u2605"}</div>
+                  <p className="text-base md:text-lg text-white/90 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
+                </div>
+                <div className="relative aspect-[4/5] bg-white/[0.02] overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={t.avatar}
                     alt={t.name}
-                    className="w-9 h-9 rounded-full object-cover flex-shrink-0"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
                   />
-                  <div>
-                    <p className="text-sm font-semibold text-white">{t.name}</p>
-                    <p className="text-base text-white/80">{t.role}</p>
-                  </div>
                 </div>
-              </motion.div>
+                <div className="px-7 md:px-8 py-5 border-t border-white/[0.06]">
+                  <p className="text-base font-semibold text-white">{t.name}</p>
+                  <p className="text-sm text-white/55">{t.role}</p>
+                </div>
+              </motion.article>
             ))}
           </div>
 

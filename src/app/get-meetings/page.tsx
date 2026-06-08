@@ -28,24 +28,32 @@ const BENEFITS = [
 // TODO: Replace placeholder avatar URLs with actual client photos
 const TESTIMONIALS = [
   {
+    metric: "$91K/mo",
+    metricLabel: "monthly revenue",
     quote: "We went from $42K to over $91K monthly revenue in under 60 days. The qualified meetings drove everything — consistent, high-quality, every single week.",
     name: "Josh",
     role: "Director, Maxicare Plus",
     avatar: "/testimonials/josh-maxicare.jpg",
   },
   {
+    metric: "4 clients",
+    metricLabel: "in first 45 days",
     quote: "We closed four new retainer clients in our first 45 days. The meetings were pre-qualified — prospects already understood our value before we got on the call.",
     name: "Uche",
     role: "Founder, The Morning Star Community Services",
     avatar: "/testimonials/uche-morningstar.jpg",
   },
   {
+    metric: "28% → 60%",
+    metricLabel: "discovery call close rate",
     quote: "Our conversion rate on discovery calls jumped to over 60%. The meetings are with people who are ready to buy — not tyre-kickers.",
     name: "Malkin",
     role: "Founder, Support24",
     avatar: "/testimonials/malkin-support24.jpg",
   },
   {
+    metric: "6 months",
+    metricLabel: "of meetings in month one",
     quote: "More qualified meetings in month one than the previous six months combined. I actually had to pause the system to catch up with demand.",
     name: "Jessica",
     role: "Founder, Jessica Teds Coaching",
@@ -437,54 +445,6 @@ export default function GetMeetingsPage() {
         </div>
       </section>
 
-      {/* ── Risk Reversal ── */}
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container max-w-4xl">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">We Take the Risk.{" "}<span className="gradient-text">You Get the Meetings.</span></h2>
-            <p className="mt-3 text-white/80 text-lg max-w-lg mx-auto">Other agencies charge you thousands with no guarantee. We guarantee 30–60 qualified meetings — or you don&apos;t pay.</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-red-400/10 bg-red-400/[0.02]">
-              <p className="text-xs uppercase tracking-[0.2em] text-red-400/60 font-medium mb-5">Other Agencies — The Risk Is on You</p>
-              <div className="space-y-3">
-                {["You pay thousands upfront — whether meetings come or not", "You absorb all the risk if the agency underperforms", "No guarantee on meeting volume, quality, or timing", "If it fails, you lose the money and start over from scratch"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center"><div className="w-3 h-[2px] bg-red-400/50 rounded-full" /></div>
-                    <span className="text-base text-white/80">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-red-400/65 font-medium">All the risk sits with you. None of it sits with them.</p>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card gradient-border p-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-5">Novada Tech — The Risk Is on Us</p>
-              <div className="space-y-3">
-                {["We guarantee 30–60 qualified sales meetings on your calendar monthly", "If we don't deliver, you don't pay — written into the agreement", "We absorb all the risk of underperformance, not you", "You only invest when qualified meetings are sitting on your calendar"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <CheckCircle className="w-4 h-4 text-ember-500 flex-shrink-0" />
-                    <span className="text-base text-white/80 font-medium">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-6 text-base text-ember-500/85 font-medium">All the risk sits with us. None of it sits with you.</p>
-            </motion.div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-ember-500/10 border border-ember-500/20 mb-5"><Shield className="w-7 h-7 text-ember-500" /></div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white">The guarantee is simple.</h3>
-            <button onClick={scrollToForm} className="btn-primary mt-6 mx-auto">
-              Get My Guaranteed Meetings Plan
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* ── Is This Right for You? — condensed to 3 bullets ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container max-w-4xl">
@@ -536,19 +496,38 @@ export default function GetMeetingsPage() {
             <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">What Our Partners Say</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">350+ Businesses. Guaranteed Meetings. Every Month.</h2>
           </div>
-          <div className="grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {TESTIMONIALS.map((t, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: (i % 4) * 0.07 }} className="glass-card p-6 border border-white/[0.05] flex flex-col">
-                <div className="text-ember-500 text-xs mb-3">{"\u2605\u2605\u2605\u2605\u2605"}</div>
-                <p className="text-base text-white/80 leading-relaxed italic flex-1">&ldquo;{t.quote}&rdquo;</p>
-                <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center gap-3">
-                  <img src={t.avatar} alt={t.name} className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-white">{t.name}</p>
-                    <p className="text-base text-white/80">{t.role}</p>
+              <motion.article
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (i % 2) * 0.1 }}
+                className="rounded-3xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col h-full"
+              >
+                <div className="p-7 md:p-8">
+                  <div className="flex items-baseline gap-2 mb-4 flex-wrap">
+                    <p className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-none">{t.metric}</p>
+                    <p className="text-sm text-white/40 font-medium">/ {t.metricLabel}</p>
                   </div>
+                  <div className="text-ember-500 text-sm mb-4 tracking-widest">{"\u2605\u2605\u2605\u2605\u2605"}</div>
+                  <p className="text-base md:text-lg text-white/90 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
                 </div>
-              </motion.div>
+                <div className="relative aspect-[4/5] bg-white/[0.02] overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="px-7 md:px-8 py-5 border-t border-white/[0.06]">
+                  <p className="text-base font-semibold text-white">{t.name}</p>
+                  <p className="text-sm text-white/55">{t.role}</p>
+                </div>
+              </motion.article>
             ))}
           </div>
 
