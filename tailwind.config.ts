@@ -37,6 +37,14 @@ const config: Config = {
         surface: {
           950: "#0A0A0A",
         },
+        // Azure palette — cobalt blue pulled from the Novada Tech logo icon
+        // (#3472FD). Used on /linkedin-growth as a brand-strategy variant.
+        azure: {
+          400: "#6B96FD",
+          500: "#3472FD",
+          600: "#1A4FE0",
+          700: "#0F3FA8",
+        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

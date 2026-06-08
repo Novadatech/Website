@@ -4,7 +4,15 @@ import Link from "next/link";
 import { Mail, Phone, ExternalLink } from "lucide-react";
 import NovadaLogo from "./NovadaLogo";
 
-export default function LandingFooter() {
+interface LandingFooterProps {
+  /** Brand variant for accent colours. Default "ember" (site-wide brand);
+      "azure" is used on /linkedin-growth as a brand-strategy variant. */
+  variant?: "ember" | "azure";
+}
+
+export default function LandingFooter({ variant = "ember" }: LandingFooterProps) {
+  const starColorClass = variant === "azure" ? "text-azure-500" : "text-ember-500";
+
   return (
     <footer className="border-t border-white/[0.06] bg-surface-950">
       <div className="max-container section-padding py-10">
@@ -19,7 +27,7 @@ export default function LandingFooter() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-white/60 hover:text-white/80 transition-colors"
           >
-            <div className="flex text-ember-500 text-sm">★★★★★</div>
+            <div className={`flex ${starColorClass} text-sm`}>★★★★★</div>
             <span>5.0 on Trustpilot</span>
             <ExternalLink className="w-3 h-3" />
           </a>
