@@ -4,26 +4,20 @@ import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
-  Clock, AlertCircle, ChevronDown, ArrowRight, ExternalLink,
-  ChevronLeft, ChevronRight, Play
+  Clock, AlertCircle, ChevronDown, ArrowRight,
+  ChevronLeft, ChevronRight, Play, CalendarCheck, Send
 } from "lucide-react";
 import Link from "next/link";
 import NovadaLogo from "@/components/NovadaLogo";
 
 // ─── Scroll to form helper ──────────────────────────────────────────────────
 function scrollToForm() {
-  document.getElementById("meetings-form-embed")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  // Form was removed from this page; route the CTA to the dedicated booking page.
+  window.location.assign("/book-call");
 }
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
-const BENEFITS = [
-  "30–60 qualified sales meetings on your calendar every single month — guaranteed",
-  "Every meeting is with a decision-maker who fits your ideal client profile and has the budget",
-  "A predictable pipeline you can forecast revenue from — no more feast-and-famine cycles",
-  "You only pay when qualified meetings are delivered. If we don't perform, you owe us nothing.",
-  "The performance guarantee is written into the agreement — not a marketing line, a contractual commitment",
-];
 
 // TODO: Replace placeholder avatar URLs with actual client photos
 const TESTIMONIALS = [
@@ -217,18 +211,7 @@ function StickyCtaBar() {
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 export default function GetMeetingsPage() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://link.novadatech.com/js/form_embed.js";
-    script.type = "text/javascript";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      if (document.body.contains(script)) document.body.removeChild(script);
-    };
-  }, []);
-
-  return (
+return (
     <>
       {/* ── Minimal sticky header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-b border-white/[0.06]">
@@ -237,10 +220,10 @@ export default function GetMeetingsPage() {
             <Link href="/get-meetings" className="flex items-center">
               <NovadaLogo variant="light" className="h-12 w-auto" />
             </Link>
-            <div className="flex items-center gap-2 text-xs text-white/40">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>2 partner spots available this month</span>
-            </div>
+            <button onClick={scrollToForm} className="btn-primary text-sm py-2.5 px-5">
+              Apply Now
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </header>
@@ -327,123 +310,66 @@ export default function GetMeetingsPage() {
         </div>
       </section>
 
-      {/* ── FORM — standalone, centred ── */}
-      <section className="section-padding pt-4 pb-0">
-        <div className="max-container">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="max-w-2xl mx-auto">
-            <div>
-              <div className="glass-card gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs text-emerald-400 font-medium uppercase tracking-wider">2 Partner Spots Available This Month</span>
-                </div>
-                <h2 className="text-xl md:text-2xl font-bold text-white">Get 30–60 Guaranteed Sales Meetings Monthly</h2>
-                <p className="mt-1.5 text-base text-white/80">
-                  Tell us about your business. If you qualify, we&apos;ll guarantee 30–60 meetings monthly — or you don&apos;t pay.
-                </p>
-                <div className="mt-4">
-                  <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
-                    <span className="flex items-center gap-1.5">
-                      <span className="text-ember-500 font-medium">Step 1</span>
-                      <span>— Your details</span>
-                      <span className="text-white/20">{"\u2192"}</span>
-                      <span>Step 2 — Pick your time</span>
-                    </span>
-                    <span>50%</span>
-                  </div>
-                  <div className="h-1.5 rounded-full bg-white/10">
-                    <div className="h-1.5 rounded-full bg-gradient-to-r from-ember-500 to-ember-500 w-1/2" />
-                  </div>
-                </div>
-              </div>
+      {/* ── What You Walk Away With (featured + tile grid) ── */}
+      <section className="section-padding py-24 md:py-32">
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">What You Get</p>
+            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">Inside The Sales Meeting System</h2>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">30–60 qualified meetings booked into your calendar every month. Performance guaranteed. Pay only when delivered.</p>
+          </div>
 
-              <div className="glass-card rounded-t-none rounded-b-2xl overflow-hidden" style={{ borderTop: "none" }}>
-                <iframe
-                  src="https://link.novadatech.com/widget/form/2UikgU0iSTsy1ax334cR"
-                  style={{ width: "100%", minHeight: "380px", border: "none", display: "block" }}
-                  id="meetings-form-embed"
-                  data-layout="{'id':'INLINE'}"
-                  data-trigger-type="alwaysShow"
-                  data-activation-type="alwaysActivated"
-                  data-deactivation-type="neverDeactivate"
-                  data-form-name="Novada Tech Meetings Form"
-                  data-height="380"
-                  data-layout-iframe-id="meetings-form-embed"
-                  data-form-id="2UikgU0iSTsy1ax334cR"
-                  title="Get Guaranteed Sales Meetings"
-                />
-              </div>
-
-              {/* Trust strip — Trustpilot clickable with icon, guarantee has micro-copy */}
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                {TRUST_ITEMS.map(({ icon: Icon, label, link, micro }, i) => {
-                  const content = (
-                    <div key={i} className={`flex flex-col gap-1 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium ${link ? "hover:border-ember-500/30 transition-colors cursor-pointer" : ""}`}>
-                      <div className="flex items-center gap-2.5">
-                        <Icon className="w-3.5 h-3.5 flex-shrink-0 text-ember-500" />
-                        <span className={link ? "underline underline-offset-2 decoration-white/20" : ""}>{label}</span>
-                        {link && <ExternalLink className="w-3 h-3 flex-shrink-0 text-white/30" />}
-                      </div>
-                      {micro && <span className="text-[10px] text-white/35 ml-6">{micro}</span>}
-                    </div>
-                  );
-                  if (link) return <a key={i} href={link} target="_blank" rel="noopener noreferrer">{content}</a>;
-                  return content;
-                })}
-              </div>
-
-              {/* Social proof — Tony (different from testimonial grid which leads with Josh) */}
-              <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-[10px] font-bold text-blue-300">T</span>
+          {/* Featured outcome */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl border border-ember-500/25 bg-gradient-to-br from-ember-500/[0.08] via-ember-500/[0.02] to-transparent p-8 md:p-10 mb-6 overflow-hidden">
+            <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-ember-500/10 blur-3xl pointer-events-none" />
+            <div className="relative grid md:grid-cols-5 gap-8 md:gap-10 items-center">
+              <div className="md:col-span-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-ember-500/15 border border-ember-500/35 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-ember-500" />
                   </div>
-                  <div>
-                    <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;Within three weeks we had 14 new meetings booked with exactly the type of client we wanted. Every meeting was worth showing up to.&rdquo;</p>
-                    <p className="mt-1.5 text-xs text-white/40">Tony — Founder, South Line Media</p>
-                  </div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-ember-500/85 font-semibold">The Guarantee</p>
                 </div>
-                <div className="mt-3 pt-3 border-t border-white/[0.05] flex items-center justify-center gap-4 text-xs text-white/35 flex-wrap">
-                  <span className="flex items-center gap-1.5"><Users className="w-3 h-3 text-ember-500/50" /> 350+ businesses scaled</span>
-                  <span className="text-white/15">{"\u00B7"}</span>
-                  <span className="flex items-center gap-1.5"><TrendingUp className="w-3 h-3 text-ember-500/50" /> $50M+ tracked revenue across 350+ clients</span>
-                  <span className="text-white/15">{"\u00B7"}</span>
-                  <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors">
-                    <Star className="w-3 h-3 text-ember-500/50" />
-                    <span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} on Trustpilot (77+ reviews)</span>
-                  </a>
-                </div>
+                <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">30–60</p>
+                <p className="mt-3 text-lg text-white/80 font-medium leading-snug">qualified meetings every month</p>
+              </div>
+              <div className="md:col-span-3 md:border-l md:border-white/[0.10] md:pl-10">
+                <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-4">Decision-maker meetings, pre-qualified, on your calendar.</h3>
+                <p className="text-base text-white/75 leading-relaxed">Pay only when qualified meetings are delivered. Written into your agreement. If we don't perform — you don't pay.</p>
               </div>
             </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* ── What You Get + CTA ── */}
-      <section className="section-padding pt-12 pb-0">
-        <div className="max-container max-w-2xl">
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-0.5">What You Get</h3>
-            <p className="text-base text-white/80 mb-4">When you partner with us</p>
-            <p className="text-base text-emerald-400/80 italic mb-4 leading-relaxed">If we don&apos;t deliver 30–60 qualified sales meetings to your calendar every month — you don&apos;t pay us a cent.</p>
-            <ul className="space-y-2.5">
-              {BENEFITS.map((benefit, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircle className="w-3.5 h-3.5 text-ember-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-white/80 leading-relaxed">{benefit}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+          {/* Supporting tiles */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: CalendarCheck, title: "Decision-Maker Meetings", desc: "Every meeting is with a decision-maker who fits your ideal client profile and has the budget for your offer." },
+              { icon: Shield, title: "Performance Guarantee", desc: "30–60 qualified meetings every month — or you owe us nothing. Written into the agreement, not a marketing line." },
+              { icon: TrendingUp, title: "Predictable Pipeline", desc: "Forecastable monthly meeting flow. No more feast-and-famine cycles. Plan capacity, plan hiring, plan growth." },
+              { icon: Send, title: "Done-For-You Outreach", desc: "Targeted outreach, sequence writing, reply handling — fully handled. You just show up to the qualified calls." },
+              { icon: Users, title: "Pre-Qualified Only", desc: "Tyre-kickers filtered out before they reach your calendar. Only meetings with the budget and intent to buy." },
+              { icon: CheckCircle, title: "Pay On Delivery", desc: "You pay only when qualified meetings are delivered. We don't get paid unless we perform — your risk is zero." }
+            ].map((o, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors">
+                <div className="w-11 h-11 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-4 group-hover:bg-ember-500/15 transition-colors">
+                  <o.icon className="w-5 h-5 text-ember-500" />
+                </div>
+                <h4 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">{o.title}</h4>
+                <p className="text-sm text-white/65 leading-relaxed">{o.desc}</p>
+              </motion.div>
+            ))}
+          </div>
 
-          <div className="mt-8 text-center">
+          <div className="mt-12 text-center">
             <button onClick={scrollToForm} className="btn-primary mx-auto">
-              Get My Guaranteed Meetings Plan
+              See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
       </section>
+
+
 
       {/* ── Is This Right for You? — condensed to 3 bullets ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">

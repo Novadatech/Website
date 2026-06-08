@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
   Clock, AlertCircle, ChevronDown, ArrowRight,
-  ChevronLeft, ChevronRight, Play, ExternalLink
+  ChevronLeft, ChevronRight, Play, Target
 } from "lucide-react";
 
 import Link from "next/link";
@@ -44,19 +44,13 @@ function InitialsAvatar({ name, index }: { name: string; index: number }) {
 
 // ─── Scroll to form helper ──────────────────────────────────────────────────
 function scrollToForm() {
-  document.getElementById("apply-form-embed")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  // Form was removed from this page; route the CTA to the dedicated booking page.
+  window.location.assign("/book-call");
 }
 
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
-const BENEFITS = [
-  "The exact system we'd deploy to generate 20+ qualified sales calls every month for your business",
-  "A custom acquisition plan — the channels, targeting, and messaging tailored to your market",
-  "A clear revenue projection showing what 20+ monthly sales calls means for your bottom line",
-  "How to stop relying on referrals and build a predictable pipeline that fills your calendar every month",
-  "Whether we're the right fit — and if not, you still walk away with a strategy you can execute yourself",
-];
 
 const DIFFERENTIATION = [
   { label: "Payment Model", agency: "Monthly retainer", leadgen: "Pay-per-lead", novada: "Performance guaranteed" },
@@ -177,13 +171,6 @@ const VIDEO_TESTIMONIALS = [
     name: "Nate",
     company: "Founder, Larsky Tach and Feed",
   },
-];
-
-const TRUST_ITEMS = [
-  { icon: Shield, label: "100% Free — No Credit Card" },
-  { icon: CheckCircle, label: "Custom Plan for Your Business" },
-  { icon: Star, label: "Rated 5.0\u2605 on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
-  { icon: Clock, label: "Takes Under 2 Minutes" },
 ];
 
 // ─── FAQ Item ───────────────────────────────────────────────────────────────
@@ -380,18 +367,7 @@ function StickyCtaBar() {
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 export default function ApplyPage() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://link.novadatech.com/js/form_embed.js";
-    script.type = "text/javascript";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      if (document.body.contains(script)) document.body.removeChild(script);
-    };
-  }, []);
-
-  return (
+return (
     <>
       {/* NOTE: No conversion tag here — it fires on /confirmed-call after form submit */}
 
@@ -402,10 +378,10 @@ export default function ApplyPage() {
             <Link href="/apply" className="flex items-center">
               <NovadaLogo variant="light" className="h-12 w-auto" />
             </Link>
-            <div className="flex items-center gap-2 text-xs text-white/40">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>3 strategy call spots remaining this week</span>
-            </div>
+            <button onClick={scrollToForm} className="btn-primary text-sm py-2.5 px-5">
+              Apply Now
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </header>
@@ -524,156 +500,66 @@ export default function ApplyPage() {
         </div>
       </section>
 
-      {/* ── FORM — standalone, centred ── */}
-      <section className="section-padding pt-4 pb-0">
-        <div className="max-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="max-w-2xl mx-auto"
-          >
-              <div>
-                {/* Form card header */}
-                <div className="glass-card gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-xs text-emerald-400 font-medium uppercase tracking-wider">
-                      3 Spots Remaining This Week
-                    </span>
-                  </div>
-                  <h2 className="text-xl md:text-2xl font-bold text-white">
-                    Book Your Free Strategy Call
-                  </h2>
-                  <p className="mt-1.5 text-base text-white/80">
-                    Enter your details below. Takes under 2 minutes.
-                  </p>
-                  {/* Step indicator */}
-                  <div className="mt-4">
-                    <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
-                      <span className="flex items-center gap-1.5">
-                        <span className="text-ember-500 font-medium">Step 1</span>
-                        <span>— Your details</span>
-                        <span className="text-white/20">{"\u2192"}</span>
-                        <span>Step 2 — Pick your time</span>
-                      </span>
-                      <span>50%</span>
-                    </div>
-                    <div className="h-1.5 rounded-full bg-white/10">
-                      <div className="h-1.5 rounded-full bg-gradient-to-r from-ember-500 to-ember-500 w-1/2" />
-                    </div>
-                  </div>
-                </div>
+      {/* ── What You Walk Away With (featured + tile grid) ── */}
+      <section className="section-padding py-24 md:py-32">
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">What You Walk Away With</p>
+            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">Your Custom Growth Blueprint</h2>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">A full strategy for scaling client acquisition — tailored to your business, yours to keep, no obligation either way.</p>
+          </div>
 
-                {/* GHL Form */}
-                <div className="glass-card rounded-t-none rounded-b-2xl overflow-hidden" style={{ borderTop: "none" }}>
-                  <iframe
-                    src="https://link.novadatech.com/widget/form/2UikgU0iSTsy1ax334cR"
-                    style={{ width: "100%", minHeight: "380px", border: "none", display: "block" }}
-                    id="apply-form-embed"
-                    data-layout="{'id':'INLINE'}"
-                    data-trigger-type="alwaysShow"
-                    data-activation-type="alwaysActivated"
-                    data-deactivation-type="neverDeactivate"
-                    data-form-name="Novada Tech Apply Form"
-                    data-height="380"
-                    data-layout-iframe-id="apply-form-embed"
-                    data-form-id="2UikgU0iSTsy1ax334cR"
-                    title="Book Your Free Strategy Call"
-                  />
-                </div>
-
-                {/* Trust strip — Trustpilot visually distinct as clickable */}
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  {TRUST_ITEMS.map(({ icon: Icon, label, link }, i) => {
-                    const content = (
-                      <div
-                        key={i}
-                        className={`flex items-center gap-2.5 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium ${link ? "hover:border-ember-500/30 transition-colors cursor-pointer" : ""}`}
-                      >
-                        <Icon className="w-3.5 h-3.5 flex-shrink-0 text-ember-500" />
-                        <span className={link ? "underline underline-offset-2 decoration-white/20" : ""}>{label}</span>
-                        {link && <ExternalLink className="w-3 h-3 flex-shrink-0 text-white/30" />}
-                      </div>
-                    );
-                    if (link) {
-                      return (
-                        <a key={i} href={link} target="_blank" rel="noopener noreferrer">
-                          {content}
-                        </a>
-                      );
-                    }
-                    return content;
-                  })}
-                </div>
-
-                {/* Social proof — near the form */}
-                <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
-                  <div className="flex items-start gap-3">
-                    <img src="/testimonials/josh-maxicare.jpg" alt="Josh" className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;We&apos;d been burned by two agencies before. Growth Infrastructure was different — it was a system, not a service. 4 new retainer clients in the first 45 days.&rdquo;</p>
-                      <p className="mt-1.5 text-xs text-white/40">Josh — Founder, Maxicare Australia</p>
-                    </div>
+          {/* Featured outcome */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl border border-ember-500/25 bg-gradient-to-br from-ember-500/[0.08] via-ember-500/[0.02] to-transparent p-8 md:p-10 mb-6 overflow-hidden">
+            <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-ember-500/10 blur-3xl pointer-events-none" />
+            <div className="relative grid md:grid-cols-5 gap-8 md:gap-10 items-center">
+              <div className="md:col-span-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-ember-500/15 border border-ember-500/35 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-ember-500" />
                   </div>
-                  <div className="mt-3 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/80 font-medium">
-                    <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-ember-500" /> 350+ businesses scaled</span>
-                    <span className="text-white/25">{"\u00B7"}</span>
-                    <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-ember-500" /> $50M+ tracked revenue across 350+ clients</span>
-                    <span className="text-white/25">{"\u00B7"}</span>
-                    <a
-                      href="https://www.trustpilot.com/review/novadatech.com.au"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 hover:text-white transition-colors"
-                    >
-                      <Star className="w-4 h-4 text-ember-500" />
-                      <span className="underline underline-offset-2 decoration-white/30">5.0{"\u2605"} on Trustpilot</span>
-                    </a>
-                  </div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-ember-500/85 font-semibold">The Promise</p>
                 </div>
+                <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">Free</p>
+                <p className="mt-3 text-lg text-white/80 font-medium leading-snug">growth plan — yours to keep</p>
               </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── What You'll Walk Away With + CTA ── */}
-      <section className="section-padding pt-12 pb-0">
-        <div className="max-container max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6"
-          >
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-0.5">
-              What You&apos;ll Walk Away With
-            </h3>
-            <p className="text-base text-white/80 mb-4">From your free 30-minute strategy call</p>
-            <p className="text-base text-emerald-400/80 italic mb-4 leading-relaxed">You walk away with the full strategy — implement it yourself or let us do it for you. Either way, the plan is yours to keep.</p>
-            <ul className="space-y-2.5">
-              {BENEFITS.map((benefit, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <CheckCircle className="w-3.5 h-3.5 text-ember-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-base text-white/80 leading-relaxed">{benefit}</span>
-                </li>
-              ))}
-            </ul>
+              <div className="md:col-span-3 md:border-l md:border-white/[0.10] md:pl-10">
+                <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-4">A complete acquisition blueprint built around your business.</h3>
+                <p className="text-base text-white/75 leading-relaxed">Implement it yourself or have us do it for you. Either way — the plan is yours. No retainers, no pressure, zero obligation after the call.</p>
+              </div>
+            </div>
           </motion.div>
 
-          {/* CTA after benefits */}
-          <div className="mt-8 text-center">
-            <button
-              onClick={scrollToForm}
-              className="btn-primary mx-auto"
-            >
+          {/* Supporting tiles */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: Target, title: "Exact System", desc: "The complete acquisition system we'd deploy to book 20+ qualified sales calls every month for your business." },
+              { icon: TrendingUp, title: "Revenue Projection", desc: "A clear projection showing what 20+ qualified calls monthly means for your pipeline and bottom-line revenue." },
+              { icon: Shield, title: "Custom Plan", desc: "Channels, targeting and messaging tailored to your specific market and ideal client profile — not a template." },
+              { icon: Users, title: "Honest Fit Check", desc: "We'll tell you straight if we're not the right fit — and you still walk away with a plan you can execute yourself." },
+              { icon: CheckCircle, title: "Predictable Pipeline", desc: "How to stop relying on referrals and build a pipeline that fills your calendar with qualified calls every month." },
+              { icon: Clock, title: "30 Minutes, No Pressure", desc: "Free 30-minute call with our senior growth strategist. No scripted pitch — real strategy work for your business." }
+            ].map((o, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors">
+                <div className="w-11 h-11 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-4 group-hover:bg-ember-500/15 transition-colors">
+                  <o.icon className="w-5 h-5 text-ember-500" />
+                </div>
+                <h4 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">{o.title}</h4>
+                <p className="text-sm text-white/65 leading-relaxed">{o.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <button onClick={scrollToForm} className="btn-primary mx-auto">
               Book My Free Strategy Call
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
       </section>
+
+
 
       {/* ── Why This Isn't Another Agency (Differentiation) ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">

@@ -4,28 +4,20 @@ import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
-  Clock, AlertCircle, ChevronDown, ArrowRight, ExternalLink,
-  ChevronLeft, ChevronRight, Play
+  Clock, AlertCircle, ChevronDown, ArrowRight,
+  ChevronLeft, ChevronRight, Play, Video, Send, CalendarCheck
 } from "lucide-react";
 import Link from "next/link";
 import NovadaLogo from "@/components/NovadaLogo";
 import HeroTrustBar from "@/components/HeroTrustBar";
 
 function scrollToForm() {
-  document.getElementById("growth-form-embed")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  // Form was removed from this page; route the CTA to the dedicated booking page.
+  window.location.assign("/book-call");
 }
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
-const OUTCOMES = [
-  "20+ qualified appointments on your calendar every month — guaranteed",
-  "Authority video content built around you that grows your brand",
-  "Multi-platform video content engine that compounds your visibility",
-  "Pre-qualified appointment booking — no tyre-kickers on your calendar",
-  "Complete CRM and pipeline infrastructure — yours to keep",
-  "A predictable, forecastable monthly pipeline you can build a business on",
-  "Built into your business, run for you, owned by you",
-];
 
 const DIFFERENTIATION = [
   {
@@ -255,16 +247,7 @@ function StickyCtaBar() {
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 export default function GrowthInfrastructurePage() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://link.novadatech.com/js/form_embed.js";
-    script.type = "text/javascript";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => { if (document.body.contains(script)) document.body.removeChild(script); };
-  }, []);
-
-  return (
+return (
     <>
       {/* ── Minimal sticky header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-b border-white/[0.06]">
@@ -273,10 +256,10 @@ export default function GrowthInfrastructurePage() {
             <Link href="/growth-infrastructure" className="flex items-center">
               <NovadaLogo variant="light" className="h-12 w-auto" />
             </Link>
-            <div className="flex items-center gap-2 text-xs text-white/40">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>3 partner spots available this quarter</span>
-            </div>
+            <button onClick={scrollToForm} className="btn-primary text-sm py-2.5 px-5">
+              Apply Now
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </header>
@@ -347,96 +330,57 @@ export default function GrowthInfrastructurePage() {
         </div>
       </section>
 
-      {/* ── FORM ── */}
-      <section className="section-padding pt-4 pb-0">
-        <div className="max-container">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="max-w-2xl mx-auto">
-            <div>
-              <div className="glass-card gradient-border rounded-t-2xl rounded-b-none px-7 pt-7 pb-5 border-b border-white/[0.06]">
-                <div className="flex items-center gap-2 mb-2"><div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /><span className="text-xs text-emerald-400 font-medium uppercase tracking-wider">3 Partner Spots Available This Quarter</span></div>
-                <h2 className="text-xl md:text-2xl font-bold text-white">See If You Qualify For Our Partnership Program</h2>
-                <p className="mt-1.5 text-base text-white/80">Tell us about your business. If we&apos;re a fit, we&apos;ll guarantee 20+ qualified appointments every month — or you don&apos;t pay.</p>
-                <div className="mt-4">
-                  <div className="flex items-center justify-between text-xs text-white/40 mb-1.5">
-                    <span className="flex items-center gap-1.5"><span className="text-ember-500 font-medium">Step 1</span><span>— Your details</span><span className="text-white/20">{"→"}</span><span>Step 2 — Pick your time</span></span>
-                    <span>50%</span>
-                  </div>
-                  <div className="h-1.5 rounded-full bg-white/10"><div className="h-1.5 rounded-full bg-gradient-to-r from-ember-500 to-ember-500 w-1/2" /></div>
-                </div>
-              </div>
-              <div className="glass-card rounded-t-none rounded-b-2xl overflow-hidden" style={{ borderTop: "none" }}>
-                <iframe src="https://link.novadatech.com/widget/form/2UikgU0iSTsy1ax334cR" style={{ width: "100%", minHeight: "380px", border: "none", display: "block" }} id="growth-form-embed" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-activation-type="alwaysActivated" data-deactivation-type="neverDeactivate" data-form-name="Novada Tech Growth Infrastructure Form" data-height="380" data-layout-iframe-id="growth-form-embed" data-form-id="2UikgU0iSTsy1ax334cR" title="See If You Qualify" />
-              </div>
+      {/* ── What You Walk Away With (featured + tile grid) ── */}
+      <section className="section-padding py-24 md:py-32">
+        <div className="max-container max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">What You Walk Away With</p>
+            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">Inside The Growth Infrastructure Partnership</h2>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">20+ qualified appointments every month. Authority content + outreach + booking — built into your business, yours to keep.</p>
+          </div>
 
-              {/* Trust strip */}
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                {[
-                  { icon: Shield, label: "20+ Appointments Guaranteed", micro: "Written into your agreement" },
-                  { icon: CheckCircle, label: "If We Miss, You Don't Pay" },
-                  { icon: Star, label: "Rated 5.0★ on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
-                  { icon: Clock, label: "Live In 14 Days" },
-                ].map(({ icon: Icon, label, link, micro }, i) => {
-                  const content = (
-                    <div key={i} className={`flex flex-col gap-1 text-xs text-white/75 bg-white/[0.05] border border-white/[0.10] rounded-lg px-3 py-2.5 font-medium ${link ? "hover:border-ember-500/30 transition-colors cursor-pointer" : ""}`}>
-                      <div className="flex items-center gap-2.5">
-                        <Icon className="w-3.5 h-3.5 flex-shrink-0 text-ember-500" />
-                        <span className={link ? "underline underline-offset-2 decoration-white/20" : ""}>{label}</span>
-                        {link && <ExternalLink className="w-3 h-3 flex-shrink-0 text-white/30" />}
-                      </div>
-                      {micro && <span className="text-[10px] text-white/35 ml-6">{micro}</span>}
-                    </div>
-                  );
-                  if (link) return <a key={i} href={link} target="_blank" rel="noopener noreferrer">{content}</a>;
-                  return content;
-                })}
-              </div>
-
-              {/* Social proof near form */}
-              <div className="mt-5 rounded-xl bg-white/[0.03] border border-white/[0.06] p-4">
-                <div className="flex items-start gap-3">
-                  <img src="/testimonials/josh-maxicare.jpg" alt="Josh" className="w-9 h-9 rounded-full object-cover flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm text-white/70 italic leading-relaxed">&ldquo;We&apos;d been burned by two agencies before. Growth Infrastructure was different — it was a system, not a service. 4 new retainer clients in the first 45 days.&rdquo;</p>
-                    <p className="mt-1.5 text-xs text-white/40">Josh — Founder, Maxicare Australia</p>
+          {/* Featured outcome */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl border border-ember-500/25 bg-gradient-to-br from-ember-500/[0.08] via-ember-500/[0.02] to-transparent p-8 md:p-10 mb-6 overflow-hidden">
+            <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-ember-500/10 blur-3xl pointer-events-none" />
+            <div className="relative grid md:grid-cols-5 gap-8 md:gap-10 items-center">
+              <div className="md:col-span-2">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-ember-500/15 border border-ember-500/35 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-ember-500" />
                   </div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-ember-500/85 font-semibold">The Guarantee</p>
                 </div>
-                <div className="mt-3 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/80 font-medium">
-                  <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-ember-500" /> 350+ businesses scaled</span>
-                  <span className="text-white/25">{"·"}</span>
-                  <span className="flex items-center gap-1.5"><TrendingUp className="w-4 h-4 text-ember-500" /> $50M+ tracked revenue across 350+ clients</span>
-                  <span className="text-white/25">{"·"}</span>
-                  <a
-                    href="https://www.trustpilot.com/review/novadatech.com.au"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 hover:text-white transition-colors"
-                  >
-                    <Star className="w-4 h-4 text-ember-500" />
-                    <span className="underline underline-offset-2 decoration-white/30">5.0{"★"} on Trustpilot</span>
-                  </a>
-                </div>
+                <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">20+</p>
+                <p className="mt-3 text-lg text-white/80 font-medium leading-snug">qualified appointments every month</p>
+              </div>
+              <div className="md:col-span-3 md:border-l md:border-white/[0.10] md:pl-10">
+                <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-4">Predictable pipeline. Written guarantee. Yours to keep.</h3>
+                <p className="text-base text-white/75 leading-relaxed">Authority + outreach + booking infrastructure installed into your business. We run it for you. You own it forever. If we don't deliver — you don't pay.</p>
               </div>
             </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* ── What You Walk Away With ── */}
-      <section className="section-padding pt-12 pb-0">
-        <div className="max-container max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-7">
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-1">What You Walk Away With</h3>
-            <p className="text-base text-white/80 mb-4">Inside the Growth Infrastructure&trade; partnership</p>
-            <p className="text-base text-emerald-400/80 italic mb-2 leading-relaxed">Live in 14 days. 20+ qualified appointments by month one.</p>
-            <p className="text-base text-emerald-400/80 italic mb-5 leading-relaxed">If we don&apos;t deliver — you don&apos;t pay.</p>
-            <ul className="space-y-3">
-              {OUTCOMES.map((o, i) => (
-                <li key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-ember-500 mt-0.5 flex-shrink-0" /><span className="text-base text-white/80 leading-relaxed">{o}</span></li>
-              ))}
-            </ul>
-          </motion.div>
+          {/* Supporting tiles */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: Video, title: "Authority Video Engine", desc: "4–6 short videos per month featuring you. Pre-sells expertise across LinkedIn, YouTube and shorts before outreach lands." },
+              { icon: Send, title: "Done-For-You Outreach", desc: "Daily targeted outreach to ICP-matched prospects. Sequences trained on your voice. Reply handling fully included." },
+              { icon: CalendarCheck, title: "Pre-Qualified Bookings", desc: "Only decision-makers with budget and fit hit your calendar. Pre-sold before the call ever starts." },
+              { icon: TrendingUp, title: "Complete Infrastructure", desc: "CRM, pipeline and automation built and configured. Visibility into every stage. Yours to keep forever." },
+              { icon: Shield, title: "Performance Guarantee", desc: "20+ qualified appointments every month — or you don't pay. Written into your agreement, not a marketing line." },
+              { icon: Users, title: "Built. Run. Owned.", desc: "Built into your business, run for you, owned by you. Not held hostage by an agency. Profile, content, sequences — all yours." }
+            ].map((o, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors">
+                <div className="w-11 h-11 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-4 group-hover:bg-ember-500/15 transition-colors">
+                  <o.icon className="w-5 h-5 text-ember-500" />
+                </div>
+                <h4 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">{o.title}</h4>
+                <p className="text-sm text-white/65 leading-relaxed">{o.desc}</p>
+              </motion.div>
+            ))}
+          </div>
 
-          <div className="mt-8 text-center">
+          <div className="mt-12 text-center">
             <button onClick={scrollToForm} className="btn-primary mx-auto">
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
@@ -444,6 +388,8 @@ export default function GrowthInfrastructurePage() {
           </div>
         </div>
       </section>
+
+
 
       {/* ── Why This Isn't Another Agency (Differentiation) ── */}
       <section className="section-padding py-16 border-t border-white/[0.04]">
