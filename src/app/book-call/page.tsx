@@ -161,13 +161,13 @@ export default function BookPage() {
               <div className="mt-5 flex items-center justify-center gap-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/testimonials/josh-maxicare.jpg"
-                  alt="Josh"
+                  src="/testimonials/jeff-verticalaccess.jpg"
+                  alt="Jeff"
                   className="w-10 h-10 rounded-full object-cover flex-shrink-0"
                 />
                 <div className="text-left">
-                  <p className="text-sm font-semibold text-white">Josh</p>
-                  <p className="text-xs text-white/50">Director, Maxicare Plus</p>
+                  <p className="text-sm font-semibold text-white">Jeff</p>
+                  <p className="text-xs text-white/50">Founder, Vertical Access</p>
                 </div>
               </div>
             </div>
