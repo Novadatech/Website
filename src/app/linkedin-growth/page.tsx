@@ -326,7 +326,7 @@ export default function LinkedinGrowthPage() {
           <div className="flex items-center justify-between h-20">
             <Link href="/linkedin-growth" className="flex items-center"><NovadaLogo variant="light" className="h-12 w-auto" /></Link>
             <button onClick={scrollToForm} className="btn-primary-dark-red text-sm py-2.5 px-5">
-              Apply Now
+              See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -345,11 +345,11 @@ export default function LinkedinGrowthPage() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            350+ B2B Founders Use Our{" "}<span className="text-ember-500">Authority-Based System</span>{" "}To Book{" "}<span className="text-ember-500">20+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or Spam Outreach.
+            350+ B2B Founders Use Our{" "}<span className="text-ember-500">System</span>{" "}To Book{" "}<span className="text-ember-500">20+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or chasing prospects.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
-            Watch the 2-minute breakdown below to see how we transform your LinkedIn profile into an authority asset, position you as the obvious choice in your market, and fill your calendar with pre-sold prospects in as little as 14 days.
+            We install and manage your entire client acquisition engine, guaranteeing 20+ qualified sales meetings every month. No ad spend. No SDRs. No chasing prospects. If we don&apos;t deliver, you don&apos;t pay.
           </motion.p>
 
           {/* Hero Trust Bar */}
@@ -391,7 +391,7 @@ export default function LinkedinGrowthPage() {
         <div className="max-container max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
             {[
-              { num: "$45.7M+", label: "Tracked Pipeline Generated*" },
+              { num: "$45.7M+", label: "Tracked Pipeline Generated" },
               { num: "85.4%", label: "Qualified Reply Rate" },
               { num: "14 days", label: "Avg Time To First Meeting" },
               { num: "$0", label: "Ad Spend Required" },
@@ -402,7 +402,6 @@ export default function LinkedinGrowthPage() {
               </motion.div>
             ))}
           </div>
-          <p className="mt-10 text-center text-[11px] text-white/30 italic">*Estimated lifetime pipeline across live and historical clients. An estimate, not a guarantee.</p>
         </div>
       </section>
 
