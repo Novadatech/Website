@@ -257,7 +257,7 @@ return (
               <NovadaLogo variant="light" className="h-12 w-auto" />
             </Link>
             <button onClick={scrollToForm} className="btn-primary text-sm py-2.5 px-5">
-              Apply Now
+              See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -281,7 +281,7 @@ return (
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
-            We install a complete client acquisition infrastructure into your business — outbound system, authority video content, and appointment booking — designed to generate consistent pipeline in as little as 14 days.
+            We install and manage your entire client acquisition engine, guaranteeing 20+ qualified sales meetings every month. No ad spend. No SDRs. No chasing prospects. If we don&apos;t deliver, you don&apos;t pay.
           </motion.p>
 
           {/* STANDALONE TRUST BAR — prominent social proof above the CTA so it
@@ -324,8 +324,8 @@ return (
         <div className="max-container max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
             {[
-              { num: "$45.7M+", label: "Tracked Pipeline Generated*" },
-              { num: "85.4%", label: "Qualified Reply Rate" },
+              { num: "$45.7M+", label: "Tracked Pipeline Generated" },
+              { num: "20+", label: "Qualified Meetings Monthly" },
               { num: "14 days", label: "Avg Time To First Meeting" },
               { num: "$0", label: "Ad Spend Required" },
             ].map((s, i) => (
@@ -335,7 +335,6 @@ return (
               </motion.div>
             ))}
           </div>
-          <p className="mt-10 text-center text-[11px] text-white/30 italic">*Estimated lifetime pipeline across live and historical clients. An estimate, not a guarantee.</p>
         </div>
       </section>
 
