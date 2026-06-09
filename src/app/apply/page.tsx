@@ -349,7 +349,7 @@ return (
               <NovadaLogo variant="light" className="h-12 w-auto" />
             </Link>
             <button onClick={scrollToForm} className="btn-primary text-sm py-2.5 px-5">
-              Apply Now
+              Book My Free Strategy Call
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -459,8 +459,8 @@ return (
         <div className="max-container max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
             {[
-              { num: "$45.7M+", label: "Tracked Pipeline Generated*" },
-              { num: "85.4%", label: "Qualified Reply Rate" },
+              { num: "$45.7M+", label: "Tracked Pipeline Generated" },
+              { num: "20+", label: "Qualified Meetings Monthly" },
               { num: "14 days", label: "Avg Time To First Meeting" },
               { num: "$0", label: "Ad Spend Required" },
             ].map((s, i) => (
@@ -470,7 +470,6 @@ return (
               </motion.div>
             ))}
           </div>
-          <p className="mt-10 text-center text-[11px] text-white/30 italic">*Estimated lifetime pipeline across live and historical clients. An estimate, not a guarantee.</p>
         </div>
       </section>
 
