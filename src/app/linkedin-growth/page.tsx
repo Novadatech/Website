@@ -392,7 +392,7 @@ export default function LinkedinGrowthPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
             {[
               { num: "$45.7M+", label: "Tracked Pipeline Generated" },
-              { num: "85.4%", label: "Qualified Reply Rate" },
+              { num: "20+", label: "Qualified Meetings Monthly" },
               { num: "14 days", label: "Avg Time To First Meeting" },
               { num: "$0", label: "Ad Spend Required" },
             ].map((s, i) => (
