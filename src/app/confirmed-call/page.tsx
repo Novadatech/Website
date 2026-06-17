@@ -5,10 +5,24 @@ import { CheckCircle, Mail, Calendar, Clock, ArrowRight, MessageSquare } from "l
 import AnimatedSection from "@/components/AnimatedSection";
 import Link from "next/link";
 import Script from "next/script";
+import NovadaLogo from "@/components/NovadaLogo";
 
 export default function ConfirmationPage() {
   return (
     <>
+      {/* ── Header (same shape as /linkedin-growth's fixed header) ── */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-b border-white/[0.06]">
+        <div className="max-container section-padding">
+          <div className="flex items-center justify-between h-20">
+            <Link href="/" className="flex items-center"><NovadaLogo variant="light" className="h-12 w-auto" /></Link>
+            <Link href="/" className="btn-primary text-sm py-2.5 px-5">
+              Back to Home
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </header>
+      <div className="h-20" />
       {/* Google Ads: Booked Call conversion.
           Re-declares the dataLayer/gtag stub so the event is always queued —
           even if this runs before the base gtag tag in layout.tsx. gtag.js
