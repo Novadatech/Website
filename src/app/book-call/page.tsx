@@ -2,15 +2,11 @@
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Shield, TrendingUp, Clock, Check, ArrowRight } from "lucide-react";
+import { Shield, TrendingUp, Clock, Check } from "lucide-react";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import HeroTrustBar from "@/components/HeroTrustBar";
 import NovadaLogo from "@/components/NovadaLogo";
-
-function scrollToCalendar() {
-  document.getElementById("calendar-embed")?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
 
 export default function BookPage() {
   useEffect(() => {
@@ -38,12 +34,8 @@ export default function BookPage() {
       {/* ── Header (same shape as /linkedin-growth's fixed header) ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-b border-white/[0.06]">
         <div className="max-container section-padding">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center h-20">
             <Link href="/" className="flex items-center"><NovadaLogo variant="light" className="h-12 w-auto" /></Link>
-            <button onClick={scrollToCalendar} className="btn-primary text-sm py-2.5 px-5">
-              Book My Call
-              <ArrowRight className="w-4 h-4" />
-            </button>
           </div>
         </div>
       </header>

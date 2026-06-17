@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle, Mail, Calendar, Clock, ArrowRight, MessageSquare } from "lucide-react";
+import { CheckCircle, Mail, Calendar, Clock, MessageSquare } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import Link from "next/link";
 import Script from "next/script";
@@ -13,12 +13,8 @@ export default function ConfirmationPage() {
       {/* ── Header (same shape as /linkedin-growth's fixed header) ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-b border-white/[0.06]">
         <div className="max-container section-padding">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center h-20">
             <Link href="/" className="flex items-center"><NovadaLogo variant="light" className="h-12 w-auto" /></Link>
-            <Link href="/" className="btn-primary text-sm py-2.5 px-5">
-              Back to Home
-              <ArrowRight className="w-4 h-4" />
-            </Link>
           </div>
         </div>
       </header>
@@ -149,39 +145,6 @@ fbq('track', 'Schedule');`}
         </div>
       </section>
 
-      {/* While You Wait */}
-      <section className="section-padding pb-20">
-        <div className="max-container max-w-3xl">
-          <AnimatedSection>
-            <div className="relative rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.08)_0%,_transparent_70%)]" />
-
-              <div className="relative px-8 py-14 md:px-14 text-center">
-                <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
-                  While You Wait
-                </p>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                  Learn More About How We Work
-                </h3>
-                <p className="text-white/80 max-w-lg mx-auto mb-8">
-                  Explore our approach and see why business owners trust Novada Tech
-                  to build their client acquisition systems.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link href="/about" className="btn-primary text-sm">
-                    About Novada Tech
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link href="/" className="btn-secondary text-sm">
-                    Back to Home
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
     </>
   );
 }
