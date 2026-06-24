@@ -59,7 +59,7 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     q: "What does 'or you don't pay' actually mean?",
-    a: "It means exactly what it says. We guarantee 30–60 qualified sales meetings on your calendar every month. If we don't deliver, you don't pay us. That's written into our agreement — not a marketing line.",
+    a: "It means exactly what it says. We guarantee 15+ qualified sales meetings on your calendar every month. If we don't deliver, you don't pay us. That's written into our agreement — not a marketing line.",
   },
   {
     q: "How do you define a 'qualified' meeting?",
@@ -71,7 +71,7 @@ const FAQS = [
   },
   {
     q: "Will I be pressured to sign up on the call?",
-    a: "No. The call is to show you how we'd generate 30–60 qualified meetings monthly for your specific business. If it makes sense to work together, great. If not, you keep the strategy.",
+    a: "No. The call is to show you how we'd generate 15+ qualified meetings monthly for your specific business. If it makes sense to work together, great. If not, you keep the strategy.",
   },
   {
     q: "What do I need to prepare for the call?",
@@ -83,7 +83,7 @@ const FAQS = [
   },
   {
     q: "What kind of businesses do you work with?",
-    a: "We work best with service businesses selling $3K–$50K+ offers who want a predictable flow of 30–60 qualified sales meetings every month. If that's you, the call will confirm the fit.",
+    a: "We work best with service businesses selling $3K–$50K+ offers who want a predictable flow of 15+ qualified sales meetings every month. If that's you, the call will confirm the fit.",
   },
 ];
 
@@ -196,7 +196,7 @@ function StickyCtaBar() {
         <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-white">30–60 guaranteed meetings monthly</p>
+              <p className="text-sm font-semibold text-white">15+ guaranteed meetings monthly</p>
               <p className="text-xs text-white/50">Or you don&apos;t pay. Written into the agreement.</p>
             </div>
             <button onClick={scrollToForm} className="btn-primary text-sm py-3 px-6 w-full sm:w-auto">
@@ -243,13 +243,13 @@ return (
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            Get 30 – 60{" "}
+            Get 15+{" "}
             <span className="gradient-text">Qualified Sales Meetings</span>{" "}
             Every Month Or You Don&apos;t Pay
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
-            We install a proven client acquisition system into your business that puts 30–60 qualified sales meetings on your calendar every month. If we don&apos;t deliver, you don&apos;t pay.
+            We install a proven client acquisition system into your business that puts 15+ qualified sales meetings on your calendar every month. If we don&apos;t deliver, you don&apos;t pay.
           </motion.p>
 
           <HeroTrustBar className="mt-7" />
@@ -320,7 +320,7 @@ return (
         <div className="max-container">
           <div className="text-center mb-8">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Real Results From Real Partners</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">They Get 30–60 Guaranteed Meetings. Every Month.</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">They Get 15+ Guaranteed Meetings. Every Month.</h2>
           </div>
           <VideoSlider />
         </div>
@@ -332,7 +332,7 @@ return (
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">What You Get</p>
             <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">Inside The Sales Meeting System</h2>
-            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">30–60 qualified meetings booked into your calendar every month. Performance guaranteed. Pay only when delivered.</p>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">15+ qualified meetings booked into your calendar every month. Performance guaranteed. Pay only when delivered.</p>
           </div>
 
           {/* Featured outcome */}
@@ -346,7 +346,7 @@ return (
                   </div>
                   <p className="text-xs uppercase tracking-[0.18em] text-ember-500/85 font-semibold">The Guarantee</p>
                 </div>
-                <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">30–60</p>
+                <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">15+</p>
                 <p className="mt-3 text-lg text-white/80 font-medium leading-snug">qualified meetings every month</p>
               </div>
               <div className="md:col-span-3 md:border-l md:border-white/[0.10] md:pl-10">
@@ -360,7 +360,7 @@ return (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { icon: CalendarCheck, title: "Decision-Maker Meetings", desc: "Every meeting is with a decision-maker who fits your ideal client profile and has the budget for your offer." },
-              { icon: Shield, title: "Performance Guarantee", desc: "30–60 qualified meetings every month — or you owe us nothing. Written into the agreement, not a marketing line." },
+              { icon: Shield, title: "Performance Guarantee", desc: "15+ qualified meetings every month — or you owe us nothing. Written into the agreement, not a marketing line." },
               { icon: TrendingUp, title: "Predictable Pipeline", desc: "Forecastable monthly meeting flow. No more feast-and-famine cycles. Plan capacity, plan hiring, plan growth." },
               { icon: Send, title: "Done-For-You Outreach", desc: "Targeted outreach, sequence writing, reply handling — fully handled. You just show up to the qualified calls." },
               { icon: Users, title: "Pre-Qualified Only", desc: "Tyre-kickers filtered out before they reach your calendar. Only meetings with the budget and intent to buy." },
@@ -394,7 +394,7 @@ return (
           <div className="mb-14 md:mb-20 text-center">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">How It Works</p>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">
-              From application to <span className="text-ember-500">30–60 qualified meetings.</span>
+              From application to <span className="text-ember-500">15+ qualified meetings.</span>
             </h2>
           </div>
 
@@ -427,7 +427,7 @@ return (
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
-            <p className="mt-5 text-xs text-white/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 30–60 qualified meetings.</p>
+            <p className="mt-5 text-xs text-white/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 15+ qualified meetings.</p>
           </div>
         </div>
       </section>
@@ -457,8 +457,8 @@ return (
             </div>
             {[
               { label: "Payment Model", a: "Monthly retainer", b: "$80K+ salary + comm", novada: "Pay per qualified meeting" },
-              { label: "What You Get", a: "Lead lists", b: "Cold calls + follow-up", novada: "30–60 qualified meetings/mo" },
-              { label: "Performance Guarantee", a: "None", b: "None", novada: "30–60/mo or you don't pay" },
+              { label: "What You Get", a: "Lead lists", b: "Cold calls + follow-up", novada: "15+ qualified meetings/mo" },
+              { label: "Performance Guarantee", a: "None", b: "None", novada: "15+/mo or you don't pay" },
               { label: "Time to First Meeting", a: "30–60 days", b: "3–6 months ramp", novada: "7–14 days" },
               { label: "Your Time Investment", a: "High (oversight)", b: "Very high (manage rep)", novada: "Under 30 min/week" },
               { label: "Meeting Quality", a: "Variable / unverified", b: "Variable / variable", novada: "Pre-qualified decision-makers" },
@@ -572,7 +572,7 @@ return (
 
             <div className="relative px-8 py-14 md:px-14">
               <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">Performance Guaranteed</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight text-balance">30–60 Qualified Sales Meetings. Every Month. Or You Don&apos;t Pay.</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight text-balance">15+ Qualified Sales Meetings. Every Month. Or You Don&apos;t Pay.</h2>
               <p className="mt-4 text-white/80 text-lg max-w-lg mx-auto leading-relaxed">350+ businesses already get guaranteed qualified meetings on their calendar every month. You&apos;re one form away from joining them.</p>
 
               <button onClick={scrollToForm} className="btn-primary mt-8 inline-flex text-base">

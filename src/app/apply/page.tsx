@@ -25,7 +25,7 @@ function scrollToForm() {
 const DIFFERENTIATION = [
   { label: "Payment Model", agency: "Monthly retainer", leadgen: "Pay-per-lead", novada: "Performance guaranteed" },
   { label: "What You Get", agency: "Reports & dashboards", leadgen: "Raw lead data", novada: "Booked appointments + system" },
-  { label: "Performance Guarantee", agency: "None", leadgen: "None", novada: "15 appointments/mo or you don't pay" },
+  { label: "Performance Guarantee", agency: "None", leadgen: "None", novada: "15+ appointments/mo or you don't pay" },
   { label: "Authority Building", agency: "Optional add-on", leadgen: "Not included", novada: "Built into the system" },
   { label: "Asset Ownership", agency: "Theirs", leadgen: "Theirs", novada: "Yours — installed in your business" },
   { label: "Time to Pipeline", agency: "60–90 days", leadgen: "Variable", novada: "Live in 14 days" },
@@ -72,15 +72,15 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     q: "Is this call really free?",
-    a: "Yes, 100% free. We'll show you the exact system to generate 15 qualified sales calls every month — no charge, no obligation to work with us afterwards.",
+    a: "Yes, 100% free. We'll show you the exact system to generate 15+ qualified sales calls every month — no charge, no obligation to work with us afterwards.",
   },
   {
     q: "Will I be pressured to buy anything?",
-    a: "Absolutely not. We only work with businesses we're confident we can generate 15 qualified sales calls for. If we're not a fit, we'll tell you — and you still walk away with a clear plan.",
+    a: "Absolutely not. We only work with businesses we're confident we can generate 15+ qualified sales calls for. If we're not a fit, we'll tell you — and you still walk away with a clear plan.",
   },
   {
     q: "How long does the call take?",
-    a: "30 minutes. We show you the exact system we'd use to generate 15 qualified sales calls monthly for your business. No fluff, no hard sell.",
+    a: "30 minutes. We show you the exact system we'd use to generate 15+ qualified sales calls monthly for your business. No fluff, no hard sell.",
   },
   {
     q: "What do I need to prepare?",
@@ -88,7 +88,7 @@ const FAQS = [
   },
   {
     q: "What if I've been burned by agencies before?",
-    a: "We hear this on almost every call. That's exactly why this strategy call is free — no retainers, no upfront fees, no commitment. We show you the exact system to get 15 qualified sales calls monthly. If it makes sense to work together, great. If not, you keep the plan.",
+    a: "We hear this on almost every call. That's exactly why this strategy call is free — no retainers, no upfront fees, no commitment. We show you the exact system to get 15+ qualified sales calls monthly. If it makes sense to work together, great. If not, you keep the plan.",
   },
 ];
 
@@ -384,7 +384,7 @@ return (
             className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
           >
             We&apos;ll Show You Exactly How to Get{" "}
-            <span className="gradient-text">15 Qualified Sales Calls</span>{" "}
+            <span className="gradient-text">15+ Qualified Sales Calls</span>{" "}
             Every Month For Free
           </motion.h1>
 
@@ -460,7 +460,7 @@ return (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
             {[
               { num: "$45.7M+", label: "Tracked Pipeline Generated" },
-              { num: "15", label: "Qualified Meetings Monthly" },
+              { num: "15+", label: "Qualified Meetings Monthly" },
               { num: "14 days", label: "Avg Time To First Meeting" },
               { num: "$0", label: "Ad Spend Required" },
             ].map((s, i) => (
@@ -524,8 +524,8 @@ return (
           {/* Supporting tiles */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { icon: Target, title: "Exact System", desc: "The complete acquisition system we'd deploy to book 15 qualified sales calls every month for your business." },
-              { icon: TrendingUp, title: "Revenue Projection", desc: "A clear projection showing what 15 qualified calls monthly means for your pipeline and bottom-line revenue." },
+              { icon: Target, title: "Exact System", desc: "The complete acquisition system we'd deploy to book 15+ qualified sales calls every month for your business." },
+              { icon: TrendingUp, title: "Revenue Projection", desc: "A clear projection showing what 15+ qualified calls monthly means for your pipeline and bottom-line revenue." },
               { icon: Shield, title: "Custom Plan", desc: "Channels, targeting and messaging tailored to your specific market and ideal client profile — not a template." },
               { icon: Users, title: "Honest Fit Check", desc: "We'll tell you straight if we're not the right fit — and you still walk away with a plan you can execute yourself." },
               { icon: CheckCircle, title: "Predictable Pipeline", desc: "How to stop relying on referrals and build a pipeline that fills your calendar with qualified calls every month." },
@@ -756,7 +756,7 @@ return (
                 You&apos;ve Seen the Proof
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight text-balance">
-                Your Free Strategy to Get 15 Qualified Sales Calls Is One Form Away.
+                Your Free Strategy to Get 15+ Qualified Sales Calls Is One Form Away.
               </h2>
               <p className="mt-4 text-white/80 text-lg max-w-lg mx-auto leading-relaxed">
                 350+ business owners have already seen this strategy. The call is free. The plan is yours. Implement it yourself or let us do it for you.

@@ -36,7 +36,7 @@ const DIFFERENTIATION = [
     label: "Performance Guarantee",
     agency: "None",
     leadgen: "None",
-    novada: "15 appointments/mo or you don't pay",
+    novada: "15+ appointments/mo or you don't pay",
   },
   {
     label: "Authority Building",
@@ -111,19 +111,19 @@ const FAQS = [
   },
   {
     q: "What does the guarantee actually mean?",
-    a: "If we don't deliver 15 qualified appointments in any given month, you don't pay us for that month. The guarantee is written into the agreement — not a marketing line. We absorb the risk, not you.",
+    a: "If we don't deliver 15+ qualified appointments in any given month, you don't pay us for that month. The guarantee is written into the agreement — not a marketing line. We absorb the risk, not you.",
   },
   {
     q: "How is this different from a marketing agency?",
     a: "Agencies sell campaigns — you pay every month and the moment you stop, the leads stop. Growth Infrastructure is a system installed into your business. It produces appointments daily, builds an authority asset you own, and is engineered to compound. You're buying a permanent capability, not renting attention.",
   },
   {
-    q: "Why 15 appointments specifically?",
-    a: "15 qualified appointments per month is the threshold where most premium-ticket service businesses scale predictably. It's enough volume to forecast revenue, hire confidently, and turn growth into a system rather than a guess. Less than that and your pipeline is fragile; more than that requires deeper sales infrastructure first.",
+    q: "Why 15+ appointments specifically?",
+    a: "15+ qualified appointments per month is the threshold where most premium-ticket service businesses scale predictably. It's enough volume to forecast revenue, hire confidently, and turn growth into a system rather than a guess. Less than that and your pipeline is fragile; more than that requires deeper sales infrastructure first.",
   },
   {
     q: "How long until I see the first appointments?",
-    a: "The infrastructure is fully live within 14 days of activation. First qualified appointments typically land on your calendar inside that window, with the full 15/month target hit by the end of month one. We move fast because the system is already proven — we just install it into your specific business.",
+    a: "The infrastructure is fully live within 14 days of activation. First qualified appointments typically land on your calendar inside that window, with the full 15+/month target hit by the end of month one. We move fast because the system is already proven — we just install it into your specific business.",
   },
   {
     q: "Will I have to be on every call?",
@@ -141,14 +141,14 @@ const FAQS = [
 
 const QUALIFIES = [
   "You sell a high-value service or product ($3K+)",
-  "You want 15 qualified appointments filling your calendar every month",
+  "You want 15+ qualified appointments filling your calendar every month",
   "You're ready to install a system, not hire another vendor",
 ];
 
 const NOT_FOR = [
   "Your offer is under $3K or not yet validated",
   "You're looking for a quick fix or a magic-button solution",
-  "You don't have capacity to handle 15 qualified appointments monthly",
+  "You don't have capacity to handle 15+ qualified appointments monthly",
 ];
 
 // ─── FAQ Item ───────────────────────────────────────────────────────────────
@@ -231,7 +231,7 @@ function StickyCtaBar() {
         <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-white">15 qualified appointments every month</p>
+              <p className="text-sm font-semibold text-white">15+ qualified appointments every month</p>
               <p className="text-xs text-white/50">Guaranteed. Or you don&apos;t pay.</p>
             </div>
             <button onClick={scrollToForm} className="btn-primary text-sm py-3 px-6 w-full sm:w-auto">
@@ -277,11 +277,11 @@ return (
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
             Get{" "}
-            <span className="gradient-text">15 Qualified Appointments</span>{" "}Every Month — Guaranteed Or You Don&apos;t Pay.
+            <span className="gradient-text">15+ Qualified Appointments</span>{" "}Every Month — Guaranteed Or You Don&apos;t Pay.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
-            We install and manage your entire client acquisition engine, guaranteeing 15 qualified sales meetings every month. No ad spend. No SDRs. No chasing prospects. If we don&apos;t deliver, you don&apos;t pay.
+            We install and manage your entire client acquisition engine, guaranteeing 15+ qualified sales meetings every month. No ad spend. No SDRs. No chasing prospects. If we don&apos;t deliver, you don&apos;t pay.
           </motion.p>
 
           {/* STANDALONE TRUST BAR — prominent social proof above the CTA so it
@@ -325,7 +325,7 @@ return (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
             {[
               { num: "$45.7M+", label: "Tracked Pipeline Generated" },
-              { num: "15", label: "Qualified Meetings Monthly" },
+              { num: "15+", label: "Qualified Meetings Monthly" },
               { num: "14 days", label: "Avg Time To First Meeting" },
               { num: "$0", label: "Ad Spend Required" },
             ].map((s, i) => (
@@ -357,7 +357,7 @@ return (
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">What You Walk Away With</p>
             <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">Inside The Growth Infrastructure Partnership</h2>
-            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">15 qualified appointments every month. Authority content + outreach + booking — built into your business, yours to keep.</p>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">15+ qualified appointments every month. Authority content + outreach + booking — built into your business, yours to keep.</p>
           </div>
 
           {/* Featured outcome */}
@@ -371,7 +371,7 @@ return (
                   </div>
                   <p className="text-xs uppercase tracking-[0.18em] text-ember-500/85 font-semibold">The Guarantee</p>
                 </div>
-                <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">15</p>
+                <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">15+</p>
                 <p className="mt-3 text-lg text-white/80 font-medium leading-snug">qualified appointments every month</p>
               </div>
               <div className="md:col-span-3 md:border-l md:border-white/[0.10] md:pl-10">
@@ -388,7 +388,7 @@ return (
               { icon: Send, title: "Done-For-You Outreach", desc: "Daily targeted outreach to ICP-matched prospects. Sequences trained on your voice. Reply handling fully included." },
               { icon: CalendarCheck, title: "Pre-Qualified Bookings", desc: "Only decision-makers with budget and fit hit your calendar. Pre-sold before the call ever starts." },
               { icon: TrendingUp, title: "Complete Infrastructure", desc: "CRM, pipeline and automation built and configured. Visibility into every stage. Yours to keep forever." },
-              { icon: Shield, title: "Performance Guarantee", desc: "15 qualified appointments every month — or you don't pay. Written into your agreement, not a marketing line." },
+              { icon: Shield, title: "Performance Guarantee", desc: "15+ qualified appointments every month — or you don't pay. Written into your agreement, not a marketing line." },
               { icon: Users, title: "Built. Run. Owned.", desc: "Built into your business, run for you, owned by you. Not held hostage by an agency. Profile, content, sequences — all yours." }
             ].map((o, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors">
@@ -452,7 +452,7 @@ return (
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
-            <p className="mt-5 text-xs text-white/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 15 qualified appointments.</p>
+            <p className="mt-5 text-xs text-white/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 15+ qualified appointments.</p>
           </div>
         </div>
       </section>
@@ -579,7 +579,7 @@ return (
                 Your Pipeline Doesn&apos;t Need More Effort.{" "}
                 <span className="gradient-text">It Needs Infrastructure.</span>
               </h2>
-              <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ businesses have made the switch from campaigns to infrastructure. 15 qualified appointments every month, guaranteed. Or you don&apos;t pay.</p>
+              <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ businesses have made the switch from campaigns to infrastructure. 15+ qualified appointments every month, guaranteed. Or you don&apos;t pay.</p>
 
               <button onClick={scrollToForm} className="btn-primary mt-8 inline-flex text-base">
                 See If You Qualify
@@ -587,7 +587,7 @@ return (
               </button>
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
-                <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 15 Appointments Guaranteed</span>
+                <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 15+ Appointments Guaranteed</span>
                 <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">5.0{"★"} Trustpilot</span></a>
                 <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" /> Written Guarantee</span>
                 <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> 350+ Businesses</span>

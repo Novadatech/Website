@@ -20,7 +20,7 @@ function scrollToForm() {
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const OUTCOMES_FEATURED = {
-  metric: "15",
+  metric: "15+",
   metricLabel: "qualified meetings every month",
   title: "Predictable pipeline. Written guarantee. Zero ad spend.",
   desc: "A monthly calendar of pre-qualified, decision-maker meetings you can finally forecast revenue from. Built into your business, owned by you. If we don't deliver — you don't pay.",
@@ -138,7 +138,7 @@ const DIFFERENTIATION = [
   { label: "Your Time", agency: "5 – 10 hrs/week", diy: "10 – 20 hrs/week", novada: "Less than 30 min/week" },
   { label: "Asset Ownership", agency: "Theirs", diy: "Yours (if you stay consistent)", novada: "Yours — installed in your business" },
   { label: "Time to First Meeting", agency: "30 – 60 days", diy: "\"Eventually\"", novada: "7 – 14 days" },
-  { label: "Performance Guarantee", agency: "None", diy: "N/A", novada: "15 meetings/mo or you don't pay" },
+  { label: "Performance Guarantee", agency: "None", diy: "N/A", novada: "15+ meetings/mo or you don't pay" },
 ];
 
 const TESTIMONIALS = [
@@ -210,11 +210,11 @@ const FAQS = [
   },
   {
     q: "What does the guarantee actually mean?",
-    a: "If we don't deliver 15 qualified sales meetings in any given month, you don't pay us for that month. A qualified meeting is with a decision-maker who matches your ICP, has budget for your offer, and has confirmed interest — agreed in writing before activation. Not invented after the fact. It's written into the agreement, not a marketing line.",
+    a: "If we don't deliver 15+ qualified sales meetings in any given month, you don't pay us for that month. A qualified meeting is with a decision-maker who matches your ICP, has budget for your offer, and has confirmed interest — agreed in writing before activation. Not invented after the fact. It's written into the agreement, not a marketing line.",
   },
   {
     q: "How quickly will I see meetings booked?",
-    a: "Most partners see the first qualified meeting on the calendar within 7 – 14 days of activation. The full 15/month target is consistently hit by the end of month one. We move fast because the underlying system is already proven — we install it into your specific business.",
+    a: "Most partners see the first qualified meeting on the calendar within 7 – 14 days of activation. The full 15+/month target is consistently hit by the end of month one. We move fast because the underlying system is already proven — we install it into your specific business.",
   },
   {
     q: "Who is this NOT for?",
@@ -302,7 +302,7 @@ function StickyCtaBar() {
         <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-white">15 qualified meetings every month</p>
+              <p className="text-sm font-semibold text-white">15+ qualified meetings every month</p>
               <p className="text-xs text-white/50">Authority + Outreach. Guaranteed or you don&apos;t pay.</p>
             </div>
             <button onClick={scrollToForm} className="btn-primary-dark-red text-sm py-3 px-6 w-full sm:w-auto">
@@ -345,11 +345,11 @@ export default function LinkedinGrowthPage() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            350+ B2B Founders Use Our{" "}<span className="text-ember-500">System</span>{" "}To Book{" "}<span className="text-ember-500">15 Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or chasing prospects.
+            350+ B2B Founders Use Our{" "}<span className="text-ember-500">System</span>{" "}To Book{" "}<span className="text-ember-500">15+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or chasing prospects.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
-            We install and manage your entire client acquisition engine, guaranteeing 15 qualified sales meetings every month. No ad spend. No SDRs. No chasing prospects. If we don&apos;t deliver, you don&apos;t pay.
+            We install and manage your entire client acquisition engine, guaranteeing 15+ qualified sales meetings every month. No ad spend. No SDRs. No chasing prospects. If we don&apos;t deliver, you don&apos;t pay.
           </motion.p>
 
           {/* Hero Trust Bar */}
@@ -392,7 +392,7 @@ export default function LinkedinGrowthPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
             {[
               { num: "$45.7M+", label: "Tracked Pipeline Generated" },
-              { num: "15", label: "Qualified Meetings Monthly" },
+              { num: "15+", label: "Qualified Meetings Monthly" },
               { num: "14 days", label: "Avg Time To First Meeting" },
               { num: "$0", label: "Ad Spend Required" },
             ].map((s, i) => (
@@ -422,7 +422,7 @@ export default function LinkedinGrowthPage() {
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">What You Walk Away With</p>
             <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">Inside The LinkedIn Growth System&trade; Partnership</h2>
-            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">Live in 14 days. 15 qualified meetings by month one. If we don&apos;t deliver — you don&apos;t pay.</p>
+            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">Live in 14 days. 15+ qualified meetings by month one. If we don&apos;t deliver — you don&apos;t pay.</p>
           </div>
 
           {/* Featured outcome — the guarantee */}
@@ -615,7 +615,7 @@ export default function LinkedinGrowthPage() {
               See If You Qualify
               <ArrowRight className="w-4 h-4" />
             </button>
-            <p className="mt-5 text-xs text-white/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 15 qualified meetings.</p>
+            <p className="mt-5 text-xs text-white/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 15+ qualified meetings.</p>
           </div>
         </div>
       </section>
@@ -743,7 +743,7 @@ export default function LinkedinGrowthPage() {
                 Stop Sending Messages.{" "}
                 <span className="text-ember-500">Start Owning Your Industry.</span>
               </h2>
-              <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ founders have made the switch from cold outreach to authority + outreach. 15 qualified meetings every month, guaranteed. Or you don&apos;t pay.</p>
+              <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ founders have made the switch from cold outreach to authority + outreach. 15+ qualified meetings every month, guaranteed. Or you don&apos;t pay.</p>
 
               <button onClick={scrollToForm} className="btn-primary-dark-red mt-8 inline-flex text-base">
                 See If You Qualify
@@ -751,7 +751,7 @@ export default function LinkedinGrowthPage() {
               </button>
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
-                <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 15 Meetings Guaranteed</span>
+                <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 15+ Meetings Guaranteed</span>
                 <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">5.0{"★"} Trustpilot</span></a>
                 <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" /> Written Guarantee</span>
                 <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> 350+ Businesses</span>
