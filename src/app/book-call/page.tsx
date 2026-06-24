@@ -70,7 +70,7 @@ export default function BookPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-base text-white/80 max-w-2xl mx-auto leading-relaxed"
           >
-            In 30 minutes, we will show you exactly how we generate 20+ qualified sales calls every month for your business.
+            In 30 minutes, we will show you exactly how we generate 15 qualified sales calls every month for your business.
           </motion.p>
 
           {/* STANDALONE TRUST BAR — prominent social proof */}
