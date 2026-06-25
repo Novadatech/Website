@@ -19,9 +19,17 @@ const STANDALONE_ROUTES = [
   "/confirmed-call",
 ];
 
+// Prefix-matched standalone routes — covers nested dynamic pages.
+// /case-study is the grid; /case-study/[slug] is each individual case.
+const STANDALONE_ROUTE_PREFIXES = ["/case-study"];
+
 export default function ConditionalNav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isStandalone = STANDALONE_ROUTES.includes(pathname);
+  const isStandalone =
+    STANDALONE_ROUTES.includes(pathname) ||
+    STANDALONE_ROUTE_PREFIXES.some(
+      (p) => pathname === p || pathname.startsWith(p + "/"),
+    );
 
   if (isStandalone) {
     return (
