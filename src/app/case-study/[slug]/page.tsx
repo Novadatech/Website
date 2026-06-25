@@ -31,6 +31,38 @@ export async function generateMetadata({
   };
 }
 
+function Section({
+  eyebrow,
+  heading,
+  children,
+}: {
+  eyebrow: string;
+  heading: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-semibold mb-3">
+        {eyebrow}
+      </p>
+      <h2 className="text-2xl md:text-[28px] font-bold text-white mb-6 leading-tight">
+        {heading}
+      </h2>
+      {children}
+    </div>
+  );
+}
+
+function Paragraphs({ items }: { items: string[] }) {
+  return (
+    <div className="space-y-5 text-base md:text-lg text-white/80 leading-[1.75]">
+      {items.map((p, i) => (
+        <p key={i}>{p}</p>
+      ))}
+    </div>
+  );
+}
+
 export default async function CaseStudyDetailPage({
   params,
 }: {
@@ -120,81 +152,40 @@ export default async function CaseStudyDetailPage({
         </div>
       </section>
 
-      {/* ── Case study body ── */}
+      {/* ── Introduction (1-sentence frame) ── */}
+      <section className="section-padding pb-12 md:pb-16">
+        <div className="max-container max-w-3xl">
+          <p className="text-lg md:text-xl text-white/85 leading-[1.7] font-medium italic border-l-2 border-ember-500 pl-6">
+            {cs.introduction}
+          </p>
+        </div>
+      </section>
+
+      {/* ── Narrative body: 6-section case study ── */}
       <section className="section-padding pb-24 md:pb-32">
-        <div className="max-container max-w-3xl space-y-14 md:space-y-16">
-          {/* Overview */}
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-semibold mb-3">
-              Overview
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-5 leading-tight">
-              The headline result.
-            </h2>
-            <p className="text-base md:text-lg text-white/80 leading-relaxed">
-              {cs.overview}
-            </p>
-          </div>
+        <div className="max-container max-w-3xl space-y-16 md:space-y-20">
+          <Section eyebrow="The Founder" heading={`Meet ${cs.customerName}.`}>
+            <Paragraphs items={cs.theFounder} />
+          </Section>
 
-          {/* The Challenge */}
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-semibold mb-3">
-              The Challenge
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-5 leading-tight">
-              Where the business was stuck.
-            </h2>
-            <p className="text-base md:text-lg text-white/80 leading-relaxed">
-              {cs.challenge}
-            </p>
-          </div>
+          <Section eyebrow="The Challenge" heading="Where the business was stuck.">
+            <Paragraphs items={cs.theChallenge} />
+          </Section>
 
-          {/* The Solution */}
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-semibold mb-3">
-              The Solution
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-5 leading-tight">
-              What we installed.
-            </h2>
-            <p className="text-base md:text-lg text-white/80 leading-relaxed mb-7">
-              {cs.solutionIntro}
-            </p>
-            <div className="space-y-4">
-              {cs.solutionBullets.map((b, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 md:p-6"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-9 h-9 rounded-lg bg-ember-500/12 border border-ember-500/25 flex items-center justify-center flex-shrink-0">
-                      <CheckCircle className="w-5 h-5 text-ember-500" />
-                    </div>
-                    <div>
-                      <h3 className="text-base md:text-lg font-bold text-white mb-1.5">
-                        {b.title}
-                      </h3>
-                      <p className="text-sm md:text-base text-white/70 leading-relaxed">
-                        {b.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Section eyebrow="The Solution" heading="What we installed.">
+            <Paragraphs items={cs.theSolution} />
+          </Section>
 
-          {/* The Results */}
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-semibold mb-3">
-              The Results
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-5 leading-tight">
-              What changed for the business.
-            </h2>
-            <div className="rounded-3xl border border-ember-500/25 bg-gradient-to-br from-ember-500/[0.08] via-ember-500/[0.02] to-transparent p-7 md:p-10">
+          <Section eyebrow="The Results" heading="What changed for the business.">
+            <Paragraphs items={cs.theResults} />
+
+            {/* Metrics card */}
+            <div className="mt-8 rounded-3xl border border-ember-500/25 bg-gradient-to-br from-ember-500/[0.08] via-ember-500/[0.02] to-transparent p-7 md:p-10">
+              <p className="text-xs uppercase tracking-[0.18em] text-ember-500/85 font-semibold mb-5">
+                By the numbers
+              </p>
               <ul className="space-y-3.5">
-                {cs.results.map((r, i) => (
+                {cs.resultsMetrics.map((r, i) => (
                   <li
                     key={i}
                     className="flex items-start gap-3.5 text-base md:text-lg text-white/90 leading-relaxed"
@@ -205,7 +196,13 @@ export default async function CaseStudyDetailPage({
                 ))}
               </ul>
             </div>
-          </div>
+          </Section>
+
+          <Section eyebrow="In Their Words" heading={`${cs.customerName}'s reflection.`}>
+            <p className="text-base md:text-lg text-white/80 leading-[1.75]">
+              {cs.inTheirWords}
+            </p>
+          </Section>
         </div>
       </section>
 
