@@ -54,10 +54,10 @@ export const CASE_STUDIES: CaseStudy[] = [
     pageSubtitle:
       "Nicola turned an inconsistent referral pipeline into a calendar of pre-qualified decision-maker meetings — and closed three high-value clients in the first month.",
     introduction:
-      "Nicola is the founder of Morasco Media Services. When she partnered with Novada Tech, her business was being held back by an inconsistent referral pipeline. Within 30 days of installing the LinkedIn Growth System, she had signed three new high-value clients.",
+      "Nicola is the founder of Morasco Media Services. When he partnered with Novada Tech, his business was being held back by an inconsistent referral pipeline. Within 30 days of installing the LinkedIn Growth System, he had signed three new high-value clients.",
     theFounder: [
-      "Nicola built Morasco Media as a creative services agency — brand, content, and production work for growing businesses. The craft was strong. The clients she worked with were happy. Word-of-mouth had carried the business through its early years.",
-      "But like most founder-led agencies, Nicola wore every hat. Strategist. Producer. Account manager. The unofficial head of sales. When she was deep in client delivery, business development stalled. When she made time to hunt for new clients, project delivery slowed. The trade-off was constant — and the quiet question underneath it was always the same: where's the next client coming from?",
+      "Nicola built Morasco Media as a creative services agency — brand, content, and production work for growing businesses. The craft was strong. The clients he worked with were happy. Word-of-mouth had carried the business through its early years.",
+      "But like most founder-led agencies, Nicola wore every hat. Strategist. Producer. Account manager. The unofficial head of sales. When he was deep in client delivery, business development stalled. When he made time to hunt for new clients, project delivery slowed. The trade-off was constant — and the quiet question underneath it was always the same: where's the next client coming from?",
     ],
     theChallenge: [
       "Referrals had been the engine of growth, and for years they were enough. But referrals are slow, unreliable, and impossible to scale. They arrive when they arrive. They dry up without warning. As a strategy for stepping a business up to its next chapter, they top out fast.",
@@ -66,13 +66,13 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     theSolution: [
       "Nicola signed up for the LinkedIn Growth System — Novada Tech's done-for-you client acquisition partnership built for B2B service businesses.",
-      "In the first week, we audited her offer and her positioning. We mapped her ideal client profile down to the level of company size, industry, role, and buying signal. We rewrote her LinkedIn profile so that the first impression it made on a decision-maker was credible and unmistakably expert. We outlined her authority video content plan — short, sharp videos shot remotely, in her voice, on her expertise.",
-      "By week two, the system was live. Authority videos began publishing across LinkedIn, YouTube, and short-form distribution. Daily targeted outreach — sequences trained on Nicola's voice — started landing in decision-maker inboxes matched to her ICP. Every reply was handled by our team. Every qualifying conversation was triaged. Only pre-qualified, decision-maker meetings made it through to Nicola's calendar.",
-      "Throughout, the principle was straightforward: free Nicola to do the work she does best — creative strategy, client delivery, leadership — while we ran the front-end engine that filled her pipeline. Fewer than 30 minutes a week of her time was needed.",
-      "Her goals were agreed and documented before activation: a predictable, forecastable pipeline of qualified meetings; decision-maker conversations rather than gatekeeper calls; reduced time spent on business development; and the contractual minimum of 15+ qualified meetings every month — or no payment.",
+      "In the first week, we audited his offer and his positioning. We mapped his ideal client profile down to the level of company size, industry, role, and buying signal. We rewrote his LinkedIn profile so that the first impression it made on a decision-maker was credible and unmistakably expert. We outlined his authority video content plan — short, sharp videos shot remotely, in his voice, on his expertise.",
+      "By week two, the system was live. Authority videos began publishing across LinkedIn, YouTube, and short-form distribution. Daily targeted outreach — sequences trained on Nicola's voice — started landing in decision-maker inboxes matched to his ICP. Every reply was handled by our team. Every qualifying conversation was triaged. Only pre-qualified, decision-maker meetings made it through to Nicola's calendar.",
+      "Throughout, the principle was straightforward: free Nicola to do the work he does best — creative strategy, client delivery, leadership — while we ran the front-end engine that filled his pipeline. Fewer than 30 minutes a week of his time was needed.",
+      "His goals were agreed and documented before activation: a predictable, forecastable pipeline of qualified meetings; decision-maker conversations rather than gatekeeper calls; reduced time spent on business development; and the contractual minimum of 15+ qualified meetings every month — or no payment.",
     ],
     theResults: [
-      "Within 30 days of activation, Nicola had signed three new high-value clients. Pre-qualified meetings filled her calendar weekly. Her pipeline became something she could forecast — not just feel.",
+      "Within 30 days of activation, Nicola had signed three new high-value clients. Pre-qualified meetings filled his calendar weekly. His pipeline became something he could forecast — not just feel.",
       "Beyond the numbers, the deeper shift was operational. Nicola no longer needed to wonder where the next client was coming from. The system answered that question — predictably — every month.",
     ],
     resultsMetrics: [
@@ -84,7 +84,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "The authority content + acquisition system owned by Morasco Media permanently",
     ],
     inTheirWords:
-      "Nicola's summary of the partnership is straightforward: three high-value clients signed in 30 days, a predictable pipeline for the first time, and a system that continues to fill her calendar with the right decision-makers. The change wasn't just commercial; it was operational. The business now runs with a front-end engine that doesn't depend on her hustle to function.",
+      "Nicola's summary of the partnership is straightforward: three high-value clients signed in 30 days, a predictable pipeline for the first time, and a system that continues to fill his calendar with the right decision-makers. The change wasn't just commercial; it was operational. The business now runs with a front-end engine that doesn't depend on his hustle to function.",
   },
 
   {
