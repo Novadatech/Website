@@ -1,16 +1,21 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   CheckCircle, Shield, Star, TrendingUp, Users,
   Clock, ChevronDown, ArrowRight,
-  ChevronLeft, ChevronRight, Play, Video, Send, CalendarCheck,
+  Play, Video, Send, CalendarCheck,
   XCircle,
 } from "lucide-react";
 import Link from "next/link";
 import NovadaLogo from "@/components/NovadaLogo";
 import HeroTrustBar from "@/components/HeroTrustBar";
+import { CASE_STUDIES } from "@/app/case-study/data";
+
+const LINKEDIN_CASE_STUDIES = CASE_STUDIES.filter(
+  (c) => c.offering === "linkedin-growth",
+);
 
 function scrollToForm() {
   // Form was removed from this page; route the CTA to the dedicated booking page.
@@ -176,17 +181,6 @@ const TESTIMONIALS = [
   },
 ];
 
-const VIDEO_TESTIMONIALS = [
-  { id: "CBL83P7OYgI", title: "Nicole — Morasco Media Services", name: "Nicole", company: "Founder, Morasco Media Services" },
-  { id: "upgMW2nwwpk", title: "Tony — South Line Media", name: "Tony", company: "Founder, South Line Media" },
-  { id: "G44OKPVh3Uk", title: "Michael — Aaronson Investigations", name: "Michael", company: "Founder, Aaronson Investigations" },
-  { id: "Ef4YTXOnCP0", title: "Jeff — Vertical Axis", name: "Jeff", company: "Founder, Vertical Axis" },
-  { id: "0qabR5mfAfQ", title: "Anthony — Ripple Clarke", name: "Anthony", company: "Founder, Ripple Clarke" },
-  { id: "JXEvONrDaOk", title: "Damian — Groundwork Ventures", name: "Damian", company: "Founder, Groundwork Ventures" },
-  { id: "O3HUPQyflH8", title: "Jack — House Valley", name: "Jack", company: "Founder, House Valley" },
-  { id: "w5iJNOADdXU", title: "Nate — Larsky Tach and Feed", name: "Nate", company: "Founder, Larsky Tach and Feed" },
-];
-
 const FAQS = [
   {
     q: "Isn't LinkedIn outreach spammy?",
@@ -232,58 +226,6 @@ function FAQItem({ q, a }: { q: string; a: string }) {
       </summary>
       <div className="px-5 pb-5 text-base text-white/80 leading-relaxed border-t border-white/[0.05] pt-4">{a}</div>
     </details>
-  );
-}
-
-// ─── Video Slider ────────────────────────────────────────────────────────────
-function VideoSlider() {
-  const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const total = VIDEO_TESTIMONIALS.length;
-  const goTo = useCallback((index: number, dir: number) => { setDirection(dir); setCurrent(index); }, []);
-  const prev = () => goTo((current - 1 + total) % total, -1);
-  const next = useCallback(() => goTo((current + 1) % total, 1), [current, total, goTo]);
-  const video = VIDEO_TESTIMONIALS[current];
-
-  return (
-    <div className="max-w-4xl mx-auto">
-      <div className="relative">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 16px rgba(255,90,48,0.5)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute left-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-zinc-900/90 border border-ember-500/35 items-center justify-center text-ember-500 hover:border-ember-500/80 hover:bg-zinc-800 transition-colors duration-200 z-10" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 24px rgba(255,90,48,0.7)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.93 }} className="hidden sm:flex absolute right-0 top-[42%] -translate-y-1/2 w-12 h-12 rounded-full bg-ember-500/15 border border-ember-500/60 items-center justify-center text-ember-500 hover:bg-ember-500/25 hover:border-ember-400 transition-colors duration-200 z-10" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
-
-        <div className="sm:px-16">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div key={video.id} initial={{ opacity: 0, x: direction * 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: direction * -40 }} transition={{ duration: 0.35, ease: "easeInOut" }} className="glass-card dark-red-gradient-border p-3">
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-                <iframe src={`https://www.youtube.com/embed/${video.id}`} title={video.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="absolute inset-0 w-full h-full" style={{ border: "none" }} />
-              </div>
-              <div className="flex items-center gap-3 mt-3 px-2 pb-1">
-                <div className="w-7 h-7 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
-                  <span className="text-[10px] font-bold text-ember-400">{video.name[0]}</span>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-white/70">{video.name}</p>
-                  <p className="text-[11px] text-white/35">{video.company}</p>
-                </div>
-                <div className="ml-auto text-ember-500 text-xs flex-shrink-0">{"★★★★★"}</div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
-
-      <div className="flex sm:hidden items-center justify-center gap-4 mt-4">
-        <motion.button onClick={prev} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 16px rgba(255,90,48,0.5)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-zinc-900/90 border border-ember-500/35 flex items-center justify-center text-ember-500" aria-label="Previous"><ChevronLeft className="w-6 h-6" /></motion.button>
-        <div className="flex items-center gap-2">
-          {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-ember-500" : "w-2 bg-white/20"}`} aria-label={`Go to video ${i + 1}`} />))}
-        </div>
-        <motion.button onClick={next} animate={{ boxShadow: ["0 0 0px rgba(255,90,48,0)", "0 0 24px rgba(255,90,48,0.7)", "0 0 0px rgba(255,90,48,0)"] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} whileTap={{ scale: 0.93 }} className="w-12 h-12 rounded-full bg-ember-500/15 border border-ember-500/60 flex items-center justify-center text-ember-500" aria-label="Next"><ChevronRight className="w-6 h-6" /></motion.button>
-      </div>
-
-      <div className="hidden sm:flex items-center justify-center gap-2 mt-5">
-        {VIDEO_TESTIMONIALS.map((_, i) => (<button key={i} onClick={() => goTo(i, i > current ? 1 : -1)} className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-6 bg-ember-500" : "w-2 bg-white/20 hover:bg-white/40"}`} aria-label={`Go to video ${i + 1}`} />))}
-      </div>
-    </div>
   );
 }
 
@@ -412,7 +354,46 @@ export default function LinkedinGrowthPage() {
             <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Real Operators · Real Results</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">Founders Already Running The System</h2>
           </div>
-          <VideoSlider />
+
+          {/* Same card layout as /case-study, filtered to LinkedIn-Growth cases */}
+          <div className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {LINKEDIN_CASE_STUDIES.map((c, i) => (
+              <motion.article
+                key={c.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (i % 2) * 0.08 }}
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors"
+              >
+                <div className="relative w-full aspect-video bg-black overflow-hidden">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${c.videoId}?rel=0`}
+                    title={c.pageTitle}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                    style={{ border: "none" }}
+                  />
+                </div>
+
+                <div className="p-6 flex flex-col flex-1">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-ember-500/80 font-semibold mb-3">{c.offeringLabel}</p>
+                  <p className="text-base md:text-lg font-semibold text-white leading-snug mb-4">{c.cardHeadline}</p>
+                  <p className="text-xs text-white/45 mb-5">{c.customerName} — {c.customerRole}, {c.customerCompany}</p>
+                  <div className="mt-auto">
+                    <Link
+                      href={`/case-study/${c.slug}`}
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-ember-500 hover:text-ember-400 transition-colors group/cta"
+                    >
+                      View Case Study
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover/cta:translate-x-0.5" />
+                    </Link>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </section>
 
