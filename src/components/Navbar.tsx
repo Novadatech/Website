@@ -9,6 +9,7 @@ import NovadaLogo from "./NovadaLogo";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/case-study", label: "Case Studies" },
 ];
 
 const BOOKING_URL = "/book-call";
