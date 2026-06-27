@@ -287,7 +287,7 @@ export default function LinkedinGrowthPage() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            350+ B2B Founders Use Our{" "}<span className="text-ember-500">Growth Infrastructure</span>{" "}To Become The Obvious Choice In Their Industry And Consistently Book{" "}<span className="text-ember-500">15+ Qualified Sales Meetings</span>{" "}Every Month.
+            350+ B2B Founders Use Our{" "}<span className="text-ember-500">System</span>{" "}To Book{" "}<span className="text-ember-500">15+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or chasing prospects.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
