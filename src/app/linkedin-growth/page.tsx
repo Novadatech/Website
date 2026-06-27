@@ -287,11 +287,11 @@ export default function LinkedinGrowthPage() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            350+ B2B Founders Use Our{" "}<span className="text-ember-500">System</span>{" "}To Book{" "}<span className="text-ember-500">15+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or chasing prospects.
+            350+ B2B Founders Use Our{" "}<span className="text-ember-500">Growth Infrastructure</span>{" "}To Become The Obvious Choice In Their Industry And Consistently Book{" "}<span className="text-ember-500">15+ Qualified Sales Meetings</span>{" "}Every Month.
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
-            We install and manage your entire client acquisition engine, guaranteeing 15+ qualified sales meetings every month. No ad spend. No SDRs. No chasing prospects. If we don&apos;t deliver, you don&apos;t pay.
+            We position you as the trusted expert in your niche so high-value decision-makers already trust you before the sales conversation even begins. Then we leverage that authority through our proven outbound system to consistently generate 15+ qualified sales meetings every month. No paid ads. No guesswork. Backed by our 90-Day Money-Back Guarantee.
           </motion.p>
 
           {/* Hero Trust Bar */}
