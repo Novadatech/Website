@@ -1,9 +1,13 @@
 "use client";
 
+/* Onboarding booking page — Morningside design language.
+ * Copy + GHL calendar embed unchanged; visual system swapped. */
+
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle, Clock, UserCheck, Zap, Check, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import { GRAD_TEXT, MS_CARD, HERO_WASH } from "@/components/ms";
 
 export default function OnboardingSupportPage() {
   useEffect(() => {
@@ -18,7 +22,7 @@ export default function OnboardingSupportPage() {
   }, []);
 
   return (
-    <>
+    <div className="bg-[#080808] font-poppins">
       {/* NOTE: This page is for EXISTING CLIENTS booking their onboarding
           session — not for prospects. No conversion tag here. The calendar
           widget below currently points at the same GHL booking ID as
@@ -27,37 +31,33 @@ export default function OnboardingSupportPage() {
 
       {/* Hero */}
       <section className="relative pt-32 pb-10 md:pt-40 md:pb-14 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
+        <div className={HERO_WASH} />
 
         <div className="relative max-container section-padding text-center">
-          <motion.div
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-6"
+            className="font-supply inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6"
           >
-            <Sparkles className="w-4 h-4 text-ember-500" />
-            <span className="text-sm text-ember-500 font-medium uppercase tracking-[0.15em]">
-              Welcome to Novada Tech · Client Onboarding
-            </span>
-          </motion.div>
+            <Sparkles className="w-4 h-4" />
+            Welcome to Novada Tech · Client Onboarding
+          </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance max-w-3xl mx-auto"
+            className={`text-4xl sm:text-5xl md:text-6xl font-light tracking-tight leading-[1.12] text-balance max-w-3xl mx-auto pb-1 ${GRAD_TEXT}`}
           >
-            Book Your{" "}
-            <span className="gradient-text">Onboarding Session</span>
+            Book your onboarding session.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-base text-white/80 max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-base md:text-lg font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed"
           >
             30 minutes with your dedicated onboarding lead. We&apos;ll complete
             the setup, gather everything we need, and get your growth
@@ -69,22 +69,22 @@ export default function OnboardingSupportPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-white/30"
+            className="font-supply mt-8 flex flex-wrap items-center justify-center gap-6 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40"
           >
             <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4" />
+              <Clock className="w-3.5 h-3.5" />
               <span>30 Min Session</span>
             </div>
             <div className="flex items-center gap-2">
-              <UserCheck className="w-4 h-4" />
+              <UserCheck className="w-3.5 h-3.5" />
               <span>Dedicated Lead</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4" />
+              <CheckCircle className="w-3.5 h-3.5" />
               <span>Setup Completed On Call</span>
             </div>
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4" />
+              <Zap className="w-3.5 h-3.5" />
               <span>Quick Activation</span>
             </div>
           </motion.div>
@@ -97,8 +97,8 @@ export default function OnboardingSupportPage() {
           <div className="grid lg:grid-cols-3 gap-10 items-start">
             {/* What We'll Cover — left sidebar */}
             <AnimatedSection direction="left" className="lg:col-span-1">
-              <div className="glass-card gradient-border p-8 sticky top-28">
-                <h3 className="text-lg font-semibold text-white mb-6">
+              <div className={`${MS_CARD} p-8 sticky top-28`}>
+                <h3 className="text-lg font-normal text-[#EDECE4] mb-6">
                   What We&apos;ll Cover
                 </h3>
                 <div className="space-y-5">
@@ -110,16 +110,16 @@ export default function OnboardingSupportPage() {
                     "Confirm next steps and your activation timeline",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-ember-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-base text-white/80 leading-relaxed">
+                      <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                      <span className="text-base font-light text-[#EDECE4]/75 leading-relaxed">
                         {item}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-white/[0.06]">
-                  <p className="text-base text-white/80 leading-relaxed">
+                <div className="mt-8 pt-6 border-t border-[#EDECE4]/[0.08]">
+                  <p className="text-base font-light text-[#EDECE4]/65 leading-relaxed">
                     Pick a time that suits you. Your onboarding lead will be
                     fully briefed on your business before the session — so we
                     can hit the ground running.
@@ -132,7 +132,7 @@ export default function OnboardingSupportPage() {
             <div className="lg:col-span-2">
               <div
                 id="calendar-embed"
-                className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-2 min-h-[600px] relative z-10"
+                className="rounded-xl border border-[#EDECE4]/[0.08] bg-white/[0.02] p-2 min-h-[600px] relative z-10"
               >
                 <iframe
                   src="https://link.novadatech.com/widget/booking/QO8M58PsBFu5aP11Ewek"
@@ -153,17 +153,17 @@ export default function OnboardingSupportPage() {
       </section>
 
       {/* Prep checklist — what to have ready for the session */}
-      <section className="section-padding pb-20">
+      <section className="section-padding pb-24">
         <div className="max-container max-w-3xl">
           <AnimatedSection>
-            <div className="glass-card p-8 border border-white/[0.04]">
-              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4 text-center">
+            <div className="border-t border-b border-dashed border-[#EDECE4]/15 px-6 py-12 md:px-10">
+              <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4 text-center">
                 Before The Call
               </p>
-              <h3 className="text-xl md:text-2xl font-bold text-white text-center mb-6">
-                A Few Things To Have Ready
+              <h3 className={`block text-center text-xl md:text-3xl font-light tracking-tight mb-6 pb-1`}>
+                <span className={GRAD_TEXT}>A few things to have ready.</span>
               </h3>
-              <p className="text-base text-white/70 leading-relaxed text-center max-w-xl mx-auto mb-8">
+              <p className="text-base font-light text-[#EDECE4]/65 leading-relaxed text-center max-w-xl mx-auto mb-8">
                 The more prepared you are, the more we can lock in during your
                 30 minutes. Nothing here is critical — but having these on hand
                 will help us complete your setup faster.
@@ -178,8 +178,8 @@ export default function OnboardingSupportPage() {
                   "Any questions you'd like answered before activation",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-ember-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-base text-white/80 leading-relaxed">
+                    <CheckCircle className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <span className="text-base font-light text-[#EDECE4]/75 leading-relaxed">
                       {item}
                     </span>
                   </div>
@@ -189,6 +189,6 @@ export default function OnboardingSupportPage() {
           </AnimatedSection>
         </div>
       </section>
-    </>
+    </div>
   );
 }

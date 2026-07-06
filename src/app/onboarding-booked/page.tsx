@@ -1,12 +1,16 @@
 "use client";
 
+/* Onboarding-booked confirmation — Morningside design language.
+ * Copy unchanged; visual system swapped. */
+
 import { motion } from "framer-motion";
 import { CheckCircle, Mail, Calendar, Clock, MessageSquare, Phone } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import { GRAD_TEXT, MS_CARD, HERO_WASH, GLOW_BOTTOM } from "@/components/ms";
 
 export default function OnboardingBookedPage() {
   return (
-    <>
+    <div className="bg-[#080808] font-poppins">
       {/* NOTE: No Google Ads / Meta conversion tags here by design.
           This page is reached by EXISTING clients booking their onboarding
           session — they have already converted as paying customers. Firing
@@ -16,8 +20,7 @@ export default function OnboardingBookedPage() {
 
       {/* Hero */}
       <section className="relative min-h-[70vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
+        <div className={HERO_WASH} />
 
         <div className="relative max-container section-padding text-center py-32">
           {/* Success icon */}
@@ -27,8 +30,8 @@ export default function OnboardingBookedPage() {
             transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
             className="mx-auto mb-8"
           >
-            <div className="w-24 h-24 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto">
-              <CheckCircle className="w-12 h-12 text-emerald-400" />
+            <div className="w-24 h-24 rounded-full border border-[#0CC481]/30 flex items-center justify-center mx-auto">
+              <CheckCircle className="w-12 h-12 text-[#0CC481]" strokeWidth={1.2} />
             </div>
           </motion.div>
 
@@ -36,7 +39,7 @@ export default function OnboardingBookedPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6"
+            className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6"
           >
             Welcome To The Team
           </motion.p>
@@ -45,17 +48,16 @@ export default function OnboardingBookedPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance"
+            className={`text-4xl sm:text-5xl md:text-6xl font-light tracking-tight leading-[1.12] text-balance max-w-3xl mx-auto pb-1 ${GRAD_TEXT}`}
           >
-            You&apos;re All Set!{" "}
-            <span className="gradient-text">Your Onboarding Session is Booked.</span>
+            You&apos;re all set. Your onboarding session is booked.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-6 text-base text-white/80 max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-base md:text-lg font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed"
           >
             Thank you for partnering with Novada Tech. Your dedicated
             onboarding lead is already preparing for the session — we&apos;ll
@@ -69,10 +71,10 @@ export default function OnboardingBookedPage() {
       <section className="section-padding pb-20">
         <div className="max-container max-w-3xl">
           <AnimatedSection className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">
               What Happens Next
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold">
+            <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>
               Here&apos;s What to Expect Before Your Onboarding Session
             </h2>
           </AnimatedSection>
@@ -101,15 +103,13 @@ export default function OnboardingBookedPage() {
               },
             ].map((step, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="glass-card gradient-border p-7 flex gap-5 items-start group hover:bg-white/[0.04] transition-all duration-500">
-                  <div className="w-12 h-12 rounded-xl bg-ember-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <step.icon className="w-6 h-6 text-ember-500" />
-                  </div>
+                <div className={`${MS_CARD} p-7 flex gap-5 items-start hover:border-[#EDECE4]/[0.14] transition-colors`}>
+                  <step.icon className="w-6 h-6 text-[#0CC481] flex-shrink-0 mt-1" strokeWidth={1.4} />
                   <div>
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-lg font-normal text-[#EDECE4]">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-base text-white/80 leading-relaxed">
+                    <p className="mt-2 text-base font-light text-[#EDECE4]/65 leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -121,46 +121,42 @@ export default function OnboardingBookedPage() {
       </section>
 
       {/* Need anything before the call? — support contact (no sales CTAs) */}
-      <section className="section-padding pb-20">
-        <div className="max-container max-w-3xl">
+      <section className="relative section-padding pt-8 pb-28 overflow-hidden">
+        <div className={GLOW_BOTTOM} />
+        <div className="relative max-container max-w-3xl">
           <AnimatedSection>
-            <div className="relative rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.08)_0%,_transparent_70%)]" />
-
-              <div className="relative px-8 py-14 md:px-14 text-center">
-                <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
-                  Need Anything Before The Call?
-                </p>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                  We&apos;re Here If You Need Us
-                </h3>
-                <p className="text-white/80 max-w-lg mx-auto mb-8 leading-relaxed">
-                  Have a question, need to reschedule, or want to send us
-                  something ahead of the session? Reach our team directly
-                  using the details below.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <a
-                    href="mailto:support@novadatech.com.au"
-                    className="btn-primary text-sm"
-                  >
-                    <Mail className="w-4 h-4" />
-                    support@novadatech.com.au
-                  </a>
-                  <a
-                    href="tel:+61485000813"
-                    className="btn-secondary text-sm"
-                  >
-                    <Phone className="w-4 h-4" />
-                    (+61) 485 000 813
-                  </a>
-                </div>
+            <div className="text-center">
+              <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">
+                Need Anything Before The Call?
+              </p>
+              <h3 className={`inline-block text-2xl md:text-4xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>
+                We&apos;re here if you need us.
+              </h3>
+              <p className="mt-4 text-base font-light text-[#EDECE4]/70 max-w-lg mx-auto mb-8 leading-relaxed">
+                Have a question, need to reschedule, or want to send us
+                something ahead of the session? Reach our team directly
+                using the details below.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href="mailto:support@novadatech.com.au"
+                  className="font-supply inline-flex items-center gap-2 rounded bg-white px-6 py-3 text-sm font-medium uppercase tracking-[0.1em] text-black transition-colors hover:bg-white/85"
+                >
+                  <Mail className="w-4 h-4" />
+                  support@novadatech.com.au
+                </a>
+                <a
+                  href="tel:+61485000813"
+                  className="font-supply inline-flex items-center gap-2 rounded border border-[#EDECE4]/20 px-6 py-3 text-sm font-medium uppercase tracking-[0.1em] text-[#EDECE4] transition-colors hover:border-[#EDECE4]/50"
+                >
+                  <Phone className="w-4 h-4" />
+                  (+61) 485 000 813
+                </a>
               </div>
             </div>
           </AnimatedSection>
         </div>
       </section>
-    </>
+    </div>
   );
 }
