@@ -263,8 +263,8 @@ function ProblemNarrative() {
           />
         ))}
 
-        {/* Scroll progress dots — bottom center */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2">
+        {/* Scroll progress dots — bottom center (above the sticky CTA bar) */}
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex items-center gap-2">
           {PROBLEM_STATEMENTS.map((_, i) => (
             <ProgressDot
               key={i}
