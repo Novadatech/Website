@@ -5,18 +5,17 @@ import {
   ArrowRight,
   Check,
   X,
-  Target,
-  BarChart3,
-  Settings,
-  Phone,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   Star,
   Shield,
   TrendingUp,
+  Cog,
+  Compass,
   Play,
 } from "lucide-react";
+import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import HeroTrustBar from "@/components/HeroTrustBar";
 import { useState, useCallback, useEffect } from "react";
@@ -43,7 +42,7 @@ function Hero() {
         >
           <span className="w-2 h-2 rounded-full bg-ember-500 animate-pulse-slow" />
           <span className="text-sm text-ember-500 font-medium">
-            Limited Availability This Quarter · Results Only · No Retainers
+            AI Consulting &amp; Automation Agency · Australia
           </span>
         </motion.div>
 
@@ -52,75 +51,130 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
         >
-          From $0 to $91K in 90 Days.{" "}
-          We Build the{" "}
-          <span className="gradient-text">Client Acquisition System</span>{" "}
-          That Gets You There — Without Retainers
+          We Build The AI Systems That{" "}
+          <span className="gradient-text">Grow Your Revenue</span> — And Cut
+          The Costs That Eat It.
         </motion.h1>
 
-        {/* VSL — immediately below headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="mt-4 max-w-4xl mx-auto"
-        >
-          {/* Video duration prompt */}
-          <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
-            <Play className="w-3.5 h-3.5 text-ember-500" />
-            <span>Watch the 2-min overview</span>
-          </div>
-
-          <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
-            <iframe
-              src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1&rel=0"
-              title="Novada Tech — How We Generate High-Value Clients"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
-            />
-          </div>
-
-          {/* Presenter identity */}
-          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
-            <div className="w-5 h-5 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-[8px] font-bold text-ember-400">A</span>
-            </div>
-            <span>Presented by <span className="text-white/60 font-medium">Ade</span> — Novada Tech</span>
-          </div>
-        </motion.div>
-
-        {/* Subheading — below video, bridges to CTA */}
+        {/* Subheading */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-6 text-xl md:text-2xl font-semibold text-white/90 max-w-2xl mx-auto leading-relaxed"
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-6 text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed"
         >
-          We install a complete client acquisition system into your business — from lead generation to sales closing. You only pay when we deliver results.
+          Novada Tech installs Growth Infrastructure that books 15+ qualified
+          sales meetings a month, and custom AI operations systems that remove
+          your biggest bottlenecks. Engineered for your business. Run by us.
+          Owned by you.
         </motion.p>
 
         {/* STANDALONE TRUST BAR — prominent social proof above the CTAs */}
-        <HeroTrustBar className="mt-6" />
+        <HeroTrustBar className="mt-7" />
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a href={BOOKING_URL} className="btn-primary text-base">
             See If You Qualify
             <ArrowRight className="w-5 h-5" />
           </a>
-          <a href="#how-it-works" className="btn-secondary text-base">
-            See How It Works
+          <a href="#solutions" className="btn-secondary text-base">
+            Explore Our Solutions
           </a>
         </motion.div>
 
+      </div>
+    </section>
+  );
+}
+
+/* ─── SOLUTIONS ROUTER ─── */
+function SolutionsRouter() {
+  const solutions = [
+    {
+      icon: TrendingUp,
+      name: "Growth Infrastructure",
+      outcome:
+        "Become the obvious choice in your industry and book 15+ qualified sales meetings every month — guaranteed.",
+      pills: ["Authority content", "Done-for-you outreach", "Pre-qualified bookings"],
+      href: "/linkedin-growth",
+      cta: "See How It Works",
+    },
+    {
+      icon: Cog,
+      name: "Operations Infrastructure",
+      outcome:
+        "Custom AI systems that take over quoting, admin, documents, and logistics — so you scale output without scaling headcount.",
+      pills: ["Quoting & documents", "Logistics & inventory", "Client communication"],
+      href: "/operations-infrastructure",
+      cta: "See What We Build",
+    },
+    {
+      icon: Compass,
+      name: "AI Consulting",
+      outcome:
+        "A structured audit and ROI-ranked roadmap showing exactly where AI pays for itself in your business first.",
+      pills: ["Process audit", "ROI-ranked roadmap", "Build vs buy guidance"],
+      href: "/ai-consulting",
+      cta: "See How The Audit Works",
+    },
+  ];
+
+  return (
+    <section id="solutions" className="section-spacing section-padding border-t border-white/[0.04]">
+      <div className="max-container">
+        <AnimatedSection className="max-w-3xl mx-auto text-center mb-14">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+            Our Solutions
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
+            One Agency. <span className="text-white/40">Three Ways To Win.</span>
+          </h2>
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            Whether your biggest constraint is pipeline, operations, or knowing
+            where to start with AI — there&apos;s a system for it.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {solutions.map((s, i) => (
+            <AnimatedSection key={s.href} delay={i * 0.1}>
+              <Link
+                href={s.href}
+                className="block glass-card gradient-border rounded-2xl p-8 h-full group hover:bg-white/[0.04] transition-all duration-500"
+              >
+                <div className="w-12 h-12 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                  <s.icon className="w-6 h-6 text-ember-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">{s.name}</h3>
+                <p className="text-base text-white/70 leading-relaxed">
+                  {s.outcome}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {s.pills.map((pill, j) => (
+                    <span
+                      key={j}
+                      className="text-xs px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-white/50"
+                    >
+                      {pill}
+                    </span>
+                  ))}
+                </div>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ember-500 group-hover:text-ember-400 transition-colors">
+                  {s.cta}
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -130,22 +184,22 @@ function Hero() {
 function ProblemSection() {
   const problems = [
     {
-      tag: "The Lead Quality Problem",
-      headline: "You're getting leads — but they're the wrong ones",
-      body: "Enquiries come in but they're time-wasters. Wrong budget. Wrong fit. You spend hours on discovery calls that go nowhere. The volume is there. The quality isn't.",
-      pills: ["Low conversion rate", "Wasted sales time", "Wrong-fit clients"],
-    },
-    {
-      tag: "The Conversion Problem",
-      headline: "You're having calls — but they don't close",
-      body: "Prospects seem interested. They ask good questions. Then they go quiet. Without a system that pre-qualifies and pre-sells before the call, you're doing all the hard work on the call itself.",
-      pills: ["High no-show rate", "Long sales cycles", "Deals stall or ghost"],
-    },
-    {
       tag: "The Pipeline Problem",
-      headline: "Your pipeline is inconsistent and unpredictable",
+      headline: "Revenue is inconsistent and unpredictable",
       body: "Some months are great. Others are dead. You can't forecast revenue, plan capacity, or invest in growth when you have no idea where the next client is coming from.",
       pills: ["Feast and famine cycle", "No revenue visibility", "Growth stalls"],
+    },
+    {
+      tag: "The Operations Problem",
+      headline: "Manual work is quietly eating your margin",
+      body: "Quoting, admin, document handling, chasing paperwork. Every hour of it is payroll spent producing nothing new — and growing means hiring more people to do more of it.",
+      pills: ["Rising labour costs", "Founder bottleneck", "Profit stays flat"],
+    },
+    {
+      tag: "The AI Problem",
+      headline: "You know AI matters — but not where to start",
+      body: "Every vendor says their tool is the answer. Every competitor claims they're using AI. Betting months and real budget on the wrong project is how AI becomes a sore point instead of an advantage.",
+      pills: ["Tool overload", "Stalled pilots", "No clear ROI"],
     },
   ];
 
@@ -158,11 +212,12 @@ function ProblemSection() {
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
             Your Business Is Great.{" "}
-            <span className="text-white/40">Your Pipeline Isn&apos;t.</span>
+            <span className="text-white/40">Your Systems Aren&apos;t.</span>
           </h2>
           <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
-            Most businesses don&apos;t have a growth problem. They have a system
-            problem. Here&apos;s what&apos;s keeping you stuck.
+            Most businesses don&apos;t have a growth problem or a people
+            problem. They have a system problem. Here&apos;s what&apos;s
+            keeping you stuck.
           </p>
         </AnimatedSection>
 
@@ -196,67 +251,6 @@ function ProblemSection() {
   );
 }
 
-/* ─── SOLUTION ─── */
-function SolutionSection() {
-  const outcomes = [
-    "Brings qualified prospects into your pipeline daily",
-    "Books sales-ready meetings predictably",
-    "Handles sales calls with a trained expert closer",
-    "Converts leads into revenue systematically",
-  ];
-
-  return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/50 to-surface-950">
-      <div className="max-container">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <AnimatedSection direction="left">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-              The Solution
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-              The Growth Partnership Model
-            </h2>
-            <p className="mt-6 text-lg text-white/80 leading-relaxed">
-              We don&apos;t sell courses, software, or complicated funnels. We
-              partner with you to{" "}
-              <span className="text-white font-medium">
-                build, run, and scale
-              </span>{" "}
-              a complete client acquisition engine.
-            </p>
-            <p className="mt-6 text-lg text-white/80 leading-relaxed">
-              You only pay for results. And only pay when deals close.
-            </p>
-            <a
-              href={BOOKING_URL}
-              className="btn-primary mt-8 inline-flex text-base"
-            >
-              See If You Qualify
-              <ArrowRight className="w-5 h-5" />
-            </a>
-          </AnimatedSection>
-
-          <AnimatedSection direction="right" delay={0.2}>
-            <div className="space-y-4">
-              {outcomes.map((item, i) => (
-                <div
-                  key={i}
-                  className="glass-card gradient-border px-6 py-5 flex items-center gap-4"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-ember-500/10 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-5 h-5 text-ember-500" />
-                  </div>
-                  <p className="text-white/80 font-medium">{item}</p>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── STATS / PROOF ─── */
 function ProofSection() {
   const stats = [
@@ -277,7 +271,8 @@ function ProofSection() {
             Results That Speak for Themselves
           </h2>
           <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
-            Consistently generating qualified meetings and predictable revenue pipelines for service-based businesses across Australia.
+            From qualified-meeting pipelines to automated operations —
+            documented results for businesses across Australia.
           </p>
         </AnimatedSection>
 
@@ -319,49 +314,37 @@ function ProofSection() {
 function CaseStudies() {
   const cases = [
     {
-      company: "Maxicare Plus",
-      industry: "Healthcare Services",
+      company: "South Line Media",
+      founder: "Tony — Founder",
+      offering: "LinkedIn Growth System™",
+      metric: "5x",
+      metricLabel: "Monthly Revenue Growth",
+      result: "From $20K to $100K+ per month",
       challenge:
-        "Over-reliant on GP referrals with no predictable intake system. Revenue fluctuated monthly with no way to control or forecast growth.",
-      metric: "$91K/mo",
-      metricLabel: "Monthly Revenue",
-      result: "From $42K to $91K in 60 days",
-      timeframe: "60 days",
-      highlights: [
-        "18 new high-value clients per month",
-        "Referral dependency fully eliminated",
-        "Full pipeline visibility established",
-      ],
+        "A capable agency stuck at $20K/month with no predictable way to reach the decision-makers who could afford its best work.",
+      slug: "tony-south-line-media",
     },
     {
-      company: "Growth-Loop Consulting",
-      industry: "B2B Strategy Consulting",
+      company: "Groundwork Ventures",
+      founder: "Damian — Founder",
+      offering: "Custom AI Build",
+      metric: "80%+",
+      metricLabel: "Operational Time Cut",
+      result: "Manual workload replaced by AI systems",
       challenge:
-        "Stuck under a $30K/month ceiling for 18 months. No outbound system — growth came entirely from word of mouth and LinkedIn posts.",
-      metric: "171%",
-      metricLabel: "Revenue Growth",
-      result: "From $28K to $76K in 90 days",
-      timeframe: "90 days",
-      highlights: [
-        "8–12 qualified discovery calls per week",
-        "5 new retainer clients closed",
-        "Predictable monthly pipeline built",
-      ],
+        "A growing operation where the founder and team were buried in repetitive manual work that ate margin and blocked scale.",
+      slug: "damian-groundwork-ventures",
     },
     {
-      company: "Jessica Ted Coaching",
-      industry: "Executive Coaching",
+      company: "Aaronson Investigations",
+      founder: "Michael — Founder",
+      offering: "LinkedIn Growth System™",
+      metric: "10x",
+      metricLabel: "Revenue Growth In 30 Days",
+      result: "Discovery calls arriving pre-sold",
       challenge:
-        "Selling $1,200 group programs with no consistent lead flow. High delivery load, low margin, and no system to attract premium 1:1 clients.",
-      metric: "$25.5K",
-      metricLabel: "First Month Revenue",
-      result: "3 × $8,500 clients in month one",
-      timeframe: "30 days",
-      highlights: [
-        "Repositioned to an $8,500 offer",
-        "Full calendar within 4 weeks",
-        "Zero ad spend required",
-      ],
+        "An expert firm invisible to its ideal clients — great at the work, with no system to put that expertise in front of buyers.",
+      slug: "michael-aaronson-investigations",
     },
   ];
 
@@ -376,23 +359,27 @@ function CaseStudies() {
             Real Businesses. Real Numbers.
           </h2>
           <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
-            These are not projections. These are documented results from
-            partners who were exactly where you are now.
+            Documented results from both sides of the business — growth and
+            operations. Every one links to the full story, told by the founder
+            on video.
           </p>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-3 gap-6">
           {cases.map((c, i) => (
-            <AnimatedSection key={i} delay={i * 0.12}>
-              <div className="glass-card gradient-border p-7 h-full flex flex-col">
+            <AnimatedSection key={c.slug} delay={i * 0.12}>
+              <Link
+                href={`/case-study/${c.slug}`}
+                className="glass-card gradient-border p-7 h-full flex flex-col group hover:bg-white/[0.04] transition-all duration-500"
+              >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-5">
                   <div>
                     <p className="font-bold text-white text-base">{c.company}</p>
-                    <p className="text-base text-white/80 mt-0.5">{c.industry}</p>
+                    <p className="text-sm text-white/60 mt-0.5">{c.founder}</p>
                   </div>
                   <span className="text-xs px-2.5 py-1 rounded-full bg-ember-500/10 border border-ember-500/20 text-ember-500 whitespace-nowrap flex-shrink-0 ml-3">
-                    {c.timeframe}
+                    {c.offering}
                   </span>
                 </div>
 
@@ -409,25 +396,26 @@ function CaseStudies() {
                   {c.challenge}
                 </p>
 
-                {/* Highlights */}
-                <div className="space-y-2 mt-auto pt-4 border-t border-white/[0.05]">
-                  {c.highlights.map((h, j) => (
-                    <div key={j} className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                      <span className="text-base text-white/80">{h}</span>
-                    </div>
-                  ))}
+                {/* Read the story */}
+                <div className="mt-auto pt-4 border-t border-white/[0.05]">
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-ember-500 group-hover:text-ember-400 transition-colors">
+                    Read The Full Story
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
                 </div>
-              </div>
+              </Link>
             </AnimatedSection>
           ))}
         </div>
 
         <AnimatedSection delay={0.3} className="text-center mt-10">
-          <a href={BOOKING_URL} className="btn-primary text-base">
-            See If You Qualify
-            <ArrowRight className="w-5 h-5" />
-          </a>
+          <Link
+            href="/case-study"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white transition-colors"
+          >
+            View all case studies
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </AnimatedSection>
       </div>
     </section>
@@ -478,100 +466,23 @@ function TrustBar() {
   );
 }
 
-/* ─── WHAT WE BUILD ─── */
-function WhatWeBuild() {
-  const mechanisms = [
-    {
-      icon: Target,
-      title: "Offer & Positioning",
-      desc: "We audit your offer, sharpen your positioning, and craft a compelling message that stops your ideal client mid-scroll — before we send a single outreach.",
-    },
-    {
-      icon: Settings,
-      title: "Acquisition Engine",
-      desc: "We launch LinkedIn, email and outbound campaigns targeting high-intent prospects. Built from scratch, managed daily, fully done for you.",
-    },
-    {
-      icon: Phone,
-      title: "Expert Sales Closing",
-      desc: "A professional closer handles every qualified call so you stay focused on delivery. We convert meetings into signed deals — you only pay when they close.",
-    },
-    {
-      icon: BarChart3,
-      title: "Scale & Optimise",
-      desc: "We track results weekly, double down on what's working, and scale the system month over month. Your pipeline gets stronger over time — not weaker.",
-    },
-  ];
-
-  return (
-    <section id="how-it-works" className="section-spacing section-padding">
-      <div className="max-container">
-        <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            Your Revenue Engine
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
-            Everything You Need to Scale.
-            <br />
-            <span className="text-white/50">Nothing You Don&apos;t.</span>
-          </h2>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {mechanisms.map((item, i) => (
-            <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="glass-card gradient-border p-6 md:p-7 h-full group hover:bg-white/[0.05] transition-all duration-500">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-ember-500/10 to-accent-blue/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                  <item.icon className="w-6 h-6 text-ember-500" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-base text-white/80 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-/* ─── FLYWHEEL PROCESS ─── */
-function Flywheel() {
+/* ─── HOW WE WORK ─── */
+function HowWeWork() {
   const steps = [
     {
       num: "01",
-      title: "Transform Your Offer",
-      desc: "We reposition your service into a premium, irresistible offer that attracts high-value buyers.",
+      title: "Diagnose",
+      desc: "Every engagement starts by finding the real constraint. We look at your pipeline, your operations, and your numbers — and tell you whether the biggest return is in revenue, costs, or both.",
     },
     {
       num: "02",
-      title: "Deploy Acquisition Engine",
-      desc: "We build the full outbound architecture — messaging, targeting, sequencing — from the ground up.",
+      title: "Install",
+      desc: "We build the system into your business — growth infrastructure for pipeline, custom AI for operations. Built around your actual workflow. Installed in your accounts. Owned by you.",
     },
     {
       num: "03",
-      title: "Launch High-Intent Conversations",
-      desc: "Daily outreach to qualified prospects generates consistent top-of-pipeline activity.",
-    },
-    {
-      num: "04",
-      title: "Book Qualified Meetings",
-      desc: "Only sales-ready prospects land on your calendar. No tire-kickers. No wasted time.",
-    },
-    {
-      num: "05",
-      title: "Expert Sales Closing",
-      desc: "Our trained closers handle the calls and convert qualified meetings into signed deals.",
-    },
-    {
-      num: "06",
-      title: "Revenue. Scale. Repeat.",
-      desc: "Closed revenue feeds the machine. We scale what works. You grow predictably, month over month.",
+      title: "Run & Scale",
+      desc: "Our team runs and refines the system every month. And once one constraint is gone, we point at the next one — that's how results compound instead of plateau.",
     },
   ];
 
@@ -580,16 +491,16 @@ function Flywheel() {
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
           <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            The System
+            How We Work
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
-            How This Becomes a
+            One Method.
             <br />
-            <span className="gradient-text">Predictable Revenue Engine</span>
+            <span className="gradient-text">Every System We Build.</span>
           </h2>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {steps.map((step, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
               <div className="glass-card p-7 h-full border border-white/[0.04] group hover:border-ember-500/20 transition-all duration-500">
@@ -889,12 +800,12 @@ function WrittenTestimonials() {
 /* ─── COMPARISON ─── */
 function ComparisonSection() {
   const rows = [
-    { label: "Payment model", agency: "Monthly retainer", inhouse: "Salary + super", novada: "Pay on results only" },
+    { label: "What you buy", agency: "Campaigns & retainers", inhouse: "Salaries + management", novada: "Installed systems you own" },
     { label: "Results guaranteed", agency: false, inhouse: false, novada: true },
-    { label: "Time to first leads", agency: "60–90 days", inhouse: "3–6 months", novada: "7–14 days" },
-    { label: "Ad spend required", agency: true, inhouse: true, novada: false },
-    { label: "Your time investment", agency: "High", inhouse: "Very high", novada: "Low — we handle it" },
-    { label: "Scales with revenue", agency: false, inhouse: false, novada: true },
+    { label: "Scope", agency: "Marketing only", inhouse: "One hire, one skill", novada: "Growth + operations + AI" },
+    { label: "Time to value", agency: "60–90 days", inhouse: "3–6 months", novada: "Weeks, not quarters" },
+    { label: "Your time investment", agency: "High", inhouse: "Very high", novada: "Low — we run it" },
+    { label: "Scales without headcount", agency: false, inhouse: false, novada: true },
   ];
 
   return (
@@ -908,7 +819,8 @@ function ComparisonSection() {
             How We Compare
           </h2>
           <p className="mt-4 text-lg text-white/80">
-            Every option has a cost. Only one of them guarantees results.
+            Every way of solving growth and operations has a cost. Only one of
+            them leaves you owning the system.
           </p>
         </AnimatedSection>
 
@@ -992,17 +904,17 @@ function HowToStart() {
     {
       num: "1",
       title: "Apply for a Strategy Call",
-      desc: "We analyze your offer, your market, and your current acquisition process to see if there's a fit.",
+      desc: "We look at your business — offer, market, operations — and identify where the biggest return is hiding: pipeline, costs, or both.",
     },
     {
       num: "2",
-      title: "Receive Your Growth Plan",
-      desc: "You'll get a clear strategy showing exactly how we'll build your client acquisition engine and grow your revenue.",
+      title: "Receive Your Plan",
+      desc: "You'll get a clear plan for the system we'd install — growth infrastructure, operations automation, or an audit-first roadmap — and what it should return.",
     },
     {
       num: "3",
       title: "We Build. You Scale.",
-      desc: "If accepted, we deploy your system, book your meetings, close deals — and you scale with zero risk.",
+      desc: "If we're a fit, we build the system into your business and run it for you — while you stay focused on delivery.",
     },
   ];
 
@@ -1059,36 +971,36 @@ function HowToStart() {
 function FAQ() {
   const faqs = [
     {
+      q: "Which solution is right for my business?",
+      a: "That's exactly what the strategy call answers. If your constraint is pipeline — not enough qualified conversations with buyers — that's Growth Infrastructure. If your constraint is operations — manual work eating margin and blocking scale — that's Operations Infrastructure. And if you're not sure where AI would return most, the AI Opportunity Audit finds out before you commit to building anything.",
+    },
+    {
       q: "Is this too good to be true?",
-      a: "We understand the scepticism — most agencies have conditioned business owners to expect promises without delivery. Our model is different by design: we don't charge retainers, we don't run ads on your budget, and we only earn when you do. If it didn't work, we wouldn't eat. That's the only reason we can make this offer.",
+      a: "We understand the scepticism — most agencies have conditioned business owners to expect promises without delivery. That's why our commitments are written into agreements, not marketing copy: our flagship Growth Infrastructure is backed by a performance guarantee, and every operations build is scoped with the projected return shown before you commit. If we don't believe we can deliver, we won't take the engagement.",
+    },
+    {
+      q: "What does 'performance guaranteed' actually mean?",
+      a: "For Growth Infrastructure: 15+ qualified sales meetings every month, backed by our 90-Day Money-Back Guarantee — written into the agreement. For operations builds: we only take on systems where the projected saving clearly outweighs the investment, and we show you that math up front.",
     },
     {
       q: "What's the catch?",
-      a: "There isn't one — but there is a qualifier. We only work with businesses we genuinely believe we can grow. We turn down more partnerships than we accept. If we don't think we can deliver, we'll tell you on the strategy call rather than take your money.",
+      a: "There isn't one — but there is a qualifier. We only work with businesses we genuinely believe we can deliver for. We turn down more engagements than we accept. If we don't think we can deliver, we'll tell you on the strategy call rather than take your money.",
     },
     {
-      q: "How do you get results without ads?",
-      a: "We use precision outbound — targeted LinkedIn and email campaigns that reach high-intent prospects directly. No ad spend, no bidding wars, no wasted budget. We build your pipeline through direct outreach to the exact type of client you want.",
-    },
-    {
-      q: "Do I need to spend on ads?",
-      a: "No. Your outreach system is fully done for you. Paid advertising is optional and only recommended if it accelerates an already-working organic system.",
-    },
-    {
-      q: "What if no deals close?",
-      a: "Nothing. Our model is entirely performance-based — you don't pay us unless we generate results. That's not marketing language, it's how our agreements are structured. We only earn when you earn.",
+      q: "How do you get growth results without ads?",
+      a: "We use precision outbound — authority content plus targeted LinkedIn and email campaigns that reach high-intent prospects directly. No ad spend, no bidding wars, no wasted budget. Your pipeline is built through direct outreach to the exact type of client you want.",
     },
     {
       q: "What makes this different from a marketing agency?",
-      a: "Agencies charge retainers regardless of results. We only get paid when you get paid. We're a growth partner, not a vendor — and we handle the entire acquisition and closing process, not just the top of funnel.",
+      a: "Agencies sell campaigns — you pay every month, and the moment you stop, the results stop. We install systems into your business that you own: growth infrastructure that keeps producing meetings, and AI operations systems that keep saving hours. You're buying a permanent capability, not renting attention.",
     },
     {
       q: "How soon can results start?",
-      a: "Most partners see qualified meetings on their calendar within 7–14 days after activation. Revenue timelines depend on your sales cycle length.",
+      a: "Growth Infrastructure partners typically see qualified meetings on their calendar within 7–14 days of activation. Operations systems typically go live within weeks, staged so you see the first system running before the next one starts.",
     },
     {
       q: "What kind of businesses do you work with?",
-      a: "We work best with service businesses selling $3K–$50K+ offers who are ready to scale but need a proven acquisition system to get there. If that's you, the strategy call will confirm it.",
+      a: "Established businesses across Australia — 30+ industries so far. For growth: service businesses selling $3K+ offers who are ready to scale. For operations: businesses with real volume, where teams spend serious hours on repetitive work. The strategy call confirms fit either way.",
     },
   ];
 
@@ -1165,16 +1077,16 @@ function FinalCTA() {
                 Ready to Scale?
               </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance max-w-3xl mx-auto">
-                The Pipeline Won&apos;t Build Itself.
+                The Systems Won&apos;t Build Themselves.
                 <br />
                 <span className="gradient-text">
-                  Let&apos;s Build It Together.
+                  Let&apos;s Build Them Together.
                 </span>
               </h2>
               <p className="mt-6 text-lg text-white/80 max-w-xl mx-auto">
                 One call. No pressure. No hard sell. Just a clear plan showing
-                exactly how we&apos;d generate high-value clients for your
-                business — on a performance basis.
+                where AI systems would return the most in your business —
+                revenue, operations, or both.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href={BOOKING_URL} className="btn-primary text-base">
@@ -1185,7 +1097,7 @@ function FinalCTA() {
               <div className="mt-8 flex items-center justify-center gap-6 text-sm text-white/50">
                 <div className="flex items-center gap-2">
                   <Shield className="w-4 h-4" />
-                  <span>No Risk</span>
+                  <span>Performance Guaranteed</span>
                 </div>
                 <a
                   href="https://www.trustpilot.com/review/novadatech.com.au"
@@ -1198,7 +1110,7 @@ function FinalCTA() {
                 </a>
                 <div className="flex items-center gap-2">
                   <TrendingUp className="w-4 h-4" />
-                  <span>Results in 14 Days</span>
+                  <span>Systems You Own</span>
                 </div>
               </div>
             </div>
@@ -1216,15 +1128,19 @@ function VSLSection() {
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-10">
           <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
-            Watch This First
+            Our Flagship System
           </p>
           <h2 className="text-2xl md:text-3xl font-bold text-white">
-            See Exactly How We Generate High-Value Clients{" "}
+            Watch How We Generate High-Value Clients{" "}
             <span className="gradient-text">for Your Business</span>
           </h2>
         </AnimatedSection>
 
         <AnimatedSection>
+          <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
+            <Play className="w-3.5 h-3.5 text-ember-500" />
+            <span>Watch the 2-min overview</span>
+          </div>
           <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
             style={{ paddingBottom: "56.25%" }}>
             <iframe
@@ -1241,6 +1157,12 @@ function VSLSection() {
                 border: "none",
               }}
             />
+          </div>
+          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
+            <div className="w-5 h-5 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
+              <span className="text-[8px] font-bold text-ember-400">A</span>
+            </div>
+            <span>Presented by <span className="text-white/60 font-medium">Ade</span> — Novada Tech</span>
           </div>
         </AnimatedSection>
       </div>
@@ -1263,8 +1185,8 @@ function StickyCtaBar() {
         <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-white">Performance-based growth partnership</p>
-              <p className="text-xs text-white/50">You only pay when we deliver results.</p>
+              <p className="text-sm font-semibold text-white">AI systems that grow revenue and cut costs</p>
+              <p className="text-xs text-white/50">Installed by Novada Tech. Owned by you.</p>
             </div>
             <a href={BOOKING_URL} className="btn-primary text-sm py-3 px-6 w-full sm:w-auto text-center">
               See If You Qualify
@@ -1282,19 +1204,20 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <SolutionsRouter />
+      <VSLSection />
       <ProblemSection />
-      <SolutionSection />
       <ProofSection />
       <CaseStudies />
       <TrustBar />
-      <Flywheel />
+      <HowWeWork />
       <Testimonials />
       <WrittenTestimonials />
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container text-center">
           <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
           <h2 className="text-2xl md:text-3xl font-bold text-white">
-            Ready to build a pipeline like theirs?
+            Ready to build systems like theirs?
           </h2>
           <p className="mt-3 text-lg text-white/80 max-w-sm mx-auto leading-relaxed">
             Every one of those businesses started with a single free strategy session.
