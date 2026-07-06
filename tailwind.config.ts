@@ -41,6 +41,8 @@ const config: Config = {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
         display: ["Inter", "system-ui", "sans-serif"],
+        // Poppins light — home page Morningside-style design test.
+        poppins: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",

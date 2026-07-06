@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import ConditionalNav from "@/components/ConditionalNav";
@@ -9,6 +9,15 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+});
+
+// Poppins at light weights — used by the home page's Morningside-style
+// design test (thin display type). Other pages keep Inter.
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500"],
+  display: "swap",
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -47,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
         {/* Google Tag Manager — main snippet, in <head> only.
             Using a raw <script> tag (not next/script) so it lives ONLY in
