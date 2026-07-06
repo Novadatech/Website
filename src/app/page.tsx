@@ -327,8 +327,12 @@ function IconRun() {
   );
 }
 
+/* Giant italic numerals — dark-green→green vertical gradient (their
+ * dark-top/green-bottom look, but with a floor that stays legible on
+ * #080808). px padding prevents bg-clip-text from cropping the italic
+ * overhang. Static above the card on mobile; absolute beside it on md+. */
 const NUMERAL =
-  "font-poppins italic font-extralight text-[120px] md:text-[170px] leading-none bg-gradient-to-r from-[#050707] via-[#0a5c40] to-[#0CC481] bg-clip-text text-transparent select-none";
+  "font-poppins italic font-extralight text-[88px] md:text-[160px] leading-none bg-gradient-to-b from-[#12513c] to-[#0CC481] bg-clip-text text-transparent select-none px-4 md:px-6 block md:absolute md:top-1/2 md:-translate-y-1/2 z-0";
 
 function ThreeThings() {
   return (
@@ -345,13 +349,11 @@ function ThreeThings() {
         <div className="space-y-14 md:space-y-20">
           {/* 1 — Identify */}
           <AnimatedSection>
-            <div className="relative md:ml-0">
-              <span className={`${NUMERAL} absolute -left-4 md:-left-8 -top-10 md:-top-14 z-0`}>
-                1
-              </span>
+            <div className="relative">
+              <span className={`${NUMERAL} md:left-0`}>1</span>
               <Link
                 href="/ai-consulting"
-                className="relative z-10 block max-w-[880px] ml-10 md:ml-32 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14 hover:border-[#EDECE4]/[0.14] transition-colors group"
+                className="relative z-10 block max-w-[820px] mt-2 md:mt-0 md:ml-36 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14 hover:border-[#EDECE4]/[0.14] transition-colors group"
               >
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
                   <div className="flex-shrink-0"><IconIdentify /></div>
@@ -379,10 +381,8 @@ function ThreeThings() {
           {/* 2 — Build */}
           <AnimatedSection>
             <div className="relative">
-              <span className={`${NUMERAL} absolute -left-2 md:left-4 -top-10 md:-top-14 z-0`}>
-                2
-              </span>
-              <div className="relative z-10 block max-w-[880px] ml-10 md:ml-44 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14">
+              <span className={`${NUMERAL} md:left-24`}>2</span>
+              <div className="relative z-10 block max-w-[820px] mt-2 md:mt-0 md:ml-60 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14">
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
                   <div className="flex-shrink-0"><IconBuild /></div>
                   <div>
@@ -429,12 +429,10 @@ function ThreeThings() {
           {/* 3 — Run & Scale */}
           <AnimatedSection>
             <div className="relative">
-              <span className={`${NUMERAL} absolute -left-2 md:left-16 -top-10 md:-top-14 z-0`}>
-                3
-              </span>
+              <span className={`${NUMERAL} md:left-44`}>3</span>
               <Link
                 href="/case-study"
-                className="relative z-10 block max-w-[880px] ml-10 md:ml-56 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14 hover:border-[#EDECE4]/[0.14] transition-colors group"
+                className="relative z-10 block max-w-[820px] mt-2 md:mt-0 md:ml-80 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14 hover:border-[#EDECE4]/[0.14] transition-colors group"
               >
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
                   <div className="flex-shrink-0"><IconRun /></div>
