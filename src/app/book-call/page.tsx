@@ -1,5 +1,8 @@
 "use client";
 
+/* Booking page — Morningside design language (see src/components/ms.ts).
+ * Copy + GHL calendar embed unchanged; visual system swapped. */
+
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Shield, TrendingUp, Clock, Check } from "lucide-react";
@@ -7,6 +10,7 @@ import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import HeroTrustBar from "@/components/HeroTrustBar";
 import NovadaLogo from "@/components/NovadaLogo";
+import { GRAD_TEXT, MS_CARD, HERO_WASH } from "@/components/ms";
 
 export default function BookPage() {
   useEffect(() => {
@@ -21,7 +25,7 @@ export default function BookPage() {
   }, []);
 
   return (
-    <>
+    <div className="bg-[#080808] font-poppins">
       {/* NOTE: No conversion tag on /book-call by design.
           This page is linked directly from site CTAs (a page view here is
           NOT a form submission), so firing a conversion on load would count
@@ -31,8 +35,8 @@ export default function BookPage() {
           "lead form submit" conversion is wanted, configure it on the GHL
           form's submission/redirect, not on this directly-linkable page. */}
 
-      {/* ── Header (same shape as /linkedin-growth's fixed header) ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-b border-white/[0.06]">
+      {/* ── Header ── */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
         <div className="max-container section-padding">
           <div className="flex items-center h-20">
             <Link href="/" className="flex items-center"><NovadaLogo variant="light" className="h-12 w-auto" /></Link>
@@ -43,15 +47,14 @@ export default function BookPage() {
 
       {/* Hero */}
       <section className="relative pt-12 pb-10 md:pt-16 md:pb-14 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
+        <div className={HERO_WASH} />
 
         <div className="relative max-container section-padding text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6"
+            className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6"
           >
             Limited Spots Available
           </motion.p>
@@ -59,16 +62,15 @@ export default function BookPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance max-w-3xl mx-auto"
+            className={`text-4xl sm:text-5xl md:text-6xl font-light tracking-tight leading-[1.12] text-balance max-w-3xl mx-auto pb-1 ${GRAD_TEXT}`}
           >
-            Book Your Free{" "}
-            <span className="gradient-text">Strategy Call</span>
+            Book your free strategy call.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-base text-white/80 max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-base md:text-lg font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed"
           >
             In 30 minutes, we&apos;ll map where the biggest return is hiding in
             your business — pipeline, operations, or both — and show you
@@ -78,23 +80,23 @@ export default function BookPage() {
           {/* STANDALONE TRUST BAR — prominent social proof */}
           <HeroTrustBar className="mt-8" />
 
-          {/* Trust signals (call-feature reassurance, Trustpilot moved into HeroTrustBar above) */}
+          {/* Trust signals */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-white/30"
+            className="font-supply mt-8 flex flex-wrap items-center justify-center gap-6 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40"
           >
             <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4" />
+              <Clock className="w-3.5 h-3.5" />
               <span>30 Min Call</span>
             </div>
             <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4" />
+              <Shield className="w-3.5 h-3.5" />
               <span>No Obligation</span>
             </div>
             <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4" />
+              <TrendingUp className="w-3.5 h-3.5" />
               <span>A Clear Plan Either Way</span>
             </div>
           </motion.div>
@@ -107,8 +109,8 @@ export default function BookPage() {
           <div className="grid lg:grid-cols-3 gap-10 items-start">
             {/* What to expect — left sidebar */}
             <AnimatedSection direction="left" className="lg:col-span-1">
-              <div className="glass-card gradient-border p-8 sticky top-28">
-                <h3 className="text-lg font-semibold text-white mb-6">
+              <div className={`${MS_CARD} p-8 sticky top-28`}>
+                <h3 className="text-lg font-normal text-[#EDECE4] mb-6">
                   What to Expect
                 </h3>
                 <div className="space-y-5">
@@ -120,16 +122,16 @@ export default function BookPage() {
                     "No pressure — just an honest conversation",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-ember-500 mt-0.5 flex-shrink-0" />
-                      <span className="text-base text-white/80 leading-relaxed">
+                      <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                      <span className="text-base font-light text-[#EDECE4]/75 leading-relaxed">
                         {item}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-white/[0.06]">
-                  <p className="text-base text-white/80 leading-relaxed">
+                <div className="mt-8 pt-6 border-t border-[#EDECE4]/[0.08]">
+                  <p className="text-base font-light text-[#EDECE4]/65 leading-relaxed">
                     This call is best suited for established business owners —
                     whether you need more qualified sales meetings, want AI to
                     take over manual operations, or want to know where AI pays
@@ -143,7 +145,7 @@ export default function BookPage() {
             <div className="lg:col-span-2">
               <div
                 id="calendar-embed"
-                className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-2 min-h-[600px] relative z-10"
+                className="rounded-xl border border-[#EDECE4]/[0.08] bg-white/[0.02] p-2 min-h-[600px] relative z-10"
               >
                 <iframe
                   src="https://link.novadatech.com/widget/booking/8j4TVe5uOcjxbNfVC3kp"
@@ -166,29 +168,34 @@ export default function BookPage() {
       <section className="section-padding pb-20">
         <div className="max-container max-w-3xl">
           <AnimatedSection className="text-center">
-            <div className="glass-card p-8 border border-white/[0.04]">
-              <div className="flex text-ember-500 justify-center text-sm mb-4">
+            <div className="border-t border-b border-dashed border-[#EDECE4]/15 px-6 py-12">
+              <div className="text-[#0CC481] text-sm mb-5 tracking-widest">
                 ★★★★★
               </div>
-              <p className="text-white/80 leading-relaxed max-w-lg mx-auto italic">
-                &ldquo;We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.&rdquo;
+              <p className="text-lg font-light text-[#EDECE4] leading-relaxed max-w-lg mx-auto">
+                &ldquo;We went from{" "}
+                <span className="text-[#0CC481]">
+                  $42K to $91K monthly in under 60 days.
+                </span>{" "}
+                The pipeline became predictable for the first time — we could
+                forecast and hire with confidence.&rdquo;
               </p>
-              <div className="mt-5 flex items-center justify-center gap-3">
+              <div className="mt-6 flex items-center justify-center gap-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/testimonials/jeff-verticalaccess.jpg"
                   alt="Jeff"
-                  className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                  className="w-10 h-10 rounded-full object-cover flex-shrink-0 grayscale"
                 />
                 <div className="text-left">
-                  <p className="text-sm font-semibold text-white">Jeff</p>
-                  <p className="text-xs text-white/50">Founder, Vertical Axis</p>
+                  <p className="text-sm text-[#EDECE4]">Jeff</p>
+                  <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">Founder, Vertical Axis</p>
                 </div>
               </div>
             </div>
           </AnimatedSection>
         </div>
       </section>
-    </>
+    </div>
   );
 }

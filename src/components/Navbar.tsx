@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, TrendingUp, Cog, Compass } from "lucide-react";
 import NovadaLogo from "./NovadaLogo";
@@ -73,8 +72,8 @@ function SolutionsDropdown() {
                   onClick={() => setOpen(false)}
                   className="flex items-start gap-3.5 p-3.5 rounded-xl hover:bg-white/[0.05] transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-ember-500/15 transition-colors">
-                    <s.icon className="w-5 h-5 text-ember-500" />
+                  <div className="w-10 h-10 rounded-xl bg-[#0CC481]/10 border border-[#0CC481]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#0CC481]/15 transition-colors">
+                    <s.icon className="w-5 h-5 text-[#0CC481]" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-white leading-snug">
@@ -97,12 +96,10 @@ function SolutionsDropdown() {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  // Home runs the Morningside-style design test: its nav CTA matches the
-  // white rectangular button treatment instead of the ember pill.
-  const isHome = usePathname() === "/";
-  const ctaClass = isHome
-    ? "inline-flex items-center rounded bg-white px-5 py-2.5 text-sm font-medium uppercase tracking-[0.08em] text-black transition-colors hover:bg-white/85"
-    : "btn-primary text-sm !px-6 !py-3";
+  // Morningside design language sitewide: white rectangular uppercase CTA
+  // (matches their GET IN TOUCH button).
+  const ctaClass =
+    "font-supply inline-flex items-center rounded bg-white px-5 py-2.5 text-sm font-medium uppercase tracking-[0.08em] text-black transition-colors hover:bg-white/85";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -139,7 +136,7 @@ export default function Navbar() {
                 className="text-sm text-white/70 hover:text-white font-medium transition-colors duration-300 relative group"
               >
                 Home
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-ember-500 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0CC481] transition-all duration-300 group-hover:w-full" />
               </Link>
 
               <SolutionsDropdown />
@@ -151,7 +148,7 @@ export default function Navbar() {
                   className="text-sm text-white/70 hover:text-white font-medium transition-colors duration-300 relative group"
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-ember-500 transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#0CC481] transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
 
@@ -202,7 +199,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.08 }}
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-semibold mb-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#0CC481]/80 font-semibold mb-4">
                   Solutions
                 </p>
                 <div className="flex flex-col gap-4 pl-1">
@@ -213,8 +210,8 @@ export default function Navbar() {
                       onClick={() => setMobileOpen(false)}
                       className="flex items-center gap-3 group"
                     >
-                      <div className="w-9 h-9 rounded-lg bg-ember-500/10 border border-ember-500/20 flex items-center justify-center flex-shrink-0">
-                        <s.icon className="w-4 h-4 text-ember-500" />
+                      <div className="w-9 h-9 rounded-lg bg-[#0CC481]/10 border border-[#0CC481]/20 flex items-center justify-center flex-shrink-0">
+                        <s.icon className="w-4 h-4 text-[#0CC481]" />
                       </div>
                       <span className="text-lg font-semibold text-white/80 group-hover:text-white transition-colors">
                         {s.label}

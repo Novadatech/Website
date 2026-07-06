@@ -1,8 +1,11 @@
 "use client";
 
+/* About — Morningside design language (see src/components/ms.ts).
+ * Copy unchanged from the coherence pass; visual system swapped. */
+
 import { motion } from "framer-motion";
 import {
-  ArrowRight,
+  ChevronRight,
   Target,
   Shield,
   Zap,
@@ -12,10 +15,16 @@ import {
   Globe,
   Award,
   Star,
-  Quote,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import Image from "next/image";
+import {
+  GRAD_TEXT,
+  BTN_WHITE,
+  MS_CARD,
+  HERO_WASH,
+  GLOW_BOTTOM,
+} from "@/components/ms";
 
 const BOOKING_URL = "/book-call";
 
@@ -23,8 +32,7 @@ const BOOKING_URL = "/book-call";
 function AboutHero() {
   return (
     <section className="relative min-h-[70vh] flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
+      <div className={HERO_WASH} />
 
       <div className="relative max-container section-padding pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="max-w-3xl">
@@ -32,7 +40,7 @@ function AboutHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6"
+            className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6"
           >
             About Novada Tech
           </motion.p>
@@ -41,18 +49,18 @@ function AboutHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight"
+            className={`text-4xl sm:text-5xl md:text-7xl font-light tracking-tight leading-[1.1] pb-1 ${GRAD_TEXT}`}
           >
-            Built for Growth.
+            Built for growth.
             <br />
-            <span className="gradient-text">Engineered for Results.</span>
+            Engineered for results.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8 text-base md:text-xl text-white/80 max-w-2xl leading-relaxed"
+            className="mt-8 text-base md:text-xl font-light text-[#EDECE4]/80 max-w-2xl leading-relaxed"
           >
             We&apos;re the AI consulting &amp; automation agency that builds,
             runs, and scales the systems behind predictable revenue and lean
@@ -65,10 +73,10 @@ function AboutHero() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="mt-8 flex items-center gap-4"
           >
-            <div className="flex text-ember-500 text-sm tracking-wider">
+            <div className="flex text-[#0CC481] text-sm tracking-wider">
               ★★★★★
             </div>
-            <span className="text-sm text-white/80">
+            <span className="font-supply text-xs uppercase tracking-[0.15em] text-[#EDECE4]/50">
               Trusted by 350+ businesses across 30+ industries
             </span>
           </motion.div>
@@ -81,19 +89,17 @@ function AboutHero() {
 /* ─── ORIGIN STORY ─── */
 function OriginStory() {
   return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
+    <section className="section-spacing section-padding">
       <div className="max-container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
               Why We Exist
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-              We Saw a Broken System.
-              <br />
-              <span className="text-white/50">So We Built a Better One.</span>
+            <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight leading-tight pb-1 ${GRAD_TEXT}`}>
+              We saw a broken system. So we built a better one.
             </h2>
-            <div className="mt-8 space-y-5 text-white/80 leading-relaxed">
+            <div className="mt-8 space-y-5 font-light text-[#EDECE4]/75 leading-relaxed">
               <p>
                 Most businesses are stuck in the same cycle: hire an agency, pay
                 retainers, hope for results, start over. The model is broken
@@ -102,7 +108,7 @@ function OriginStory() {
               </p>
               <p>
                 We started Novada Tech with a different premise:{" "}
-                <span className="text-white font-medium">
+                <span className="text-[#EDECE4]">
                   what if you stopped renting campaigns and started owning
                   systems — with the results guaranteed in writing?
                 </span>
@@ -127,42 +133,41 @@ function OriginStory() {
 
           <AnimatedSection direction="right" delay={0.2}>
             <div className="relative">
-              {/* Decorative card stack representing the "system" */}
-              <div className="glass-card gradient-border p-10 space-y-8">
+              <div className={`${MS_CARD} p-10 space-y-8`}>
                 <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60">
+                  <p className="font-supply text-[10px] uppercase tracking-[0.2em] text-[#0CC481]/70">
                     Founded
                   </p>
-                  <p className="text-2xl font-bold text-white">Melbourne, Australia</p>
+                  <p className="text-2xl font-light text-[#EDECE4]">Melbourne, Australia</p>
                 </div>
-                <div className="w-full h-px bg-white/[0.06]" />
+                <div className="w-full h-px bg-[#EDECE4]/[0.08]" />
                 <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60">
+                  <p className="font-supply text-[10px] uppercase tracking-[0.2em] text-[#0CC481]/70">
                     Model
                   </p>
-                  <p className="text-2xl font-bold text-white">
+                  <p className="text-2xl font-light text-[#EDECE4]">
                     Guarantee-Backed Systems
                   </p>
                 </div>
-                <div className="w-full h-px bg-white/[0.06]" />
+                <div className="w-full h-px bg-[#EDECE4]/[0.08]" />
                 <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60">
+                  <p className="font-supply text-[10px] uppercase tracking-[0.2em] text-[#0CC481]/70">
                     Focus
                   </p>
-                  <p className="text-2xl font-bold text-white">
+                  <p className="text-2xl font-light text-[#EDECE4]">
                     Growth, Operations &amp; AI Systems
                   </p>
                 </div>
-                <div className="w-full h-px bg-white/[0.06]" />
+                <div className="w-full h-px bg-[#EDECE4]/[0.08]" />
                 <div className="space-y-3">
-                  <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60">
+                  <p className="font-supply text-[10px] uppercase tracking-[0.2em] text-[#0CC481]/70">
                     Track Record
                   </p>
                   <a
                     href="https://www.trustpilot.com/review/novadatech.com.au"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity underline underline-offset-2 decoration-ember-500/30"
+                    className={`text-2xl font-light ${GRAD_TEXT} hover:opacity-80 transition-opacity`}
                   >
                     4.9★ · 77+ Reviews
                   </a>
@@ -179,15 +184,14 @@ function OriginStory() {
 /* ─── FOUNDER MESSAGE ─── */
 function FounderMessage() {
   return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
+    <section className="section-spacing section-padding">
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-14">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">
             Meet the Founder
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            A Message From{" "}
-            <span className="gradient-text">Ade Eni</span>
+          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>
+            A message from Ade Eni
           </h2>
         </AnimatedSection>
 
@@ -195,7 +199,7 @@ function FounderMessage() {
           {/* Photo column */}
           <AnimatedSection direction="left" className="lg:col-span-2">
             <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl">
+              <div className="relative rounded-xl overflow-hidden border border-[#EDECE4]/10 shadow-2xl">
                 <Image
                   src="/founder.jpg"
                   alt="Ade Eni — Founder & CEO, Novada Tech"
@@ -204,22 +208,21 @@ function FounderMessage() {
                   className="w-full object-cover object-top"
                   unoptimized
                 />
-                {/* Gradient overlay at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-surface-950 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080808] to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-lg font-bold text-white">Ade Eni</p>
-                  <p className="text-sm text-ember-500">Founder & CEO, Novada Tech</p>
+                  <p className="text-lg font-normal text-white">Ade Eni</p>
+                  <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#0CC481]">Founder &amp; CEO, Novada Tech</p>
                 </div>
               </div>
 
               {/* Floating stat card */}
-              <div className="absolute -right-4 top-8 glass-card gradient-border px-5 py-4 hidden lg:block">
-                <p className="text-2xl font-bold gradient-text">$45.7M+</p>
-                <p className="text-xs text-white/80 mt-0.5">Revenue Generated</p>
+              <div className={`absolute -right-4 top-8 ${MS_CARD} px-5 py-4 hidden lg:block`}>
+                <p className={`text-2xl font-light ${GRAD_TEXT}`}>$45.7M+</p>
+                <p className="font-supply text-[9px] uppercase tracking-[0.15em] text-[#EDECE4]/50 mt-1">Revenue Generated</p>
               </div>
-              <div className="absolute -right-4 bottom-20 glass-card gradient-border px-5 py-4 hidden lg:block">
-                <p className="text-2xl font-bold gradient-text">350+</p>
-                <p className="text-xs text-white/80 mt-0.5">Businesses Scaled</p>
+              <div className={`absolute -right-4 bottom-20 ${MS_CARD} px-5 py-4 hidden lg:block`}>
+                <p className={`text-2xl font-light ${GRAD_TEXT}`}>350+</p>
+                <p className="font-supply text-[9px] uppercase tracking-[0.15em] text-[#EDECE4]/50 mt-1">Businesses Scaled</p>
               </div>
             </div>
           </AnimatedSection>
@@ -227,9 +230,7 @@ function FounderMessage() {
           {/* Message column */}
           <AnimatedSection direction="right" delay={0.2} className="lg:col-span-3">
             <div className="relative">
-              <Quote className="w-10 h-10 text-ember-500/20 mb-6" />
-
-              <div className="space-y-5 text-white/80 leading-relaxed text-base">
+              <div className="space-y-5 font-light text-[#EDECE4]/75 leading-relaxed text-base">
                 <p>
                   I started Novada Tech after watching too many talented business owners — people with genuinely exceptional products and services — struggle to grow. Not because their offer wasn&apos;t good enough, but because they had no reliable, predictable system to bring in clients.
                 </p>
@@ -238,7 +239,7 @@ function FounderMessage() {
                 </p>
                 <p>
                   The problem wasn&apos;t effort. The problem was the model. Traditional agencies sell campaigns you rent — the moment you stop paying, the results stop. So I asked a different question:{" "}
-                  <span className="text-white font-medium">
+                  <span className="text-[#EDECE4]">
                     what if a business could own the system that grows it — with the results guaranteed in writing?
                   </span>
                 </p>
@@ -246,18 +247,18 @@ function FounderMessage() {
                   That question became Novada Tech. It started with Growth Infrastructure — a guarantee-backed system that fills calendars with qualified sales meetings. Then our partners asked us to point the same engineering at their operations: the quoting, admin, and manual work quietly eating their margins. Today we build AI systems across both sides of the business.
                 </p>
                 <p>
-                  So far, we&apos;ve helped over <span className="text-white font-medium">350 business owners</span> across <span className="text-white font-medium">30+ industries</span> generate more than <span className="text-white font-medium">$45.7M in revenue</span> — and we&apos;re just getting started.
+                  So far, we&apos;ve helped over <span className="text-[#EDECE4]">350 business owners</span> across <span className="text-[#EDECE4]">30+ industries</span> generate more than <span className="text-[#EDECE4]">$45.7M in revenue</span> — and we&apos;re just getting started.
                 </p>
                 <p>
                   If you&apos;re a business owner tired of inconsistent revenue or operations that can&apos;t scale — I&apos;d love to have a conversation.
                 </p>
               </div>
 
-              <div className="mt-8 pt-8 border-t border-white/[0.06] flex items-center gap-5">
+              <div className="mt-8 pt-8 border-t border-[#EDECE4]/[0.08] flex items-center gap-5">
                 <div>
-                  <p className="text-white font-semibold text-lg">Ade Eni</p>
-                  <p className="text-sm text-white/80">Founder & CEO, Novada Tech</p>
-                  <div className="flex text-ember-500 text-sm mt-1">★★★★★</div>
+                  <p className="text-[#EDECE4] text-lg">Ade Eni</p>
+                  <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/50">Founder &amp; CEO, Novada Tech</p>
+                  <div className="flex text-[#0CC481] text-sm mt-1">★★★★★</div>
                 </div>
               </div>
             </div>
@@ -294,40 +295,40 @@ function Journey() {
   ];
 
   return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/40 to-surface-950">
+    <section className="section-spacing section-padding">
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
             The Journey
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            How We Got Here
+          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>
+            How we got here
           </h2>
         </AnimatedSection>
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-ember-500/40 via-ember-500/10 to-transparent" />
+          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#0CC481]/40 via-[#0CC481]/10 to-transparent" />
 
           <div className="space-y-12">
             {milestones.map((item, i) => (
               <AnimatedSection key={i} delay={i * 0.15}>
                 <div className="flex gap-6 md:gap-10 group">
                   <div className="relative flex-shrink-0">
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-ember-500/20 to-ember-500/5 border border-ember-500/20 flex items-center justify-center group-hover:border-ember-500/40 group-hover:from-ember-500/30 transition-all duration-500">
-                      <span className="text-ember-500 font-bold text-sm">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl border border-[#0CC481]/30 bg-[#080808] flex items-center justify-center group-hover:border-[#0CC481]/60 transition-all duration-500">
+                      <span className="font-supply text-[#0CC481] text-sm">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
                   </div>
                   <div className="pb-2">
-                    <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60 mb-2">
+                    <p className="font-supply text-[10px] uppercase tracking-[0.2em] text-[#0CC481]/70 mb-2">
                       {item.period}
                     </p>
-                    <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight">
+                    <h3 className="text-xl md:text-2xl font-light text-[#EDECE4] leading-tight">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-base text-white/80 leading-relaxed">
+                    <p className="mt-3 text-base font-light text-[#EDECE4]/65 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -377,28 +378,26 @@ function Principles() {
   ];
 
   return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
+    <section className="section-spacing section-padding">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
             What We Stand For
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            The Principles Behind the Partnership
+          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>
+            The principles behind the partnership
           </h2>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {principles.map((item, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="glass-card gradient-border p-8 h-full group hover:bg-white/[0.04] transition-all duration-500">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-ember-500/10 to-accent-blue/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <item.icon className="w-6 h-6 text-ember-500" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-3">
+              <div className={`${MS_CARD} p-8 h-full hover:border-[#EDECE4]/[0.14] transition-colors`}>
+                <item.icon className="w-6 h-6 text-[#0CC481] mb-5" strokeWidth={1.4} />
+                <h3 className="text-lg font-normal text-[#EDECE4] mb-3">
                   {item.title}
                 </h3>
-                <p className="text-base text-white/80 leading-relaxed">
+                <p className="text-base font-light text-[#EDECE4]/65 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -420,40 +419,32 @@ function TrustStats() {
   ];
 
   return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/30 to-surface-950">
+    <section className="section-spacing section-padding">
       <div className="max-container">
         <AnimatedSection className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            The Numbers Behind the Trust
+          <h2 className={`inline-block text-3xl md:text-4xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>
+            The numbers behind the trust
           </h2>
         </AnimatedSection>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-4 text-center max-w-5xl mx-auto">
           {stats.map((stat, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
               {stat.href ? (
-                <a href={stat.href} target="_blank" rel="noopener noreferrer" className="block">
-                  <div className="glass-card gradient-border p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500">
-                    <div className="w-12 h-12 rounded-xl bg-ember-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <stat.icon className="w-6 h-6 text-ember-500" />
-                    </div>
-                    <p className="text-4xl md:text-5xl font-bold gradient-text">
-                      {stat.number}
-                    </p>
-                    <p className="mt-2 text-white/80 text-base font-medium underline underline-offset-2 decoration-white/20">
-                      {stat.label} ↗
-                    </p>
-                  </div>
-                </a>
-              ) : (
-                <div className="glass-card gradient-border p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500">
-                  <div className="w-12 h-12 rounded-xl bg-ember-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <stat.icon className="w-6 h-6 text-ember-500" />
-                  </div>
-                  <p className="text-4xl md:text-5xl font-bold gradient-text">
+                <a href={stat.href} target="_blank" rel="noopener noreferrer" className="block group">
+                  <p className="text-4xl md:text-5xl font-normal text-white tracking-tight leading-none group-hover:text-[#0CC481] transition-colors">
                     {stat.number}
                   </p>
-                  <p className="mt-2 text-white/80 text-base font-medium">
+                  <p className="font-supply mt-4 text-[10px] md:text-xs uppercase tracking-[0.18em] text-[#EDECE4]/40 underline underline-offset-4 decoration-[#EDECE4]/15">
+                    {stat.label} ↗
+                  </p>
+                </a>
+              ) : (
+                <div>
+                  <p className="text-4xl md:text-5xl font-normal text-white tracking-tight leading-none">
+                    {stat.number}
+                  </p>
+                  <p className="font-supply mt-4 text-[10px] md:text-xs uppercase tracking-[0.18em] text-[#EDECE4]/40">
                     {stat.label}
                   </p>
                 </div>
@@ -469,19 +460,17 @@ function TrustStats() {
 /* ─── WHAT MAKES US DIFFERENT ─── */
 function WhatMakesUsDifferent() {
   return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
+    <section className="section-spacing section-padding">
       <div className="max-container max-w-5xl">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
               Why Clients Trust Us
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-              We Don&apos;t Just Promise Results.
-              <br />
-              <span className="text-white/50">We Put Them In Writing.</span>
+            <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight leading-tight pb-1 ${GRAD_TEXT}`}>
+              We don&apos;t just promise results. We put them in writing.
             </h2>
-            <div className="mt-8 space-y-5 text-white/80 leading-relaxed">
+            <div className="mt-8 space-y-5 font-light text-[#EDECE4]/75 leading-relaxed">
               <p>
                 Every agency talks about results. We&apos;re the ones who
                 guarantee them in the agreement — 15+ qualified sales meetings
@@ -504,7 +493,7 @@ function WhatMakesUsDifferent() {
           </AnimatedSection>
 
           <AnimatedSection direction="right" delay={0.2}>
-            <div className="space-y-5">
+            <div className="space-y-4">
               {[
                 {
                   label: "Guaranteed Outcomes",
@@ -525,10 +514,10 @@ function WhatMakesUsDifferent() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="glass-card gradient-border p-6 group hover:bg-white/[0.04] transition-all duration-500"
+                  className="border-t border-[#EDECE4]/10 pt-4 pb-2"
                 >
-                  <h4 className="text-white font-semibold">{item.label}</h4>
-                  <p className="mt-1 text-base text-white/80">{item.desc}</p>
+                  <h4 className="font-supply text-sm uppercase tracking-[0.1em] text-[#EDECE4]">{item.label}</h4>
+                  <p className="mt-2 text-base font-light text-[#EDECE4]/60">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -542,35 +531,27 @@ function WhatMakesUsDifferent() {
 /* ─── ABOUT CTA ─── */
 function AboutCTA() {
   return (
-    <section className="section-spacing section-padding">
-      <div className="max-container">
+    <section className="relative pt-24 pb-32 md:pt-28 md:pb-40 section-padding overflow-hidden">
+      <div className={GLOW_BOTTOM} />
+      <div className="relative max-container text-center">
         <AnimatedSection>
-          <div className="relative rounded-3xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.1)_0%,_transparent_70%)]" />
-
-            <div className="relative px-8 py-16 md:px-16 md:py-24 text-center">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance max-w-3xl mx-auto">
-                Stop Watching.
-                <br />
-                <span className="gradient-text">Start Building.</span>
-              </h2>
-              <p className="mt-6 text-white/80 text-base max-w-xl mx-auto">
-                Whether your next constraint is pipeline, operations, or
-                knowing where AI pays off first — one call is all it takes to
-                see if we&apos;re the right fit.
-              </p>
-              <div className="mt-10">
-                <a href={BOOKING_URL} className="btn-primary text-base">
-                  See If You Qualify
-                  <ArrowRight className="w-5 h-5" />
-                </a>
-              </div>
-              <p className="mt-4 text-sm text-white/30">
-                No pressure. No hard sell. Just a conversation.
-              </p>
-            </div>
+          <h2 className={`text-4xl md:text-7xl font-light tracking-tight leading-[1.12] text-balance max-w-3xl mx-auto pb-2 ${GRAD_TEXT}`}>
+            Stop watching. Start building.
+          </h2>
+          <p className="mt-6 text-lg font-light text-[#EDECE4]/70 max-w-xl mx-auto leading-relaxed">
+            Whether your next constraint is pipeline, operations, or
+            knowing where AI pays off first — one call is all it takes to
+            see if we&apos;re the right fit.
+          </p>
+          <div className="mt-10">
+            <a href={BOOKING_URL} className={BTN_WHITE}>
+              See If You Qualify
+              <ChevronRight className="w-4 h-4" />
+            </a>
           </div>
+          <p className="font-supply mt-8 text-[10px] uppercase tracking-[0.2em] text-[#EDECE4]/35">
+            No pressure · No hard sell · Just a conversation
+          </p>
         </AnimatedSection>
       </div>
     </section>
@@ -580,7 +561,7 @@ function AboutCTA() {
 /* ─── PAGE ─── */
 export default function AboutPage() {
   return (
-    <>
+    <div className="bg-[#080808] font-poppins">
       <AboutHero />
       <OriginStory />
       <FounderMessage />
@@ -589,6 +570,6 @@ export default function AboutPage() {
       <TrustStats />
       <WhatMakesUsDifferent />
       <AboutCTA />
-    </>
+    </div>
   );
 }

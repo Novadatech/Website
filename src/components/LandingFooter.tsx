@@ -6,7 +6,7 @@ import NovadaLogo from "./NovadaLogo";
 
 export default function LandingFooter() {
   return (
-    <footer className="border-t border-white/[0.06] bg-surface-950">
+    <footer className="border-t border-white/[0.06] bg-[#080808]">
       <div className="max-container section-padding py-10">
         <div className="flex flex-col items-center gap-6">
           {/* Logo */}
@@ -19,7 +19,7 @@ export default function LandingFooter() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-white/60 hover:text-white/80 transition-colors"
           >
-            <div className="flex text-ember-500 text-sm">★★★★★</div>
+            <div className="flex text-[#0CC481] text-sm">★★★★★</div>
             <span>4.9 on Trustpilot</span>
             <ExternalLink className="w-3 h-3" />
           </a>

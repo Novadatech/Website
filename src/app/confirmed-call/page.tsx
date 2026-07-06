@@ -1,17 +1,21 @@
 "use client";
 
+/* Booking confirmation — Morningside design language. Conversion tracking
+ * scripts preserved byte-for-byte; visual system swapped. */
+
 import { motion } from "framer-motion";
 import { CheckCircle, Mail, Calendar, Clock, MessageSquare } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import Link from "next/link";
 import Script from "next/script";
 import NovadaLogo from "@/components/NovadaLogo";
+import { GRAD_TEXT, MS_CARD, HERO_WASH } from "@/components/ms";
 
 export default function ConfirmationPage() {
   return (
-    <>
-      {/* ── Header (same shape as /linkedin-growth's fixed header) ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-b border-white/[0.06]">
+    <div className="bg-[#080808] font-poppins">
+      {/* ── Header ── */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
         <div className="max-container section-padding">
           <div className="flex items-center h-20">
             <Link href="/" className="flex items-center"><NovadaLogo variant="light" className="h-12 w-auto" /></Link>
@@ -31,7 +35,7 @@ gtag('event', 'conversion', {'send_to': 'AW-16650862607/YmXMCIr3pYocEI-A4IM-'});
       </Script>
 
       {/* Meta Pixel: Schedule conversion (booked strategy call).
-          Re-runs the pixel bootstrap defensively — the IIFE's `if(f.fbq)return`
+          Re-runs the pixel bootstrap defensively — the IIFE's \`if(f.fbq)return\`
           guard makes it a no-op if the base pixel from layout.tsx already
           loaded, and sets up the fbq queue if this runs first. Either way the
           Schedule event is never lost to a script load-order race. Repeated
@@ -51,8 +55,7 @@ fbq('track', 'Schedule');`}
 
       {/* Hero */}
       <section className="relative min-h-[70vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
+        <div className={HERO_WASH} />
 
         <div className="relative max-container section-padding text-center py-32">
           {/* Success icon */}
@@ -62,8 +65,8 @@ fbq('track', 'Schedule');`}
             transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
             className="mx-auto mb-8"
           >
-            <div className="w-24 h-24 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto">
-              <CheckCircle className="w-12 h-12 text-emerald-400" />
+            <div className="w-24 h-24 rounded-full border border-[#0CC481]/30 flex items-center justify-center mx-auto">
+              <CheckCircle className="w-12 h-12 text-[#0CC481]" strokeWidth={1.2} />
             </div>
           </motion.div>
 
@@ -71,19 +74,18 @@ fbq('track', 'Schedule');`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance"
+            className={`text-4xl sm:text-5xl md:text-6xl font-light tracking-tight leading-[1.12] text-balance max-w-3xl mx-auto pb-1 ${GRAD_TEXT}`}
           >
-            You&apos;re All Set!{" "}
-            <span className="gradient-text">Your Strategy Call is Booked.</span>
+            You&apos;re all set. Your strategy call is booked.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-6 text-base text-white/80 max-w-2xl mx-auto leading-relaxed"
+            className="mt-6 text-base md:text-lg font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed"
           >
-            Thank you for booking a Growth Strategy Call with Novada Tech.
+            Thank you for booking a Strategy Call with Novada Tech.
             We&apos;re looking forward to learning about your business and showing
             you how we can help you scale.
           </motion.p>
@@ -91,13 +93,13 @@ fbq('track', 'Schedule');`}
       </section>
 
       {/* Next Steps */}
-      <section className="section-padding pb-20">
+      <section className="section-padding pb-24">
         <div className="max-container max-w-3xl">
           <AnimatedSection className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">
               What Happens Next
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold">
+            <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>
               Here&apos;s What to Expect
             </h2>
           </AnimatedSection>
@@ -126,15 +128,13 @@ fbq('track', 'Schedule');`}
               },
             ].map((step, i) => (
               <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="glass-card gradient-border p-7 flex gap-5 items-start group hover:bg-white/[0.04] transition-all duration-500">
-                  <div className="w-12 h-12 rounded-xl bg-ember-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <step.icon className="w-6 h-6 text-ember-500" />
-                  </div>
+                <div className={`${MS_CARD} p-7 flex gap-5 items-start hover:border-[#EDECE4]/[0.14] transition-colors`}>
+                  <step.icon className="w-6 h-6 text-[#0CC481] flex-shrink-0 mt-1" strokeWidth={1.4} />
                   <div>
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-lg font-normal text-[#EDECE4]">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-base text-white/80 leading-relaxed">
+                    <p className="mt-2 text-base font-light text-[#EDECE4]/65 leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -145,6 +145,6 @@ fbq('track', 'Schedule');`}
         </div>
       </section>
 
-    </>
+    </div>
   );
 }

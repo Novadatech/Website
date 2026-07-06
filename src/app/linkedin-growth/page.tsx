@@ -1,10 +1,14 @@
 "use client";
 
+/* Growth Infrastructure lander — Morningside design language (see
+ * src/components/ms.ts). Copy unchanged from the pre-reskin version;
+ * only the visual system was swapped. */
+
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  CheckCircle, Shield, Star, TrendingUp, Users,
-  Clock, ChevronDown, ArrowRight,
+  CheckCircle, Shield, TrendingUp, Users,
+  Clock, ChevronDown, ChevronRight,
   Play, Video, Send, CalendarCheck,
   XCircle,
 } from "lucide-react";
@@ -12,6 +16,14 @@ import Link from "next/link";
 import NovadaLogo from "@/components/NovadaLogo";
 import HeroTrustBar from "@/components/HeroTrustBar";
 import { CASE_STUDIES } from "@/app/case-study/data";
+import {
+  GRAD_TEXT,
+  BTN_WHITE,
+  LINK_GREEN,
+  MS_CARD,
+  HERO_WASH,
+  GLOW_BOTTOM,
+} from "@/components/ms";
 
 const LINKEDIN_CASE_STUDIES = CASE_STUDIES.filter(
   (c) => c.offering === "linkedin-growth",
@@ -219,12 +231,12 @@ const FAQS = [
 // ─── FAQ Item ───────────────────────────────────────────────────────────────
 function FAQItem({ q, a }: { q: string; a: string }) {
   return (
-    <details className="group glass-card border border-white/[0.06] rounded-xl overflow-hidden">
-      <summary className="flex items-center justify-between gap-4 p-5 cursor-pointer list-none">
-        <span className="text-sm font-medium text-white">{q}</span>
-        <ChevronDown className="w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
+    <details className="group border-b border-[#EDECE4]/10">
+      <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none">
+        <span className="text-base font-light text-[#EDECE4]">{q}</span>
+        <ChevronDown className="w-4 h-4 text-[#EDECE4]/50 flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
       </summary>
-      <div className="px-5 pb-5 text-base text-white/80 leading-relaxed border-t border-white/[0.05] pt-4">{a}</div>
+      <div className="pb-6 text-base font-light text-[#EDECE4]/70 leading-relaxed">{a}</div>
     </details>
   );
 }
@@ -241,15 +253,15 @@ function StickyCtaBar() {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-t border-white/[0.08] py-3 px-5 sm:px-8">
+        <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-t border-[#EDECE4]/10 py-3 px-5 sm:px-8">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-white">15+ qualified meetings every month</p>
-              <p className="text-xs text-white/50">Authority + Outreach. Guaranteed or you don&apos;t pay.</p>
+              <p className="text-sm font-light text-[#EDECE4]">15+ qualified meetings every month</p>
+              <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">Authority + Outreach · Guaranteed or you don&apos;t pay</p>
             </div>
-            <button onClick={scrollToForm} className="btn-primary-dark-red text-sm py-3 px-6 w-full sm:w-auto">
+            <button onClick={scrollToForm} className={`${BTN_WHITE} !py-2.5 w-full sm:w-auto justify-center`}>
               See If You Qualify
-              <ArrowRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </motion.div>
@@ -261,15 +273,15 @@ function StickyCtaBar() {
 // ─── Page ───────────────────────────────────────────────────────────────────
 export default function LinkedinGrowthPage() {
   return (
-    <div className="bg-surface-950">
+    <div className="bg-[#080808] font-poppins">
       {/* ── Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-surface-950/95 backdrop-blur-xl border-b border-white/[0.06]">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
         <div className="max-container section-padding">
           <div className="flex items-center justify-between h-20">
             <Link href="/linkedin-growth" className="flex items-center"><NovadaLogo variant="light" className="h-12 w-auto" /></Link>
-            <button onClick={scrollToForm} className="btn-primary-dark-red text-sm py-2.5 px-5">
+            <button onClick={scrollToForm} className={`${BTN_WHITE} !py-2.5 !px-5`}>
               See If You Qualify
-              <ArrowRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -277,52 +289,47 @@ export default function LinkedinGrowthPage() {
       <div className="h-20" />
 
       {/* ── HERO ── */}
-      <section className="relative pt-6 pb-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.14)_0%,_transparent_60%)]" />
+      <section className="relative pt-10 pb-0 overflow-hidden">
+        <div className={HERO_WASH} />
         <div className="relative max-container section-padding text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-4">
-            <span className="w-2 h-2 rounded-full bg-ember-500 animate-pulse-slow" />
-            <span className="text-sm text-ember-500 font-medium">Growth Infrastructure&trade; — For B2B Businesses That Want To Scale On LinkedIn</span>
-          </motion.div>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6">
+            Growth Infrastructure&trade; — For B2B Businesses That Want To Scale On LinkedIn
+          </motion.p>
 
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
-            350+ B2B Founders Use Our{" "}<span className="text-ember-500">System</span>{" "}To Book{" "}<span className="text-ember-500">15+ Qualified Sales Meetings</span>{" "}Every Month — Without Ads, SDRs, Or chasing prospects.
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className={`text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1.15] text-balance max-w-4xl mx-auto pb-1 ${GRAD_TEXT}`}>
+            350+ B2B Founders Use Our System To Book 15+ Qualified Sales Meetings Every Month — Without Ads, SDRs, Or chasing prospects.
           </motion.h1>
 
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-6 text-lg md:text-xl font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed">
             We position you as the trusted expert in your niche so high-value decision-makers already trust you before the sales conversation even begins. Then we leverage that authority through our proven outbound system to consistently generate 15+ qualified sales meetings every month. No paid ads. No guesswork. Backed by our 90-Day Money-Back Guarantee.
           </motion.p>
 
           {/* Hero Trust Bar */}
-          <HeroTrustBar className="mt-7" />
+          <HeroTrustBar className="mt-8" />
 
           {/* Above-fold CTA */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-6">
-            <button onClick={scrollToForm} className="btn-primary-dark-red text-base md:text-lg px-10 py-4">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }} className="mt-8">
+            <button onClick={scrollToForm} className={`${BTN_WHITE} text-base !px-9 !py-4`}>
               See If You Qualify
-              <ArrowRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           </motion.div>
         </div>
       </section>
 
       {/* ── VSL ── */}
-      <section className="section-padding pt-8 pb-24 md:pb-32">
+      <section className="section-padding pt-12 pb-24 md:pb-32">
         <div className="max-container max-w-3xl">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }}>
-            <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
-              <Play className="w-3.5 h-3.5 text-ember-500" />
+            <div className="flex items-center justify-center gap-2 mb-3 text-sm font-light text-[#EDECE4]/50">
+              <Play className="w-3.5 h-3.5 text-[#0CC481]" />
               <span>Watch the 2-min overview</span>
             </div>
-            <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl" style={{ paddingBottom: "56.25%" }}>
+            <div className="relative rounded-xl overflow-hidden border border-[#EDECE4]/10 shadow-2xl" style={{ paddingBottom: "56.25%" }}>
               <iframe src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1&rel=0" title="How LinkedIn Growth System works" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }} />
             </div>
-            <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
-              <div className="w-5 h-5 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-[8px] font-bold text-ember-400">A</span>
-              </div>
-              <span>Presented by <span className="text-white/60 font-medium">Ade</span> — Novada Tech</span>
+            <div className="mt-3 flex items-center justify-center gap-2 text-xs font-light text-[#EDECE4]/40">
+              <span>Presented by <span className="text-[#EDECE4]/70">Ade</span> — Novada Tech</span>
             </div>
           </motion.div>
         </div>
@@ -339,8 +346,8 @@ export default function LinkedinGrowthPage() {
               { num: "$0", label: "Ad Spend Required" },
             ].map((s, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
-                <p className="text-3xl md:text-5xl font-bold text-ember-500 tracking-tight leading-none">{s.num}</p>
-                <p className="mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-white/45 font-medium">{s.label}</p>
+                <p className="text-3xl md:text-5xl font-normal text-white tracking-tight leading-none">{s.num}</p>
+                <p className="font-supply mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-[#EDECE4]/40">{s.label}</p>
               </motion.div>
             ))}
           </div>
@@ -351,8 +358,8 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding pb-24 md:pb-32">
         <div className="max-container">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Real Operators · Real Results</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Founders Already Running The System</h2>
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">Real Operators · Real Results</p>
+            <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>Founders Already Running The System</h2>
           </div>
 
           {/* Same card layout as /case-study, filtered to LinkedIn-Growth cases */}
@@ -364,7 +371,7 @@ export default function LinkedinGrowthPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: (i % 2) * 0.08 }}
-                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors"
+                className={`${MS_CARD} overflow-hidden flex flex-col hover:border-[#EDECE4]/[0.14] transition-colors`}
               >
                 <div className="relative w-full aspect-video bg-black overflow-hidden">
                   <iframe
@@ -378,16 +385,13 @@ export default function LinkedinGrowthPage() {
                 </div>
 
                 <div className="p-6 flex flex-col flex-1">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-ember-500/80 font-semibold mb-3">{c.offeringLabel}</p>
-                  <p className="text-base md:text-lg font-semibold text-white leading-snug mb-4">{c.cardHeadline}</p>
-                  <p className="text-xs text-white/45 mb-5">{c.customerName} — {c.customerRole}, {c.customerCompany}</p>
+                  <p className="font-supply text-[10px] uppercase tracking-[0.18em] text-[#EDECE4]/40 mb-3">{c.offeringLabel}</p>
+                  <p className="text-base md:text-lg font-light text-[#EDECE4] leading-snug mb-4">{c.cardHeadline}</p>
+                  <p className="text-xs font-light text-[#EDECE4]/45 mb-5">{c.customerName} — {c.customerRole}, {c.customerCompany}</p>
                   <div className="mt-auto">
-                    <Link
-                      href={`/case-study/${c.slug}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-ember-500 hover:text-ember-400 transition-colors group/cta"
-                    >
+                    <Link href={`/case-study/${c.slug}`} className={`${LINK_GREEN} group/cta`}>
                       View Case Study
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover/cta:translate-x-0.5" />
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover/cta:translate-x-0.5" />
                     </Link>
                   </div>
                 </div>
@@ -401,28 +405,26 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding pb-24 md:pb-32">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">What You Walk Away With</p>
-            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">Inside The LinkedIn Growth System&trade; Partnership</h2>
-            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">Live in 14 days. 15+ qualified meetings by month one. If we don&apos;t deliver — you don&apos;t pay.</p>
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">What You Walk Away With</p>
+            <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight leading-tight pb-1 ${GRAD_TEXT}`}>Inside The LinkedIn Growth System&trade; Partnership</h2>
+            <p className="mt-4 text-base font-light text-[#EDECE4]/70 max-w-2xl mx-auto leading-relaxed">Live in 14 days. 15+ qualified meetings by month one. If we don&apos;t deliver — you don&apos;t pay.</p>
           </div>
 
           {/* Featured outcome — the guarantee */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl border border-ember-500/25 bg-gradient-to-br from-ember-500/[0.08] via-ember-500/[0.02] to-transparent p-8 md:p-10 mb-6 overflow-hidden">
-            <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-ember-500/10 blur-3xl pointer-events-none" />
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className={`relative ${MS_CARD} p-8 md:p-10 mb-6 overflow-hidden`}>
+            <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-[#0CC481]/10 blur-3xl pointer-events-none" />
             <div className="relative grid md:grid-cols-5 gap-8 md:gap-10 items-center">
               <div className="md:col-span-2">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-ember-500/15 border border-ember-500/35 flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-ember-500" />
-                  </div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-ember-500/85 font-semibold">The Guarantee</p>
+                  <Shield className="w-5 h-5 text-[#0CC481]" />
+                  <p className="font-supply text-xs uppercase tracking-[0.18em] text-[#0CC481]">The Guarantee</p>
                 </div>
-                <p className="text-6xl md:text-7xl font-bold text-white tracking-tight leading-none">{OUTCOMES_FEATURED.metric}</p>
-                <p className="mt-3 text-lg text-white/80 font-medium leading-snug">{OUTCOMES_FEATURED.metricLabel}</p>
+                <p className={`text-6xl md:text-7xl font-extralight tracking-tight leading-none pb-1 ${GRAD_TEXT}`}>{OUTCOMES_FEATURED.metric}</p>
+                <p className="mt-3 text-lg font-light text-[#EDECE4]/80 leading-snug">{OUTCOMES_FEATURED.metricLabel}</p>
               </div>
-              <div className="md:col-span-3 md:border-l md:border-white/[0.10] md:pl-10">
-                <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-4">{OUTCOMES_FEATURED.title}</h3>
-                <p className="text-base text-white/75 leading-relaxed">{OUTCOMES_FEATURED.desc}</p>
+              <div className="md:col-span-3 md:border-l md:border-[#EDECE4]/10 md:pl-10">
+                <h3 className="text-xl md:text-2xl font-light text-[#EDECE4] leading-snug mb-4">{OUTCOMES_FEATURED.title}</h3>
+                <p className="text-base font-light text-[#EDECE4]/70 leading-relaxed">{OUTCOMES_FEATURED.desc}</p>
               </div>
             </div>
           </motion.div>
@@ -430,20 +432,18 @@ export default function LinkedinGrowthPage() {
           {/* Supporting outcome tiles */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {OUTCOMES_GRID.map((o, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors">
-                <div className="w-11 h-11 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-4 group-hover:bg-ember-500/15 transition-colors">
-                  <o.icon className="w-5 h-5 text-ember-500" />
-                </div>
-                <h4 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">{o.title}</h4>
-                <p className="text-sm text-white/65 leading-relaxed">{o.desc}</p>
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className={`group ${MS_CARD} p-6 hover:border-[#EDECE4]/[0.14] transition-colors`}>
+                <o.icon className="w-6 h-6 text-[#0CC481] mb-4" strokeWidth={1.4} />
+                <h4 className="text-base md:text-lg font-normal text-[#EDECE4] mb-2 leading-snug">{o.title}</h4>
+                <p className="text-sm font-light text-[#EDECE4]/60 leading-relaxed">{o.desc}</p>
               </motion.div>
             ))}
           </div>
 
           <div className="mt-12 text-center">
-            <button onClick={scrollToForm} className="btn-primary-dark-red mx-auto">
+            <button onClick={scrollToForm} className={BTN_WHITE}>
               See If You Qualify
-              <ArrowRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -453,28 +453,26 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">The Real Problem</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">LinkedIn Isn&apos;t Broken. The Way Everyone&apos;s Using It Is.</h2>
-            <p className="mt-3 text-base text-white/70 max-w-2xl mx-auto">If any of these sound familiar, you&apos;re running the 2020 playbook in a 2026 inbox.</p>
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">The Real Problem</p>
+            <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>LinkedIn Isn&apos;t Broken. The Way Everyone&apos;s Using It Is.</h2>
+            <p className="mt-3 text-base font-light text-[#EDECE4]/70 max-w-2xl mx-auto">If any of these sound familiar, you&apos;re running the 2020 playbook in a 2026 inbox.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {PROBLEMS.map((p, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 flex flex-col">
-                <div className="w-12 h-12 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-4">
-                  <p.icon className="w-6 h-6 text-ember-500/80" />
-                </div>
-                <p className="text-xs uppercase tracking-[0.15em] text-ember-500/70 font-semibold mb-2">{p.tag}</p>
-                <h3 className="text-base font-bold text-white mb-2 leading-snug">{p.title}</h3>
-                <p className="text-sm text-white/70 leading-relaxed">{p.desc}</p>
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className={`${MS_CARD} p-6 flex flex-col`}>
+                <p.icon className="w-7 h-7 text-[#EDECE4]/70 mb-4" strokeWidth={1.2} />
+                <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#0CC481]/80 mb-2">{p.tag}</p>
+                <h3 className="text-base font-normal text-[#EDECE4] mb-2 leading-snug">{p.title}</h3>
+                <p className="text-sm font-light text-[#EDECE4]/60 leading-relaxed">{p.desc}</p>
               </motion.div>
             ))}
           </div>
 
           {/* Inline CTA — CTA cadence between sections */}
           <div className="mt-12 text-center">
-            <button onClick={scrollToForm} className="btn-primary-dark-red mx-auto">
+            <button onClick={scrollToForm} className={BTN_WHITE}>
               See If You Qualify
-              <ArrowRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -484,53 +482,52 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">The Authority Difference</p>
-            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">
-              Why Outreach Alone Stopped Working — And{" "}
-              <span className="text-ember-500">What Replaced It.</span>
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">The Authority Difference</p>
+            <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight leading-tight pb-1 ${GRAD_TEXT}`}>
+              Why Outreach Alone Stopped Working — And What Replaced It.
             </h2>
-            <p className="mt-4 text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-lg font-light text-[#EDECE4]/70 max-w-2xl mx-auto leading-relaxed">
               Without authority, your message is one of 100. With authority, you&apos;re the one they were waiting to hear from. Same outreach. Different math.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             {/* Old way */}
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-2xl border border-ember-500/15 bg-ember-500/[0.02]">
-              <p className="text-xs uppercase tracking-[0.2em] text-ember-500/60 font-semibold mb-5">{AUTHORITY_MATH.oldWay.title}</p>
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-7 rounded-xl border border-[#EDECE4]/[0.06] bg-transparent">
+              <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#EDECE4]/40 mb-5">{AUTHORITY_MATH.oldWay.title}</p>
               <div className="space-y-3 mb-6">
                 {AUTHORITY_MATH.oldWay.rows.map((row, i) => (
-                  <div key={i} className="flex items-start gap-3"><XCircle className="w-4 h-4 text-ember-500/60 mt-0.5 flex-shrink-0" /><span className="text-sm text-white/70 leading-relaxed">{row}</span></div>
+                  <div key={i} className="flex items-start gap-3"><XCircle className="w-4 h-4 text-[#EDECE4]/40 mt-0.5 flex-shrink-0" /><span className="text-sm font-light text-[#EDECE4]/60 leading-relaxed">{row}</span></div>
                 ))}
               </div>
-              <div className="pt-5 border-t border-white/[0.06] space-y-2.5">
+              <div className="pt-5 border-t border-[#EDECE4]/[0.08] space-y-2.5">
                 {AUTHORITY_MATH.oldWay.stats.map((s, i) => (
                   <div key={i} className="flex items-center justify-between text-sm">
-                    <span className="text-white/60">{s.label}</span>
-                    <span className="text-ember-500/80 font-bold">{s.value}</span>
+                    <span className="font-light text-[#EDECE4]/50">{s.label}</span>
+                    <span className="text-[#EDECE4]/70">{s.value}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-5 text-xs text-ember-500/65 font-medium">Brutal math. And reply rates keep falling.</p>
+              <p className="mt-5 text-xs font-light text-[#EDECE4]/45 italic">Brutal math. And reply rates keep falling.</p>
             </motion.div>
 
             {/* New way */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card dark-red-gradient-border p-7">
-              <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-semibold mb-5">{AUTHORITY_MATH.newWay.title}</p>
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className={`${MS_CARD} p-7`}>
+              <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">{AUTHORITY_MATH.newWay.title}</p>
               <div className="space-y-3 mb-6">
                 {AUTHORITY_MATH.newWay.rows.map((row, i) => (
-                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-ember-500 mt-0.5 flex-shrink-0" /><span className="text-sm text-white/85 leading-relaxed font-medium">{row}</span></div>
+                  <div key={i} className="flex items-start gap-3"><CheckCircle className="w-4 h-4 text-[#0CC481] mt-0.5 flex-shrink-0" /><span className="text-sm font-light text-[#EDECE4] leading-relaxed">{row}</span></div>
                 ))}
               </div>
-              <div className="pt-5 border-t border-white/[0.08] space-y-2.5">
+              <div className="pt-5 border-t border-[#EDECE4]/10 space-y-2.5">
                 {AUTHORITY_MATH.newWay.stats.map((s, i) => (
                   <div key={i} className="flex items-center justify-between text-sm">
-                    <span className="text-white/60">{s.label}</span>
-                    <span className="text-ember-500 font-bold">{s.value}</span>
+                    <span className="font-light text-[#EDECE4]/50">{s.label}</span>
+                    <span className="text-[#0CC481]">{s.value}</span>
                   </div>
                 ))}
               </div>
-              <p className="mt-5 text-xs text-ember-500/80 font-medium">Same outreach. ~12x more qualified meetings.</p>
+              <p className="mt-5 text-xs font-light text-[#0CC481]">Same outreach. ~12x more qualified meetings.</p>
             </motion.div>
           </div>
 
@@ -541,18 +538,18 @@ export default function LinkedinGrowthPage() {
               { icon: Send, title: "Targeted Outreach", desc: "Daily, precise outreach to ICP-matched prospects. Reply handling done for you, sequences trained on your voice, optimised weekly." },
               { icon: CalendarCheck, title: "Pre-Qualified Booking", desc: "Only decision-makers with budget and fit make it to your calendar. Pre-qualified, pre-sold, and ready to buy when the call starts." },
             ].map((p, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 h-full">
-                <div className="w-12 h-12 rounded-xl bg-ember-500/10 flex items-center justify-center mb-4"><p.icon className="w-6 h-6 text-ember-500" /></div>
-                <h3 className="text-base font-semibold text-white mb-2">{p.title}</h3>
-                <p className="text-sm text-white/70 leading-relaxed">{p.desc}</p>
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className={`${MS_CARD} p-6 h-full`}>
+                <p.icon className="w-6 h-6 text-[#0CC481] mb-4" strokeWidth={1.4} />
+                <h3 className="text-base font-normal text-[#EDECE4] mb-2">{p.title}</h3>
+                <p className="text-sm font-light text-[#EDECE4]/60 leading-relaxed">{p.desc}</p>
               </motion.div>
             ))}
           </div>
 
           <div className="mt-10 text-center">
-            <button onClick={scrollToForm} className="btn-primary-dark-red mx-auto">
+            <button onClick={scrollToForm} className={BTN_WHITE}>
               See If You Qualify
-              <ArrowRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -560,43 +557,41 @@ export default function LinkedinGrowthPage() {
 
       {/* ── HOW IT WORKS ── */}
       <section className="section-padding py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.06)_0%,_transparent_60%)] pointer-events-none" />
         <div className="relative max-container max-w-5xl">
           <div className="mb-14 md:mb-20 text-center">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">How It Works</p>
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">
-              From application to <span className="text-ember-500">live pipeline.</span>
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">How It Works</p>
+            <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight leading-[1.1] text-balance pb-1 ${GRAD_TEXT}`}>
+              From application to live pipeline.
             </h2>
           </div>
 
           {/* Horizontal connected timeline */}
           <div className="relative">
             {/* Dashed connector line behind icons — desktop only */}
-            <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] border-t border-dashed border-ember-500/40" />
+            <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] border-t border-dashed border-[#EDECE4]/15" />
 
             <div className="grid md:grid-cols-3 gap-y-12 md:gap-x-6">
               {HOW_IT_WORKS.map((step, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12 }} className="relative text-center px-4">
-                  {/* Ember-bordered icon ring */}
-                  <div className="relative z-10 mx-auto w-20 h-20 rounded-full border-2 border-ember-500/60 bg-surface-950 flex items-center justify-center mb-5">
-                    <step.icon className="w-8 h-8 text-ember-500" />
+                  <div className="relative z-10 mx-auto w-20 h-20 rounded-full border border-[#0CC481]/50 bg-[#080808] flex items-center justify-center mb-5">
+                    <step.icon className="w-8 h-8 text-[#0CC481]" strokeWidth={1.2} />
                   </div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-white/45 font-semibold mb-2">
-                    Step {i + 1} <span className="text-ember-500/80">· {step.days}</span>
+                  <p className="font-supply text-xs uppercase tracking-[0.18em] text-[#EDECE4]/45 mb-2">
+                    Step {i + 1} <span className="text-[#0CC481]/80">· {step.days}</span>
                   </p>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">{step.title}</h3>
-                  <p className="text-sm md:text-base text-white/65 leading-relaxed max-w-[280px] mx-auto">{step.desc}</p>
+                  <h3 className="text-lg md:text-xl font-normal text-[#EDECE4] mb-3">{step.title}</h3>
+                  <p className="text-sm md:text-base font-light text-[#EDECE4]/60 leading-relaxed max-w-[280px] mx-auto">{step.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
 
           <div className="mt-14 md:mt-20 text-center">
-            <button onClick={scrollToForm} className="btn-primary-dark-red mx-auto">
+            <button onClick={scrollToForm} className={BTN_WHITE}>
               See If You Qualify
-              <ArrowRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
-            <p className="mt-5 text-xs text-white/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 15+ qualified meetings.</p>
+            <p className="mt-5 text-xs font-light text-[#EDECE4]/40 italic max-w-md mx-auto">Then we keep optimising every month so your calendar stays at 15+ qualified meetings.</p>
           </div>
         </div>
       </section>
@@ -605,39 +600,38 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-28">
         <div className="max-container max-w-5xl">
           <div className="text-center mb-12">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Why This Beats Every Other Option</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              The Difference Between Sending Messages — And{" "}
-              <span className="text-ember-500">Owning Your Industry</span>
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">Why This Beats Every Other Option</p>
+            <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight leading-tight pb-1 ${GRAD_TEXT}`}>
+              The Difference Between Sending Messages — And Owning Your Industry
             </h2>
-            <p className="mt-4 text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-base font-light text-[#EDECE4]/70 max-w-2xl mx-auto leading-relaxed">
               Generic LinkedIn agencies sell volume. DIY drains your time. LinkedIn Growth System&trade; installs a permanent authority engine into your business — and guarantees the result.
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
-            <div className="grid grid-cols-4 bg-white/[0.03] border-b border-white/[0.06]">
+          <div className="overflow-hidden rounded-xl border border-[#EDECE4]/[0.08]">
+            <div className="grid grid-cols-4 bg-white/[0.02] border-b border-[#EDECE4]/[0.08]">
               <div className="p-4 col-span-1" />
-              <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">Generic LinkedIn Agency</p></div>
-              <div className="p-4 text-center"><p className="text-xs md:text-sm font-medium text-white/55">DIY (You)</p></div>
-              <div className="p-4 text-center bg-ember-500/[0.05] border-l border-ember-500/15">
-                <p className="text-xs md:text-sm font-semibold text-ember-500">LinkedIn Growth System&trade;</p>
+              <div className="p-4 text-center"><p className="font-supply text-[10px] md:text-xs uppercase tracking-[0.1em] text-[#EDECE4]/50">Generic LinkedIn Agency</p></div>
+              <div className="p-4 text-center"><p className="font-supply text-[10px] md:text-xs uppercase tracking-[0.1em] text-[#EDECE4]/50">DIY (You)</p></div>
+              <div className="p-4 text-center bg-[#0CC481]/[0.06] border-l border-[#0CC481]/20">
+                <p className="font-supply text-[10px] md:text-xs uppercase tracking-[0.1em] text-[#0CC481]">LinkedIn Growth System&trade;</p>
               </div>
             </div>
             {DIFFERENTIATION.map((row, i) => (
-              <div key={i} className={`grid grid-cols-4 border-b border-white/[0.04] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}>
-                <div className="p-4 flex items-center"><span className="text-xs md:text-sm text-white/60">{row.label}</span></div>
-                <div className="p-4 flex items-center justify-center text-center"><span className="text-sm text-white/55">{row.agency}</span></div>
-                <div className="p-4 flex items-center justify-center text-center"><span className="text-sm text-white/55">{row.diy}</span></div>
-                <div className="p-4 flex items-center justify-center text-center bg-ember-500/[0.04] border-l border-ember-500/10"><span className="text-sm text-ember-500 font-medium">{row.novada}</span></div>
+              <div key={i} className={`grid grid-cols-4 border-b border-[#EDECE4]/[0.05] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}>
+                <div className="p-4 flex items-center"><span className="text-xs md:text-sm font-light text-[#EDECE4]/60">{row.label}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-sm font-light text-[#EDECE4]/50">{row.agency}</span></div>
+                <div className="p-4 flex items-center justify-center text-center"><span className="text-sm font-light text-[#EDECE4]/50">{row.diy}</span></div>
+                <div className="p-4 flex items-center justify-center text-center bg-[#0CC481]/[0.04] border-l border-[#0CC481]/10"><span className="text-sm text-[#0CC481]">{row.novada}</span></div>
               </div>
             ))}
           </div>
 
           <div className="mt-10 text-center">
-            <button onClick={scrollToForm} className="btn-primary-dark-red mx-auto">
+            <button onClick={scrollToForm} className={BTN_WHITE}>
               See If You Qualify
-              <ArrowRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -647,9 +641,9 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-32">
         <div className="max-container">
           <div className="text-center mb-14">
-            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">350+ Businesses · $45.7M+ Client Revenue Generated</p>
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">We build outbound that <span className="text-ember-500">compounds.</span></h2>
-            <p className="mt-5 text-base text-white/55 max-w-xl mx-auto">Every result below is from a named client engagement.</p>
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#EDECE4]/40 mb-4">350+ Businesses · $45.7M+ Client Revenue Generated</p>
+            <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight leading-[1.1] text-balance pb-1 ${GRAD_TEXT}`}>We build outbound that compounds.</h2>
+            <p className="mt-5 text-base font-light text-[#EDECE4]/55 max-w-xl mx-auto">Every result below is from a named client engagement.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -660,85 +654,79 @@ export default function LinkedinGrowthPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: (i % 2) * 0.1 }}
-                className="rounded-3xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col"
+                className={`${MS_CARD} overflow-hidden flex flex-col`}
               >
                 {/* Top: metric + stars + quote */}
                 <div className="p-7 md:p-8">
                   <div className="flex items-baseline gap-2 mb-4 flex-wrap">
-                    <p className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-none">{t.metric}</p>
-                    <p className="text-sm text-white/40 font-medium">/ {t.metricLabel}</p>
+                    <p className="text-4xl md:text-5xl font-extralight text-white tracking-tight leading-none">{t.metric}</p>
+                    <p className="text-sm font-light text-[#EDECE4]/40">/ {t.metricLabel}</p>
                   </div>
-                  <div className="text-ember-500 text-sm mb-4 tracking-widest">{"★★★★★"}</div>
-                  <p className="text-base md:text-lg text-white/90 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
+                  <div className="text-[#0CC481] text-sm mb-4 tracking-widest">{"★★★★★"}</div>
+                  <p className="text-base md:text-lg font-light text-[#EDECE4] leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
                 </div>
 
                 {/* Big customer image */}
-                <div className="relative aspect-[4/5] bg-white/[0.02] overflow-hidden">
+                <div className="relative aspect-[4/5] overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={t.avatar}
                     alt={t.name}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                     loading="lazy"
                   />
                 </div>
 
                 {/* Name + role */}
-                <div className="px-7 md:px-8 py-5 border-t border-white/[0.06]">
-                  <p className="text-base font-semibold text-white">{t.name}</p>
-                  <p className="text-sm text-white/55">{t.role}</p>
+                <div className="px-7 md:px-8 py-5 border-t border-[#EDECE4]/[0.08]">
+                  <p className="text-base text-[#EDECE4]">{t.name}</p>
+                  <p className="font-supply text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40 mt-1">{t.role}</p>
                 </div>
               </motion.article>
             ))}
           </div>
 
           <div className="mt-14 text-center">
-            <button onClick={scrollToForm} className="btn-primary-dark-red mx-auto">
+            <button onClick={scrollToForm} className={BTN_WHITE}>
               See If You Qualify
-              <ArrowRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section className="pt-16 pb-0 section-padding border-t border-white/[0.04]">
+      <section className="pt-16 pb-0 section-padding">
         <div className="max-container max-w-2xl">
           <div className="text-center mb-10">
-            <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">Your Questions Answered</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">The Questions Serious Operators Ask</h2>
+            <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">FAQs</p>
+            <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>The Questions Serious Operators Ask</h2>
           </div>
-          <div className="space-y-3">{FAQS.map((faq, i) => (<FAQItem key={i} q={faq.q} a={faq.a} />))}</div>
+          <div>{FAQS.map((faq, i) => (<FAQItem key={i} q={faq.q} a={faq.a} />))}</div>
         </div>
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="pt-6 pb-16 section-padding">
-        <div className="max-container max-w-3xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-3xl overflow-hidden text-center">
-            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.16)_0%,_transparent_70%)]" />
-            <div className="relative px-8 py-14 md:px-14">
-              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">Performance Guaranteed</p>
-              <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight text-balance">
-                Stop Sending Messages.{" "}
-                <span className="text-ember-500">Start Owning Your Industry.</span>
-              </h2>
-              <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">350+ founders have made the switch from cold outreach to authority + outreach. 15+ qualified meetings every month, guaranteed. Or you don&apos;t pay.</p>
+      <section className="relative pt-24 pb-32 md:pt-28 md:pb-40 section-padding overflow-hidden">
+        <div className={GLOW_BOTTOM} />
+        <div className="relative max-container text-center">
+          <p className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6">Performance Guaranteed</p>
+          <h2 className={`text-3xl md:text-6xl font-light tracking-tight leading-[1.15] text-balance max-w-4xl mx-auto pb-2 ${GRAD_TEXT}`}>
+            Stop Sending Messages. Start Owning Your Industry.
+          </h2>
+          <p className="mt-6 text-lg font-light text-[#EDECE4]/70 max-w-xl mx-auto leading-relaxed">350+ founders have made the switch from cold outreach to authority + outreach. 15+ qualified meetings every month, guaranteed. Or you don&apos;t pay.</p>
 
-              <button onClick={scrollToForm} className="btn-primary-dark-red mt-8 inline-flex text-base">
-                See If You Qualify
-                <ArrowRight className="w-5 h-5" />
-              </button>
+          <button onClick={scrollToForm} className={`${BTN_WHITE} mt-10`}>
+            See If You Qualify
+            <ChevronRight className="w-5 h-5" />
+          </button>
 
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
-                <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 15+ Meetings Guaranteed</span>
-                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"★"} Trustpilot</span></a>
-                <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" /> Written Guarantee</span>
-                <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> 350+ Businesses</span>
-              </div>
-            </div>
-          </motion.div>
+          <div className="font-supply mt-10 flex flex-wrap items-center justify-center gap-6 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/35">
+            <span>15+ Meetings Guaranteed</span>
+            <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="hover:text-[#EDECE4]/70 transition-colors underline underline-offset-4 decoration-[#EDECE4]/20">4.9{"★"} Trustpilot</a>
+            <span>Written Guarantee</span>
+            <span>350+ Businesses</span>
+          </div>
         </div>
       </section>
 

@@ -1,8 +1,10 @@
 "use client";
 
+/* Operations Infrastructure — Morningside design language (see
+ * src/components/ms.ts). Copy unchanged; visual system swapped. */
+
 import { motion } from "framer-motion";
 import {
-  ArrowRight,
   X,
   Check,
   Shield,
@@ -16,10 +18,20 @@ import {
   Workflow,
   ClipboardCheck,
   ChevronDown,
+  ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import { CASE_STUDIES } from "@/app/case-study/data";
+import {
+  GRAD_TEXT,
+  BTN_WHITE,
+  LINK_GREEN,
+  LINK_MUTED,
+  MS_CARD,
+  HERO_WASH,
+  GLOW_BOTTOM,
+} from "@/components/ms";
 
 const BOOKING_URL = "/book-call";
 
@@ -29,37 +41,32 @@ const OPS_CASE_STUDIES = CASE_STUDIES.filter((c) => c.offering === "custom-ai");
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
+      <div className={HERO_WASH} />
 
       <div className="relative max-container section-padding pt-32 pb-16 md:pt-40 md:pb-20 text-center">
-        <motion.div
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-6"
+          className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6"
         >
-          <span className="w-2 h-2 rounded-full bg-ember-500 animate-pulse-slow" />
-          <span className="text-sm text-ember-500 font-medium">
-            Operations Infrastructure&trade; — Custom AI Systems
-          </span>
-        </motion.div>
+          Operations Infrastructure&trade; — Custom AI Systems
+        </motion.p>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
+          className={`text-4xl sm:text-5xl md:text-6xl font-light tracking-tight leading-[1.12] text-balance max-w-4xl mx-auto pb-1 ${GRAD_TEXT}`}
         >
-          Your Best People Are Doing Work{" "}
-          <span className="text-ember-500">A System Should Be Doing.</span>
+          Your best people are doing work a system should be doing.
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-5 text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed"
+          className="mt-6 text-lg md:text-xl font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed"
         >
           We design and build custom AI systems that take over the repetitive
           work slowing your business down — quoting, admin, document handling,
@@ -70,14 +77,15 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-5"
         >
-          <a href={BOOKING_URL} className="btn-primary text-base">
+          <a href={BOOKING_URL} className={BTN_WHITE}>
             See If You Qualify
-            <ArrowRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4" />
           </a>
-          <a href="#results" className="btn-secondary text-base">
+          <a href="#results" className={LINK_MUTED}>
             See Client Results
+            <ChevronRight className="w-4 h-4" />
           </a>
         </motion.div>
 
@@ -85,9 +93,9 @@ function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-6 text-sm text-white/40"
+          className="font-supply mt-8 text-[10px] uppercase tracking-[0.2em] text-[#EDECE4]/35"
         >
-          Built for your business. Run by us. Owned by you.
+          Built for your business · Run by us · Owned by you
         </motion.p>
       </div>
     </section>
@@ -115,10 +123,10 @@ function StatsStrip() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
             >
-              <p className="text-3xl md:text-5xl font-bold text-ember-500 tracking-tight leading-none">
+              <p className="text-3xl md:text-5xl font-normal text-white tracking-tight leading-none">
                 {s.num}
               </p>
-              <p className="mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-white/45 font-medium">
+              <p className="font-supply mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-[#EDECE4]/40">
                 {s.label}
               </p>
             </motion.div>
@@ -153,17 +161,16 @@ function ProblemSection() {
   ];
 
   return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
+    <section className="section-spacing section-padding">
       <div className="max-container">
         <AnimatedSection className="max-w-3xl mx-auto text-center">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
             The Problem
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
-            Your Operations Grew By Accident.{" "}
-            <span className="text-white/40">Now They&apos;re The Ceiling.</span>
+          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight leading-tight text-balance pb-1 ${GRAD_TEXT}`}>
+            Your operations grew by accident. Now they&apos;re the ceiling.
           </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg font-light text-[#EDECE4]/70 max-w-2xl mx-auto">
             Most businesses don&apos;t have a people problem. They have a
             process problem — and it compounds every month you leave it manual.
           </p>
@@ -172,23 +179,21 @@ function ProblemSection() {
         <div className="mt-14 grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {problems.map((p, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="glass-card border border-white/[0.06] rounded-2xl p-7 h-full flex flex-col">
-                <div className="mb-5">
-                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ember-500/10 border border-ember-500/25 text-xs font-medium text-ember-500">
-                    <X className="w-3 h-3" /> {p.tag}
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-3">
+              <div className={`${MS_CARD} p-7 h-full flex flex-col`}>
+                <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#0CC481]/80 mb-3">
+                  {p.tag}
+                </p>
+                <h3 className="text-lg font-normal text-[#EDECE4] mb-3">
                   {p.headline}
                 </h3>
-                <p className="text-base text-white/80 leading-relaxed flex-1">
+                <p className="text-base font-light text-[#EDECE4]/65 leading-relaxed flex-1">
                   {p.body}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {p.pills.map((pill, j) => (
                     <span
                       key={j}
-                      className="text-xs px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-white/50"
+                      className="font-supply text-[10px] uppercase tracking-[0.1em] px-2.5 py-1 rounded border border-[#EDECE4]/[0.08] text-[#EDECE4]/45"
                     >
                       {pill}
                     </span>
@@ -239,17 +244,16 @@ function WhatWeBuild() {
   ];
 
   return (
-    <section className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/40 to-surface-950">
+    <section className="section-spacing section-padding">
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-14">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
             What We Build
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
-            Custom AI Systems.{" "}
-            <span className="text-white/50">Not Off-The-Shelf Tools.</span>
+          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight text-balance pb-1 ${GRAD_TEXT}`}>
+            Custom AI systems. Not off-the-shelf tools.
           </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg font-light text-[#EDECE4]/70 max-w-2xl mx-auto">
             Every build starts with your actual workflow — not a template.
             These are the categories of systems we install most often.
           </p>
@@ -258,14 +262,12 @@ function WhatWeBuild() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {systems.map((item, i) => (
             <AnimatedSection key={i} delay={i * 0.08}>
-              <div className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 h-full hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors">
-                <div className="w-11 h-11 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-4 group-hover:bg-ember-500/15 transition-colors">
-                  <item.icon className="w-5 h-5 text-ember-500" />
-                </div>
-                <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">
+              <div className={`group ${MS_CARD} p-6 h-full hover:border-[#EDECE4]/[0.14] transition-colors`}>
+                <item.icon className="w-6 h-6 text-[#0CC481] mb-4" strokeWidth={1.4} />
+                <h3 className="text-base md:text-lg font-normal text-[#EDECE4] mb-2 leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-sm text-white/65 leading-relaxed">
+                <p className="text-sm font-light text-[#EDECE4]/60 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -274,9 +276,9 @@ function WhatWeBuild() {
         </div>
 
         <AnimatedSection delay={0.3} className="text-center mt-12">
-          <a href={BOOKING_URL} className="btn-primary text-base">
+          <a href={BOOKING_URL} className={BTN_WHITE}>
             See If You Qualify
-            <ArrowRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4" />
           </a>
         </AnimatedSection>
       </div>
@@ -309,34 +311,32 @@ function HowItWorks() {
 
   return (
     <section className="section-spacing section-padding relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.06)_0%,_transparent_60%)] pointer-events-none" />
       <div className="relative max-container max-w-5xl">
         <AnimatedSection className="text-center mb-14 md:mb-20">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
             How It Works
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
-            From bottleneck to{" "}
-            <span className="text-ember-500">running system.</span>
+          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight leading-[1.1] text-balance pb-1 ${GRAD_TEXT}`}>
+            From bottleneck to running system.
           </h2>
         </AnimatedSection>
 
         <div className="relative">
-          <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] border-t border-dashed border-ember-500/40" />
+          <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] border-t border-dashed border-[#EDECE4]/15" />
           <div className="grid md:grid-cols-3 gap-y-12 md:gap-x-6">
             {steps.map((step, i) => (
               <AnimatedSection key={i} delay={i * 0.12}>
                 <div className="relative text-center px-4">
-                  <div className="relative z-10 mx-auto w-20 h-20 rounded-full border-2 border-ember-500/60 bg-surface-950 flex items-center justify-center mb-5">
-                    <step.icon className="w-8 h-8 text-ember-500" />
+                  <div className="relative z-10 mx-auto w-20 h-20 rounded-full border border-[#0CC481]/50 bg-[#080808] flex items-center justify-center mb-5">
+                    <step.icon className="w-8 h-8 text-[#0CC481]" strokeWidth={1.2} />
                   </div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-white/45 font-semibold mb-2">
+                  <p className="font-supply text-xs uppercase tracking-[0.18em] text-[#EDECE4]/45 mb-2">
                     {step.phase}
                   </p>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                  <h3 className="text-lg md:text-xl font-normal text-[#EDECE4] mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-sm md:text-base text-white/65 leading-relaxed max-w-[300px] mx-auto">
+                  <p className="text-sm md:text-base font-light text-[#EDECE4]/60 leading-relaxed max-w-[300px] mx-auto">
                     {step.desc}
                   </p>
                 </div>
@@ -385,38 +385,37 @@ function ComparisonSection() {
   ];
 
   return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
+    <section className="section-spacing section-padding">
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-12">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
             Why Custom Systems
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-balance">
-            Hiring Fixes Today.{" "}
-            <span className="gradient-text">Systems Fix Forever.</span>
+          <h2 className={`inline-block text-3xl md:text-4xl font-light tracking-tight text-balance pb-1 ${GRAD_TEXT}`}>
+            Hiring fixes today. Systems fix forever.
           </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg font-light text-[#EDECE4]/70 max-w-2xl mx-auto">
             There are three ways to deal with an operational bottleneck. Only
             one of them compounds.
           </p>
         </AnimatedSection>
 
         <AnimatedSection>
-          <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
-            <div className="grid grid-cols-4 bg-white/[0.03] border-b border-white/[0.06]">
+          <div className="overflow-hidden rounded-xl border border-[#EDECE4]/[0.08]">
+            <div className="grid grid-cols-4 bg-white/[0.02] border-b border-[#EDECE4]/[0.08]">
               <div className="p-4 col-span-1" />
               <div className="p-4 text-center">
-                <p className="text-xs md:text-sm font-medium text-white/55">
+                <p className="font-supply text-[10px] md:text-xs uppercase tracking-[0.1em] text-[#EDECE4]/50">
                   Hire More Staff
                 </p>
               </div>
               <div className="p-4 text-center">
-                <p className="text-xs md:text-sm font-medium text-white/55">
+                <p className="font-supply text-[10px] md:text-xs uppercase tracking-[0.1em] text-[#EDECE4]/50">
                   Off-The-Shelf Software
                 </p>
               </div>
-              <div className="p-4 text-center bg-ember-500/[0.05] border-l border-ember-500/15">
-                <p className="text-xs md:text-sm font-semibold text-ember-500">
+              <div className="p-4 text-center bg-[#0CC481]/[0.06] border-l border-[#0CC481]/20">
+                <p className="font-supply text-[10px] md:text-xs uppercase tracking-[0.1em] text-[#0CC481]">
                   Operations Infrastructure
                 </p>
               </div>
@@ -424,21 +423,21 @@ function ComparisonSection() {
             {rows.map((row, i) => (
               <div
                 key={i}
-                className={`grid grid-cols-4 border-b border-white/[0.04] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
+                className={`grid grid-cols-4 border-b border-[#EDECE4]/[0.05] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
               >
                 <div className="p-4 flex items-center">
-                  <span className="text-xs md:text-sm text-white/60">
+                  <span className="text-xs md:text-sm font-light text-[#EDECE4]/60">
                     {row.label}
                   </span>
                 </div>
                 <div className="p-4 flex items-center justify-center text-center">
-                  <span className="text-xs text-white/45">{row.hire}</span>
+                  <span className="text-xs font-light text-[#EDECE4]/50">{row.hire}</span>
                 </div>
                 <div className="p-4 flex items-center justify-center text-center">
-                  <span className="text-xs text-white/45">{row.saas}</span>
+                  <span className="text-xs font-light text-[#EDECE4]/50">{row.saas}</span>
                 </div>
-                <div className="p-4 flex items-center justify-center text-center bg-ember-500/[0.04] border-l border-ember-500/10">
-                  <span className="text-xs text-ember-500/90 font-medium">
+                <div className="p-4 flex items-center justify-center text-center bg-[#0CC481]/[0.04] border-l border-[#0CC481]/10">
+                  <span className="text-xs text-[#0CC481]">
                     {row.novada}
                   </span>
                 </div>
@@ -454,16 +453,16 @@ function ComparisonSection() {
 /* ─── CASE STUDIES ─── */
 function OpsCaseStudies() {
   return (
-    <section id="results" className="section-spacing section-padding border-t border-white/[0.04]">
+    <section id="results" className="section-spacing section-padding">
       <div className="max-container">
         <AnimatedSection className="text-center mb-14">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
             Client Results
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
-            Real Operations. <span className="text-ember-500">Real Systems.</span>
+          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight text-balance pb-1 ${GRAD_TEXT}`}>
+            Real operations. Real systems.
           </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg font-light text-[#EDECE4]/70 max-w-2xl mx-auto">
             Four founders who replaced manual bottlenecks with custom AI
             systems — in their own words.
           </p>
@@ -472,7 +471,7 @@ function OpsCaseStudies() {
         <div className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
           {OPS_CASE_STUDIES.map((c, i) => (
             <AnimatedSection key={c.slug} delay={(i % 2) * 0.08}>
-              <article className="rounded-2xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col h-full hover:border-ember-500/30 hover:bg-white/[0.035] transition-colors">
+              <article className={`${MS_CARD} overflow-hidden flex flex-col h-full hover:border-[#EDECE4]/[0.14] transition-colors`}>
                 <div className="relative w-full aspect-video bg-black overflow-hidden">
                   <iframe
                     src={`https://www.youtube.com/embed/${c.videoId}?rel=0`}
@@ -484,22 +483,19 @@ function OpsCaseStudies() {
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-ember-500/80 font-semibold mb-3">
+                  <p className="font-supply text-[10px] uppercase tracking-[0.18em] text-[#EDECE4]/40 mb-3">
                     {c.offeringLabel}
                   </p>
-                  <p className="text-base md:text-lg font-semibold text-white leading-snug mb-4">
+                  <p className="text-base md:text-lg font-light text-[#EDECE4] leading-snug mb-4">
                     {c.cardHeadline}
                   </p>
-                  <p className="text-xs text-white/45 mb-5">
+                  <p className="text-xs font-light text-[#EDECE4]/45 mb-5">
                     {c.customerName} — {c.customerRole}, {c.customerCompany}
                   </p>
                   <div className="mt-auto">
-                    <Link
-                      href={`/case-study/${c.slug}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-ember-500 hover:text-ember-400 transition-colors group/cta"
-                    >
+                    <Link href={`/case-study/${c.slug}`} className={`${LINK_GREEN} group/cta`}>
                       View Case Study
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover/cta:translate-x-0.5" />
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover/cta:translate-x-0.5" />
                     </Link>
                   </div>
                 </div>
@@ -509,12 +505,9 @@ function OpsCaseStudies() {
         </div>
 
         <AnimatedSection delay={0.2} className="text-center mt-10">
-          <Link
-            href="/case-study"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white transition-colors"
-          >
+          <Link href="/case-study" className={LINK_MUTED}>
             View all case studies
-            <ArrowRight className="w-4 h-4" />
+            <ChevronRight className="w-4 h-4" />
           </Link>
         </AnimatedSection>
       </div>
@@ -539,40 +532,40 @@ function WhoItsFor() {
     <section className="section-spacing section-padding">
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-12">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
             Fit Check
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-balance">
-            Built For Operators. <span className="text-white/40">Not Everyone.</span>
+          <h2 className={`inline-block text-3xl md:text-4xl font-light tracking-tight text-balance pb-1 ${GRAD_TEXT}`}>
+            Built for operators. Not everyone.
           </h2>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 gap-6">
           <AnimatedSection>
-            <div className="glass-card gradient-border rounded-2xl p-7 h-full">
-              <p className="text-sm font-semibold text-ember-500 uppercase tracking-[0.15em] mb-5">
+            <div className={`${MS_CARD} p-7 h-full`}>
+              <p className="font-supply text-xs uppercase tracking-[0.15em] text-[#0CC481] mb-5">
                 This is for you if
               </p>
               <div className="space-y-4">
                 {qualifies.map((q, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <p className="text-base text-white/80 leading-relaxed">{q}</p>
+                    <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <p className="text-base font-light text-[#EDECE4]/80 leading-relaxed">{q}</p>
                   </div>
                 ))}
               </div>
             </div>
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
-            <div className="glass-card border border-white/[0.06] rounded-2xl p-7 h-full">
-              <p className="text-sm font-semibold text-white/50 uppercase tracking-[0.15em] mb-5">
+            <div className="rounded-xl border border-[#EDECE4]/[0.06] p-7 h-full">
+              <p className="font-supply text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40 mb-5">
                 This is not for you if
               </p>
               <div className="space-y-4">
                 {notFor.map((q, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <X className="w-5 h-5 text-red-400/60 mt-0.5 flex-shrink-0" />
-                    <p className="text-base text-white/80 leading-relaxed">{q}</p>
+                    <X className="w-5 h-5 text-[#EDECE4]/35 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <p className="text-base font-light text-[#EDECE4]/70 leading-relaxed">{q}</p>
                   </div>
                 ))}
               </div>
@@ -587,12 +580,12 @@ function WhoItsFor() {
 /* ─── FAQ ─── */
 function FAQItem({ q, a }: { q: string; a: string }) {
   return (
-    <details className="group glass-card border border-white/[0.06] rounded-xl overflow-hidden">
-      <summary className="flex items-center justify-between gap-4 p-5 cursor-pointer list-none">
-        <span className="text-sm font-medium text-white">{q}</span>
-        <ChevronDown className="w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
+    <details className="group border-b border-[#EDECE4]/10">
+      <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none">
+        <span className="text-base font-light text-[#EDECE4]">{q}</span>
+        <ChevronDown className="w-4 h-4 text-[#EDECE4]/50 flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
       </summary>
-      <div className="px-5 pb-5 text-base text-white/80 leading-relaxed border-t border-white/[0.05] pt-4">
+      <div className="pb-6 text-base font-light text-[#EDECE4]/70 leading-relaxed">
         {a}
       </div>
     </details>
@@ -636,17 +629,17 @@ function FAQ() {
   ];
 
   return (
-    <section className="pt-16 pb-0 section-padding border-t border-white/[0.04]">
+    <section className="pt-16 pb-0 section-padding">
       <div className="max-container max-w-2xl">
         <AnimatedSection className="text-center mb-10">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-3">
-            Your Questions Answered
+          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">
+            FAQs
           </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-white">
+          <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>
             The Questions Serious Operators Ask
           </h2>
         </AnimatedSection>
-        <div className="space-y-3">
+        <div>
           {faqs.map((faq, i) => (
             <FAQItem key={i} q={faq.q} a={faq.a} />
           ))}
@@ -659,38 +652,29 @@ function FAQ() {
 /* ─── FINAL CTA ─── */
 function FinalCTA() {
   return (
-    <section className="pt-16 pb-16 section-padding">
-      <div className="max-container max-w-3xl">
+    <section className="relative pt-24 pb-32 md:pt-28 md:pb-40 section-padding overflow-hidden">
+      <div className={GLOW_BOTTOM} />
+      <div className="relative max-container text-center">
         <AnimatedSection>
-          <div className="relative rounded-3xl overflow-hidden text-center">
-            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-surface-950" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.14)_0%,_transparent_70%)]" />
-            <div className="relative px-8 py-14 md:px-14">
-              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
-                Stop Renting Hours. Start Owning Systems.
-              </p>
-              <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight text-balance">
-                Find Out What Your Bottlenecks{" "}
-                <span className="text-ember-500">Are Actually Costing You.</span>
-              </h2>
-              <p className="mt-4 text-white/80 text-lg max-w-xl mx-auto leading-relaxed">
-                One call. We&apos;ll tell you which parts of your operation are
-                worth automating, what the return looks like — and whether
-                we&apos;re the right team to build it.
-              </p>
-              <a
-                href={BOOKING_URL}
-                className="btn-primary mt-8 inline-flex text-base"
-              >
-                See If You Qualify
-                <ArrowRight className="w-5 h-5" />
-              </a>
-              <p className="mt-5 text-xs text-white/35 flex items-center justify-center gap-2">
-                <Shield className="w-3 h-3 text-ember-500/60" /> Built for your
-                business. Run by us. Owned by you.
-              </p>
-            </div>
-          </div>
+          <p className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6">
+            Stop Renting Hours. Start Owning Systems.
+          </p>
+          <h2 className={`text-3xl md:text-6xl font-light tracking-tight leading-[1.15] text-balance max-w-4xl mx-auto pb-2 ${GRAD_TEXT}`}>
+            Find out what your bottlenecks are actually costing you.
+          </h2>
+          <p className="mt-6 text-lg font-light text-[#EDECE4]/70 max-w-xl mx-auto leading-relaxed">
+            One call. We&apos;ll tell you which parts of your operation are
+            worth automating, what the return looks like — and whether
+            we&apos;re the right team to build it.
+          </p>
+          <a href={BOOKING_URL} className={`${BTN_WHITE} mt-10`}>
+            See If You Qualify
+            <ChevronRight className="w-5 h-5" />
+          </a>
+          <p className="font-supply mt-10 text-[10px] uppercase tracking-[0.2em] text-[#EDECE4]/35 flex items-center justify-center gap-2">
+            <Shield className="w-3 h-3 text-[#0CC481]/60" /> Built for your
+            business · Run by us · Owned by you
+          </p>
         </AnimatedSection>
       </div>
     </section>
@@ -700,7 +684,7 @@ function FinalCTA() {
 /* ─── PAGE ─── */
 export default function OperationsInfrastructurePage() {
   return (
-    <>
+    <div className="bg-[#080808] font-poppins">
       <Hero />
       <StatsStrip />
       <ProblemSection />
@@ -711,6 +695,6 @@ export default function OperationsInfrastructurePage() {
       <WhoItsFor />
       <FAQ />
       <FinalCTA />
-    </>
+    </div>
   );
 }
