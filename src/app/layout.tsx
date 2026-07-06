@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Inter, Poppins, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import ConditionalNav from "@/components/ConditionalNav";
@@ -18,6 +18,15 @@ const poppins = Poppins({
   weight: ["200", "300", "400", "500"],
   display: "swap",
   variable: "--font-poppins",
+});
+
+// Space Grotesk — stand-in for Morningside's "PP Supply Sans" (labels,
+// buttons, small-caps tags on the home design test).
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-space-grotesk",
 });
 
 export const metadata: Metadata = {
@@ -56,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable} ${spaceGrotesk.variable}`}>
       <head>
         {/* Google Tag Manager — main snippet, in <head> only.
             Using a raw <script> tag (not next/script) so it lives ONLY in

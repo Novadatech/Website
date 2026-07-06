@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, TrendingUp, Cog, Compass } from "lucide-react";
 import NovadaLogo from "./NovadaLogo";
@@ -96,6 +97,12 @@ function SolutionsDropdown() {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Home runs the Morningside-style design test: its nav CTA matches the
+  // white rectangular button treatment instead of the ember pill.
+  const isHome = usePathname() === "/";
+  const ctaClass = isHome
+    ? "inline-flex items-center rounded bg-white px-5 py-2.5 text-sm font-medium uppercase tracking-[0.08em] text-black transition-colors hover:bg-white/85"
+    : "btn-primary text-sm !px-6 !py-3";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -148,7 +155,7 @@ export default function Navbar() {
                 </Link>
               ))}
 
-              <a href={BOOKING_URL} className="btn-primary text-sm !px-6 !py-3">
+              <a href={BOOKING_URL} className={ctaClass}>
                 See If You Qualify
               </a>
             </div>

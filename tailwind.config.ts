@@ -43,6 +43,8 @@ const config: Config = {
         display: ["Inter", "system-ui", "sans-serif"],
         // Poppins light — home page Morningside-style design test.
         poppins: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
+        // Space Grotesk — PP Supply Sans stand-in (labels/buttons on home).
+        supply: ["var(--font-space-grotesk)", "Verdana", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",
