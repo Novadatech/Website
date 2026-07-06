@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/[0.06] bg-surface-950">
       <div className="max-container section-padding py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-6">
             <Link href="/" className="flex items-center">
@@ -27,8 +27,9 @@ export default function Footer() {
               />
             </Link>
             <p className="text-white/80 text-base max-w-md leading-relaxed">
-              We build complete client acquisition systems for businesses ready to scale.
-              You only pay when we deliver results. No retainers. No guesswork.
+              The AI consulting &amp; automation agency behind 350+ Australian
+              businesses. We build systems that grow revenue and cut operating
+              costs — engineered for your business, run by us, owned by you.
             </p>
             <div className="flex items-center gap-2">
               <div className="flex text-ember-500 text-sm">
@@ -37,7 +38,7 @@ export default function Footer() {
                 ))}
               </div>
               <span className="text-white/80 text-base">
-                5.0 on Trustpilot
+                4.9 on Trustpilot
               </span>
             </div>
             {/* Social Icons */}
@@ -55,6 +56,35 @@ export default function Footer() {
                 </a>
               ))}
             </div>
+          </div>
+
+          {/* Solutions */}
+          <div className="space-y-5">
+            <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wider">
+              Solutions
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/linkedin-growth" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                  Growth Infrastructure
+                </Link>
+              </li>
+              <li>
+                <Link href="/operations-infrastructure" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                  Operations Infrastructure
+                </Link>
+              </li>
+              <li>
+                <Link href="/ai-consulting" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                  AI Consulting
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-study" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                  Case Studies
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Navigate */}
@@ -141,7 +171,7 @@ export default function Footer() {
             </Link>
             <span className="text-white/10">|</span>
             <p className="text-xs text-white/20">
-              Results. Growth. Partnership.
+              Revenue Up. Costs Down. Systems You Own.
             </p>
           </div>
         </div>

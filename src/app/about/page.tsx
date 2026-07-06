@@ -17,7 +17,7 @@ import {
 import AnimatedSection from "@/components/AnimatedSection";
 import Image from "next/image";
 
-const BOOKING_URL = "/apply";
+const BOOKING_URL = "/book-call";
 
 /* ─── HERO ─── */
 function AboutHero() {
@@ -54,9 +54,9 @@ function AboutHero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-8 text-base md:text-xl text-white/80 max-w-2xl leading-relaxed"
           >
-            We&apos;re the growth partnership that builds, runs, and scales
-            complete client acquisition systems — so business owners can focus on
-            what they do best while revenue grows predictably.
+            We&apos;re the AI consulting &amp; automation agency that builds,
+            runs, and scales the systems behind predictable revenue and lean
+            operations — so business owners can focus on what they do best.
           </motion.p>
 
           <motion.div
@@ -96,28 +96,31 @@ function OriginStory() {
             <div className="mt-8 space-y-5 text-white/80 leading-relaxed">
               <p>
                 Most businesses are stuck in the same cycle: hire an agency, pay
-                retainers, hope for leads, get inconsistent results, start over.
-                The model is broken because agencies have no skin in the game.
-                They get paid whether you grow or not.
+                retainers, hope for results, start over. The model is broken
+                because agencies sell activity, not outcomes — and the moment
+                you stop paying, everything they built disappears with them.
               </p>
               <p>
                 We started Novada Tech with a different premise:{" "}
                 <span className="text-white font-medium">
-                  what if the people building your acquisition system only got
-                  paid when it actually worked?
+                  what if you stopped renting campaigns and started owning
+                  systems — with the results guaranteed in writing?
                 </span>
               </p>
               <p>
-                That idea became the Growth Partnership — a model where we
-                invest our time, expertise, and systems into your business, and
-                only win when you win. No retainers. No ad spend required. No
-                risk on your side.
+                That premise became our Growth Infrastructure — a system that
+                books 15+ qualified sales meetings every month, backed by a
+                90-day money-back guarantee. And as our partners grew, they
+                asked us to point the same engineering at the other side of
+                their businesses: the manual work eating their margins. That
+                became Operations Infrastructure and our AI consulting practice.
               </p>
               <p>
                 Based in Melbourne and serving businesses across Australia, we
-                combine AI-powered outreach, proven sales frameworks, and
-                dedicated expert closers into one seamless system — built to
-                generate revenue on autopilot.
+                now build AI systems across the whole business — authority and
+                outreach engines that fill calendars, and operations systems
+                that cut costs — installed in your business, run by us, owned
+                by you.
               </p>
             </div>
           </AnimatedSection>
@@ -138,7 +141,7 @@ function OriginStory() {
                     Model
                   </p>
                   <p className="text-2xl font-bold text-white">
-                    Pay-for-Results Partnership
+                    Guarantee-Backed Systems
                   </p>
                 </div>
                 <div className="w-full h-px bg-white/[0.06]" />
@@ -147,7 +150,7 @@ function OriginStory() {
                     Focus
                   </p>
                   <p className="text-2xl font-bold text-white">
-                    Client Acquisition Systems
+                    Growth, Operations &amp; AI Systems
                   </p>
                 </div>
                 <div className="w-full h-px bg-white/[0.06]" />
@@ -161,7 +164,7 @@ function OriginStory() {
                     rel="noopener noreferrer"
                     className="text-2xl font-bold gradient-text hover:opacity-80 transition-opacity underline underline-offset-2 decoration-ember-500/30"
                   >
-                    5.0★ · 77+ Reviews
+                    4.9★ · 77+ Reviews
                   </a>
                 </div>
               </div>
@@ -234,19 +237,19 @@ function FounderMessage() {
                   They were doing everything right. Posting on LinkedIn. Running ads. Attending events. Cold emailing. And still — inconsistent revenue, feast and famine cycles, and an over-reliance on referrals that could dry up overnight.
                 </p>
                 <p>
-                  The problem wasn&apos;t effort. The problem was the model. Traditional agencies charge retainers whether you grow or not. They have no skin in the game. So I asked a different question:{" "}
+                  The problem wasn&apos;t effort. The problem was the model. Traditional agencies sell campaigns you rent — the moment you stop paying, the results stop. So I asked a different question:{" "}
                   <span className="text-white font-medium">
-                    what if the people building your acquisition system only got paid when it actually worked?
+                    what if a business could own the system that grows it — with the results guaranteed in writing?
                   </span>
                 </p>
                 <p>
-                  That question became Novada Tech. We invest our time, our AI systems, and our expert team into your business — and we only win when you win. No retainers. No guesswork. No risk on your side.
+                  That question became Novada Tech. It started with Growth Infrastructure — a guarantee-backed system that fills calendars with qualified sales meetings. Then our partners asked us to point the same engineering at their operations: the quoting, admin, and manual work quietly eating their margins. Today we build AI systems across both sides of the business.
                 </p>
                 <p>
-                  Today, we&apos;ve helped over <span className="text-white font-medium">350 business owners</span> across <span className="text-white font-medium">30+ industries</span> generate more than <span className="text-white font-medium">$45.7M in revenue</span> using our AI-powered client acquisition system. And we&apos;re just getting started.
+                  So far, we&apos;ve helped over <span className="text-white font-medium">350 business owners</span> across <span className="text-white font-medium">30+ industries</span> generate more than <span className="text-white font-medium">$45.7M in revenue</span> — and we&apos;re just getting started.
                 </p>
                 <p>
-                  If you&apos;re a business owner who is tired of inconsistent leads and ready for a system that works — I&apos;d love to have a conversation.
+                  If you&apos;re a business owner tired of inconsistent revenue or operations that can&apos;t scale — I&apos;d love to have a conversation.
                 </p>
               </div>
 
@@ -276,17 +279,17 @@ function Journey() {
     {
       period: "The Decision",
       title: "We Decided to Put Our Money Where Our Mouth Is",
-      desc: "Instead of charging fees and hoping for results, we built a model where our revenue is directly tied to client outcomes. If we don't deliver, we don't eat. That changes everything about how we operate.",
+      desc: "Instead of charging fees and hoping for results, we built systems with the outcome guaranteed in writing — and made sure every system we install stays owned by the client, not held hostage by us.",
     },
     {
       period: "The Build",
-      title: "We Engineered a Complete Acquisition System",
-      desc: "We combined AI-powered outreach, proven conversion frameworks, expert sales closers, and pipeline management into a single, turnkey system — purpose-built to generate predictable revenue for our partners.",
+      title: "We Engineered Systems for Both Sides of the Business",
+      desc: "Growth Infrastructure — authority content, targeted outreach, and pre-qualified bookings that fill calendars. Then Operations Infrastructure — custom AI that takes over quoting, admin, documents, and logistics. One method behind both: diagnose, install, run and scale.",
     },
     {
       period: "Today",
-      title: "350+ Businesses Trust Us to Drive Their Growth",
-      desc: "With a 5.0-star rating across 77+ verified reviews, partnerships spanning 30+ industries, and measurable revenue results for every partner, Novada Tech has become the growth engine Australian businesses rely on.",
+      title: "350+ Businesses Trust Us With Their Systems",
+      desc: "With a 4.9-star rating across 77+ verified reviews and partnerships spanning 30+ industries, Novada Tech has become the AI systems partner Australian businesses rely on — for revenue, for operations, and for knowing where AI pays off first.",
     },
   ];
 
@@ -343,8 +346,8 @@ function Principles() {
   const principles = [
     {
       icon: Shield,
-      title: "Aligned Incentives",
-      desc: "We only get paid when you get paid. Our model eliminates the conflict of interest that plagues the agency world.",
+      title: "Guarantees In Writing",
+      desc: "Our flagship system is backed by a written performance guarantee, and every build is scoped with its projected return shown up front. Accountability isn't a slogan — it's in the agreement.",
     },
     {
       icon: Target,
@@ -410,10 +413,10 @@ function Principles() {
 /* ─── TRUST STATS ─── */
 function TrustStats() {
   const stats = [
-    { icon: Star, number: "5.0★", label: "Trustpilot Rating", href: "https://www.trustpilot.com/review/novadatech.com.au" },
+    { icon: Star, number: "4.9★", label: "Trustpilot Rating", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { icon: Award, number: "77+", label: "Verified Reviews · voluntary", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { icon: Globe, number: "30+", label: "Industries Served" },
-    { icon: TrendingUp, number: "35%", label: "Avg. Revenue Increase" },
+    { icon: TrendingUp, number: "$45.7M+", label: "Client Revenue Generated" },
   ];
 
   return (
@@ -474,26 +477,28 @@ function WhatMakesUsDifferent() {
               Why Clients Trust Us
             </p>
             <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-              We Don&apos;t Just Promise Growth.
+              We Don&apos;t Just Promise Results.
               <br />
-              <span className="text-white/50">We Stake Our Revenue on It.</span>
+              <span className="text-white/50">We Put Them In Writing.</span>
             </h2>
             <div className="mt-8 space-y-5 text-white/80 leading-relaxed">
               <p>
-                Every growth partner talks about results. We&apos;re the ones
-                who only get paid when they happen. Our pay-for-results model
-                means we invest our own resources — time, team, technology —
-                before you see a bill.
+                Every agency talks about results. We&apos;re the ones who
+                guarantee them in the agreement — 15+ qualified sales meetings
+                a month on our flagship system, backed by a 90-day money-back
+                guarantee, and operations builds we only take on when the
+                projected saving clearly outweighs the investment.
               </p>
               <p>
                 That&apos;s not a sales pitch. It&apos;s our business model.
                 And it works because we&apos;ve spent years perfecting the
-                systems, frameworks, and team that make predictable client
-                acquisition possible.
+                systems, frameworks, and team behind predictable growth and
+                lean operations.
               </p>
               <p>
-                When your growth is our growth, the alignment is absolute. No
-                wasted budget. No vanity metrics. Just revenue.
+                And everything we build is installed in your business, on your
+                accounts. If we parted ways tomorrow, the systems stay yours.
+                No hostage-taking. No vanity metrics. Just systems that work.
               </p>
             </div>
           </AnimatedSection>
@@ -502,20 +507,20 @@ function WhatMakesUsDifferent() {
             <div className="space-y-5">
               {[
                 {
-                  label: "Revenue Alignment",
-                  desc: "We only earn when you earn. Our incentives are perfectly aligned with yours.",
+                  label: "Guaranteed Outcomes",
+                  desc: "15+ qualified meetings a month on Growth Infrastructure — backed by a 90-day money-back guarantee, in writing.",
                 },
                 {
                   label: "Proven Systems",
-                  desc: "Every element of our acquisition engine is battle-tested across 30+ industries.",
+                  desc: "Every system we install — growth and operations — is battle-tested across 30+ industries.",
                 },
                 {
                   label: "Expert Team",
-                  desc: "From AI-powered outreach to professional closers — every role is filled by a specialist.",
+                  desc: "From AI-powered outreach to automation engineering — every role is filled by a specialist.",
                 },
                 {
-                  label: "Speed to Results",
-                  desc: "Most partners have qualified meetings on their calendar within 14 days of activation.",
+                  label: "You Own Everything",
+                  desc: "Systems are installed in your business, on your accounts. They keep working whether we're in the room or not.",
                 },
               ].map((item, i) => (
                 <div
@@ -551,8 +556,8 @@ function AboutCTA() {
                 <span className="gradient-text">Start Building.</span>
               </h2>
               <p className="mt-6 text-white/80 text-base max-w-xl mx-auto">
-                If you&apos;re ready for predictable revenue growth without the
-                risk of retainers, let&apos;s talk. One call is all it takes to
+                Whether your next constraint is pipeline, operations, or
+                knowing where AI pays off first — one call is all it takes to
                 see if we&apos;re the right fit.
               </p>
               <div className="mt-10">

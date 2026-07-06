@@ -13,7 +13,6 @@ import {
   TrendingUp,
   Cog,
   Compass,
-  Play,
 } from "lucide-react";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -66,9 +65,10 @@ function Hero() {
           className="mt-6 text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed"
         >
           Novada Tech installs Growth Infrastructure that books 15+ qualified
-          sales meetings a month, and custom AI operations systems that remove
-          your biggest bottlenecks. Engineered for your business. Run by us.
-          Owned by you.
+          sales meetings a month, Operations Infrastructure that removes your
+          biggest bottlenecks, and AI consulting that shows you exactly where
+          AI pays off first. Engineered for your business. Run by us. Owned by
+          you.
         </motion.p>
 
         {/* STANDALONE TRUST BAR — prominent social proof above the CTAs */}
@@ -254,7 +254,7 @@ function ProblemSection() {
 /* ─── STATS / PROOF ─── */
 function ProofSection() {
   const stats = [
-    { number: "77+", label: "Verified 5-Star Reviews", sublabel: "Trustpilot · Reviews are voluntary", href: "https://www.trustpilot.com/review/novadatech.com.au" },
+    { number: "77+", label: "Verified Reviews · 4.9★", sublabel: "Trustpilot · Reviews are voluntary", href: "https://www.trustpilot.com/review/novadatech.com.au" },
     { number: "350+", label: "Businesses Scaled", sublabel: "And Growing" },
     { number: "$45.7M+", label: "Client Revenue Generated", sublabel: "Client Results" },
     { number: "30+", label: "Industries Scaled", sublabel: "Across Australia" },
@@ -316,7 +316,7 @@ function CaseStudies() {
     {
       company: "South Line Media",
       founder: "Tony — Founder",
-      offering: "LinkedIn Growth System™",
+      offering: "Growth Infrastructure™",
       metric: "5x",
       metricLabel: "Monthly Revenue Growth",
       result: "From $20K to $100K+ per month",
@@ -327,7 +327,7 @@ function CaseStudies() {
     {
       company: "Groundwork Ventures",
       founder: "Damian — Founder",
-      offering: "Custom AI Build",
+      offering: "Operations Infrastructure™",
       metric: "80%+",
       metricLabel: "Operational Time Cut",
       result: "Manual workload replaced by AI systems",
@@ -338,7 +338,7 @@ function CaseStudies() {
     {
       company: "Aaronson Investigations",
       founder: "Michael — Founder",
-      offering: "LinkedIn Growth System™",
+      offering: "Growth Infrastructure™",
       metric: "10x",
       metricLabel: "Revenue Growth In 30 Days",
       result: "Discovery calls arriving pre-sold",
@@ -524,14 +524,14 @@ function HowWeWork() {
 
 /* ─── TESTIMONIALS ─── */
 const HOME_VIDEO_TESTIMONIALS = [
-  { id: "CBL83P7OYgI", title: "Nicole — Morasco Media Services", name: "Nicole", company: "Founder, Morasco Media Services" },
+  { id: "CBL83P7OYgI", title: "Nicola — Morasco Media Services", name: "Nicola", company: "Founder, Morasco Media Services" },
   { id: "upgMW2nwwpk", title: "Tony — South Line Media", name: "Tony", company: "Founder, South Line Media" },
   { id: "G44OKPVh3Uk", title: "Michael — Aaronson Investigations", name: "Michael", company: "Founder, Aaronson Investigations" },
   { id: "Ef4YTXOnCP0", title: "Jeff — Vertical Axis", name: "Jeff", company: "Founder, Vertical Axis" },
   { id: "0qabR5mfAfQ", title: "Anthony — Ripple Clarke", name: "Anthony", company: "Founder, Ripple Clarke" },
   { id: "JXEvONrDaOk", title: "Damian — Groundwork Ventures", name: "Damian", company: "Founder, Groundwork Ventures" },
   { id: "O3HUPQyflH8", title: "Jack — House Valley", name: "Jack", company: "Founder, House Valley" },
-  { id: "w5iJNOADdXU", title: "Nate — Larsky Tach and Feed", name: "Nate", company: "Founder, Larsky Tach and Feed" },
+  { id: "w5iJNOADdXU", title: "Nate — Larsky Tack and Feed", name: "Nate", company: "Founder, Larsky Tack and Feed" },
 ];
 
 function HomeVideoSlider() {
@@ -706,267 +706,6 @@ function Testimonials() {
   );
 }
 
-/* ─── WRITTEN TESTIMONIALS (big-photo cards) ─── */
-function WrittenTestimonials() {
-  const testimonials = [
-    {
-      metric: "$91K/mo",
-      metricLabel: "monthly revenue",
-      quote: "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.",
-      name: "Jeff",
-      role: "Founder, Vertical Access",
-      avatar: "/testimonials/jeff-verticalaccess.jpg",
-    },
-    {
-      metric: "4 clients",
-      metricLabel: "in first 45 days",
-      quote: "We'd been burned by two agencies before. This was different — it was a system, not a service. 4 new retainer clients in the first 45 days.",
-      name: "Nicola",
-      role: "Founder, Morasco Media",
-      avatar: "/testimonials/nicola-morasco.jpg",
-    },
-    {
-      metric: "28% → 60%",
-      metricLabel: "discovery call close rate",
-      quote: "Discovery call conversion jumped from 28% to over 60%. The authority content meant prospects arrived already sold — we just confirmed fit.",
-      name: "Michael",
-      role: "Founder, Aaron's Investigation",
-      avatar: "/testimonials/michael-aarons.jpg",
-    },
-    {
-      metric: "6 months",
-      metricLabel: "of meetings in month one",
-      quote: "More qualified meetings in month one than the previous six months combined. The system ran on its own — I went back to delivery.",
-      name: "Jessica",
-      role: "Founder, Jessica Teds Coaching",
-      avatar: "/testimonials/jessica-teds.jpg",
-    },
-  ];
-
-  return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
-      <div className="max-container">
-        <AnimatedSection className="text-center mb-14">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
-            350+ Businesses &middot; $45.7M+ Tracked Revenue
-          </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-balance leading-[1.05]">
-            Real numbers from <span className="text-ember-500">real partners.</span>
-          </h2>
-          <p className="mt-5 text-base text-white/55 max-w-xl mx-auto">
-            Every result below is from a named client engagement.
-          </p>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {testimonials.map((t, i) => (
-            <AnimatedSection key={i} delay={(i % 2) * 0.1}>
-              <article className="rounded-3xl border border-white/[0.08] bg-white/[0.02] overflow-hidden flex flex-col h-full">
-                {/* Top: metric + stars + quote */}
-                <div className="p-7 md:p-8">
-                  <div className="flex items-baseline gap-2 mb-4 flex-wrap">
-                    <p className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-none">{t.metric}</p>
-                    <p className="text-sm text-white/40 font-medium">/ {t.metricLabel}</p>
-                  </div>
-                  <div className="text-ember-500 text-sm mb-4 tracking-widest">{"\u2605\u2605\u2605\u2605\u2605"}</div>
-                  <p className="text-base md:text-lg text-white/90 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
-                </div>
-
-                {/* Big customer image */}
-                <div className="relative aspect-[4/5] bg-white/[0.02] overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Name + role */}
-                <div className="px-7 md:px-8 py-5 border-t border-white/[0.06]">
-                  <p className="text-base font-semibold text-white">{t.name}</p>
-                  <p className="text-sm text-white/55">{t.role}</p>
-                </div>
-              </article>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── COMPARISON ─── */
-function ComparisonSection() {
-  const rows = [
-    { label: "What you buy", agency: "Campaigns & retainers", inhouse: "Salaries + management", novada: "Installed systems you own" },
-    { label: "Results guaranteed", agency: false, inhouse: false, novada: true },
-    { label: "Scope", agency: "Marketing only", inhouse: "One hire, one skill", novada: "Growth + operations + AI" },
-    { label: "Time to value", agency: "60–90 days", inhouse: "3–6 months", novada: "Weeks, not quarters" },
-    { label: "Your time investment", agency: "High", inhouse: "Very high", novada: "Low — we run it" },
-    { label: "Scales without headcount", agency: false, inhouse: false, novada: true },
-  ];
-
-  return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
-      <div className="max-container max-w-4xl">
-        <AnimatedSection className="text-center mb-12">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            Why Novada Tech
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-balance">
-            How We Compare
-          </h2>
-          <p className="mt-4 text-lg text-white/80">
-            Every way of solving growth and operations has a cost. Only one of
-            them leaves you owning the system.
-          </p>
-        </AnimatedSection>
-
-        <AnimatedSection>
-          <div className="rounded-2xl overflow-hidden border border-white/[0.06]">
-            {/* Header */}
-            <div className="grid grid-cols-4 bg-white/[0.03] border-b border-white/[0.06]">
-              <div className="p-4 col-span-1" />
-              <div className="p-4 text-center">
-                <p className="text-sm font-medium text-white/55">Traditional Agency</p>
-              </div>
-              <div className="p-4 text-center">
-                <p className="text-sm font-medium text-white/55">In-House Team</p>
-              </div>
-              <div className="p-4 text-center bg-ember-500/[0.04] border-l border-ember-500/10">
-                <p className="text-sm font-semibold text-ember-500">Novada Tech</p>
-              </div>
-            </div>
-
-            {/* Rows */}
-            {rows.map((row, i) => (
-              <div
-                key={i}
-                className={`grid grid-cols-4 border-b border-white/[0.04] last:border-0 ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
-              >
-                <div className="p-4 flex items-center">
-                  <span className="text-sm text-white/60">{row.label}</span>
-                </div>
-                <div className="p-4 flex items-center justify-center">
-                  {typeof row.agency === "boolean" ? (
-                    row.agency ? (
-                      <Check className="w-4 h-4 text-emerald-400" />
-                    ) : (
-                      <X className="w-4 h-4 text-red-400/50" />
-                    )
-                  ) : (
-                    <span className="text-sm text-white/50 text-center">{row.agency}</span>
-                  )}
-                </div>
-                <div className="p-4 flex items-center justify-center">
-                  {typeof row.inhouse === "boolean" ? (
-                    row.inhouse ? (
-                      <Check className="w-4 h-4 text-emerald-400" />
-                    ) : (
-                      <X className="w-4 h-4 text-red-400/50" />
-                    )
-                  ) : (
-                    <span className="text-sm text-white/50 text-center">{row.inhouse}</span>
-                  )}
-                </div>
-                <div className="p-4 flex items-center justify-center bg-ember-500/[0.04] border-l border-ember-500/10">
-                  {typeof row.novada === "boolean" ? (
-                    row.novada ? (
-                      <Check className="w-4 h-4 text-ember-500" />
-                    ) : (
-                      <X className="w-4 h-4 text-red-400/50" />
-                    )
-                  ) : (
-                    <span className="text-xs text-ember-500/80 font-medium text-center">{row.novada}</span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection delay={0.2} className="text-center mt-10">
-          <a href={BOOKING_URL} className="btn-primary text-base">
-            See If You Qualify
-            <ArrowRight className="w-5 h-5" />
-          </a>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-}
-
-/* ─── HOW TO START ─── */
-function HowToStart() {
-  const steps = [
-    {
-      num: "1",
-      title: "Apply for a Strategy Call",
-      desc: "We look at your business — offer, market, operations — and identify where the biggest return is hiding: pipeline, costs, or both.",
-    },
-    {
-      num: "2",
-      title: "Receive Your Plan",
-      desc: "You'll get a clear plan for the system we'd install — growth infrastructure, operations automation, or an audit-first roadmap — and what it should return.",
-    },
-    {
-      num: "3",
-      title: "We Build. You Scale.",
-      desc: "If we're a fit, we build the system into your business and run it for you — while you stay focused on delivery.",
-    },
-  ];
-
-  return (
-    <section className="py-16 section-padding bg-gradient-to-b from-surface-950 via-zinc-900/30 to-surface-950">
-      <div className="max-container max-w-4xl">
-        <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            Getting Started
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
-            Three Steps to Predictable Growth
-          </h2>
-          <p className="mt-4 text-lg text-white/80">
-            We only work with a small number of partners each quarter.
-          </p>
-        </AnimatedSection>
-
-        <div className="space-y-6">
-          {steps.map((step, i) => (
-            <AnimatedSection key={i} delay={i * 0.15}>
-              <div className="glass-card gradient-border p-8 flex gap-6 items-start group hover:bg-white/[0.04] transition-all duration-500">
-                <div className="w-14 h-14 rounded-2xl bg-ember-500 flex items-center justify-center text-white font-bold text-xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  {step.num}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-white">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-white/80 text-base leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        <AnimatedSection delay={0.4} className="text-center mt-12">
-          <a href={BOOKING_URL} className="btn-primary text-base">
-            See If You Qualify
-            <ArrowRight className="w-5 h-5" />
-          </a>
-          <p className="mt-4 text-base text-white/80">
-            Spots limited — selective partner program
-          </p>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-}
-
 /* ─── FAQ ─── */
 function FAQ() {
   const faqs = [
@@ -1121,55 +860,6 @@ function FinalCTA() {
   );
 }
 
-/* ─── VSL SECTION ─── */
-function VSLSection() {
-  return (
-    <section className="section-padding pb-0">
-      <div className="max-container max-w-4xl">
-        <AnimatedSection className="text-center mb-10">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">
-            Our Flagship System
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-white">
-            Watch How We Generate High-Value Clients{" "}
-            <span className="gradient-text">for Your Business</span>
-          </h2>
-        </AnimatedSection>
-
-        <AnimatedSection>
-          <div className="flex items-center justify-center gap-2 mb-3 text-sm text-white/50">
-            <Play className="w-3.5 h-3.5 text-ember-500" />
-            <span>Watch the 2-min overview</span>
-          </div>
-          <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl"
-            style={{ paddingBottom: "56.25%" }}>
-            <iframe
-              src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1&rel=0"
-              title="Novada Tech — How We Generate High-Value Clients"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                border: "none",
-              }}
-            />
-          </div>
-          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/40">
-            <div className="w-5 h-5 rounded-full bg-ember-500/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-[8px] font-bold text-ember-400">A</span>
-            </div>
-            <span>Presented by <span className="text-white/60 font-medium">Ade</span> — Novada Tech</span>
-          </div>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-}
-
 /* ─── STICKY CTA BAR ─── */
 function StickyCtaBar() {
   const [visible, setVisible] = useState(false);
@@ -1205,14 +895,12 @@ export default function HomePage() {
     <>
       <Hero />
       <SolutionsRouter />
-      <VSLSection />
       <ProblemSection />
+      <HowWeWork />
       <ProofSection />
       <CaseStudies />
       <TrustBar />
-      <HowWeWork />
       <Testimonials />
-      <WrittenTestimonials />
       <section className="section-padding py-16 border-t border-white/[0.04]">
         <div className="max-container text-center">
           <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
@@ -1235,8 +923,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <ComparisonSection />
-      <HowToStart />
       <FAQ />
       <FinalCTA />
       <StickyCtaBar />

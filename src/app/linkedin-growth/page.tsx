@@ -152,7 +152,7 @@ const TESTIMONIALS = [
     metricLabel: "monthly revenue",
     quote: "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.",
     name: "Jeff",
-    role: "Founder, Vertical Access",
+    role: "Founder, Vertical Axis",
     avatar: "/testimonials/jeff-verticalaccess.jpg",
   },
   {
@@ -168,7 +168,7 @@ const TESTIMONIALS = [
     metricLabel: "discovery call close rate",
     quote: "Discovery call conversion jumped from 28% to over 60%. The authority content meant prospects arrived already sold — we just confirmed fit.",
     name: "Michael",
-    role: "Founder, Aaron's Investigation",
+    role: "Founder, Aaronson Investigations",
     avatar: "/testimonials/michael-aarons.jpg",
   },
   {
@@ -204,7 +204,7 @@ const FAQS = [
   },
   {
     q: "What does the guarantee actually mean?",
-    a: "If we don't deliver 15+ qualified sales meetings in any given month, you don't pay us for that month. A qualified meeting is with a decision-maker who matches your ICP, has budget for your offer, and has confirmed interest — agreed in writing before activation. Not invented after the fact. It's written into the agreement, not a marketing line.",
+    a: "If we don't deliver 15+ qualified sales meetings, our 90-Day Money-Back Guarantee applies — you get your investment back. A qualified meeting is with a decision-maker who matches your ICP, has budget for your offer, and has confirmed interest — agreed in writing before activation. Not invented after the fact. It's written into the agreement, not a marketing line.",
   },
   {
     q: "How quickly will I see meetings booked?",
@@ -283,7 +283,7 @@ export default function LinkedinGrowthPage() {
         <div className="relative max-container section-padding text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-4">
             <span className="w-2 h-2 rounded-full bg-ember-500 animate-pulse-slow" />
-            <span className="text-sm text-ember-500 font-medium">For B2B service businesses that want to scale on LinkedIn</span>
+            <span className="text-sm text-ember-500 font-medium">Growth Infrastructure&trade; — For B2B Businesses That Want To Scale On LinkedIn</span>
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto">
@@ -333,7 +333,7 @@ export default function LinkedinGrowthPage() {
         <div className="max-container max-w-5xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
             {[
-              { num: "$45.7M+", label: "Tracked Pipeline Generated" },
+              { num: "$45.7M+", label: "Client Revenue Generated" },
               { num: "15+", label: "Qualified Meetings Monthly" },
               { num: "14 days", label: "Avg Time To First Meeting" },
               { num: "$0", label: "Ad Spend Required" },
@@ -647,7 +647,7 @@ export default function LinkedinGrowthPage() {
       <section className="section-padding py-24 md:py-32">
         <div className="max-container">
           <div className="text-center mb-14">
-            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">350+ Businesses · $45.7M+ Tracked Revenue</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-4">350+ Businesses · $45.7M+ Client Revenue Generated</p>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.05] text-balance">We build outbound that <span className="text-ember-500">compounds.</span></h2>
             <p className="mt-5 text-base text-white/55 max-w-xl mx-auto">Every result below is from a named client engagement.</p>
           </div>
@@ -733,7 +733,7 @@ export default function LinkedinGrowthPage() {
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
                 <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 15+ Meetings Guaranteed</span>
-                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">5.0{"★"} Trustpilot</span></a>
+                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"★"} Trustpilot</span></a>
                 <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" /> Written Guarantee</span>
                 <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> 350+ Businesses</span>
               </div>

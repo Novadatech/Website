@@ -62,7 +62,7 @@ export default function BookPage() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance max-w-3xl mx-auto"
           >
             Book Your Free{" "}
-            <span className="gradient-text">Growth Strategy Call</span>
+            <span className="gradient-text">Strategy Call</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -70,7 +70,9 @@ export default function BookPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 text-base text-white/80 max-w-2xl mx-auto leading-relaxed"
           >
-            In 30 minutes, we will show you exactly how we generate 15+ qualified sales calls every month for your business.
+            In 30 minutes, we&apos;ll map where the biggest return is hiding in
+            your business — pipeline, operations, or both — and show you
+            exactly which system gets you there.
           </motion.p>
 
           {/* STANDALONE TRUST BAR — prominent social proof */}
@@ -93,7 +95,7 @@ export default function BookPage() {
             </div>
             <div className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
-              <span>Results in 14 Days</span>
+              <span>A Clear Plan Either Way</span>
             </div>
           </motion.div>
         </div>
@@ -111,10 +113,10 @@ export default function BookPage() {
                 </h3>
                 <div className="space-y-5">
                   {[
-                    "We'll review your current offer and positioning",
-                    "Identify your ideal client acquisition strategy",
-                    "Map out a clear growth plan for your business",
-                    "Determine if a Growth Partnership is the right fit",
+                    "We'll review your business — offer, market, and operations",
+                    "Identify your biggest constraint: pipeline, costs, or clarity on AI",
+                    "Map which system fits: Growth Infrastructure, Operations Infrastructure, or an AI audit",
+                    "Give you a clear plan with expected returns — yours either way",
                     "No pressure — just an honest conversation",
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
@@ -128,9 +130,10 @@ export default function BookPage() {
 
                 <div className="mt-8 pt-6 border-t border-white/[0.06]">
                   <p className="text-base text-white/80 leading-relaxed">
-                    This call is best suited for business owners selling
-                    high-value services ($3K+) who are ready to scale with
-                    a proven system.
+                    This call is best suited for established business owners —
+                    whether you need more qualified sales meetings, want AI to
+                    take over manual operations, or want to know where AI pays
+                    off first.
                   </p>
                 </div>
               </div>
@@ -179,7 +182,7 @@ export default function BookPage() {
                 />
                 <div className="text-left">
                   <p className="text-sm font-semibold text-white">Jeff</p>
-                  <p className="text-xs text-white/50">Founder, Vertical Access</p>
+                  <p className="text-xs text-white/50">Founder, Vertical Axis</p>
                 </div>
               </div>
             </div>

@@ -155,8 +155,8 @@ export default function CaseStudyIndexPage() {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <p className="mt-5 text-xs text-white/35 flex items-center justify-center gap-2">
-                <Play className="w-3 h-3 text-ember-500/60" /> Performance
-                guaranteed. If we don&apos;t deliver — you don&apos;t pay.
+                <Play className="w-3 h-3 text-ember-500/60" /> Rated 4.9 on
+                Trustpilot from 77+ verified reviews.
               </p>
             </div>
           </motion.div>

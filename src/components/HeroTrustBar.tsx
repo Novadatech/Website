@@ -8,7 +8,7 @@ interface HeroTrustBarProps {
   delay?: number;
   /** Override the businesses-scaled count if needed. Defaults to 350+. */
   businessesCount?: string;
-  /** Override the Trustpilot rating shown. Defaults to "5.0". */
+  /** Override the Trustpilot rating shown. Defaults to "4.9" (verified). */
   rating?: string;
   /** Extra Tailwind classes (e.g. spacing override). */
   className?: string;
@@ -27,7 +27,7 @@ interface HeroTrustBarProps {
 export default function HeroTrustBar({
   delay = 0.35,
   businessesCount = "350+",
-  rating = "5.0",
+  rating = "4.9",
   className = "",
 }: HeroTrustBarProps) {
   // Single brand accent — ember (preserved for revertability if we test

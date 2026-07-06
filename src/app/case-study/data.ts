@@ -48,7 +48,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerRole: "Founder",
     customerCompany: "Morasco Media Services",
     offering: LINKEDIN_GROWTH,
-    offeringLabel: "LinkedIn Growth System™",
+    offeringLabel: "Growth Infrastructure™",
     cardHeadline: "Signed 3 high-value clients in 30 days using LinkedIn Growth.",
     pageTitle: "How Morasco Media Signed 3 High-Value Clients in 30 Days",
     pageSubtitle:
@@ -94,7 +94,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerRole: "Founder",
     customerCompany: "South Line Media",
     offering: LINKEDIN_GROWTH,
-    offeringLabel: "LinkedIn Growth System™",
+    offeringLabel: "Growth Infrastructure™",
     cardHeadline: "Grew monthly revenue from $20K to over $100K using LinkedIn Growth.",
     pageTitle: "How South Line Media 5x'd Monthly Revenue — From $20K to $100K+",
     pageSubtitle:
@@ -140,7 +140,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerRole: "Founder",
     customerCompany: "Aaronson Investigations",
     offering: LINKEDIN_GROWTH,
-    offeringLabel: "LinkedIn Growth System™",
+    offeringLabel: "Growth Infrastructure™",
     cardHeadline: "10x'd monthly revenue in 30 days using LinkedIn Growth.",
     pageTitle: "How Michael 10x'd His Investigations Firm's Revenue in 30 Days",
     pageSubtitle:
@@ -185,7 +185,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerRole: "Founder",
     customerCompany: "Vertical Axis",
     offering: LINKEDIN_GROWTH,
-    offeringLabel: "LinkedIn Growth System™",
+    offeringLabel: "Growth Infrastructure™",
     cardHeadline: "From 1–2 sales calls a week to 30–60 qualified calls a month.",
     pageTitle: "How Jeff Went From 1–2 Calls a Week to 30–60 Qualified Sales Calls a Month",
     pageSubtitle:
@@ -230,7 +230,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerRole: "Founder",
     customerCompany: "Ripple Clarke",
     offering: CUSTOM_AI,
-    offeringLabel: "Custom AI Build",
+    offeringLabel: "Operations Infrastructure™",
     cardHeadline: "Transformed construction procurement with custom AI.",
     pageTitle: "How Ripple Clarke Transformed Construction Procurement With Custom AI",
     pageSubtitle:
@@ -274,7 +274,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerRole: "Founder",
     customerCompany: "Groundwork Ventures",
     offering: CUSTOM_AI,
-    offeringLabel: "Custom AI Build",
+    offeringLabel: "Operations Infrastructure™",
     cardHeadline: "Cut operational time by over 80% with AI automation.",
     pageTitle: "How Groundwork Ventures Reduced Operational Time by Over 80% With AI Automation",
     pageSubtitle:
@@ -319,7 +319,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerRole: "Founder",
     customerCompany: "House Valley",
     offering: CUSTOM_AI,
-    offeringLabel: "Custom AI Build",
+    offeringLabel: "Operations Infrastructure™",
     cardHeadline: "Automated property appraisals end-to-end with custom AI.",
     pageTitle: "How House Valley Automated Property Appraisals With Custom AI",
     pageSubtitle:
@@ -363,7 +363,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerRole: "Founder",
     customerCompany: "Larsky Tack and Feed",
     offering: CUSTOM_AI,
-    offeringLabel: "Custom Operations Build",
+    offeringLabel: "Operations Infrastructure™",
     cardHeadline: "Streamlined inventory tracking and logistics across the business.",
     pageTitle: "How Larsky Tack and Feed Streamlined Logistics With Novada Tech",
     pageSubtitle:

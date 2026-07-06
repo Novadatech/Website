@@ -710,7 +710,7 @@ return (
                 className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
               >
                 <span className="text-ember-500 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
-                <span className="underline underline-offset-2 decoration-white/20">5.0 on Trustpilot</span>
+                <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
               </a>
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-ember-500/60" /> Takes under 2 min</span>
@@ -781,7 +781,7 @@ return (
                   className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
                 >
                   <Star className="w-3.5 h-3.5" />
-                  <span className="underline underline-offset-2 decoration-white/20">5.0{"\u2605"} Trustpilot</span>
+                  <span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} Trustpilot</span>
                 </a>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5" /> 30-Min Call
