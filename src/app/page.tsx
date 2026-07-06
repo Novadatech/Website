@@ -12,7 +12,13 @@
  * gets built in step 02, and step 03 is the run-and-own model.
  */
 
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import {
   ArrowRight,
   ChevronDown,
@@ -29,7 +35,7 @@ import {
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import HeroTrustBar from "@/components/HeroTrustBar";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 const BOOKING_URL = "/book-call";
 
@@ -144,58 +150,156 @@ function TrustBar() {
   );
 }
 
-/* ─── PROBLEM NARRATIVE (stacked statements) ─── */
-function ProblemNarrative() {
-  const statements = [
-    {
-      text: "You bought the AI tools. Read the case studies. Sat through the webinars.",
-      emphasis: false,
-    },
-    {
-      text: "But months later, the pipeline is still unpredictable. The team is still buried in manual work. And the subscriptions sit unused.",
-      emphasis: false,
-    },
-    {
-      text: "Or you're just getting started — trying to avoid those exact mistakes.",
-      emphasis: false,
-    },
-    {
-      text: "You're not behind. You're just missing the systems.",
-      emphasis: true,
-    },
-    {
-      text: "That's why we built Novada Tech.",
-      emphasis: true,
-    },
-  ];
+/* ─── PROBLEM NARRATIVE (Morningside-style pinned scroll sequence) ───
+ * The section is several screen-heights tall; the visible frame is
+ * position:sticky (pinned) while scroll progress drives which statement
+ * is in the "spotlight". Each statement fades/drifts in from below as
+ * its scroll window arrives, holds centered, then fades out upward —
+ * fully scroll-scrubbed (reversing scroll reverses the sequence). */
+
+const PROBLEM_STATEMENTS = [
+  {
+    text: "You bought the AI tools. Read the case studies. Sat through the webinars.",
+    emphasis: false,
+  },
+  {
+    text: "But months later, the pipeline is still unpredictable. The team is still buried in manual work. And the subscriptions sit unused.",
+    emphasis: false,
+  },
+  {
+    text: "Or you're just getting started — trying to avoid those exact mistakes.",
+    emphasis: false,
+  },
+  {
+    text: "You're not behind. You're just missing the systems.",
+    emphasis: true,
+  },
+  {
+    text: "That's why we built Novada Tech.",
+    emphasis: true,
+    withCta: true,
+  },
+];
+
+function ProblemStatement({
+  index,
+  total,
+  progress,
+  text,
+  emphasis,
+  withCta,
+}: {
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+  text: string;
+  emphasis: boolean;
+  withCta?: boolean;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const span = end - start;
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
+
+  const opacity = useTransform(
+    progress,
+    [start, start + span * 0.3, start + span * 0.7, end],
+    [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0],
+  );
+  const y = useTransform(
+    progress,
+    [start, start + span * 0.3, start + span * 0.7, end],
+    [isFirst ? 0 : 80, 0, 0, isLast ? 0 : -80],
+  );
 
   return (
-    <section className="section-spacing section-padding">
-      <div className="max-container max-w-3xl text-center">
-        <div className="space-y-8 md:space-y-10">
-          {statements.map((s, i) => (
-            <AnimatedSection key={i} delay={i * 0.08}>
-              <p
-                className={
-                  s.emphasis
-                    ? "text-2xl md:text-4xl font-bold text-white leading-snug text-balance"
-                    : "text-xl md:text-2xl text-white/70 leading-relaxed text-balance"
-                }
-              >
-                {s.text}
-              </p>
-            </AnimatedSection>
+    <motion.div
+      style={{ opacity, y }}
+      className="absolute inset-0 flex flex-col items-center justify-center section-padding text-center"
+    >
+      <p
+        className={
+          emphasis
+            ? "text-3xl md:text-5xl font-bold text-white leading-tight text-balance max-w-3xl"
+            : "text-2xl md:text-4xl font-semibold text-white/85 leading-snug text-balance max-w-3xl"
+        }
+      >
+        {text}
+      </p>
+      {withCta && (
+        <a href={BOOKING_URL} className="btn-primary text-base mt-10">
+          See If You Qualify
+          <ArrowRight className="w-5 h-5" />
+        </a>
+      )}
+    </motion.div>
+  );
+}
+
+function ProblemNarrative() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+  const total = PROBLEM_STATEMENTS.length;
+
+  return (
+    <section ref={ref} className="relative h-[450vh]">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Ambient glow behind the pinned text */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.07)_0%,_transparent_60%)] pointer-events-none" />
+
+        {PROBLEM_STATEMENTS.map((s, i) => (
+          <ProblemStatement
+            key={i}
+            index={i}
+            total={total}
+            progress={scrollYProgress}
+            text={s.text}
+            emphasis={s.emphasis}
+            withCta={s.withCta}
+          />
+        ))}
+
+        {/* Scroll progress dots — bottom center */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2">
+          {PROBLEM_STATEMENTS.map((_, i) => (
+            <ProgressDot
+              key={i}
+              index={i}
+              total={total}
+              progress={scrollYProgress}
+            />
           ))}
         </div>
-
-        <AnimatedSection delay={0.4} className="mt-12">
-          <a href={BOOKING_URL} className="btn-primary text-base">
-            See If You Qualify
-            <ArrowRight className="w-5 h-5" />
-          </a>
-        </AnimatedSection>
       </div>
     </section>
+  );
+}
+
+function ProgressDot({
+  index,
+  total,
+  progress,
+}: {
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const opacity = useTransform(
+    progress,
+    [start - 0.001, start, end, end + 0.001],
+    [0.25, 1, 1, 0.25],
+  );
+  return (
+    <motion.span
+      style={{ opacity }}
+      className="w-2 h-2 rounded-full bg-ember-500"
+    />
   );
 }
 
