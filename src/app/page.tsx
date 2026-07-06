@@ -1,10 +1,20 @@
 "use client";
 
+/*
+ * Home page — structured on the Morningside AI homepage spine (user
+ * direction, 2026-06-28): Hero (anti-hype claim) → industries marquee →
+ * stacked problem narrative → "three things" client journey (Identify /
+ * Build / Run & Scale) → testimonials → stats strip → case studies →
+ * FAQ → closer. One CTA verb throughout ("See If You Qualify").
+ *
+ * The journey section is the connective tissue: AI Consulting is step 01
+ * (Identify), Growth Infrastructure + Operations Infrastructure are what
+ * gets built in step 02, and step 03 is the run-and-own model.
+ */
+
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
-  Check,
-  X,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
@@ -12,20 +22,21 @@ import {
   Shield,
   TrendingUp,
   Cog,
-  Compass,
+  Search,
+  Wrench,
+  RefreshCw,
 } from "lucide-react";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import HeroTrustBar from "@/components/HeroTrustBar";
 import { useState, useCallback, useEffect } from "react";
 
-
 const BOOKING_URL = "/book-call";
 
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="relative pt-16 pb-12 overflow-hidden">
+    <section className="relative pt-20 pb-14 md:pt-24 md:pb-16 overflow-hidden">
       {/* Background layers */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-surface-950 to-surface-950" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,90,48,0.08)_0%,_transparent_60%)]" />
@@ -37,7 +48,7 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-4"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ember-500/20 bg-ember-500/5 mb-5"
         >
           <span className="w-2 h-2 rounded-full bg-ember-500 animate-pulse-slow" />
           <span className="text-sm text-ember-500 font-medium">
@@ -50,11 +61,10 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance max-w-4xl mx-auto"
+          className="text-3xl sm:text-4xl md:text-6xl font-bold leading-[1.08] text-balance max-w-4xl mx-auto"
         >
-          We Build The AI Systems That{" "}
-          <span className="gradient-text">Grow Your Revenue</span> — And Cut
-          The Costs That Eat It.
+          We Don&apos;t Just Talk About AI.{" "}
+          <span className="gradient-text">We Build It Into Your Business.</span>
         </motion.h1>
 
         {/* Subheading */}
@@ -64,365 +74,33 @@ function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-6 text-lg md:text-xl text-white/75 max-w-2xl mx-auto leading-relaxed"
         >
-          Novada Tech installs Growth Infrastructure that books 15+ qualified
-          sales meetings a month, Operations Infrastructure that removes your
-          biggest bottlenecks, and AI consulting that shows you exactly where
-          AI pays off first. Engineered for your business. Run by us. Owned by
-          you.
+          We find the AI opportunities that will actually move your numbers,
+          build the systems — Growth Infrastructure for revenue, Operations
+          Infrastructure for costs — then run them for you. Engineered for
+          your business. Owned by you.
         </motion.p>
 
-        {/* STANDALONE TRUST BAR — prominent social proof above the CTAs */}
+        {/* STANDALONE TRUST BAR — social proof above the CTA */}
         <HeroTrustBar className="mt-7" />
 
-        {/* CTAs */}
+        {/* CTA — single verb, mirrored throughout the page */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-7 flex items-center justify-center"
         >
           <a href={BOOKING_URL} className="btn-primary text-base">
             See If You Qualify
             <ArrowRight className="w-5 h-5" />
           </a>
-          <a href="#solutions" className="btn-secondary text-base">
-            Explore Our Solutions
-          </a>
         </motion.div>
-
       </div>
     </section>
   );
 }
 
-/* ─── SOLUTIONS ROUTER ─── */
-function SolutionsRouter() {
-  const solutions = [
-    {
-      icon: TrendingUp,
-      name: "Growth Infrastructure",
-      outcome:
-        "Become the obvious choice in your industry and book 15+ qualified sales meetings every month — guaranteed.",
-      pills: ["Authority content", "Done-for-you outreach", "Pre-qualified bookings"],
-      href: "/linkedin-growth",
-      cta: "See How It Works",
-    },
-    {
-      icon: Cog,
-      name: "Operations Infrastructure",
-      outcome:
-        "Custom AI systems that take over quoting, admin, documents, and logistics — so you scale output without scaling headcount.",
-      pills: ["Quoting & documents", "Logistics & inventory", "Client communication"],
-      href: "/operations-infrastructure",
-      cta: "See What We Build",
-    },
-    {
-      icon: Compass,
-      name: "AI Consulting",
-      outcome:
-        "A structured audit and ROI-ranked roadmap showing exactly where AI pays for itself in your business first.",
-      pills: ["Process audit", "ROI-ranked roadmap", "Build vs buy guidance"],
-      href: "/ai-consulting",
-      cta: "See How The Audit Works",
-    },
-  ];
-
-  return (
-    <section id="solutions" className="section-spacing section-padding border-t border-white/[0.04]">
-      <div className="max-container">
-        <AnimatedSection className="max-w-3xl mx-auto text-center mb-14">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            Our Solutions
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
-            One Agency. <span className="text-white/40">Three Ways To Win.</span>
-          </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
-            Whether your biggest constraint is pipeline, operations, or knowing
-            where to start with AI — there&apos;s a system for it.
-          </p>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {solutions.map((s, i) => (
-            <AnimatedSection key={s.href} delay={i * 0.1}>
-              <Link
-                href={s.href}
-                className="block glass-card gradient-border rounded-2xl p-8 h-full group hover:bg-white/[0.04] transition-all duration-500"
-              >
-                <div className="w-12 h-12 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                  <s.icon className="w-6 h-6 text-ember-500" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">{s.name}</h3>
-                <p className="text-base text-white/70 leading-relaxed">
-                  {s.outcome}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {s.pills.map((pill, j) => (
-                    <span
-                      key={j}
-                      className="text-xs px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-white/50"
-                    >
-                      {pill}
-                    </span>
-                  ))}
-                </div>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ember-500 group-hover:text-ember-400 transition-colors">
-                  {s.cta}
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                </span>
-              </Link>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── PROBLEM ─── */
-function ProblemSection() {
-  const problems = [
-    {
-      tag: "The Pipeline Problem",
-      headline: "Revenue is inconsistent and unpredictable",
-      body: "Some months are great. Others are dead. You can't forecast revenue, plan capacity, or invest in growth when you have no idea where the next client is coming from.",
-      pills: ["Feast and famine cycle", "No revenue visibility", "Growth stalls"],
-    },
-    {
-      tag: "The Operations Problem",
-      headline: "Manual work is quietly eating your margin",
-      body: "Quoting, admin, document handling, chasing paperwork. Every hour of it is payroll spent producing nothing new — and growing means hiring more people to do more of it.",
-      pills: ["Rising labour costs", "Founder bottleneck", "Profit stays flat"],
-    },
-    {
-      tag: "The AI Problem",
-      headline: "You know AI matters — but not where to start",
-      body: "Every vendor says their tool is the answer. Every competitor claims they're using AI. Betting months and real budget on the wrong project is how AI becomes a sore point instead of an advantage.",
-      pills: ["Tool overload", "Stalled pilots", "No clear ROI"],
-    },
-  ];
-
-  return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
-      <div className="max-container">
-        <AnimatedSection className="max-w-3xl mx-auto text-center">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            The Problem
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
-            Your Business Is Great.{" "}
-            <span className="text-white/40">Your Systems Aren&apos;t.</span>
-          </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
-            Most businesses don&apos;t have a growth problem or a people
-            problem. They have a system problem. Here&apos;s what&apos;s
-            keeping you stuck.
-          </p>
-        </AnimatedSection>
-
-        <div className="mt-14 grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {problems.map((p, i) => (
-            <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="glass-card border border-white/[0.06] rounded-2xl p-7 h-full flex flex-col">
-                <div className="mb-5">
-                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ember-500/10 border border-ember-500/25 text-xs font-medium text-ember-500">
-                    <X className="w-3 h-3" /> {p.tag}
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-3">{p.headline}</h3>
-                <p className="text-base text-white/80 leading-relaxed flex-1">{p.body}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {p.pills.map((pill, j) => (
-                    <span
-                      key={j}
-                      className="text-xs px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-white/50"
-                    >
-                      {pill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── STATS / PROOF ─── */
-function ProofSection() {
-  const stats = [
-    { number: "77+", label: "Verified Reviews · 4.9★", sublabel: "Trustpilot · Reviews are voluntary", href: "https://www.trustpilot.com/review/novadatech.com.au" },
-    { number: "350+", label: "Businesses Scaled", sublabel: "And Growing" },
-    { number: "$45.7M+", label: "Client Revenue Generated", sublabel: "Client Results" },
-    { number: "30+", label: "Industries Scaled", sublabel: "Across Australia" },
-  ];
-
-  return (
-    <section className="section-spacing section-padding border-t border-b border-white/[0.04]">
-      <div className="max-container">
-        <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            Proof Over Promises
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Results That Speak for Themselves
-          </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
-            From qualified-meeting pipelines to automated operations —
-            documented results for businesses across Australia.
-          </p>
-        </AnimatedSection>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {stats.map((stat, i) => (
-            <AnimatedSection key={i} delay={i * 0.1} className="h-full">
-              {stat.href ? (
-                <a href={stat.href} target="_blank" rel="noopener noreferrer" className="block h-full">
-                  <div className="glass-card gradient-border p-6 md:p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500 h-full">
-                    <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none gradient-text">{stat.number}</p>
-                    <p className="mt-4 text-white/70 font-medium text-sm md:text-base min-h-[2.5rem] md:min-h-[3rem] flex items-center justify-center">
-                      {stat.label}
-                    </p>
-                    <p className="mt-1 text-white/30 text-xs uppercase tracking-wider underline underline-offset-2 decoration-white/20">
-                      {stat.sublabel} ↗
-                    </p>
-                  </div>
-                </a>
-              ) : (
-                <div className="glass-card gradient-border p-6 md:p-8 text-center group hover:bg-white/[0.05] transition-colors duration-500 h-full">
-                  <p className="text-4xl md:text-5xl font-bold tracking-tight leading-none gradient-text">{stat.number}</p>
-                  <p className="mt-4 text-white/70 font-medium text-sm md:text-base min-h-[2.5rem] md:min-h-[3rem] flex items-center justify-center">
-                    {stat.label}
-                  </p>
-                  <p className="mt-1 text-white/30 text-xs uppercase tracking-wider">
-                    {stat.sublabel}
-                  </p>
-                </div>
-              )}
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── CASE STUDIES ─── */
-function CaseStudies() {
-  const cases = [
-    {
-      company: "South Line Media",
-      founder: "Tony — Founder",
-      offering: "Growth Infrastructure™",
-      metric: "5x",
-      metricLabel: "Monthly Revenue Growth",
-      result: "From $20K to $100K+ per month",
-      challenge:
-        "A capable agency stuck at $20K/month with no predictable way to reach the decision-makers who could afford its best work.",
-      slug: "tony-south-line-media",
-    },
-    {
-      company: "Groundwork Ventures",
-      founder: "Damian — Founder",
-      offering: "Operations Infrastructure™",
-      metric: "80%+",
-      metricLabel: "Operational Time Cut",
-      result: "Manual workload replaced by AI systems",
-      challenge:
-        "A growing operation where the founder and team were buried in repetitive manual work that ate margin and blocked scale.",
-      slug: "damian-groundwork-ventures",
-    },
-    {
-      company: "Aaronson Investigations",
-      founder: "Michael — Founder",
-      offering: "Growth Infrastructure™",
-      metric: "10x",
-      metricLabel: "Revenue Growth In 30 Days",
-      result: "Discovery calls arriving pre-sold",
-      challenge:
-        "An expert firm invisible to its ideal clients — great at the work, with no system to put that expertise in front of buyers.",
-      slug: "michael-aaronson-investigations",
-    },
-  ];
-
-  return (
-    <section className="section-spacing section-padding border-t border-white/[0.04]">
-      <div className="max-container">
-        <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            Client Results
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
-            Real Businesses. Real Numbers.
-          </h2>
-          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
-            Documented results from both sides of the business — growth and
-            operations. Every one links to the full story, told by the founder
-            on video.
-          </p>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {cases.map((c, i) => (
-            <AnimatedSection key={c.slug} delay={i * 0.12}>
-              <Link
-                href={`/case-study/${c.slug}`}
-                className="glass-card gradient-border p-7 h-full flex flex-col group hover:bg-white/[0.04] transition-all duration-500"
-              >
-                {/* Header */}
-                <div className="flex items-start justify-between mb-5">
-                  <div>
-                    <p className="font-bold text-white text-base">{c.company}</p>
-                    <p className="text-sm text-white/60 mt-0.5">{c.founder}</p>
-                  </div>
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-ember-500/10 border border-ember-500/20 text-ember-500 whitespace-nowrap flex-shrink-0 ml-3">
-                    {c.offering}
-                  </span>
-                </div>
-
-                {/* Metric */}
-                <div className="mb-5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center">
-                  <p className="text-3xl font-bold gradient-text">{c.metric}</p>
-                  <p className="text-base text-white/80 mt-1">{c.metricLabel}</p>
-                  <p className="text-xs text-ember-500/60 mt-1 font-medium">{c.result}</p>
-                </div>
-
-                {/* Challenge */}
-                <p className="text-base text-white/80 leading-relaxed mb-5 flex-1">
-                  <span className="text-white/80 font-medium">Before: </span>
-                  {c.challenge}
-                </p>
-
-                {/* Read the story */}
-                <div className="mt-auto pt-4 border-t border-white/[0.05]">
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-ember-500 group-hover:text-ember-400 transition-colors">
-                    Read The Full Story
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </Link>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        <AnimatedSection delay={0.3} className="text-center mt-10">
-          <Link
-            href="/case-study"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white transition-colors"
-          >
-            View all case studies
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-}
-
-/* ─── TRUST BAR ─── */
+/* ─── INDUSTRIES MARQUEE (logo-carousel slot) ─── */
 function TrustBar() {
   const industries = [
     "Healthcare & Allied Health",
@@ -466,57 +144,190 @@ function TrustBar() {
   );
 }
 
-/* ─── HOW WE WORK ─── */
-function HowWeWork() {
-  const steps = [
+/* ─── PROBLEM NARRATIVE (stacked statements) ─── */
+function ProblemNarrative() {
+  const statements = [
     {
-      num: "01",
-      title: "Diagnose",
-      desc: "Every engagement starts by finding the real constraint. We look at your pipeline, your operations, and your numbers — and tell you whether the biggest return is in revenue, costs, or both.",
+      text: "You bought the AI tools. Read the case studies. Sat through the webinars.",
+      emphasis: false,
     },
     {
-      num: "02",
-      title: "Install",
-      desc: "We build the system into your business — growth infrastructure for pipeline, custom AI for operations. Built around your actual workflow. Installed in your accounts. Owned by you.",
+      text: "But months later, the pipeline is still unpredictable. The team is still buried in manual work. And the subscriptions sit unused.",
+      emphasis: false,
     },
     {
-      num: "03",
-      title: "Run & Scale",
-      desc: "Our team runs and refines the system every month. And once one constraint is gone, we point at the next one — that's how results compound instead of plateau.",
+      text: "Or you're just getting started — trying to avoid those exact mistakes.",
+      emphasis: false,
+    },
+    {
+      text: "You're not behind. You're just missing the systems.",
+      emphasis: true,
+    },
+    {
+      text: "That's why we built Novada Tech.",
+      emphasis: true,
     },
   ];
 
   return (
-    <section id="how-it-works" className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/40 to-surface-950">
-      <div className="max-container">
-        <AnimatedSection className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-            How We Work
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
-            One Method.
-            <br />
-            <span className="gradient-text">Every System We Build.</span>
-          </h2>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {steps.map((step, i) => (
-            <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="glass-card p-7 h-full border border-white/[0.04] group hover:border-ember-500/20 transition-all duration-500">
-                <span className="text-3xl font-bold text-ember-500/20 group-hover:text-ember-500/40 transition-colors duration-500">
-                  {step.num}
-                </span>
-                <h3 className="mt-3 text-lg font-semibold text-white">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-base text-white/80 leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
+    <section className="section-spacing section-padding">
+      <div className="max-container max-w-3xl text-center">
+        <div className="space-y-8 md:space-y-10">
+          {statements.map((s, i) => (
+            <AnimatedSection key={i} delay={i * 0.08}>
+              <p
+                className={
+                  s.emphasis
+                    ? "text-2xl md:text-4xl font-bold text-white leading-snug text-balance"
+                    : "text-xl md:text-2xl text-white/70 leading-relaxed text-balance"
+                }
+              >
+                {s.text}
+              </p>
             </AnimatedSection>
           ))}
         </div>
+
+        <AnimatedSection delay={0.4} className="mt-12">
+          <a href={BOOKING_URL} className="btn-primary text-base">
+            See If You Qualify
+            <ArrowRight className="w-5 h-5" />
+          </a>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+}
+
+/* ─── THREE THINGS (client journey: Identify / Build / Run & Scale) ─── */
+function ThreeThings() {
+  return (
+    <section id="solutions" className="section-spacing section-padding bg-gradient-to-b from-surface-950 via-zinc-900/40 to-surface-950">
+      <div className="max-container max-w-6xl">
+        <AnimatedSection className="text-center mb-14 md:mb-16">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+            What We Do
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
+            We Spend Our Days Doing{" "}
+            <span className="gradient-text">Three Things.</span>
+          </h2>
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            Every client moves through the same journey — from finding where
+            AI pays off, to a system running inside their business.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {/* 01 — Identify */}
+          <AnimatedSection>
+            <div className="glass-card gradient-border rounded-2xl p-8 h-full flex flex-col">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-12 h-12 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center">
+                  <Search className="w-6 h-6 text-ember-500" />
+                </div>
+                <span className="text-4xl font-bold text-ember-500/20">01</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Identify</h3>
+              <p className="text-base text-white/70 leading-relaxed flex-1">
+                It starts with clarity, not code. We map how work and revenue
+                actually flow through your business, find where time and
+                margin leak, and isolate the opportunities with the highest
+                return — ROI-ranked, with the assumptions documented.
+              </p>
+              <div className="mt-6 pt-5 border-t border-white/[0.06]">
+                <Link
+                  href="/ai-consulting"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-ember-500 hover:text-ember-400 transition-colors group"
+                >
+                  The AI Opportunity Audit
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* 02 — Build */}
+          <AnimatedSection delay={0.1}>
+            <div className="glass-card gradient-border rounded-2xl p-8 h-full flex flex-col">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-12 h-12 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center">
+                  <Wrench className="w-6 h-6 text-ember-500" />
+                </div>
+                <span className="text-4xl font-bold text-ember-500/20">02</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Build</h3>
+              <p className="text-base text-white/70 leading-relaxed">
+                Then we build the system that fits your constraint — revenue
+                or costs. Working infrastructure integrated with how your
+                business already runs, not another tool for the shelf.
+              </p>
+              <div className="mt-5 space-y-3 flex-1">
+                <Link
+                  href="/linkedin-growth"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-ember-500/30 hover:bg-white/[0.05] transition-colors group"
+                >
+                  <TrendingUp className="w-4 h-4 text-ember-500 flex-shrink-0" />
+                  <span className="text-sm text-white/85 font-medium flex-1">
+                    Growth Infrastructure
+                    <span className="block text-xs text-white/45 font-normal mt-0.5">
+                      15+ qualified sales meetings a month — guaranteed
+                    </span>
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-ember-500 transition-colors flex-shrink-0" />
+                </Link>
+                <Link
+                  href="/operations-infrastructure"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-ember-500/30 hover:bg-white/[0.05] transition-colors group"
+                >
+                  <Cog className="w-4 h-4 text-ember-500 flex-shrink-0" />
+                  <span className="text-sm text-white/85 font-medium flex-1">
+                    Operations Infrastructure
+                    <span className="block text-xs text-white/45 font-normal mt-0.5">
+                      Custom AI that cuts the manual work eating your margin
+                    </span>
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-ember-500 transition-colors flex-shrink-0" />
+                </Link>
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* 03 — Run & Scale */}
+          <AnimatedSection delay={0.2}>
+            <div className="glass-card gradient-border rounded-2xl p-8 h-full flex flex-col">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-12 h-12 rounded-xl bg-ember-500/10 border border-ember-500/20 flex items-center justify-center">
+                  <RefreshCw className="w-6 h-6 text-ember-500" />
+                </div>
+                <span className="text-4xl font-bold text-ember-500/20">03</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Run &amp; Scale</h3>
+              <p className="text-base text-white/70 leading-relaxed flex-1">
+                Systems go live inside your business, on your accounts — and
+                our team runs and refines them every month. When one
+                constraint is gone, we point at the next. You own everything,
+                whether we&apos;re in the room or not.
+              </p>
+              <div className="mt-6 pt-5 border-t border-white/[0.06]">
+                <Link
+                  href="/case-study"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-ember-500 hover:text-ember-400 transition-colors group"
+                >
+                  See The Results
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+
+        <AnimatedSection delay={0.3} className="text-center mt-12">
+          <a href={BOOKING_URL} className="btn-primary text-base">
+            See If You Qualify
+            <ArrowRight className="w-5 h-5" />
+          </a>
+        </AnimatedSection>
       </div>
     </section>
   );
@@ -679,7 +490,7 @@ function Testimonials() {
             Client Success
           </p>
           <h2 className="text-3xl md:text-4xl font-bold">
-            Hear It Directly From Our Partners
+            Don&apos;t Just Take Our Word For It.
           </h2>
           <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
             Real business owners. Real results. No scripts.
@@ -700,6 +511,153 @@ function Testimonials() {
               Rated 4.9/5 from 77+ verified reviews on Trustpilot
             </span>
           </a>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+}
+
+/* ─── STATS STRIP ─── */
+function StatsStrip() {
+  const stats = [
+    { num: "350+", label: "Businesses Scaled" },
+    { num: "$45.7M+", label: "Client Revenue Generated" },
+    { num: "30+", label: "Industries Across Australia" },
+    { num: "4.9★", label: "Trustpilot · 77+ Reviews" },
+  ];
+
+  return (
+    <section className="section-padding py-16 md:py-20 border-t border-white/[0.04]">
+      <div className="max-container max-w-5xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
+          {stats.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <p className="text-3xl md:text-5xl font-bold text-ember-500 tracking-tight leading-none">
+                {s.num}
+              </p>
+              <p className="mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-white/45 font-medium">
+                {s.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── CASE STUDIES ─── */
+function CaseStudies() {
+  const cases = [
+    {
+      company: "South Line Media",
+      founder: "Tony — Founder",
+      offering: "Growth Infrastructure™",
+      metric: "5x",
+      metricLabel: "Monthly Revenue Growth",
+      result: "From $20K to $100K+ per month",
+      challenge:
+        "A capable agency stuck at $20K/month with no predictable way to reach the decision-makers who could afford its best work.",
+      slug: "tony-south-line-media",
+    },
+    {
+      company: "Groundwork Ventures",
+      founder: "Damian — Founder",
+      offering: "Operations Infrastructure™",
+      metric: "80%+",
+      metricLabel: "Operational Time Cut",
+      result: "Manual workload replaced by AI systems",
+      challenge:
+        "A growing operation where the founder and team were buried in repetitive manual work that ate margin and blocked scale.",
+      slug: "damian-groundwork-ventures",
+    },
+    {
+      company: "Aaronson Investigations",
+      founder: "Michael — Founder",
+      offering: "Growth Infrastructure™",
+      metric: "10x",
+      metricLabel: "Revenue Growth In 30 Days",
+      result: "Discovery calls arriving pre-sold",
+      challenge:
+        "An expert firm invisible to its ideal clients — great at the work, with no system to put that expertise in front of buyers.",
+      slug: "michael-aaronson-investigations",
+    },
+  ];
+
+  return (
+    <section className="section-spacing section-padding border-t border-white/[0.04]">
+      <div className="max-container">
+        <AnimatedSection className="text-center mb-16">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+            Client Results
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-balance">
+            Real Businesses. Real Numbers.
+          </h2>
+          <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+            Documented results from both sides of the business — growth and
+            operations. Every one links to the full story, told by the founder
+            on video.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {cases.map((c, i) => (
+            <AnimatedSection key={c.slug} delay={i * 0.12}>
+              <Link
+                href={`/case-study/${c.slug}`}
+                className="glass-card gradient-border p-7 h-full flex flex-col group hover:bg-white/[0.04] transition-all duration-500"
+              >
+                {/* Header */}
+                <div className="flex items-start justify-between mb-5">
+                  <div>
+                    <p className="font-bold text-white text-base">{c.company}</p>
+                    <p className="text-sm text-white/60 mt-0.5">{c.founder}</p>
+                  </div>
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-ember-500/10 border border-ember-500/20 text-ember-500 whitespace-nowrap flex-shrink-0 ml-3">
+                    {c.offering}
+                  </span>
+                </div>
+
+                {/* Metric */}
+                <div className="mb-5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] text-center">
+                  <p className="text-3xl font-bold gradient-text">{c.metric}</p>
+                  <p className="text-base text-white/80 mt-1">{c.metricLabel}</p>
+                  <p className="text-xs text-ember-500/60 mt-1 font-medium">{c.result}</p>
+                </div>
+
+                {/* Challenge */}
+                <p className="text-base text-white/80 leading-relaxed mb-5 flex-1">
+                  <span className="text-white/80 font-medium">Before: </span>
+                  {c.challenge}
+                </p>
+
+                {/* Read the story */}
+                <div className="mt-auto pt-4 border-t border-white/[0.05]">
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-ember-500 group-hover:text-ember-400 transition-colors">
+                    Read The Full Story
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        <AnimatedSection delay={0.3} className="text-center mt-10">
+          <Link
+            href="/case-study"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 hover:text-white transition-colors"
+          >
+            View all case studies
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </AnimatedSection>
       </div>
     </section>
@@ -747,8 +705,11 @@ function FAQ() {
     <section className="pt-16 pb-0 section-padding border-t border-white/[0.04]">
       <div className="max-container max-w-3xl">
         <AnimatedSection className="text-center mb-16">
+          <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
+            FAQs
+          </p>
           <h2 className="text-3xl md:text-4xl font-bold">
-            Your Questions Answered
+            You&apos;ve Got Questions. We&apos;ve Got Answers.
           </h2>
         </AnimatedSection>
 
@@ -803,7 +764,7 @@ function FAQItem({
 /* ─── FINAL CTA ─── */
 function FinalCTA() {
   return (
-    <section className="pt-6 pb-16 section-padding">
+    <section className="pt-16 pb-16 section-padding">
       <div className="max-container">
         <AnimatedSection>
           <div className="relative rounded-3xl overflow-hidden">
@@ -812,20 +773,17 @@ function FinalCTA() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,90,48,0.1)_0%,_transparent_70%)]" />
 
             <div className="relative px-8 py-16 md:px-16 md:py-24 text-center">
-              <p className="text-sm uppercase tracking-[0.2em] text-ember-500/80 font-medium mb-6">
-                Ready to Scale?
-              </p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance max-w-3xl mx-auto">
-                The Systems Won&apos;t Build Themselves.
+                AI Is Here. Most Businesses Will React.
                 <br />
                 <span className="gradient-text">
-                  Let&apos;s Build Them Together.
+                  The Few With Systems Will Lead.
                 </span>
               </h2>
               <p className="mt-6 text-lg text-white/80 max-w-xl mx-auto">
-                One call. No pressure. No hard sell. Just a clear plan showing
-                where AI systems would return the most in your business —
-                revenue, operations, or both.
+                We build for those few. One call, no pressure — just a clear
+                plan showing where AI systems would return the most in your
+                business.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href={BOOKING_URL} className="btn-primary text-base">
@@ -894,35 +852,12 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <SolutionsRouter />
-      <ProblemSection />
-      <HowWeWork />
-      <ProofSection />
-      <CaseStudies />
       <TrustBar />
+      <ProblemNarrative />
+      <ThreeThings />
       <Testimonials />
-      <section className="section-padding py-16 border-t border-white/[0.04]">
-        <div className="max-container text-center">
-          <div className="inline-block w-px h-8 bg-gradient-to-b from-white/20 to-transparent mb-8" />
-          <h2 className="text-2xl md:text-3xl font-bold text-white">
-            Ready to build systems like theirs?
-          </h2>
-          <p className="mt-3 text-lg text-white/80 max-w-sm mx-auto leading-relaxed">
-            Every one of those businesses started with a single free strategy session.
-          </p>
-          <a href={BOOKING_URL} className="btn-primary mt-6 mx-auto inline-flex">
-            See If You Qualify
-            <ArrowRight className="w-4 h-4" />
-          </a>
-          <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
-            <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-ember-500/60" /> Zero obligation</span>
-            <span className="text-white/15">|</span>
-            <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-ember-500/60" /> 4.9 on Trustpilot</span>
-            <span className="text-white/15">|</span>
-            <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-ember-500/60" /> No retainers</span>
-          </div>
-        </div>
-      </section>
+      <StatsStrip />
+      <CaseStudies />
       <FAQ />
       <FinalCTA />
       <StickyCtaBar />
