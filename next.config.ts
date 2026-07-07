@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
         destination: "/linkedin-growth",
         permanent: false,
       },
+      // Retired design-test URL (variant was promoted to /linkedin-growth).
+      {
+        source: "/linkedin-growth-v2",
+        destination: "/linkedin-growth",
+        permanent: false,
+      },
       // Old booking funnel (duplicate of /book-call).
       {
         source: "/apply",
