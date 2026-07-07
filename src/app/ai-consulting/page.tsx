@@ -1,62 +1,70 @@
 "use client";
 
-/* AI Consulting — Morningside design language (see src/components/ms.ts).
- * Copy unchanged; visual system swapped. */
+/*
+ * AI Consulting — the home page's Morningside spine carrying the audit
+ * offer (same pattern as /linkedin-growth): hero → industries marquee →
+ * pinned scroll problem narrative → "three things" giant-numeral journey
+ * cards (Discovery / Analysis / Roadmap) → where-the-roadmap-leads →
+ * attributed results → stats marquee → grayscale case-study thumbnails →
+ * FAQ → gradient closer. Uses the shared Navbar/Footer.
+ */
 
-import { motion } from "framer-motion";
 import {
-  X,
-  Check,
-  Shield,
-  Map,
-  Search,
-  Presentation,
-  FileText,
-  ListOrdered,
-  Scale,
-  Database,
-  Route,
-  PlayCircle,
-  TrendingUp,
-  Cog,
-  ChevronDown,
-  ChevronRight,
-} from "lucide-react";
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
+import { ChevronRight, ChevronDown, TrendingUp, Cog } from "lucide-react";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
+import HeroTrustBar from "@/components/HeroTrustBar";
+import { CASE_STUDIES } from "@/app/case-study/data";
 import {
   GRAD_TEXT,
   BTN_WHITE,
   LINK_GREEN,
-  LINK_MUTED,
   MS_CARD,
   HERO_WASH,
   GLOW_BOTTOM,
 } from "@/components/ms";
+import { useState, useEffect, useRef } from "react";
 
 const BOOKING_URL = "/book-call";
+
+/* Mixed proof: the roadmap feeds both infrastructures */
+const MIXED_CASE_SLUGS = [
+  "tony-south-line-media",
+  "damian-groundwork-ventures",
+  "michael-aaronson-investigations",
+  "jack-house-valley",
+];
+const MIXED_CASE_STUDIES = MIXED_CASE_SLUGS.map(
+  (slug) => CASE_STUDIES.find((c) => c.slug === slug)!,
+);
 
 /* ─── HERO ─── */
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
       <div className={HERO_WASH} />
 
-      <div className="relative max-container section-padding pt-32 pb-16 md:pt-40 md:pb-20 text-center">
+      <div className="relative max-container section-padding text-center">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6"
+          className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-8"
         >
           AI Consulting — The AI Opportunity Audit
         </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className={`text-4xl sm:text-5xl md:text-6xl font-light tracking-tight leading-[1.12] text-balance max-w-4xl mx-auto pb-1 ${GRAD_TEXT}`}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className={`text-4xl sm:text-5xl md:text-6xl font-light tracking-tight leading-[1.12] text-balance max-w-4xl mx-auto pb-2 ${GRAD_TEXT}`}
         >
           Know exactly where AI pays off — before you spend a dollar building
           it.
@@ -65,8 +73,8 @@ function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-6 text-lg md:text-xl font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-7 text-lg md:text-xl font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed"
         >
           The AI Opportunity Audit is a structured deep-dive into your
           operations. You walk away with a prioritised, ROI-ranked roadmap of
@@ -74,18 +82,16 @@ function Hero() {
           from real analysis of your workflows, not guesswork.
         </motion.p>
 
+        <HeroTrustBar className="mt-9" />
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-5"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-9 flex items-center justify-center"
         >
           <a href={BOOKING_URL} className={BTN_WHITE}>
             See If You Qualify
-            <ChevronRight className="w-4 h-4" />
-          </a>
-          <a href="#deliverables" className={LINK_MUTED}>
-            See What You Get
             <ChevronRight className="w-4 h-4" />
           </a>
         </motion.div>
@@ -93,7 +99,7 @@ function Hero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
           className="font-supply mt-8 text-[10px] uppercase tracking-[0.2em] text-[#EDECE4]/35"
         >
           The roadmap is yours to keep — whoever you build with
@@ -103,34 +109,169 @@ function Hero() {
   );
 }
 
-/* ─── STATS STRIP ─── */
-function StatsStrip() {
-  const stats = [
-    { num: "350+", label: "Businesses Scaled" },
-    { num: "30+", label: "Industries Across Australia" },
-    { num: "2", label: "Infrastructure Offers The Roadmap Feeds" },
-    { num: "4.9★", label: "Trustpilot Rating" },
+/* ─── INDUSTRIES MARQUEE ─── */
+function TrustBar() {
+  const industries = [
+    "Healthcare & Allied Health",
+    "B2B Consulting",
+    "Executive Coaching",
+    "Legal Services",
+    "Financial Advisory",
+    "Real Estate",
+    "SaaS & Tech",
+    "E-commerce",
+    "Recruitment",
+    "Architecture & Design",
+    "Accounting & Tax",
+    "Insurance Broking",
   ];
 
   return (
-    <section className="section-padding pb-16 md:pb-20">
-      <div className="max-container max-w-5xl">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
-          {stats.map((s, i) => (
-            <motion.div
+    <section className="py-12 border-t border-b border-[#EDECE4]/10 overflow-hidden">
+      <div className="max-container section-padding mb-10">
+        <p className="font-supply text-sm uppercase tracking-[0.1em] text-[#EDECE4] text-center">
+          Trusted by 350+ businesses across 30+ industries in Australia:
+        </p>
+      </div>
+      <div className="flex overflow-hidden">
+        <motion.div
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 34, repeat: Infinity, ease: "linear" }}
+          className="flex gap-16 flex-shrink-0 items-center"
+        >
+          {[...industries, ...industries].map((industry, i) => (
+            <span
               key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
+              className="flex-shrink-0 text-xl font-light text-white/40 whitespace-nowrap"
             >
-              <p className="text-3xl md:text-5xl font-normal text-white tracking-tight leading-none">
-                {s.num}
-              </p>
-              <p className="font-supply mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-[#EDECE4]/40">
-                {s.label}
-              </p>
-            </motion.div>
+              {industry}
+            </span>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── PROBLEM NARRATIVE (pinned scroll sequence) ─── */
+const PROBLEM_STATEMENTS = [
+  {
+    text: "You bought the tools. Someone went to a webinar. There's a chatbot no one uses.",
+    final: false,
+  },
+  {
+    text: "The pilot impressed everyone in the demo. It never made it to production.",
+    final: false,
+  },
+  {
+    text: "And every vendor swears their tool is the answer. Betting six months on the wrong project is how AI becomes a sore point.",
+    final: false,
+  },
+  {
+    text: "The businesses winning with AI knew which problem to point it at first.",
+    final: false,
+  },
+  {
+    text: "That's why we built the AI Opportunity Audit.",
+    sub: "An ROI-ranked roadmap of where AI pays off in your business — real analysis, not guesswork.",
+    final: true,
+  },
+];
+
+function ProblemStatement({
+  index,
+  total,
+  progress,
+  text,
+  sub,
+  final,
+}: {
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+  text: string;
+  sub?: string;
+  final: boolean;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const span = end - start;
+  const isFirst = index === 0;
+  const isLast = index === total - 1;
+
+  const opacity = useTransform(
+    progress,
+    [start, start + span * 0.3, start + span * 0.7, end],
+    [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0],
+  );
+  const y = useTransform(
+    progress,
+    [start, start + span * 0.3, start + span * 0.7, end],
+    [isFirst ? 0 : 80, 0, 0, isLast ? 0 : -80],
+  );
+
+  return (
+    <motion.div
+      style={{ opacity, y }}
+      className="absolute inset-0 flex flex-col items-center justify-center section-padding text-center"
+    >
+      <p
+        className={
+          final
+            ? `text-3xl md:text-5xl font-light tracking-tight leading-tight text-balance max-w-3xl pb-1 ${GRAD_TEXT}`
+            : "text-2xl md:text-4xl font-light text-[#EDECE4] leading-snug text-balance max-w-3xl"
+        }
+      >
+        {text}
+      </p>
+      {sub && (
+        <p className="mt-5 text-lg md:text-xl font-light text-[#EDECE4]/80">
+          {sub}
+        </p>
+      )}
+      {final && (
+        <a href={BOOKING_URL} className={`${BTN_WHITE} mt-10`}>
+          See If You Qualify
+          <ChevronRight className="w-4 h-4" />
+        </a>
+      )}
+    </motion.div>
+  );
+}
+
+function ProblemNarrative() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+  const total = PROBLEM_STATEMENTS.length;
+
+  return (
+    <section ref={ref} className="relative h-[450vh]">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,109,74,0.55)_0%,rgba(11,109,74,0)_46%)] pointer-events-none" />
+
+        {PROBLEM_STATEMENTS.map((s, i) => (
+          <ProblemStatement
+            key={i}
+            index={i}
+            total={total}
+            progress={scrollYProgress}
+            text={s.text}
+            sub={s.sub}
+            final={s.final}
+          />
+        ))}
+
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex items-center gap-2">
+          {PROBLEM_STATEMENTS.map((_, i) => (
+            <ProgressDot
+              key={i}
+              index={i}
+              total={total}
+              progress={scrollYProgress}
+            />
           ))}
         </div>
       </div>
@@ -138,146 +279,151 @@ function StatsStrip() {
   );
 }
 
-/* ─── PROBLEM ─── */
-function ProblemSection() {
-  const problems = [
-    {
-      tag: "The Tool Trap",
-      headline: "You bought the tools. Nothing changed.",
-      body: "Your team has AI subscriptions, someone went to a webinar, and there's a chatbot no one uses. Tools without a plan don't transform a business — they just add another monthly invoice.",
-      pills: ["Subscription sprawl", "No adoption", "No measurable return"],
-    },
-    {
-      tag: "The Stalled Pilot",
-      headline: "The demo worked. Production never came.",
-      body: "Someone built a proof of concept that impressed everyone in the meeting — then quietly died because it was never connected to how your business actually runs day to day.",
-      pills: ["Pilots that fizzle", "No integration", "Wasted months"],
-    },
-    {
-      tag: "The Fear Of Betting Wrong",
-      headline: "You know AI matters. You don't know where to start.",
-      body: "Every competitor claims they're using AI. Every vendor says their tool is the answer. Betting six months and real budget on the wrong project is exactly how AI becomes a sore point instead of an advantage.",
-      pills: ["Analysis paralysis", "Vendor noise", "Costly wrong turns"],
-    },
-  ];
+function ProgressDot({
+  index,
+  total,
+  progress,
+}: {
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+  const opacity = useTransform(
+    progress,
+    [start - 0.001, start, end, end + 0.001],
+    [0.2, 1, 1, 0.2],
+  );
+  return (
+    <motion.span
+      style={{ opacity }}
+      className="w-1.5 h-1.5 rounded-full bg-[#0CC481]"
+    />
+  );
+}
 
+/* ─── THREE THINGS (Discovery / Analysis / Roadmap) ─── */
+
+function IconDiscovery() {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" className="w-28 h-28 md:w-36 md:h-36" aria-hidden="true">
+      <circle cx="48" cy="48" r="26" stroke="#EDECE4" strokeWidth="1.2" />
+      <circle cx="72" cy="48" r="26" stroke="#EDECE4" strokeWidth="1.2" />
+      <circle cx="60" cy="72" r="26" stroke="#EDECE4" strokeWidth="1.2" />
+    </svg>
+  );
+}
+function IconAnalysis() {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" className="w-28 h-28 md:w-36 md:h-36" aria-hidden="true">
+      <path d="M60 18 L60 40" stroke="#EDECE4" strokeWidth="1.2" />
+      <path d="M30 40 L90 40" stroke="#EDECE4" strokeWidth="1.2" />
+      <path d="M30 40 L20 68 A14 10 0 0 0 48 68 L38 40" stroke="#EDECE4" strokeWidth="1.2" />
+      <path d="M90 40 L80 68 A14 10 0 0 0 108 68 L98 40" stroke="#EDECE4" strokeWidth="1.2" />
+      <path d="M48 98 L72 98" stroke="#EDECE4" strokeWidth="1.2" />
+      <path d="M60 40 L60 98" stroke="#EDECE4" strokeWidth="1.2" />
+    </svg>
+  );
+}
+function IconRoadmap() {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" className="w-28 h-28 md:w-36 md:h-36" aria-hidden="true">
+      <path d="M24 96 C24 60 60 84 60 52 C60 28 84 36 96 24" stroke="#EDECE4" strokeWidth="1.2" strokeDasharray="6 6" />
+      <circle cx="24" cy="96" r="5" stroke="#EDECE4" strokeWidth="1.2" />
+      <path d="M96 12 L108 24 L96 36 L84 24 Z" stroke="#EDECE4" strokeWidth="1.2" />
+    </svg>
+  );
+}
+
+const NUMERAL =
+  "font-poppins italic font-extralight text-[88px] md:text-[160px] leading-none bg-gradient-to-b from-[#12513c] to-[#0CC481] bg-clip-text text-transparent select-none px-4 md:px-6 block md:absolute md:top-1/2 md:-translate-y-1/2 z-0";
+
+function ThreeThings() {
   return (
     <section className="section-spacing section-padding">
-      <div className="max-container">
-        <AnimatedSection className="max-w-3xl mx-auto text-center">
-          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
-            The Problem
-          </p>
-          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight leading-tight text-balance pb-1 ${GRAD_TEXT}`}>
-            Everyone says use AI. Nobody shows you where.
+      <div className="max-container max-w-6xl">
+        <AnimatedSection className="mb-16 md:mb-24">
+          <h2
+            className={`text-4xl md:text-6xl font-light tracking-tight leading-tight pb-2 ${GRAD_TEXT}`}
+          >
+            The audit does three things...
           </h2>
-          <p className="mt-4 text-lg font-light text-[#EDECE4]/70 max-w-2xl mx-auto">
-            The businesses winning with AI aren&apos;t the ones with the most
-            tools. They&apos;re the ones who knew which problem to point AI at
-            first.
-          </p>
         </AnimatedSection>
 
-        <div className="mt-14 grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {problems.map((p, i) => (
-            <AnimatedSection key={i} delay={i * 0.1}>
-              <div className={`${MS_CARD} p-7 h-full flex flex-col`}>
-                <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#0CC481]/80 mb-3">
-                  {p.tag}
-                </p>
-                <h3 className="text-lg font-normal text-[#EDECE4] mb-3">
-                  {p.headline}
-                </h3>
-                <p className="text-base font-light text-[#EDECE4]/65 leading-relaxed flex-1">
-                  {p.body}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {p.pills.map((pill, j) => (
-                    <span
-                      key={j}
-                      className="font-supply text-[10px] uppercase tracking-[0.1em] px-2.5 py-1 rounded border border-[#EDECE4]/[0.08] text-[#EDECE4]/45"
-                    >
-                      {pill}
-                    </span>
-                  ))}
+        <div className="space-y-14 md:space-y-20">
+          {/* 1 — Discovery */}
+          <AnimatedSection>
+            <div className="relative">
+              <span className={`${NUMERAL} md:left-0`}>1</span>
+              <div className="relative z-10 block max-w-[820px] mt-2 md:mt-0 md:ml-36 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
+                  <div className="flex-shrink-0"><IconDiscovery /></div>
+                  <div>
+                    <h3 className="text-3xl md:text-[44px] font-light text-[#EDECE4] leading-tight">
+                      Discovery
+                    </h3>
+                    <p className="mt-4 text-base md:text-xl font-light text-[#EDECE4]/85 leading-relaxed">
+                      We sit inside your operation — structured sessions with
+                      you and the people who actually do the work, plus a
+                      review of the systems you run on. We map how work
+                      actually happens, not how the org chart says it happens.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+            </div>
+          </AnimatedSection>
 
-/* ─── DELIVERABLES ─── */
-function Deliverables() {
-  const deliverables = [
-    {
-      icon: Map,
-      title: "Workflow & Bottleneck Map",
-      desc: "A documented picture of how work actually flows through your business — and where time, money, and momentum leak out of it.",
-    },
-    {
-      icon: ListOrdered,
-      title: "ROI-Ranked Opportunity List",
-      desc: "Every AI opportunity we find, scored by projected return, cost to implement, and time to value — so you know what to do first, second, and never.",
-    },
-    {
-      icon: Scale,
-      title: "Build vs Buy Recommendations",
-      desc: "Where an off-the-shelf tool is genuinely enough, we say so. Where only a custom system will work, we show you why. No default answer.",
-    },
-    {
-      icon: Database,
-      title: "Data & Readiness Review",
-      desc: "What your current systems and data can support today, and what needs fixing before the bigger opportunities become possible.",
-    },
-    {
-      icon: Route,
-      title: "Prioritised Implementation Roadmap",
-      desc: "A staged plan — what to implement, in what order, with what expected return — that your team can execute with us or without us.",
-    },
-    {
-      icon: PlayCircle,
-      title: "Recorded Roadmap Walkthrough",
-      desc: "A live readout session, recorded, walking your leadership through every finding — so the thinking survives the meeting.",
-    },
-  ];
-
-  return (
-    <section id="deliverables" className="section-spacing section-padding">
-      <div className="max-container max-w-5xl">
-        <AnimatedSection className="text-center mb-14">
-          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
-            What You Walk Away With
-          </p>
-          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight text-balance pb-1 ${GRAD_TEXT}`}>
-            Not a slide deck of ideas. A plan you can execute.
-          </h2>
-          <p className="mt-4 text-lg font-light text-[#EDECE4]/70 max-w-2xl mx-auto">
-            Six concrete deliverables. Every recommendation tied to a number.
-            Every assumption documented.
-          </p>
-        </AnimatedSection>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {deliverables.map((item, i) => (
-            <AnimatedSection key={i} delay={i * 0.08}>
-              <div className={`group ${MS_CARD} p-6 h-full hover:border-[#EDECE4]/[0.14] transition-colors`}>
-                <item.icon className="w-6 h-6 text-[#0CC481] mb-4" strokeWidth={1.4} />
-                <h3 className="text-base md:text-lg font-normal text-[#EDECE4] mb-2 leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-sm font-light text-[#EDECE4]/60 leading-relaxed">
-                  {item.desc}
-                </p>
+          {/* 2 — Analysis */}
+          <AnimatedSection>
+            <div className="relative">
+              <span className={`${NUMERAL} md:left-24`}>2</span>
+              <div className="relative z-10 block max-w-[820px] mt-2 md:mt-0 md:ml-60 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
+                  <div className="flex-shrink-0"><IconAnalysis /></div>
+                  <div>
+                    <h3 className="text-3xl md:text-[44px] font-light text-[#EDECE4] leading-tight">
+                      Analysis
+                    </h3>
+                    <p className="mt-4 text-base md:text-xl font-light text-[#EDECE4]/85 leading-relaxed">
+                      Every opportunity is scored for return, implementation
+                      cost, and risk — with the assumptions documented, and
+                      honest build-vs-buy recommendations. Opportunities that
+                      don&apos;t clear the bar get cut, and we tell you why.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </AnimatedSection>
-          ))}
+            </div>
+          </AnimatedSection>
+
+          {/* 3 — Roadmap */}
+          <AnimatedSection>
+            <div className="relative">
+              <span className={`${NUMERAL} md:left-44`}>3</span>
+              <div className="relative z-10 block max-w-[820px] mt-2 md:mt-0 md:ml-80 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
+                  <div className="flex-shrink-0"><IconRoadmap /></div>
+                  <div>
+                    <h3 className="text-3xl md:text-[44px] font-light text-[#EDECE4] leading-tight">
+                      Roadmap
+                    </h3>
+                    <p className="mt-4 text-base md:text-xl font-light text-[#EDECE4]/85 leading-relaxed">
+                      You get the plan, live: a recorded readout with your
+                      leadership covering the workflow map, the ROI-ranked
+                      opportunity list, data readiness, and a staged
+                      implementation roadmap your team can execute — with us
+                      or without us. Then the decision is yours.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
 
-        <AnimatedSection delay={0.3} className="text-center mt-12">
+        <AnimatedSection className="mt-16 md:mt-20 text-center">
           <a href={BOOKING_URL} className={BTN_WHITE}>
             See If You Qualify
             <ChevronRight className="w-4 h-4" />
@@ -288,82 +434,16 @@ function Deliverables() {
   );
 }
 
-/* ─── PROCESS ─── */
-function Process() {
-  const steps = [
-    {
-      icon: Search,
-      phase: "Step 1 · Discovery",
-      title: "We sit inside your operation.",
-      desc: "Structured sessions with you and your team, plus a review of the systems you run on. We map how work actually happens — not how the org chart says it happens.",
-    },
-    {
-      icon: FileText,
-      phase: "Step 2 · Analysis",
-      title: "We score every opportunity.",
-      desc: "Each candidate is modelled for return, implementation cost, and risk — with the assumptions documented. Opportunities that don't clear the bar get cut, and we tell you why.",
-    },
-    {
-      icon: Presentation,
-      phase: "Step 3 · Roadmap",
-      title: "You get the plan, live.",
-      desc: "A recorded readout with your leadership: the full roadmap, what to do first, what it should return, and exactly what building it would involve. Then the decision is yours.",
-    },
-  ];
-
-  return (
-    <section className="section-spacing section-padding relative overflow-hidden">
-      <div className="relative max-container max-w-5xl">
-        <AnimatedSection className="text-center mb-14 md:mb-20">
-          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
-            How It Works
-          </p>
-          <h2 className={`inline-block text-3xl md:text-5xl font-light tracking-tight leading-[1.1] text-balance pb-1 ${GRAD_TEXT}`}>
-            From first call to ROI-ranked roadmap.
-          </h2>
-        </AnimatedSection>
-
-        <div className="relative">
-          <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] border-t border-dashed border-[#EDECE4]/15" />
-          <div className="grid md:grid-cols-3 gap-y-12 md:gap-x-6">
-            {steps.map((step, i) => (
-              <AnimatedSection key={i} delay={i * 0.12}>
-                <div className="relative text-center px-4">
-                  <div className="relative z-10 mx-auto w-20 h-20 rounded-full border border-[#0CC481]/50 bg-[#080808] flex items-center justify-center mb-5">
-                    <step.icon className="w-8 h-8 text-[#0CC481]" strokeWidth={1.2} />
-                  </div>
-                  <p className="font-supply text-xs uppercase tracking-[0.18em] text-[#EDECE4]/45 mb-2">
-                    {step.phase}
-                  </p>
-                  <h3 className="text-lg md:text-xl font-normal text-[#EDECE4] mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm md:text-base font-light text-[#EDECE4]/60 leading-relaxed max-w-[300px] mx-auto">
-                    {step.desc}
-                  </p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── WHERE IT LEADS ─── */
 function WhereItLeads() {
   return (
-    <section className="section-spacing section-padding">
+    <section className="section-spacing section-padding border-t border-[#EDECE4]/10">
       <div className="max-container max-w-5xl">
-        <AnimatedSection className="text-center mb-12">
-          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
-            Where The Roadmap Leads
-          </p>
-          <h2 className={`inline-block text-3xl md:text-4xl font-light tracking-tight text-balance pb-1 ${GRAD_TEXT}`}>
+        <AnimatedSection className="mb-12">
+          <h2 className={`text-4xl md:text-6xl font-light tracking-tight leading-tight pb-2 ${GRAD_TEXT}`}>
             The audit is the map. These are the roads.
           </h2>
-          <p className="mt-4 text-lg font-light text-[#EDECE4]/70 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg font-light text-[#EDECE4]/70 max-w-2xl">
             Most roadmaps point at one of two places. When you&apos;re ready to
             build, we&apos;re the team that builds both — or hand the roadmap
             to your own team. It&apos;s yours either way.
@@ -385,7 +465,7 @@ function WhereItLeads() {
                 you as the authority in your niche and books 15+ qualified
                 sales meetings every month — guaranteed.
               </p>
-              <span className={`${LINK_GREEN}`}>
+              <span className={LINK_GREEN}>
                 See How It Works
                 <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
               </span>
@@ -406,7 +486,7 @@ function WhereItLeads() {
                 over quoting, admin, documents, and logistics — so you scale
                 output without scaling headcount.
               </p>
-              <span className={`${LINK_GREEN}`}>
+              <span className={LINK_GREEN}>
                 See What We Build
                 <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
               </span>
@@ -418,83 +498,161 @@ function WhereItLeads() {
   );
 }
 
-/* ─── WHO IT'S FOR ─── */
-function WhoItsFor() {
-  const qualifies = [
-    "You run an established business with real operational volume and real revenue",
-    "You suspect AI could save you serious money but want evidence before you commit",
-    "You want a prioritised plan your leadership can act on — not another opinion",
-  ];
-  const notFor = [
-    "You've already decided what to build and just want validation",
-    "You're pre-revenue or don't yet have processes worth automating",
-    "You want a vendor to tell you their tool is the answer",
-  ];
-
+/* ─── RESULTS (attributed outcomes, dashed grid) ─── */
+function Testimonials() {
   return (
     <section className="section-spacing section-padding">
-      <div className="max-container max-w-4xl">
-        <AnimatedSection className="text-center mb-12">
-          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5">
-            Fit Check
-          </p>
-          <h2 className={`inline-block text-3xl md:text-4xl font-light tracking-tight text-balance pb-1 ${GRAD_TEXT}`}>
-            Built for decision-makers. Not tyre-kickers.
+      <div className="max-container max-w-6xl">
+        <AnimatedSection className="mb-16 md:mb-20">
+          <h2
+            className={`text-4xl md:text-6xl font-light tracking-tight leading-tight pb-2 ${GRAD_TEXT}`}
+          >
+            Don&apos;t just take our word for it...
           </h2>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 border-t border-b border-dashed border-[#EDECE4]/15">
           <AnimatedSection>
-            <div className={`${MS_CARD} p-7 h-full`}>
-              <p className="font-supply text-xs uppercase tracking-[0.15em] text-[#0CC481] mb-5">
-                This is for you if
-              </p>
-              <div className="space-y-4">
-                {qualifies.map((q, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <p className="text-base font-light text-[#EDECE4]/80 leading-relaxed">{q}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <figure className="px-6 md:px-14 py-14 md:py-20 text-center md:border-r md:border-dashed md:border-[#EDECE4]/15">
+              <blockquote className="text-lg md:text-xl font-light text-[#EDECE4] leading-relaxed">
+                &ldquo;We&apos;d been burned by two agencies before. This was
+                different — it was a system, not a service.{" "}
+                <span className="text-[#0CC481]">
+                  4 new retainer clients in the first 45 days.
+                </span>&rdquo;
+              </blockquote>
+              <figcaption className="mt-8">
+                <p className="text-base text-[#EDECE4]">Nicola</p>
+                <p className="font-supply mt-1 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40">
+                  Morasco Media
+                </p>
+              </figcaption>
+            </figure>
           </AnimatedSection>
+
           <AnimatedSection delay={0.1}>
-            <div className="rounded-xl border border-[#EDECE4]/[0.06] p-7 h-full">
-              <p className="font-supply text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40 mb-5">
-                This is not for you if
-              </p>
-              <div className="space-y-4">
-                {notFor.map((q, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <X className="w-5 h-5 text-[#EDECE4]/35 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <p className="text-base font-light text-[#EDECE4]/70 leading-relaxed">{q}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <figure className="px-6 md:px-14 py-14 md:py-20 text-center border-t border-dashed border-[#EDECE4]/15 md:border-t-0">
+              <blockquote className="text-lg md:text-xl font-light text-[#EDECE4] leading-relaxed">
+                Procurement went from constant firefighting to{" "}
+                <span className="text-[#0CC481]">
+                  proactive, with AI handling the analytical heavy lifting
+                </span>{" "}
+                — smoother operations, healthier margins, and a function that
+                scales with the business.
+              </blockquote>
+              <figcaption className="mt-8">
+                <p className="text-base text-[#EDECE4]">Anthony</p>
+                <p className="font-supply mt-1 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40">
+                  Ripple Clarke
+                </p>
+              </figcaption>
+            </figure>
           </AnimatedSection>
         </div>
+
+        <AnimatedSection delay={0.2} className="mt-10 text-center">
+          <a
+            href="https://www.trustpilot.com/review/novadatech.com.au"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-supply inline-flex items-center gap-3 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/50 hover:text-[#EDECE4] transition-colors"
+          >
+            <span className="text-[#0CC481]">★★★★★</span>
+            Rated 4.9/5 from 77+ verified reviews on Trustpilot
+          </a>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+}
+
+/* ─── STATS MARQUEE ─── */
+function StatsStrip() {
+  const stats = [
+    { num: "1–2 wks", label: "typical audit — end to end" },
+    { num: "6", label: "concrete deliverables in every audit" },
+    { num: "350+", label: "businesses scaled" },
+    { num: "30+", label: "industries across Australia" },
+    { num: "4.9★", label: "rating from 77+ Trustpilot reviews" },
+  ];
+
+  return (
+    <section className="py-20 md:py-28 overflow-hidden">
+      <div className="flex overflow-hidden">
+        <motion.div
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="flex flex-shrink-0"
+        >
+          {[...stats, ...stats].map((s, i) => (
+            <div key={i} className="flex-shrink-0 w-[300px] md:w-[360px] text-center px-6">
+              <p className="text-4xl md:text-5xl font-normal text-white leading-none">
+                {s.num}
+              </p>
+              <p className="mt-4 text-base md:text-lg font-light text-[#EDECE4]/80">
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── CASE STUDIES (grayscale thumbnails, mixed pillars) ─── */
+function MixedCaseStudies() {
+  return (
+    <section className="section-spacing section-padding">
+      <div className="max-container max-w-6xl">
+        <AnimatedSection className="mb-14">
+          <h2 className={`text-4xl md:text-6xl font-light tracking-tight leading-tight pb-2 ${GRAD_TEXT}`}>
+            Where the roadmap has led.
+          </h2>
+        </AnimatedSection>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
+          {MIXED_CASE_STUDIES.map((c, i) => (
+            <AnimatedSection key={c.slug} delay={i * 0.08}>
+              <Link href={`/case-study/${c.slug}`} className="block group">
+                <div className="relative aspect-video overflow-hidden rounded-lg">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://i.ytimg.com/vi/${c.videoId}/hqdefault.jpg`}
+                    alt={c.pageTitle}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <p className="font-supply mt-5 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40">
+                  {c.offeringLabel}
+                </p>
+                <h3 className="mt-2 text-lg font-light text-[#EDECE4] leading-snug">
+                  {c.cardHeadline}
+                </h3>
+                <p className="mt-2 text-sm font-light text-[#EDECE4]/50">
+                  {c.customerName} — {c.customerRole}, {c.customerCompany}
+                </p>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        <AnimatedSection delay={0.2} className="mt-14 text-center">
+          <Link
+            href="/case-study"
+            className="font-supply inline-flex items-center gap-2 text-sm uppercase tracking-[0.1em] text-[#EDECE4]/60 hover:text-[#0CC481] transition-colors group"
+          >
+            View all case studies
+            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </AnimatedSection>
       </div>
     </section>
   );
 }
 
 /* ─── FAQ ─── */
-function FAQItem({ q, a }: { q: string; a: string }) {
-  return (
-    <details className="group border-b border-[#EDECE4]/10">
-      <summary className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none">
-        <span className="text-base font-light text-[#EDECE4]">{q}</span>
-        <ChevronDown className="w-4 h-4 text-[#EDECE4]/50 flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
-      </summary>
-      <div className="pb-6 text-base font-light text-[#EDECE4]/70 leading-relaxed">
-        {a}
-      </div>
-    </details>
-  );
-}
-
 function FAQ() {
   const faqs = [
     {
@@ -528,19 +686,22 @@ function FAQ() {
   ];
 
   return (
-    <section className="pt-16 pb-0 section-padding">
-      <div className="max-container max-w-2xl">
-        <AnimatedSection className="text-center mb-10">
-          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">
+    <section className="section-spacing section-padding border-t border-[#EDECE4]/10">
+      <div className="max-container max-w-3xl">
+        <AnimatedSection className="text-center mb-14">
+          <h2
+            className={`inline-block text-5xl md:text-7xl font-light tracking-tight pb-2 ${GRAD_TEXT}`}
+          >
             FAQs
-          </p>
-          <h2 className={`inline-block text-2xl md:text-4xl font-light tracking-tight pb-1 ${GRAD_TEXT}`}>
-            Asked Before Every Audit
           </h2>
+          <p className="mt-4 text-lg md:text-xl font-light text-[#EDECE4]/85">
+            You&apos;ve got questions. We&apos;ve got answers.
+          </p>
         </AnimatedSection>
-        <div>
+
+        <div className="space-y-2">
           {faqs.map((faq, i) => (
-            <FAQItem key={i} q={faq.q} a={faq.a} />
+            <FAQItem key={i} question={faq.q} answer={faq.a} index={i} />
           ))}
         </div>
       </div>
@@ -548,36 +709,107 @@ function FAQ() {
   );
 }
 
+function FAQItem({
+  question,
+  answer,
+  index,
+}: {
+  question: string;
+  answer: string;
+  index: number;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <AnimatedSection delay={index * 0.05}>
+      <div>
+        <button
+          onClick={() => setOpen(!open)}
+          className="w-full flex items-center justify-between py-5 text-left group"
+        >
+          <span className="text-base md:text-lg font-light text-[#EDECE4] group-hover:text-white transition-colors pr-4">
+            {question}
+          </span>
+          <ChevronDown
+            className={`w-5 h-5 text-[#EDECE4]/50 flex-shrink-0 transition-transform duration-300 ${
+              open ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+        <motion.div
+          initial={false}
+          animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="overflow-hidden"
+        >
+          <p className="pb-7 text-base font-light text-[#EDECE4]/70 leading-relaxed">
+            {answer}
+          </p>
+        </motion.div>
+      </div>
+    </AnimatedSection>
+  );
+}
+
 /* ─── FINAL CTA ─── */
 function FinalCTA() {
   return (
-    <section className="relative pt-24 pb-32 md:pt-28 md:pb-40 section-padding overflow-hidden">
+    <section className="relative pt-24 pb-32 md:pt-32 md:pb-40 section-padding overflow-hidden">
       <div className={GLOW_BOTTOM} />
+
       <div className="relative max-container text-center">
         <AnimatedSection>
-          <p className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6">
-            Clarity Before Capital
-          </p>
           <h2 className={`text-3xl md:text-6xl font-light tracking-tight leading-[1.15] text-balance max-w-4xl mx-auto pb-2 ${GRAD_TEXT}`}>
-            Six months from now, you&apos;ll have bet on something. Make it the
-            right thing.
+            Six months from now, you&apos;ll have bet on something.
           </h2>
-          <p className="mt-6 text-lg font-light text-[#EDECE4]/70 max-w-xl mx-auto leading-relaxed">
-            One call to see if the audit fits your business. If it does,
-            you&apos;ll know where AI pays off in your operation within
-            weeks — with the numbers to back it.
+          <p className={`mt-12 text-3xl md:text-6xl font-light tracking-tight pb-2 ${GRAD_TEXT}`}>
+            Make it the right thing.
           </p>
-          <a href={BOOKING_URL} className={`${BTN_WHITE} mt-10`}>
-            See If You Qualify
-            <ChevronRight className="w-5 h-5" />
-          </a>
-          <p className="font-supply mt-10 text-[10px] uppercase tracking-[0.2em] text-[#EDECE4]/35 flex items-center justify-center gap-2">
-            <Shield className="w-3 h-3 text-[#0CC481]/60" /> Fixed price ·
-            Fixed scope · The roadmap is yours to keep
-          </p>
+          <div className="mt-12">
+            <a href={BOOKING_URL} className={BTN_WHITE}>
+              See If You Qualify
+              <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
+          <div className="font-supply mt-12 flex items-center justify-center gap-8 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40 flex-wrap">
+            <span>Fixed Price</span>
+            <span className="hidden sm:inline text-[#EDECE4]/15">·</span>
+            <span>Fixed Scope</span>
+            <span className="hidden sm:inline text-[#EDECE4]/15">·</span>
+            <span>The Roadmap Is Yours To Keep</span>
+          </div>
         </AnimatedSection>
       </div>
     </section>
+  );
+}
+
+/* ─── STICKY CTA BAR ─── */
+function StickyCtaBar() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => { setVisible(window.scrollY > 600); };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-t border-[#EDECE4]/10 py-3 px-5 sm:px-8">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div className="hidden sm:block">
+              <p className="text-sm font-light text-[#EDECE4]">Know where AI pays off — before you build</p>
+              <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">Fixed price · Fixed scope · Roadmap yours to keep</p>
+            </div>
+            <a href={BOOKING_URL} className={`${BTN_WHITE} !py-2.5 w-full sm:w-auto justify-center`}>
+              See If You Qualify
+              <ChevronRight className="w-4 h-4" />
+            </a>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -586,14 +818,17 @@ export default function AiConsultingPage() {
   return (
     <div className="bg-[#080808] font-poppins">
       <Hero />
-      <StatsStrip />
-      <ProblemSection />
-      <Deliverables />
-      <Process />
+      <TrustBar />
+      <ProblemNarrative />
+      <ThreeThings />
       <WhereItLeads />
-      <WhoItsFor />
+      <Testimonials />
+      <StatsStrip />
+      <MixedCaseStudies />
       <FAQ />
       <FinalCTA />
+      <StickyCtaBar />
+      <div className="h-16 sm:h-0" />
     </div>
   );
 }
