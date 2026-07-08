@@ -396,7 +396,7 @@ function ThreeThings() {
                     </p>
                     <div className="mt-6 space-y-3">
                       <Link
-                        href="/linkedin-growth"
+                        href="/growth-infrastructure"
                         className="font-supply flex items-center justify-between text-sm uppercase tracking-[0.1em] text-[#EDECE4]/80 hover:text-[#0CC481] transition-colors border-t border-[#EDECE4]/[0.08] pt-3 group/l"
                       >
                         <span>
@@ -657,7 +657,7 @@ function FAQ() {
     },
     {
       q: "How do you get growth results without ads?",
-      a: "We use precision outbound — authority content plus targeted LinkedIn and email campaigns that reach high-intent prospects directly. No ad spend, no bidding wars, no wasted budget. Your pipeline is built through direct outreach to the exact type of client you want.",
+      a: "We use precision outbound — authority content plus targeted outreach campaigns that reach high-intent prospects directly, across the channels your buyers actually use. No ad spend, no bidding wars, no wasted budget. Your pipeline is built through direct outreach to the exact type of client you want.",
     },
     {
       q: "What makes this different from a marketing agency?",

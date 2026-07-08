@@ -4,19 +4,19 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
-      // Legacy landers → maintained pages. All temporary (307) so they stay
-      // easy to reverse and browsers don't cache them permanently — if any
-      // ad campaign turns out to point at one, removing the redirect
-      // restores the original page instantly.
+      // The Growth Infrastructure offer page now lives at
+      // /growth-infrastructure (channel-agnostic URL — no LinkedIn mention).
+      // Old URLs redirect there. All temporary (307) so they stay easy to
+      // reverse and browsers don't cache them permanently.
       {
-        source: "/growth-infrastructure",
-        destination: "/linkedin-growth",
+        source: "/linkedin-growth",
+        destination: "/growth-infrastructure",
         permanent: false,
       },
-      // Retired design-test URL (variant was promoted to /linkedin-growth).
+      // Retired design-test URL.
       {
         source: "/linkedin-growth-v2",
-        destination: "/linkedin-growth",
+        destination: "/growth-infrastructure",
         permanent: false,
       },
       // Old booking funnel (duplicate of /book-call).
@@ -28,18 +28,18 @@ const nextConfig: NextConfig = {
       // Old offer lander.
       {
         source: "/get-meetings",
-        destination: "/linkedin-growth",
+        destination: "/growth-infrastructure",
         permanent: false,
       },
       // Dead closer-model offer — retired.
       {
         source: "/sales-closer",
-        destination: "/linkedin-growth",
+        destination: "/growth-infrastructure",
         permanent: false,
       },
       {
         source: "/sales-closer2",
-        destination: "/linkedin-growth",
+        destination: "/growth-infrastructure",
         permanent: false,
       },
     ];

@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Growth Infrastructure™ — Get 15+ Qualified Appointments Every Month, Guaranteed Or You Don't Pay | Novada Tech",
+  title:
+    "Growth Infrastructure™ — Authority + Outreach That Books 15+ Qualified Meetings Monthly | Novada Tech",
   description:
-    "Stop running campaigns. Install Growth Infrastructure™ — a done-for-you client acquisition system, live in 14 days, that books 15+ qualified appointments every month. If we don't hit the number, you don't pay.",
+    "We position you as the trusted expert in your niche, then leverage that authority through our proven outbound system to book 15+ qualified sales meetings every month. No paid ads. Backed by our 90-Day Money-Back Guarantee.",
   openGraph: {
-    title: "Growth Infrastructure™ — Get 15+ Qualified Appointments Every Month, Guaranteed Or You Don't Pay | Novada Tech",
+    title:
+      "Growth Infrastructure™ — Authority + Outreach That Books 15+ Qualified Meetings Monthly | Novada Tech",
     description:
-      "Stop running campaigns. Install Growth Infrastructure™ — a done-for-you client acquisition system, live in 14 days, that books 15+ qualified appointments every month. If we don't hit the number, you don't pay.",
+      "We position you as the trusted expert in your niche, then leverage that authority through our proven outbound system to book 15+ qualified sales meetings every month. No paid ads. Backed by our 90-Day Money-Back Guarantee.",
     type: "website",
     locale: "en_AU",
   },

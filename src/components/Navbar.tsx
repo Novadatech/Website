@@ -8,7 +8,7 @@ import NovadaLogo from "./NovadaLogo";
 
 const SOLUTIONS = [
   {
-    href: "/linkedin-growth",
+    href: "/growth-infrastructure",
     label: "Growth Infrastructure",
     desc: "15+ qualified sales meetings every month — guaranteed.",
     icon: TrendingUp,

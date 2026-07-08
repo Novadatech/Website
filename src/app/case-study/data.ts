@@ -49,7 +49,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerCompany: "Morasco Media Services",
     offering: LINKEDIN_GROWTH,
     offeringLabel: "Growth Infrastructure™",
-    cardHeadline: "Signed 3 high-value clients in 30 days using LinkedIn Growth.",
+    cardHeadline: "Signed 3 high-value clients in 30 days with Growth Infrastructure.",
     pageTitle: "How Morasco Media Signed 3 High-Value Clients in 30 Days",
     pageSubtitle:
       "Nicola turned an inconsistent referral pipeline into a calendar of pre-qualified decision-maker meetings — and closed three high-value clients in the first month.",
@@ -95,7 +95,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerCompany: "South Line Media",
     offering: LINKEDIN_GROWTH,
     offeringLabel: "Growth Infrastructure™",
-    cardHeadline: "Grew monthly revenue from $20K to over $100K using LinkedIn Growth.",
+    cardHeadline: "Grew monthly revenue from $20K to over $100K with Growth Infrastructure.",
     pageTitle: "How South Line Media 5x'd Monthly Revenue — From $20K to $100K+",
     pageSubtitle:
       "Tony broke through a stubborn $20K-per-month plateau and scaled past $100K monthly revenue — without changing the offer, hiring SDRs, or spending on ads.",
@@ -141,7 +141,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerCompany: "Aaronson Investigations",
     offering: LINKEDIN_GROWTH,
     offeringLabel: "Growth Infrastructure™",
-    cardHeadline: "10x'd monthly revenue in 30 days using LinkedIn Growth.",
+    cardHeadline: "10x'd monthly revenue in 30 days with Growth Infrastructure.",
     pageTitle: "How Michael 10x'd His Investigations Firm's Revenue in 30 Days",
     pageSubtitle:
       "Michael went from a referral-only investigations firm to direct access to corporate decision-makers — and 10x'd monthly revenue in the first 30 days.",

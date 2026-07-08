@@ -453,7 +453,7 @@ function WhereItLeads() {
         <div className="grid md:grid-cols-2 gap-6">
           <AnimatedSection>
             <Link
-              href="/linkedin-growth"
+              href="/growth-infrastructure"
               className={`block ${MS_CARD} p-8 h-full group hover:border-[#EDECE4]/[0.14] transition-colors`}
             >
               <TrendingUp className="w-7 h-7 text-[#0CC481] mb-5" strokeWidth={1.4} />

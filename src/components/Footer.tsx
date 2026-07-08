@@ -65,7 +65,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/linkedin-growth" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                <Link href="/growth-infrastructure" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
                   Growth Infrastructure
                 </Link>
               </li>

@@ -14,7 +14,6 @@ const STANDALONE_ROUTES = [
   "/sales-closer",
   "/sales-closer2",
   "/growth-infrastructure",
-  "/linkedin-growth",
   "/book-call",
   "/confirmed-call",
 ];
