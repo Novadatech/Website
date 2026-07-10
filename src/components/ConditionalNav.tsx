@@ -10,6 +10,7 @@ import LandingFooter from "./LandingFooter";
 // header (logo + page-specific CTA) inside the page component.
 const STANDALONE_ROUTES = [
   "/apply",
+  "/meetings",
   "/get-meetings",
   "/sales-closer",
   "/sales-closer2",
