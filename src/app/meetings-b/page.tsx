@@ -864,10 +864,6 @@ function StickyCta() {
 export default function MeetingsLanderEmberPage() {
   return (
     <div className="bg-surface-950 overflow-x-clip">
-      {/* Ads lander: suppress the global chat widget — its pop-open bubble
-          covers the CTA/risk-reversal copy and adds an exit path for cold
-          traffic. Scoped to this page (style unmounts on navigation). */}
-      <style>{`chat-widget, .lc_text-widget, #lc_text-widget { display: none !important; }`}</style>
       <Header />
       <Hero />
       <VSL />
