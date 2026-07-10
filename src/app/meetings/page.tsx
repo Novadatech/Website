@@ -102,7 +102,7 @@ function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="mt-5 text-base md:text-xl font-light text-[#EDECE4]/85 max-w-2xl mx-auto leading-relaxed"
+          className="mt-5 text-base md:text-xl text-[#EDECE4]/95 max-w-2xl mx-auto leading-relaxed"
         >
           Done-for-you outreach across every channel that matters, run by our
           team — <span className="text-white font-semibold">15+ qualified
@@ -124,7 +124,7 @@ function Hero() {
             Book My Free Strategy Call
             <ChevronRight className="w-5 h-5" />
           </a>
-          <p className="mt-4 text-sm md:text-base font-light text-[#EDECE4]/70">
+          <p className="mt-4 text-sm md:text-base text-[#EDECE4]/90">
             No meeting booked? <span className="text-white font-medium">No charge.</span>{" "}
             Meeting cancelled? <span className="text-white font-medium">You don&apos;t pay a cent.</span>
           </p>
@@ -147,7 +147,7 @@ function VSL() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <div className="flex items-center justify-center gap-2 mb-3 text-sm font-light text-[#EDECE4]/60">
+          <div className="flex items-center justify-center gap-2 mb-3 text-sm text-[#EDECE4]/80">
             <Play className="w-3.5 h-3.5 text-[#0CC481]" />
             <span>Watch the 2-minute overview</span>
           </div>
@@ -163,7 +163,7 @@ function VSL() {
               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
             />
           </div>
-          <div className="mt-3 flex items-center justify-center gap-2 text-xs font-light text-[#EDECE4]/40">
+          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-[#EDECE4]/50">
             <span>Presented by <span className="text-[#EDECE4]/70">Ade</span> — Founder, Novada Tech</span>
           </div>
         </motion.div>
@@ -280,7 +280,7 @@ function BurnedBefore() {
                 {oldWay.map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <X className="w-5 h-5 text-red-400/60 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <p className="text-base font-light text-[#EDECE4]/75 leading-relaxed">{item}</p>
+                    <p className="text-base text-[#EDECE4]/90 leading-relaxed">{item}</p>
                   </div>
                 ))}
               </div>
@@ -301,7 +301,7 @@ function BurnedBefore() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <p className="text-base font-light text-[#EDECE4] leading-relaxed">{item}</p>
+                    <p className="text-base text-[#EDECE4] leading-relaxed">{item}</p>
                   </div>
                 ))}
               </div>
@@ -310,7 +310,7 @@ function BurnedBefore() {
         </div>
 
         <AnimatedSection delay={0.15} className="text-center mt-8">
-          <p className="text-lg md:text-xl font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-[#EDECE4]/95 max-w-2xl mx-auto leading-relaxed">
             If we don&apos;t book meetings, we don&apos;t get paid — and
             15+ qualified meetings a month is{" "}
             <span className="text-white">guaranteed, in writing.</span>{" "}
@@ -333,7 +333,7 @@ function FounderNote() {
             <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
               A Note From The Founder
             </p>
-            <p className="text-lg md:text-xl font-light text-[#EDECE4] leading-relaxed">
+            <p className="text-lg md:text-xl text-[#EDECE4] leading-relaxed">
               &ldquo;We don&apos;t take on every business, and we won&apos;t
               pretend we&apos;re the right fit for everyone. But when we do
               partner, the risk sits with us — you pay nothing to start, and
@@ -392,7 +392,7 @@ function RiskReversal() {
               <div className="rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808] p-7 h-full text-center">
                 <c.icon className="w-8 h-8 text-[#0CC481] mx-auto mb-4" strokeWidth={1.3} />
                 <h3 className="text-lg font-normal text-white mb-2">{c.title}</h3>
-                <p className="text-sm font-light text-[#EDECE4]/65 leading-relaxed">{c.desc}</p>
+                <p className="text-sm text-[#EDECE4]/85 leading-relaxed">{c.desc}</p>
               </div>
             </AnimatedSection>
           ))}
@@ -425,7 +425,7 @@ function Mechanism() {
             First we make your market trust you.{" "}
             <span className={GRAD_TEXT}>Then we start the conversations.</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg font-light text-[#EDECE4]/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-base md:text-lg text-[#EDECE4]/90 max-w-2xl mx-auto leading-relaxed">
             Most outreach fails because prospects look you up, see nothing
             that says expert, and archive you. Our system fixes both sides —
             trust and reach — so replies turn into booked, qualified meetings.
@@ -442,7 +442,7 @@ function Mechanism() {
                 <h3 className="text-xl md:text-2xl font-normal text-white mb-2">
                   Trust Engineering&trade;
                 </h3>
-                <p className="text-base font-light text-[#EDECE4]/70 leading-relaxed">
+                <p className="text-base text-[#EDECE4]/90 leading-relaxed">
                   We position you as the recognised authority in your niche —
                   a rewritten profile, an authority-video content engine and
                   credibility assets — so when a decision-maker looks you up,
@@ -461,7 +461,7 @@ function Mechanism() {
                 <h3 className="text-xl md:text-2xl font-normal text-white mb-2">
                   The Outbound Growth System
                 </h3>
-                <p className="text-base font-light text-[#EDECE4]/70 leading-relaxed">
+                <p className="text-base text-[#EDECE4]/90 leading-relaxed">
                   Our dedicated SDR team runs daily, done-for-you outreach
                   across every channel that matters — social, email, SMS and
                   phone — handling replies, qualifying leads against your
@@ -476,7 +476,7 @@ function Mechanism() {
         <AnimatedSection delay={0.15} className="mt-8 text-center">
           <div className="inline-flex items-center gap-3 rounded-lg border border-[#EDECE4]/10 px-5 py-3">
             <Clock className="w-4 h-4 text-[#0CC481]" />
-            <span className="text-sm font-light text-[#EDECE4]/80">
+            <span className="text-sm text-[#EDECE4]/95">
               Your total time investment: <span className="text-white">under 30 minutes a week.</span> We handle the rest.
             </span>
           </div>
@@ -532,7 +532,7 @@ function Timeline() {
                     {s.period}
                   </p>
                   <h3 className="text-lg md:text-xl font-normal text-white mb-3">{s.title}</h3>
-                  <p className="text-sm md:text-base font-light text-[#EDECE4]/60 leading-relaxed max-w-[300px] mx-auto">
+                  <p className="text-sm md:text-base text-[#EDECE4]/80 leading-relaxed max-w-[300px] mx-auto">
                     {s.desc}
                   </p>
                 </div>
@@ -614,7 +614,7 @@ function WrittenTestimonials() {
             <AnimatedSection key={i} delay={i * 0.1}>
               <figure className="rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808] p-7 h-full flex flex-col">
                 <div className="text-[#0CC481] text-sm tracking-widest mb-4">★★★★★</div>
-                <blockquote className="text-base md:text-lg font-light text-[#EDECE4] leading-relaxed flex-1">
+                <blockquote className="text-base md:text-lg text-[#EDECE4] leading-relaxed flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3">
@@ -714,7 +714,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left group"
       >
-        <span className="text-base md:text-lg font-light text-[#EDECE4] group-hover:text-white transition-colors pr-4">
+        <span className="text-base md:text-lg text-[#EDECE4] group-hover:text-white transition-colors pr-4">
           {question}
         </span>
         <ChevronDown
@@ -727,7 +727,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="overflow-hidden"
       >
-        <p className="pb-6 text-base font-light text-[#EDECE4]/70 leading-relaxed">{answer}</p>
+        <p className="pb-6 text-base text-[#EDECE4]/90 leading-relaxed">{answer}</p>
       </motion.div>
     </div>
   );
@@ -757,7 +757,7 @@ function Booking() {
           <h2 className="text-3xl md:text-5xl font-light tracking-tight text-balance text-white">
             Pick a time. <span className={GRAD_TEXT}>See exactly how many meetings we&apos;d book you.</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg font-light text-[#EDECE4]/75 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-base md:text-lg text-[#EDECE4]/90 max-w-2xl mx-auto leading-relaxed">
             On the call we&apos;ll define what a qualified meeting looks like
             for your business, agree your exact per-meeting fee, and map your
             first 90 days. If it&apos;s not a fit, you&apos;ll leave with a
@@ -780,14 +780,14 @@ function Booking() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <span className="text-sm font-light text-[#EDECE4]/80 leading-relaxed">{item}</span>
+                    <span className="text-sm text-[#EDECE4]/95 leading-relaxed">{item}</span>
                   </div>
                 ))}
               </div>
               <div className="font-supply mt-6 pt-5 border-t border-[#EDECE4]/[0.08] text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40 leading-relaxed">
                 30 minutes · No obligation · No hard sell
               </div>
-              <div className="mt-4 flex items-center gap-2 text-xs font-light text-[#EDECE4]/60">
+              <div className="mt-4 flex items-center gap-2 text-xs text-[#EDECE4]/80">
                 <span className="text-[#0CC481]">★★★★★</span>
                 <span>4.9 on Trustpilot · 350+ businesses scaled</span>
               </div>
@@ -837,7 +837,7 @@ function StickyCta() {
         >
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
-              <p className="text-sm font-light text-[#EDECE4]">
+              <p className="text-sm text-[#EDECE4]">
                 Qualified meetings, booked for you — $0 upfront
               </p>
               <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
