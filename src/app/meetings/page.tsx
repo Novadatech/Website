@@ -54,10 +54,11 @@ function Header() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
         <div className="max-container section-padding">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            <NovadaLogo variant="light" className="h-10 md:h-12 w-auto" />
-            <a href={BOOK_ANCHOR} className={BTN_CTA_SM}>
-              Book My Free Call
+          <div className="flex items-center justify-between gap-3 h-16 md:h-20">
+            <NovadaLogo variant="light" className="h-9 md:h-12 w-auto flex-shrink-0" />
+            <a href={BOOK_ANCHOR} className={`${BTN_CTA_SM} !px-4 whitespace-nowrap`}>
+              <span className="sm:hidden">Book A Call</span>
+              <span className="hidden sm:inline">Book My Free Call</span>
               <ChevronRight className="w-4 h-4" />
             </a>
           </div>
@@ -850,7 +851,7 @@ function StickyCta() {
 /* ─── PAGE ─── */
 export default function MeetingsLanderPage() {
   return (
-    <div className="bg-[#080808] font-poppins">
+    <div className="bg-[#080808] font-poppins overflow-x-clip">
       {/* Ads lander: suppress the global chat widget — its pop-open bubble
           covers the CTA/risk-reversal copy and adds an exit path for cold
           traffic. Scoped to this page (style unmounts on navigation). */}
