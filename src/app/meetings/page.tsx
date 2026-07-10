@@ -204,7 +204,7 @@ function VideoCaseStudies() {
           <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
             Real Clients · Real Results · In Their Own Words
           </p>
-          <h2 className="text-2xl md:text-4xl font-light tracking-tight text-white text-balance">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
             Don&apos;t take our word for it.{" "}
             <span className={GRAD_TEXT}>Hear it from them.</span>
           </h2>
@@ -264,7 +264,7 @@ function BurnedBefore() {
           <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
             Been Burned By An Agency Before?
           </p>
-          <h2 className="text-2xl md:text-4xl font-light tracking-tight text-white text-balance">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
             You paid first. They promised. Nothing landed on your calendar.{" "}
             <span className={GRAD_TEXT}>We built the opposite model.</span>
           </h2>
@@ -378,7 +378,7 @@ function RiskReversal() {
           <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
             No Upfront · No Retainer · No Risk
           </p>
-          <h2 className="text-2xl md:text-4xl font-light tracking-tight text-white text-balance">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
             The only time money changes hands is when{" "}
             <span className={GRAD_TEXT}>
               a qualified meeting lands on your calendar.
@@ -421,7 +421,7 @@ function Mechanism() {
           <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
             Why This Works When Cold Outreach Doesn&apos;t
           </p>
-          <h2 className="text-2xl md:text-4xl font-light tracking-tight text-white text-balance">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
             First we make your market trust you.{" "}
             <span className={GRAD_TEXT}>Then we start the conversations.</span>
           </h2>
@@ -513,7 +513,7 @@ function Timeline() {
           <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
             How It Works
           </p>
-          <h2 className="text-2xl md:text-4xl font-light tracking-tight text-white text-balance">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
             From this page to a calendar{" "}
             <span className={GRAD_TEXT}>that fills itself.</span>
           </h2>
@@ -691,7 +691,7 @@ function FAQ() {
           <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
             FAQs
           </p>
-          <h2 className="text-2xl md:text-4xl font-light tracking-tight text-white">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white">
             Everything sceptics ask us. <span className={GRAD_TEXT}>Answered straight.</span>
           </h2>
         </AnimatedSection>
@@ -754,7 +754,7 @@ function Booking() {
           <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
             Free 30-Minute Strategy Call
           </p>
-          <h2 className="text-3xl md:text-5xl font-light tracking-tight text-balance text-white">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-balance text-white">
             Pick a time. <span className={GRAD_TEXT}>See exactly how many meetings we&apos;d book you.</span>
           </h2>
           <p className="mt-4 text-base md:text-lg text-[#EDECE4]/90 max-w-2xl mx-auto leading-relaxed">
