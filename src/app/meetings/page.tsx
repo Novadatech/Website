@@ -90,10 +90,10 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-[32px] leading-[1.12] sm:text-4xl md:text-6xl font-light tracking-tight text-balance max-w-4xl mx-auto text-white"
+          className="text-[32px] leading-[1.12] sm:text-4xl md:text-6xl font-bold tracking-tight text-balance max-w-4xl mx-auto text-white"
         >
           We Book Qualified Sales Meetings Onto Your Calendar.{" "}
-          <span className={`${GRAD_TEXT} font-normal`}>
+          <span className={GRAD_TEXT}>
             You Only Pay When We Do.
           </span>
         </motion.h1>
@@ -105,8 +105,8 @@ function Hero() {
           className="mt-5 text-base md:text-xl font-light text-[#EDECE4]/85 max-w-2xl mx-auto leading-relaxed"
         >
           Done-for-you outreach across every channel that matters, run by our
-          team — <span className="text-white">15+ qualified meetings a
-          month, guaranteed</span>. $0 upfront. No retainers. No lock-in. And
+          team — <span className="text-white font-semibold">15+ qualified
+          meetings a month, guaranteed</span>. $0 upfront. No retainers. No lock-in. And
           you never pay for a meeting that doesn&apos;t happen.
         </motion.p>
 
@@ -125,8 +125,8 @@ function Hero() {
             <ChevronRight className="w-5 h-5" />
           </a>
           <p className="mt-4 text-sm md:text-base font-light text-[#EDECE4]/70">
-            No meeting booked? <span className="text-white">No charge.</span>{" "}
-            Meeting cancelled? <span className="text-white">You don&apos;t pay a cent.</span>
+            No meeting booked? <span className="text-white font-medium">No charge.</span>{" "}
+            Meeting cancelled? <span className="text-white font-medium">You don&apos;t pay a cent.</span>
           </p>
           <p className="font-supply mt-3 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
             30 minutes · No obligation · Written guarantee
