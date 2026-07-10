@@ -5,9 +5,9 @@ import type { Metadata } from "next";
 // consideration while the funnel runs.
 export const metadata: Metadata = {
   title:
-    "Qualified Sales Meetings, Booked For You — $0 Upfront | Novada Tech",
+    "15+ Qualified Sales Meetings A Month, Guaranteed — $0 Upfront | Novada Tech",
   description:
-    "We book qualified sales meetings straight onto your calendar — and you only pay when we do. $0 upfront. No retainers. No lock-in. Cancelled meetings automatically refunded.",
+    "We book 15+ qualified sales meetings a month straight onto your calendar — guaranteed in writing. $0 upfront. Pay only per booked meeting. You never pay for a meeting that doesn't happen.",
   robots: { index: false, follow: false },
 };
 

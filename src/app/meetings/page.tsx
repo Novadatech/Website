@@ -7,10 +7,11 @@
  * pay-per-result qualified meetings. $0 upfront, one per-meeting fee
  * (only charged when a qualified meeting is booked; figure agreed on the
  * call — deliberately not printed since the two proposal tiers differ),
- * cancellations auto-refunded, reschedules never charged twice, no
- * retainer/minimums/lock-in, <30 min/week client time, aiming for 15+
- * qualified meetings a month. NEVER say "guaranteed" — the guarantee was
- * retired from this offer.
+ * you never pay for a cancelled meeting, reschedules never charged twice,
+ * no retainer/minimums/lock-in, <30 min/week client time, and 15+
+ * qualified meetings a month GUARANTEED (user-confirmed 2026-07-10 —
+ * overrides the proposals, which the user is updating; matches the live
+ * Facebook ads' "Written Guarantee" for message match).
  *
  * Structure mandated by user for the top: headline → subheadline →
  * Trustpilot evidence → VSL → video testimonial case studies. Everything
@@ -104,9 +105,9 @@ function Hero() {
           className="mt-5 text-base md:text-xl font-light text-[#EDECE4]/85 max-w-2xl mx-auto leading-relaxed"
         >
           Done-for-you outreach across every channel that matters, run by our
-          team — aiming for <span className="text-white">15+ qualified
-          meetings a month</span>. $0 upfront. No retainers. No lock-in. And
-          if a meeting cancels, you&apos;re automatically refunded.
+          team — <span className="text-white">15+ qualified meetings a
+          month, guaranteed</span>. $0 upfront. No retainers. No lock-in. And
+          you never pay for a meeting that doesn&apos;t happen.
         </motion.p>
 
         {/* Trustpilot evidence — mandated position */}
@@ -125,10 +126,10 @@ function Hero() {
           </a>
           <p className="mt-4 text-sm md:text-base font-light text-[#EDECE4]/70">
             No meeting booked? <span className="text-white">No charge.</span>{" "}
-            Meeting cancelled? <span className="text-white">Automatically refunded.</span>
+            Meeting cancelled? <span className="text-white">You don&apos;t pay a cent.</span>
           </p>
           <p className="font-supply mt-3 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-            30 minutes · No obligation · $0 to start
+            30 minutes · No obligation · Written guarantee
           </p>
         </motion.div>
       </div>
@@ -295,7 +296,7 @@ function BurnedBefore() {
                 {[
                   "You pay $0 upfront — no activation, onboarding or setup fee",
                   "You're only charged when a qualified meeting is booked",
-                  "A cancelled meeting is automatically refunded",
+                  "A cancelled meeting costs you nothing — you’re simply not charged",
                   "No retainer, no minimums, no lock-in — ever",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
@@ -310,9 +311,11 @@ function BurnedBefore() {
 
         <AnimatedSection delay={0.15} className="text-center mt-8">
           <p className="text-lg md:text-xl font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed">
-            If we don&apos;t book meetings, we don&apos;t get paid.{" "}
-            <span className="text-white">Our incentive and yours point in
-            exactly the same direction — from day one.</span>
+            If we don&apos;t book meetings, we don&apos;t get paid — and
+            15+ qualified meetings a month is{" "}
+            <span className="text-white">guaranteed, in writing.</span>{" "}
+            Our incentive and yours point in exactly the same direction —
+            from day one.
           </p>
         </AnimatedSection>
       </div>
@@ -363,8 +366,8 @@ function RiskReversal() {
     },
     {
       icon: RotateCcw,
-      title: "Cancellations Refunded",
-      desc: "If a prospect cancels, that meeting's fee is automatically refunded. A reschedule is never charged twice. You only pay for meetings that hold.",
+      title: "Cancellations Cost Nothing",
+      desc: "If a prospect cancels, you don't pay for that meeting — and a reschedule is never charged twice. You only ever pay for meetings that hold.",
     },
   ];
 
@@ -499,7 +502,7 @@ function Timeline() {
     {
       period: "Step 3 · Meetings Land",
       title: "Qualified meetings hit your calendar.",
-      desc: "First qualified meetings typically land inside your first month — then we optimise targeting and messaging, working toward a consistent 15+ every month.",
+      desc: "First qualified meetings typically land inside your first month — then we optimise targeting and messaging, scaling to your guaranteed 15+ every month.",
     },
   ];
 
@@ -648,8 +651,12 @@ function FAQ() {
       a: "$0 upfront — no activation, onboarding or setup fee. There's one simple per-meeting fee, agreed with you before we start, and it's only charged when a qualified meeting is actually booked into your calendar. No meeting booked means no charge.",
     },
     {
+      q: "Is the 15+ meetings a month actually guaranteed?",
+      a: "Yes — 15+ qualified meetings every month, and it's written into your service agreement, not a marketing line. Combined with $0 upfront and pay-per-meeting billing, the risk sits with us end to end: you never pre-pay, you only pay for meetings actually booked, and the monthly target is guaranteed in writing.",
+    },
+    {
       q: "What happens if a meeting cancels or doesn't hold?",
-      a: "The fee for that meeting is automatically refunded to your payment method. And a reschedule is never charged twice — it remains the same single meeting. You only ever pay for meetings that hold.",
+      a: "You don't pay for it — simple as that. A cancelled meeting costs you nothing, and a reschedule is never charged twice; it remains the same single meeting. You only ever pay for meetings that hold.",
     },
     {
       q: "I've been burned by agencies before. Why is this different?",
@@ -665,7 +672,7 @@ function FAQ() {
     },
     {
       q: "How quickly will I see meetings?",
-      a: "The system is typically built and live within your first two weeks, and the first qualified meetings usually land inside the first month — then we keep optimising toward a consistent 15+ qualified meetings every month.",
+      a: "The system is typically built and live within your first two weeks, and the first qualified meetings usually land inside the first month — then we scale to your guaranteed 15+ qualified meetings every month.",
     },
     {
       q: "Is there a lock-in contract?",
@@ -834,7 +841,7 @@ function StickyCta() {
                 Qualified meetings, booked for you — $0 upfront
               </p>
               <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-                Pay only per booked meeting · Cancellations refunded
+                15+ a month guaranteed · Pay only per booked meeting
               </p>
             </div>
             <a href={BOOK_ANCHOR} className={`${BTN_CTA_SM} w-full sm:w-auto`}>
