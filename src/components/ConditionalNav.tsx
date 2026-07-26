@@ -11,6 +11,7 @@ import LandingFooter from "./LandingFooter";
 const STANDALONE_ROUTES = [
   "/apply",
   "/meetings",
+  "/meetings-2",
   "/meetings-b",
   "/get-meetings",
   "/sales-closer",
