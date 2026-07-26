@@ -155,7 +155,7 @@ function Hero() {
         >
           <div className="rounded-lg border border-[#EDECE4]/10 bg-white/[0.02] px-6 py-4">
             <p className="text-sm md:text-base text-[#EDECE4]/90 leading-relaxed">
-              Most US appointment-setting agencies charge{" "}
+              Most appointment-setting agencies charge{" "}
               <span className="text-white font-semibold">
                 $4,000–$10,000 a month upfront
               </span>
@@ -942,7 +942,7 @@ function Booking() {
                   point (developer brief Task 5.4) */}
               <div className="mt-5 rounded-lg border border-[#EDECE4]/10 bg-white/[0.02] px-4 py-3">
                 <p className="text-xs text-[#EDECE4]/80 leading-relaxed">
-                  Most US appointment-setting agencies charge{" "}
+                  Most appointment-setting agencies charge{" "}
                   <span className="text-white">$4,000–$10,000 a month
                   upfront</span>, on a 3–6 month contract. Here there&apos;s no
                   retainer and no setup fee — you pay per booked meeting,

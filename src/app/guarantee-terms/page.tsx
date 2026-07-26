@@ -165,12 +165,19 @@ export default function GuaranteeTermsPage() {
                 </a>
                 , or by phone on{" "}
                 <a
+                  href="tel:+18333853923"
+                  className="text-[#0CC481] underline underline-offset-2"
+                >
+                  +1 833-385-3923
+                </a>{" "}
+                (US) or{" "}
+                <a
                   href="tel:+61485000813"
                   className="text-[#0CC481] underline underline-offset-2"
                 >
                   (+61) 485 000 813
-                </a>
-                .
+                </a>{" "}
+                (AU).
               </p>
             </Section>
           </div>

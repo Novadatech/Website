@@ -34,6 +34,13 @@ export default function LandingFooter() {
               support@novadatech.com.au
             </a>
             <a
+              href="tel:+18333853923"
+              className="flex items-center gap-2 hover:text-white/80 transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              +1 833-385-3923
+            </a>
+            <a
               href="tel:+61485000813"
               className="flex items-center gap-2 hover:text-white/80 transition-colors"
             >
