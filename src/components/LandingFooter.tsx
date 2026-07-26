@@ -42,10 +42,14 @@ export default function LandingFooter() {
             </a>
           </div>
 
-          {/* Privacy Policy + Copyright */}
-          <div className="flex items-center gap-4 text-xs text-white/30">
+          {/* Legal links + Copyright */}
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-white/30">
             <Link href="/privacy-policy" className="hover:text-white/60 transition-colors">
               Privacy Policy
+            </Link>
+            <span>·</span>
+            <Link href="/guarantee-terms" className="hover:text-white/60 transition-colors">
+              Guarantee &amp; Terms
             </Link>
             <span>·</span>
             <span>© {new Date().getFullYear()} Novada Tech. All rights reserved.</span>

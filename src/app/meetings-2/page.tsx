@@ -1,17 +1,24 @@
 "use client";
 
 /*
- * /meetings — paid-ads lander (Facebook cold traffic).
+ * /meetings-2 — paid-ads lander (US Google Ads cold traffic). Forked from
+ * /meetings (Facebook) on 2026-07-26; diverged 2026-07-27 per the Google
+ * Ads developer brief (Google Ads folder / 03 - DEVELOPER BRIEF).
  *
- * Offer (source: Blueprint/Phase 3 proposals, positioned as ONE offer):
- * pay-per-result qualified meetings. $0 upfront, one per-meeting fee
- * (only charged when a qualified meeting is booked; figure agreed on the
- * call — deliberately not printed since the two proposal tiers differ),
- * you never pay for a cancelled meeting, reschedules never charged twice,
- * no retainer/minimums/lock-in, <30 min/week client time, and 15+
- * qualified meetings a month GUARANTEED (user-confirmed 2026-07-10 —
- * overrides the proposals, which the user is updating; matches the live
- * Facebook ads' "Written Guarantee" for message match).
+ * Offer: pay-per-result qualified meetings. One per-meeting fee (only
+ * charged when a qualified meeting is booked; figure agreed on the call —
+ * deliberately not printed since the proposal tiers differ), you never pay
+ * for a cancelled meeting, reschedules never charged twice, no
+ * retainer/minimums/lock-in, <30 min/week client time, and 15+ qualified
+ * meetings a month GUARANTEED (backed by /guarantee-terms).
+ *
+ * COMPLIANCE (Google Misrepresentation / Unreliable Claims policies):
+ * - NO "$0 upfront"/"$0 activation" claims — a commitment deposit exists.
+ *   Approved framing: "No retainer. No setup fee. No lock-in."
+ * - Results disclaimers under the case-study grid and the stats bar.
+ * - Guarantee links to /guarantee-terms (accessible terms page).
+ * Task 1 (GCLID): captured in layout.tsx, passed into the booking iframe
+ * src below so GHL stores it on the contact.
  *
  * Structure mandated by user for the top: headline → subheadline →
  * Trustpilot evidence → VSL → video testimonial case studies. Everything
@@ -106,8 +113,8 @@ function Hero() {
         >
           Done-for-you outreach across every channel that matters, run by our
           team — <span className="text-white font-semibold">15+ qualified
-          meetings a month, guaranteed</span>. $0 upfront. No retainers. No lock-in. And
-          you never pay for a meeting that doesn&apos;t happen.
+          meetings a month, guaranteed</span>. No retainer. No setup fee. No lock-in.
+          And you never pay for a meeting that doesn&apos;t happen.
         </motion.p>
 
         {/* Trustpilot evidence — mandated position */}
@@ -129,8 +136,34 @@ function Hero() {
             Meeting cancelled? <span className="text-white font-medium">You don&apos;t pay a cent.</span>
           </p>
           <p className="font-supply mt-3 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-            30 minutes · No obligation · Written guarantee
+            30 minutes · No obligation ·{" "}
+            <a
+              href="/guarantee-terms"
+              className="underline decoration-[#EDECE4]/30 underline-offset-2 hover:text-[#EDECE4]/70 transition-colors"
+            >
+              Written guarantee
+            </a>
           </p>
+        </motion.div>
+
+        {/* US market price anchor (developer brief Task 5.4) */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.55 }}
+          className="mt-8 max-w-2xl mx-auto"
+        >
+          <div className="rounded-lg border border-[#EDECE4]/10 bg-white/[0.02] px-6 py-4">
+            <p className="text-sm md:text-base text-[#EDECE4]/90 leading-relaxed">
+              Most US appointment-setting agencies charge{" "}
+              <span className="text-white font-semibold">
+                $4,000–$10,000 a month upfront
+              </span>
+              , on a 3–6 month contract. We charge no retainer and no setup fee
+              — you pay per booked meeting, agreed before we start. Cancel any
+              time.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -196,6 +229,49 @@ const CASE_VIDEOS = [
   },
 ];
 
+/* Thumbnail facade (developer brief Task 5.5): the real YouTube iframe —
+   with its ~1MB of player scripts — is only injected when the visitor
+   clicks play. Poster comes straight off YouTube's image CDN. */
+function VideoFacade({ id, title }: { id: string; title: string }) {
+  const [playing, setPlaying] = useState(false);
+
+  if (playing) {
+    return (
+      <iframe
+        src={`https://www.youtube.com/embed/${id}?rel=0&autoplay=1`}
+        title={title}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        className="absolute inset-0 w-full h-full"
+        style={{ border: "none" }}
+      />
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => setPlaying(true)}
+      aria-label={`Play video: ${title}`}
+      className="group absolute inset-0 w-full h-full cursor-pointer"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+        alt={title}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <span className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
+      <span className="absolute inset-0 flex items-center justify-center">
+        <span className="flex items-center justify-center w-16 h-16 rounded-full bg-[#0CC481] shadow-[0_0_40px_rgba(12,196,129,0.45)] group-hover:scale-110 transition-transform">
+          <Play className="w-7 h-7 text-[#04160e] ml-1" fill="currentColor" />
+        </span>
+      </span>
+    </button>
+  );
+}
+
 function VideoCaseStudies() {
   return (
     <section className="section-padding pb-16 md:pb-24">
@@ -215,14 +291,7 @@ function VideoCaseStudies() {
             <AnimatedSection key={c.id} delay={(i % 2) * 0.08}>
               <div className="rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808] overflow-hidden">
                 <div className="relative w-full aspect-video bg-black">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${c.id}?rel=0`}
-                    title={c.metric}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                    style={{ border: "none" }}
-                  />
+                  <VideoFacade id={c.id} title={c.metric} />
                 </div>
                 <div className="p-5">
                   <p className="text-lg md:text-xl font-normal text-white leading-snug">
@@ -237,7 +306,17 @@ function VideoCaseStudies() {
           ))}
         </div>
 
-        <AnimatedSection delay={0.2} className="text-center mt-10">
+        {/* Results disclaimer (developer brief Task 5.2 — Google Unreliable
+            Claims policy: testimonials citing specific results need a
+            visible results-vary disclaimer) */}
+        <AnimatedSection delay={0.15}>
+          <p className="mt-6 text-center text-xs text-[#EDECE4]/60 leading-relaxed max-w-xl mx-auto">
+            Results shown are individual client outcomes and are not typical.
+            Your results will vary and are not guaranteed.
+          </p>
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.2} className="text-center mt-8">
           <a href={BOOK_ANCHOR} className={`${BTN_CTA} w-full sm:w-auto`}>
             I Want Results Like These
             <ChevronRight className="w-5 h-5" />
@@ -294,10 +373,10 @@ function BurnedBefore() {
               </p>
               <div className="space-y-4">
                 {[
-                  "You pay $0 upfront — no activation, onboarding or setup fee",
+                  "No retainer, no setup fee — you pay per meeting, not per month",
                   "You're only charged when a qualified meeting is booked",
                   "A cancelled meeting costs you nothing — you’re simply not charged",
-                  "No retainer, no minimums, no lock-in — ever",
+                  "No minimums, no lock-in — cancel any time",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
@@ -336,8 +415,8 @@ function FounderNote() {
             <p className="text-lg md:text-xl text-[#EDECE4] leading-relaxed">
               &ldquo;We don&apos;t take on every business, and we won&apos;t
               pretend we&apos;re the right fit for everyone. But when we do
-              partner, the risk sits with us — you pay nothing to start, and
-              nothing at all unless a qualified meeting is booked. That&apos;s
+              partner, the risk sits with us — no retainer, no lock-in, and
+              you only pay when a qualified meeting is booked. That&apos;s
               the standard we hold ourselves to, every single month.&rdquo;
             </p>
             <p className="mt-5 text-base text-white">Ade Eni</p>
@@ -356,8 +435,8 @@ function RiskReversal() {
   const cards = [
     {
       icon: BadgeDollarSign,
-      title: "$0 To Start",
-      desc: "No activation fee. No onboarding fee. No setup fee. You commit no budget to begin — the risk sits with us.",
+      title: "No Setup Fee",
+      desc: "No retainer. No setup fee. No lock-in. The commercial risk of filling your calendar sits with us — not with you.",
     },
     {
       icon: ShieldCheck,
@@ -376,7 +455,7 @@ function RiskReversal() {
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-12">
           <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            No Upfront · No Retainer · No Risk
+            No Retainer · No Setup Fee · No Lock-In
           </p>
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
             The only time money changes hands is when{" "}
@@ -557,7 +636,7 @@ function Stats() {
   const stats = [
     { num: "350+", label: "Businesses Scaled" },
     { num: "$45.7M+", label: "Client Revenue Generated" },
-    { num: "30+", label: "Industries Across Australia" },
+    { num: "30+", label: "Industries Served" },
     { num: "4.9★", label: "Trustpilot · 77+ Reviews" },
   ];
 
@@ -582,6 +661,12 @@ function Stats() {
             </motion.div>
           ))}
         </div>
+
+        {/* Results disclaimer (developer brief Task 5.2) */}
+        <p className="mt-10 text-center text-xs text-[#EDECE4]/60 leading-relaxed max-w-xl mx-auto">
+          Results shown are individual client outcomes and are not typical.
+          Your results will vary and are not guaranteed.
+        </p>
       </div>
     </section>
   );
@@ -648,11 +733,35 @@ function FAQ() {
     },
     {
       q: "What does it cost?",
-      a: "$0 upfront — no activation, onboarding or setup fee. There's one simple per-meeting fee, agreed with you before we start, and it's only charged when a qualified meeting is actually booked into your calendar. No meeting booked means no charge.",
+      a: (
+        <>
+          No retainer, no setup fee, no lock-in. There&apos;s one simple
+          per-meeting fee, agreed with you before we start, and it&apos;s only
+          charged when a qualified meeting is actually booked into your
+          calendar. No meeting booked means no charge. Full billing details are
+          in our{" "}
+          <a href="/guarantee-terms" className="text-[#0CC481] underline underline-offset-2">
+            Guarantee &amp; Terms
+          </a>
+          .
+        </>
+      ),
     },
     {
       q: "Is the 15+ meetings a month actually guaranteed?",
-      a: "Yes — 15+ qualified meetings every month, and it's written into your service agreement, not a marketing line. Combined with $0 upfront and pay-per-meeting billing, the risk sits with us end to end: you never pre-pay, you only pay for meetings actually booked, and the monthly target is guaranteed in writing.",
+      a: (
+        <>
+          Yes — 15+ qualified meetings every month, and it&apos;s written into
+          your service agreement, not a marketing line. Combined with
+          pay-per-meeting billing, the risk sits with us end to end:
+          there&apos;s no retainer to lose, you only pay for meetings actually
+          booked, and the monthly target is guaranteed in writing. See our{" "}
+          <a href="/guarantee-terms" className="text-[#0CC481] underline underline-offset-2">
+            Guarantee &amp; Terms
+          </a>{" "}
+          page for exactly what it covers.
+        </>
+      ),
     },
     {
       q: "What happens if a meeting cancels or doesn't hold?",
@@ -706,7 +815,7 @@ function FAQ() {
   );
 }
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
+function FAQItem({ question, answer }: { question: string; answer: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-b border-[#EDECE4]/10">
@@ -734,8 +843,45 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 /* ─── BOOKING (embedded calendar — the conversion) ─── */
+const BOOKING_WIDGET_BASE =
+  "https://link.novadatech.com/widget/booking/hAdr4aCtDRC4RgbxhnYD";
+
+/* Developer brief Task 1.2: append the stored Google click ID (captured in
+   layout.tsx) to the widget src as query params. GHL prefills them into
+   matching custom fields on the booking form, tying the booked contact back
+   to the exact ad click. Client-side only — the value exists only in the
+   visitor's browser. */
+function buildBookingSrc(): string {
+  let stored: {
+    ids?: { gclid?: string; wbraid?: string; gbraid?: string };
+    utm?: { utm_campaign?: string; utm_term?: string };
+  } | null = null;
+  try {
+    stored = JSON.parse(localStorage.getItem("nvt_click") || "null");
+  } catch {
+    return BOOKING_WIDGET_BASE;
+  }
+  if (!stored || !stored.ids) return BOOKING_WIDGET_BASE;
+
+  const clickId =
+    stored.ids.gclid || stored.ids.wbraid || stored.ids.gbraid || "";
+  if (!clickId) return BOOKING_WIDGET_BASE;
+
+  const qs = new URLSearchParams();
+  qs.set("gclid", clickId); // must match the GHL custom field key exactly
+  if (stored.utm?.utm_campaign) qs.set("utm_campaign", stored.utm.utm_campaign);
+  if (stored.utm?.utm_term) qs.set("utm_term", stored.utm.utm_term);
+  return `${BOOKING_WIDGET_BASE}?${qs.toString()}`;
+}
+
 function Booking() {
+  // SSR renders the base URL; on mount we swap in the click-ID-decorated
+  // src before the widget is scrolled into view (it's at the page bottom).
+  const [bookingSrc, setBookingSrc] = useState(BOOKING_WIDGET_BASE);
+
   useEffect(() => {
+    setBookingSrc(buildBookingSrc());
+
     const script = document.createElement("script");
     script.src = "https://link.novadatech.com/js/form_embed.js";
     script.type = "text/javascript";
@@ -791,6 +937,18 @@ function Booking() {
                 <span className="text-[#0CC481]">★★★★★</span>
                 <span>4.9 on Trustpilot · 350+ businesses scaled</span>
               </div>
+
+              {/* US market price anchor, repeated beside the conversion
+                  point (developer brief Task 5.4) */}
+              <div className="mt-5 rounded-lg border border-[#EDECE4]/10 bg-white/[0.02] px-4 py-3">
+                <p className="text-xs text-[#EDECE4]/80 leading-relaxed">
+                  Most US appointment-setting agencies charge{" "}
+                  <span className="text-white">$4,000–$10,000 a month
+                  upfront</span>, on a 3–6 month contract. Here there&apos;s no
+                  retainer and no setup fee — you pay per booked meeting,
+                  agreed before we start. Cancel any time.
+                </p>
+              </div>
             </div>
           </AnimatedSection>
 
@@ -798,7 +956,7 @@ function Booking() {
           <div className="lg:col-span-2">
             <div className="rounded-xl border border-[#0CC481]/25 bg-white/[0.02] p-2 min-h-[600px] relative z-10">
               <iframe
-                src="https://link.novadatech.com/widget/booking/hAdr4aCtDRC4RgbxhnYD"
+                src={bookingSrc}
                 style={{
                   width: "100%",
                   minHeight: "700px",
@@ -838,7 +996,7 @@ function StickyCta() {
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
               <p className="text-sm text-[#EDECE4]">
-                Qualified meetings, booked for you — $0 upfront
+                Qualified meetings, booked for you — no retainer
               </p>
               <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
                 15+ a month guaranteed · Pay only per booked meeting
