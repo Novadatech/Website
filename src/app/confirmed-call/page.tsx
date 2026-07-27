@@ -23,16 +23,14 @@ export default function ConfirmationPage() {
         </div>
       </header>
       <div className="h-20" />
-      {/* Google Ads: Booked Call conversion.
-          Re-declares the dataLayer/gtag stub so the event is always queued —
-          even if this runs before the base gtag tag in layout.tsx. gtag.js
-          drains the dataLayer queue once it loads, so the conversion is
-          never lost to a script load-order race. */}
-      <Script id="gtag-conversion-confirmed" strategy="afterInteractive">
-        {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('event', 'conversion', {'send_to': 'AW-16650862607/YmXMCIr3pYocEI-A4IM-'});`}
-      </Script>
+      {/* Google Ads: the Booked Call conversion
+          (AW-16650862607/YmXMCIr3pYocEI-A4IM-) fires from GTM
+          (container GTM-5CL2Q8M8), which triggers it on this URL.
+          The hardcoded gtag('event','conversion') snippet that used to
+          live here was removed 2026-07-27: with the GTM-side tag it
+          DOUBLE-FIRED (two en=conversion hits per page load, confirmed
+          by the Google Ads specialist). Exactly one owner: GTM.
+          Do NOT re-add a conversion snippet here. */}
 
       {/* Meta Pixel: Schedule conversion (booked strategy call).
           Re-runs the pixel bootstrap defensively — the IIFE's \`if(f.fbq)return\`
