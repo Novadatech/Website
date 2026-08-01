@@ -495,7 +495,7 @@ return (
               <span className="text-white/15">|</span>
               <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors">
                 <span className="text-ember-500 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
-                <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
+                <span className="underline underline-offset-2 decoration-white/20">4.9/5 client rating</span>
               </a>
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-ember-500/60" /> Placed in 7 days</span>
@@ -528,7 +528,7 @@ return (
               <button onClick={scrollToForm} className="btn-primary mt-8 inline-flex text-base">Get My Expert Closer<ArrowRight className="w-5 h-5" /></button>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
                 <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> Don&apos;t Close, Don&apos;t Pay</span>
-                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} Trustpilot</span></a>
+                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} client rating</span></a>
                 <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5" /> Placed in 7 Days</span>
                 <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> 350+ Businesses</span>
               </div>

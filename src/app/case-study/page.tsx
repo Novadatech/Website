@@ -154,7 +154,7 @@ export default function CaseStudyIndexPage() {
               <ChevronRight className="w-5 h-5" />
             </Link>
             <p className="font-supply mt-8 text-[10px] uppercase tracking-[0.2em] text-[#EDECE4]/35">
-              Rated 4.9 on Trustpilot from 77+ verified reviews
+              Rated 4.9/5 from 77+ independent client reviews
             </p>
           </motion.div>
         </div>

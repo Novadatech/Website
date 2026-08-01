@@ -12,7 +12,7 @@ export default function LandingFooter() {
           {/* Logo */}
           <NovadaLogo variant="light" className="h-12 w-auto" />
 
-          {/* Trustpilot */}
+          {/* Reviews (independent profile link) */}
           <a
             href="https://www.trustpilot.com/review/novadatech.com.au"
             target="_blank"
@@ -20,7 +20,7 @@ export default function LandingFooter() {
             className="flex items-center gap-2 text-sm text-white/60 hover:text-white/80 transition-colors"
           >
             <div className="flex text-[#0CC481] text-sm">★★★★★</div>
-            <span>4.9 on Trustpilot</span>
+            <span>4.9/5 · 77+ client reviews</span>
             <ExternalLink className="w-3 h-3" />
           </a>
 

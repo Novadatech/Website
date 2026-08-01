@@ -8,8 +8,10 @@ interface HeroTrustBarProps {
   delay?: number;
   /** Override the businesses-scaled count if needed. Defaults to 350+. */
   businessesCount?: string;
-  /** Override the Trustpilot rating shown. Defaults to "4.9" (verified). */
+  /** Override the rating shown. Defaults to "4.9" (verified). */
   rating?: string;
+  /** Override the review count shown. Defaults to "77+". */
+  reviewCount?: string;
   /** Extra Tailwind classes (e.g. spacing override). */
   className?: string;
   /** Accent colour for the businesses-scaled badge icon. Default "ember" (site-wide brand). */
@@ -19,15 +21,22 @@ interface HeroTrustBarProps {
 /**
  * Reusable above-the-fold social-proof trust bar.
  * Two pill-style badges sitting side-by-side on desktop, stacked on mobile:
- *   1. Trustpilot brand lockup (wordmark + green tile-stars + rating)
+ *   1. Unbranded rating lockup (our stars + "4.9/5 · 77+ client reviews"),
+ *      linking out to the independent review profile
  *   2. "350+ businesses scaled" badge
- * Designed to sit between a hero sub-headline and CTA — primes the click
- * within the 3-second cold-traffic window.
+ *
+ * BRAND COMPLIANCE (Trustpilot notice, 2026-07): this must stay UNBRANDED.
+ * Do not add the Trustpilot wordmark, logo, their green (#00B67A), their
+ * tile-star graphics, "TrustScore", or any Trustpilot-branded rating/count
+ * lockup — recreating their widget requires a paid plan and they actively
+ * monitor. A plain hyperlink to the profile is fine; our own factual rating
+ * claim in our own styling is fine. Keep the two decoupled from their brand.
  */
 export default function HeroTrustBar({
   delay = 0.35,
   businessesCount = "350+",
   rating = "4.9",
+  reviewCount = "77+",
   className = "",
 }: HeroTrustBarProps) {
   // Single brand accent — ember (preserved for revertability if we test
@@ -41,48 +50,33 @@ export default function HeroTrustBar({
       transition={{ duration: 0.5, delay }}
       className={`flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 ${className}`}
     >
-      {/* Trustpilot lockup */}
+      {/* Unbranded rating lockup — links to the independent review profile */}
       <a
         href="https://www.trustpilot.com/review/novadatech.com.au"
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.10] hover:bg-white/[0.07] hover:border-[#00B67A]/40 transition-all"
-        aria-label={`${rating} on Trustpilot`}
+        className="group flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.10] hover:bg-white/[0.07] hover:border-white/[0.20] transition-all"
+        aria-label={`Rated ${rating} out of 5 from ${reviewCount} client reviews — read them all`}
       >
-        {/* Trustpilot wordmark with brand star */}
-        <span className="flex items-center gap-1">
-          <svg
-            className="w-4 h-4"
-            viewBox="0 0 24 24"
-            fill="#00B67A"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path d="M12 2l2.92 6.43L22 9.27l-5.27 4.94 1.42 7.39L12 18.18l-6.15 3.42L7.27 14.21 2 9.27l7.08-.84L12 2z" />
-          </svg>
-          <span className="text-sm font-bold text-white tracking-tight">Trustpilot</span>
-        </span>
-
-        {/* 5 Trustpilot brand tile-stars */}
-        <span className="flex items-center gap-0.5">
+        {/* 5 stars in our own brand colour */}
+        <span className="flex items-center gap-0.5" aria-hidden="true">
           {[0, 1, 2, 3, 4].map((i) => (
             <svg
               key={i}
               className="w-4 h-4 sm:w-[18px] sm:h-[18px]"
               viewBox="0 0 24 24"
+              fill="#0CC481"
               xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
             >
-              <rect width="24" height="24" rx="2" fill="#00B67A" />
-              <path
-                d="M12 5l1.6 4.83L18.5 10l-3.9 2.95L16 18l-4-2.97L8 18l1.4-5.05L5.5 10l4.9-.17L12 5z"
-                fill="#FFFFFF"
-              />
+              <path d="M12 2l2.92 6.43L22 9.27l-5.27 4.94 1.42 7.39L12 18.18l-6.15 3.42L7.27 14.21 2 9.27l7.08-.84L12 2z" />
             </svg>
           ))}
         </span>
 
-        <span className="text-sm font-bold text-white">{rating}</span>
+        <span className="text-sm font-bold text-white">{rating}/5</span>
+        <span className="text-sm text-white/70 group-hover:text-white/90 transition-colors">
+          {reviewCount} client reviews
+        </span>
       </a>
 
       {/* Vertical divider — desktop only */}

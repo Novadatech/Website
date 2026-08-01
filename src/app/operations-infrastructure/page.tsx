@@ -487,7 +487,7 @@ function Testimonials() {
             className="font-supply inline-flex items-center gap-3 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/50 hover:text-[#EDECE4] transition-colors"
           >
             <span className="text-[#0CC481]">★★★★★</span>
-            Rated 4.9/5 from 77+ verified reviews on Trustpilot
+            Rated 4.9/5 from 77+ independent client reviews
           </a>
         </AnimatedSection>
       </div>
@@ -502,7 +502,7 @@ function StatsStrip() {
     { num: "350+", label: "businesses scaled" },
     { num: "30+", label: "industries across Australia" },
     { num: "$45.7M+", label: "client revenue generated" },
-    { num: "4.9★", label: "rating from 77+ Trustpilot reviews" },
+    { num: "4.9★", label: "rating from 77+ independent reviews" },
   ];
 
   return (

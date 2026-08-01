@@ -637,7 +637,7 @@ function Stats() {
     { num: "350+", label: "Businesses Scaled" },
     { num: "$45.7M+", label: "Client Revenue Generated" },
     { num: "30+", label: "Industries Served" },
-    { num: "4.9★", label: "Trustpilot · 77+ Reviews" },
+    { num: "4.9★", label: "77+ Independent Reviews" },
   ];
 
   return (
@@ -935,7 +935,7 @@ function Booking() {
               </div>
               <div className="mt-4 flex items-center gap-2 text-xs text-[#EDECE4]/80">
                 <span className="text-[#0CC481]">★★★★★</span>
-                <span>4.9 on Trustpilot · 350+ businesses scaled</span>
+                <span>Rated 4.9/5 · 350+ businesses scaled</span>
               </div>
 
               {/* US market price anchor, repeated beside the conversion

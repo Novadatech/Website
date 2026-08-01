@@ -527,7 +527,7 @@ function Testimonials() {
             className="font-supply inline-flex items-center gap-3 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/50 hover:text-[#EDECE4] transition-colors"
           >
             <span className="text-[#0CC481]">★★★★★</span>
-            Rated 4.9/5 from 77+ verified reviews on Trustpilot
+            Rated 4.9/5 from 77+ independent client reviews
           </a>
         </AnimatedSection>
       </div>
@@ -541,7 +541,7 @@ function StatsStrip() {
     { num: "350+", label: "businesses scaled" },
     { num: "$45.7M+", label: "client revenue generated" },
     { num: "30+", label: "industries across Australia" },
-    { num: "4.9★", label: "rating from 77+ Trustpilot reviews" },
+    { num: "4.9★", label: "rating from 77+ independent reviews" },
     { num: "15+", label: "qualified meetings monthly — guaranteed" },
   ];
 
@@ -773,7 +773,7 @@ function FinalCTA() {
               rel="noopener noreferrer"
               className="hover:text-[#EDECE4]/80 transition-colors underline underline-offset-4 decoration-[#EDECE4]/20"
             >
-              4.9★ Trustpilot
+              4.9★ client rating
             </a>
             <span className="hidden sm:inline text-[#EDECE4]/15">·</span>
             <span>Systems You Own</span>

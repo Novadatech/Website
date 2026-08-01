@@ -539,7 +539,7 @@ return (
               <span className="text-white/15">|</span>
               <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors">
                 <span className="text-ember-500 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
-                <span className="underline underline-offset-2 decoration-white/20">4.9 on Trustpilot</span>
+                <span className="underline underline-offset-2 decoration-white/20">4.9/5 client rating</span>
               </a>
               <span className="text-white/15">|</span>
               <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-ember-500/60" /> Takes under 2 min</span>
@@ -582,7 +582,7 @@ return (
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
                 <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> Performance Guaranteed</span>
-                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} Trustpilot</span></a>
+                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} client rating</span></a>
                 <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" /> No Pay Until We Deliver</span>
                 <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> 350+ Businesses Scaled</span>
               </div>
