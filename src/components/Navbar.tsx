@@ -14,9 +14,9 @@ const SOLUTIONS = [
     icon: TrendingUp,
   },
   {
-    href: "/operations-infrastructure",
-    label: "Operations Infrastructure",
-    desc: "Custom AI systems that remove bottlenecks and cut costs.",
+    href: "/workforce",
+    label: "After-Hours Workforce Operations",
+    desc: "Your after-hours staffing desk for healthcare staffing agencies.",
     icon: Cog,
   },
   {

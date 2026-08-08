@@ -70,8 +70,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/operations-infrastructure" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
-                  Operations Infrastructure
+                <Link href="/workforce" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
+                  After-Hours Workforce Operations
                 </Link>
               </li>
               <li>
