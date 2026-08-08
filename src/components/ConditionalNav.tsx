@@ -25,8 +25,18 @@ const STANDALONE_ROUTES = [
 // /case-study is the grid; /case-study/[slug] is each individual case.
 const STANDALONE_ROUTE_PREFIXES = ["/case-study"];
 
+// Routes that render NO site chrome at all — not even LandingFooter.
+// These pages carry their own brand (nav + footer inside the page).
+// /workforce = Novada Workforce, presented as its own brand.
+const BARE_ROUTES = ["/workforce"];
+
 export default function ConditionalNav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+
+  if (BARE_ROUTES.includes(pathname)) {
+    return <>{children}</>;
+  }
+
   const isStandalone =
     STANDALONE_ROUTES.includes(pathname) ||
     STANDALONE_ROUTE_PREFIXES.some(
