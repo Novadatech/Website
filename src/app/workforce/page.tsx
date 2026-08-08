@@ -117,6 +117,7 @@ function WfNav() {
                 ["What We Handle", "#services"],
                 ["Why Novada", "#why"],
                 ["Pilot", "#pilot"],
+                ["Cost Calculator", "#calculator"],
                 ["FAQ", "#faq"],
               ].map(([label, href]) => (
                 <a
@@ -277,8 +278,12 @@ function Hero() {
                 source="hero"
                 className={`${BTN_PRIMARY} w-full sm:w-auto`}
               />
-              <a href="#how" className={`${BTN_GHOST} w-full sm:w-auto`}>
-                See How It Works
+              <a
+                href="#calculator"
+                className={`${BTN_GHOST} w-full sm:w-auto`}
+                onClick={() => track("workforce_cta_click", { cta_source: "hero-calculator" })}
+              >
+                Calculate What After-Hours Is Costing You
                 <ArrowDown className="w-4 h-4" />
               </a>
             </motion.div>
@@ -1747,7 +1752,10 @@ function LeakageCalculator() {
 
 function FinalCta() {
   return (
-    <section className="relative section-padding py-20 md:py-28 border-t border-[#EDECE4]/[0.07] overflow-hidden">
+    <section
+      id="calculator"
+      className="relative section-padding py-20 md:py-28 border-t border-[#EDECE4]/[0.07] overflow-hidden scroll-mt-24"
+    >
       <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,109,74,0.35)_0%,rgba(8,8,8,0)_60%)] pointer-events-none" />
       <div className="relative max-container max-w-5xl text-center">
         <AnimatedSection>
