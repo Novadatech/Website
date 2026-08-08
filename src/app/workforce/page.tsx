@@ -293,8 +293,8 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.55 }}
               className="font-supply mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/40"
             >
-              Built for Australian healthcare, aged-care and disability
-              staffing operations.
+              Built for healthcare, home care and disability staffing
+              operations.
             </motion.p>
           </div>
 
