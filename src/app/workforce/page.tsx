@@ -1512,27 +1512,266 @@ function FAQ() {
   );
 }
 
-/* ─── 19 · FINAL CTA ─── */
+/* ─── 19 · FINAL CTA + LEAKAGE CALCULATOR ─── */
+const fmtAud = (n: number) => `$${Math.round(n).toLocaleString("en-AU")}`;
+
+function NumberField({
+  label,
+  value,
+  onChange,
+  prefix,
+  suffix,
+  min = 0,
+  step = 1,
+}: {
+  label: string;
+  value: number;
+  onChange: (v: number) => void;
+  prefix?: string;
+  suffix?: string;
+  min?: number;
+  step?: number;
+}) {
+  return (
+    <div>
+      <label className="block text-sm text-[#EDECE4]/75 mb-1.5">{label}</label>
+      <div className="relative">
+        {prefix && (
+          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#EDECE4]/45">
+            {prefix}
+          </span>
+        )}
+        <input
+          type="number"
+          inputMode="decimal"
+          min={min}
+          step={step}
+          value={Number.isFinite(value) ? value : ""}
+          onChange={(e) => onChange(Math.max(min, Number(e.target.value)))}
+          className={`w-full rounded-lg border border-[#EDECE4]/15 bg-white/[0.03] py-3 text-sm text-white focus:outline-none focus:border-[#0CC481]/60 focus:bg-white/[0.05] transition-colors ${
+            prefix ? "pl-8" : "pl-4"
+          } ${suffix ? "pr-16" : "pr-4"}`}
+        />
+        {suffix && (
+          <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-[#EDECE4]/45">
+            {suffix}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function PercentSlider({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-1.5">
+        <label className="text-sm text-[#EDECE4]/75">{label}</label>
+        <span className="font-supply text-sm text-[#0CC481]">{value}%</span>
+      </div>
+      <input
+        type="range"
+        min={0}
+        max={100}
+        step={5}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="w-full accent-[#0CC481] cursor-pointer"
+      />
+    </div>
+  );
+}
+
+/* Modelled improvement applied to the "potential value" figure. Kept
+   deliberately conservative and clearly labelled as an illustrative
+   scenario — NOT a performance promise (same honesty rule as the KPI
+   dashboard; the FAQ explicitly says fills can't be guaranteed). */
+const IMPROVEMENT_PTS = 15;
+const IMPROVEMENT_CAP = 95;
+
+function LeakageCalculator() {
+  const trackedRef = useRef(false);
+  const [inputs, setInputs] = useState({
+    billRate: 65,
+    workerCost: 48,
+    shiftHours: 8,
+    requests: 30,
+    fillRate: 60,
+    cancellations: 25,
+    recoveryRate: 40,
+  });
+
+  const set = (key: keyof typeof inputs) => (v: number) => {
+    if (!trackedRef.current) {
+      trackedRef.current = true;
+      track("workforce_calculator_use");
+    }
+    setInputs((s) => ({ ...s, [key]: v }));
+  };
+
+  const { billRate, workerCost, shiftHours, requests, fillRate, cancellations, recoveryRate } =
+    inputs;
+
+  const marginPerHour = Math.max(billRate - workerCost, 0);
+  const revenuePerShift = billRate * shiftHours;
+  const marginPerShift = marginPerHour * shiftHours;
+
+  // Current monthly leakage
+  const lostUnfilled = requests * (1 - fillRate / 100);
+  const lostUnrecovered = cancellations * (1 - recoveryRate / 100);
+  const lostShifts = lostUnfilled + lostUnrecovered;
+  const revenueLeakage = lostShifts * revenuePerShift;
+  const marginLeakage = lostShifts * marginPerShift;
+
+  // Modelled improvement scenario (+pts, capped; never below current)
+  const improvedFill = Math.min(fillRate + IMPROVEMENT_PTS, Math.max(IMPROVEMENT_CAP, fillRate));
+  const improvedRecovery = Math.min(
+    recoveryRate + IMPROVEMENT_PTS,
+    Math.max(IMPROVEMENT_CAP, recoveryRate),
+  );
+  const regainedShifts =
+    requests * ((improvedFill - fillRate) / 100) +
+    cancellations * ((improvedRecovery - recoveryRate) / 100);
+  const potentialRevenue = regainedShifts * revenuePerShift;
+  const potentialMargin = regainedShifts * marginPerShift;
+
+  return (
+    <div className={`${CARD} p-6 md:p-9 text-left`}>
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-10">
+        {/* Inputs */}
+        <div className="space-y-4">
+          <p className="font-supply text-[11px] uppercase tracking-[0.18em] text-[#EDECE4]/50 mb-1">
+            Your after-hours numbers · per month
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <NumberField
+              label="Average client bill rate"
+              prefix="$"
+              suffix="/ hour"
+              value={billRate}
+              onChange={set("billRate")}
+            />
+            <NumberField
+              label="Worker fully loaded cost"
+              prefix="$"
+              suffix="/ hour"
+              value={workerCost}
+              onChange={set("workerCost")}
+            />
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <NumberField
+              label="Average shift duration"
+              suffix="hours"
+              value={shiftHours}
+              onChange={set("shiftHours")}
+              step={0.5}
+            />
+            <NumberField
+              label="After-hours booking requests"
+              suffix="/ month"
+              value={requests}
+              onChange={set("requests")}
+            />
+          </div>
+          <PercentSlider label="Currently filled" value={fillRate} onChange={set("fillRate")} />
+          <NumberField
+            label="After-hours cancellations"
+            suffix="/ month"
+            value={cancellations}
+            onChange={set("cancellations")}
+          />
+          <PercentSlider
+            label="Currently recovered"
+            value={recoveryRate}
+            onChange={set("recoveryRate")}
+          />
+        </div>
+
+        {/* Results */}
+        <div className="flex flex-col gap-4">
+          <div className="rounded-xl border border-[#FF6B6B]/25 bg-[#FF6B6B]/[0.05] p-6 flex-1">
+            <p className="font-supply text-[11px] uppercase tracking-[0.18em] text-[#FF6B6B] mb-3">
+              Current after-hours revenue leakage
+            </p>
+            <p className="font-supply text-3xl md:text-4xl font-medium text-white leading-none">
+              {fmtAud(revenueLeakage)}
+              <span className="text-base text-[#EDECE4]/50 font-normal"> / month</span>
+            </p>
+            <p className="mt-2 text-sm text-[#EDECE4]/70">
+              {fmtAud(revenueLeakage * 12)} a year · {fmtAud(marginLeakage)}/month in
+              gross margin
+            </p>
+            <p className="font-supply mt-4 text-[10px] uppercase tracking-[0.12em] text-[#EDECE4]/45 leading-relaxed">
+              {Math.round(lostUnfilled)} unfilled bookings + {Math.round(lostUnrecovered)}{" "}
+              unrecovered cancellations = {Math.round(lostShifts)} lost shifts a month
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-[#0CC481]/30 bg-[#0CC481]/[0.05] p-6 flex-1">
+            <p className="font-supply text-[11px] uppercase tracking-[0.18em] text-[#0CC481] mb-3">
+              Potential value of improved fill rate
+            </p>
+            <p className="font-supply text-3xl md:text-4xl font-medium text-white leading-none">
+              {fmtAud(potentialRevenue)}
+              <span className="text-base text-[#EDECE4]/50 font-normal"> / month</span>
+            </p>
+            <p className="mt-2 text-sm text-[#EDECE4]/70">
+              {fmtAud(potentialRevenue * 12)} a year · {fmtAud(potentialMargin)}/month in
+              gross margin
+            </p>
+            <p className="font-supply mt-4 text-[10px] uppercase tracking-[0.12em] text-[#EDECE4]/45 leading-relaxed">
+              Modelled at +{IMPROVEMENT_PTS} percentage points on fill and recovery,
+              capped at {IMPROVEMENT_CAP}%
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-6 text-center text-xs text-[#EDECE4]/50 leading-relaxed max-w-2xl mx-auto">
+        Modelling is based entirely on the numbers you enter and is
+        illustrative only — it is not a guarantee of performance. Worker
+        availability can never be guaranteed.
+      </p>
+    </div>
+  );
+}
+
 function FinalCta() {
   return (
     <section className="relative section-padding py-20 md:py-28 border-t border-[#EDECE4]/[0.07] overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,109,74,0.35)_0%,rgba(5,7,11,0)_60%)] pointer-events-none" />
-      <div className="relative max-container max-w-3xl text-center">
+      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,109,74,0.35)_0%,rgba(8,8,8,0)_60%)] pointer-events-none" />
+      <div className="relative max-container max-w-5xl text-center">
         <AnimatedSection>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white text-balance">
             Find out what your after-hours operation{" "}
             <span className={GRAD_TEXT}>is really costing you.</span>
           </h2>
           <p className={`mt-6 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
-            We&apos;ll review how your agency currently handles cancellations,
-            urgent bookings, no-shows and replacement shifts — and determine
-            whether a specialised after-hours workforce desk makes commercial
-            sense.
+            Enter your own numbers. Then we&apos;ll review how your agency
+            currently handles cancellations, urgent bookings, no-shows and
+            replacement shifts — and determine whether a specialised
+            after-hours workforce desk makes commercial sense.
           </p>
-          <div className="mt-9">
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.1} className="mt-10">
+          <LeakageCalculator />
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.15}>
+          <div className="mt-10">
             <CtaLink
               label="Book an After-Hours Operations Assessment"
-              source="final"
+              source="calculator"
               className={`${BTN_PRIMARY} w-full sm:w-auto`}
             />
           </div>
