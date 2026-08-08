@@ -42,23 +42,25 @@ import AnimatedSection from "@/components/AnimatedSection";
 
 /* ─── Brand tokens (Novada Workforce — control-room blue, distinct from
        the parent site's green) ─── */
-const ACCENT = "#4D9FFF";
-const GREEN = "#2BD98F";
+const ACCENT = "#0CC481";
+const GREEN = "#0CC481";
 const AMBER = "#FFB454";
 const RED = "#FF6B6B";
 
 const BTN_PRIMARY =
-  "font-supply inline-flex items-center justify-center gap-2 rounded-lg bg-[#4D9FFF] px-7 py-4 text-sm md:text-base font-semibold uppercase tracking-[0.06em] text-[#04101f] transition-all hover:bg-[#6cb0ff] hover:shadow-[0_0_40px_rgba(77,159,255,0.35)]";
+  "font-supply inline-flex items-center justify-center gap-2 rounded-lg bg-[#0CC481] px-7 py-4 text-sm md:text-base font-semibold uppercase tracking-[0.06em] text-[#04160e] transition-all hover:bg-[#10e094] hover:shadow-[0_0_40px_rgba(12,196,129,0.35)]";
 const BTN_PRIMARY_SM =
-  "font-supply inline-flex items-center justify-center gap-2 rounded-lg bg-[#4D9FFF] px-4 py-2.5 text-xs md:text-sm font-semibold uppercase tracking-[0.06em] text-[#04101f] transition-colors hover:bg-[#6cb0ff] whitespace-nowrap";
+  "font-supply inline-flex items-center justify-center gap-2 rounded-lg bg-[#0CC481] px-4 py-2.5 text-xs md:text-sm font-semibold uppercase tracking-[0.06em] text-[#04160e] transition-colors hover:bg-[#10e094] whitespace-nowrap";
 const BTN_GHOST =
-  "font-supply inline-flex items-center justify-center gap-2 rounded-lg border border-[#E8ECF2]/20 px-7 py-4 text-sm md:text-base font-semibold uppercase tracking-[0.06em] text-[#E8ECF2] transition-colors hover:border-[#E8ECF2]/40 hover:bg-white/[0.03]";
+  "font-supply inline-flex items-center justify-center gap-2 rounded-lg border border-[#EDECE4]/20 px-7 py-4 text-sm md:text-base font-semibold uppercase tracking-[0.06em] text-[#EDECE4] transition-colors hover:border-[#EDECE4]/40 hover:bg-white/[0.03]";
+const GRAD_TEXT =
+  "bg-gradient-to-r from-white to-[#0CC481] bg-clip-text text-transparent";
 const EYEBROW =
-  "font-supply text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#4D9FFF] mb-4";
+  "font-supply text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4";
 const H2 = "text-2xl md:text-4xl font-bold tracking-tight text-white text-balance";
 const CARD =
-  "rounded-xl border border-[#E8ECF2]/[0.08] bg-gradient-to-br from-[#0B1119] to-[#060910]";
-const BODY = "text-[#E8ECF2]/85";
+  "rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808]";
+const BODY = "text-[#EDECE4]/85";
 
 function track(event: string, data?: Record<string, string>) {
   try {
@@ -98,7 +100,7 @@ function CtaLink({
 function WfNav() {
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#05070B]/95 backdrop-blur-xl border-b border-[#E8ECF2]/10">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
         <div className="max-container section-padding">
           <div className="flex items-center justify-between gap-3 h-16 md:h-20">
             <a href="#top" className="flex items-baseline gap-1.5 flex-shrink-0">
@@ -120,7 +122,7 @@ function WfNav() {
                 <a
                   key={href}
                   href={href}
-                  className="text-sm text-[#E8ECF2]/70 hover:text-white transition-colors"
+                  className="text-sm text-[#EDECE4]/70 hover:text-white transition-colors"
                 >
                   {label}
                 </a>
@@ -166,33 +168,33 @@ const HERO_CASES = [
 
 function HeroDashboard() {
   return (
-    <div className={`${CARD} p-5 md:p-6 shadow-[0_24px_80px_rgba(77,159,255,0.12)]`}>
+    <div className={`${CARD} p-5 md:p-6 shadow-[0_24px_80px_rgba(12,196,129,0.12)]`}>
       <div className="flex items-center justify-between gap-3 mb-5">
         <div className="flex items-center gap-2">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4D9FFF] opacity-60" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4D9FFF]" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0CC481] opacity-60" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0CC481]" />
           </span>
-          <span className="font-supply text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-[#E8ECF2]/60">
+          <span className="font-supply text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-[#EDECE4]/60">
             Live After-Hours Operations
           </span>
         </div>
-        <span className="font-supply text-[9px] uppercase tracking-[0.15em] text-[#E8ECF2]/35">
+        <span className="font-supply text-[9px] uppercase tracking-[0.15em] text-[#EDECE4]/35">
           Illustrative example
         </span>
       </div>
 
       <div className="grid grid-cols-3 gap-3 mb-5">
         {[
-          ["6", "Active Cases", "#E8ECF2"],
+          ["6", "Active Cases", "#EDECE4"],
           ["2", "Urgent", AMBER],
           ["1", "Escalation", RED],
         ].map(([num, label, color]) => (
-          <div key={label} className="rounded-lg border border-[#E8ECF2]/[0.07] bg-white/[0.02] px-3 py-3 text-center">
+          <div key={label} className="rounded-lg border border-[#EDECE4]/[0.07] bg-white/[0.02] px-3 py-3 text-center">
             <p className="font-supply text-xl md:text-2xl font-medium" style={{ color }}>
               {num}
             </p>
-            <p className="font-supply mt-1 text-[9px] md:text-[10px] uppercase tracking-[0.14em] text-[#E8ECF2]/45">
+            <p className="font-supply mt-1 text-[9px] md:text-[10px] uppercase tracking-[0.14em] text-[#EDECE4]/45">
               {label}
             </p>
           </div>
@@ -203,11 +205,11 @@ function HeroDashboard() {
         {HERO_CASES.map((c, i) => (
           <div
             key={i}
-            className="flex items-center justify-between gap-3 rounded-lg border border-[#E8ECF2]/[0.06] bg-white/[0.015] px-3.5 py-3"
+            className="flex items-center justify-between gap-3 rounded-lg border border-[#EDECE4]/[0.06] bg-white/[0.015] px-3.5 py-3"
           >
             <div className="min-w-0">
               <p className="text-sm text-white truncate">{c.event}</p>
-              <p className="font-supply text-[10px] uppercase tracking-[0.12em] text-[#E8ECF2]/45 mt-0.5">
+              <p className="font-supply text-[10px] uppercase tracking-[0.12em] text-[#EDECE4]/45 mt-0.5">
                 {c.shift}
               </p>
             </div>
@@ -232,7 +234,7 @@ function HeroDashboard() {
 function Hero() {
   return (
     <section id="top" className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
-      <div className="absolute inset-x-0 top-0 h-[70vh] bg-[linear-gradient(180deg,#0A1526_0%,rgba(5,7,11,0)_100%)] pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-[70vh] bg-[linear-gradient(180deg,#0F1C1C_0%,rgba(5,7,11,0)_100%)] pointer-events-none" />
       <div className="relative max-container section-padding">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
           <div>
@@ -251,7 +253,7 @@ function Hero() {
               className="text-[34px] leading-[1.1] sm:text-4xl md:text-[52px] font-bold tracking-tight text-white text-balance"
             >
               More after-hours shifts filled.{" "}
-              <span style={{ color: ACCENT }}>Fewer managers on-call.</span>
+              <span className={GRAD_TEXT}>Fewer managers on-call.</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -284,7 +286,7 @@ function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.55 }}
-              className="font-supply mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-[#E8ECF2]/40"
+              className="font-supply mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/40"
             >
               Built for Australian healthcare, aged-care and disability
               staffing operations.
@@ -334,13 +336,13 @@ const SCENARIOS = [
 
 function Problem() {
   return (
-    <section className="section-padding py-16 md:py-24 border-t border-[#E8ECF2]/[0.07]">
+    <section className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/[0.07]">
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-12">
           <p className={EYEBROW}>The After-Hours Reality</p>
           <h2 className={H2}>
             Your office closes.{" "}
-            <span style={{ color: ACCENT }}>Your staffing operation doesn&apos;t.</span>
+            <span className={GRAD_TEXT}>Your staffing operation doesn&apos;t.</span>
           </h2>
           <p className={`mt-4 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
             Cancellations, no-shows and urgent client requests don&apos;t wait
@@ -357,11 +359,11 @@ function Problem() {
                   <span className="font-supply text-sm font-medium" style={{ color: AMBER }}>
                     {s.time}
                   </span>
-                  <s.icon className="w-5 h-5 text-[#E8ECF2]/40" strokeWidth={1.5} />
+                  <s.icon className="w-5 h-5 text-[#EDECE4]/40" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">{s.title}</h3>
-                <p className="text-base text-[#E8ECF2] italic mb-3">{s.quote}</p>
-                <p className="text-sm text-[#E8ECF2]/70 leading-relaxed">{s.detail}</p>
+                <p className="text-base text-[#EDECE4] italic mb-3">{s.quote}</p>
+                <p className="text-sm text-[#EDECE4]/70 leading-relaxed">{s.detail}</p>
               </div>
             </AnimatedSection>
           ))}
@@ -370,7 +372,7 @@ function Problem() {
         <AnimatedSection delay={0.15} className="text-center mt-14">
           <p className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
             The problem isn&apos;t answering the phone.{" "}
-            <span style={{ color: ACCENT }}>
+            <span className={GRAD_TEXT}>
               It&apos;s everything that has to happen next.
             </span>
           </p>
@@ -386,8 +388,8 @@ function FlowStep({ label, dim = false }: { label: string; dim?: boolean }) {
     <div
       className={`rounded-lg border px-4 py-2.5 text-sm text-center ${
         dim
-          ? "border-[#E8ECF2]/[0.08] text-[#E8ECF2]/60 bg-white/[0.01]"
-          : "border-[#4D9FFF]/25 text-[#E8ECF2] bg-[#4D9FFF]/[0.05]"
+          ? "border-[#EDECE4]/[0.08] text-[#EDECE4]/60 bg-white/[0.01]"
+          : "border-[#0CC481]/25 text-[#EDECE4] bg-[#0CC481]/[0.05]"
       }`}
     >
       {label}
@@ -396,7 +398,7 @@ function FlowStep({ label, dim = false }: { label: string; dim?: boolean }) {
 }
 
 function FlowArrow() {
-  return <ArrowDown className="w-3.5 h-3.5 text-[#E8ECF2]/25 mx-auto my-1.5" />;
+  return <ArrowDown className="w-3.5 h-3.5 text-[#EDECE4]/25 mx-auto my-1.5" />;
 }
 
 function Comparison() {
@@ -420,16 +422,16 @@ function Comparison() {
           <p className={EYEBROW}>Not an Answering Service</p>
           <h2 className={H2}>
             An answering service takes the message.{" "}
-            <span style={{ color: ACCENT }}>We work the problem.</span>
+            <span className={GRAD_TEXT}>We work the problem.</span>
           </h2>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 gap-6 items-stretch">
           <AnimatedSection>
-            <div className="rounded-xl border border-[#E8ECF2]/[0.08] p-7 h-full flex flex-col">
+            <div className="rounded-xl border border-[#EDECE4]/[0.08] p-7 h-full flex flex-col">
               <div className="flex items-center gap-2.5 mb-6">
-                <PhoneOff className="w-5 h-5 text-[#E8ECF2]/40" strokeWidth={1.5} />
-                <h3 className="font-supply text-[11px] uppercase tracking-[0.15em] text-[#E8ECF2]/50">
+                <PhoneOff className="w-5 h-5 text-[#EDECE4]/40" strokeWidth={1.5} />
+                <h3 className="font-supply text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/50">
                   Traditional After-Hours Answering
                 </h3>
               </div>
@@ -441,8 +443,8 @@ function Comparison() {
                   </div>
                 ))}
               </div>
-              <div className="mt-6 pt-5 border-t border-[#E8ECF2]/[0.08]">
-                <p className="text-base font-semibold text-[#E8ECF2]/70 text-center">
+              <div className="mt-6 pt-5 border-t border-[#EDECE4]/[0.08]">
+                <p className="text-base font-semibold text-[#EDECE4]/70 text-center">
                   Your team is still on-call.
                 </p>
               </div>
@@ -450,7 +452,7 @@ function Comparison() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            <div className="rounded-xl border border-[#4D9FFF]/30 bg-gradient-to-br from-[#4D9FFF]/[0.06] to-transparent p-7 h-full flex flex-col shadow-[0_24px_80px_rgba(77,159,255,0.10)]">
+            <div className="rounded-xl border border-[#0CC481]/30 bg-gradient-to-br from-[#0CC481]/[0.06] to-transparent p-7 h-full flex flex-col shadow-[0_24px_80px_rgba(12,196,129,0.10)]">
               <div className="flex items-center gap-2.5 mb-6">
                 <ClipboardList className="w-5 h-5" style={{ color: ACCENT }} strokeWidth={1.5} />
                 <h3 className="font-supply text-[11px] uppercase tracking-[0.15em]" style={{ color: ACCENT }}>
@@ -465,7 +467,7 @@ function Comparison() {
                   </div>
                 ))}
               </div>
-              <div className="mt-6 pt-5 border-t border-[#4D9FFF]/20">
+              <div className="mt-6 pt-5 border-t border-[#0CC481]/20">
                 <p className="text-base font-semibold text-white text-center">
                   After-hours operations actually get handled.
                 </p>
@@ -514,7 +516,7 @@ const SERVICES = [
 
 function WhatWeHandle() {
   return (
-    <section id="services" className="section-padding py-16 md:py-24 border-t border-[#E8ECF2]/[0.07] scroll-mt-24">
+    <section id="services" className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/[0.07] scroll-mt-24">
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-12">
           <p className={EYEBROW}>What We Handle</p>
@@ -531,7 +533,7 @@ function WhatWeHandle() {
               <div className={`${CARD} p-6 h-full`}>
                 <s.icon className="w-6 h-6 mb-4" style={{ color: ACCENT }} strokeWidth={1.5} />
                 <h3 className="text-base font-semibold text-white mb-2">{s.title}</h3>
-                <p className="text-sm text-[#E8ECF2]/70 leading-relaxed">{s.desc}</p>
+                <p className="text-sm text-[#EDECE4]/70 leading-relaxed">{s.desc}</p>
               </div>
             </AnimatedSection>
           ))}
@@ -539,7 +541,7 @@ function WhatWeHandle() {
 
         {/* Scope statement (§12) */}
         <AnimatedSection delay={0.15}>
-          <div className="mt-8 rounded-xl border border-[#4D9FFF]/25 bg-[#4D9FFF]/[0.04] p-6 md:p-7 text-center">
+          <div className="mt-8 rounded-xl border border-[#0CC481]/25 bg-[#0CC481]/[0.04] p-6 md:p-7 text-center">
             <p className="text-lg font-semibold text-white mb-2">
               Your systems remain your systems.
             </p>
@@ -589,18 +591,18 @@ function HowItWorks() {
         </AnimatedSection>
 
         <div className="relative">
-          <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] border-t border-dashed border-[#E8ECF2]/15" />
+          <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] border-t border-dashed border-[#EDECE4]/15" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
             {STEPS.map((s, i) => (
               <AnimatedSection key={s.num} delay={i * 0.08}>
                 <div className="relative text-center px-2">
-                  <div className="relative z-10 mx-auto w-14 h-14 rounded-full border border-[#4D9FFF]/50 bg-[#05070B] flex items-center justify-center mb-5">
+                  <div className="relative z-10 mx-auto w-14 h-14 rounded-full border border-[#0CC481]/50 bg-[#080808] flex items-center justify-center mb-5">
                     <span className="font-supply text-sm" style={{ color: ACCENT }}>
                       {s.num}
                     </span>
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">{s.title}</h3>
-                  <p className="text-sm text-[#E8ECF2]/70 leading-relaxed max-w-[280px] mx-auto">
+                  <p className="text-sm text-[#EDECE4]/70 leading-relaxed max-w-[280px] mx-auto">
                     {s.desc}
                   </p>
                 </div>
@@ -611,9 +613,9 @@ function HowItWorks() {
 
         <AnimatedSection delay={0.2} className="text-center mt-12">
           <p className="text-xl md:text-2xl font-bold text-white">
-            At 5pm, we take over. <span style={{ color: ACCENT }}>At 8am, we hand back.</span>
+            At 5pm, we take over. <span className={GRAD_TEXT}>At 8am, we hand back.</span>
           </p>
-          <p className="font-supply mt-3 text-[10px] uppercase tracking-[0.15em] text-[#E8ECF2]/40">
+          <p className="font-supply mt-3 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
             Coverage times are illustrative and configured to your service agreement
           </p>
         </AnimatedSection>
@@ -636,7 +638,7 @@ const WORKFLOW = [
 
 function WorkflowVisual() {
   return (
-    <section className="section-padding py-16 md:py-24 border-t border-[#E8ECF2]/[0.07]">
+    <section className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/[0.07]">
       <div className="max-container max-w-3xl">
         <AnimatedSection className="text-center mb-12">
           <p className={EYEBROW}>The Workflow</p>
@@ -644,15 +646,15 @@ function WorkflowVisual() {
         </AnimatedSection>
 
         <div className="relative pl-8 md:pl-10">
-          <div className="absolute left-[13px] md:left-[17px] top-2 bottom-2 w-px bg-gradient-to-b from-[#FFB454]/60 via-[#4D9FFF]/40 to-[#2BD98F]/60" />
+          <div className="absolute left-[13px] md:left-[17px] top-2 bottom-2 w-px bg-gradient-to-b from-[#FFB454]/60 via-[#0CC481]/40 to-[#0CC481]/60" />
           <div className="space-y-6">
             {WORKFLOW.map((w, i) => (
               <AnimatedSection key={w.title} delay={i * 0.05}>
                 <div className="relative">
                   <span
-                    className="absolute -left-8 md:-left-10 top-1 flex h-[26px] w-[26px] md:h-[34px] md:w-[34px] items-center justify-center rounded-full border bg-[#05070B]"
+                    className="absolute -left-8 md:-left-10 top-1 flex h-[26px] w-[26px] md:h-[34px] md:w-[34px] items-center justify-center rounded-full border bg-[#080808]"
                     style={{
-                      borderColor: w.highlight ? `${AMBER}66` : w.done ? `${GREEN}66` : "#4D9FFF33",
+                      borderColor: w.highlight ? `${AMBER}66` : w.done ? `${GREEN}66` : "#0CC48133",
                     }}
                   >
                     {w.done ? (
@@ -674,7 +676,7 @@ function WorkflowVisual() {
                       )}
                     </div>
                     {!w.highlight && (
-                      <p className="text-sm text-[#E8ECF2]/65 mt-1">{w.detail}</p>
+                      <p className="text-sm text-[#EDECE4]/65 mt-1">{w.detail}</p>
                     )}
                   </div>
                 </div>
@@ -722,7 +724,7 @@ function ManagementBenefit() {
           <p className={EYEBROW}>The Management Cost</p>
           <h2 className={H2}>
             Your managers shouldn&apos;t be{" "}
-            <span style={{ color: ACCENT }}>the overnight operations department.</span>
+            <span className={GRAD_TEXT}>the overnight operations department.</span>
           </h2>
           <p className={`mt-4 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
             When every cancellation, no-show and urgent booking ends up on a
@@ -733,15 +735,15 @@ function ManagementBenefit() {
 
         <div className="grid md:grid-cols-2 gap-6">
           <AnimatedSection>
-            <div className="rounded-xl border border-[#E8ECF2]/[0.08] p-7 h-full">
-              <h3 className="font-supply text-[11px] uppercase tracking-[0.15em] text-[#E8ECF2]/50 mb-5">
+            <div className="rounded-xl border border-[#EDECE4]/[0.08] p-7 h-full">
+              <h3 className="font-supply text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/50 mb-5">
                 Before
               </h3>
               <div className="space-y-3">
                 {before.map((item) => (
                   <div key={item} className="flex items-start gap-3">
-                    <Moon className="w-4 h-4 text-[#E8ECF2]/35 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <p className="text-sm text-[#E8ECF2]/70">{item}</p>
+                    <Moon className="w-4 h-4 text-[#EDECE4]/35 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                    <p className="text-sm text-[#EDECE4]/70">{item}</p>
                   </div>
                 ))}
               </div>
@@ -749,7 +751,7 @@ function ManagementBenefit() {
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            <div className="rounded-xl border border-[#4D9FFF]/30 bg-gradient-to-br from-[#4D9FFF]/[0.06] to-transparent p-7 h-full flex flex-col">
+            <div className="rounded-xl border border-[#0CC481]/30 bg-gradient-to-br from-[#0CC481]/[0.06] to-transparent p-7 h-full flex flex-col">
               <h3 className="font-supply text-[11px] uppercase tracking-[0.15em] mb-5" style={{ color: ACCENT }}>
                 With Novada
               </h3>
@@ -757,11 +759,11 @@ function ManagementBenefit() {
                 {withNovada.map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: ACCENT }} strokeWidth={1.5} />
-                    <p className="text-sm text-[#E8ECF2]">{item}</p>
+                    <p className="text-sm text-[#EDECE4]">{item}</p>
                   </div>
                 ))}
               </div>
-              <p className="mt-6 pt-5 border-t border-[#4D9FFF]/20 text-base font-bold text-white">
+              <p className="mt-6 pt-5 border-t border-[#0CC481]/20 text-base font-bold text-white">
                 Manager contacted only when required.
               </p>
             </div>
@@ -785,7 +787,7 @@ function Diagnostic() {
   const [selected, setSelected] = useState<string | null>(null);
 
   return (
-    <section className="section-padding py-14 md:py-20 border-t border-[#E8ECF2]/[0.07]">
+    <section className="section-padding py-14 md:py-20 border-t border-[#EDECE4]/[0.07]">
       <div className="max-container max-w-3xl">
         <AnimatedSection className="text-center">
           <p className={EYEBROW}>A Quick Diagnostic</p>
@@ -802,8 +804,8 @@ function Diagnostic() {
                 }}
                 className={`rounded-lg border px-5 py-3 text-sm transition-all ${
                   selected === opt
-                    ? "border-[#4D9FFF] bg-[#4D9FFF]/10 text-white"
-                    : "border-[#E8ECF2]/15 text-[#E8ECF2]/75 hover:border-[#E8ECF2]/35 hover:text-white"
+                    ? "border-[#0CC481] bg-[#0CC481]/10 text-white"
+                    : "border-[#EDECE4]/15 text-[#EDECE4]/75 hover:border-[#EDECE4]/35 hover:text-white"
                 }`}
               >
                 {opt}
@@ -875,14 +877,14 @@ function PerformanceDashboard() {
           <p className={EYEBROW}>Measured Operations</p>
           <h2 className={H2}>
             Don&apos;t just know that calls were answered.{" "}
-            <span style={{ color: ACCENT }}>Know what was recovered.</span>
+            <span className={GRAD_TEXT}>Know what was recovered.</span>
           </h2>
         </AnimatedSection>
 
         <AnimatedSection>
           <div className={`${CARD} p-6 md:p-8`}>
             <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
-              <span className="font-supply text-[11px] uppercase tracking-[0.18em] text-[#E8ECF2]/60">
+              <span className="font-supply text-[11px] uppercase tracking-[0.18em] text-[#EDECE4]/60">
                 After-Hours Performance
               </span>
               <span
@@ -895,9 +897,9 @@ function PerformanceDashboard() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {KPI_STATS.map(([num, label]) => (
-                <div key={label} className="rounded-lg border border-[#E8ECF2]/[0.06] bg-white/[0.015] px-4 py-5 text-center">
+                <div key={label} className="rounded-lg border border-[#EDECE4]/[0.06] bg-white/[0.015] px-4 py-5 text-center">
                   <p className="font-supply text-2xl md:text-3xl font-medium text-white">{num}</p>
-                  <p className="font-supply mt-2 text-[9px] md:text-[10px] uppercase tracking-[0.12em] text-[#E8ECF2]/45 leading-relaxed">
+                  <p className="font-supply mt-2 text-[9px] md:text-[10px] uppercase tracking-[0.12em] text-[#EDECE4]/45 leading-relaxed">
                     {label}
                   </p>
                 </div>
@@ -909,11 +911,11 @@ function PerformanceDashboard() {
                 ["1m 14s", "Median First Action"],
                 ["18m", "Median Replacement Time"],
               ].map(([num, label]) => (
-                <div key={label} className="rounded-lg border border-[#4D9FFF]/20 bg-[#4D9FFF]/[0.04] px-4 py-5 text-center">
+                <div key={label} className="rounded-lg border border-[#0CC481]/20 bg-[#0CC481]/[0.04] px-4 py-5 text-center">
                   <p className="font-supply text-2xl md:text-3xl font-medium" style={{ color: ACCENT }}>
                     {num}
                   </p>
-                  <p className="font-supply mt-2 text-[10px] uppercase tracking-[0.12em] text-[#E8ECF2]/50">
+                  <p className="font-supply mt-2 text-[10px] uppercase tracking-[0.12em] text-[#EDECE4]/50">
                     {label}
                   </p>
                 </div>
@@ -927,7 +929,7 @@ function PerformanceDashboard() {
             <AnimatedSection key={k.title} delay={i * 0.06}>
               <div className="h-full">
                 <h3 className="text-sm font-semibold text-white mb-1.5">{k.title}</h3>
-                <p className="text-sm text-[#E8ECF2]/65 leading-relaxed">{k.desc}</p>
+                <p className="text-sm text-[#EDECE4]/65 leading-relaxed">{k.desc}</p>
               </div>
             </AnimatedSection>
           ))}
@@ -947,14 +949,14 @@ function PerformanceDashboard() {
 /* ─── 10 · MORNING HANDOVER ─── */
 function MorningHandover() {
   return (
-    <section className="section-padding py-16 md:py-24 border-t border-[#E8ECF2]/[0.07]">
+    <section className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/[0.07]">
       <div className="max-container max-w-5xl">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <AnimatedSection>
             <p className={EYEBROW}>Morning Handover</p>
             <h2 className={H2}>
               Start the morning knowing{" "}
-              <span style={{ color: ACCENT }}>exactly what happened overnight.</span>
+              <span className={GRAD_TEXT}>exactly what happened overnight.</span>
             </h2>
             <p className={`mt-5 text-base md:text-lg ${BODY} leading-relaxed`}>
               Your daytime team receives a clear operational handover showing
@@ -966,10 +968,10 @@ function MorningHandover() {
           <AnimatedSection delay={0.1}>
             <div className={`${CARD} p-6`}>
               <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
-                <span className="font-supply text-[11px] uppercase tracking-[0.18em] text-[#E8ECF2]/60">
+                <span className="font-supply text-[11px] uppercase tracking-[0.18em] text-[#EDECE4]/60">
                   Overnight Workforce Report
                 </span>
-                <span className="font-supply text-[10px] uppercase tracking-[0.12em] text-[#E8ECF2]/40">
+                <span className="font-supply text-[10px] uppercase tracking-[0.12em] text-[#EDECE4]/40">
                   Coverage: 5:00 PM – 8:00 AM
                 </span>
               </div>
@@ -983,16 +985,16 @@ function MorningHandover() {
                   ["4", "Filled"],
                   ["1", "No-Show"],
                 ].map(([num, label]) => (
-                  <div key={label} className="rounded-lg border border-[#E8ECF2]/[0.06] bg-white/[0.015] px-3 py-3 text-center">
+                  <div key={label} className="rounded-lg border border-[#EDECE4]/[0.06] bg-white/[0.015] px-3 py-3 text-center">
                     <p className="font-supply text-xl font-medium text-white">{num}</p>
-                    <p className="font-supply mt-1 text-[9px] uppercase tracking-[0.1em] text-[#E8ECF2]/45">
+                    <p className="font-supply mt-1 text-[9px] uppercase tracking-[0.1em] text-[#EDECE4]/45">
                       {label}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="flex items-center gap-2 mb-4 text-sm text-[#E8ECF2]/70">
+              <div className="flex items-center gap-2 mb-4 text-sm text-[#EDECE4]/70">
                 <span
                   className="font-supply rounded-full border px-2.5 py-0.5 text-[10px] uppercase tracking-[0.1em]"
                   style={{ color: AMBER, borderColor: `${AMBER}44` }}
@@ -1002,11 +1004,11 @@ function MorningHandover() {
               </div>
 
               <div className="rounded-lg border border-[#FFB454]/25 bg-[#FFB454]/[0.05] px-4 py-3.5">
-                <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#E8ECF2]/50 mb-1.5">
+                <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/50 mb-1.5">
                   Outstanding
                 </p>
                 <p className="text-sm font-semibold text-white">RN — 10am shift</p>
-                <p className="text-sm text-[#E8ECF2]/70 mt-0.5">
+                <p className="text-sm text-[#EDECE4]/70 mt-0.5">
                   Replacement still required. 18 approved workers contacted.
                   Next action scheduled.
                 </p>
@@ -1032,38 +1034,38 @@ function ExistingSystems() {
         <AnimatedSection>
           <div className="grid md:grid-cols-[1fr_auto_1fr] gap-4 items-stretch">
             <div className={`${CARD} p-6`}>
-              <h3 className="font-supply text-[11px] uppercase tracking-[0.15em] text-[#E8ECF2]/50 mb-4 text-center">
+              <h3 className="font-supply text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/50 mb-4 text-center">
                 Your Existing Systems
               </h3>
               <div className="space-y-2.5">
                 {["Rostering Platform", "Worker Database", "Client Records"].map((s) => (
-                  <div key={s} className="rounded-lg border border-[#E8ECF2]/[0.08] bg-white/[0.02] px-4 py-3 text-sm text-[#E8ECF2] text-center">
+                  <div key={s} className="rounded-lg border border-[#EDECE4]/[0.08] bg-white/[0.02] px-4 py-3 text-sm text-[#EDECE4] text-center">
                     {s}
                   </div>
                 ))}
               </div>
-              <p className="font-supply mt-4 text-[9px] uppercase tracking-[0.12em] text-[#E8ECF2]/40 text-center">
+              <p className="font-supply mt-4 text-[9px] uppercase tracking-[0.12em] text-[#EDECE4]/40 text-center">
                 System of record — unchanged
               </p>
             </div>
 
             <div className="flex md:flex-col items-center justify-center gap-1 py-2">
-              <ArrowRight className="hidden md:block w-5 h-5 text-[#4D9FFF]/60" />
-              <ArrowDown className="md:hidden w-5 h-5 text-[#4D9FFF]/60" />
+              <ArrowRight className="hidden md:block w-5 h-5 text-[#0CC481]/60" />
+              <ArrowDown className="md:hidden w-5 h-5 text-[#0CC481]/60" />
             </div>
 
-            <div className="rounded-xl border border-[#4D9FFF]/30 bg-gradient-to-br from-[#4D9FFF]/[0.06] to-transparent p-6">
+            <div className="rounded-xl border border-[#0CC481]/30 bg-gradient-to-br from-[#0CC481]/[0.06] to-transparent p-6">
               <h3 className="font-supply text-[11px] uppercase tracking-[0.15em] mb-4 text-center" style={{ color: ACCENT }}>
                 Novada Workforce
               </h3>
               <div className="space-y-2.5">
                 {["Workflow", "Coordination", "Escalation", "Documentation", "Reporting"].map((s) => (
-                  <div key={s} className="rounded-lg border border-[#4D9FFF]/20 bg-[#4D9FFF]/[0.05] px-4 py-3 text-sm text-white text-center">
+                  <div key={s} className="rounded-lg border border-[#0CC481]/20 bg-[#0CC481]/[0.05] px-4 py-3 text-sm text-white text-center">
                     {s}
                   </div>
                 ))}
               </div>
-              <p className="font-supply mt-4 text-[9px] uppercase tracking-[0.12em] text-[#E8ECF2]/40 text-center">
+              <p className="font-supply mt-4 text-[9px] uppercase tracking-[0.12em] text-[#EDECE4]/40 text-center">
                 The after-hours operational layer
               </p>
             </div>
@@ -1073,7 +1075,7 @@ function ExistingSystems() {
         <AnimatedSection delay={0.1} className="text-center mt-12">
           <p className="text-2xl md:text-3xl font-bold tracking-tight text-white text-balance">
             We don&apos;t replace your workforce technology.{" "}
-            <span style={{ color: ACCENT }}>We make it work after hours.</span>
+            <span className={GRAD_TEXT}>We make it work after hours.</span>
           </p>
         </AnimatedSection>
       </div>
@@ -1103,12 +1105,12 @@ function Boundaries() {
   ];
 
   return (
-    <section className="section-padding py-16 md:py-24 border-t border-[#E8ECF2]/[0.07]">
+    <section className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/[0.07]">
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-12">
           <p className={EYEBROW}>Operating Boundaries</p>
           <h2 className={H2}>
-            Clear authority. <span style={{ color: ACCENT }}>Clear escalation.</span>
+            Clear authority. <span className={GRAD_TEXT}>Clear escalation.</span>
           </h2>
           <p className={`mt-4 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
             Novada operates within procedures agreed during onboarding. Our
@@ -1127,7 +1129,7 @@ function Boundaries() {
                 {can.map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: GREEN }} strokeWidth={1.5} />
-                    <p className="text-sm text-[#E8ECF2]/85">{item}</p>
+                    <p className="text-sm text-[#EDECE4]/85">{item}</p>
                   </div>
                 ))}
               </div>
@@ -1143,7 +1145,7 @@ function Boundaries() {
                 {cannot.map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <X className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#FF6B6B]/70" strokeWidth={1.5} />
-                    <p className="text-sm text-[#E8ECF2]/85">{item}</p>
+                    <p className="text-sm text-[#EDECE4]/85">{item}</p>
                   </div>
                 ))}
               </div>
@@ -1198,11 +1200,11 @@ function Onboarding() {
             <AnimatedSection key={s.title} delay={i * 0.08}>
               <div className={`${CARD} p-7 h-full text-center`}>
                 <s.icon className="w-7 h-7 mx-auto mb-4" style={{ color: ACCENT }} strokeWidth={1.4} />
-                <p className="font-supply text-[10px] uppercase tracking-[0.18em] text-[#E8ECF2]/45 mb-2">
+                <p className="font-supply text-[10px] uppercase tracking-[0.18em] text-[#EDECE4]/45 mb-2">
                   {s.stage}
                 </p>
                 <h3 className="text-xl font-semibold text-white mb-3">{s.title}</h3>
-                <p className="text-sm text-[#E8ECF2]/70 leading-relaxed">{s.desc}</p>
+                <p className="text-sm text-[#EDECE4]/70 leading-relaxed">{s.desc}</p>
               </div>
             </AnimatedSection>
           ))}
@@ -1230,11 +1232,11 @@ function Pilot() {
     <section id="pilot" className="section-padding py-16 md:py-24 scroll-mt-24">
       <div className="max-container max-w-4xl">
         <AnimatedSection>
-          <div className="rounded-2xl border border-[#4D9FFF]/30 bg-[linear-gradient(135deg,rgba(77,159,255,0.10)_0%,rgba(10,21,38,0.6)_55%,rgba(5,7,11,0.4)_100%)] p-8 md:p-12 text-center shadow-[0_32px_100px_rgba(77,159,255,0.12)]">
+          <div className="rounded-2xl border border-[#0CC481]/30 bg-[linear-gradient(135deg,rgba(12,196,129,0.10)_0%,rgba(15,28,28,0.6)_55%,rgba(5,7,11,0.4)_100%)] p-8 md:p-12 text-center shadow-[0_32px_100px_rgba(12,196,129,0.12)]">
             <p className={EYEBROW}>30-Day Workforce Recovery Pilot</p>
             <h2 className={H2}>
               See what your after-hours operation could look like{" "}
-              <span style={{ color: ACCENT }}>
+              <span className={GRAD_TEXT}>
                 without your management team carrying it.
               </span>
             </h2>
@@ -1248,7 +1250,7 @@ function Pilot() {
               {measures.map((m) => (
                 <div key={m} className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: GREEN }} strokeWidth={1.5} />
-                  <p className="text-sm text-[#E8ECF2]/85">{m}</p>
+                  <p className="text-sm text-[#EDECE4]/85">{m}</p>
                 </div>
               ))}
             </div>
@@ -1260,7 +1262,7 @@ function Pilot() {
                 className={`${BTN_PRIMARY} w-full sm:w-auto`}
               />
             </div>
-            <p className="font-supply mt-4 text-[10px] uppercase tracking-[0.14em] text-[#E8ECF2]/40 max-w-xl mx-auto leading-relaxed">
+            <p className="font-supply mt-4 text-[10px] uppercase tracking-[0.14em] text-[#EDECE4]/40 max-w-xl mx-auto leading-relaxed">
               Pilot suitability is assessed based on staffing model,
               after-hours volume, systems and operational requirements
             </p>
@@ -1282,13 +1284,13 @@ function WhoFor() {
   ];
 
   return (
-    <section className="section-padding py-16 md:py-24 border-t border-[#E8ECF2]/[0.07]">
+    <section className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/[0.07]">
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-10">
           <p className={EYEBROW}>Who It&apos;s For</p>
           <h2 className={H2}>
             Built for staffing operations that{" "}
-            <span style={{ color: ACCENT }}>don&apos;t stop at 5pm.</span>
+            <span className={GRAD_TEXT}>don&apos;t stop at 5pm.</span>
           </h2>
         </AnimatedSection>
 
@@ -1297,7 +1299,7 @@ function WhoFor() {
             {types.map((t) => (
               <div
                 key={t}
-                className="rounded-lg border border-[#E8ECF2]/[0.10] bg-white/[0.02] px-5 py-3.5 text-sm md:text-base font-medium text-[#E8ECF2]"
+                className="rounded-lg border border-[#EDECE4]/[0.10] bg-white/[0.02] px-5 py-3.5 text-sm md:text-base font-medium text-[#EDECE4]"
               >
                 {t}
               </div>
@@ -1348,7 +1350,7 @@ function Qualification() {
                 {fit.map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: GREEN }} strokeWidth={1.5} />
-                    <p className="text-sm text-[#E8ECF2]/85 leading-relaxed">{item}</p>
+                    <p className="text-sm text-[#EDECE4]/85 leading-relaxed">{item}</p>
                   </div>
                 ))}
               </div>
@@ -1357,14 +1359,14 @@ function Qualification() {
 
           <AnimatedSection delay={0.1}>
             <div className={`${CARD} p-7 h-full`}>
-              <h3 className="text-base font-semibold text-[#E8ECF2]/60 mb-5">
+              <h3 className="text-base font-semibold text-[#EDECE4]/60 mb-5">
                 Probably not suitable if:
               </h3>
               <div className="space-y-3.5">
                 {notFit.map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <X className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#FF6B6B]/70" strokeWidth={1.5} />
-                    <p className="text-sm text-[#E8ECF2]/85 leading-relaxed">{item}</p>
+                    <p className="text-sm text-[#EDECE4]/85 leading-relaxed">{item}</p>
                   </div>
                 ))}
               </div>
@@ -1402,7 +1404,7 @@ function Security() {
   ];
 
   return (
-    <section className="section-padding py-16 md:py-24 border-t border-[#E8ECF2]/[0.07]">
+    <section className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/[0.07]">
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-12">
           <p className={EYEBROW}>Security &amp; Control</p>
@@ -1415,7 +1417,7 @@ function Security() {
               <div className={`${CARD} p-6 h-full`}>
                 <s.icon className="w-6 h-6 mb-4" style={{ color: ACCENT }} strokeWidth={1.5} />
                 <h3 className="text-base font-semibold text-white mb-2">{s.title}</h3>
-                <p className="text-sm text-[#E8ECF2]/70 leading-relaxed">{s.desc}</p>
+                <p className="text-sm text-[#EDECE4]/70 leading-relaxed">{s.desc}</p>
               </div>
             </AnimatedSection>
           ))}
@@ -1468,16 +1470,16 @@ const FAQS = [
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-[#E8ECF2]/10">
+    <div className="border-b border-[#EDECE4]/10">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left group"
       >
-        <span className="text-base md:text-lg text-[#E8ECF2] group-hover:text-white transition-colors pr-4">
+        <span className="text-base md:text-lg text-[#EDECE4] group-hover:text-white transition-colors pr-4">
           {question}
         </span>
         <ChevronDown
-          className={`w-5 h-5 text-[#E8ECF2]/50 flex-shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          className={`w-5 h-5 text-[#EDECE4]/50 flex-shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
         />
       </button>
       <motion.div
@@ -1486,7 +1488,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="overflow-hidden"
       >
-        <p className="pb-6 text-base text-[#E8ECF2]/80 leading-relaxed">{answer}</p>
+        <p className="pb-6 text-base text-[#EDECE4]/80 leading-relaxed">{answer}</p>
       </motion.div>
     </div>
   );
@@ -1513,13 +1515,13 @@ function FAQ() {
 /* ─── 19 · FINAL CTA ─── */
 function FinalCta() {
   return (
-    <section className="relative section-padding py-20 md:py-28 border-t border-[#E8ECF2]/[0.07] overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(20,50,95,0.35)_0%,rgba(5,7,11,0)_60%)] pointer-events-none" />
+    <section className="relative section-padding py-20 md:py-28 border-t border-[#EDECE4]/[0.07] overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,109,74,0.35)_0%,rgba(5,7,11,0)_60%)] pointer-events-none" />
       <div className="relative max-container max-w-3xl text-center">
         <AnimatedSection>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white text-balance">
             Find out what your after-hours operation{" "}
-            <span style={{ color: ACCENT }}>is really costing you.</span>
+            <span className={GRAD_TEXT}>is really costing you.</span>
           </h2>
           <p className={`mt-6 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
             We&apos;ll review how your agency currently handles cancellations,
@@ -1534,7 +1536,7 @@ function FinalCta() {
               className={`${BTN_PRIMARY} w-full sm:w-auto`}
             />
           </div>
-          <p className="font-supply mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-[#E8ECF2]/40">
+          <p className="font-supply mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
             Designed for Australian healthcare, aged-care and disability
             staffing agencies.
           </p>
@@ -1564,8 +1566,8 @@ const CURRENT_HANDLING = [
 ];
 
 const INPUT =
-  "w-full rounded-lg border border-[#E8ECF2]/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-[#E8ECF2]/35 focus:outline-none focus:border-[#4D9FFF]/60 focus:bg-white/[0.05] transition-colors";
-const SELECT = `${INPUT} appearance-none pr-10 [&>option]:bg-[#0B1119] [&>option]:text-white`;
+  "w-full rounded-lg border border-[#EDECE4]/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-[#EDECE4]/35 focus:outline-none focus:border-[#0CC481]/60 focus:bg-white/[0.05] transition-colors";
+const SELECT = `${INPUT} appearance-none pr-10 [&>option]:bg-[#111413] [&>option]:text-white`;
 
 function SelectField({
   label,
@@ -1582,7 +1584,7 @@ function SelectField({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="block text-sm text-[#E8ECF2]/75 mb-1.5">
+      <label htmlFor={name} className="block text-sm text-[#EDECE4]/75 mb-1.5">
         {label}
       </label>
       <div className="relative">
@@ -1603,7 +1605,7 @@ function SelectField({
             </option>
           ))}
         </select>
-        <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#E8ECF2]/40" />
+        <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#EDECE4]/40" />
       </div>
     </div>
   );
@@ -1683,7 +1685,7 @@ function LeadForm() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="wf-first" className="block text-sm text-[#E8ECF2]/75 mb-1.5">
+                      <label htmlFor="wf-first" className="block text-sm text-[#EDECE4]/75 mb-1.5">
                         First Name
                       </label>
                       <input
@@ -1696,7 +1698,7 @@ function LeadForm() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="wf-last" className="block text-sm text-[#E8ECF2]/75 mb-1.5">
+                      <label htmlFor="wf-last" className="block text-sm text-[#EDECE4]/75 mb-1.5">
                         Last Name
                       </label>
                       <input
@@ -1712,7 +1714,7 @@ function LeadForm() {
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="wf-email" className="block text-sm text-[#E8ECF2]/75 mb-1.5">
+                      <label htmlFor="wf-email" className="block text-sm text-[#EDECE4]/75 mb-1.5">
                         Work Email
                       </label>
                       <input
@@ -1726,7 +1728,7 @@ function LeadForm() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="wf-phone" className="block text-sm text-[#E8ECF2]/75 mb-1.5">
+                      <label htmlFor="wf-phone" className="block text-sm text-[#EDECE4]/75 mb-1.5">
                         Phone
                       </label>
                       <input
@@ -1742,7 +1744,7 @@ function LeadForm() {
                   </div>
 
                   <div>
-                    <label htmlFor="wf-company" className="block text-sm text-[#E8ECF2]/75 mb-1.5">
+                    <label htmlFor="wf-company" className="block text-sm text-[#EDECE4]/75 mb-1.5">
                       Company
                     </label>
                     <input
@@ -1808,32 +1810,32 @@ function LeadForm() {
 /* ─── 21 · FOOTER ─── */
 function WfFooter() {
   return (
-    <footer className="border-t border-[#E8ECF2]/[0.07] bg-[#05070B]">
+    <footer className="border-t border-[#EDECE4]/[0.07] bg-[#080808]">
       <div className="max-container section-padding py-10">
         <div className="flex flex-col items-center gap-5 text-center">
           <div>
             <p className="text-white font-bold text-lg tracking-tight">
-              Novada <span style={{ color: ACCENT }}>Workforce</span>
+              Novada <span className={GRAD_TEXT}>Workforce</span>
             </p>
-            <p className="font-supply mt-1 text-[10px] uppercase tracking-[0.15em] text-[#E8ECF2]/40">
+            <p className="font-supply mt-1 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
               After-Hours Workforce Operations
             </p>
           </div>
-          <div className="flex items-center gap-4 text-xs text-[#E8ECF2]/40">
-            <a href="/privacy-policy" className="hover:text-[#E8ECF2]/70 transition-colors">
+          <div className="flex items-center gap-4 text-xs text-[#EDECE4]/40">
+            <a href="/privacy-policy" className="hover:text-[#EDECE4]/70 transition-colors">
               Privacy Policy
             </a>
             <span>·</span>
-            <a href="/terms-of-service" className="hover:text-[#E8ECF2]/70 transition-colors">
+            <a href="/terms-of-service" className="hover:text-[#EDECE4]/70 transition-colors">
               Terms
             </a>
             <span>·</span>
-            <a href="mailto:support@novadatech.com.au" className="hover:text-[#E8ECF2]/70 transition-colors">
+            <a href="mailto:support@novadatech.com.au" className="hover:text-[#EDECE4]/70 transition-colors">
               Contact
             </a>
           </div>
-          <p className="text-xs text-[#E8ECF2]/35">
-            A <span className="text-[#E8ECF2]/55">Novada Tech</span> service · ©{" "}
+          <p className="text-xs text-[#EDECE4]/35">
+            A <span className="text-[#EDECE4]/55">Novada Tech</span> service · ©{" "}
             {new Date().getFullYear()} Novada Tech. All rights reserved.
           </p>
         </div>
@@ -1849,7 +1851,7 @@ export default function WorkforcePage() {
   }, []);
 
   return (
-    <div className="bg-[#05070B] font-poppins overflow-x-clip">
+    <div className="bg-[#080808] font-poppins overflow-x-clip">
       <WfNav />
       <Hero />
       <Problem />
