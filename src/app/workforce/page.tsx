@@ -1784,8 +1784,8 @@ function FinalCta() {
             />
           </div>
           <p className="font-supply mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-            Designed for Australian healthcare, aged-care and disability
-            staffing agencies.
+            Designed for healthcare, home care and disability staffing
+            agencies.
           </p>
         </AnimatedSection>
       </div>

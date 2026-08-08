@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title:
     "After-Hours Workforce Operations for Healthcare Staffing Agencies | Novada Workforce",
   description:
-    "Novada Workforce operates after-hours staffing workflows for Australian healthcare, aged-care and disability staffing agencies, including cancellations, urgent bookings, worker replacement and workforce coordination.",
+    "Novada Workforce operates after-hours staffing workflows for healthcare, home care and disability staffing agencies, including cancellations, urgent bookings, worker replacement and workforce coordination.",
   openGraph: {
     title:
       "After-Hours Workforce Operations for Healthcare Staffing Agencies | Novada Workforce",
