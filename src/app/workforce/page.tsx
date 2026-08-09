@@ -1793,260 +1793,45 @@ function FinalCta() {
   );
 }
 
-/* ─── 20 · LEAD FORM ─── */
-const AGENCY_TYPES = [
-  "Healthcare Staffing",
-  "Nursing Staffing",
-  "Aged Care Staffing",
-  "Disability / NDIS Staffing",
-  "Community Care Staffing",
-  "Other",
-];
-const WORKFORCE_SIZES = ["Under 50", "50–100", "101–250", "251–500", "501–1,000", "1,000+"];
-const CURRENT_HANDLING = [
-  "Owner/Director",
-  "Managers rotate on-call",
-  "Internal after-hours coordinators",
-  "Outsourced provider",
-  "No structured coverage",
-  "Other",
-];
-
-const INPUT =
-  "w-full rounded-lg border border-[#EDECE4]/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-[#EDECE4]/35 focus:outline-none focus:border-[#0CC481]/60 focus:bg-white/[0.05] transition-colors";
-const SELECT = `${INPUT} appearance-none pr-10 [&>option]:bg-[#111413] [&>option]:text-white`;
-
-function SelectField({
-  label,
-  name,
-  options,
-  value,
-  onChange,
-}: {
-  label: string;
-  name: string;
-  options: string[];
-  value: string;
-  onChange: (v: string) => void;
-}) {
-  return (
-    <div>
-      <label htmlFor={name} className="block text-sm text-[#EDECE4]/75 mb-1.5">
-        {label}
-      </label>
-      <div className="relative">
-        <select
-          id={name}
-          name={name}
-          required
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className={SELECT}
-        >
-          <option value="" disabled>
-            Select…
-          </option>
-          {options.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
-          ))}
-        </select>
-        <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#EDECE4]/40" />
-      </div>
-    </div>
-  );
-}
-
-function LeadForm() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const startedRef = useRef(false);
-  const [fields, setFields] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    company: "",
-    phone: "",
-    agencyType: "",
-    workforceSize: "",
-    currentHandling: "",
-  });
-
-  const set = (key: keyof typeof fields) => (v: string) => {
-    if (!startedRef.current) {
-      startedRef.current = true;
-      track("workforce_form_start");
-    }
-    setFields((f) => ({ ...f, [key]: v }));
-  };
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (status === "submitting") return;
-    setStatus("submitting");
-    try {
-      const res = await fetch("/api/workforce-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fields),
-      });
-      if (res.ok) {
-        track("workforce_form_submit", { outcome: "success" });
-        setStatus("success");
-      } else {
-        track("workforce_form_submit", { outcome: "error" });
-        setStatus("error");
-      }
-    } catch {
-      track("workforce_form_submit", { outcome: "network_error" });
-      setStatus("error");
-    }
-  }
+/* ─── 20 · ASSESSMENT BOOKING (embedded GHL calendar — replaces the
+       custom qualification form; the calendar's own booking form collects
+       the qualification fields, so /api/workforce-lead is currently unused) ─── */
+function AssessmentBooking() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://link.novadatech.com/js/form_embed.js";
+    script.type = "text/javascript";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <section id="assessment" className="section-padding pb-20 md:pb-28 scroll-mt-24">
-      <div className="max-container max-w-2xl">
+      <div className="max-container max-w-3xl">
         <AnimatedSection>
-          <div className={`${CARD} p-7 md:p-10`}>
-            {status === "success" ? (
-              <div className="text-center py-8">
-                <CheckCircle2 className="w-12 h-12 mx-auto mb-5" style={{ color: GREEN }} strokeWidth={1.2} />
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  Assessment request received.
-                </h3>
-                <p className={`text-base ${BODY} max-w-md mx-auto leading-relaxed`}>
-                  Thank you — our team will review your after-hours operating
-                  model and contact you within one business day to arrange your
-                  assessment.
-                </p>
-              </div>
-            ) : (
-              <>
-                <div className="text-center mb-8">
-                  <p className={EYEBROW}>Request Your Assessment</p>
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
-                    Book an After-Hours Operations Assessment
-                  </h3>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="wf-first" className="block text-sm text-[#EDECE4]/75 mb-1.5">
-                        First Name
-                      </label>
-                      <input
-                        id="wf-first"
-                        required
-                        className={INPUT}
-                        value={fields.firstName}
-                        onChange={(e) => set("firstName")(e.target.value)}
-                        autoComplete="given-name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="wf-last" className="block text-sm text-[#EDECE4]/75 mb-1.5">
-                        Last Name
-                      </label>
-                      <input
-                        id="wf-last"
-                        required
-                        className={INPUT}
-                        value={fields.lastName}
-                        onChange={(e) => set("lastName")(e.target.value)}
-                        autoComplete="family-name"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="wf-email" className="block text-sm text-[#EDECE4]/75 mb-1.5">
-                        Work Email
-                      </label>
-                      <input
-                        id="wf-email"
-                        type="email"
-                        required
-                        className={INPUT}
-                        value={fields.email}
-                        onChange={(e) => set("email")(e.target.value)}
-                        autoComplete="email"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="wf-phone" className="block text-sm text-[#EDECE4]/75 mb-1.5">
-                        Phone
-                      </label>
-                      <input
-                        id="wf-phone"
-                        type="tel"
-                        required
-                        className={INPUT}
-                        value={fields.phone}
-                        onChange={(e) => set("phone")(e.target.value)}
-                        autoComplete="tel"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="wf-company" className="block text-sm text-[#EDECE4]/75 mb-1.5">
-                      Company
-                    </label>
-                    <input
-                      id="wf-company"
-                      required
-                      className={INPUT}
-                      value={fields.company}
-                      onChange={(e) => set("company")(e.target.value)}
-                      autoComplete="organization"
-                    />
-                  </div>
-
-                  <SelectField
-                    label="Agency Type"
-                    name="wf-agency-type"
-                    options={AGENCY_TYPES}
-                    value={fields.agencyType}
-                    onChange={set("agencyType")}
-                  />
-                  <SelectField
-                    label="Approximate active workforce"
-                    name="wf-size"
-                    options={WORKFORCE_SIZES}
-                    value={fields.workforceSize}
-                    onChange={set("workforceSize")}
-                  />
-                  <SelectField
-                    label="How do you currently handle after-hours staffing?"
-                    name="wf-handling"
-                    options={CURRENT_HANDLING}
-                    value={fields.currentHandling}
-                    onChange={set("currentHandling")}
-                  />
-
-                  {status === "error" && (
-                    <p className="text-sm text-[#FF6B6B] text-center">
-                      Something went wrong submitting your request. Please try
-                      again, or email us at{" "}
-                      <a href="mailto:support@novadatech.com.au" className="underline">
-                        support@novadatech.com.au
-                      </a>
-                      .
-                    </p>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={status === "submitting"}
-                    className={`${BTN_PRIMARY} w-full disabled:opacity-60 disabled:cursor-not-allowed`}
-                  >
-                    {status === "submitting" ? "Submitting…" : "Request Assessment"}
-                  </button>
-                </form>
-              </>
-            )}
+          <div className="text-center mb-8">
+            <p className={EYEBROW}>Request Your Assessment</p>
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
+              Book an After-Hours Operations Assessment
+            </h3>
+          </div>
+          <div className={`${CARD} p-2 md:p-3`}>
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/booking/o8E2clJBvUsq34IbvpxG"
+              style={{
+                width: "100%",
+                minHeight: "760px",
+                border: "none",
+                overflow: "hidden",
+                display: "block",
+              }}
+              scrolling="no"
+              id="o8E2clJBvUsq34IbvpxG_booking"
+              title="Book an After-Hours Operations Assessment"
+            />
           </div>
         </AnimatedSection>
       </div>
@@ -2119,7 +1904,7 @@ export default function WorkforcePage() {
       <Security />
       <FAQ />
       <FinalCta />
-      <LeadForm />
+      <AssessmentBooking />
       <WfFooter />
     </div>
   );
