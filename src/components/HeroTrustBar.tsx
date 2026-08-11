@@ -52,7 +52,7 @@ export default function HeroTrustBar({
     >
       {/* Unbranded rating lockup — links to the independent review profile */}
       <a
-        href="https://www.trustpilot.com/review/novadatech.com.au"
+        href="/case-study"
         target="_blank"
         rel="noopener noreferrer"
         className="group flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.10] hover:bg-white/[0.07] hover:border-white/[0.20] transition-all"

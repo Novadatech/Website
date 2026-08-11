@@ -14,7 +14,7 @@ export default function LandingFooter() {
 
           {/* Reviews (independent profile link) */}
           <a
-            href="https://www.trustpilot.com/review/novadatech.com.au"
+            href="/case-study"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-white/60 hover:text-white/80 transition-colors"

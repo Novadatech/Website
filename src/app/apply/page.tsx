@@ -704,7 +704,7 @@ return (
               <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-ember-500/60" /> Zero obligation</span>
               <span className="text-white/15">|</span>
               <a
-                href="https://www.trustpilot.com/review/novadatech.com.au"
+                href="/case-study"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 hover:text-white/50 transition-colors"
@@ -775,7 +775,7 @@ return (
                   <Shield className="w-3.5 h-3.5" /> Zero Risk
                 </span>
                 <a
-                  href="https://www.trustpilot.com/review/novadatech.com.au"
+                  href="/case-study"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 hover:text-white/50 transition-colors"

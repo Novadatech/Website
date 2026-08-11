@@ -164,7 +164,7 @@ function OriginStory() {
                     Track Record
                   </p>
                   <a
-                    href="https://www.trustpilot.com/review/novadatech.com.au"
+                    href="/case-study"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`text-2xl font-light ${GRAD_TEXT} hover:opacity-80 transition-opacity`}
@@ -412,8 +412,8 @@ function Principles() {
 /* ─── TRUST STATS ─── */
 function TrustStats() {
   const stats = [
-    { icon: Star, number: "4.9★", label: "Trustpilot Rating", href: "https://www.trustpilot.com/review/novadatech.com.au" },
-    { icon: Award, number: "77+", label: "Verified Reviews · voluntary", href: "https://www.trustpilot.com/review/novadatech.com.au" },
+    { icon: Star, number: "4.9★", label: "Client Rating", href: "/case-study" },
+    { icon: Award, number: "77+", label: "Verified Reviews · voluntary", href: "/case-study" },
     { icon: Globe, number: "30+", label: "Industries Served" },
     { icon: TrendingUp, number: "$45.7M+", label: "Client Revenue Generated" },
   ];

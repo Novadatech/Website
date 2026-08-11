@@ -552,7 +552,7 @@ function Testimonials() {
 
         <AnimatedSection delay={0.2} className="mt-10 text-center">
           <a
-            href="https://www.trustpilot.com/review/novadatech.com.au"
+            href="/case-study"
             target="_blank"
             rel="noopener noreferrer"
             className="font-supply inline-flex items-center gap-3 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/50 hover:text-[#EDECE4] transition-colors"

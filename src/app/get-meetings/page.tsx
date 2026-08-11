@@ -101,7 +101,7 @@ const VIDEO_TESTIMONIALS = [
 const TRUST_ITEMS: { icon: typeof Shield; label: string; link?: string; micro?: string }[] = [
   { icon: Shield, label: "Performance Guarantee", micro: "Written into your agreement" },
   { icon: CheckCircle, label: "You Don\u2019t Pay Until We Deliver" },
-  { icon: Star, label: "Rated 4.9\u2605 on Trustpilot", link: "https://www.trustpilot.com/review/novadatech.com.au" },
+  { icon: Star, label: "Rated 4.9\u2605 by clients", link: "/case-study" },
   { icon: Clock, label: "Takes Under 2 Minutes" },
 ];
 
@@ -537,7 +537,7 @@ return (
             <div className="mt-5 flex items-center justify-center gap-5 text-xs text-white/35 flex-wrap">
               <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-ember-500/60" /> Performance guaranteed</span>
               <span className="text-white/15">|</span>
-              <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors">
+              <a href="/case-study" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors">
                 <span className="text-ember-500 tracking-tight">{"\u2605\u2605\u2605\u2605\u2605"}</span>
                 <span className="underline underline-offset-2 decoration-white/20">4.9/5 client rating</span>
               </a>
@@ -582,7 +582,7 @@ return (
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-5 text-xs text-white/25">
                 <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> Performance Guaranteed</span>
-                <a href="https://www.trustpilot.com/review/novadatech.com.au" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} client rating</span></a>
+                <a href="/case-study" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-white/50 transition-colors"><Star className="w-3.5 h-3.5" /><span className="underline underline-offset-2 decoration-white/20">4.9{"\u2605"} client rating</span></a>
                 <span className="flex items-center gap-1.5"><CheckCircle className="w-3.5 h-3.5" /> No Pay Until We Deliver</span>
                 <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> 350+ Businesses Scaled</span>
               </div>
