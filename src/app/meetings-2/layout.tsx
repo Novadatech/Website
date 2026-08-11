@@ -10,9 +10,9 @@ import type { Metadata } from "next";
 // policy. Approved framing: "No retainer. No setup fee. No lock-in."
 export const metadata: Metadata = {
   title:
-    "15+ Qualified Sales Meetings A Month, Guaranteed — No Retainer | Novada Tech",
+    "15+ Qualified Sales Meetings A Month, Guaranteed In Writing | Novada Tech",
   description:
-    "We book 15+ qualified sales meetings a month straight onto your calendar — guaranteed in writing. No retainer. No setup fee. No lock-in. Pay only per booked meeting. You never pay for a meeting that doesn't happen.",
+    "We make you the name your market trusts, then book 15+ qualified sales meetings a month straight onto your calendar — guaranteed in writing. If a month falls short, we keep working at no extra charge until it's delivered. No lock-in. Cancel any time.",
   robots: { index: false, follow: false },
 };
 

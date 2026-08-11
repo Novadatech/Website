@@ -90,45 +90,49 @@ export default function GuaranteeTermsPage() {
             <Section number="3" title="What You Pay, And When">
               <div className="space-y-4">
                 <p className={P}>
-                  There is no retainer, no monthly service fee, no setup fee
-                  and no onboarding fee. You pay one per-meeting fee, agreed
-                  with you in writing before we start, and it is only charged
-                  when a qualified meeting is actually booked into your
-                  calendar. No meeting booked means no charge.
+                  The engagement is a simple, flat monthly partnership fee
+                  plus a one-off setup — both agreed with you transparently on
+                  your strategy call and set out in your service agreement
+                  before you commit to anything.{" "}
+                  <span className="text-white font-normal">
+                    There are no per-meeting fees
+                  </span>
+                  : whether the system books fifteen meetings in a month or
+                  fifty, the monthly fee stays the same — so the more it
+                  books, the less each meeting effectively costs you.
                 </p>
                 <p className={P}>
-                  A one-time commitment deposit (US$200–US$250 depending on
-                  the plan agreed on your call) is payable at campaign
-                  activation. It is{" "}
-                  <span className="text-white font-normal">
-                    credited in full against your first booked meeting
-                  </span>{" "}
-                  — it is not an additional fee, and it is the only payment
-                  that occurs before a meeting exists. US clients are billed
-                  in US dollars.
+                  The monthly fee is billed in advance on your billing date —
+                  never earlier. If a month falls short of the guaranteed 15
+                  meetings, your next bill is deferred until every guaranteed
+                  meeting has been delivered (see Section 5).
                 </p>
               </div>
             </Section>
 
             <Section number="4" title="Cancellations, Reschedules And No-Shows">
               <p className={P}>
-                If a booked meeting is cancelled or doesn&apos;t hold, you are
-                not charged for it — and if the fee for that meeting has
-                already been invoiced, it is removed or credited in full. A
-                rescheduled meeting remains the same single meeting and is
-                never charged twice. You only ever pay for meetings that hold.
+                Our team handles rescheduling and rebooking as part of the
+                service. A rescheduled meeting remains the same single meeting
+                and is never counted twice — and because there are no
+                per-meeting fees, a cancellation never costs you anything
+                extra. How cancellations and no-shows are treated against the
+                guaranteed minimum is agreed in writing in your service
+                agreement before launch.
               </p>
             </Section>
 
             <Section number="5" title="If We Fall Short Of The Guarantee">
               <p className={P}>
-                Because billing is pay-per-meeting, a shortfall never costs
-                you money: you are only ever charged for the qualified
-                meetings actually booked, so there is no retainer or monthly
-                fee to lose. If we deliver fewer than 15 qualified meetings in
-                a calendar month, we continue working to close the gap at no
-                additional cost to you — and you remain free to end the
-                engagement at any time under Section 6.
+                If we deliver fewer than 15 qualified meetings in a calendar
+                month, we keep working{" "}
+                <span className="text-white font-normal">
+                  at no additional charge until all 15 are delivered
+                </span>{" "}
+                — and your next monthly bill is deferred until they land. A
+                slow month costs us, not you. Meetings beyond 15 keep coming
+                at no extra cost, and you remain free to end the engagement at
+                any time under Section 6.
               </p>
             </Section>
 

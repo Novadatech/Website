@@ -5,12 +5,16 @@
  * /meetings (Facebook) on 2026-07-26; diverged 2026-07-27 per the Google
  * Ads developer brief (Google Ads folder / 03 - DEVELOPER BRIEF).
  *
- * Offer: pay-per-result qualified meetings. One per-meeting fee (only
- * charged when a qualified meeting is booked; figure agreed on the call —
- * deliberately not printed since the proposal tiers differ), you never pay
- * for a cancelled meeting, reschedules never charged twice, no
- * retainer/minimums/lock-in, <30 min/week client time, and 15+ qualified
- * meetings a month GUARANTEED (backed by /guarantee-terms).
+ * Offer (source of truth: "Growth Infrastructure - Client Proposal" PDF,
+ * Novada Tech Offer folder, 2026-07-30 — realigned 2026-08-11): flat
+ * monthly partnership + one-off setup, $0 PER-MEETING FEES (the old
+ * pay-per-meeting model is GONE — never reintroduce "you only pay when
+ * we do" claims). NO PRICING on this page (user directive) — investment
+ * discussed on the call. 15+ qualified meetings/month guaranteed IN
+ * WRITING; shortfall remedy = keep working at no extra charge until
+ * delivered; no lock-in, month to month; trust/authority positioning
+ * (Trust Engineering™ + Outbound Growth System); <30 min/week client
+ * time; assets built under the client's name stay theirs.
  *
  * COMPLIANCE (Google Misrepresentation / Unreliable Claims policies):
  * - NO "$0 upfront"/"$0 activation" claims — a commitment deposit exists.
@@ -90,7 +94,7 @@ function Hero() {
           transition={{ duration: 0.5 }}
           className="font-supply text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5"
         >
-          Pay-Per-Result Client Acquisition · For B2B &amp; Service Businesses
+          Done-For-You Client Acquisition · For B2B &amp; Service Businesses
         </motion.p>
 
         <motion.h1
@@ -101,7 +105,7 @@ function Hero() {
         >
           We Book Qualified Sales Meetings Onto Your Calendar.{" "}
           <span className={GRAD_TEXT}>
-            You Only Pay When We Do.
+            Guaranteed, In Writing.
           </span>
         </motion.h1>
 
@@ -111,10 +115,10 @@ function Hero() {
           transition={{ duration: 0.5, delay: 0.25 }}
           className="mt-5 text-base md:text-xl text-[#EDECE4]/95 max-w-2xl mx-auto leading-relaxed"
         >
-          Done-for-you outreach across every channel that matters, run by our
-          team — <span className="text-white font-semibold">15+ qualified
-          meetings a month, guaranteed</span>. No retainer. No setup fee. No lock-in.
-          And you never pay for a meeting that doesn&apos;t happen.
+          We make you the name your market trusts, then run done-for-you
+          outreach across every channel that matters —{" "}
+          <span className="text-white font-semibold">15+ qualified meetings a
+          month, guaranteed in writing</span>. No lock-in. Cancel any time.
         </motion.p>
 
         {/* Trustpilot evidence — mandated position */}
@@ -132,8 +136,10 @@ function Hero() {
             <ChevronRight className="w-5 h-5" />
           </a>
           <p className="mt-4 text-sm md:text-base text-[#EDECE4]/90">
-            No meeting booked? <span className="text-white font-medium">No charge.</span>{" "}
-            Meeting cancelled? <span className="text-white font-medium">You don&apos;t pay a cent.</span>
+            A month under 15 meetings?{" "}
+            <span className="text-white font-medium">
+              We keep working at no extra charge until every one is delivered.
+            </span>
           </p>
           <p className="font-supply mt-3 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
             30 minutes · No obligation ·{" "}
@@ -157,11 +163,11 @@ function Hero() {
             <p className="text-sm md:text-base text-[#EDECE4]/90 leading-relaxed">
               Most appointment-setting agencies charge{" "}
               <span className="text-white font-semibold">
-                $4,000–$10,000 a month upfront
+                $4,000–$10,000 a month
               </span>
-              , on a 3–6 month contract. We charge no retainer and no setup fee
-              — you pay per booked meeting, agreed before we start. Cancel any
-              time.
+              , lock you into a 3–6 month contract, and guarantee nothing. We
+              put 15+ qualified meetings a month in writing, with no per-meeting
+              fees and no lock-in — cancel any time.
             </p>
           </div>
         </motion.div>
@@ -373,10 +379,10 @@ function BurnedBefore() {
               </p>
               <div className="space-y-4">
                 {[
-                  "No retainer, no setup fee — you pay per meeting, not per month",
-                  "You're only charged when a qualified meeting is booked",
-                  "A cancelled meeting costs you nothing — you’re simply not charged",
-                  "No minimums, no lock-in — cancel any time",
+                  "Trust engineered first — buyers arrive already convinced, not cold",
+                  "15+ qualified meetings a month, guaranteed in writing",
+                  "Fall short? We keep working at no extra charge until it's delivered",
+                  "No lock-in, ever — we re-earn your business every month",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
@@ -390,11 +396,12 @@ function BurnedBefore() {
 
         <AnimatedSection delay={0.15} className="text-center mt-8">
           <p className="text-lg md:text-xl text-[#EDECE4]/95 max-w-2xl mx-auto leading-relaxed">
-            If we don&apos;t book meetings, we don&apos;t get paid — and
-            15+ qualified meetings a month is{" "}
-            <span className="text-white">guaranteed, in writing.</span>{" "}
-            Our incentive and yours point in exactly the same direction —
-            from day one.
+            If we fall short, the cost falls on us — 15+ qualified meetings a
+            month is{" "}
+            <span className="text-white">guaranteed, in writing,</span>{" "}
+            and we keep working at no extra charge until it&apos;s met. Our
+            incentive and yours point in exactly the same direction — from
+            day one.
           </p>
         </AnimatedSection>
       </div>
@@ -415,9 +422,10 @@ function FounderNote() {
             <p className="text-lg md:text-xl text-[#EDECE4] leading-relaxed">
               &ldquo;We don&apos;t take on every business, and we won&apos;t
               pretend we&apos;re the right fit for everyone. But when we do
-              partner, the risk sits with us — no retainer, no lock-in, and
-              you only pay when a qualified meeting is booked. That&apos;s
-              the standard we hold ourselves to, every single month.&rdquo;
+              partner, the risk sits with us — the meetings are guaranteed in
+              writing, there&apos;s no lock-in of any kind, and we re-earn
+              your business every single month. That&apos;s the standard we
+              hold ourselves to.&rdquo;
             </p>
             <p className="mt-5 text-base text-white">Ade Eni</p>
             <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40 mt-1">
@@ -434,19 +442,19 @@ function FounderNote() {
 function RiskReversal() {
   const cards = [
     {
-      icon: BadgeDollarSign,
-      title: "No Setup Fee",
-      desc: "No retainer. No setup fee. No lock-in. The commercial risk of filling your calendar sits with us — not with you.",
-    },
-    {
       icon: ShieldCheck,
-      title: "Pay Per Meeting Only",
-      desc: "One simple per-meeting fee, agreed before we start — charged only when a qualified meeting is booked into your calendar.",
+      title: "Guaranteed In Writing",
+      desc: "A written minimum of 15 qualified meetings every month — in your service agreement, not a marketing line.",
     },
     {
       icon: RotateCcw,
-      title: "Cancellations Cost Nothing",
-      desc: "If a prospect cancels, you don't pay for that meeting — and a reschedule is never charged twice. You only ever pay for meetings that hold.",
+      title: "Fall Short? We Fix It Free",
+      desc: "If a month comes in under 15, we keep working at no extra charge until every meeting is delivered. A slow month costs us — not you.",
+    },
+    {
+      icon: BadgeDollarSign,
+      title: "No Lock-In, Ever",
+      desc: "Month to month. No minimum term, no exit fee. We re-earn your business every month — if the engine isn't producing, you walk.",
     },
   ];
 
@@ -455,12 +463,12 @@ function RiskReversal() {
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-12">
           <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            No Retainer · No Setup Fee · No Lock-In
+            Guaranteed In Writing · No Lock-In · Cancel Any Time
           </p>
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
-            The only time money changes hands is when{" "}
+            15+ qualified meetings a month —{" "}
             <span className={GRAD_TEXT}>
-              a qualified meeting lands on your calendar.
+              written into your agreement, not a marketing line.
             </span>
           </h2>
         </AnimatedSection>
@@ -483,7 +491,7 @@ function RiskReversal() {
             <ChevronRight className="w-5 h-5" />
           </a>
           <p className="font-supply mt-4 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-            We&apos;ll define your exact per-meeting fee on the call — before you commit to anything
+            We&apos;ll define what a qualified meeting means for your business on the call — before you commit to anything
           </p>
         </AnimatedSection>
       </div>
@@ -543,9 +551,9 @@ function Mechanism() {
                 <p className="text-base text-[#EDECE4]/90 leading-relaxed">
                   Our dedicated SDR team runs daily, done-for-you outreach
                   across every channel that matters — social, email, SMS and
-                  phone — handling replies, qualifying leads against your
-                  exact criteria, and booking meetings straight onto your
-                  calendar.
+                  phone — with every enquiry answered in minutes, 24/7. Leads
+                  are qualified against your exact criteria and booked straight
+                  onto your calendar.
                 </p>
               </div>
             </div>
@@ -571,7 +579,7 @@ function Timeline() {
     {
       period: "Step 1 · Your Free Call",
       title: "We define a meeting worth your time.",
-      desc: "Industry, seniority, company size, your disqualifiers — we agree the exact profile of a qualified meeting, and your exact per-meeting fee. No pressure, no obligation.",
+      desc: "Industry, seniority, company size, your disqualifiers — we agree the exact profile of a qualified meeting, and walk you through the written guarantee. No pressure, no obligation.",
     },
     {
       period: "Step 2 · We Build & Launch",
@@ -735,11 +743,12 @@ function FAQ() {
       q: "What does it cost?",
       a: (
         <>
-          No retainer, no setup fee, no lock-in. There&apos;s one simple
-          per-meeting fee, agreed with you before we start, and it&apos;s only
-          charged when a qualified meeting is actually booked into your
-          calendar. No meeting booked means no charge. Full billing details are
-          in our{" "}
+          The investment is simple, flat and transparent — no per-meeting fees,
+          no lock-in — and we walk you through it in full on your strategy
+          call, before you commit to anything. What we can tell you here: 15+
+          qualified meetings a month is guaranteed in writing, and if a month
+          falls short we keep working at no extra charge until every meeting is
+          delivered. See our{" "}
           <a href="/guarantee-terms" className="text-[#0CC481] underline underline-offset-2">
             Guarantee &amp; Terms
           </a>
@@ -751,11 +760,11 @@ function FAQ() {
       q: "Is the 15+ meetings a month actually guaranteed?",
       a: (
         <>
-          Yes — 15+ qualified meetings every month, and it&apos;s written into
-          your service agreement, not a marketing line. Combined with
-          pay-per-meeting billing, the risk sits with us end to end:
-          there&apos;s no retainer to lose, you only pay for meetings actually
-          booked, and the monthly target is guaranteed in writing. See our{" "}
+          Yes — a written minimum of 15 qualified meetings every month, in your
+          service agreement, not a marketing line. If a month comes in under
+          15, we keep working at no extra charge until all 15 are delivered —
+          a slow month costs us, not you. And meetings keep coming beyond 15 at
+          no extra cost. See our{" "}
           <a href="/guarantee-terms" className="text-[#0CC481] underline underline-offset-2">
             Guarantee &amp; Terms
           </a>{" "}
@@ -765,11 +774,11 @@ function FAQ() {
     },
     {
       q: "What happens if a meeting cancels or doesn't hold?",
-      a: "You don't pay for it — simple as that. A cancelled meeting costs you nothing, and a reschedule is never charged twice; it remains the same single meeting. You only ever pay for meetings that hold.",
+      a: "Our team handles it — rescheduling, rebooking and keeping the pipeline moving. A rescheduled meeting is the same single meeting, never counted twice, and because there are no per-meeting fees, a cancellation never costs you anything extra. How cancellations are treated against the guarantee is agreed in writing before we start.",
     },
     {
       q: "I've been burned by agencies before. Why is this different?",
-      a: "Because with a retainer, the agency gets paid whether or not you get results — you carry all the risk. Our model is the reverse: we only earn when a qualified meeting is booked, so if we don't perform, we're the ones who lose. There's no retainer to waste and no contract trapping you.",
+      a: "Most providers sell you activity — you carry all the risk, and the moment you stop paying, everything stops with nothing to show. Ours is the reverse: the meeting minimum is written into your agreement, a short month costs us (we keep working at no extra charge until it's delivered), there's no lock-in trapping you, and everything we build under your name — content, positioning, authority — is yours and keeps working.",
     },
     {
       q: "How much of my time will this take?",
@@ -777,7 +786,7 @@ function FAQ() {
     },
     {
       q: "Do I need to spend money on ads?",
-      a: "No. There's no ad budget required from you — the system runs on done-for-you outreach and authority content, not on your ad spend.",
+      a: "Not to start. The system's core runs on done-for-you outreach and authority content — no ad budget required. If and when paid campaigns make sense for your market, we build and optimise them to a target cost per meeting, with your budget always under your control.",
     },
     {
       q: "How quickly will I see meetings?",
@@ -785,11 +794,11 @@ function FAQ() {
     },
     {
       q: "Is there a lock-in contract?",
-      a: "No retainer, no minimums, no lock-in. The commercial model only works for us if it keeps working for you — that's the point.",
+      a: "No lock-in, ever. Month to month, no minimum term, no exit fee — we re-earn your business every month. If the engine isn't producing, you walk. We'd rather earn your business than trap it.",
     },
     {
       q: "Who is this NOT for?",
-      a: "We're selective, because the pay-per-result model only works when the underlying business is ready. If your offer is under $3K, your service isn't validated yet, or you're after a magic-button solution with zero involvement — we're not the right fit, and we'll tell you that on the call rather than waste your time.",
+      a: "We're selective, because the written guarantee only works when the underlying business is ready. If your offer is under $3K, your service isn't validated yet, or you're after a magic-button solution with zero involvement — we're not the right fit, and we'll tell you that on the call rather than waste your time.",
     },
   ];
 
@@ -905,9 +914,10 @@ function Booking() {
           </h2>
           <p className="mt-4 text-base md:text-lg text-[#EDECE4]/90 max-w-2xl mx-auto leading-relaxed">
             On the call we&apos;ll define what a qualified meeting looks like
-            for your business, agree your exact per-meeting fee, and map your
-            first 90 days. If it&apos;s not a fit, you&apos;ll leave with a
-            clear plan anyway — that&apos;s the worst case.
+            for your business, show you exactly how the system would run under
+            your name, and map your first 90 days. If it&apos;s not a fit,
+            you&apos;ll leave with a clear plan anyway — that&apos;s the worst
+            case.
           </p>
         </AnimatedSection>
 
@@ -920,7 +930,7 @@ function Booking() {
                 {[
                   "Review your offer and your ideal client profile",
                   "Define exactly what a qualified meeting means for you",
-                  "Agree your per-meeting fee — before you commit to anything",
+                  "Walk you through the written guarantee — before you commit to anything",
                   "Map your first 90 days, week by week",
                   "Tell you honestly if we're not the right fit",
                 ].map((item, i) => (
@@ -943,10 +953,10 @@ function Booking() {
               <div className="mt-5 rounded-lg border border-[#EDECE4]/10 bg-white/[0.02] px-4 py-3">
                 <p className="text-xs text-[#EDECE4]/80 leading-relaxed">
                   Most appointment-setting agencies charge{" "}
-                  <span className="text-white">$4,000–$10,000 a month
-                  upfront</span>, on a 3–6 month contract. Here there&apos;s no
-                  retainer and no setup fee — you pay per booked meeting,
-                  agreed before we start. Cancel any time.
+                  <span className="text-white">$4,000–$10,000 a month</span>,
+                  lock you in for 3–6 months, and guarantee nothing. Here the
+                  meetings are guaranteed in writing, with no per-meeting fees
+                  and no lock-in — cancel any time.
                 </p>
               </div>
             </div>
@@ -996,10 +1006,10 @@ function StickyCta() {
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
             <div className="hidden sm:block">
               <p className="text-sm text-[#EDECE4]">
-                Qualified meetings, booked for you — no retainer
+                Qualified meetings, booked for you — guaranteed in writing
               </p>
               <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-                15+ a month guaranteed · Pay only per booked meeting
+                15+ a month · No lock-in · Cancel any time
               </p>
             </div>
             <a href={BOOK_ANCHOR} className={`${BTN_CTA_SM} w-full sm:w-auto`}>
