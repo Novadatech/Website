@@ -3,6 +3,7 @@ import { Inter, Poppins, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import ConditionalNav from "@/components/ConditionalNav";
+import ConditionalChatWidget from "@/components/ConditionalChatWidget";
 import LeadFormProvider from "@/components/LeadFormProvider";
 
 const inter = Inter({
@@ -118,13 +119,10 @@ fbq('init', '3515804598723791');
 fbq('track', 'PageView');`}
         </Script>
 
-        {/* Chat Widget */}
-        <Script
-          src="https://widgets.leadconnectorhq.com/loader.js"
-          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-          data-widget-id="6990bcc66dc9bb4de7bd8e7e"
-          strategy="afterInteractive"
-        />
+        {/* Chat Widget — route-aware: /workforce loads the Novada
+            Workforce (AfterHours sub-account) widget, everything else
+            the main Novada Tech widget. */}
+        <ConditionalChatWidget />
       </body>
     </html>
   );
