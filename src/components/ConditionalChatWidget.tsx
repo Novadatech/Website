@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 // NOTE: the legacy api.gohighlevel.com/message/get_chat_widget/<location>
 // iframe embed is DEAD (renders a blank shell for every location) — only
 // the widgets.leadconnectorhq.com loader with a data-widget-id works.
-const WORKFORCE_WIDGET_ID = "6a7a8e3c3bbada174306fa61";
+const WORKFORCE_WIDGET_ID = "6a7ac67d3bbada174311b459";
 const MAIN_WIDGET_ID = "6990bcc66dc9bb4de7bd8e7e";
 
 export default function ConditionalChatWidget() {
