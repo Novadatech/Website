@@ -12,6 +12,7 @@ const STANDALONE_ROUTES = [
   "/apply",
   "/meetings",
   "/meetings-2",
+  "/meetings-3",
   "/meetings-b",
   "/get-meetings",
   "/sales-closer",
