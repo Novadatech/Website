@@ -245,7 +245,7 @@ function Hero() {
               transition={{ duration: 0.5 }}
               className={EYEBROW}
             >
-              After-Hours Workforce Operations for Healthcare Staffing Agencies
+              After-Hours Workforce Operations · Australian Healthcare, Aged Care &amp; NDIS Providers
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -293,8 +293,8 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.55 }}
               className="font-supply mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/40"
             >
-              Built for healthcare, home care and disability staffing
-              operations.
+              Built for Australian healthcare, aged care and NDIS/disability
+              providers.
             </motion.p>
           </div>
 
@@ -1784,8 +1784,8 @@ function FinalCta() {
             />
           </div>
           <p className="font-supply mt-5 text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-            Designed for healthcare, home care and disability staffing
-            agencies.
+            Designed for Australian healthcare, aged care and NDIS/disability
+            providers.
           </p>
         </AnimatedSection>
       </div>
@@ -1852,18 +1852,25 @@ function WfFooter() {
             <p className="font-supply mt-1 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
               After-Hours Workforce Operations
             </p>
+            <p className="font-supply mt-1 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
+              Built for Australian healthcare, aged care and NDIS/disability providers
+            </p>
           </div>
-          <div className="flex items-center gap-4 text-xs text-[#EDECE4]/40">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-[#EDECE4]/40">
+            <a href="tel:+61414727740" className="hover:text-[#EDECE4]/70 transition-colors">
+              0414 727 740
+            </a>
+            <span>·</span>
+            <a href="mailto:support@novadatech.com.au" className="hover:text-[#EDECE4]/70 transition-colors">
+              support@novadatech.com.au
+            </a>
+            <span>·</span>
             <a href="/privacy-policy" className="hover:text-[#EDECE4]/70 transition-colors">
               Privacy Policy
             </a>
             <span>·</span>
             <a href="/terms-of-service" className="hover:text-[#EDECE4]/70 transition-colors">
               Terms
-            </a>
-            <span>·</span>
-            <a href="mailto:support@novadatech.com.au" className="hover:text-[#EDECE4]/70 transition-colors">
-              Contact
             </a>
           </div>
           <p className="text-xs text-[#EDECE4]/35">

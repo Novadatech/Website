@@ -18,8 +18,9 @@ const MAIN_WIDGET_ID = "6990bcc66dc9bb4de7bd8e7e";
 
 export default function ConditionalChatWidget() {
   const pathname = usePathname();
-  const widgetId =
-    pathname === "/workforce" ? WORKFORCE_WIDGET_ID : MAIN_WIDGET_ID;
+  const widgetId = pathname.startsWith("/workforce")
+    ? WORKFORCE_WIDGET_ID
+    : MAIN_WIDGET_ID;
 
   return (
     <Script
