@@ -1281,11 +1281,11 @@ function Pilot() {
 /* ─── 15 · WHO IT'S FOR ─── */
 function WhoFor() {
   const types = [
-    "Nursing Staffing Agencies",
-    "Aged-Care Staffing Agencies",
-    "Disability & NDIS Staffing Agencies",
-    "Healthcare Staffing Agencies",
-    "Community-Care Workforce Agencies",
+    "NDIS & Disability Providers",
+    "Aged Care Providers",
+    "Home Care Providers",
+    "Community Nursing",
+    "…and the Agencies That Staff Them",
   ];
 
   return (
@@ -1311,8 +1311,8 @@ function WhoFor() {
             ))}
           </div>
           <p className={`mt-8 text-center text-base ${BODY} max-w-2xl mx-auto`}>
-            Particularly suited to agencies providing temporary, casual,
-            urgent, same-day or 24/7 workforce coverage.
+            Particularly suited to providers and staffing agencies delivering
+            temporary, casual, urgent, same-day or 24/7 workforce coverage.
           </p>
         </AnimatedSection>
       </div>
@@ -1342,7 +1342,7 @@ function Qualification() {
       <div className="max-container max-w-4xl">
         <AnimatedSection className="text-center mb-12">
           <p className={EYEBROW}>Fit Check</p>
-          <h2 className={H2}>Is Novada Workforce right for your agency?</h2>
+          <h2 className={H2}>Is Novada Workforce right for your organisation?</h2>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 gap-6">
