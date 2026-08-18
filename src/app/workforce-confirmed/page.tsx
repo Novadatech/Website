@@ -9,6 +9,7 @@
  */
 
 import { useEffect } from "react";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import { CheckCircle, Mail, ClipboardList, Calculator, Phone } from "lucide-react";
 
@@ -33,6 +34,36 @@ export default function WorkforceConfirmedPage() {
 
   return (
     <div className="bg-[#080808] font-poppins overflow-x-clip min-h-screen flex flex-col">
+      {/* Google Ads: workforce assessment booking conversion.
+          OWNERSHIP NOTE (per the 2026-08 double-fire fix): on /confirmed-call
+          the conversion is fired by GTM, whose trigger is scoped to that URL
+          only — so THIS page must fire its own snippet, and this URL must
+          NEVER be added to the GTM conversion trigger, or it will double-fire.
+          Label o6ELCPGhgYwcEI-A4IM- is the live conversion action GTM fires
+          (the old YmXMCIr3pYocEI-A4IM- label is inactive). Re-declares the
+          dataLayer/gtag stub so the event survives script load-order races. */}
+      <Script id="gtag-conversion-workforce" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('event', 'conversion', {'send_to': 'AW-16650862607/o6ELCPGhgYwcEI-A4IM-'});`}
+      </Script>
+
+      {/* Meta Pixel: Schedule conversion (booked assessment). Defensive
+          bootstrap — no-op if the base pixel from layout.tsx already
+          loaded; repeated fbq('init') on the same ID is deduped by Meta. */}
+      <Script id="meta-conversion-workforce" strategy="afterInteractive">
+        {`!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '3515804598723791');
+fbq('track', 'Schedule');`}
+      </Script>
+
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
         <div className="max-container section-padding">
