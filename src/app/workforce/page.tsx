@@ -393,15 +393,15 @@ function FlowArrow() {
 function Comparison() {
   const answering = ["Call received", "Message recorded", "Manager contacted", "Manager handles problem"];
   const novada = [
-    "Issue received",
-    "Triage",
-    "Approved workflow initiated",
-    "Worker outreach",
-    "Replacement coordination",
-    "Client updated",
-    "Roster updated",
-    "Escalate only when required",
-    "Morning handover",
+    "A coordinator answers",
+    "We find the affected shift",
+    "The replacement search starts",
+    "Your approved workers called and texted",
+    "Cover locked in",
+    "Your client told tonight",
+    "Your roster updated",
+    "We only wake you if your rules say so",
+    "Written handover by 8am",
   ];
 
   return (
@@ -473,32 +473,32 @@ function Comparison() {
 const SERVICES = [
   {
     title: "Worker Cancellations",
-    desc: "Receive sick calls and cancellations, document the affected shift and initiate the approved replacement process.",
+    desc: "We take the sick call, find the affected shift and start lining up a replacement straight away.",
     icon: CalendarX,
   },
   {
     title: "Urgent Client Bookings",
-    desc: "Capture urgent after-hours staffing requests and begin worker fulfilment according to your procedures.",
+    desc: "A client needs someone for the morning? We take the request and start filling it your way, immediately.",
     icon: PhoneCall,
   },
   {
     title: "Replacement Coordination",
-    desc: "Contact agency-approved workers and coordinate replacement acceptance.",
+    desc: "We call and text your approved workers, manage the replies and lock in the cover.",
     icon: Users,
   },
   {
     title: "No-Shows & Late Workers",
-    desc: "Investigate worker status, communicate updates and initiate replacement procedures when required.",
+    desc: "We chase the worker, find out what is happening, keep everyone informed and line up cover if it is needed.",
     icon: UserX,
   },
   {
     title: "Client Communication",
-    desc: "Keep facilities and authorised client contacts updated throughout the staffing workflow.",
+    desc: "We keep facilities and authorised client contacts in the loop, so nobody is left waiting for your office to open.",
     icon: PhoneCall,
   },
   {
     title: "Escalation & Handover",
-    desc: "Escalate matters that genuinely require management involvement and provide a documented morning handover.",
+    desc: "We only wake your managers when your rules say to, and your daytime team gets a full written handover.",
     icon: FileText,
   },
 ];
@@ -511,8 +511,7 @@ function WhatWeHandle() {
           <p className={EYEBROW}>What We Handle</p>
           <h2 className={H2}>Your after-hours workforce desk.</h2>
           <p className={`mt-4 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
-            Our coordinators operate within your approved procedures and
-            existing workforce systems.
+            Real coordinators, working from your procedures, in your systems, all night.
           </p>
         </AnimatedSection>
 
@@ -535,9 +534,7 @@ function WhatWeHandle() {
               Your systems remain your systems.
             </p>
             <p className={`text-sm md:text-base ${BODY} max-w-2xl mx-auto leading-relaxed`}>
-              Novada Workforce does not replace your rostering platform. Our
-              authorised operations team works within your existing systems and
-              approved procedures.
+              Novada Workforce does not replace your rostering platform. Our coordinators log in to the systems you already use and work them the way your team does.
             </p>
           </div>
         </AnimatedSection>
@@ -643,17 +640,17 @@ const STEPS = [
   {
     num: "01",
     title: "Connect",
-    desc: "Your after-hours phone and approved operational workflows transition to Novada Workforce.",
+    desc: "At close of business, your after-hours line diverts to our coordinators. No new software, no migration.",
   },
   {
     num: "02",
     title: "Operate",
-    desc: "Our workforce coordinators manage approved after-hours staffing events using your procedures and existing systems.",
+    desc: "Our coordinators answer the calls, fill the shifts and keep your clients informed, your way.",
   },
   {
     num: "03",
     title: "Escalate",
-    desc: "Only issues outside our authority or requiring management judgement are escalated according to your rules.",
+    desc: "We only call your managers when your rules say we should. Everything else, we handle.",
   },
   {
     num: "04",
@@ -709,12 +706,12 @@ function HowItWorks() {
 const WORKFLOW = [
   { title: "Worker cancels", detail: "10:37 PM", highlight: true },
   { title: "Shift identified", detail: "Client's existing roster checked." },
-  { title: "Replacement workflow begins", detail: "Agency-approved workers identified." },
-  { title: "Worker outreach", detail: "Eligible workers contacted." },
+  { title: "The search begins", detail: "Your approved workers shortlisted." },
+  { title: "Calls and texts go out", detail: "Eligible workers contacted, replies managed." },
   { title: "Replacement accepts", detail: "Shift confirmed." },
   { title: "Client updated", detail: "Facility receives confirmation." },
   { title: "Roster updated", detail: "Client's existing system remains the source of truth." },
-  { title: "Case closed", detail: "Full activity trail recorded.", done: true },
+  { title: "Wrapped up", detail: "Everything written down for your morning handover.", done: true },
 ];
 
 function WorkflowVisual() {
@@ -791,11 +788,11 @@ function ManagementBenefit() {
     "Manager documents issue",
   ];
   const withNovada = [
-    "Novada receives event",
-    "Novada follows approved workflow",
-    "Novada coordinates workers",
-    "Novada updates client",
-    "Novada documents activity",
+    "Our coordinator takes the call",
+    "They work your playbook",
+    "They ring workers and fill the shift",
+    "They update your client",
+    "They write everything down",
   ];
 
   return (
@@ -1130,7 +1127,7 @@ function ExistingSystems() {
                 ))}
               </div>
               <p className="font-supply mt-4 text-[9px] uppercase tracking-[0.12em] text-[#EDECE4]/40 text-center">
-                System of record — unchanged
+                Your records, your rules, unchanged
               </p>
             </div>
 
@@ -1144,14 +1141,14 @@ function ExistingSystems() {
                 Novada Workforce
               </h3>
               <div className="space-y-2.5">
-                {["Workflow", "Coordination", "Escalation", "Documentation", "Reporting"].map((s) => (
+                {["Calls answered", "Shifts filled", "Clients updated", "Escalations made", "Handovers written"].map((s) => (
                   <div key={s} className="rounded-lg border border-[#0CC481]/20 bg-[#0CC481]/[0.05] px-4 py-3 text-sm text-white text-center">
                     {s}
                   </div>
                 ))}
               </div>
               <p className="font-supply mt-4 text-[9px] uppercase tracking-[0.12em] text-[#EDECE4]/40 text-center">
-                The after-hours operational layer
+                Your after-hours team
               </p>
             </div>
           </div>
@@ -1198,9 +1195,7 @@ function Boundaries() {
             Clear authority. <span className={GRAD_TEXT}>Clear escalation.</span>
           </h2>
           <p className={`mt-4 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
-            Novada operates within procedures agreed during onboarding. Our
-            coordinators execute authorised workforce workflows and escalate
-            decisions that should remain with your organisation.
+            Our coordinators do what you have authorised, the way you have documented it, and bring everything else to you.
           </p>
         </AnimatedSection>
 
@@ -1255,19 +1250,19 @@ function Onboarding() {
     {
       stage: "Stage 1",
       title: "Shadow",
-      desc: "We observe your existing after-hours workflows, escalation rules and systems.",
+      desc: "We watch how your team handles real nights, and learn your systems, your rules and your clients.",
       icon: Eye,
     },
     {
       stage: "Stage 2",
       title: "Co-Managed",
-      desc: "Our coordinators begin managing approved routine workflows with your team available for exceptions.",
+      desc: "Our coordinators start taking the routine nights, with your team a phone call away.",
       icon: Users,
     },
     {
       stage: "Stage 3",
       title: "Managed",
-      desc: "Novada operates within the agreed playbook and escalates only where required.",
+      desc: "We run your after-hours desk night after night, and only call when your rules say so.",
       icon: ShieldCheck,
     },
   ];
@@ -1278,6 +1273,21 @@ function Onboarding() {
         <AnimatedSection className="text-center mb-12">
           <p className={EYEBROW}>Onboarding</p>
           <h2 className={H2}>We learn your operation before we run it.</h2>
+        </AnimatedSection>
+
+        <AnimatedSection>
+          <div className="rounded-xl overflow-hidden border border-[#EDECE4]/[0.10] mb-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/workforce/coordination-team.jpg"
+              alt="Two Novada Workforce coordinators working through the night's priorities together"
+              className="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+          <p className="font-supply mb-8 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/50">
+            The coordination desk, after hours
+          </p>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-3 gap-5">
@@ -1326,9 +1336,7 @@ function Pilot() {
               </span>
             </h2>
             <p className={`mt-5 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
-              We configure Novada Workforce around your existing systems and
-              after-hours procedures, then measure the operational events we
-              manage during the pilot.
+              We learn your systems and your procedures, then our coordinators run your after-hours desk for 30 measured days.
             </p>
 
             <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3 text-left max-w-2xl mx-auto">
@@ -1467,23 +1475,23 @@ function Qualification() {
 function Security() {
   const items = [
     {
-      title: "Role-Based Access",
-      desc: "Authorised operators receive controlled system access.",
+      title: "Only Authorised Coordinators",
+      desc: "Named, authorised coordinators receive access, scoped to exactly what you approve.",
       icon: Lock,
     },
     {
-      title: "Client Separation",
-      desc: "Operational information is segregated between client accounts.",
+      title: "Your Information Stays Yours",
+      desc: "Nothing about your business is ever mixed with another client's.",
       icon: ShieldCheck,
     },
     {
-      title: "Activity Tracking",
-      desc: "Important operational actions are documented.",
+      title: "Everything Written Down",
+      desc: "Every important action is documented, so you can always see what was done and when.",
       icon: FileText,
     },
     {
-      title: "Minimum Necessary Data",
-      desc: "The service is designed around collecting only information needed to perform approved workforce operations.",
+      title: "Only What We Need",
+      desc: "We work with the minimum information needed to fill shifts and keep clients informed. Nothing more.",
       icon: ClipboardList,
     },
   ];
@@ -1493,7 +1501,7 @@ function Security() {
       <div className="max-container max-w-5xl">
         <AnimatedSection className="text-center mb-12">
           <p className={EYEBROW}>Security &amp; Control</p>
-          <h2 className={H2}>Built for controlled operations.</h2>
+          <h2 className={H2}>Careful with your systems. Careful with your information.</h2>
         </AnimatedSection>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -1516,35 +1524,35 @@ function Security() {
 const FAQS = [
   {
     q: "Does Novada replace our rostering software?",
-    a: "No. Your existing rostering/workforce system remains your system of record. Our team works within approved access and procedures while Novada Workforce manages workflow, documentation, escalation and reporting.",
+    a: "No. You keep the rostering system you have today. Our coordinators log in with the access you approve and work it the way your team does. The only thing that changes is who is doing the work at night.",
   },
   {
     q: "Do you simply answer our after-hours calls?",
-    a: "No. The service is designed around operational execution rather than message taking. Within agreed authority, our team can manage staffing workflows such as cancellations, replacement outreach, urgent bookings and client updates.",
+    a: "No. Taking the message is where our work starts, not where it ends. Our coordinators actually fill the shift: they contact your workers, arrange the replacement, update your client and your roster, and write it all down for the morning.",
   },
   {
     q: "Can Novada guarantee every shift will be filled?",
-    a: "No. Worker availability cannot be guaranteed. Novada provides structured response, outreach, coordination, documentation and escalation designed to improve how after-hours staffing events are handled.",
+    a: "No, and be careful of anyone who promises that. Nobody can conjure workers who are not there. What we promise: a coordinator starts working on it within minutes, every approved worker is contacted, you are kept informed, and nothing goes undocumented.",
   },
   {
     q: "Who decides whether a worker is qualified for a shift?",
-    a: "Your organisation does. Novada operates from the approved worker information, eligibility rules and procedures provided through your systems. We do not independently determine clinical competence.",
+    a: "You do, always. Our coordinators only contact workers your records mark as approved and eligible for that shift. We never make our own judgement about clinical competence.",
   },
   {
     q: "What happens when something requires management approval?",
-    a: "The issue is escalated according to the escalation matrix agreed during onboarding.",
+    a: "Your escalation rules decide. If it is on your wake-me list, we call the right person with full context. If it is not, we handle it, and you read about it in the morning handover.",
   },
   {
     q: "Do we need to change workforce systems?",
-    a: "No. The initial service is specifically designed to operate alongside your existing technology.",
+    a: "No. Our coordinators work inside whatever you use today. Nothing is migrated, nothing is replaced.",
   },
   {
     q: "Can you work with our existing roster platform?",
-    a: "This is assessed during onboarding. The service is designed to work with existing client systems through authorised access rather than requiring a platform migration.",
+    a: "Almost certainly. We work in your platform with logins you authorise, and we confirm the details during onboarding. You never migrate anything.",
   },
   {
     q: "How quickly can we start?",
-    a: "Implementation depends on the complexity of your workflows, system access and escalation procedures. Suitable agencies can begin with a controlled shadow/co-managed implementation before moving to managed after-hours operations.",
+    a: "We learn your operation first: a few shadow nights watching how your team works, then co-managing with your team a call away, then the full desk. Simple operations move fast; complex ones take longer, and we will give you an honest timeline at the assessment.",
   },
   {
     q: "Is this suitable for permanent recruitment agencies?",
