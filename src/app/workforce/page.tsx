@@ -24,6 +24,7 @@ import {
   ArrowDown,
   ArrowRight,
   CalendarX,
+  Check,
   CheckCircle2,
   ChevronDown,
   ClipboardList,
@@ -138,46 +139,21 @@ function WfNav() {
   );
 }
 
-/* ─── Hero dashboard mockup (brief §8 — operations system, not stock
-       photos) ─── */
-const HERO_CASES = [
-  {
-    event: "Worker Cancellation",
-    shift: "RN · 10pm–7am",
-    status: "Replacement Search",
-    color: ACCENT,
-  },
-  {
-    event: "Urgent Booking",
-    shift: "AIN · 6am–2pm",
-    status: "Worker Outreach",
-    color: ACCENT,
-  },
-  {
-    event: "No-Show",
-    shift: "Support Worker",
-    status: "Escalated",
-    color: AMBER,
-  },
-  {
-    event: "Worker Cancellation",
-    shift: "PCA · 7am–3pm",
-    status: "Replacement Found",
-    color: GREEN,
-  },
-];
-
-function HeroDashboard() {
+/* ─── Hero visual: a human moment, not a dashboard (CRO pass 2026-08-20).
+       The service is people working the problem; the visual shows exactly
+       that: a worker cancelling, a coordinator responding within a minute,
+       and the night's work done before the client's team wakes up. ─── */
+function HeroConversation() {
   return (
     <div className={`${CARD} p-5 md:p-6 shadow-[0_24px_80px_rgba(12,196,129,0.12)]`}>
-      <div className="flex items-center justify-between gap-3 mb-5">
+      <div className="flex items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-2">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0CC481] opacity-60" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0CC481]" />
           </span>
           <span className="font-supply text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-[#EDECE4]/60">
-            Live After-Hours Operations
+            10:47 PM · A worker cancels
           </span>
         </div>
         <span className="font-supply text-[9px] uppercase tracking-[0.15em] text-[#EDECE4]/35">
@@ -185,47 +161,54 @@ function HeroDashboard() {
         </span>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 mb-5">
-        {[
-          ["6", "Active Cases", "#EDECE4"],
-          ["2", "Urgent", AMBER],
-          ["1", "Escalation", RED],
-        ].map(([num, label, color]) => (
-          <div key={label} className="rounded-lg border border-[#EDECE4]/[0.07] bg-white/[0.02] px-3 py-3 text-center">
-            <p className="font-supply text-xl md:text-2xl font-medium" style={{ color }}>
-              {num}
-            </p>
-            <p className="font-supply mt-1 text-[9px] md:text-[10px] uppercase tracking-[0.14em] text-[#EDECE4]/45">
-              {label}
-            </p>
-          </div>
-        ))}
+      {/* Worker message */}
+      <div className="max-w-[85%]">
+        <div className="rounded-2xl rounded-bl-md border border-[#EDECE4]/[0.10] bg-white/[0.04] px-4 py-3">
+          <p className="text-sm text-[#EDECE4] leading-relaxed">
+            Hi, I&apos;m really unwell. I can&apos;t make tomorrow&apos;s 6am
+            shift, I&apos;m so sorry.
+          </p>
+        </div>
+        <p className="font-supply mt-1 text-[9px] uppercase tracking-[0.12em] text-[#EDECE4]/35">
+          Support worker · 10:47 PM
+        </p>
       </div>
 
-      <div className="space-y-2">
-        {HERO_CASES.map((c, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-between gap-3 rounded-lg border border-[#EDECE4]/[0.06] bg-white/[0.015] px-3.5 py-3"
-          >
-            <div className="min-w-0">
-              <p className="text-sm text-white truncate">{c.event}</p>
-              <p className="font-supply text-[10px] uppercase tracking-[0.12em] text-[#EDECE4]/45 mt-0.5">
-                {c.shift}
-              </p>
+      {/* Coordinator reply */}
+      <div className="max-w-[85%] ml-auto mt-3 text-right">
+        <div className="rounded-2xl rounded-br-md border border-[#0CC481]/25 bg-[#0CC481]/[0.08] px-4 py-3 text-left">
+          <p className="text-sm text-[#EDECE4] leading-relaxed">
+            Thanks for letting us know, rest up and feel better. We&apos;re
+            arranging your cover now and we&apos;ll keep the client informed.
+          </p>
+        </div>
+        <p className="font-supply mt-1 text-[9px] uppercase tracking-[0.12em] text-[#0CC481]/70">
+          Your Novada coordinator · 10:48 PM
+        </p>
+      </div>
+
+      {/* The night's work */}
+      <div className="mt-4 pt-4 border-t border-[#EDECE4]/[0.08] space-y-2">
+        {[
+          ["Roster checked, eligible workers identified", "10:50 PM"],
+          ["6 approved workers contacted", "10:52 PM"],
+          ["Replacement accepted the shift", "11:01 PM"],
+          ["Client informed · roster updated", "11:04 PM"],
+        ].map(([step, time]) => (
+          <div key={time} className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <Check className="w-3.5 h-3.5 text-[#0CC481] flex-shrink-0" strokeWidth={2} />
+              <span className="text-xs text-[#EDECE4]/80 truncate">{step}</span>
             </div>
-            <span
-              className="font-supply flex-shrink-0 rounded-full border px-2.5 py-1 text-[9px] md:text-[10px] uppercase tracking-[0.1em]"
-              style={{
-                color: c.color,
-                borderColor: `${c.color}44`,
-                backgroundColor: `${c.color}11`,
-              }}
-            >
-              {c.status}
-            </span>
+            <span className="font-supply text-[9px] uppercase tracking-[0.1em] text-[#EDECE4]/40 flex-shrink-0">{time}</span>
           </div>
         ))}
+        <div className="flex items-center justify-between gap-3 rounded-lg border border-[#0CC481]/25 bg-[#0CC481]/[0.06] px-3 py-2 mt-1">
+          <span className="text-xs font-medium text-white">
+            Case closed. In your morning handover.
+          </span>
+          <span className="font-supply text-[9px] uppercase tracking-[0.1em] text-[#0CC481]">11:08 PM</span>
+        </div>
       </div>
     </div>
   );
@@ -262,10 +245,11 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.25 }}
               className={`mt-5 text-base md:text-lg ${BODY} max-w-xl leading-relaxed`}
             >
-              Novada Workforce operates your after-hours staffing desk —
-              handling worker cancellations, urgent client bookings,
-              replacement coordination and workforce communication while your
-              internal team is offline.
+              Our trained coordinators run your after-hours staffing desk:
+              worker cancellations, urgent client bookings, replacement
+              coordination and client communication, handled inside your
+              existing systems while your team is offline. A real after-hours
+              team, not another platform.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -303,7 +287,7 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            <HeroDashboard />
+            <HeroConversation />
           </motion.div>
         </div>
       </div>
@@ -554,6 +538,82 @@ function WhatWeHandle() {
               Novada Workforce does not replace your rostering platform. Our
               authorised operations team works within your existing systems and
               approved procedures.
+            </p>
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+}
+
+/* ─── WHO ANSWERS THE PHONE (CRO pass 2026-08-20: the page sells a human
+       service; this section puts the humans on the page) ─── */
+function RealPeople() {
+  return (
+    <section className="section-padding py-16 md:py-24">
+      <div className="max-container max-w-5xl">
+        <AnimatedSection className="text-center mb-12">
+          <p className={EYEBROW}>Who Answers The Phone</p>
+          <h2 className={H2}>
+            A trained team answers. <span className={GRAD_TEXT}>Every night.</span>
+          </h2>
+          <p className={`mt-4 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
+            Not an app. Not a bot. Not a message bank. Workforce coordinators
+            who work staffing events for a living, on duty through the hours
+            your team is not.
+          </p>
+        </AnimatedSection>
+
+        <div className="grid md:grid-cols-3 gap-5 mb-12">
+          <AnimatedSection>
+            <div className={`${CARD} p-7 h-full text-center`}>
+              <Users className="w-7 h-7 mx-auto mb-4" style={{ color: ACCENT }} strokeWidth={1.4} />
+              <h3 className="text-lg font-semibold text-white mb-2">Trained coordinators</h3>
+              <p className="text-sm text-[#EDECE4]/70 leading-relaxed">
+                People who answer, triage and get to work within minutes,
+                because a 6am shift can&apos;t wait for the morning.
+              </p>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.08}>
+            <div className={`${CARD} p-7 h-full text-center`}>
+              <ClipboardList className="w-7 h-7 mx-auto mb-4" style={{ color: ACCENT }} strokeWidth={1.4} />
+              <h3 className="text-lg font-semibold text-white mb-2">Working your rules</h3>
+              <p className="text-sm text-[#EDECE4]/70 leading-relaxed">
+                They operate from your written playbook, inside your systems,
+                and your escalation rules decide when anyone wakes you.
+              </p>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.16}>
+            <div className={`${CARD} p-7 h-full text-center`}>
+              <PhoneCall className="w-7 h-7 mx-auto mb-4" style={{ color: ACCENT }} strokeWidth={1.4} />
+              <h3 className="text-lg font-semibold text-white mb-2">Calls, texts, confirmations</h3>
+              <p className="text-sm text-[#EDECE4]/70 leading-relaxed">
+                Worker outreach, client updates and roster changes are done by
+                people and documented for your 8am handover.
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
+
+        <AnimatedSection delay={0.1}>
+          <div className="max-w-2xl mx-auto border-l-2 border-[#0CC481] pl-6 md:pl-8">
+            <p className={EYEBROW}>A Note From The Founder</p>
+            <p className="text-lg md:text-xl text-[#EDECE4] leading-relaxed">
+              &ldquo;We built Novada Workforce because we kept seeing the same
+              thing: good providers delivering great care all day, then a
+              manager running the whole operation again all night from a
+              mobile phone. Fixing that shouldn&apos;t mean buying new
+              software or handing your clients to a call centre. It means
+              capable people, working your rules, inside your systems, who
+              treat your 2am problem like it&apos;s their own. That&apos;s the
+              team we&apos;ve built, and the standard we hold every single
+              night.&rdquo;
+            </p>
+            <p className="mt-5 text-base text-white">Ade Eni</p>
+            <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40 mt-1">
+              Founder, Novada Workforce
             </p>
           </div>
         </AnimatedSection>
@@ -884,13 +944,17 @@ function PerformanceDashboard() {
             Don&apos;t just know that calls were answered.{" "}
             <span className={GRAD_TEXT}>Know what was recovered.</span>
           </h2>
+          <p className={`mt-4 text-base md:text-lg ${BODY} max-w-2xl mx-auto leading-relaxed`}>
+            Every month, your coordination team prepares this report for you,
+            so after-hours performance stops being a mystery.
+          </p>
         </AnimatedSection>
 
         <AnimatedSection>
           <div className={`${CARD} p-6 md:p-8`}>
             <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
               <span className="font-supply text-[11px] uppercase tracking-[0.18em] text-[#EDECE4]/60">
-                After-Hours Performance
+                Your Monthly Operations Report
               </span>
               <span
                 className="font-supply rounded-full border px-3 py-1 text-[9px] md:text-[10px] uppercase tracking-[0.12em]"
@@ -964,9 +1028,9 @@ function MorningHandover() {
               <span className={GRAD_TEXT}>exactly what happened overnight.</span>
             </h2>
             <p className={`mt-5 text-base md:text-lg ${BODY} leading-relaxed`}>
-              Your daytime team receives a clear operational handover showing
-              what was resolved, what was escalated and what still requires
-              attention.
+              Prepared by the coordinators who worked the night: a clear
+              handover showing what was resolved, what was escalated and what
+              still requires your team&apos;s attention.
             </p>
           </AnimatedSection>
 
@@ -1896,6 +1960,7 @@ export default function WorkforcePage() {
       <Problem />
       <Comparison />
       <WhatWeHandle />
+      <RealPeople />
       <HowItWorks />
       <WorkflowVisual />
       <ManagementBenefit />
