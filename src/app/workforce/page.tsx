@@ -598,8 +598,23 @@ function RealPeople() {
         </div>
 
         <AnimatedSection delay={0.1}>
-          <div className="max-w-2xl mx-auto border-l-2 border-[#0CC481] pl-6 md:pl-8">
-            <p className={EYEBROW}>A Note From The Founder</p>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+            <div>
+              <div className="rounded-xl overflow-hidden border border-[#EDECE4]/[0.10]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/workforce/coordinator.jpg"
+                  alt="Julie, workforce coordinator, taking an after-hours call"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <p className="font-supply mt-3 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/50">
+                Julie · Workforce Coordinator · On the desk after hours
+              </p>
+            </div>
+            <div className="border-l-2 border-[#0CC481] pl-6 md:pl-8">
+              <p className={EYEBROW}>A Note From The Founder</p>
             <p className="text-lg md:text-xl text-[#EDECE4] leading-relaxed">
               &ldquo;We built Novada Workforce because we kept seeing the same
               thing: good providers delivering great care all day, then a
@@ -615,6 +630,7 @@ function RealPeople() {
             <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40 mt-1">
               Founder, Novada Workforce
             </p>
+            </div>
           </div>
         </AnimatedSection>
       </div>
