@@ -8,7 +8,7 @@
  * workforce_booking_confirmed dataLayer event for GTM.
  */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Script from "next/script";
 import { motion } from "framer-motion";
 import { CheckCircle, Mail, ClipboardList, Calculator, Phone } from "lucide-react";
@@ -28,9 +28,20 @@ function track(event: string) {
 }
 
 export default function WorkforceConfirmedPage() {
+  // Which lander sent this booker (au = /workforce, us = /workforce-2).
+  // Set via sessionStorage by the landers; null means unknown, so render
+  // the market-neutral fallback.
+  const [market, setMarket] = useState<"au" | "us" | null>(null);
+
   useEffect(() => {
     track("workforce_booking_confirmed");
+    try {
+      const m = sessionStorage.getItem("nvt_wf_market");
+      if (m === "au" || m === "us") setMarket(m);
+    } catch {}
   }, []);
+
+  const landerHref = market === "us" ? "/workforce-2" : "/workforce";
 
   return (
     <div className="bg-[#080808] font-poppins overflow-x-clip min-h-screen flex flex-col">
@@ -68,12 +79,12 @@ fbq('track', 'Schedule');`}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
         <div className="max-container section-padding">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <a href="/workforce" className="flex items-baseline gap-1.5">
+            <a href={landerHref} className="flex items-baseline gap-1.5">
               <span className="text-white font-bold text-lg md:text-xl tracking-tight">Novada</span>
               <span className="font-semibold text-lg md:text-xl tracking-tight" style={{ color: ACCENT }}>Workforce</span>
             </a>
             <a
-              href="/workforce"
+              href={landerHref}
               className="text-sm text-[#EDECE4]/70 hover:text-white transition-colors"
             >
               Back to overview
@@ -137,7 +148,7 @@ fbq('track', 'Schedule');`}
                 desc: (
                   <>
                     Run your own numbers through the{" "}
-                    <a href="/workforce#calculator" className="text-[#0CC481] underline underline-offset-2">
+                    <a href={`${landerHref}#calculator`} className="text-[#0CC481] underline underline-offset-2">
                       after-hours cost calculator
                     </a>{" "}
                     before the call.
@@ -166,9 +177,19 @@ fbq('track', 'Schedule');`}
             className="mt-10 text-sm text-[#EDECE4]/60"
           >
             Need to reach us before the call?{" "}
-            <a href="tel:+61414727740" className="text-[#0CC481] underline underline-offset-2 inline-flex items-center gap-1">
-              <Phone className="w-3.5 h-3.5" /> 0414 727 740
-            </a>{" "}
+            {market !== "au" && (
+              <>
+                <a href="tel:+18333853923" className="text-[#0CC481] underline underline-offset-2 inline-flex items-center gap-1">
+                  <Phone className="w-3.5 h-3.5" /> +1 833-385-3923
+                </a>
+                {market === null && <> {" "}·{" "} </>}
+              </>
+            )}
+            {market !== "us" && (
+              <a href="tel:+61414727740" className="text-[#0CC481] underline underline-offset-2 inline-flex items-center gap-1">
+                <Phone className="w-3.5 h-3.5" /> 0414 727 740
+              </a>
+            )}{" "}
             ·{" "}
             <a href="mailto:support@novadatech.com.au" className="text-[#0CC481] underline underline-offset-2">
               support@novadatech.com.au
@@ -185,7 +206,7 @@ fbq('track', 'Schedule');`}
               Novada <span style={{ color: ACCENT }}>Workforce</span>
             </p>
             <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-              Built for Australian healthcare, aged care and NDIS/disability providers
+              More shifts recovered. Fewer managers on-call.
             </p>
             <p className="text-xs text-[#EDECE4]/35">
               A <span className="text-[#EDECE4]/55">Novada Tech</span> service · ©{" "}

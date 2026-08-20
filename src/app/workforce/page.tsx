@@ -1975,6 +1975,8 @@ function WfFooter() {
 export default function WorkforcePage() {
   useEffect(() => {
     track("workforce_page_view");
+    // Market flag for /workforce-confirmed (which serves both landers)
+    try { sessionStorage.setItem("nvt_wf_market", "au"); } catch {}
   }, []);
 
   return (
