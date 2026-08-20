@@ -29,7 +29,7 @@ const STANDALONE_ROUTE_PREFIXES = ["/case-study"];
 // Routes that render NO site chrome at all — not even LandingFooter.
 // These pages carry their own brand (nav + footer inside the page).
 // /workforce = Novada Workforce, presented as its own brand.
-const BARE_ROUTES = ["/workforce", "/workforce-confirmed"];
+const BARE_ROUTES = ["/workforce", "/workforce-2", "/workforce-confirmed"];
 
 export default function ConditionalNav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
