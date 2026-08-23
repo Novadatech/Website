@@ -956,8 +956,8 @@ function WfFooter() {
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-[#EDECE4]/40">
-            <a href="tel:+61414727740" className="hover:text-[#EDECE4]/70 transition-colors">
-              0414 727 740
+            <a href="tel:+61485000813" className="hover:text-[#EDECE4]/70 transition-colors">
+              +61 485 000 813
             </a>
             <span>·</span>
             <a href="mailto:support@novadatech.com.au" className="hover:text-[#EDECE4]/70 transition-colors">
