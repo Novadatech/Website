@@ -2,7 +2,7 @@
 
 /*
  * /workforce-confirmed — booking confirmation for the Novada Workforce
- * After-Hours Operations Assessment calendar (InaO8Qj92uCQ8BglSMhW
+ * After-Hours Cost Review calendar (InaO8Qj92uCQ8BglSMhW
  * redirects here on booking). Same brand chrome and parent-site design
  * system as /workforce; registered in BARE_ROUTES. Fires a
  * workforce_booking_confirmed dataLayer event for GTM.
