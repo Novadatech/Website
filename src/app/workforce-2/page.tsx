@@ -561,9 +561,11 @@ function Cost() {
             What covering it yourself <span className={GRAD_TEXT}>actually costs.</span>
           </h2>
           <p className={`mt-4 text-base md:text-lg ${BODY} max-w-3xl mx-auto leading-relaxed`}>
-            These are the real numbers for doing this in-house, from federal
-            wage data and standard coverage math. Bring your own numbers to the
-            Cost Review and we&apos;ll run them on your agency.
+            Most agencies aren&apos;t spending this today. They are covering
+            the gap with somebody&apos;s evenings instead. This is what each
+            in-house option would actually cost to run, from federal wage data
+            and standard coverage math. Bring your own numbers to the Cost
+            Review and we&apos;ll run them on your agency.
           </p>
         </AnimatedSection>
 
