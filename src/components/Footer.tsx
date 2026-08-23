@@ -71,7 +71,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/workforce" className="text-sm text-white/40 hover:text-white/80 transition-colors duration-300">
-                  After-Hours Workforce Operations
+                  After-Hours Coordination
                 </Link>
               </li>
               <li>

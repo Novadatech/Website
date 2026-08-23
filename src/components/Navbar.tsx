@@ -15,8 +15,8 @@ const SOLUTIONS = [
   },
   {
     href: "/workforce",
-    label: "After-Hours Workforce Operations",
-    desc: "Your after-hours staffing desk for healthcare staffing agencies.",
+    label: "After-Hours Coordination",
+    desc: "The after-hours coordination desk you don't have to employ.",
     icon: Cog,
   },
   {

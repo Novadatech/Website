@@ -11,7 +11,7 @@
 import { useEffect, useState } from "react";
 import Script from "next/script";
 import { motion } from "framer-motion";
-import { CheckCircle, Mail, ClipboardList, Calculator, Phone } from "lucide-react";
+import { CheckCircle, Mail, ClipboardList, FileText, Phone } from "lucide-react";
 
 const ACCENT = "#0CC481";
 const GRAD_TEXT =
@@ -116,7 +116,7 @@ fbq('track', 'Schedule');`}
             className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-balance max-w-3xl mx-auto text-white"
           >
             You&apos;re booked.{" "}
-            <span className={GRAD_TEXT}>Your After-Hours Operations Assessment is confirmed.</span>
+            <span className={GRAD_TEXT}>Your After-Hours Cost Review is confirmed.</span>
           </motion.h1>
 
           <motion.p
@@ -140,20 +140,12 @@ fbq('track', 'Schedule');`}
               {
                 icon: ClipboardList,
                 title: "Have your numbers handy",
-                desc: "Rough monthly call-offs, urgent requests and who carries the on-call phone today. Estimates are fine; the session is built to sharpen them.",
+                desc: "Who holds the after-hours phone today, what you pay in allowances or overtime, and roughly how many after-hours calls come in each week. Estimates are fine; the session is built to sharpen them.",
               },
               {
-                icon: Calculator,
-                title: "Want a head start?",
-                desc: (
-                  <>
-                    Run your own numbers through the{" "}
-                    <a href={`${landerHref}#calculator`} className="text-[#0CC481] underline underline-offset-2">
-                      after-hours cost calculator
-                    </a>{" "}
-                    before the call.
-                  </>
-                ),
+                icon: FileText,
+                title: "What you'll leave with",
+                desc: "A side-by-side of what your current after-hours arrangement costs against a flat monthly coordination desk, in writing, whether or not you go ahead.",
               },
             ].map((s, i) => (
               <motion.div
