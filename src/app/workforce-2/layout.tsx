@@ -1,32 +1,32 @@
 import type { Metadata } from "next";
 
-// Novada Workforce — After-Hours Workforce Operations (single-page B2B
-// lander, US market — duplicate of /workforce). Indexable: this page doubles as the organic home
-// for the offer (brief §36). Chrome-free route: ConditionalNav renders
-// no site Navbar/Footer here — the page carries its own nav + footer
-// because Novada Workforce is presented as its own brand.
+// Novada Workforce: Outsourced After-Hours Coordination (single-page B2B
+// lander, US market). Rebuilt 2026-08-23 to the After-Hours Coordination
+// Offer Blueprint with US-specific economics. Chrome-free route:
+// ConditionalNav renders no site Navbar/Footer here because Novada
+// Workforce is presented as its own brand.
 export const metadata: Metadata = {
   title:
-    "After-Hours Workforce Operations for U.S. Healthcare, Home Care & Senior Care Providers | Novada Workforce",
+    "Outsourced After-Hours Coordination for U.S. Home Care Agencies | Novada Workforce",
   description:
-    "Novada Workforce runs the after-hours staffing desk for U.S. healthcare, home care and senior care providers: caregiver call-offs, urgent shift requests, replacement coordination and client communication, handled inside your existing scheduling systems.",
-  // Overrides the root layout's keywords. NOTE: the page is deliberately
-  // AUSTRALIAN-focused (user directive 2026-08-18, reversing the earlier
-  // geo-free rule) — the audience is AU healthcare/aged care/NDIS.
+    "Trained coordinators run your after-hours desk: caregiver call-offs, shift coverage, schedule updates, client and family calls, incident escalation and a written handoff every morning. For home care, home health, senior care and staffing agencies.",
+  // Overrides the root layout's keywords (which carry AU geo signals).
+  // "after hours on call" is the buyer's own search phrase; the category
+  // name itself has no organic volume yet and must be taught.
   keywords: [
-    "after-hours workforce operations",
-    "home care after-hours support",
+    "outsourced after-hours coordination",
+    "after hours on call service home care agency",
+    "home care after hours answering",
     "caregiver call-off coverage",
-    "home health scheduling support",
-    "after-hours on-call coordination",
-    "PRN shift replacement",
-    "healthcare staffing after-hours support",
+    "after hours scheduling coordinator outsourcing",
+    "home health after hours support",
+    "on call staffing coordinator service",
   ],
   openGraph: {
     title:
-      "After-Hours Workforce Operations for U.S. Healthcare, Home Care & Senior Care Providers | Novada Workforce",
+      "Outsourced After-Hours Coordination for U.S. Home Care Agencies | Novada Workforce",
     description:
-      "More after-hours shifts filled. Fewer managers on-call. Novada Workforce runs the after-hours staffing desk for U.S. healthcare, home care and senior care providers, inside your existing systems and approved procedures.",
+      "The after-hours coordination team you don't have to employ. Call-offs answered, coverage arranged from your approved caregivers, schedules updated, escalation under your rules, and a written handoff every morning.",
     type: "website",
     locale: "en_US",
   },
