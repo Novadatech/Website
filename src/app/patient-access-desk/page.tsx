@@ -15,8 +15,11 @@
  * and the monthly report.
  */
 
+import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import AnimatedSection from "@/components/AnimatedSection";
 import DeskNav from "@/components/desk/DeskNav";
+import StickyCta from "@/components/desk/StickyCta";
 import DeskFooter from "@/components/desk/DeskFooter";
 import BookingEmbed from "@/components/desk/BookingEmbed";
 import {
@@ -97,7 +100,12 @@ export default function PatientAccessDeskPage() {
             className="pointer-events-none absolute -top-32 -left-40 h-[420px] w-[420px] rounded-full bg-[#003DDB] opacity-[0.06]"
           />
           <div className={`${CONTAINER} ${SECTION} relative py-16 md:py-24`}>
-            <div className="max-w-[880px]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-[880px]"
+            >
               <p className={EYEBROW}>
                 Managed Patient Access Operations · Australia
               </p>
@@ -118,7 +126,7 @@ export default function PatientAccessDeskPage() {
                 Book a Capacity Review
                 <ArrowRight className="w-4 h-4" />
               </a>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -127,10 +135,12 @@ export default function PatientAccessDeskPage() {
           <div className={`${CONTAINER} ${SECTION} py-14 md:py-20`}>
             <h2 className={`${H2} text-[#0E1116] mb-8`}>Sound familiar?</h2>
             <div className="grid gap-4 sm:grid-cols-2">
-              {PAINS.map((p) => (
-                <div key={p} className={`${CARD} p-6`}>
-                  <p className="text-[15px] text-[#0E1116] leading-relaxed">{p}</p>
-                </div>
+              {PAINS.map((p, i) => (
+                <AnimatedSection key={p} delay={i * 0.07}>
+                  <div className={`${CARD} h-full p-6`}>
+                    <p className="text-[15px] text-[#0E1116] leading-relaxed">{p}</p>
+                  </div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -186,14 +196,16 @@ export default function PatientAccessDeskPage() {
               </h2>
             </div>
             <div className="grid gap-5 md:grid-cols-3">
-              {EVIDENCE.map((e) => (
-                <div key={e.figure} className={`${CARD_TINT} p-7 flex flex-col`}>
+              {EVIDENCE.map((e, i) => (
+                <AnimatedSection key={e.figure} delay={i * 0.1} className="h-full">
+                <div className={`${CARD} h-full border-t-4 border-t-[#003DDB] p-7 flex flex-col`}>
                   <p className="font-condensed text-[34px] md:text-[40px] font-bold leading-none text-[#003DDB]">
                     {e.figure}
                   </p>
                   <p className={`${BODY} mt-4 flex-1`}>{e.body}</p>
-                  <p className={`${SOURCE} mt-5`}>{e.source}</p>
+                  <p className={`${SOURCE} mt-5 border-t border-[#E2E7EE] pt-4`}>{e.source}</p>
                 </div>
+                </AnimatedSection>
               ))}
             </div>
             <p className="mt-8 text-base md:text-lg font-medium text-[#0B1E4B] max-w-[820px] leading-relaxed">
@@ -229,15 +241,24 @@ export default function PatientAccessDeskPage() {
               <p className={EYEBROW}>How it starts</p>
               <h2 className={`${H2} mt-4 text-[#0E1116]`}>Three steps.</h2>
             </div>
-            <div className="grid gap-5 md:grid-cols-3">
-              {STEPS.map((s) => (
-                <div key={s.n} className={`${CARD} p-7`}>
-                  <span className="font-condensed text-[40px] font-bold leading-none text-[#C7D2E8]">
-                    {s.n}
-                  </span>
-                  <h3 className={`${H3} mt-4`}>{s.title}</h3>
-                  <p className={`${BODY} mt-2`}>{s.body}</p>
-                </div>
+            <div className="space-y-4">
+              {STEPS.map((s, i) => (
+                <AnimatedSection key={s.n} delay={i * 0.1} direction="left">
+                  <div
+                    className={`${CARD} flex flex-col gap-4 p-7 md:flex-row md:items-center md:gap-10 md:p-9`}
+                    style={{ marginLeft: `${i * 1.5}%` }}
+                  >
+                    <span className="font-condensed text-[62px] md:text-[84px] font-bold leading-[0.8] text-[#003DDB]">
+                      {s.n}
+                    </span>
+                    <div className="md:border-l md:border-[#E2E7EE] md:pl-10">
+                      <h3 className="text-xl md:text-2xl font-bold text-[#0E1116]">
+                        {s.title}
+                      </h3>
+                      <p className={`${BODY} mt-2 max-w-[620px]`}>{s.body}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -263,6 +284,7 @@ export default function PatientAccessDeskPage() {
         </section>
       </main>
       <DeskFooter />
+      <StickyCta label="Book a Capacity Review" />
     </div>
   );
 }
