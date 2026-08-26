@@ -13,6 +13,14 @@
     @apply bg-surface-950 text-white;
   }
 
+  /* The Desk brand pages (home + offer pages, rebuilt 2026-08-26) render
+     on a white canvas. The default body above is the legacy dark surface,
+     so any area beyond the page content (short pages, overscroll) would
+     otherwise flash near-black behind them. */
+  body:has([data-theme="desk"]) {
+    @apply bg-white text-[#0E1116];
+  }
+
   ::selection {
     @apply bg-ember-500/30 text-white;
   }

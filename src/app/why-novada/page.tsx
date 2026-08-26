@@ -51,7 +51,7 @@ const PRINCIPLES = [
 
 export default function WhyNovadaPage() {
   return (
-    <div className="bg-white font-sans">
+    <div data-theme="desk" className="min-h-screen bg-white font-sans">
       <DeskNav />
       <main>
         {/* Hero */}

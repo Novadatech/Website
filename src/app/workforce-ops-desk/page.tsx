@@ -103,7 +103,7 @@ const STEPS = [
 
 export default function WorkforceOpsDeskPage() {
   return (
-    <div className="bg-white font-sans">
+    <div data-theme="desk" className="min-h-screen bg-white font-sans">
       <DeskNav />
       <main>
         {/* Hero */}
