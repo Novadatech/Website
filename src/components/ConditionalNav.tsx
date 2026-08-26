@@ -28,8 +28,23 @@ const STANDALONE_ROUTE_PREFIXES = ["/case-study"];
 
 // Routes that render NO site chrome at all — not even LandingFooter.
 // These pages carry their own brand (nav + footer inside the page).
-// /workforce = Novada Workforce, presented as its own brand.
+//
+// Two families live here:
+//  1. The Desk brand pages (rebuilt 2026-08-26): the home page and its
+//     offer pages carry DeskNav + DeskFooter, the light white/blue
+//     system from the Website Rebuild Brief.
+//  2. The Novada Workforce pages, which carry their own dark chrome.
+//
+// The legacy Navbar/Footer are deliberately left in place for the older
+// dark pages (/about, /case-study, /growth-infrastructure and similar)
+// so this rebuild does not restyle pages that are out of its scope.
 const BARE_ROUTES = [
+  // Desk brand
+  "/",
+  "/patient-access-desk",
+  "/workforce-ops-desk",
+  "/why-novada",
+  // Novada Workforce
   "/workforce",
   "/workforce-2",
   "/workforce-confirmed",

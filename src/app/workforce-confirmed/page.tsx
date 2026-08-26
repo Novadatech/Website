@@ -32,16 +32,37 @@ export default function WorkforceConfirmedPage() {
   // Set via sessionStorage by the landers; null means unknown, so render
   // the market-neutral fallback.
   const [market, setMarket] = useState<"au" | "us" | null>(null);
+  // Which page produced the booking. The Desk pages (home, clinics, care)
+  // set this via BookingEmbed; the Workforce landers do not, so a null
+  // value means "came from a Workforce lander or arrived cold".
+  const [source, setSource] = useState<string | null>(null);
 
   useEffect(() => {
     track("workforce_booking_confirmed");
     try {
       const m = sessionStorage.getItem("nvt_wf_market");
       if (m === "au" || m === "us") setMarket(m);
+      const s = sessionStorage.getItem("nvt_booking_source");
+      if (s) setSource(s);
     } catch {}
   }, []);
 
-  const landerHref = market === "us" ? "/workforce-2" : "/workforce";
+  // Desk-brand bookers (home page and the two offer pages) get neutral
+  // Novada Tech wording. Workforce landers keep the Cost Review wording.
+  const isDesk =
+    source === "home-page" ||
+    source === "patient-access-desk" ||
+    source === "workforce-ops-desk";
+
+  const landerHref = isDesk
+    ? source === "patient-access-desk"
+      ? "/patient-access-desk"
+      : source === "workforce-ops-desk"
+        ? "/workforce-ops-desk"
+        : "/"
+    : market === "us"
+      ? "/workforce-2"
+      : "/workforce";
 
   return (
     <div className="bg-[#080808] font-poppins overflow-x-clip min-h-screen flex flex-col">
@@ -81,7 +102,9 @@ fbq('track', 'Schedule');`}
           <div className="flex items-center justify-between h-16 md:h-20">
             <a href={landerHref} className="flex items-baseline gap-1.5">
               <span className="text-white font-bold text-lg md:text-xl tracking-tight">Novada</span>
-              <span className="font-semibold text-lg md:text-xl tracking-tight" style={{ color: ACCENT }}>Workforce</span>
+              <span className="font-semibold text-lg md:text-xl tracking-tight" style={{ color: ACCENT }}>
+                {isDesk ? "Tech" : "Workforce"}
+              </span>
             </a>
             <a
               href={landerHref}
@@ -116,7 +139,9 @@ fbq('track', 'Schedule');`}
             className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-balance max-w-3xl mx-auto text-white"
           >
             You&apos;re booked.{" "}
-            <span className={GRAD_TEXT}>Your After-Hours Cost Review is confirmed.</span>
+            <span className={GRAD_TEXT}>
+              {isDesk ? "Your review is confirmed." : "Your After-Hours Cost Review is confirmed."}
+            </span>
           </motion.h1>
 
           <motion.p
@@ -125,8 +150,9 @@ fbq('track', 'Schedule');`}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-5 text-base md:text-lg text-[#EDECE4]/85 max-w-2xl mx-auto leading-relaxed"
           >
-            We&apos;re looking forward to walking through your after-hours
-            operation with you. A calendar invite is on its way to your inbox.
+            {isDesk
+              ? "We're looking forward to walking through your desk with you. A calendar invite is on its way to your inbox."
+              : "We're looking forward to walking through your after-hours operation with you. A calendar invite is on its way to your inbox."}
           </motion.p>
 
           {/* Next steps */}
@@ -140,7 +166,9 @@ fbq('track', 'Schedule');`}
               {
                 icon: ClipboardList,
                 title: "Have your numbers handy",
-                desc: "Who holds the after-hours phone today, what you pay in allowances or overtime, and roughly how many after-hours calls come in each week. Estimates are fine; the session is built to sharpen them.",
+                desc: isDesk
+                  ? "Roughly how many calls and enquiries come in each week, who handles them today, and what happens to the ones that arrive after hours. Estimates are fine; the session is built to sharpen them."
+                  : "Who holds the after-hours phone today, what you pay in allowances or overtime, and roughly how many after-hours calls come in each week. Estimates are fine; the session is built to sharpen them.",
               },
               {
                 icon: FileText,
@@ -195,10 +223,12 @@ fbq('track', 'Schedule');`}
         <div className="max-container section-padding py-8">
           <div className="flex flex-col items-center gap-3 text-center">
             <p className="text-white font-bold text-base tracking-tight">
-              Novada <span style={{ color: ACCENT }}>Workforce</span>
+              Novada <span style={{ color: ACCENT }}>{isDesk ? "Tech" : "Workforce"}</span>
             </p>
             <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-              More shifts recovered. Fewer managers on-call.
+              {isDesk
+                ? "Every call answered. Every shift covered. Everything measured."
+                : "More shifts recovered. Fewer managers on-call."}
             </p>
             <p className="text-xs text-[#EDECE4]/35">
               A <span className="text-[#EDECE4]/55">Novada Tech</span> service · ©{" "}

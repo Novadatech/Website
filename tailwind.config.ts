@@ -45,6 +45,14 @@ const config: Config = {
         poppins: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
         // Space Grotesk — PP Supply Sans stand-in (labels/buttons on home).
         supply: ["var(--font-space-grotesk)", "Verdana", "sans-serif"],
+        // Barlow Condensed — bold condensed display face for the Desk
+        // brand (home + offer pages), matching the ratified banner.
+        condensed: [
+          "var(--font-barlow-condensed)",
+          "Arial Narrow",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",

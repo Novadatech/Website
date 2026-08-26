@@ -1,833 +1,377 @@
 "use client";
 
 /*
- * Home page — Morningside AI design replica (user direction, 2026-06-28).
- * Every section mirrors morningside.ai's live treatment, measured via
- * Playwright screenshots + computed styles:
+ * Home page, rebuilt 2026-08-26 to the NOVADA Website Rebuild Brief
+ * (Home Page & Navigation, issued 26 Aug 2026).
  *
- * - bg #080808; hero top wash linear-gradient(#0F1C1C → transparent)
- * - signature green #0CC481; deep glow #0B6D4A rising from the bottom of
- *   the pinned narrative + final CTA
- * - headings: Poppins w300, GRADIENT TEXT 90deg white→#0CC481
- * - labels/buttons: "PP Supply Sans" on their site → Space Grotesk here
- *   (font-supply), uppercase, wide tracking; buttons white/black 4px
- * - three things: giant 160px ITALIC w200 numerals in dark→green gradient
- *   sitting OUTSIDE wide rounded cards (12px radius, 135deg #111413→#050808,
- *   1px rgba(237,236,228,.06) border, 60/64 padding, line-art icon left),
- *   cards stacked vertically with a staggered left cascade
- * - testimonials: two centered text quotes, key phrases in green, dashed
- *   hairline grid
- * - stats: marquee row, 48px w400 white numbers
- * - case studies: grayscale imagery (YouTube thumbs), CASE STUDY tag, title
- * - FAQ: centered gradient "FAQs", borderless items
- * - closer: 72px gradient lines + "We build for those few." + green glow
+ * The previous Growth Infrastructure home page is archived at
+ * "Website Archive/Home Page v1 (pre-Desk rebuild 2026-08-26)" and in
+ * git at commit b3f71cb.
  *
- * REVERT: design-backups/home-dark-ember-page.tsx.bak or
- * git checkout backup/home-dark-ember-2026-06-28 -- src/app/page.tsx
+ * BINDING COPY RULES applied here (brief section 9), do not relax these
+ * without founder sign-off:
+ *  - Australian spelling. No em dashes anywhere.
+ *  - No pricing. No numbers, ranges, anchors or hints.
+ *  - Never claim we replace a receptionist or any whole role.
+ *  - Nothing clinical: no triage, assessment or advice language.
+ *  - No guarantees, ROI promises or performance claims (ACL applies).
+ *  - Every statistic comes from the approved table with its source
+ *    printed beside it. The banned-statistics list is absolute.
+ *  - No testimonials, star ratings, client names or logos yet (pending
+ *    legal review; the legacy 4.9/5 rating must not appear here).
+ *  - Never "AI receptionist", "virtual receptionist", "answering
+ *    service", "call centre", "staffing agency" or "BPO".
  */
 
+import { ArrowRight, Check } from "lucide-react";
+import DeskNav from "@/components/desk/DeskNav";
+import DeskFooter from "@/components/desk/DeskFooter";
+import BookingEmbed from "@/components/desk/BookingEmbed";
 import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
-import { ChevronRight, ChevronDown } from "lucide-react";
-import Link from "next/link";
-import AnimatedSection from "@/components/AnimatedSection";
-import HeroTrustBar from "@/components/HeroTrustBar";
-import { useState, useEffect, useRef } from "react";
+  BODY,
+  BTN_PRIMARY,
+  BTN_SECONDARY,
+  CARD,
+  CARD_TINT,
+  CONTAINER,
+  EYEBROW,
+  H1,
+  H2,
+  H3,
+  LEAD,
+  SECTION,
+  SOURCE,
+} from "@/components/desk/tokens";
+import HomeFaq from "@/components/desk/HomeFaq";
 
-const BOOKING_URL = "/book-call";
-
-/* Morningside tokens */
-const GREEN = "#0CC481";
-const OFFWHITE = "#EDECE4";
-const GRAD_TEXT =
-  "bg-gradient-to-r from-white to-[#0CC481] bg-clip-text text-transparent";
-const BTN_WHITE =
-  "font-supply inline-flex items-center gap-2 rounded bg-white px-6 py-3 text-sm font-medium uppercase tracking-[0.1em] text-black transition-colors hover:bg-white/85";
-
-/* ─── HERO ─── */
+/* ── 1 · HERO ── */
 function Hero() {
   return (
-    <section className="relative pt-36 pb-16 md:pt-44 md:pb-20 overflow-hidden">
-      {/* Teal-green top wash (their hero linear-gradient #0F1C1C → transparent) */}
-      <div className="absolute inset-x-0 top-0 h-[85vh] bg-[linear-gradient(180deg,#0F1C1C_0%,rgba(8,8,8,0)_100%)] pointer-events-none" />
+    <section className="relative overflow-hidden bg-white">
+      {/* Brand geometry, echoing the banner: blue corner sweep + dot grid */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 -left-40 h-[420px] w-[420px] rounded-full bg-[#003DDB] opacity-[0.06]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-40 -right-32 h-[380px] w-[380px] rounded-full bg-[#003DDB] opacity-[0.05]"
+      />
 
-      <div className="relative max-container section-padding text-center">
-        {/* Headline — gradient text, exactly their treatment */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className={`text-4xl sm:text-5xl md:text-7xl font-light tracking-tight leading-[1.12] text-balance max-w-5xl mx-auto pb-2 ${GRAD_TEXT}`}
-        >
-          We don&apos;t just talk AI. We build it into your business.
-        </motion.h1>
-
-        {/* Subheading */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
-          className="mt-7 text-lg md:text-xl font-light text-[#EDECE4]/90 max-w-2xl mx-auto leading-relaxed"
-        >
-          We find the AI opportunities that will actually move your numbers —
-          then we build the systems, run them for you, and train your team to
-          own them.
-        </motion.p>
-
-        {/* Trust bar + CTA */}
-        <HeroTrustBar className="mt-9" />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-9 flex items-center justify-center"
-        >
-          <a href={BOOKING_URL} className={BTN_WHITE}>
-            See If You Qualify
-            <ChevronRight className="w-4 h-4" />
-          </a>
-        </motion.div>
+      <div className={`${CONTAINER} ${SECTION} relative py-16 md:py-24`}>
+        <div className="max-w-[900px]">
+          <p className={EYEBROW}>Healthcare Clinics · Care Providers · Australia</p>
+          <h1 className={`${H1} mt-5 text-[#0E1116]`}>
+            Revenue is won or lost at the desk.{" "}
+            <span className="text-[#003DDB]">We run it.</span>
+          </h1>
+          <p className={`${LEAD} mt-6 max-w-[720px]`}>
+            Novada runs the front desk for Australian clinics and the
+            coordination desk for care providers. Every call answered, every
+            shift covered, everything measured. Alongside your team, not
+            instead of them.
+          </p>
+          <div className="mt-9 flex flex-col sm:flex-row gap-3">
+            <a href="#book" className={`${BTN_PRIMARY} w-full sm:w-auto`}>
+              Book a Review
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a href="#how" className={`${BTN_SECONDARY} w-full sm:w-auto`}>
+              See how it works
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ─── CLIENT STRIP (their logo carousel slot) ─── */
-function TrustBar() {
-  const industries = [
-    "Healthcare & Allied Health",
-    "B2B Consulting",
-    "Executive Coaching",
-    "Legal Services",
-    "Financial Advisory",
-    "Real Estate",
-    "SaaS & Tech",
-    "E-commerce",
-    "Recruitment",
-    "Architecture & Design",
-    "Accounting & Tax",
-    "Insurance Broking",
-  ];
+/* ── 2 · THE PROBLEM STRIP ── */
+const PROBLEMS = [
+  "The new-patient call rings out while reception is with the patient standing in front of them.",
+  "The recall list has 400 names and nobody has time to run it.",
+  "It is 4am, a shift just fell over, and someone senior is awake finding cover.",
+];
 
+function Problem() {
   return (
-    <section className="pt-4 pb-16 md:pb-20 overflow-hidden">
-      <div className="max-container section-padding mb-10">
-        <p className="font-supply text-sm uppercase tracking-[0.1em] text-[#EDECE4] text-center">
-          From growing startups to established enterprises — 350+ businesses
-          across 30+ industries:
+    <section className="bg-[#F4F6FA] border-y border-[#E2E7EE]">
+      <div className={`${CONTAINER} ${SECTION} py-14 md:py-20`}>
+        <div className="grid gap-4 md:grid-cols-3">
+          {PROBLEMS.map((p) => (
+            <div key={p} className={`${CARD} p-6`}>
+              <p className="text-[15px] text-[#0E1116] leading-relaxed">{p}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-center text-base md:text-lg font-medium text-[#0B1E4B] max-w-[760px] mx-auto leading-relaxed">
+          Different businesses, same event: work that reached the desk and
+          left. The desk is a 168-hour job staffed for 38.
         </p>
       </div>
-      <div className="flex overflow-hidden">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 34, repeat: Infinity, ease: "linear" }}
-          className="flex gap-16 flex-shrink-0 items-center"
-        >
-          {[...industries, ...industries].map((industry, i) => (
-            <span
-              key={i}
-              className="flex-shrink-0 text-xl font-light text-white/40 whitespace-nowrap"
-            >
-              {industry}
-            </span>
-          ))}
-        </motion.div>
-      </div>
     </section>
   );
 }
 
-/* ─── PROBLEM NARRATIVE (pinned scroll sequence w/ green bottom glow) ─── */
-const PROBLEM_STATEMENTS = [
+/* ── 3 · THE TWO DESKS (routing section) ── */
+const DESKS = [
   {
-    text: "You bought the AI tools. Read the case studies. Sat through the webinars.",
-    final: false,
+    eyebrow: "For clinics",
+    title: "The Patient Access Desk",
+    body: "For dental, physio, OT, psychology, podiatry, speech, vet and other private practices. We answer the calls, make the bookings in your own practice software, run the recalls every week and recover the cancellations, so a growing practice can add capacity without automatically adding another front-office salary.",
+    href: "/patient-access-desk",
+    cta: "For Clinics",
   },
   {
-    text: "But months later, the pipeline is still unpredictable. The team is still buried in manual work. And the subscriptions sit unused.",
-    final: false,
-  },
-  {
-    text: "Or you're just getting started — trying to avoid those exact mistakes.",
-    final: false,
-  },
-  {
-    text: "You're not behind. You're just missing the systems.",
-    final: false,
-  },
-  {
-    text: "That's why we built Novada Tech.",
-    sub: "AI systems that actually move the numbers.",
-    final: true,
+    eyebrow: "For care providers",
+    title: "The Workforce Ops Desk",
+    body: "For NDIS, home care and aged care providers. Rostering admin, after-hours call-offs answered every night, intake and onboarding admin, and compliance records kept to the 7-year statutory standard, so your managers stop being the overnight department.",
+    href: "/workforce-ops-desk",
+    cta: "For Care Providers",
   },
 ];
 
-function ProblemStatement({
-  index,
-  total,
-  progress,
-  text,
-  sub,
-  final,
-}: {
-  index: number;
-  total: number;
-  progress: MotionValue<number>;
-  text: string;
-  sub?: string;
-  final: boolean;
-}) {
-  const start = index / total;
-  const end = (index + 1) / total;
-  const span = end - start;
-  const isFirst = index === 0;
-  const isLast = index === total - 1;
-
-  const opacity = useTransform(
-    progress,
-    [start, start + span * 0.3, start + span * 0.7, end],
-    [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0],
-  );
-  const y = useTransform(
-    progress,
-    [start, start + span * 0.3, start + span * 0.7, end],
-    [isFirst ? 0 : 80, 0, 0, isLast ? 0 : -80],
-  );
-
+function TwoDesks() {
   return (
-    <motion.div
-      style={{ opacity, y }}
-      className="absolute inset-0 flex flex-col items-center justify-center section-padding text-center"
-    >
-      <p
-        className={
-          final
-            ? `text-3xl md:text-5xl font-light tracking-tight leading-tight text-balance max-w-3xl pb-1 ${GRAD_TEXT}`
-            : "text-2xl md:text-4xl font-light text-[#EDECE4] leading-snug text-balance max-w-3xl"
-        }
-      >
-        {text}
-      </p>
-      {sub && (
-        <p className="mt-5 text-lg md:text-xl font-light text-[#EDECE4]/80">
-          {sub}
+    <section id="desks" className="bg-white scroll-mt-20">
+      <div className={`${CONTAINER} ${SECTION} py-16 md:py-24`}>
+        <div className="max-w-[720px] mb-10">
+          <p className={EYEBROW}>Two desks</p>
+          <h2 className={`${H2} mt-4 text-[#0E1116]`}>
+            Every healthcare business has a desk.
+          </h2>
+        </div>
+        <div className="grid gap-5 md:grid-cols-2">
+          {DESKS.map((d) => (
+            <div key={d.href} className={`${CARD} p-7 md:p-9 flex flex-col`}>
+              <p className={EYEBROW}>{d.eyebrow}</p>
+              <h3 className="mt-3 text-2xl md:text-[28px] font-bold tracking-tight text-[#0E1116]">
+                {d.title}
+              </h3>
+              <p className={`${BODY} mt-4 flex-1`}>{d.body}</p>
+              <a href={d.href} className={`${BTN_PRIMARY} mt-7 self-start`}>
+                {d.cta}
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── 4 · HOW IT WORKS ── */
+const STEPS = [
+  {
+    n: "01",
+    title: "The review",
+    body: "We map your call, booking and coordination workload, and what it is costing you today.",
+  },
+  {
+    n: "02",
+    title: "The baseline",
+    body: "Week one. We measure your current numbers inside your own systems, before we change anything.",
+  },
+  {
+    n: "03",
+    title: "The desk runs",
+    body: "We take the workload, and the monthly report shows every call, booking, recovery and event from day one.",
+  },
+];
+
+function HowItWorks() {
+  return (
+    <section id="how" className="bg-[#F4F6FA] border-y border-[#E2E7EE] scroll-mt-20">
+      <div className={`${CONTAINER} ${SECTION} py-16 md:py-24`}>
+        <div className="max-w-[720px] mb-10">
+          <p className={EYEBROW}>How it works</p>
+          <h2 className={`${H2} mt-4 text-[#0E1116]`}>Three steps to a running desk.</h2>
+        </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          {STEPS.map((s) => (
+            <div key={s.n} className={`${CARD} p-7`}>
+              <span className="font-condensed text-[40px] font-bold leading-none text-[#C7D2E8]">
+                {s.n}
+              </span>
+              <h3 className={`${H3} mt-4`}>{s.title}</h3>
+              <p className={`${BODY} mt-2`}>{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── 5 · WHAT WE DON'T DO (trust strip) ── */
+const BOUNDARIES = [
+  "Nothing clinical: no triage, no advice. Urgent matters route straight to your team under an agreed protocol.",
+  "Nothing at the front counter: greeting, payments and in-person care stay with your people.",
+  "We work alongside your front desk, not instead of it.",
+  "Onshore team, Australian owned, and your data stays in your own systems.",
+];
+
+function Boundaries() {
+  return (
+    <section className="bg-[#0B1E4B]">
+      <div className={`${CONTAINER} ${SECTION} py-14 md:py-20`}>
+        <div className="max-w-[720px]">
+          <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.18em] text-[#9FB3E8]">
+            What we don&apos;t do
+          </p>
+          <h2 className={`${H2} mt-4 text-white`}>The lines we don&apos;t cross.</h2>
+        </div>
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          {BOUNDARIES.map((b) => (
+            <li key={b} className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#003DDB]">
+                <Check className="h-3 w-3 text-white" strokeWidth={3} />
+              </span>
+              <span className="text-sm md:text-[15px] text-[#D8E1F8] leading-relaxed">
+                {b}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ── 6 · WHY NOW (evidence tiles: approved statistics only) ── */
+const EVIDENCE = [
+  {
+    figure: "+4.75%",
+    body: "Award wages rose again on 1 July 2026, with superannuation now at 12%. The cost of the next admin hire rises every July.",
+    source: "Fair Work Commission; ATO",
+  },
+  {
+    figure: "46% vs 13%",
+    body: "46% of Australian small businesses grew revenue last year. Only 13% grew headcount.",
+    source: "CPA Australia Asia-Pacific Small Business Survey",
+  },
+  {
+    figure: "$87,740 to $114,827",
+    body: "What missed appointments cost two Queensland physiotherapy clinics per clinic, per year, in a peer-reviewed study.",
+    source: "BMJ Open, 2025",
+  },
+];
+
+function WhyNow() {
+  return (
+    <section className="bg-white">
+      <div className={`${CONTAINER} ${SECTION} py-16 md:py-24`}>
+        <div className="max-w-[720px] mb-10">
+          <p className={EYEBROW}>Why now</p>
+          <h2 className={`${H2} mt-4 text-[#0E1116]`}>
+            The next hire costs more every July.
+          </h2>
+        </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          {EVIDENCE.map((e) => (
+            <div key={e.figure} className={`${CARD_TINT} p-7 flex flex-col`}>
+              <p className="font-condensed text-[34px] md:text-[40px] font-bold leading-none text-[#003DDB]">
+                {e.figure}
+              </p>
+              <p className={`${BODY} mt-4 flex-1`}>{e.body}</p>
+              <p className={`${SOURCE} mt-5`}>{e.source}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 text-base md:text-lg font-medium text-[#0B1E4B] max-w-[820px] leading-relaxed">
+          Before you add the next salary, we&apos;ll benchmark the workload
+          against the actual cost of that hire: your numbers, not industry
+          claims.
         </p>
-      )}
-      {final && (
-        <a href={BOOKING_URL} className={`${BTN_WHITE} mt-10`}>
-          See If You Qualify
-          <ChevronRight className="w-4 h-4" />
-        </a>
-      )}
-    </motion.div>
-  );
-}
-
-function ProblemNarrative() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-  const total = PROBLEM_STATEMENTS.length;
-
-  return (
-    <section ref={ref} className="relative h-[450vh]">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Deep green glow rising from the bottom — their .radial-gradient:
-            linear-gradient(0deg, #0B6D4A, transparent 46%) */}
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,109,74,0.55)_0%,rgba(11,109,74,0)_46%)] pointer-events-none" />
-
-        {PROBLEM_STATEMENTS.map((s, i) => (
-          <ProblemStatement
-            key={i}
-            index={i}
-            total={total}
-            progress={scrollYProgress}
-            text={s.text}
-            sub={s.sub}
-            final={s.final}
-          />
-        ))}
-
-        {/* Scroll progress dots — above the sticky CTA bar */}
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex items-center gap-2">
-          {PROBLEM_STATEMENTS.map((_, i) => (
-            <ProgressDot
-              key={i}
-              index={i}
-              total={total}
-              progress={scrollYProgress}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
 }
 
-function ProgressDot({
-  index,
-  total,
-  progress,
-}: {
-  index: number;
-  total: number;
-  progress: MotionValue<number>;
-}) {
-  const start = index / total;
-  const end = (index + 1) / total;
-  const opacity = useTransform(
-    progress,
-    [start - 0.001, start, end, end + 0.001],
-    [0.2, 1, 1, 0.2],
-  );
+/* ── 7 · THE MEASUREMENT PROMISE (differentiator) ── */
+function Measurement() {
   return (
-    <motion.span
-      style={{ opacity }}
-      className="w-1.5 h-1.5 rounded-full bg-[#0CC481]"
-    />
-  );
-}
-
-/* ─── THREE THINGS (staggered wide cards + giant italic gradient numerals) ─── */
-
-/* Thin line-art icons (their cards use minimal white stroke SVGs) */
-function IconIdentify() {
-  return (
-    <svg viewBox="0 0 120 120" fill="none" className="w-28 h-28 md:w-36 md:h-36" aria-hidden="true">
-      <circle cx="48" cy="48" r="26" stroke={OFFWHITE} strokeWidth="1.2" />
-      <circle cx="72" cy="48" r="26" stroke={OFFWHITE} strokeWidth="1.2" />
-      <circle cx="48" cy="72" r="26" stroke={OFFWHITE} strokeWidth="1.2" />
-      <circle cx="72" cy="72" r="26" stroke={OFFWHITE} strokeWidth="1.2" />
-    </svg>
-  );
-}
-function IconBuild() {
-  return (
-    <svg viewBox="0 0 120 120" fill="none" className="w-28 h-28 md:w-36 md:h-36" aria-hidden="true">
-      <path d="M60 22 L104 60 L60 98 L16 60 Z" stroke={OFFWHITE} strokeWidth="1.2" />
-      <path d="M60 22 L60 98" stroke={OFFWHITE} strokeWidth="1.2" />
-      <path d="M16 60 L104 60" stroke={OFFWHITE} strokeWidth="1.2" />
-    </svg>
-  );
-}
-function IconRun() {
-  return (
-    <svg viewBox="0 0 120 120" fill="none" className="w-28 h-28 md:w-36 md:h-36" aria-hidden="true">
-      <path d="M20 90 C40 90 40 40 60 40 C80 40 80 70 100 70" stroke={OFFWHITE} strokeWidth="1.2" />
-      <path d="M88 58 L100 70 L88 82" stroke={OFFWHITE} strokeWidth="1.2" />
-      <circle cx="20" cy="90" r="3" fill={OFFWHITE} />
-    </svg>
-  );
-}
-
-/* Giant italic numerals — dark-green→green vertical gradient (their
- * dark-top/green-bottom look, but with a floor that stays legible on
- * #080808). px padding prevents bg-clip-text from cropping the italic
- * overhang. Static above the card on mobile; absolute beside it on md+. */
-const NUMERAL =
-  "font-poppins italic font-extralight text-[88px] md:text-[160px] leading-none bg-gradient-to-b from-[#12513c] to-[#0CC481] bg-clip-text text-transparent select-none px-4 md:px-6 block md:absolute md:top-1/2 md:-translate-y-1/2 z-0";
-
-function ThreeThings() {
-  return (
-    <section id="solutions" className="section-spacing section-padding">
-      <div className="max-container max-w-6xl">
-        <AnimatedSection className="mb-16 md:mb-24">
-          <h2
-            className={`text-4xl md:text-6xl font-light tracking-tight leading-tight pb-2 ${GRAD_TEXT}`}
-          >
-            We spend our days doing three things...
+    <section className="bg-[#F4F6FA] border-y border-[#E2E7EE]">
+      <div className={`${CONTAINER} ${SECTION} py-16 md:py-24`}>
+        <div className="max-w-[820px]">
+          <p className={EYEBROW}>The measurement promise</p>
+          <h2 className={`${H2} mt-4 text-[#0E1116]`}>
+            We won&apos;t quote you an industry statistic.
           </h2>
-        </AnimatedSection>
-
-        <div className="space-y-14 md:space-y-20">
-          {/* 1 — Identify */}
-          <AnimatedSection>
-            <div className="relative">
-              <span className={`${NUMERAL} md:left-0`}>1</span>
-              <Link
-                href="/ai-consulting"
-                className="relative z-10 block max-w-[820px] mt-2 md:mt-0 md:ml-36 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14 hover:border-[#EDECE4]/[0.14] transition-colors group"
-              >
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
-                  <div className="flex-shrink-0"><IconIdentify /></div>
-                  <div>
-                    <h3 className="text-3xl md:text-[44px] font-light text-[#EDECE4] leading-tight">
-                      Identify
-                    </h3>
-                    <p className="mt-4 text-base md:text-xl font-light text-[#EDECE4]/85 leading-relaxed">
-                      Every engagement starts with clarity. We map how work and
-                      revenue actually flow through your business — where time
-                      is lost, what slows things down, why margin leaks. From
-                      there, we find the handful of opportunities actually
-                      worth building.
-                    </p>
-                    <p className="font-supply mt-6 text-sm uppercase tracking-[0.1em] text-[#0CC481] inline-flex items-center gap-2">
-                      The AI Opportunity Audit
-                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </AnimatedSection>
-
-          {/* 2 — Build */}
-          <AnimatedSection>
-            <div className="relative">
-              <span className={`${NUMERAL} md:left-24`}>2</span>
-              <div className="relative z-10 block max-w-[820px] mt-2 md:mt-0 md:ml-60 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14">
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
-                  <div className="flex-shrink-0"><IconBuild /></div>
-                  <div>
-                    <h3 className="text-3xl md:text-[44px] font-light text-[#EDECE4] leading-tight">
-                      Build
-                    </h3>
-                    <p className="mt-4 text-base md:text-xl font-light text-[#EDECE4]/85 leading-relaxed">
-                      Then we build the system that fits your constraint —
-                      revenue or costs. Working infrastructure integrated with
-                      how your business already runs, live in weeks.
-                    </p>
-                    <div className="mt-6 space-y-3">
-                      <Link
-                        href="/growth-infrastructure"
-                        className="font-supply flex items-center justify-between text-sm uppercase tracking-[0.1em] text-[#EDECE4]/80 hover:text-[#0CC481] transition-colors border-t border-[#EDECE4]/[0.08] pt-3 group/l"
-                      >
-                        <span>
-                          Growth Infrastructure
-                          <span className="block font-poppins normal-case tracking-normal text-xs font-light text-[#EDECE4]/45 mt-0.5">
-                            15+ qualified sales meetings a month — guaranteed
-                          </span>
-                        </span>
-                        <ChevronRight className="w-4 h-4 flex-shrink-0 transition-transform group-hover/l:translate-x-0.5" />
-                      </Link>
-                      <Link
-                        href="/operations-infrastructure"
-                        className="font-supply flex items-center justify-between text-sm uppercase tracking-[0.1em] text-[#EDECE4]/80 hover:text-[#0CC481] transition-colors border-t border-[#EDECE4]/[0.08] pt-3 group/l"
-                      >
-                        <span>
-                          Operations Infrastructure
-                          <span className="block font-poppins normal-case tracking-normal text-xs font-light text-[#EDECE4]/45 mt-0.5">
-                            Custom AI that cuts the manual work eating your margin
-                          </span>
-                        </span>
-                        <ChevronRight className="w-4 h-4 flex-shrink-0 transition-transform group-hover/l:translate-x-0.5" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          {/* 3 — Run & Scale */}
-          <AnimatedSection>
-            <div className="relative">
-              <span className={`${NUMERAL} md:left-44`}>3</span>
-              <Link
-                href="/case-study"
-                className="relative z-10 block max-w-[820px] mt-2 md:mt-0 md:ml-80 rounded-xl border border-[#EDECE4]/[0.06] bg-gradient-to-br from-[#111413] to-[#050808] p-8 md:p-14 hover:border-[#EDECE4]/[0.14] transition-colors group"
-              >
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12">
-                  <div className="flex-shrink-0"><IconRun /></div>
-                  <div>
-                    <h3 className="text-3xl md:text-[44px] font-light text-[#EDECE4] leading-tight">
-                      Run &amp; Scale
-                    </h3>
-                    <p className="mt-4 text-base md:text-xl font-light text-[#EDECE4]/85 leading-relaxed">
-                      Systems go live inside your business, on your accounts —
-                      run and refined by our team every month. When one
-                      constraint is gone, we point at the next. You own
-                      everything, whether we&apos;re in the room or not.
-                    </p>
-                    <p className="font-supply mt-6 text-sm uppercase tracking-[0.1em] text-[#0CC481] inline-flex items-center gap-2">
-                      See The Results
-                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </AnimatedSection>
-        </div>
-
-        <AnimatedSection className="mt-16 md:mt-20 text-center">
-          <a href={BOOKING_URL} className={BTN_WHITE}>
-            See If You Qualify
-            <ChevronRight className="w-4 h-4" />
-          </a>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-}
-
-/* ─── TESTIMONIALS (two quotes, green highlights, dashed grid) ─── */
-function Testimonials() {
-  return (
-    <section className="section-spacing section-padding">
-      <div className="max-container max-w-6xl">
-        <AnimatedSection className="mb-16 md:mb-20">
-          <h2
-            className={`text-4xl md:text-6xl font-light tracking-tight leading-tight pb-2 ${GRAD_TEXT}`}
-          >
-            Don&apos;t just take our word for it...
-          </h2>
-        </AnimatedSection>
-
-        <div className="grid md:grid-cols-2 border-t border-b border-dashed border-[#EDECE4]/15">
-          <AnimatedSection>
-            <figure className="px-6 md:px-14 py-14 md:py-20 text-center md:border-r md:border-dashed md:border-[#EDECE4]/15">
-              <blockquote className="text-lg md:text-xl font-light text-[#EDECE4] leading-relaxed">
-                &ldquo;We went from{" "}
-                <span className="text-[#0CC481]">
-                  $42K to $91K monthly in under 60 days.
-                </span>{" "}
-                The pipeline became predictable for the first time — we could
-                forecast and hire with confidence.&rdquo;
-              </blockquote>
-              <figcaption className="mt-8">
-                <p className="text-base text-[#EDECE4]">Jeff</p>
-                <p className="font-supply mt-1 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40">
-                  Vertical Axis
-                </p>
-              </figcaption>
-            </figure>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.1}>
-            <figure className="px-6 md:px-14 py-14 md:py-20 text-center border-t border-dashed border-[#EDECE4]/15 md:border-t-0">
-              <blockquote className="text-lg md:text-xl font-light text-[#EDECE4] leading-relaxed">
-                &ldquo;Discovery call conversion jumped from{" "}
-                <span className="text-[#0CC481]">28% to over 60%.</span> The
-                authority content meant prospects arrived already sold — we
-                just confirmed fit.&rdquo;
-              </blockquote>
-              <figcaption className="mt-8">
-                <p className="text-base text-[#EDECE4]">Michael</p>
-                <p className="font-supply mt-1 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40">
-                  Aaronson Investigations
-                </p>
-              </figcaption>
-            </figure>
-          </AnimatedSection>
-        </div>
-
-        <AnimatedSection delay={0.2} className="mt-10 text-center">
-          <a
-            href="/case-study"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-supply inline-flex items-center gap-3 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/50 hover:text-[#EDECE4] transition-colors"
-          >
-            <span className="text-[#0CC481]">★★★★★</span>
-            Rated 4.9/5 from 77+ independent client reviews
-          </a>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-}
-
-/* ─── STATS (marquee row, their format) ─── */
-function StatsStrip() {
-  const stats = [
-    { num: "350+", label: "businesses scaled" },
-    { num: "$45.7M+", label: "client revenue generated" },
-    { num: "30+", label: "industries across Australia" },
-    { num: "4.9★", label: "rating from 77+ independent reviews" },
-    { num: "15+", label: "qualified meetings monthly — guaranteed" },
-  ];
-
-  return (
-    <section className="py-20 md:py-28 overflow-hidden">
-      <div className="flex overflow-hidden">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-          className="flex flex-shrink-0"
-        >
-          {[...stats, ...stats].map((s, i) => (
-            <div key={i} className="flex-shrink-0 w-[300px] md:w-[360px] text-center px-6">
-              <p className="text-4xl md:text-5xl font-normal text-white leading-none">
-                {s.num}
-              </p>
-              <p className="mt-4 text-base md:text-lg font-light text-[#EDECE4]/80">
-                {s.label}
-              </p>
-            </div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── CASE STUDIES (grayscale imagery + CASE STUDY tag) ─── */
-function CaseStudies() {
-  const cases = [
-    {
-      title: "5x'ing Monthly Revenue With Growth Infrastructure",
-      desc: "South Line Media was stuck at $20K/month with no predictable way to reach decision-makers. Within months, revenue passed $100K/month.",
-      videoId: "upgMW2nwwpk",
-      slug: "tony-south-line-media",
-    },
-    {
-      title: "Cutting 80%+ of Operational Time With Custom AI",
-      desc: "Groundwork Ventures' founder and team were buried in repetitive manual work. Custom AI systems replaced the bulk of it — margin came back.",
-      videoId: "JXEvONrDaOk",
-      slug: "damian-groundwork-ventures",
-    },
-    {
-      title: "10x Revenue Growth In 30 Days For An Expert Firm",
-      desc: "Aaronson Investigations was invisible to its ideal clients. Authority content plus targeted outreach put its expertise in front of buyers — pre-sold.",
-      videoId: "G44OKPVh3Uk",
-      slug: "michael-aaronson-investigations",
-    },
-  ];
-
-  return (
-    <section className="section-spacing section-padding">
-      <div className="max-container max-w-6xl">
-        <div className="grid md:grid-cols-3 gap-x-8 gap-y-14">
-          {cases.map((c, i) => (
-            <AnimatedSection key={c.slug} delay={i * 0.1}>
-              <Link href={`/case-study/${c.slug}`} className="block group">
-                <div className="relative aspect-video overflow-hidden rounded-lg">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`https://i.ytimg.com/vi/${c.videoId}/hqdefault.jpg`}
-                    alt={c.title}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <p className="font-supply mt-6 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40">
-                  Case Study
-                </p>
-                <h3 className="mt-3 text-2xl md:text-[26px] font-light text-[#EDECE4] leading-snug">
-                  {c.title}
-                </h3>
-                <p className="mt-3 text-base font-light text-[#EDECE4]/70 leading-relaxed">
-                  {c.desc}
-                </p>
-              </Link>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        <AnimatedSection delay={0.2} className="mt-14 text-center">
-          <Link
-            href="/case-study"
-            className="font-supply inline-flex items-center gap-2 text-sm uppercase tracking-[0.1em] text-[#EDECE4]/60 hover:text-[#0CC481] transition-colors group"
-          >
-            View all case studies
-            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-}
-
-/* ─── FAQ (centered gradient FAQs, borderless items) ─── */
-function FAQ() {
-  const faqs = [
-    {
-      q: "Which solution is right for my business?",
-      a: "That's exactly what the strategy call answers. If your constraint is pipeline — not enough qualified conversations with buyers — that's Growth Infrastructure. If your constraint is operations — manual work eating margin and blocking scale — that's Operations Infrastructure. And if you're not sure where AI would return most, the AI Opportunity Audit finds out before you commit to building anything.",
-    },
-    {
-      q: "Is this too good to be true?",
-      a: "We understand the scepticism — most agencies have conditioned business owners to expect promises without delivery. That's why our commitments are written into agreements, not marketing copy: our flagship Growth Infrastructure is backed by a performance guarantee, and every operations build is scoped with the projected return shown before you commit. If we don't believe we can deliver, we won't take the engagement.",
-    },
-    {
-      q: "What does 'performance guaranteed' actually mean?",
-      a: "For Growth Infrastructure: 15+ qualified sales meetings every month, backed by our 90-Day Money-Back Guarantee — written into the agreement. For operations builds: we only take on systems where the projected saving clearly outweighs the investment, and we show you that math up front.",
-    },
-    {
-      q: "What's the catch?",
-      a: "There isn't one — but there is a qualifier. We only work with businesses we genuinely believe we can deliver for. We turn down more engagements than we accept. If we don't think we can deliver, we'll tell you on the strategy call rather than take your money.",
-    },
-    {
-      q: "How do you get growth results without ads?",
-      a: "We use precision outbound — authority content plus targeted outreach campaigns that reach high-intent prospects directly, across the channels your buyers actually use. No ad spend, no bidding wars, no wasted budget. Your pipeline is built through direct outreach to the exact type of client you want.",
-    },
-    {
-      q: "What makes this different from a marketing agency?",
-      a: "Agencies sell campaigns — you pay every month, and the moment you stop, the results stop. We install systems into your business that you own: growth infrastructure that keeps producing meetings, and AI operations systems that keep saving hours. You're buying a permanent capability, not renting attention.",
-    },
-    {
-      q: "How soon can results start?",
-      a: "Growth Infrastructure partners typically see qualified meetings on their calendar within 7–14 days of activation. Operations systems typically go live within weeks, staged so you see the first system running before the next one starts.",
-    },
-    {
-      q: "What kind of businesses do you work with?",
-      a: "Established businesses across Australia — 30+ industries so far. For growth: service businesses selling $3K+ offers who are ready to scale. For operations: businesses with real volume, where teams spend serious hours on repetitive work. The strategy call confirms fit either way.",
-    },
-  ];
-
-  return (
-    <section className="section-spacing section-padding">
-      <div className="max-container max-w-3xl">
-        <AnimatedSection className="text-center mb-14">
-          <h2
-            className={`inline-block text-5xl md:text-7xl font-light tracking-tight pb-2 ${GRAD_TEXT}`}
-          >
-            FAQs
-          </h2>
-          <p className="mt-4 text-lg md:text-xl font-light text-[#EDECE4]/85">
-            You&apos;ve got questions. We&apos;ve got answers.
+          <p className={`${LEAD} mt-6`}>
+            We traced this market&apos;s most-quoted numbers to their sources,
+            and most dissolved on contact. So we don&apos;t use them. Instead
+            we measure your desk: every enquiry, response time, booking
+            outcome and reason lost, reported monthly. If a number is on this
+            website, it carries its source in the same breath.
           </p>
-        </AnimatedSection>
-
-        <div className="space-y-2">
-          {faqs.map((faq, i) => (
-            <FAQItem key={i} question={faq.q} answer={faq.a} index={i} />
-          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function FAQItem({
-  question,
-  answer,
-  index,
-}: {
-  question: string;
-  answer: string;
-  index: number;
-}) {
-  const [open, setOpen] = useState(false);
-
+/* ── 8 · PROOF OF OPERATIONS ── */
+function Proof() {
   return (
-    <AnimatedSection delay={index * 0.05}>
-      <div>
-        <button
-          onClick={() => setOpen(!open)}
-          className="w-full flex items-center justify-between py-5 text-left group"
-        >
-          <span className="text-base md:text-lg font-light text-[#EDECE4] group-hover:text-white transition-colors pr-4">
-            {question}
-          </span>
-          <ChevronDown
-            className={`w-5 h-5 text-[#EDECE4]/50 flex-shrink-0 transition-transform duration-300 ${
-              open ? "rotate-180" : ""
-            }`}
-          />
-        </button>
-        <motion.div
-          initial={false}
-          animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="overflow-hidden"
-        >
-          <p className="pb-7 text-base font-light text-[#EDECE4]/70 leading-relaxed">
-            {answer}
+    <section className="bg-white">
+      <div className={`${CONTAINER} ${SECTION} py-16 md:py-24`}>
+        <div className={`${CARD} p-8 md:p-12 border-l-4 border-l-[#003DDB]`}>
+          <p className={EYEBROW}>Proof of operations</p>
+          <p className="mt-5 text-lg md:text-2xl font-medium text-[#0E1116] leading-snug max-w-[880px]">
+            This isn&apos;t a proposal. Our desk answers after-hours calls for
+            Australian care providers every night of the year, inside their
+            systems, to their escalation protocols, with a structured handover
+            waiting every morning.
           </p>
-        </motion.div>
-      </div>
-    </AnimatedSection>
-  );
-}
-
-/* ─── FINAL CTA (giant gradient lines + green bottom glow) ─── */
-function FinalCTA() {
-  return (
-    <section className="relative pt-24 pb-32 md:pt-32 md:pb-40 section-padding overflow-hidden">
-      {/* Green glow rising from the bottom — their closer treatment */}
-      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,109,74,0.5)_0%,rgba(11,109,74,0)_50%)] pointer-events-none" />
-
-      <div className="relative max-container text-center">
-        <AnimatedSection>
-          <h2
-            className={`text-4xl md:text-7xl font-light tracking-tight leading-[1.15] text-balance max-w-5xl mx-auto pb-2 ${GRAD_TEXT}`}
-          >
-            AI is here. Most will react. The few with systems will lead.
-          </h2>
-          <p
-            className={`mt-12 text-3xl md:text-6xl font-light tracking-tight pb-2 ${GRAD_TEXT}`}
-          >
-            We build for those few.
+          <p className={`${BODY} mt-5 max-w-[760px]`}>
+            That operating desk is the team and the discipline behind both
+            offers.
           </p>
-          <div className="mt-12">
-            <a href={BOOKING_URL} className={BTN_WHITE}>
-              See If You Qualify
-              <ChevronRight className="w-4 h-4" />
-            </a>
-          </div>
-          <div className="font-supply mt-12 flex items-center justify-center gap-8 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/40 flex-wrap">
-            <span>Performance Guaranteed</span>
-            <span className="hidden sm:inline text-[#EDECE4]/15">·</span>
-            <a
-              href="/case-study"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#EDECE4]/80 transition-colors underline underline-offset-4 decoration-[#EDECE4]/20"
-            >
-              4.9★ client rating
-            </a>
-            <span className="hidden sm:inline text-[#EDECE4]/15">·</span>
-            <span>Systems You Own</span>
-          </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ─── STICKY CTA BAR ─── */
-function StickyCtaBar() {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => { setVisible(window.scrollY > 600); };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+/* ── 10 · FINAL CTA + BOOKING ── */
+function FinalCta() {
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.3, ease: "easeOut" }} className="fixed bottom-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-t border-[#EDECE4]/10 py-3 px-5 sm:px-8">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-            <div className="hidden sm:block">
-              <p className="text-sm font-light text-[#EDECE4]">AI systems that grow revenue and cut costs</p>
-              <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">Installed by Novada Tech · Owned by you</p>
-            </div>
-            <a href={BOOKING_URL} className={`${BTN_WHITE} !py-2.5 w-full sm:w-auto justify-center`}>
-              See If You Qualify
-              <ChevronRight className="w-4 h-4" />
-            </a>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <section id="book" className="bg-[#003DDB] scroll-mt-20">
+      <div className={`${CONTAINER} ${SECTION} py-16 md:py-24`}>
+        <div className="max-w-[760px]">
+          <h2 className={`${H2} text-white`}>Book a review.</h2>
+          <p className="mt-5 text-base md:text-lg text-[#D8E1F8] leading-relaxed">
+            We&apos;ll map your workload and show you exactly what we&apos;d
+            measure in your first 30 days.
+          </p>
+        </div>
+        <div className="mt-10 max-w-[860px]">
+          <BookingEmbed source="home-page" title="Book a review with Novada" />
+        </div>
+      </div>
+    </section>
   );
 }
 
-/* ─── PAGE ─── */
 export default function HomePage() {
   return (
-    <div className="bg-[#080808] font-poppins">
-      <Hero />
-      <TrustBar />
-      <ProblemNarrative />
-      <ThreeThings />
-      <Testimonials />
-      <StatsStrip />
-      <CaseStudies />
-      <FAQ />
-      <FinalCTA />
-      <StickyCtaBar />
-      <div className="h-16 sm:h-0" />
+    <div className="bg-white font-sans">
+      <DeskNav />
+      <main>
+        <Hero />
+        <Problem />
+        <TwoDesks />
+        <HowItWorks />
+        <Boundaries />
+        <WhyNow />
+        <Measurement />
+        <Proof />
+        <HomeFaq />
+        <FinalCta />
+      </main>
+      <DeskFooter />
     </div>
   );
 }

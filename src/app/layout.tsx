@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins, Space_Grotesk } from "next/font/google";
+import { Inter, Poppins, Space_Grotesk, Barlow_Condensed } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import ConditionalNav from "@/components/ConditionalNav";
@@ -30,31 +30,38 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 });
 
+// Bold condensed display face for the Desk brand headlines.
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
+  variable: "--font-barlow-condensed",
+});
+
+// Root metadata per the Website Rebuild Brief (26 Aug 2026), section 10.
+// Australian English, no pricing, no "virtual receptionist"/"answering
+// service" targeting.
 export const metadata: Metadata = {
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
-  title: "AI Consulting & Automation Agency | Growth + Operations Systems | Novada Tech",
+  title: "Novada | The Desk for Australian Healthcare: Clinics & Care Providers",
   description:
-    "Novada Tech builds AI systems that grow revenue and cut operating costs: Growth Infrastructure that books 15+ qualified sales meetings a month, custom AI operations systems, and AI audits that show where AI pays off first. 350+ businesses scaled across Australia.",
+    "Novada runs the front desk for Australian clinics and the coordination desk for care providers. Calls answered, bookings made in your systems, rosters covered, everything measured monthly.",
   keywords: [
-    "AI consulting",
-    "AI automation agency",
-    "business automation",
-    "client acquisition",
-    "growth infrastructure",
-    "AI audit",
-    "operations automation",
-    "lead generation",
-    "revenue growth",
-    "Melbourne",
+    "patient access",
+    "practice front desk support",
+    "after-hours coordination for care providers",
+    "NDIS workforce operations",
+    "roster coordination",
+    "clinic phone and schedule support",
     "Australia",
   ],
   openGraph: {
-    title: "AI Consulting & Automation Agency | Growth + Operations Systems | Novada Tech",
+    title: "Novada | The Desk for Australian Healthcare: Clinics & Care Providers",
     description:
-      "AI systems that grow revenue and cut operating costs: Growth Infrastructure, custom AI operations systems, and AI audits. Engineered for your business. Run by us. Owned by you.",
+      "Revenue is won or lost at the desk. Novada runs the front desk for Australian clinics and the coordination desk for care providers. Alongside your team, not instead of them.",
     type: "website",
     locale: "en_AU",
   },
@@ -66,7 +73,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} ${spaceGrotesk.variable}`}>
+    <html
+      lang="en-AU"
+      className={`${inter.variable} ${poppins.variable} ${spaceGrotesk.variable} ${barlowCondensed.variable}`}
+    >
       <head>
         {/* Google Tag Manager — main snippet, in <head> only.
             Using a raw <script> tag (not next/script) so it lives ONLY in
