@@ -16,8 +16,22 @@ import { usePathname } from "next/navigation";
 const WORKFORCE_WIDGET_ID = "6a7ac67d3bbada174311b459";
 const MAIN_WIDGET_ID = "6990bcc66dc9bb4de7bd8e7e";
 
+// Website Rebuild Brief section 6: "No live-chat bot on the new pages
+// unless the founder explicitly approves its script (claims risk)." The
+// Desk pages therefore load no widget at all. Remove a route from this
+// list only once its script has been approved.
+const NO_CHAT_ROUTES = [
+  "/",
+  "/patient-access-desk",
+  "/workforce-ops-desk",
+  "/why-novada",
+];
+
 export default function ConditionalChatWidget() {
   const pathname = usePathname();
+
+  if (NO_CHAT_ROUTES.includes(pathname)) return null;
+
   const isWorkforce =
     pathname.startsWith("/workforce") || pathname.startsWith("/assessment-calculator");
   const widgetId = isWorkforce ? WORKFORCE_WIDGET_ID : MAIN_WIDGET_ID;
