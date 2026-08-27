@@ -25,6 +25,7 @@ const NO_CHAT_ROUTES = [
   "/patient-access-desk",
   "/workforce-ops-desk",
   "/why-novada",
+  "/review-confirmed",
 ];
 
 export default function ConditionalChatWidget() {

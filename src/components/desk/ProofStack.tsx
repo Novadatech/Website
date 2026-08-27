@@ -19,7 +19,9 @@
  *
  * ⚠️ TRUSTPILOT COMPLIANCE (standing rule): the rating is UNBRANDED. Never
  * name Trustpilot, never use their logo, brand green or tile stars, and
- * never link to trustpilot.com. The rating links to /case-study.
+ * never link to trustpilot.com. The rating is NOT a link at all:
+ * founder removed it 2026-08-27 because /case-study holds the legacy
+ * service's case studies, which are not this offer and not these clients.
  *
  * ⛔ NEVER add here: "15+ qualified meetings monthly, guaranteed" (wrong
  * offer, and the brief bans guarantees) or revenue-generated figures
@@ -27,7 +29,6 @@
  */
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { Star } from "lucide-react";
 
 type Tone = "light" | "dark";
@@ -69,7 +70,7 @@ export function TrustLine({
 
   return (
     <div className={`flex flex-wrap items-center gap-x-6 gap-y-3 ${className}`}>
-      <Link href="/case-study" className="group flex items-center gap-2">
+      <span className="flex items-center gap-2">
         <span className="flex items-center gap-0.5">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
@@ -83,7 +84,7 @@ export function TrustLine({
           <span className={`font-semibold ${strong}`}>4.9/5</span> from 77+
           independent client reviews
         </span>
-      </Link>
+      </span>
       <span className={`text-sm ${dim}`}>
         <span className={`font-semibold ${strong}`}>350+</span> Australian
         businesses supported

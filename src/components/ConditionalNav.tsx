@@ -44,6 +44,7 @@ const BARE_ROUTES = [
   "/patient-access-desk",
   "/workforce-ops-desk",
   "/why-novada",
+  "/review-confirmed",
   // Novada Workforce
   "/workforce",
   "/workforce-2",

@@ -554,9 +554,7 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.5 }}
               className="mt-10 max-w-[452px] border-t border-[#E3E6EC]"
             >
-              <a
-                href="/case-study"
-                className="group flex items-center gap-3 border-b border-[#EDEFF3] py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
+              <div className="flex items-center gap-3 border-b border-[#EDEFF3] py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
               >
                 <Star
                   className="h-3.5 w-3.5 shrink-0 fill-[#003DDB] text-[#003DDB]"
@@ -567,14 +565,10 @@ function Hero() {
                 >
                   4.9/5
                 </span>
-                <span className="text-[13px] text-[#5B6472] underline-offset-4 transition-colors duration-200 group-hover:text-[#003DDB] group-hover:underline">
+                <span className="text-[13px] text-[#5B6472]">
                   from 77+ independent client reviews
                 </span>
-                <ArrowUpRight
-                  className="ml-auto h-3.5 w-3.5 shrink-0 text-[#C3CAD5] transition-colors duration-200 group-hover:text-[#003DDB]"
-                  aria-hidden
-                />
-              </a>
+              </div>
               <div className="flex items-center gap-3 py-3">
                 <span aria-hidden className="h-3.5 w-3.5 shrink-0" />
                 <span

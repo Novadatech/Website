@@ -81,17 +81,9 @@ export default function DeskFooter({ tone = "light" }: { tone?: "light" | "dark"
 
           <div>
             <h3 className={`text-[12px] font-semibold uppercase tracking-[0.14em] mb-4 ${dark ? "text-white/80" : "text-[#0B1E4B]"}`}>
-              Clients
+              Legal
             </h3>
             <ul className="space-y-2.5">
-              <li>
-                <a
-                  href="https://app.novadatech.com.au"
-                  className={`text-sm transition-colors ${dark ? "text-white/60 hover:text-white" : "text-[#39424E] hover:text-[#003DDB]"}`}
-                >
-                  Client login
-                </a>
-              </li>
               <li>
                 <Link href="/privacy-policy" className={`text-sm transition-colors ${dark ? "text-white/60 hover:text-white" : "text-[#39424E] hover:text-[#003DDB]"}`}>
                   Privacy policy
