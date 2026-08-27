@@ -39,36 +39,37 @@ const FAQS = [
   },
 ];
 
-export default function HomeFaq() {
+export default function HomeFaq({ tone = "light" }: { tone?: "light" | "dark" }) {
   const [open, setOpen] = useState<number | null>(0);
+  const dark = tone === "dark";
 
   return (
-    <section id="faq" className="bg-[#F4F6FA] border-t border-[#E2E7EE] scroll-mt-20">
+    <section id="faq" className={`scroll-mt-20 border-t ${dark ? "border-white/10 bg-[#080808]" : "border-[#E2E7EE] bg-[#F4F6FA]"}`}>
       <div className={`${CONTAINER} ${SECTION} py-16 md:py-24`}>
         <div className="max-w-[720px] mb-10">
-          <p className={EYEBROW}>Questions</p>
-          <h2 className={`${H2} mt-4 text-[#0E1116]`}>Straight answers.</h2>
+          <p className={dark ? "text-[11px] font-semibold uppercase tracking-[0.2em] text-[#7AA2FF]" : EYEBROW}>Questions</p>
+          <h2 className={dark ? "font-poppins font-light tracking-tight text-3xl md:text-5xl mt-5 bg-gradient-to-r from-white to-[#7AA2FF] bg-clip-text text-transparent" : `${H2} mt-4 text-[#0E1116]`}>Straight answers.</h2>
         </div>
         <div className="max-w-[860px] space-y-3">
           {FAQS.map((f, i) => (
-            <div key={f.q} className={`${CARD} overflow-hidden`}>
+            <div key={f.q} className={dark ? "overflow-hidden rounded-xl border border-white/10 bg-white/[0.03]" : `${CARD} overflow-hidden`}>
               <button
                 type="button"
                 onClick={() => setOpen(open === i ? null : i)}
                 aria-expanded={open === i}
                 className="w-full flex items-center justify-between gap-4 px-5 md:px-6 py-5 text-left"
               >
-                <span className="text-[15px] md:text-base font-semibold text-[#0E1116]">
+                <span className={`text-[15px] md:text-base font-semibold ${dark ? "text-white" : "text-[#0E1116]"}`}>
                   {f.q}
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 flex-shrink-0 text-[#003DDB] transition-transform ${
+                  className={`w-4 h-4 flex-shrink-0 transition-transform ${dark ? "text-[#7AA2FF]" : "text-[#003DDB]"} ${
                     open === i ? "rotate-180" : ""
                   }`}
                 />
               </button>
               {open === i && (
-                <p className="px-5 md:px-6 pb-5 text-sm md:text-[15px] text-[#39424E] leading-relaxed">
+                <p className={`px-5 md:px-6 pb-5 text-sm md:text-[15px] leading-relaxed ${dark ? "text-[#C7D2E8]" : "text-[#39424E]"}`}>
                   {f.a}
                 </p>
               )}

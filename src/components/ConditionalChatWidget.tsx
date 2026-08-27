@@ -22,6 +22,7 @@ const MAIN_WIDGET_ID = "6990bcc66dc9bb4de7bd8e7e";
 // list only once its script has been approved.
 const NO_CHAT_ROUTES = [
   "/",
+  "/home-alt",
   "/patient-access-desk",
   "/workforce-ops-desk",
   "/why-novada",

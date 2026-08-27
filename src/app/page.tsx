@@ -20,8 +20,11 @@
  *  - No guarantees, ROI promises or performance claims (ACL applies).
  *  - Every statistic comes from the approved table with its source
  *    printed beside it. The banned-statistics list is absolute.
- *  - No testimonials, star ratings, client names or logos yet (pending
- *    legal review; the legacy 4.9/5 rating must not appear here).
+ *  - Proof stack RESTORED on founder instruction 2026-08-27, overriding
+ *    brief section 8: rating, business count, industries and figures are
+ *    live. Still excluded: client names, logos and written testimonials,
+ *    because no approved list exists. See ProofStack.tsx for what each
+ *    claim rests on and the unbranded-rating rule.
  *  - Never "AI receptionist", "virtual receptionist", "answering
  *    service", "call centre", "staffing agency" or "BPO".
  */
@@ -36,6 +39,11 @@ import DeskBoard from "@/components/desk/DeskBoard";
 import WeekGrid from "@/components/desk/WeekGrid";
 import StickyCta from "@/components/desk/StickyCta";
 import HomeFaq from "@/components/desk/HomeFaq";
+import {
+  IndustryMarquee,
+  StatsMarquee,
+  TrustLine,
+} from "@/components/desk/ProofStack";
 import {
   BODY,
   BTN_PRIMARY,
@@ -110,14 +118,16 @@ function Hero() {
                 See how it works
               </a>
             </motion.div>
-            <motion.p
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="mt-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8FA0C4]"
             >
-              Onshore team · Australian owned · Nothing clinical, ever
-            </motion.p>
+              <TrustLine className="mt-8" />
+              <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8FA0C4]">
+                Onshore team · Australian owned · Nothing clinical, ever
+              </p>
+            </motion.div>
           </div>
 
           <motion.div
@@ -448,8 +458,10 @@ export default function HomePage() {
       <DeskNav />
       <main>
         <Hero />
+        <IndustryMarquee />
         <Problem />
         <TwoDesks />
+        <StatsMarquee />
         <HowItWorks />
         <Boundaries />
         <WhyNow />

@@ -41,6 +41,7 @@ const STANDALONE_ROUTE_PREFIXES = ["/case-study"];
 const BARE_ROUTES = [
   // Desk brand
   "/",
+  "/home-alt",
   "/patient-access-desk",
   "/workforce-ops-desk",
   "/why-novada",
