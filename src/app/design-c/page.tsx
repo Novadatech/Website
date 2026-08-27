@@ -49,7 +49,11 @@ import StickyCta from "@/components/desk/StickyCta";
  * never used as text on the dark canvas, because it fails there. #7AA2FF
  * is the legible tint that carries the brand into type and UI.
  * ──────────────────────────────────────────────────────────────────── */
-const INK = "#06070C";
+/* Canvas is #080808 on purpose: DeskNav (dark) and HomeFaq (dark) both
+   hardcode that value, so matching it exactly means no tonal seam where
+   those two imported blocks sit. DeskFooter is #05070C, one step darker,
+   which reads as the page closing down rather than as a mismatch. */
+const INK = "#080808";
 const BLUE = "#003DDB";
 const BLUE_TINT = "#7AA2FF";
 const BODY_TEXT = "#A6B2C6";
@@ -155,7 +159,7 @@ function Backdrop() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 78% at 50% 12%, transparent 42%, rgba(0,0,0,0.62) 100%)",
+            "radial-gradient(120% 78% at 50% 12%, transparent 46%, rgba(0,0,0,0.55) 100%)",
         }}
       />
     </div>
@@ -277,7 +281,7 @@ function Hero() {
             </a>
             <a
               href="#how"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 px-8 py-4 font-supply text-[13px] font-medium tracking-[0.03em] text-white/85 transition-colors duration-300 hover:border-white/35 hover:bg-white/[0.05] hover:text-white sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-4 font-supply text-[13px] font-medium tracking-[0.03em] text-white/90 transition-colors duration-300 hover:border-white/40 hover:bg-white/[0.05] hover:text-white sm:w-auto"
             >
               See how it works
             </a>
@@ -355,6 +359,13 @@ const VERTICALS = [
 function VerticalBand() {
   return (
     <section className="relative py-12 md:py-14">
+      {/* Labelled deliberately. These are the verticals the offer is built
+          for, taken from the approved offer copy. Unlabelled, a marquee of
+          vertical names reads as a client roster, which would be a claim we
+          cannot support. */}
+      <p className="mb-7 text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-white/30">
+        Built for
+      </p>
       <Marquee
         items={VERTICALS}
         duration={46}
@@ -557,7 +568,10 @@ function HourGrid() {
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20">
           <div>
             <Eyebrow>The arithmetic</Eyebrow>
-            <div className="mt-10 flex items-end gap-8 md:gap-12">
+            {/* items-start, not items-end: the captions are different
+                lengths, and end-alignment would push the two numerals off
+                a shared baseline. */}
+            <div className="mt-10 flex items-start gap-8 md:gap-12">
               <div>
                 <p className="font-condensed text-[76px] font-bold italic leading-[0.78] text-white md:text-[104px]">
                   168
@@ -568,7 +582,7 @@ function HourGrid() {
               </div>
               <div
                 aria-hidden
-                className="mb-6 h-16 w-px"
+                className="mt-3 h-16 w-px"
                 style={{
                   background:
                     "linear-gradient(180deg, transparent, rgba(255,255,255,0.18), transparent)",
@@ -897,8 +911,11 @@ function WhyNow() {
                 >
                   {e.body}
                 </p>
+                {/* min-h reserves two lines for every source, so the
+                    three hairlines land on one horizontal line even
+                    though one source wraps. */}
                 <p
-                  className="mt-8 border-t border-white/[0.07] pt-5 font-supply text-[10px] font-medium uppercase tracking-[0.16em]"
+                  className="mt-8 min-h-[52px] border-t border-white/[0.07] pt-5 font-supply text-[10px] font-medium uppercase tracking-[0.16em]"
                   style={{ color: MUTED_TEXT }}
                 >
                   Source: {e.source}
@@ -1024,10 +1041,10 @@ function FinalCta() {
         <AnimatedSection delay={0.1} className="relative mx-auto mt-14 max-w-[920px]">
           <div
             aria-hidden
-            className="pointer-events-none absolute -inset-x-10 -top-16 h-64"
+            className="pointer-events-none absolute -inset-x-10 -top-32 h-96"
             style={{
               background:
-                "radial-gradient(50% 60% at 50% 0%, rgba(0,61,219,0.45), transparent 72%)",
+                "radial-gradient(52% 52% at 50% 50%, rgba(0,61,219,0.42), transparent 72%)",
             }}
           />
           <div className="relative">
