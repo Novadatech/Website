@@ -14,8 +14,13 @@ import { CARD, CONTAINER, EYEBROW, H2, SECTION } from "./tokens";
 
 const FAQS = [
   {
+    // ⚠️ Reworded 2026-08-27 on founder feedback. The previous answer read
+    // "Answering services take messages. We complete the work", which could
+    // be taken to mean we do NOT answer the phone and the practice still
+    // needs someone else to pick up. We answer AND finish the job, so the
+    // answer now says both, in that order.
     q: "Is this an answering service?",
-    a: "No. Answering services take messages. We complete the work: the booking made in your software, the recall run, the shift gap coordinated, the record kept, and the outcome reported.",
+    a: "We answer your calls, and we finish the job as well. That second half is the difference. An answering service takes a message and hands the problem back to your team. Our coordinators answer the phone, make the booking in your software, run the recall, coordinate the shift cover, keep the record and report the outcome.",
   },
   {
     q: "Do you replace our receptionist?",

@@ -66,7 +66,7 @@ export default function DeskNav({ tone = "light" }: { tone?: "light" | "dark" })
 
           <div className="flex items-center gap-2">
             <a href="/#book" className={`${BTN_PRIMARY_SM} hidden sm:inline-flex`}>
-              Book a Review
+              Book a Desk Review
             </a>
             <button
               type="button"
@@ -99,7 +99,7 @@ export default function DeskNav({ tone = "light" }: { tone?: "light" | "dark" })
               onClick={() => setOpen(false)}
               className={`${BTN_PRIMARY_SM} mt-4 w-full`}
             >
-              Book a Review
+              Book a Desk Review
             </a>
           </div>
         </div>

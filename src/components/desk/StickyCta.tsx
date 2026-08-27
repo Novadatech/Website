@@ -12,7 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 export default function StickyCta({
-  label = "Book a Review",
+  label = "Book a Desk Review",
   tone = "light",
 }: {
   label?: string;
