@@ -49,14 +49,19 @@ const PAD = "px-5 sm:px-8 lg:px-12";
 const BAND = "py-16 md:py-24";
 
 /** Micro-caps interface label. Space Grotesk stands in for a technical grotesk. */
+/* Raised from 10px on 2026-08-27 so the home page matches the 12px floor the
+   offer pages use. This class carries the left-rail labels, and those labels
+   ARE the section headings, so they were the smallest structural type on the
+   page. Tracking is tightened from 0.16em to 0.14em so the longer labels
+   still fit the rail at 390px. */
 const MICRO =
-  "font-supply text-[10px] font-medium uppercase tracking-[0.16em]";
+  "font-supply text-[12px] font-medium uppercase tracking-[0.14em]";
 /* Raised from 9px on 2026-08-27. A conversion review found the 9px class was
    carrying the timeline card's ANSWERED / BOOKED / COVERED / HANDED OVER
    badges, which are the page's proof, rendered as its smallest type. Nothing
    meaningful goes below 11px now. */
 const MICRO_SM =
-  "font-supply text-[11px] font-medium uppercase tracking-[0.14em]";
+  "font-supply text-[12px] font-medium uppercase tracking-[0.12em]";
 /** Any figure a reader might compare to another figure gets tabular nums. */
 const NUM = "font-supply tabular-nums";
 
@@ -311,7 +316,7 @@ function StateChip({ step, resolved }: { step: DeskStep; resolved: boolean }) {
     <span className="ml-auto flex shrink-0 items-center gap-2.5">
       {step.delta ? (
         <span
-          className={`${NUM} text-[10px] transition-opacity duration-500 ${
+          className={`${NUM} text-[11px] transition-opacity duration-500 ${
             resolved ? "text-white/35 opacity-100" : "opacity-0"
           }`}
         >
