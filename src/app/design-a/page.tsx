@@ -935,7 +935,7 @@ function Book() {
           </div>
 
           <div className="col-span-12 lg:col-span-8">
-            <BookingEmbed source="design-a" title="Book a review with Novada" />
+            <BookingEmbed source="design-a" title="Book a review with Novada" tone="dark" />
           </div>
         </div>
       </div>
@@ -967,7 +967,7 @@ export default function DesignAPage() {
       </main>
 
       <DeskFooter tone="dark" />
-      <StickyCta label="Book a Review" />
+      <StickyCta label="Book a Review" tone="dark" />
     </div>
   );
 }

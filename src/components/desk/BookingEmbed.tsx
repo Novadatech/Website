@@ -32,10 +32,15 @@ const DESK_CALENDAR_ID = "InaO8Qj92uCQ8BglSMhW";
 export default function BookingEmbed({
   source,
   title = "Book a review",
+  tone = "light",
 }: {
   /** CRM attribution: which page produced the booking (brief section 6). */
   source: string;
   title?: string;
+  /** The calendar iframe is always white, so on dark pages we frame it in
+      a dark surface instead of a light card, which stops it reading as a
+      pasted-in slab. */
+  tone?: "light" | "dark";
 }) {
   useEffect(() => {
     // Tell /workforce-confirmed which page produced the booking, so it can
@@ -62,8 +67,13 @@ export default function BookingEmbed({
     `?utm_source=novadatech.com.au&utm_medium=website&utm_campaign=desk` +
     `&utm_content=${encodeURIComponent(source)}`;
 
+  const frame =
+    tone === "dark"
+      ? "rounded-xl border border-white/12 bg-white/[0.04] p-2 md:p-3 overflow-hidden"
+      : `${CARD} p-2 md:p-3 overflow-hidden`;
+
   return (
-    <div className={`${CARD} p-2 md:p-3 overflow-hidden`}>
+    <div className={frame}>
       <iframe
         src={src}
         style={{

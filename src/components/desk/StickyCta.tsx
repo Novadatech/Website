@@ -11,8 +11,15 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-export default function StickyCta({ label = "Book a Review" }: { label?: string }) {
+export default function StickyCta({
+  label = "Book a Review",
+  tone = "light",
+}: {
+  label?: string;
+  tone?: "light" | "dark";
+}) {
   const [show, setShow] = useState(false);
+  const dark = tone === "dark";
 
   useEffect(() => {
     const target = document.getElementById("book");
@@ -44,10 +51,14 @@ export default function StickyCta({ label = "Book a Review" }: { label?: string 
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
           transition={{ duration: 0.28, ease: [0.25, 0.4, 0.25, 1] }}
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-[#E2E7EE] bg-white/95 backdrop-blur-md"
+          className={`fixed inset-x-0 bottom-0 z-40 border-t backdrop-blur-md ${
+            dark
+              ? "border-white/10 bg-[#080808]/92"
+              : "border-[#E2E7EE] bg-white/95"
+          }`}
         >
           <div className="mx-auto flex w-full max-w-[1180px] items-center justify-between gap-4 px-5 py-3 sm:px-8 lg:px-12">
-            <p className="hidden sm:block text-sm font-medium text-[#0B1E4B]">
+            <p className={`hidden sm:block text-sm font-medium ${dark ? "text-white/85" : "text-[#0B1E4B]"}`}>
               Every call answered. Every shift covered. Everything measured.
             </p>
             <a

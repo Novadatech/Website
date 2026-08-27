@@ -44,18 +44,24 @@ import BookingEmbed from "@/components/desk/BookingEmbed";
 import StickyCta from "@/components/desk/StickyCta";
 
 /* ────────────────────────────────────────────────────────────────────
- * Palette. Brand blue #003DDB is kept for light (washes, glows) and for
- * the primary button fill, where white sits on it at full contrast. It is
- * never used as text on the dark canvas, because it fails there. #7AA2FF
- * is the legible tint that carries the brand into type and UI.
+ * PALETTE
+ *
+ * #080808  canvas. Chosen to match DeskNav (dark) and HomeFaq (dark),
+ *          which both hardcode that exact value, so there is no tonal
+ *          seam where those imported blocks sit. DeskFooter is #05070C,
+ *          one step darker, which reads as the page closing down.
+ * #003DDB  brand blue. Used ONLY as light (washes, glows) and as the
+ *          primary button fill, where white sits on it at full contrast.
+ *          Never as text on the dark canvas, where it fails legibility.
+ * #7AA2FF  the legible brand tint. Carries the blue into type, rules,
+ *          eyebrows and icons.
+ * #A6B2C6  body text, roughly 9:1 on the canvas.
+ * #8A97AD  source lines, roughly 6:1, still comfortably readable at 10px.
+ *
+ * The hex values also appear inline in Tailwind arbitrary classes,
+ * because Tailwind cannot read a JS constant. Change both together.
  * ──────────────────────────────────────────────────────────────────── */
-/* Canvas is #080808 on purpose: DeskNav (dark) and HomeFaq (dark) both
-   hardcode that value, so matching it exactly means no tonal seam where
-   those two imported blocks sit. DeskFooter is #05070C, one step darker,
-   which reads as the page closing down rather than as a mismatch. */
 const INK = "#080808";
-const BLUE = "#003DDB";
-const BLUE_TINT = "#7AA2FF";
 const BODY_TEXT = "#A6B2C6";
 const MUTED_TEXT = "#8A97AD";
 
@@ -1048,7 +1054,7 @@ function FinalCta() {
             }}
           />
           <div className="relative">
-            <BookingEmbed source="design-c" title="Book a review with Novada" />
+            <BookingEmbed source="design-c" title="Book a review with Novada" tone="dark" />
           </div>
         </AnimatedSection>
       </div>
@@ -1084,7 +1090,7 @@ export default function DesignCPage() {
           <FinalCta />
         </main>
         <DeskFooter tone="dark" />
-        <StickyCta />
+        <StickyCta tone="dark" />
       </div>
     </div>
   );
