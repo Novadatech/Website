@@ -51,8 +51,12 @@ const BAND = "py-16 md:py-24";
 /** Micro-caps interface label. Space Grotesk stands in for a technical grotesk. */
 const MICRO =
   "font-supply text-[10px] font-medium uppercase tracking-[0.16em]";
+/* Raised from 9px on 2026-08-27. A conversion review found the 9px class was
+   carrying the timeline card's ANSWERED / BOOKED / COVERED / HANDED OVER
+   badges, which are the page's proof, rendered as its smallest type. Nothing
+   meaningful goes below 11px now. */
 const MICRO_SM =
-  "font-supply text-[9px] font-medium uppercase tracking-[0.16em]";
+  "font-supply text-[11px] font-medium uppercase tracking-[0.14em]";
 /** Any figure a reader might compare to another figure gets tabular nums. */
 const NUM = "font-supply tabular-nums";
 
@@ -464,6 +468,10 @@ function OperationsSurface() {
         </span>
         <p className="text-[13px] leading-snug text-white/70">
           Both handled. Nobody at the practice or the office was woken.
+        </p>
+        <p className="mt-2 text-[13px] leading-snug text-white/50">
+          We answer the call, and we finish the job. An answering service
+          takes a message and hands it back.
         </p>
       </div>
     </div>
