@@ -42,6 +42,13 @@ const BARE_ROUTES = [
   // Desk brand
   "/",
   "/home-alt",
+  // Home page design explorations. Each carries its own DeskNav +
+  // DeskFooter, so none of them must inherit the legacy chrome.
+  // /design-b and /design-c were missing here, which meant both rendered
+  // with a duplicate legacy Navbar above and a light legacy Footer below.
+  "/design-a",
+  "/design-b",
+  "/design-c",
   "/patient-access-desk",
   "/workforce-ops-desk",
   "/why-novada",

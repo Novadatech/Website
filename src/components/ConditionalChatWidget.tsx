@@ -23,6 +23,9 @@ const MAIN_WIDGET_ID = "6990bcc66dc9bb4de7bd8e7e";
 const NO_CHAT_ROUTES = [
   "/",
   "/home-alt",
+  "/design-a",
+  "/design-b",
+  "/design-c",
   "/patient-access-desk",
   "/workforce-ops-desk",
   "/why-novada",
