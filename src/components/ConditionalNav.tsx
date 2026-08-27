@@ -45,6 +45,13 @@ const BARE_ROUTES = [
   "/workforce-ops-desk",
   "/why-novada",
   "/review-confirmed",
+  // Legal pages, rebuilt 2026-08-27 in the Desk system. They MUST be here:
+  // without it they render DeskNav/DeskFooter *and* the legacy Navbar/Footer,
+  // which drags "15+ qualified sales meetings every month, guaranteed" onto a
+  // page whose whole point is that we guarantee no outcomes. Both legal
+  // drafters caught this independently.
+  "/privacy-policy",
+  "/terms-of-service",
   // Novada Workforce
   "/workforce",
   "/workforce-2",
