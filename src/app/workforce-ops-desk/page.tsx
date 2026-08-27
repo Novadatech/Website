@@ -1026,7 +1026,10 @@ export default function WorkforceOpsDeskPage() {
       </main>
 
       <DeskFooter />
-      <StickyCta label="Book an Operations Review" />
+      <StickyCta
+        label="Book an Operations Review"
+        tagline="Every call answered. Every shift covered. Everything measured."
+      />
     </div>
   );
 }

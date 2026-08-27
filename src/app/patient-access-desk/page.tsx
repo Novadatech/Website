@@ -988,7 +988,10 @@ export default function PatientAccessDeskPage() {
       </main>
 
       <DeskFooter />
-      <StickyCta label="Book a Capacity Review" />
+      <StickyCta
+        label="Book a Capacity Review"
+        tagline="Every call answered. Every booking made. Everything measured."
+      />
     </div>
   );
 }

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title:
     "The Patient Access Desk | Phone and Schedule Support for Australian Clinics | Novada",
   description:
-    "Novada runs the phone-and-schedule workload for Australian dental, physio, OT, psychology, podiatry, speech and veterinary practices. Calls answered, bookings made in your own practice software, recalls run, cancellations recovered, everything measured monthly.",
+    "Real people, onshore in Australia, running the phone-and-schedule workload for dental, physio, OT, psychology, podiatry, speech and veterinary practices. Calls answered, bookings made in your own practice software, recalls run, cancellations recovered, everything measured monthly.",
   keywords: [
     "patient access",
     "practice front desk support",

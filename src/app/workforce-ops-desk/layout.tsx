@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title:
     "The Workforce Ops Desk | Rostering and After-Hours Coordination for Australian Care Providers | Novada",
   description:
-    "Novada runs the coordination desk for Australian NDIS, home care and aged care providers: rostering administration, after-hours call handling and call-off coordination, intake and onboarding admin, and compliance records kept to the 7-year statutory standard.",
+    "Real people, onshore in Australia, running the coordination desk for NDIS, home care and aged care providers: rostering administration, after-hours call handling and call-off coordination, intake and onboarding admin, and compliance records kept to the 7-year statutory standard.",
   keywords: [
     "after-hours coordination for care providers",
     "NDIS workforce operations",

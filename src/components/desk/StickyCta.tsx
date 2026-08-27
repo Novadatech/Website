@@ -14,9 +14,14 @@ import { ArrowRight } from "lucide-react";
 export default function StickyCta({
   label = "Book a Desk Review",
   tone = "light",
+  /* The default names both offers, which is right on the home page (organic
+     traffic, both offers shown) and wrong on a single-audience ad lander.
+     Each offer page passes its own. */
+  tagline = "Every call answered. Every shift covered. Everything measured.",
 }: {
   label?: string;
   tone?: "light" | "dark";
+  tagline?: string;
 }) {
   const [show, setShow] = useState(false);
   const dark = tone === "dark";
@@ -59,7 +64,7 @@ export default function StickyCta({
         >
           <div className="mx-auto flex w-full max-w-[1180px] items-center justify-between gap-4 px-5 py-3 sm:px-8 lg:px-12">
             <p className={`hidden sm:block text-sm font-medium ${dark ? "text-white/85" : "text-[#0B1E4B]"}`}>
-              Every call answered. Every shift covered. Everything measured.
+              {tagline}
             </p>
             <a
               href="#book"
