@@ -34,7 +34,7 @@ export default function DeskFooter({ tone = "light" }: { tone?: "light" | "dark"
           </div>
 
           <div>
-            <h3 className={`text-[11px] font-semibold uppercase tracking-[0.16em] mb-4 ${dark ? "text-white/80" : "text-[#0B1E4B]"}`}>
+            <h3 className={`text-[12px] font-semibold uppercase tracking-[0.14em] mb-4 ${dark ? "text-white/80" : "text-[#0B1E4B]"}`}>
               What we run
             </h3>
             <ul className="space-y-2.5">
@@ -57,7 +57,7 @@ export default function DeskFooter({ tone = "light" }: { tone?: "light" | "dark"
           </div>
 
           <div>
-            <h3 className={`text-[11px] font-semibold uppercase tracking-[0.16em] mb-4 ${dark ? "text-white/80" : "text-[#0B1E4B]"}`}>
+            <h3 className={`text-[12px] font-semibold uppercase tracking-[0.14em] mb-4 ${dark ? "text-white/80" : "text-[#0B1E4B]"}`}>
               Contact
             </h3>
             <ul className="space-y-2.5">
@@ -80,7 +80,7 @@ export default function DeskFooter({ tone = "light" }: { tone?: "light" | "dark"
           </div>
 
           <div>
-            <h3 className={`text-[11px] font-semibold uppercase tracking-[0.16em] mb-4 ${dark ? "text-white/80" : "text-[#0B1E4B]"}`}>
+            <h3 className={`text-[12px] font-semibold uppercase tracking-[0.14em] mb-4 ${dark ? "text-white/80" : "text-[#0B1E4B]"}`}>
               Clients
             </h3>
             <ul className="space-y-2.5">
