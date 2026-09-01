@@ -1105,8 +1105,7 @@ function Measurement() {
             we measure your desk: every enquiry, response time, booking
             outcome and reason lost, reported monthly.{" "}
             <span className="font-medium text-[#0B0E14]">
-              If a number is on this website, it carries its source in the
-              same breath.
+              Every industry figure on this website carries its source in the same breath.
             </span>
           </p>
         </AnimatedSection>

@@ -499,9 +499,9 @@ function Measurement() {
         <p
           className={`${DISPLAY} mt-14 max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[26px] text-white sm:text-[34px] md:text-[40px]`}
         >
-          If a number appears anywhere on this website,{" "}
+          Every industry figure on this website{" "}
           <span className="text-[#A6BEFF]">
-            it carries its source in the same breath.
+            carries its source in the same breath.
           </span>
         </p>
       </AnimatedSection>
