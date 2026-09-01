@@ -29,9 +29,12 @@ export const H1 = `${DISPLAY} text-[42px] sm:text-[56px] md:text-[72px]`;
 export const H2 = `${DISPLAY} text-[32px] sm:text-[40px] md:text-[52px]`;
 export const H3 = "text-lg font-semibold text-[#0E1116]";
 
-/* Eyebrow label above headings */
+/* Eyebrow label above headings.
+   Raised off 11px on 2026-09-01: the Desk pages hold a 12px floor for any
+   label that carries meaning, and an 11px mobile value here would quietly
+   reintroduce a breach in whichever page imported it next. */
 export const EYEBROW =
-  "text-[11px] md:text-xs font-semibold uppercase tracking-[0.18em] text-[#003DDB]";
+  "text-[12px] font-semibold uppercase tracking-[0.18em] text-[#003DDB]";
 
 /* Body copy */
 export const LEAD = "text-base md:text-lg text-[#39424E] leading-relaxed";

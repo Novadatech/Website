@@ -5,7 +5,7 @@
  * three-way comparison reviewed independently by a conversion specialist
  * and a brand/positioning specialist.
  *
- * TRAFFIC MODEL (founder, 2026-08-27) — this drives the page's job:
+ * TRAFFIC MODEL (founder, 2026-08-27). This drives the page's job:
  *   This page serves ORGANIC SEARCH traffic, so it deliberately presents
  *   BOTH offers and routes the visitor onward. Paid ads do NOT land here:
  *   each ad goes to its own offer page (/patient-access-desk for clinics,
@@ -26,6 +26,61 @@
  *  - Rating stays unbranded, links to /case-study. No client names, logos
  *    or written testimonials.
  *  - Any depicted desk activity is illustrative and must be labelled so.
+ *
+ * SECTOR-FLUENCY PASS 2026-09-01. Brought to the standard the two offer
+ * pages already meet, WITHOUT narrowing the page to one audience and
+ * without turning it into a third offer page. Every word added was
+ * supplied. What changed:
+ *   · Both desk card bodies replaced, so each names the sectors it
+ *     serves and the work in that sector's own words.
+ *   · The hero board's care event now names the shift type.
+ *   · Scope (band 05) restructured to the offer pages' pattern: the two
+ *     existing "out of scope" sentences moved verbatim into the standing
+ *     paragraph, and the rows now carry the hard boundaries, including
+ *     the no-triage rule in full, duty of care in a care setting, and
+ *     who owns the recall interval in a clinic.
+ *   · ONE new band, "Access and privacy" (band 06), directly after
+ *     Scope.
+ *   · The systems both buyers already run are named once, in the Two
+ *     Desks band, which is where the visitor is choosing.
+ *   · Two FAQ items added in the shared HomeFaq component, which this
+ *     route is now the sole consumer of.
+ * Band surfaces after Scope were re-alternated (Why now to white,
+ * Measurement to tint) so the new band does not sit against a second
+ * tinted band and read as one merged section.
+ *
+ * ⚠️ VOCABULARY. Two Australian traps govern every word here, and both
+ * apply harder on this page than on either offer page, because this page
+ * carries clinic and care copy side by side.
+ * First: the three letter word for a hole in the diary already means
+ * something else in Australian healthcare. It is the patient's out of
+ * pocket cost after a rebate, so it is never used as a scheduling word,
+ * and it is deliberately not written out anywhere in this file so that
+ * it cannot be copied by accident into rendered output. Any hit an audit
+ * returns for it is a Tailwind spacing class and nothing else. Say empty
+ * slots, unfilled appointments or short-notice cancellations.
+ * Second: a family of American front-desk and dental-marketing
+ * vocabulary marks a supplier as foreign on sight. That family is
+ * likewise absent from this file in copy, labels, alt text and comments
+ * alike. It covers the American word for a due-for-a-visit list, the
+ * American words for the counter, the room and the person who runs it,
+ * the whole family of American billing terms, and the marketing word for
+ * a person who has not become a patient yet.
+ *
+ * ⚠️ NDIS INDUCEMENT. This page carries care-provider copy, so the
+ * whole family of words a regulator reads as an inducement is avoided
+ * entirely in new copy: the verb for getting bigger and its noun, the
+ * word for sending someone your way, and the four words for paying
+ * somebody to do it. They are deliberately not written out here either,
+ * so they cannot be copied by accident into rendered output. The one
+ * surviving instance is a past-tense verb inside the CPA Australia
+ * statistic in band 07, which is quoted, sourced, and must not be
+ * reworded.
+ *
+ * ⚠️ NOTHING CLINICAL, AND NO CLINICAL CAPABILITY. We have no clinicians.
+ * Nothing here may imply that we triage, assess urgency or advise. The
+ * only place those verbs may appear is inside a reviewed NEGATION, as in
+ * the Scope rows and the FAQ.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -58,8 +113,12 @@ const MICRO =
   "font-supply text-[12px] font-medium uppercase tracking-[0.14em]";
 /* Raised from 9px on 2026-08-27. A conversion review found the 9px class was
    carrying the timeline card's ANSWERED / BOOKED / COVERED / HANDED OVER
-   badges, which are the page's proof, rendered as its smallest type. Nothing
-   meaningful goes below 11px now. */
+   badges, which are the page's proof, rendered as its smallest type.
+   2026-09-01: the last four 11px classes went too, so the floor is now a
+   flat 12px, matching both offer pages. Those four were the desk board's
+   event and step timestamps, its elapsed deltas, and the week grid's daily
+   hour totals. The two timestamp columns were widened by 6px to suit.
+   NOTHING ON THIS PAGE MAY GO BELOW 12px. */
 const MICRO_SM =
   "font-supply text-[12px] font-medium uppercase tracking-[0.12em]";
 /** Any figure a reader might compare to another figure gets tabular nums. */
@@ -291,7 +350,7 @@ const NIGHT: DeskEvent[] = [
   {
     time: "4:03 AM",
     source: "Care",
-    text: "Support worker calls off a 6am shift.",
+    text: "Support worker calls off a 6am SIL shift.",
     steps: [
       {
         time: "4:19 AM",
@@ -316,8 +375,8 @@ function StateChip({ step, resolved }: { step: DeskStep; resolved: boolean }) {
     <span className="ml-auto flex shrink-0 items-center gap-2.5">
       {step.delta ? (
         <span
-          className={`${NUM} text-[11px] transition-opacity duration-500 ${
-            resolved ? "text-white/35 opacity-100" : "opacity-0"
+          className={`${NUM} text-[12px] transition-opacity duration-500 ${
+            resolved ? "text-white/40 opacity-100" : "opacity-0"
           }`}
         >
           {step.delta}
@@ -377,7 +436,7 @@ function OperationsSurface() {
 
       {/* column header */}
       <div className="hidden items-center gap-x-3 border-b border-white/[0.07] bg-white/[0.02] px-5 py-2 sm:flex">
-        <span className={`${MICRO_SM} w-[58px] shrink-0 text-white/30`}>
+        <span className={`${MICRO_SM} w-[64px] shrink-0 text-white/30`}>
           Time
         </span>
         <span className={`${MICRO_SM} w-[74px] shrink-0 text-white/30`}>
@@ -400,7 +459,7 @@ function OperationsSurface() {
               transition={{ duration: 0.45, delay: 0.15 + ei * 0.4 }}
               className="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3.5 sm:px-5"
             >
-              <span className={`${NUM} w-[58px] shrink-0 text-[11px] text-white/60`}>
+              <span className={`${NUM} w-[64px] shrink-0 text-[13px] text-white/60`}>
                 {ev.time}
               </span>
               <span className="w-[74px] shrink-0">
@@ -439,11 +498,11 @@ function OperationsSurface() {
                       />
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
                         <span
-                          className={`${NUM} w-[52px] shrink-0 text-[11px] text-white/40`}
+                          className={`${NUM} w-[58px] shrink-0 text-[12px] text-white/40`}
                         >
                           {s.time}
                         </span>
-                        <span className="min-w-[170px] flex-1 text-[13px] leading-snug text-white/85">
+                        <span className="min-w-[150px] flex-1 text-[13px] leading-snug text-white/85">
                           {s.label}
                         </span>
                         <StateChip step={s} resolved={resolved} />
@@ -774,7 +833,7 @@ function WeekSurface() {
                   })}
                 </div>
                 <span
-                  className={`${NUM} w-8 shrink-0 text-right text-[11px] ${
+                  className={`${NUM} w-8 shrink-0 text-right text-[12px] ${
                     dayTotal ? "text-white/70" : "text-white/20"
                   }`}
                 >
@@ -808,7 +867,7 @@ const DESKS = [
     index: "01",
     eyebrow: "For clinics",
     title: "The Patient Access Desk",
-    body: "For dental, physio, OT, psychology, podiatry, speech, vet and other private practices. We answer the calls, make the bookings in your own practice software, run the recalls every week and recover the cancellations, so a growing practice can add capacity without automatically adding another front-office salary.",
+    body: "For dental, physio, OT, psychology, podiatry, speech and vet practices. We answer the calls, make the booking inside the software you already run, work the recall list every week, fill short-notice cancellations and follow up the ones who did not attend. So a practice can take on more patients without automatically adding another front-desk salary.",
     href: "/patient-access-desk",
     cta: "For Clinics",
   },
@@ -816,7 +875,7 @@ const DESKS = [
     index: "02",
     eyebrow: "For care providers",
     title: "The Workforce Ops Desk",
-    body: "For NDIS, home care and aged care providers. Rostering admin, after-hours call-offs answered every night, intake and onboarding admin, and compliance records kept to the 7-year statutory standard, so your managers stop being the overnight department.",
+    body: "For NDIS, home care and aged care providers. Rostering administration, the after-hours line, call-offs coordinated from your own approved workers, incidents escalated to your matrix and documented, and worker and service records kept to the 7-year statutory standard. So your managers stop being the overnight department.",
     href: "/workforce-ops-desk",
     cta: "For Care Providers",
   },
@@ -873,6 +932,25 @@ function TwoDesks() {
           </AnimatedSection>
         ))}
       </div>
+
+      {/* Both cards promise the client's own software, so the band names it
+          once, here, where the visitor is choosing between the two desks.
+          A practice owner or a coordination manager scans this line for
+          their own system and stops reading if it is not there. The label
+          is the interface label already used as a proof tag on both offer
+          pages, not new copy. */}
+      <AnimatedSection delay={0.16}>
+        <div className="mt-6 flex flex-col gap-x-6 gap-y-2 border-t border-[#E3E6EC] pt-5 lg:flex-row lg:items-baseline">
+          <span className={`${MICRO} shrink-0 text-[#9AA3B1]`}>
+            Inside your own systems
+          </span>
+          <p className="max-w-[820px] text-[14px] leading-[1.6] text-[#454E5C] md:text-[15px]">
+            Cliniko, Halaxy, Nookal, PracSuite, Dental4Windows, Praktika, Exact
+            and ezyVet on the clinic side; ShiftCare, FlowLogic, Brevity and
+            Carelink on the care side.
+          </p>
+        </div>
+      </AnimatedSection>
     </Band>
   );
 }
@@ -951,16 +1029,38 @@ function HowItWorks() {
 
 /* ══════════════════════════════════════════════════════════════════
    8 · WHAT WE DON'T DO
+   Restructured 2026-09-01 to the pattern both offer pages already use:
+   the two "out of scope" sentences are lifted, word for word, into the
+   standing paragraph under the heading, and the numbered rows carry the
+   hard boundaries stated AS boundaries. Nothing was cut. The rows are
+   where a cautious reader and their lawyer look first, so the three
+   rules added here are the three this page previously only implied: the
+   no-triage rule in full, the fact that duty of care does not move in a
+   care setting, and who owns the recall interval in a clinic.
+
+   Row 03 is the one a reader will not expect and is the reason it is
+   here. Everything about how this market is paid pushes a contractor to
+   over-ring a recall list. Saying out loud that the interval belongs to
+   the practitioner is the difference between an operations desk and a
+   call centre. The tags are interface labels only, and they are the
+   same label set both offer pages use.
    ══════════════════════════════════════════════════════════════════ */
+
+const SCOPE_STANDING =
+  "Nothing clinical: no triage, no advice. Urgent matters route straight to your team under an agreed protocol. Nothing at the front counter: greeting, payments and in-person care stay with your people.";
 
 const BOUNDARIES = [
   {
-    tag: "Out of scope",
-    body: "Nothing clinical: no triage, no advice. Urgent matters route straight to your team under an agreed protocol.",
+    tag: "Never",
+    body: "We do not triage. We do not assess urgency, and we do not give clinical advice. Anything clinical goes to your team, under a protocol agreed in writing before we take a single call.",
   },
   {
-    tag: "Out of scope",
-    body: "Nothing at the front counter: greeting, payments and in-person care stay with your people.",
+    tag: "Stays with you",
+    body: "In a care setting your duty of care does not transfer. Incident classification and notification stay with you, and what we hand over is a complete, timestamped record to make them with.",
+  },
+  {
+    tag: "Your rules",
+    body: "In a clinic, recall contact follows the interval your practitioner set. We never contact a patient to hit a number, and we do not ask your patients for reviews.",
   },
   {
     tag: "Boundary",
@@ -981,12 +1081,15 @@ function Boundaries() {
         >
           What we don&apos;t do.
         </h3>
+        <p className="mt-6 max-w-[900px] border-l-2 border-[#003DDB] pl-5 text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          {SCOPE_STANDING}
+        </p>
       </AnimatedSection>
 
-      <div className="mt-9 border-t border-[#E3E6EC]">
+      <div className="mt-10 border-t border-[#D3D8E2]">
         {BOUNDARIES.map((b, i) => (
           <AnimatedSection key={b.body} delay={i * 0.05}>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-5 sm:grid-cols-[52px_minmax(0,1fr)_128px] sm:items-center sm:px-3">
+            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-5 sm:grid-cols-[52px_minmax(0,1fr)_148px] sm:items-center sm:px-3">
               <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1] sm:pt-0`}>
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -1007,7 +1110,74 @@ function Boundaries() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   9 · WHY NOW
+   9 · ACCESS AND PRIVACY
+   The only NEW band added in the 2026-09-01 pass, and it sits directly
+   after Scope because it is the question both buyers ask second, right
+   after "do you touch the clinical record". Answered as a
+   specification: named logins, least privilege, onshore, a written
+   agreement, and a line in the client's own privacy policy.
+
+   The closing note carries the page's scarce signal colour because it
+   is the one thing on this page most practices and providers do not
+   know: a business that delivers a health service is not covered by the
+   small business exemption from the Privacy Act, whatever its turnover.
+   We state the obligation as THEIRS, and ourselves as working inside
+   it. We never claim a compliance status of our own, and we never claim
+   alignment with a regulator that does not regulate us.
+   ══════════════════════════════════════════════════════════════════ */
+
+const ACCESS_ITEMS = [
+  "Named coordinators, each with their own login under your own access control. Never a shared account.",
+  "Permissions limited to the parts of your systems the work actually needs.",
+  "Your information stays in your systems, and stays in Australia.",
+  "A written agreement that mirrors your obligations under the Australian Privacy Principles.",
+  "We can be named in your privacy policy as a contracted service provider.",
+];
+
+function AccessPrivacy() {
+  return (
+    <Band index="06" label="Access and privacy" tone="tint">
+      <AnimatedSection>
+        <h3
+          className={`${DISPLAY} max-w-[820px] text-[32px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
+        >
+          What we can see, and what we cannot.
+        </h3>
+      </AnimatedSection>
+
+      <div className="mt-9 border-t border-[#D3D8E2]">
+        {ACCESS_ITEMS.map((item, i) => (
+          <AnimatedSection key={item} delay={i * 0.05}>
+            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 border-b border-[#E3E6EC] py-5 sm:grid-cols-[52px_minmax(0,1fr)] sm:px-3">
+              <span className={`${MICRO} ${NUM} pt-1 text-[#003DDB]`}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-[15px] leading-[1.6] text-[#0B0E14] md:text-[16px]">
+                {item}
+              </p>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      <AnimatedSection delay={0.1}>
+        <div className="mt-10 max-w-[900px] rounded-[12px] border border-[#E3E6EC] bg-white p-6 md:p-7">
+          <h4 className={`${MICRO} text-[#B4501A]`}>
+            The small business exemption
+          </h4>
+          <p className="mt-4 text-[15.5px] leading-[1.62] text-[#0B0E14] md:text-[16.5px]">
+            Practices and providers that deliver a health service do not get
+            the small business exemption from the Privacy Act, whatever their
+            turnover. Your obligations are the ones we work inside.
+          </p>
+        </div>
+      </AnimatedSection>
+    </Band>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   10 · WHY NOW
    Rendered as a citations table. Every figure prints its source in the
    same row, which is the whole argument of the section below it.
    ══════════════════════════════════════════════════════════════════ */
@@ -1032,7 +1202,7 @@ const EVIDENCE = [
 
 function WhyNow() {
   return (
-    <Band index="06" label="Why now" tone="tint">
+    <Band index="07" label="Why now">
       {/* table header */}
       <div className="hidden grid-cols-[240px_minmax(0,1fr)_220px] gap-6 border-b border-[#D3D8E2] pb-3 lg:grid">
         <span className={`${MICRO} text-[#9AA3B1]`}>Figure</span>
@@ -1077,7 +1247,7 @@ function WhyNow() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   10 · THE MEASUREMENT PROMISE
+   11 · THE MEASUREMENT PROMISE
    The schematic beside it is an empty report, not a claim: the four
    field names are lifted verbatim from the paragraph, values blank.
    ══════════════════════════════════════════════════════════════════ */
@@ -1091,7 +1261,7 @@ const REPORT_FIELDS = [
 
 function Measurement() {
   return (
-    <Band index="07" label="Measurement">
+    <Band index="08" label="Measurement" tone="tint">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-14">
         <AnimatedSection>
           <h3
@@ -1144,7 +1314,7 @@ function Measurement() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   11 · PROOF OF OPERATIONS
+   12 · PROOF OF OPERATIONS
    ══════════════════════════════════════════════════════════════════ */
 
 const PROOF_TAGS = [
@@ -1156,7 +1326,7 @@ const PROOF_TAGS = [
 
 function Proof() {
   return (
-    <Band index="08" label="Proof of operations" tone="dark">
+    <Band index="09" label="Proof of operations" tone="dark">
       <AnimatedSection>
         <p className="max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[20px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
           This isn&apos;t a proposal. Our desk answers after-hours calls for
@@ -1183,7 +1353,7 @@ function Proof() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   12 · BOOK A REVIEW
+   13 · BOOK A REVIEW
    ══════════════════════════════════════════════════════════════════ */
 
 function FinalCta() {
@@ -1196,7 +1366,7 @@ function FinalCta() {
         className={`${WRAP} ${PAD} ${BAND} border-x border-white/10`}
       >
         <div className="grid gap-8 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
-          <Rail index="09" label="Book" tone="dark" />
+          <Rail index="10" label="Book" tone="dark" />
           <div className="min-w-0">
             <AnimatedSection>
               <h3
@@ -1261,6 +1431,7 @@ export default function DesignBHomePage() {
         <TwoDesks />
         <HowItWorks />
         <Boundaries />
+        <AccessPrivacy />
         <WhyNow />
         <Measurement />
         <Proof />
