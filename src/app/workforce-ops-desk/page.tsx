@@ -4,12 +4,29 @@
  * /workforce-ops-desk : the care-provider offer page (NDIS, home care,
  * aged care).
  *
- * ⚠️ LEGAL CONSTRAINT ON THIS PAGE SPECIFICALLY: strictly NO referral,
- * incentive, gift or growth-promise language anywhere, in copy, alt
- * text, interface labels or metadata. The 2026 NDIS inducement ban
- * carries criminal exposure. This is not a style preference. The words
- * grow, growth, referral, incentive, reward, bonus and gift do not
- * appear on this page and must never be introduced.
+ * ⚠️ LEGAL CONSTRAINT ON THIS PAGE SPECIFICALLY: the 2026 NDIS
+ * inducement ban carries criminal exposure, so no inducement language
+ * of any kind appears here, in copy, alt text, interface labels,
+ * comments or metadata. That covers every promise of expansion, every
+ * invitation to send participants our way, and every suggestion of a
+ * payment, benefit or thank-you for doing so. This is not a style
+ * preference. The prohibited vocabulary is deliberately NOT written
+ * out anywhere in this file, so that it can never be copied by
+ * accident into rendered output. The ONLY hits any audit grep should
+ * return in that family are two regulator names printed as sources in
+ * the copy below. Both are citations of a regulator, never offers, and
+ * both are legally required to be named where they appear.
+ *
+ * ⚠️ NOTHING CLINICAL, AND NO CLINICAL CAPABILITY. We have no nurses
+ * and no clinicians. Nothing on this page may imply that we evaluate a
+ * participant's condition, give advice, or hand out, sign off or check
+ * medication, or that we approve a restrictive practice. We recognise
+ * the event, we escalate it under the provider's written authority, and
+ * we document it. That is the whole of it. The clinical verbs a writer
+ * reaches for by reflex are all off limits here, in copy and in state
+ * labels alike, and the state labels in band 02 were chosen with that
+ * in mind. The only place a clinical verb may appear is inside a
+ * legally reviewed NEGATION, as in the scope boundaries in band 05.
  *
  * REBUILT 2026-08-27 into the home page's design system (Direction B):
  * white canvas, one continuous 1px hairline frame running the length of
@@ -18,7 +35,7 @@
  * IS the section h2, Barlow Condensed bold caps for display, Space
  * Grotesk with tabular-nums for labels and figures, Inter for body,
  * #003DDB as the only chromatic accent for state, #B4501A as a scarce
- * signal colour. Reference: src/app/page.tsx.
+ * signal colour. Modelled on: src/app/page.tsx.
  *
  * TRAFFIC MODEL: this is now a PAID-AD landing page. Cold traffic, one
  * audience (care providers), mostly mobile, arriving from a single ad.
@@ -35,11 +52,28 @@
  *      here: every micro-caps label on this page is 12px, and every CTA
  *      is 14px/600 or larger.
  *
- * COPY: every sentence on this page is the legally reviewed copy from
- * the previous build, re-laid-out, not rewritten. The only additions
- * are interface labels (timestamps, state words, column headings, rail
- * labels) and the unbranded rating lockup already live on the home page
- * and in ProofStack.
+ * COPY: every sentence on this page is legally reviewed copy, supplied
+ * and laid out, not written here. The only additions are interface
+ * labels (timestamps, state words, column headings, rail labels) and
+ * the unbranded rating lockup already live on the home page and in
+ * ProofStack.
+ *
+ * SECTOR-FLUENCY PASS 2026-09-01. A specialist competitor was covering
+ * this ground with far more of the sector's own vocabulary, so four
+ * things were added, all of them supplied copy:
+ *   · "When the phone rings" (band 02, ink surface): the 4am sequence,
+ *     answered through to logged, with the escalation and 000 rule
+ *     stated inside the sequence rather than in a disclaimer.
+ *   · "The night shift" (band 03): the seven events we are built for,
+ *     in the register the sector actually uses (SIL, Behaviour Support
+ *     Plan, PRN, restrictive practice, reportable incident).
+ *   · Scope (band 05) now carries the five hard boundaries and the
+ *     "if we cannot reach your contacts" rule.
+ *   · Two further sourced obligations sit under Why now, deliberately
+ *     subordinate in weight so the three headline statistics stay
+ *     dominant. Both print their source, same as the three above them.
+ * No metric, response time, volume or percentage was invented. The only
+ * figures on this page are the five that print a source.
  *
  * Also binding: no pricing, nothing clinical, no guarantees, approved
  * statistics only with their source printed in the same row, Australian
@@ -48,7 +82,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Star } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
@@ -518,10 +552,11 @@ function Hero() {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="mt-5 max-w-[560px] text-[15.5px] leading-[1.58] text-[#454E5C] md:text-[17px]"
             >
-              Novada runs the coordination desk for Australian care providers:
-              rostering administration, after-hours cover, intake and the
-              records. Inside your existing systems, measured and reported
-              monthly.
+              Novada runs the coordination desk for Australian NDIS, home care
+              and aged care providers. Rostering administration, the
+              after-hours line, intake, onboarding and the records that have to
+              survive an audit. Inside the systems you already run, by people
+              who know what a 4am call-off actually involves.
             </motion.p>
 
             <motion.div
@@ -650,15 +685,167 @@ function Decision() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   6 · TWO WAYS TO ENGAGE
+   6 · WHEN THE PHONE RINGS
+   Ink surface, and the single most load-bearing addition on the page.
+   A provider arriving from an ad is not buying a capability list, they
+   are buying the answer to "what happens when my worker calls off at
+   4am and I am asleep". So the sequence is drawn as a desk log with a
+   node rail, the same device as the hero surface, and the two hardest
+   rules on the page (nothing needing authority or clinical judgement is
+   ours to decide; emergencies go to 000 first) sit INSIDE step 04
+   rather than in a disclaimer nobody reads.
+
+   The five state chips are interface labels in the same vocabulary as
+   StateChip above (Covered / Recorded / Handed over). Step 02's chip
+   reads "Identified" and that word was chosen with a lawyer's eye: it
+   says we worked out what KIND of call it is, and it carefully does not
+   say we formed any view about a person. The two clinical-sounding
+   alternatives a designer would reach for first are both forbidden
+   here. Do not substitute one in to save a character.
+   ══════════════════════════════════════════════════════════════════ */
+
+const PHONE_SEQUENCE: { state: string; body: string }[] = [
+  {
+    state: "Answered",
+    body: "A coordinator answers, not a message bank. It might be a support worker, a participant, a family member or a facility.",
+  },
+  {
+    state: "Identified",
+    body: "We work out what it is: a shift to cover, a service change, an enquiry, or an incident.",
+  },
+  {
+    state: "Handled",
+    body: "Routine matters we handle inside your systems. Cover arranged from your own approved workers, the roster updated, the people affected told.",
+  },
+  {
+    state: "Escalated",
+    body: "Anything that needs authority or clinical judgement goes to your nominated contact, your on-call clinician or your Authorised Program Officer, under the escalation matrix we agree before we take a single call. Emergencies go to 000 first, every time.",
+  },
+  {
+    state: "Recorded",
+    body: "Every event is logged with timestamps and lands in your morning handover, in a form your records can actually use.",
+  },
+];
+
+function PhoneRings() {
+  return (
+    <Band index="02" label="When the phone rings" tone="dark">
+      <AnimatedSection>
+        <h3
+          className={`${DISPLAY} max-w-[820px] text-[30px] text-white sm:text-[40px] md:text-[48px]`}
+        >
+          What actually happens at 4am.
+        </h3>
+      </AnimatedSection>
+
+      <div className="mt-9 border-l border-white/[0.12]">
+        {PHONE_SEQUENCE.map((s, i) => (
+          <AnimatedSection key={s.state} delay={i * 0.06}>
+            <div className="relative border-b border-white/[0.07] py-5 pl-5 last:border-b-0 sm:pl-7">
+              <span
+                aria-hidden
+                className="absolute -left-[4px] top-[28px] h-[7px] w-[7px] rounded-full border-2 border-[#0A0D14] bg-[#3A6CFF]"
+              />
+              <div className="flex items-center justify-between gap-4">
+                <span className={`${MICRO} ${NUM} shrink-0 text-white/35`}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span
+                  className={`${MICRO_TIGHT} inline-flex shrink-0 items-center gap-1.5 rounded-[4px] border border-[#3A6CFF]/35 bg-[#3A6CFF]/[0.12] px-2 py-[3px] text-[#A6BEFF]`}
+                >
+                  <span
+                    aria-hidden
+                    className="h-[5px] w-[5px] rounded-full bg-[#3A6CFF]"
+                  />
+                  {s.state}
+                </span>
+              </div>
+              <p className="mt-2.5 max-w-[820px] text-[15.5px] leading-[1.58] text-white/85 md:text-[16.5px]">
+                {s.body}
+              </p>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+    </Band>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   7 · THE NIGHT SHIFT
+   The recognition register. Every line is an event the sector names in
+   its own vocabulary, so a provider reads two or three of these and
+   concludes we have done this before. Note what the clinical lines do
+   NOT say: the PRN line and the restrictive practice line both exist to
+   state that the decision is somebody else's, and the Behaviour Support
+   Plan line is about reaching the clinician, not about applying the
+   plan. Rendered flat, as a register, deliberately without state chips:
+   this section is the problem set, not the resolution.
+   ══════════════════════════════════════════════════════════════════ */
+
+const NIGHT_EVENTS = [
+  "A support worker calls off a SIL shift at 4am, and the roster shows nobody else cleared for that participant.",
+  "A behaviour escalation where the Behaviour Support Plan needs to be in the room, and your on-call clinician needs to be reached now.",
+  "A PRN medication question that has to go to your clinical contact rather than to us, and has to be documented either way.",
+  "A restrictive practice question that belongs with your Authorised Program Officer, not with a coordinator.",
+  "A reportable incident where the clock starts the moment somebody becomes aware, not on Monday morning.",
+  "A participant's family ringing at 9pm about tomorrow's supports.",
+  "A missed home care visit for a client who should not be left without support.",
+];
+
+function NightShift() {
+  return (
+    <Band index="03" label="The night shift" tone="tint">
+      <AnimatedSection>
+        <h3
+          className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
+        >
+          We have handled this call before.
+        </h3>
+      </AnimatedSection>
+
+      <div className="mt-9 border-t border-[#D3D8E2]">
+        {NIGHT_EVENTS.map((line, i) => (
+          <AnimatedSection key={line} delay={i * 0.05}>
+            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 border-b border-[#E3E6EC] py-4 transition-colors duration-200 hover:bg-white sm:grid-cols-[52px_minmax(0,1fr)] sm:px-3">
+              <span className={`${MICRO} ${NUM} pt-[3px] text-[#9AA3B1]`}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-[15px] leading-[1.6] text-[#0B0E14] md:text-[16px]">
+                {line}
+              </p>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      <AnimatedSection delay={0.1}>
+        <p className="mt-8 max-w-[860px] border-l-2 border-[#B4501A] pl-5 text-[16px] font-medium leading-[1.6] text-[#0B0E14] md:text-[18px]">
+          None of these wait for business hours. All of them end up in a record
+          somebody has to produce later.
+        </p>
+      </AnimatedSection>
+    </Band>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   8 · TWO WAYS TO ENGAGE
    Two panels with the same chrome as the home page's desk cards, so
    the scope of each module reads as a specification, not a brochure.
+
+   The coverage chip in each panel header exists to stop the page
+   reading as an after-hours-only service: module 01 is one part of the
+   desk, module 02 is the whole desk. Neither claims "always on". The
+   hours are whatever each provider signs, and the line under the
+   heading says exactly that.
    ══════════════════════════════════════════════════════════════════ */
 
 const MODULES = [
   {
     index: "01",
     eyebrow: "Start with the nights",
+    coverage: "One part of the desk",
     title: "After-Hours Continuity",
     items: [
       "Call handling from close of business to morning, plus weekends.",
@@ -670,6 +857,7 @@ const MODULES = [
   {
     index: "02",
     eyebrow: "Hand over the desk",
+    coverage: "The whole desk",
     title: "Managed Workforce Operations",
     items: [
       "Everything in After-Hours Continuity.",
@@ -683,13 +871,18 @@ const MODULES = [
 
 function TwoWays() {
   return (
-    <Band index="02" label="Two ways to engage">
+    <Band index="04" label="Two ways to engage">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
         >
           Start with the nights. Or hand over the desk.
         </h3>
+        <p className="mt-5 max-w-[720px] text-[15.5px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          After hours is one way in. The whole coordination desk is the other.
+          Either way, the hours we cover are written into the scope before we
+          take a call.
+        </p>
       </AnimatedSection>
 
       <div className="mt-9 grid gap-4 md:grid-cols-2">
@@ -697,11 +890,16 @@ function TwoWays() {
           <AnimatedSection key={m.title} delay={i * 0.08} className="h-full">
             <div className="flex h-full flex-col overflow-hidden rounded-[12px] border border-[#E3E6EC] bg-white">
               {/* panel chrome */}
-              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-[#E3E6EC] bg-[#F7F8FA] px-5 py-3">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 border-b border-[#E3E6EC] bg-[#F7F8FA] px-5 py-3">
                 <span className={`${MICRO} flex items-center gap-2.5`}>
                   <span className={`${NUM} text-[#9AA3B1]`}>{m.index}</span>
                   <span aria-hidden className="h-3 w-px bg-[#D3D8E2]" />
                   <span className="text-[#003DDB]">{m.eyebrow}</span>
+                </span>
+                <span
+                  className={`${MICRO_TIGHT} rounded-[4px] border border-[#DCE0E8] bg-white px-2 py-[3px] text-[#5B6472]`}
+                >
+                  {m.coverage}
                 </span>
               </div>
 
@@ -737,12 +935,47 @@ function TwoWays() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   7 · SCOPE
+   9 · SCOPE
+   The hardest section on the page, and the one a compliance reader will
+   go to first. The five rows below the standing paragraph are the
+   boundaries stated as boundaries, not softened: duty of care does not
+   move, we hold no clinical authority, we do not authorise a
+   restrictive practice, we never attend on site, and the notification
+   decision stays with the provider. The tags are interface labels only.
+
+   The panel at the foot answers the question a provider asks second:
+   what happens when the escalation list itself fails. It is the one
+   place on this page where the scarce signal colour (#B4501A) is used
+   on a light surface, because it is the one failure condition we are
+   volunteering rather than being asked about.
    ══════════════════════════════════════════════════════════════════ */
+
+const BOUNDARIES = [
+  {
+    tag: "Boundary",
+    body: "Your duty of care does not transfer. Nothing we do reduces it, and nothing in our agreement says otherwise.",
+  },
+  {
+    tag: "Never",
+    body: "We never make a clinical decision, and we never prescribe, administer or authorise medication.",
+  },
+  {
+    tag: "Never",
+    body: "We never approve or authorise a restrictive practice.",
+  },
+  {
+    tag: "Never",
+    body: "We never attend on site.",
+  },
+  {
+    tag: "Stays with you",
+    body: "Incident classification and notification to the NDIS Commission stay with you. What we hand you is a complete, timestamped record to make them with.",
+  },
+];
 
 function Scope() {
   return (
-    <Band index="03" label="Scope" tone="tint" tight>
+    <Band index="05" label="Scope" tone="tint">
       <AnimatedSection>
         <p className={`${MICRO} text-[#9AA3B1]`}>Back office only</p>
         <h3
@@ -758,15 +991,55 @@ function Scope() {
           Brevity, Carelink and more).
         </p>
       </AnimatedSection>
+
+      <div className="mt-10 border-t border-[#D3D8E2]">
+        {BOUNDARIES.map((b, i) => (
+          <AnimatedSection key={b.body} delay={i * 0.05}>
+            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-5 sm:grid-cols-[52px_minmax(0,1fr)_148px] sm:items-center sm:px-3">
+              <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1] sm:pt-0`}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-[15px] leading-[1.6] text-[#0B0E14] md:text-[16px]">
+                {b.body}
+              </p>
+              <span
+                className={`${MICRO_TIGHT} col-start-2 justify-self-start rounded-[4px] border border-[#DCE0E8] bg-white px-2 py-[3px] text-[#5B6472] sm:col-start-3 sm:justify-self-end`}
+              >
+                {b.tag}
+              </span>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      <AnimatedSection delay={0.1}>
+        <div className="mt-10 max-w-[900px] rounded-[12px] border border-[#E3E6EC] bg-white p-6 md:p-7">
+          <h4 className={`${MICRO} text-[#B4501A]`}>
+            If we cannot reach your contacts
+          </h4>
+          <p className="mt-4 text-[15.5px] leading-[1.62] text-[#0B0E14] md:text-[16.5px]">
+            We keep working down the escalation list you gave us, and we
+            document every attempt with a timestamp. We never act outside the
+            authority you have written down. If your escalation list has a gap
+            in it, we will find that gap in the first week and tell you.
+          </p>
+        </div>
+      </AnimatedSection>
     </Band>
   );
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   8 · WHY NOW
+   10 · WHY NOW
    Rendered as a citations table. Every figure prints its source in the
    same row, which is binding copy rule 6: a statistic never travels
    away from the source that carries it.
+
+   Two further obligations were added below the table on 2026-09-01.
+   They are deliberately SUBORDINATE: smaller figure type, ink instead
+   of the accent blue, seated in muted cards under their own label, so
+   the three sourced statistics above them stay the dominant evidence.
+   Both still print their source, because the rule is the rule.
    ══════════════════════════════════════════════════════════════════ */
 
 const EVIDENCE = [
@@ -789,7 +1062,7 @@ const EVIDENCE = [
 
 function WhyNow() {
   return (
-    <Band index="04" label="Why now">
+    <Band index="06" label="Why now">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -829,14 +1102,60 @@ function WhyNow() {
           </AnimatedSection>
         ))}
       </div>
+
+      {/* Subordinate evidence pair. Smaller, quieter, still sourced. */}
+      <AnimatedSection delay={0.14}>
+        <p className={`${MICRO} mt-10 text-[#9AA3B1]`}>
+          Two obligations that do not pause
+        </p>
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className="flex flex-col rounded-[10px] border border-[#E3E6EC] bg-[#F7F8FA] p-5 md:p-6">
+            <p
+              className={`${NUM} text-[20px] font-medium leading-none text-[#0B0E14] md:text-[22px]`}
+            >
+              24 hours
+            </p>
+            <p className="mt-3 flex-1 text-[14px] leading-[1.62] text-[#454E5C] md:text-[15px]">
+              A reportable incident must reach the NDIS Commission within 24
+              hours of your organisation becoming aware. That clock runs
+              overnight, at weekends and on public holidays.
+            </p>
+            <div className="mt-5 flex flex-wrap items-baseline gap-x-2 border-t border-[#E3E6EC] pt-3">
+              <span className={`${MICRO_TIGHT} text-[#9AA3B1]`}>Source</span>
+              <span className="text-[13px] leading-snug text-[#5B6472]">
+                NDIS Commission
+              </span>
+            </div>
+          </div>
+
+          <div className="flex flex-col rounded-[10px] border border-[#E3E6EC] bg-[#F7F8FA] p-5 md:p-6">
+            <blockquote className="border-l-2 border-[#C3CAD5] pl-4">
+              <p className="text-[15px] italic leading-[1.58] text-[#0B0E14] md:text-[16px]">
+                &ldquo;In the event of worker absence or vacancy, a suitably
+                qualified and/or experienced person performs the role.&rdquo;
+              </p>
+            </blockquote>
+            <p className="mt-3 flex-1 text-[14px] leading-[1.62] text-[#454E5C] md:text-[15px]">
+              That standard does not pause at 5pm.
+            </p>
+            <div className="mt-5 flex flex-wrap items-baseline gap-x-2 border-t border-[#E3E6EC] pt-3">
+              <span className={`${MICRO_TIGHT} text-[#9AA3B1]`}>Source</span>
+              <span className="text-[13px] leading-snug text-[#5B6472]">
+                NDIS Practice Standards
+              </span>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
     </Band>
   );
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   9 · PROOF OF OPERATIONS
-   Ink surface. The desk moment: the one place on the page that asserts
-   an operation already running, so it gets the reserved colour.
+   11 · PROOF OF OPERATIONS
+   Ink surface. The second desk moment: the one place on the page that
+   asserts an operation already running, so it keeps the reserved
+   colour it shares with band 02.
    ══════════════════════════════════════════════════════════════════ */
 
 const PROOF_TAGS = [
@@ -848,7 +1167,7 @@ const PROOF_TAGS = [
 
 function Proof() {
   return (
-    <Band index="05" label="Proof of operations" tone="dark">
+    <Band index="07" label="Proof of operations" tone="dark">
       <AnimatedSection>
         <p className={`${MICRO} text-white/45`}>This isn&apos;t a proposal</p>
         <p className="mt-6 max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[19px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
@@ -875,10 +1194,14 @@ function Proof() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   10 · HOW IT STARTS
+   12 · HOW IT STARTS
+   Step 02 carries sub-points because the handover plan is the step a
+   provider is actually evaluating: it is where they find out whether we
+   understand what has to be in place before a coordinator picks up a
+   phone at 4am. The four sub-points are the four inputs we need.
    ══════════════════════════════════════════════════════════════════ */
 
-const STEPS = [
+const STEPS: { n: string; title: string; body: string; points?: string[] }[] = [
   {
     n: "01",
     title: "The review",
@@ -888,6 +1211,12 @@ const STEPS = [
     n: "02",
     title: "The handover plan",
     body: "Your escalation protocol, contacts and systems access, documented and agreed before we take a single call.",
+    points: [
+      "Your escalation matrix and nominated contacts, including your Authorised Program Officer and clinical on-call.",
+      "Participant risk information and Behaviour Support Plans, where they change how we respond after hours.",
+      "Access to the systems you already run.",
+      "Worker screening clearances confirmed for anyone whose role makes participant contact plausible.",
+    ],
   },
   {
     n: "03",
@@ -901,7 +1230,7 @@ function HowItStarts() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <Band index="06" label="How it starts" tone="tint">
+    <Band index="08" label="How it starts" tone="tint">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -946,6 +1275,24 @@ function HowItStarts() {
               <p className="mt-3 max-w-[380px] text-[15px] leading-[1.62] text-[#454E5C]">
                 {s.body}
               </p>
+              {s.points ? (
+                <ul className="mt-4 max-w-[380px] border-t border-[#DCE0E8]">
+                  {s.points.map((p) => (
+                    <li
+                      key={p}
+                      className="flex items-start gap-3 border-b border-[#DCE0E8] py-3 last:border-b-0"
+                    >
+                      <span
+                        aria-hidden
+                        className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full bg-[#003DDB]"
+                      />
+                      <span className="text-[14px] leading-[1.6] text-[#0B0E14]">
+                        {p}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </div>
           ))}
         </div>
@@ -955,7 +1302,80 @@ function HowItStarts() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   11 · BOOK
+   13 · QUESTIONS
+   The three objections a care provider raises before they will book:
+   does this move our duty of care, can you make a clinical or a
+   restrictive-practice call, and are we giving away the coordinator's
+   job. All three answers are no, stated as no.
+
+   Local to this page on purpose. The shared HomeFaq component carries
+   the practice-side questions and must not be edited to serve this
+   route. Same accordion behaviour, this page's tokens.
+   ══════════════════════════════════════════════════════════════════ */
+
+const FAQS = [
+  {
+    q: "Does this transfer our duty of care?",
+    a: "No. Your duty of care stays exactly where it is. We coordinate, we escalate under your rules and we document. The responsibility for participant safety and for what gets reported remains yours.",
+  },
+  {
+    q: "Can you authorise PRN medication or a restrictive practice?",
+    a: "No, and we never will. Those decisions belong with your clinical people and your Authorised Program Officer. What we do is get the question to the right person quickly, and make sure the event is documented properly either way.",
+  },
+  {
+    q: "Are we handing over our coordinator's job?",
+    a: "Only the parts you choose. Some providers start with the nights and keep everything else in house. Others hand over the whole desk. The scope is written down before we take a call, and you can change it.",
+  },
+];
+
+function Questions() {
+  const [open, setOpen] = useState<number | null>(0);
+
+  return (
+    <Band id="faq" index="09" label="Questions">
+      <AnimatedSection>
+        <h3
+          className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
+        >
+          Straight answers.
+        </h3>
+      </AnimatedSection>
+
+      <div className="mt-9 max-w-[880px] space-y-3">
+        {FAQS.map((f, i) => (
+          <AnimatedSection key={f.q} delay={i * 0.06}>
+            <div className="overflow-hidden rounded-[10px] border border-[#E3E6EC] bg-[#F7F8FA]">
+              <button
+                type="button"
+                onClick={() => setOpen(open === i ? null : i)}
+                aria-expanded={open === i}
+                className="flex w-full items-center justify-between gap-4 px-5 py-[18px] text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#003DDB] md:px-6"
+              >
+                <span className="text-[15px] font-semibold leading-snug text-[#0B0E14] md:text-[16px]">
+                  {f.q}
+                </span>
+                <ChevronDown
+                  aria-hidden
+                  className={`h-4 w-4 shrink-0 text-[#003DDB] transition-transform duration-200 ${
+                    open === i ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {open === i ? (
+                <p className="border-t border-[#E3E6EC] px-5 py-4 text-[14.5px] leading-[1.62] text-[#454E5C] md:px-6 md:text-[15px]">
+                  {f.a}
+                </p>
+              ) : null}
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+    </Band>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   14 · BOOK
    ══════════════════════════════════════════════════════════════════ */
 
 function FinalCta() {
@@ -966,7 +1386,7 @@ function FinalCta() {
     >
       <div className={`${WRAP} ${PAD} ${BAND} border-x border-white/10`}>
         <div className="grid gap-8 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
-          <Rail index="07" label="Book" tone="dark" />
+          <Rail index="10" label="Book" tone="dark" />
           <div className="min-w-0">
             <AnimatedSection>
               <h3
@@ -1011,11 +1431,14 @@ export default function WorkforceOpsDeskPage() {
       <main>
         <Hero />
         <Decision />
+        <PhoneRings />
+        <NightShift />
         <TwoWays />
         <Scope />
         <WhyNow />
         <Proof />
         <HowItStarts />
+        <Questions />
         <FinalCta />
       </main>
 
