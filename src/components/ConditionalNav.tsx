@@ -7,34 +7,34 @@ import LandingFooter from "./LandingFooter";
 
 // Routes that drop the main Navbar + full Footer and render with the compact
 // LandingFooter only. Each of these pages provides its own minimal fixed
-// header (logo + page-specific CTA) inside the page component.
-const STANDALONE_ROUTES = [
-  // Serves the /meetings-3 lander, so it shares its chrome. Moved here
-  // 2026-09-02: it was the last page falling through to the legacy
-  // Navbar/Footer, which linked to pages that are now deleted.
-  "/guarantee-terms",
-  "/meetings-3",
-  "/confirmed-call",
-];
+// header inside the page component.
+//
+// NOTE (2026-09-02): down to a single route. /meetings-3, /guarantee-terms
+// and /case-study were rebuilt in the Desk system and now carry their own
+// FunnelHeader/FunnelFooter, so they moved to BARE_ROUTES. /confirmed-call
+// is the last page on the legacy dark chrome. It is also the page
+// /meetings-3 sends every converter to, so the booking journey currently
+// ends on a page that does not match the lander it started on.
+const STANDALONE_ROUTES = ["/confirmed-call"];
 
-// Prefix-matched standalone routes — covers nested dynamic pages.
-// /case-study is the grid; /case-study/[slug] is each individual case.
-const STANDALONE_ROUTE_PREFIXES = ["/case-study"];
-
-// Routes that render NO site chrome at all — not even LandingFooter.
-// These pages carry their own brand (nav + footer inside the page).
+// Routes that render NO site chrome at all. These pages carry their own
+// nav and footer inside the page component.
 //
 // Two families live here:
-//  1. The Desk brand pages (rebuilt 2026-08-26): the home page and its
-//     offer pages carry DeskNav + DeskFooter, the light white/blue
-//     system from the Website Rebuild Brief.
-//  2. The Novada Workforce pages, which carry their own dark chrome.
+//  1. The Desk brand pages (rebuilt 2026-08-26): the home page, the two
+//     offer pages, Why Novada and the legal pages, all carrying DeskNav
+//     and DeskFooter.
+//  2. The meetings-offer pages (rebuilt 2026-09-02): the lander, its
+//     guarantee terms, the case studies and the calculator. Same visual
+//     system, but FunnelHeader/FunnelFooter instead of DeskNav, because a
+//     cold paid lander must not carry five exits into a different offer.
+//     See src/components/desk/FunnelChrome.tsx.
 //
-// NOTE (2026-09-02): the legacy Navbar and Footer now have NO consumers.
-// Every surviving route is either a Desk page (below), a lander using
-// LandingFooter, or /case-study. Both components are kept in the repo but
-// are no longer rendered anywhere. Do not wire them back up without first
-// checking their links: they point at pages that were deleted.
+// ⚠️ The legacy Navbar and Footer now have NO consumers at all. Every
+// surviving route is either listed here or is /confirmed-call. Both
+// components are kept in the repo but are no longer rendered anywhere. Do
+// not wire them back up without first checking their links: they point at
+// pages that were deleted on 2 September 2026.
 const BARE_ROUTES = [
   // Desk brand
   "/",
@@ -49,24 +49,30 @@ const BARE_ROUTES = [
   // drafters caught this independently.
   "/privacy-policy",
   "/terms-of-service",
-  // Novada Workforce
+  // Meetings offer, rebuilt 2026-09-02
+  "/meetings-3",
+  "/guarantee-terms",
   "/assessment-calculator",
 ];
+
+// Prefix-matched bare routes, for nested dynamic pages.
+// /case-study is the grid; /case-study/[slug] is each individual case.
+const BARE_ROUTE_PREFIXES = ["/case-study"];
 
 export default function ConditionalNav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  if (BARE_ROUTES.includes(pathname)) {
-    return <>{children}</>;
-  }
-
-  const isStandalone =
-    STANDALONE_ROUTES.includes(pathname) ||
-    STANDALONE_ROUTE_PREFIXES.some(
+  const isBare =
+    BARE_ROUTES.includes(pathname) ||
+    BARE_ROUTE_PREFIXES.some(
       (p) => pathname === p || pathname.startsWith(p + "/"),
     );
 
-  if (isStandalone) {
+  if (isBare) {
+    return <>{children}</>;
+  }
+
+  if (STANDALONE_ROUTES.includes(pathname)) {
     return (
       <>
         {children}

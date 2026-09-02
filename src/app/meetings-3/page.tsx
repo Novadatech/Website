@@ -1,175 +1,188 @@
 "use client";
 
 /*
- * /meetings-3 — paid-ads lander (Meta cold traffic). Was one of a pair with
- * /meetings-2, the Google Ads lander, which was deleted on 2 Sep 2026 and now
- * redirects here. This is the only surviving page for the meetings offer.
- * /meetings (Facebook) on 2026-07-26; diverged 2026-07-27 per the Google
- * Ads developer brief (Google Ads folder / 03 - DEVELOPER BRIEF).
+ * /meetings-3 : the paid-ads lander for the meetings offer (Meta cold
+ * traffic). Was one of a pair with /meetings-2, the Google Ads lander,
+ * which was deleted on 2 September 2026 and now 308s here. This is the
+ * only surviving page for this offer.
  *
- * Offer (source of truth: "Growth Infrastructure - Client Proposal" PDF,
- * Novada Tech Offer folder, 2026-07-30 — realigned 2026-08-11): flat
- * monthly partnership + one-off setup, $0 PER-MEETING FEES (the old
- * pay-per-meeting model is GONE — never reintroduce "you only pay when
- * we do" claims). NO PRICING on this page (user directive) — investment
- * discussed on the call. 15+ qualified meetings/month guaranteed IN
- * WRITING; shortfall remedy = keep working at no extra charge until
- * delivered; no lock-in, month to month; trust/authority positioning
- * (Trust Engineering™ + Outbound Growth System); <30 min/week client
- * time; assets built under the client's name stay theirs.
+ * REBUILT 2026-09-02 into the Desk visual system, on founder instruction.
+ * Was the legacy dark/green Poppins lander.
  *
- * COMPLIANCE (Google Misrepresentation / Unreliable Claims policies):
- * - NO "$0 upfront"/"$0 activation" claims — a commitment deposit exists.
- *   Approved framing: "No retainer. No setup fee. No lock-in."
- * - Results disclaimers under the case-study grid and the stats bar.
- * - Guarantee links to /guarantee-terms (accessible terms page).
- * Task 1 (GCLID): captured in layout.tsx, passed into the booking iframe
- * src below so GHL stores it on the contact.
+ * ══════════════════════════════════════════════════════════════════════
+ * ⚠️ THIS PAGE IS LIVE AND TAKES PAID TRAFFIC. Four things below are
+ * machinery, not decoration. All four are carried over byte-for-byte
+ * from the previous build. If you change one, you break attribution or
+ * the booking itself, and the failure is silent: the page still renders
+ * perfectly while the money stops being traceable.
  *
- * Structure mandated by user for the top: headline → subheadline →
- * Trustpilot evidence → VSL → video testimonial case studies. Everything
- * below is conversion architecture for burned-by-agencies B2B owners.
- * All CTAs anchor to the embedded booking calendar (#book) — no page hop.
+ *  1. BOOKING_WIDGET_BASE, calendar 8j4TVe5uOcjxbNfVC3kp. This is the
+ *     Meta calendar. /meetings-2 used hAdr4aCtDRC4RgbxhnYD, which is now
+ *     orphaned but still exists, so Google and Meta bookings currently
+ *     share this one calendar and cannot be told apart by calendar.
+ *  2. buildBookingSrc(). Reads the click ID captured into localStorage
+ *     under "nvt_click" by layout.tsx and appends it to the widget src,
+ *     so the booking platform stores it on the contact. The query key
+ *     must stay exactly "gclid": it matches a custom field by name.
+ *  3. The form_embed.js injection in Booking(). Without it the iframe
+ *     never resizes and the calendar is unusable on mobile.
+ *  4. The iframe id, 8j4TVe5uOcjxbNfVC3kp_meetings. form_embed.js finds
+ *     the frame by this id.
  *
- * No conversion tags fire here (see /book-call note): the booking
- * conversion fires on /confirmed-call after a real booking.
+ * NO CONVERSION TAGS FIRE HERE. The booking conversion fires on
+ * /confirmed-call after a real booking. Do not add a tag to this page:
+ * it would count page views as bookings.
+ * ══════════════════════════════════════════════════════════════════════
+ *
+ * OFFER, source of truth: "Growth Infrastructure - Client Proposal" PDF,
+ * Novada Tech Offer folder, realigned 2026-08-11. Flat monthly
+ * partnership, NO PER-MEETING FEES (the old pay-per-meeting model is
+ * gone: never reintroduce "you only pay when we do"). NO PRICING on this
+ * page, by founder directive: investment is discussed on the call. 15+
+ * qualified meetings a month guaranteed in writing; shortfall remedy is
+ * that we keep working at no extra charge until delivered; no lock-in,
+ * month to month; under 30 minutes a week of client time; assets built
+ * under the client's name stay theirs.
+ *
+ * COMPLIANCE (Google Misrepresentation / Unreliable Claims):
+ *  · No "$0 upfront" or "$0 activation" claims.
+ *  · Results-vary disclaimers under the video case studies AND under the
+ *    stats bar. Both are required. Do not remove either.
+ *  · The guarantee links to /guarantee-terms, twice.
+ * The "$4,000 to $10,000 a month" figure is a COMPETITOR price anchor,
+ * not our pricing. It is the only money figure allowed on this page.
+ *
+ * STRUCTURE at the top is a founder directive and is preserved exactly:
+ * headline, subheadline, rating evidence, VSL, then video testimonials.
+ * All CTAs anchor to #book. No page hop.
+ *
+ * COPY: unchanged in substance. Em dashes were replaced with commas and
+ * full stops throughout, per the standing house rule. Nothing else in
+ * the argument, the claims or the disclaimers was touched.
+ *
+ * Chrome is FunnelHeader/FunnelFooter, not DeskNav. A cold paid lander
+ * gets one action. See src/components/desk/FunnelChrome.tsx.
  */
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ChevronRight,
-  ChevronDown,
-  Play,
-  Check,
-  X,
-  ShieldCheck,
-  BadgeDollarSign,
-  RotateCcw,
-  Clock,
-} from "lucide-react";
-import AnimatedSection from "@/components/AnimatedSection";
+import { ArrowRight, ChevronDown, Play, Check, X, Clock } from "lucide-react";
 import HeroTrustBar from "@/components/HeroTrustBar";
-import NovadaLogo from "@/components/NovadaLogo";
+import VideoFacade from "@/components/desk/VideoFacade";
+import { FunnelHeader, FunnelFooter } from "@/components/desk/FunnelChrome";
+import {
+  Band,
+  MICRO,
+  NUM,
+  PAD,
+  WRAP,
+  DISPLAY,
+} from "@/components/desk/Band";
 
-const BOOK_ANCHOR = "#book";
+const BOOK = "#book";
 
-/* Conversion-first button treatments (green = highest attention on dark) */
-const BTN_CTA =
-  "font-supply inline-flex items-center justify-center gap-2 rounded-lg bg-[#0CC481] px-8 py-4 text-base font-semibold uppercase tracking-[0.06em] text-[#04160e] transition-all hover:bg-[#10e094] hover:shadow-[0_0_40px_rgba(12,196,129,0.35)]";
-const BTN_CTA_SM =
-  "font-supply inline-flex items-center justify-center gap-2 rounded-lg bg-[#0CC481] px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.06em] text-[#04160e] transition-colors hover:bg-[#10e094]";
-const GRAD_TEXT =
-  "bg-gradient-to-r from-white to-[#0CC481] bg-clip-text text-transparent";
+const BODY = "text-[15px] leading-relaxed text-[#454E5C] md:text-base";
+const BODY_INK = "text-[15px] leading-relaxed text-white/70 md:text-base";
 
-/* ─── HEADER (minimal — logo + CTA only) ─── */
-function Header() {
-  return (
-    <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
-        <div className="max-container section-padding">
-          <div className="flex items-center justify-between gap-3 h-16 md:h-20">
-            <NovadaLogo variant="light" className="h-9 md:h-12 w-auto flex-shrink-0" />
-            <a href={BOOK_ANCHOR} className={`${BTN_CTA_SM} !px-4 whitespace-nowrap`}>
-              <span className="sm:hidden">Book A Call</span>
-              <span className="hidden sm:inline">Book My Free Call</span>
-              <ChevronRight className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </header>
-      <div className="h-16 md:h-20" />
-    </>
-  );
-}
+const BTN = "inline-flex items-center justify-center gap-2 rounded-[6px] bg-[#003DDB] px-7 py-4 text-[15px] font-semibold text-white transition-colors hover:bg-[#0030AE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
+const BTN_ON_INK = "inline-flex items-center justify-center gap-2 rounded-[6px] bg-white px-7 py-4 text-[15px] font-semibold text-[#0A0D14] transition-colors hover:bg-[#E8ECF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0D14]";
 
-/* ─── HERO (3-second test) ─── */
+/* ══════════════════════════════════════════════════════════════════
+   HERO
+   ══════════════════════════════════════════════════════════════════ */
+
 function Hero() {
   return (
-    <section className="relative pt-10 pb-8 md:pt-16 md:pb-10 overflow-hidden">
-      <div className="absolute inset-x-0 top-0 h-[80vh] bg-[linear-gradient(180deg,#0F1C1C_0%,rgba(8,8,8,0)_100%)] pointer-events-none" />
+    <section className="border-t border-[#E3E6EC] bg-white">
+      <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] pb-12 pt-12 md:pb-16 md:pt-16`}>
+        <div className="mx-auto max-w-[860px] text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className={`${MICRO} text-[#003DDB]`}
+          >
+            Done-for-you client acquisition
+            <span className="mx-2 text-[#C3CAD5]">·</span>
+            For B2B and service businesses
+          </motion.p>
 
-      <div className="relative max-container section-padding text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="font-supply text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-5"
-        >
-          Done-For-You Client Acquisition · For B2B &amp; Service Businesses
-        </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className={`${DISPLAY} mt-6 text-[38px] text-[#0A0D14] sm:text-[54px] md:text-[70px]`}
+          >
+            We book qualified sales meetings onto your calendar.{" "}
+            <span className="text-[#003DDB]">Guaranteed, in writing.</span>
+          </motion.h1>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-[32px] leading-[1.12] sm:text-4xl md:text-6xl font-bold tracking-tight text-balance max-w-4xl mx-auto text-white"
-        >
-          We Book Qualified Sales Meetings Onto Your Calendar.{" "}
-          <span className={GRAD_TEXT}>
-            Guaranteed, In Writing.
-          </span>
-        </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mx-auto mt-7 max-w-[660px] text-[16px] leading-relaxed text-[#39424E] md:text-[19px]"
+          >
+            We make you the name your market trusts, then run done-for-you
+            outreach across every channel that matters.{" "}
+            <span className="font-semibold text-[#0B0E14]">
+              15+ qualified meetings a month, guaranteed in writing.
+            </span>{" "}
+            No lock-in. Cancel any time.
+          </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.25 }}
-          className="mt-5 text-base md:text-xl text-[#EDECE4]/95 max-w-2xl mx-auto leading-relaxed"
-        >
-          We make you the name your market trusts, then run done-for-you
-          outreach across every channel that matters —{" "}
-          <span className="text-white font-semibold">15+ qualified meetings a
-          month, guaranteed in writing</span>. No lock-in. Cancel any time.
-        </motion.p>
+          {/* Rating evidence. Position is a founder directive. */}
+          <HeroTrustBar className="mt-8" tone="light" />
 
-        {/* Trustpilot evidence — mandated position */}
-        <HeroTrustBar className="mt-6" />
-
-        {/* Primary CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-7"
-        >
-          <a href={BOOK_ANCHOR} className={`${BTN_CTA} w-full sm:w-auto`}>
-            Book My Free Strategy Call
-            <ChevronRight className="w-5 h-5" />
-          </a>
-          <p className="mt-4 text-sm md:text-base text-[#EDECE4]/90">
-            A month under 15 meetings?{" "}
-            <span className="text-white font-medium">
-              We keep working at no extra charge until every one is delivered.
-            </span>
-          </p>
-          <p className="font-supply mt-3 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-            30 minutes · No obligation ·{" "}
-            <a
-              href="/guarantee-terms"
-              className="underline decoration-[#EDECE4]/30 underline-offset-2 hover:text-[#EDECE4]/70 transition-colors"
-            >
-              Written guarantee
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-9"
+          >
+            <a href={BOOK} className={`${BTN} w-full sm:w-auto`}>
+              Book my free strategy call
+              <ArrowRight className="h-4 w-4" />
             </a>
-          </p>
-        </motion.div>
 
-        {/* US market price anchor (developer brief Task 5.4) */}
+            <p className="mx-auto mt-6 max-w-[520px] text-[15px] leading-relaxed text-[#39424E]">
+              A month under 15 meetings?{" "}
+              <span className="font-semibold text-[#0B0E14]">
+                We keep working at no extra charge until every one is delivered.
+              </span>
+            </p>
+
+            <p className={`${MICRO} mt-4 text-[#9AA3B1]`}>
+              <span className={NUM}>30</span> minutes
+              <span className="mx-1.5 text-[#C3CAD5]">·</span>
+              No obligation
+              <span className="mx-1.5 text-[#C3CAD5]">·</span>
+              <a
+                href="/guarantee-terms"
+                className="underline decoration-[#C3CAD5] underline-offset-2 transition-colors hover:text-[#003DDB] hover:decoration-[#003DDB]"
+              >
+                Written guarantee
+              </a>
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Competitor price anchor. Not our pricing. */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.55 }}
-          className="mt-8 max-w-2xl mx-auto"
+          className="mx-auto mt-12 max-w-[720px]"
         >
-          <div className="rounded-lg border border-[#EDECE4]/10 bg-white/[0.02] px-6 py-4">
-            <p className="text-sm md:text-base text-[#EDECE4]/90 leading-relaxed">
+          <div className="border-l-2 border-[#003DDB] bg-[#F5F8FF] py-5 pl-6 pr-6">
+            <p className="text-[15px] leading-relaxed text-[#2B3340] md:text-base">
               Most appointment-setting agencies charge{" "}
-              <span className="text-white font-semibold">
-                $4,000–$10,000 a month
-              </span>
-              , lock you into a 3–6 month contract, and guarantee nothing. We
-              put 15+ qualified meetings a month in writing, with no per-meeting
-              fees and no lock-in — cancel any time.
+              <span className={`${NUM} font-semibold text-[#0B0E14]`}>
+                $4,000 to $10,000
+              </span>{" "}
+              a month, lock you into a three to six month contract, and
+              guarantee nothing. We put 15+ qualified meetings a month in
+              writing, with no per-meeting fees and no lock-in. Cancel any time.
             </p>
           </div>
         </motion.div>
@@ -178,523 +191,416 @@ function Hero() {
   );
 }
 
-/* ─── VSL — mandated after headline / subheadline / Trustpilot ─── */
+/* ══════════════════════════════════════════════════════════════════
+   VSL. Position is a founder directive: straight after the hero.
+   ══════════════════════════════════════════════════════════════════ */
+
 function VSL() {
   return (
-    <section className="section-padding pt-2 pb-14 md:pb-20">
-      <div className="max-container max-w-3xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <div className="flex items-center justify-center gap-2 mb-3 text-sm text-[#EDECE4]/80">
-            <Play className="w-3.5 h-3.5 text-[#0CC481]" />
-            <span>Watch the 2-minute overview</span>
+    <section className="border-t border-[#E3E6EC] bg-[#F7F8FA]">
+      <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] py-12 md:py-16`}>
+        <div className="mx-auto max-w-[860px]">
+          <div className="mb-4 flex items-center justify-center gap-2">
+            <Play className="h-3.5 w-3.5 text-[#003DDB]" fill="currentColor" />
+            <p className={`${MICRO} text-[#0B0E14]`}>
+              Watch the <span className={NUM}>2</span> minute overview
+            </p>
           </div>
-          <div
-            className="relative rounded-xl overflow-hidden border border-[#0CC481]/25 shadow-[0_0_60px_rgba(12,196,129,0.12)]"
-            style={{ paddingBottom: "56.25%" }}
-          >
-            <iframe
-              src="https://www.youtube.com/embed/_fVB00BpPpI?autoplay=1&mute=1&rel=0"
+
+          <div className="relative aspect-video w-full overflow-hidden rounded-[10px] border border-[#E3E6EC] bg-[#0A0D14]">
+            <VideoFacade
+              id="_fVB00BpPpI"
               title="How we book qualified sales meetings for your business"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+              tone="dark"
             />
           </div>
-          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-[#EDECE4]/50">
-            <span>Presented by <span className="text-[#EDECE4]/70">Ade</span> — Founder, Novada Tech</span>
-          </div>
-        </motion.div>
+
+          <p className={`${MICRO} mt-4 text-center text-[#9AA3B1]`}>
+            Presented by <span className="text-[#0B0E14]">Ade</span>, founder,
+            Novada Tech
+          </p>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ─── VIDEO CASE STUDIES — mandated after VSL ─── */
+/* ══════════════════════════════════════════════════════════════════
+   01 · CLIENT RESULTS. Position is a founder directive: after the VSL.
+   ══════════════════════════════════════════════════════════════════ */
+
 const CASE_VIDEOS = [
   {
     id: "CBL83P7OYgI",
-    metric: "3 High-Value Clients In 30 Days",
-    who: "Nicola — Founder, Morasco Media Services",
+    metric: "3 high-value clients in 30 days",
+    who: "Nicola, founder, Morasco Media Services",
   },
   {
     id: "upgMW2nwwpk",
-    metric: "$20K → $100K+ Monthly Revenue",
-    who: "Tony — Founder, South Line Media",
+    metric: "$20K to $100K+ monthly revenue",
+    who: "Tony, founder, South Line Media",
   },
   {
     id: "G44OKPVh3Uk",
-    metric: "10× Revenue In 30 Days",
-    who: "Michael — Founder, Aaronson Investigations",
+    metric: "10x revenue in 30 days",
+    who: "Michael, founder, Aaronson Investigations",
   },
   {
     id: "Ef4YTXOnCP0",
-    metric: "1–2 Calls A Week → 30–60 A Month",
-    who: "Jeff — Founder, Vertical Axis",
+    metric: "1 to 2 calls a week became 30 to 60 a month",
+    who: "Jeff, founder, Vertical Axis",
   },
 ];
 
-/* Thumbnail facade (developer brief Task 5.5): the real YouTube iframe —
-   with its ~1MB of player scripts — is only injected when the visitor
-   clicks play. Poster comes straight off YouTube's image CDN. */
-function VideoFacade({ id, title }: { id: string; title: string }) {
-  const [playing, setPlaying] = useState(false);
-
-  if (playing) {
-    return (
-      <iframe
-        src={`https://www.youtube.com/embed/${id}?rel=0&autoplay=1`}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="absolute inset-0 w-full h-full"
-        style={{ border: "none" }}
-      />
-    );
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={() => setPlaying(true)}
-      aria-label={`Play video: ${title}`}
-      className="group absolute inset-0 w-full h-full cursor-pointer"
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
-        alt={title}
-        loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      <span className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
-      <span className="absolute inset-0 flex items-center justify-center">
-        <span className="flex items-center justify-center w-16 h-16 rounded-full bg-[#0CC481] shadow-[0_0_40px_rgba(12,196,129,0.45)] group-hover:scale-110 transition-transform">
-          <Play className="w-7 h-7 text-[#04160e] ml-1" fill="currentColor" />
-        </span>
-      </span>
-    </button>
-  );
-}
-
 function VideoCaseStudies() {
   return (
-    <section className="section-padding pb-16 md:pb-24">
-      <div className="max-container max-w-5xl">
-        <AnimatedSection className="text-center mb-10">
-          <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            Real Clients · Real Results · In Their Own Words
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
-            Don&apos;t take our word for it.{" "}
-            <span className={GRAD_TEXT}>Hear it from them.</span>
-          </h2>
-        </AnimatedSection>
+    <Band index="01" label="Client results">
+      <p className={`${DISPLAY} max-w-[20ch] text-[30px] text-[#0A0D14] sm:text-[38px] md:text-[46px]`}>
+        Do not take our word for it. Hear it from them.
+      </p>
 
-        <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
-          {CASE_VIDEOS.map((c, i) => (
-            <AnimatedSection key={c.id} delay={(i % 2) * 0.08}>
-              <div className="rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808] overflow-hidden">
-                <div className="relative w-full aspect-video bg-black">
-                  <VideoFacade id={c.id} title={c.metric} />
-                </div>
-                <div className="p-5">
-                  <p className="text-lg md:text-xl font-normal text-white leading-snug">
-                    {c.metric}
-                  </p>
-                  <p className="font-supply mt-1.5 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/45">
-                    {c.who}
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        {/* Results disclaimer (developer brief Task 5.2 — Google Unreliable
-            Claims policy: testimonials citing specific results need a
-            visible results-vary disclaimer) */}
-        <AnimatedSection delay={0.15}>
-          <p className="mt-6 text-center text-xs text-[#EDECE4]/60 leading-relaxed max-w-xl mx-auto">
-            Results shown are individual client outcomes and are not typical.
-            Your results will vary and are not guaranteed.
-          </p>
-        </AnimatedSection>
-
-        <AnimatedSection delay={0.2} className="text-center mt-8">
-          <a href={BOOK_ANCHOR} className={`${BTN_CTA} w-full sm:w-auto`}>
-            I Want Results Like These
-            <ChevronRight className="w-5 h-5" />
-          </a>
-        </AnimatedSection>
+      <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        {CASE_VIDEOS.map((c) => (
+          <article
+            key={c.id}
+            className="overflow-hidden rounded-[10px] border border-[#E3E6EC] bg-white"
+          >
+            <div className="relative aspect-video w-full bg-[#0A0D14]">
+              <VideoFacade id={c.id} title={c.metric} tone="dark" />
+            </div>
+            <div className="p-6">
+              <p className="text-[17px] font-semibold leading-snug tracking-tight text-[#0B0E14] md:text-[19px]">
+                {c.metric}
+              </p>
+              <p className={`${MICRO} mt-3 text-[#9AA3B1]`}>{c.who}</p>
+            </div>
+          </article>
+        ))}
       </div>
-    </section>
+
+      {/* Required disclaimer. Google Unreliable Claims policy. */}
+      <p className="mt-6 max-w-[640px] text-[13px] leading-relaxed text-[#5B6472]">
+        Results shown are individual client outcomes and are not typical. Your
+        results will vary and are not guaranteed.
+      </p>
+
+      <div className="mt-9">
+        <a href={BOOK} className={`${BTN} w-full sm:w-auto`}>
+          I want results like these
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
+    </Band>
   );
 }
 
-/* ─── BURNED BEFORE (empathy + agitation) ─── */
+/* ══════════════════════════════════════════════════════════════════
+   02 · BEEN BURNED BEFORE
+   ══════════════════════════════════════════════════════════════════ */
+
 function BurnedBefore() {
   const oldWay = [
-    "Paid a retainer for months — got reports, not revenue",
-    "Promised \"leads\" that were never going to buy",
+    "Paid a retainer for months and got reports, not revenue",
+    "Promised leads that were never going to buy",
     "Locked into a contract while nothing changed",
-    "Left doing the follow-up and chasing yourself",
+    "Left doing the follow-up and the chasing yourself",
+  ];
+  const ourWay = [
+    "Trust engineered first, so buyers arrive already convinced, not cold",
+    "15+ qualified meetings a month, guaranteed in writing",
+    "Fall short and we keep working at no extra charge until it is delivered",
+    "No lock-in, ever. We re-earn your business every month",
   ];
 
   return (
-    <section className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/10">
-      <div className="max-container max-w-4xl">
-        <AnimatedSection className="text-center mb-10">
-          <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            Been Burned By An Agency Before?
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
-            You paid first. They promised. Nothing landed on your calendar.{" "}
-            <span className={GRAD_TEXT}>We built the opposite model.</span>
-          </h2>
-        </AnimatedSection>
+    <Band index="02" label="Been burned before" tone="tint">
+      <p className={`${DISPLAY} max-w-[22ch] text-[30px] text-[#0A0D14] sm:text-[38px] md:text-[46px]`}>
+        You paid first. They promised. Nothing landed on your calendar.
+      </p>
 
-        <div className="grid md:grid-cols-2 gap-6 items-stretch">
-          <AnimatedSection>
-            <div className="rounded-xl border border-[#EDECE4]/[0.08] p-7 h-full">
-              <p className="font-supply text-[11px] uppercase tracking-[0.15em] text-[#EDECE4]/40 mb-5">
-                How most agencies work
-              </p>
-              <div className="space-y-4">
-                {oldWay.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <X className="w-5 h-5 text-red-400/60 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <p className="text-base text-[#EDECE4]/90 leading-relaxed">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.1}>
-            <div className="rounded-xl border border-[#0CC481]/30 bg-gradient-to-br from-[#0CC481]/[0.06] to-transparent p-7 h-full">
-              <p className="font-supply text-[11px] uppercase tracking-[0.15em] text-[#0CC481] mb-5">
-                How we work
-              </p>
-              <div className="space-y-4">
-                {[
-                  "Trust engineered first — buyers arrive already convinced, not cold",
-                  "15+ qualified meetings a month, guaranteed in writing",
-                  "Fall short? We keep working at no extra charge until it's delivered",
-                  "No lock-in, ever — we re-earn your business every month",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <p className="text-base text-[#EDECE4] leading-relaxed">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
+      <div className="mt-10 grid gap-px overflow-hidden rounded-[10px] border border-[#E3E6EC] bg-[#E3E6EC] md:grid-cols-2">
+        <div className="bg-white p-7">
+          <p className={`${MICRO} text-[#9AA3B1]`}>How most agencies work</p>
+          <ul className="mt-6 space-y-4">
+            {oldWay.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <X
+                  className="mt-0.5 h-[18px] w-[18px] flex-shrink-0 text-[#B4501A]"
+                  strokeWidth={2}
+                />
+                <span className={BODY}>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <AnimatedSection delay={0.15} className="text-center mt-8">
-          <p className="text-lg md:text-xl text-[#EDECE4]/95 max-w-2xl mx-auto leading-relaxed">
-            If we fall short, the cost falls on us — 15+ qualified meetings a
-            month is{" "}
-            <span className="text-white">guaranteed, in writing,</span>{" "}
-            and we keep working at no extra charge until it&apos;s met. Our
-            incentive and yours point in exactly the same direction — from
-            day one.
-          </p>
-        </AnimatedSection>
+        <div className="bg-white p-7">
+          <p className={`${MICRO} text-[#003DDB]`}>How we work</p>
+          <ul className="mt-6 space-y-4">
+            {ourWay.map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <span className="mt-[3px] flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-full bg-[#003DDB]">
+                  <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                </span>
+                <span className="text-[15px] leading-relaxed text-[#0B0E14] md:text-base">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </section>
+
+      <p className="mt-8 max-w-[680px] text-[17px] leading-relaxed text-[#39424E] md:text-[19px]">
+        If we fall short, the cost falls on us. 15+ qualified meetings a month
+        is{" "}
+        <span className="font-semibold text-[#0B0E14]">
+          guaranteed, in writing,
+        </span>{" "}
+        and we keep working at no extra charge until it is met. Our incentive
+        and yours point in exactly the same direction, from day one.
+      </p>
+    </Band>
   );
 }
 
-/* ─── FOUNDER NOTE (accountability — the PPQL pattern for burned buyers) ─── */
+/* ══════════════════════════════════════════════════════════════════
+   FOUNDER NOTE. Ink: one quiet moment between two argument sections.
+   ══════════════════════════════════════════════════════════════════ */
+
 function FounderNote() {
   return (
-    <section className="section-padding py-14 md:py-20">
-      <div className="max-container max-w-2xl">
-        <AnimatedSection>
-          <div className="border-l-2 border-[#0CC481] pl-6 md:pl-8">
-            <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-              A Note From The Founder
-            </p>
-            <p className="text-lg md:text-xl text-[#EDECE4] leading-relaxed">
-              &ldquo;We don&apos;t take on every business, and we won&apos;t
-              pretend we&apos;re the right fit for everyone. But when we do
-              partner, the risk sits with us — the meetings are guaranteed in
-              writing, there&apos;s no lock-in of any kind, and we re-earn
-              your business every single month. That&apos;s the standard we
-              hold ourselves to.&rdquo;
-            </p>
-            <p className="mt-5 text-base text-white">Ade Eni</p>
-            <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40 mt-1">
-              Founder &amp; CEO, Novada Tech
+    <section className="border-t border-white/10 bg-[#0A0D14]">
+      <div className={`${WRAP} ${PAD} border-x border-white/10 py-14 md:py-20`}>
+        <div className="max-w-[760px]">
+          <p className={`${MICRO} text-white/50`}>A note from the founder</p>
+          <blockquote className="mt-6 text-[19px] leading-[1.6] text-white md:text-[24px]">
+            &ldquo;We do not take on every business, and we will not pretend we
+            are the right fit for everyone. But when we do partner, the risk
+            sits with us. The meetings are guaranteed in writing, there is no
+            lock-in of any kind, and we re-earn your business every single
+            month. That is the standard we hold ourselves to.&rdquo;
+          </blockquote>
+          <div className="mt-7 border-t border-white/10 pt-5">
+            <p className="text-[15px] font-semibold text-white">Ade Eni</p>
+            <p className={`${MICRO} mt-1.5 text-white/45`}>
+              Founder and CEO, Novada Tech
             </p>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ─── RISK REVERSAL (the commercial model, unmissable) ─── */
+/* ══════════════════════════════════════════════════════════════════
+   03 · THE GUARANTEE
+   ══════════════════════════════════════════════════════════════════ */
+
 function RiskReversal() {
   const cards = [
     {
-      icon: ShieldCheck,
-      title: "Guaranteed In Writing",
-      desc: "A written minimum of 15 qualified meetings every month — in your service agreement, not a marketing line.",
+      k: "15",
+      title: "Guaranteed in writing",
+      desc: "A written minimum of 15 qualified meetings every month, in your service agreement, not a marketing line.",
     },
     {
-      icon: RotateCcw,
-      title: "Fall Short? We Fix It Free",
-      desc: "If a month comes in under 15, we keep working at no extra charge until every meeting is delivered. A slow month costs us — not you.",
+      k: "0",
+      title: "Extra charge if we fall short",
+      desc: "If a month comes in under 15, we keep working at no extra charge until every meeting is delivered. A slow month costs us, not you.",
     },
     {
-      icon: BadgeDollarSign,
-      title: "No Lock-In, Ever",
-      desc: "Month to month. No minimum term, no exit fee. We re-earn your business every month — if the engine isn't producing, you walk.",
+      k: "0",
+      title: "Lock-in, ever",
+      desc: "Month to month. No minimum term, no exit fee. We re-earn your business every month. If the engine is not producing, you walk.",
     },
   ];
 
   return (
-    <section className="section-padding py-16 md:py-24">
-      <div className="max-container max-w-5xl">
-        <AnimatedSection className="text-center mb-12">
-          <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            Guaranteed In Writing · No Lock-In · Cancel Any Time
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
-            15+ qualified meetings a month —{" "}
-            <span className={GRAD_TEXT}>
-              written into your agreement, not a marketing line.
-            </span>
-          </h2>
-        </AnimatedSection>
+    <Band index="03" label="The guarantee">
+      <p className={`${DISPLAY} max-w-[20ch] text-[30px] text-[#0A0D14] sm:text-[38px] md:text-[46px]`}>
+        Written into your agreement, not a marketing line
+      </p>
 
-        <div className="grid md:grid-cols-3 gap-5">
-          {cards.map((c, i) => (
-            <AnimatedSection key={i} delay={i * 0.08}>
-              <div className="rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808] p-7 h-full text-center">
-                <c.icon className="w-8 h-8 text-[#0CC481] mx-auto mb-4" strokeWidth={1.3} />
-                <h3 className="text-lg font-normal text-white mb-2">{c.title}</h3>
-                <p className="text-sm text-[#EDECE4]/85 leading-relaxed">{c.desc}</p>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-
-        <AnimatedSection delay={0.2} className="text-center mt-10">
-          <a href={BOOK_ANCHOR} className={`${BTN_CTA} w-full sm:w-auto`}>
-            Book My Free Strategy Call
-            <ChevronRight className="w-5 h-5" />
-          </a>
-          <p className="font-supply mt-4 text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-            We&apos;ll define what a qualified meeting means for your business on the call — before you commit to anything
-          </p>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-}
-
-/* ─── THE MECHANISM (why this works when agencies failed) ─── */
-function Mechanism() {
-  return (
-    <section className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/10">
-      <div className="max-container max-w-4xl">
-        <AnimatedSection className="text-center mb-12">
-          <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            Why This Works When Cold Outreach Doesn&apos;t
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
-            First we make your market trust you.{" "}
-            <span className={GRAD_TEXT}>Then we start the conversations.</span>
-          </h2>
-          <p className="mt-4 text-base md:text-lg text-[#EDECE4]/90 max-w-2xl mx-auto leading-relaxed">
-            Most outreach fails because prospects look you up, see nothing
-            that says expert, and archive you. Our system fixes both sides —
-            trust and reach — so replies turn into booked, qualified meetings.
-          </p>
-        </AnimatedSection>
-
-        <div className="space-y-5">
-          <AnimatedSection>
-            <div className="rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808] p-7 md:p-9 flex flex-col md:flex-row gap-5 md:items-center">
-              <span className="font-poppins italic font-extralight text-6xl md:text-7xl leading-none bg-gradient-to-b from-[#12513c] to-[#0CC481] bg-clip-text text-transparent select-none flex-shrink-0 px-2">
-                1
-              </span>
-              <div>
-                <h3 className="text-xl md:text-2xl font-normal text-white mb-2">
-                  Trust Engineering&trade;
-                </h3>
-                <p className="text-base text-[#EDECE4]/90 leading-relaxed">
-                  We position you as the recognised authority in your niche —
-                  a rewritten profile, an authority-video content engine and
-                  credibility assets — so when a decision-maker looks you up,
-                  the answer to &ldquo;can I trust them?&rdquo; is already yes.
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.1}>
-            <div className="rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808] p-7 md:p-9 flex flex-col md:flex-row gap-5 md:items-center">
-              <span className="font-poppins italic font-extralight text-6xl md:text-7xl leading-none bg-gradient-to-b from-[#12513c] to-[#0CC481] bg-clip-text text-transparent select-none flex-shrink-0 px-2">
-                2
-              </span>
-              <div>
-                <h3 className="text-xl md:text-2xl font-normal text-white mb-2">
-                  The Outbound Growth System
-                </h3>
-                <p className="text-base text-[#EDECE4]/90 leading-relaxed">
-                  Our dedicated SDR team runs daily, done-for-you outreach
-                  across every channel that matters — social, email, SMS and
-                  phone — with every enquiry answered in minutes, 24/7. Leads
-                  are qualified against your exact criteria and booked straight
-                  onto your calendar.
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-
-        <AnimatedSection delay={0.15} className="mt-8 text-center">
-          <div className="inline-flex items-center gap-3 rounded-lg border border-[#EDECE4]/10 px-5 py-3">
-            <Clock className="w-4 h-4 text-[#0CC481]" />
-            <span className="text-sm text-[#EDECE4]/95">
-              Your total time investment: <span className="text-white">under 30 minutes a week.</span> We handle the rest.
-            </span>
+      <div className="mt-10 grid gap-px overflow-hidden rounded-[10px] border border-[#E3E6EC] bg-[#E3E6EC] md:grid-cols-3">
+        {cards.map((c) => (
+          <div key={c.title} className="bg-white p-7">
+            <p className={`${NUM} ${DISPLAY} text-[52px] text-[#003DDB] md:text-[60px]`}>
+              {c.k}
+            </p>
+            <p className="mt-4 text-[17px] font-semibold tracking-tight text-[#0B0E14]">
+              {c.title}
+            </p>
+            <p className={`${BODY} mt-2.5`}>{c.desc}</p>
           </div>
-        </AnimatedSection>
+        ))}
       </div>
-    </section>
+
+      <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+        <a href={BOOK} className={`${BTN} w-full sm:w-auto`}>
+          Book my free strategy call
+          <ArrowRight className="h-4 w-4" />
+        </a>
+        <a
+          href="/guarantee-terms"
+          className={`${MICRO} text-[#5B6472] underline decoration-[#C3CAD5] underline-offset-4 transition-colors hover:text-[#003DDB] hover:decoration-[#003DDB]`}
+        >
+          Read the full guarantee terms
+        </a>
+      </div>
+
+      <p className={`${MICRO} mt-5 text-[#9AA3B1]`}>
+        We define what a qualified meeting means for your business on the call,
+        before you commit to anything
+      </p>
+    </Band>
   );
 }
 
-/* ─── HOW IT WORKS / TIMELINE ─── */
+/* ══════════════════════════════════════════════════════════════════
+   04 · THE MECHANISM
+   ══════════════════════════════════════════════════════════════════ */
+
+function Mechanism() {
+  const parts = [
+    {
+      n: "01",
+      title: "Trust Engineering™",
+      desc: "We position you as the recognised authority in your niche. A rewritten profile, an authority-video content engine and credibility assets, so when a decision-maker looks you up, the answer to “can I trust them?” is already yes.",
+    },
+    {
+      n: "02",
+      title: "The Outbound Growth System",
+      desc: "Our dedicated SDR team runs daily, done-for-you outreach across every channel that matters: social, email, SMS and phone, with every enquiry answered in minutes, 24/7. Leads are qualified against your exact criteria and booked straight onto your calendar.",
+    },
+  ];
+
+  return (
+    <Band index="04" label="The mechanism" tone="tint">
+      <p className={`${DISPLAY} max-w-[20ch] text-[30px] text-[#0A0D14] sm:text-[38px] md:text-[46px]`}>
+        First we make your market trust you. Then we start the conversations.
+      </p>
+
+      <p className={`${BODY} mt-6 max-w-[660px]`}>
+        Most outreach fails because prospects look you up, see nothing that says
+        expert, and archive you. Our system fixes both sides, trust and reach,
+        so replies turn into booked, qualified meetings.
+      </p>
+
+      <div className="mt-10 divide-y divide-[#E3E6EC] border-y border-[#E3E6EC]">
+        {parts.map((p) => (
+          <div
+            key={p.n}
+            className="grid gap-4 py-8 sm:grid-cols-[80px_minmax(0,1fr)] sm:gap-8"
+          >
+            <p className={`${NUM} ${DISPLAY} text-[40px] leading-none text-[#C3CFE6]`}>
+              {p.n}
+            </p>
+            <div>
+              <p className="text-[19px] font-semibold tracking-tight text-[#0B0E14] md:text-[21px]">
+                {p.title}
+              </p>
+              <p className={`${BODY} mt-3 max-w-[620px]`}>{p.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-8 inline-flex items-center gap-3 rounded-[6px] border border-[#D3D8E2] bg-white px-5 py-3.5">
+        <Clock className="h-4 w-4 flex-shrink-0 text-[#003DDB]" />
+        <span className="text-[14px] text-[#39424E] md:text-[15px]">
+          Your total time investment:{" "}
+          <span className="font-semibold text-[#0B0E14]">
+            under <span className={NUM}>30</span> minutes a week.
+          </span>{" "}
+          We handle the rest.
+        </span>
+      </div>
+    </Band>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   05 · HOW IT WORKS
+   ══════════════════════════════════════════════════════════════════ */
+
 function Timeline() {
   const steps = [
     {
-      period: "Step 1 · Your Free Call",
+      period: "Your free call",
       title: "We define a meeting worth your time.",
-      desc: "Industry, seniority, company size, your disqualifiers — we agree the exact profile of a qualified meeting, and walk you through the written guarantee. No pressure, no obligation.",
+      desc: "Industry, seniority, company size, your disqualifiers. We agree the exact profile of a qualified meeting, and walk you through the written guarantee. No pressure, no obligation.",
     },
     {
-      period: "Step 2 · We Build & Launch",
+      period: "We build and launch",
       title: "The system switches on.",
-      desc: "Positioning, authority content and outreach sequences are built and launched by our team. You spend about an hour with us in onboarding — we do the rest.",
+      desc: "Positioning, authority content and outreach sequences are built and launched by our team. You spend about an hour with us in onboarding. We do the rest.",
     },
     {
-      period: "Step 3 · Meetings Land",
+      period: "Meetings land",
       title: "Qualified meetings hit your calendar.",
-      desc: "First qualified meetings typically land inside your first month — then we optimise targeting and messaging, scaling to your guaranteed 15+ every month.",
+      desc: "First qualified meetings typically land inside your first month. Then we optimise targeting and messaging, scaling to your guaranteed 15+ every month.",
     },
   ];
 
   return (
-    <section className="section-padding py-16 md:py-24">
-      <div className="max-container max-w-5xl">
-        <AnimatedSection className="text-center mb-12">
-          <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            How It Works
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white text-balance">
-            From this page to a calendar{" "}
-            <span className={GRAD_TEXT}>that fills itself.</span>
-          </h2>
-        </AnimatedSection>
+    <Band index="05" label="How it works">
+      <p className={`${DISPLAY} max-w-[18ch] text-[30px] text-[#0A0D14] sm:text-[38px] md:text-[46px]`}>
+        From this page to a calendar that fills itself
+      </p>
 
-        <div className="relative">
-          <div className="hidden md:block absolute top-6 left-[16.67%] right-[16.67%] border-t border-dashed border-[#EDECE4]/15" />
-          <div className="grid md:grid-cols-3 gap-y-10 md:gap-x-6">
-            {steps.map((s, i) => (
-              <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="relative text-center px-4">
-                  <div className="relative z-10 mx-auto w-12 h-12 rounded-full border border-[#0CC481]/60 bg-[#080808] flex items-center justify-center mb-5">
-                    <span className="font-supply text-[#0CC481] text-sm">{i + 1}</span>
-                  </div>
-                  <p className="font-supply text-[10px] uppercase tracking-[0.18em] text-[#EDECE4]/45 mb-2">
-                    {s.period}
-                  </p>
-                  <h3 className="text-lg md:text-xl font-normal text-white mb-3">{s.title}</h3>
-                  <p className="text-sm md:text-base text-[#EDECE4]/80 leading-relaxed max-w-[300px] mx-auto">
-                    {s.desc}
-                  </p>
-                </div>
-              </AnimatedSection>
-            ))}
+      <div className="mt-10 grid gap-px overflow-hidden rounded-[10px] border border-[#E3E6EC] bg-[#E3E6EC] md:grid-cols-3">
+        {steps.map((s, i) => (
+          <div key={s.period} className="bg-white p-7">
+            <div className="flex items-center gap-3">
+              <span
+                className={`${NUM} ${MICRO} flex h-7 w-7 items-center justify-center rounded-full border border-[#003DDB] text-[#003DDB]`}
+              >
+                {i + 1}
+              </span>
+              <p className={`${MICRO} text-[#9AA3B1]`}>{s.period}</p>
+            </div>
+            <p className="mt-5 text-[17px] font-semibold leading-snug tracking-tight text-[#0B0E14] md:text-[19px]">
+              {s.title}
+            </p>
+            <p className={`${BODY} mt-3`}>{s.desc}</p>
           </div>
-        </div>
-
-        <AnimatedSection delay={0.2} className="text-center mt-12">
-          <a href={BOOK_ANCHOR} className={`${BTN_CTA} w-full sm:w-auto`}>
-            Start With A Free Call
-            <ChevronRight className="w-5 h-5" />
-          </a>
-        </AnimatedSection>
+        ))}
       </div>
-    </section>
+
+      <div className="mt-9">
+        <a href={BOOK} className={`${BTN} w-full sm:w-auto`}>
+          Start with a free call
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
+    </Band>
   );
 }
 
-/* ─── STATS ─── */
-function Stats() {
+/* ══════════════════════════════════════════════════════════════════
+   06 · IN THEIR WORDS  (stats + written testimonials)
+   ══════════════════════════════════════════════════════════════════ */
+
+function Proof() {
   const stats = [
-    { num: "350+", label: "Businesses Scaled" },
-    { num: "$45.7M+", label: "Client Revenue Generated" },
-    { num: "30+", label: "Industries Served" },
-    { num: "4.9★", label: "77+ Independent Reviews" },
+    { num: "350+", label: "Businesses scaled" },
+    { num: "$45.7M+", label: "Client revenue generated" },
+    { num: "30+", label: "Industries served" },
+    { num: "4.9", label: "From 77+ independent reviews" },
   ];
 
-  return (
-    <section className="section-padding py-14 md:py-20 border-t border-b border-[#EDECE4]/10">
-      <div className="max-container max-w-5xl">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 text-center">
-          {stats.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-            >
-              <p className="text-3xl md:text-5xl font-normal text-white tracking-tight leading-none">
-                {s.num}
-              </p>
-              <p className="font-supply mt-3 text-[10px] md:text-xs uppercase tracking-[0.18em] text-[#EDECE4]/40">
-                {s.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Results disclaimer (developer brief Task 5.2) */}
-        <p className="mt-10 text-center text-xs text-[#EDECE4]/60 leading-relaxed max-w-xl mx-auto">
-          Results shown are individual client outcomes and are not typical.
-          Your results will vary and are not guaranteed.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ─── WRITTEN TESTIMONIALS ─── */
-function WrittenTestimonials() {
   const quotes = [
     {
       quote:
-        "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time — we could forecast and hire with confidence.",
+        "We went from $42K to $91K monthly in under 60 days. The pipeline became predictable for the first time, we could forecast and hire with confidence.",
       name: "Jeff",
       role: "Founder, Vertical Axis",
       avatar: "/testimonials/jeff-verticalaccess.jpg",
     },
     {
       quote:
-        "We'd been burned by two agencies before. This was different — it was a system, not a service. 4 new retainer clients in the first 45 days.",
+        "We'd been burned by two agencies before. This was different, it was a system, not a service. 4 new retainer clients in the first 45 days.",
       name: "Nicola",
       role: "Founder, Morasco Media",
       avatar: "/testimonials/nicola-morasco.jpg",
@@ -702,57 +608,114 @@ function WrittenTestimonials() {
   ];
 
   return (
-    <section className="section-padding py-16 md:py-24">
-      <div className="max-container max-w-4xl">
-        <div className="grid md:grid-cols-2 gap-6">
-          {quotes.map((t, i) => (
-            <AnimatedSection key={i} delay={i * 0.1}>
-              <figure className="rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808] p-7 h-full flex flex-col">
-                <div className="text-[#0CC481] text-sm tracking-widest mb-4">★★★★★</div>
-                <blockquote className="text-base md:text-lg text-[#EDECE4] leading-relaxed flex-1">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="w-11 h-11 rounded-full object-cover flex-shrink-0"
-                    loading="lazy"
-                  />
-                  <div>
-                    <p className="text-sm text-white">{t.name}</p>
-                    <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">{t.role}</p>
-                  </div>
-                </figcaption>
-              </figure>
-            </AnimatedSection>
-          ))}
-        </div>
+    <Band index="06" label="In their words" tone="dark">
+      <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map((s) => (
+          <div key={s.label}>
+            <p className={`${NUM} ${DISPLAY} text-[40px] text-white md:text-[52px]`}>
+              {s.num}
+            </p>
+            <p className={`${MICRO} mt-3 text-white/45`}>{s.label}</p>
+          </div>
+        ))}
       </div>
-    </section>
+
+      {/* Required disclaimer. Google Unreliable Claims policy. */}
+      <p className="mt-8 max-w-[640px] text-[13px] leading-relaxed text-white/45">
+        Results shown are individual client outcomes and are not typical. Your
+        results will vary and are not guaranteed.
+      </p>
+
+      <div className="mt-12 grid gap-6 md:grid-cols-2">
+        {quotes.map((t) => (
+          <figure
+            key={t.name}
+            className="flex flex-col rounded-[10px] border border-white/10 bg-white/[0.03] p-7"
+          >
+            <blockquote className={`${BODY_INK} flex-1 text-white/85`}>
+              &ldquo;{t.quote}&rdquo;
+            </blockquote>
+            <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={t.avatar}
+                alt=""
+                className="h-10 w-10 flex-shrink-0 rounded-full object-cover"
+                loading="lazy"
+              />
+              <div>
+                <p className="text-[14px] font-semibold text-white">{t.name}</p>
+                <p className={`${MICRO} mt-0.5 text-white/45`}>{t.role}</p>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </Band>
   );
 }
 
-/* ─── FAQ ─── */
+/* ══════════════════════════════════════════════════════════════════
+   07 · QUESTIONS
+   ══════════════════════════════════════════════════════════════════ */
+
+function FAQItem({
+  question,
+  answer,
+}: {
+  question: string;
+  answer: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-[#E3E6EC]">
+      <button
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        className="group flex w-full items-center justify-between gap-4 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
+      >
+        <span className="text-[16px] font-medium text-[#0B0E14] transition-colors group-hover:text-[#003DDB] md:text-[17px]">
+          {question}
+        </span>
+        <ChevronDown
+          className={`h-5 w-5 flex-shrink-0 text-[#9AA3B1] transition-transform duration-300 ${
+            open ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.28, ease: "easeInOut" }}
+        className="overflow-hidden"
+      >
+        <p className={`${BODY} max-w-[720px] pb-6`}>{answer}</p>
+      </motion.div>
+    </div>
+  );
+}
+
 function FAQ() {
+  const LINK =
+    "text-[#003DDB] underline decoration-[#003DDB]/30 underline-offset-[3px] transition-colors hover:decoration-[#003DDB]";
+
   const faqs = [
     {
-      q: "What counts as a \"qualified meeting\"?",
-      a: "A booked appointment with a decision-maker who matches the criteria we agree with you at onboarding — industry, seniority, company size, and your own disqualifiers. Every conversation we start is aimed at that definition, and it's agreed before anything launches — not invented after the fact.",
+      q: "What counts as a qualified meeting?",
+      a: "A booked appointment with a decision-maker who matches the criteria we agree with you at onboarding: industry, seniority, company size, and your own disqualifiers. Every conversation we start is aimed at that definition, and it is agreed before anything launches, not invented after the fact.",
     },
     {
       q: "What does it cost?",
       a: (
         <>
-          The investment is simple, flat and transparent — no per-meeting fees,
-          no lock-in — and we walk you through it in full on your strategy
-          call, before you commit to anything. What we can tell you here: 15+
-          qualified meetings a month is guaranteed in writing, and if a month
-          falls short we keep working at no extra charge until every meeting is
-          delivered. See our{" "}
-          <a href="/guarantee-terms" className="text-[#0CC481] underline underline-offset-2">
-            Guarantee &amp; Terms
+          The investment is simple, flat and transparent, with no per-meeting
+          fees and no lock-in, and we walk you through it in full on your
+          strategy call, before you commit to anything. What we can tell you
+          here: 15+ qualified meetings a month is guaranteed in writing, and if
+          a month falls short we keep working at no extra charge until every
+          meeting is delivered. See our{" "}
+          <a href="/guarantee-terms" className={LINK}>
+            Guarantee and Terms
           </a>
           .
         </>
@@ -762,106 +725,77 @@ function FAQ() {
       q: "Is the 15+ meetings a month actually guaranteed?",
       a: (
         <>
-          Yes — a written minimum of 15 qualified meetings every month, in your
-          service agreement, not a marketing line. If a month comes in under
-          15, we keep working at no extra charge until all 15 are delivered —
-          a slow month costs us, not you. And meetings keep coming beyond 15 at
-          no extra cost. See our{" "}
-          <a href="/guarantee-terms" className="text-[#0CC481] underline underline-offset-2">
-            Guarantee &amp; Terms
+          Yes. A written minimum of 15 qualified meetings every month, in your
+          service agreement, not a marketing line. If a month comes in under 15,
+          we keep working at no extra charge until all 15 are delivered. A slow
+          month costs us, not you. And meetings keep coming beyond 15 at no
+          extra cost. See our{" "}
+          <a href="/guarantee-terms" className={LINK}>
+            Guarantee and Terms
           </a>{" "}
           page for exactly what it covers.
         </>
       ),
     },
     {
-      q: "What happens if a meeting cancels or doesn't hold?",
-      a: "Our team handles it — rescheduling, rebooking and keeping the pipeline moving. A rescheduled meeting is the same single meeting, never counted twice, and because there are no per-meeting fees, a cancellation never costs you anything extra. How cancellations are treated against the guarantee is agreed in writing before we start.",
+      q: "What happens if a meeting cancels or does not hold?",
+      a: "Our team handles it: rescheduling, rebooking and keeping the pipeline moving. A rescheduled meeting is the same single meeting, never counted twice, and because there are no per-meeting fees, a cancellation never costs you anything extra. How cancellations are treated against the guarantee is agreed in writing before we start.",
     },
     {
-      q: "I've been burned by agencies before. Why is this different?",
-      a: "Most providers sell you activity — you carry all the risk, and the moment you stop paying, everything stops with nothing to show. Ours is the reverse: the meeting minimum is written into your agreement, a short month costs us (we keep working at no extra charge until it's delivered), there's no lock-in trapping you, and everything we build under your name — content, positioning, authority — is yours and keeps working.",
+      q: "I have been burned by agencies before. Why is this different?",
+      a: "Most providers sell you activity. You carry all the risk, and the moment you stop paying, everything stops with nothing to show. Ours is the reverse: the meeting minimum is written into your agreement, a short month costs us because we keep working at no extra charge until it is delivered, there is no lock-in trapping you, and everything we build under your name, content, positioning, authority, is yours and keeps working.",
     },
     {
       q: "How much of my time will this take?",
-      a: "Under 30 minutes a week once we're running. Onboarding takes about an hour of your time — we handle positioning, content, outreach, replies, qualification and booking. Your job is to show up to qualified meetings.",
+      a: "Under 30 minutes a week once we are running. Onboarding takes about an hour of your time. We handle positioning, content, outreach, replies, qualification and booking. Your job is to show up to qualified meetings.",
     },
     {
       q: "Do I need to spend money on ads?",
-      a: "Not to start. The system's core runs on done-for-you outreach and authority content — no ad budget required. If and when paid campaigns make sense for your market, we build and optimise them to a target cost per meeting, with your budget always under your control.",
+      a: "Not to start. The system's core runs on done-for-you outreach and authority content, with no ad budget required. If and when paid campaigns make sense for your market, we build and optimise them to a target cost per meeting, with your budget always under your control.",
     },
     {
       q: "How quickly will I see meetings?",
-      a: "The system is typically built and live within your first two weeks, and the first qualified meetings usually land inside the first month — then we scale to your guaranteed 15+ qualified meetings every month.",
+      a: "The system is typically built and live within your first two weeks, and the first qualified meetings usually land inside the first month. Then we scale to your guaranteed 15+ qualified meetings every month.",
     },
     {
       q: "Is there a lock-in contract?",
-      a: "No lock-in, ever. Month to month, no minimum term, no exit fee — we re-earn your business every month. If the engine isn't producing, you walk. We'd rather earn your business than trap it.",
+      a: "No lock-in, ever. Month to month, no minimum term, no exit fee. We re-earn your business every month. If the engine is not producing, you walk. We would rather earn your business than trap it.",
     },
     {
       q: "Who is this NOT for?",
-      a: "We're selective, because the written guarantee only works when the underlying business is ready. If your offer is under $3K, your service isn't validated yet, or you're after a magic-button solution with zero involvement — we're not the right fit, and we'll tell you that on the call rather than waste your time.",
+      a: "We are selective, because the written guarantee only works when the underlying business is ready. If your offer is under $3K, your service is not validated yet, or you are after a magic-button solution with zero involvement, we are not the right fit, and we will tell you that on the call rather than waste your time.",
     },
   ];
 
   return (
-    <section className="section-padding py-16 md:py-24 border-t border-[#EDECE4]/10">
-      <div className="max-container max-w-2xl">
-        <AnimatedSection className="text-center mb-10">
-          <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            FAQs
-          </p>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white">
-            Everything sceptics ask us. <span className={GRAD_TEXT}>Answered straight.</span>
-          </h2>
-        </AnimatedSection>
+    <Band index="07" label="Questions">
+      <p className={`${DISPLAY} max-w-[18ch] text-[30px] text-[#0A0D14] sm:text-[38px] md:text-[46px]`}>
+        Everything sceptics ask us, answered straight
+      </p>
 
-        <div>
-          {faqs.map((f, i) => (
-            <FAQItem key={i} question={f.q} answer={f.a} />
-          ))}
-        </div>
+      <div className="mt-10 max-w-[760px] border-t border-[#E3E6EC]">
+        {faqs.map((f) => (
+          <FAQItem key={f.q} question={f.q} answer={f.a} />
+        ))}
       </div>
-    </section>
+    </Band>
   );
 }
 
-function FAQItem({ question, answer }: { question: string; answer: React.ReactNode }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border-b border-[#EDECE4]/10">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-5 text-left group"
-      >
-        <span className="text-base md:text-lg text-[#EDECE4] group-hover:text-white transition-colors pr-4">
-          {question}
-        </span>
-        <ChevronDown
-          className={`w-5 h-5 text-[#EDECE4]/50 flex-shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-        />
-      </button>
-      <motion.div
-        initial={false}
-        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="overflow-hidden"
-      >
-        <p className="pb-6 text-base text-[#EDECE4]/90 leading-relaxed">{answer}</p>
-      </motion.div>
-    </div>
-  );
-}
+/* ══════════════════════════════════════════════════════════════════
+   BOOKING
+   ⚠️ Everything from here to the end of Booking() is machinery.
+   See the warning block at the top of this file before editing.
+   ══════════════════════════════════════════════════════════════════ */
 
-/* ─── BOOKING (embedded calendar — the conversion) ─── */
 const BOOKING_WIDGET_BASE =
   "https://link.novadatech.com/widget/booking/8j4TVe5uOcjxbNfVC3kp";
 
-/* Developer brief Task 1.2: append the stored Google click ID (captured in
-   layout.tsx) to the widget src as query params. GHL prefills them into
-   matching custom fields on the booking form, tying the booked contact back
-   to the exact ad click. Client-side only — the value exists only in the
-   visitor's browser. */
+/* Appends the stored click ID (captured in layout.tsx) to the widget src
+   as query params. The booking platform prefills them into matching
+   custom fields on the form, tying the booked contact back to the exact
+   ad click. Client-side only: the value exists only in the visitor's
+   browser. The "gclid" key must match the custom field name exactly. */
 function buildBookingSrc(): string {
   let stored: {
     ids?: { gclid?: string; wbraid?: string; gbraid?: string };
@@ -879,7 +813,7 @@ function buildBookingSrc(): string {
   if (!clickId) return BOOKING_WIDGET_BASE;
 
   const qs = new URLSearchParams();
-  qs.set("gclid", clickId); // must match the GHL custom field key exactly
+  qs.set("gclid", clickId); // must match the custom field key exactly
   if (stored.utm?.utm_campaign) qs.set("utm_campaign", stored.utm.utm_campaign);
   if (stored.utm?.utm_term) qs.set("utm_term", stored.utm.utm_term);
   return `${BOOKING_WIDGET_BASE}?${qs.toString()}`;
@@ -887,7 +821,7 @@ function buildBookingSrc(): string {
 
 function Booking() {
   // SSR renders the base URL; on mount we swap in the click-ID-decorated
-  // src before the widget is scrolled into view (it's at the page bottom).
+  // src before the widget is scrolled into view (it is at the page bottom).
   const [bookingSrc, setBookingSrc] = useState(BOOKING_WIDGET_BASE);
 
   useEffect(() => {
@@ -903,72 +837,81 @@ function Booking() {
     };
   }, []);
 
+  const expect = [
+    "Review your offer and your ideal client profile",
+    "Define exactly what a qualified meeting means for you",
+    "Walk you through the written guarantee, before you commit to anything",
+    "Map your first 90 days, week by week",
+    "Tell you honestly if we are not the right fit",
+  ];
+
   return (
-    <section id="book" className="relative section-padding py-16 md:py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(11,109,74,0.4)_0%,rgba(11,109,74,0)_55%)] pointer-events-none" />
-      <div className="relative max-container max-w-5xl">
-        <AnimatedSection className="text-center mb-10">
-          <p className="font-supply text-[11px] uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            Free 30-Minute Strategy Call
+    <section id="book" className="scroll-mt-20 border-t border-[#E3E6EC] bg-[#F7F8FA]">
+      <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] py-16 md:py-20`}>
+        <div className="max-w-[760px]">
+          <p className={`${MICRO} text-[#003DDB]`}>
+            Free <span className={NUM}>30</span> minute strategy call
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-balance text-white">
-            Pick a time. <span className={GRAD_TEXT}>See exactly how many meetings we&apos;d book you.</span>
-          </h2>
-          <p className="mt-4 text-base md:text-lg text-[#EDECE4]/90 max-w-2xl mx-auto leading-relaxed">
-            On the call we&apos;ll define what a qualified meeting looks like
-            for your business, show you exactly how the system would run under
-            your name, and map your first 90 days. If it&apos;s not a fit,
-            you&apos;ll leave with a clear plan anyway — that&apos;s the worst
-            case.
+          <p
+            className={`${DISPLAY} mt-5 text-[32px] text-[#0A0D14] sm:text-[42px] md:text-[52px]`}
+          >
+            Pick a time. See exactly how many meetings we would book you.
           </p>
-        </AnimatedSection>
+          <p className={`${BODY} mt-6`}>
+            On the call we will define what a qualified meeting looks like for
+            your business, show you exactly how the system would run under your
+            name, and map your first 90 days. If it is not a fit, you will leave
+            with a clear plan anyway. That is the worst case.
+          </p>
+        </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 items-start">
+        <div className="mt-10 grid items-start gap-8 lg:grid-cols-3">
           {/* What to expect */}
-          <AnimatedSection direction="left" className="lg:col-span-1">
-            <div className="rounded-xl border border-[#EDECE4]/[0.08] bg-gradient-to-br from-[#111413] to-[#050808] p-7 lg:sticky lg:top-24">
-              <h3 className="text-lg font-normal text-white mb-5">On this call, we&apos;ll:</h3>
-              <div className="space-y-4">
-                {[
-                  "Review your offer and your ideal client profile",
-                  "Define exactly what a qualified meeting means for you",
-                  "Walk you through the written guarantee — before you commit to anything",
-                  "Map your first 90 days, week by week",
-                  "Tell you honestly if we're not the right fit",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-[#0CC481] mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                    <span className="text-sm text-[#EDECE4]/95 leading-relaxed">{item}</span>
-                  </div>
+          <div className="lg:col-span-1">
+            <div className="rounded-[10px] border border-[#E3E6EC] bg-white p-7 lg:sticky lg:top-24">
+              <p className={`${MICRO} text-[#0B0E14]`}>On this call, we will</p>
+              <ul className="mt-6 space-y-4">
+                {expect.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-[3px] flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-full bg-[#003DDB]">
+                      <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                    </span>
+                    <span className="text-[14px] leading-relaxed text-[#39424E]">
+                      {item}
+                    </span>
+                  </li>
                 ))}
-              </div>
-              <div className="font-supply mt-6 pt-5 border-t border-[#EDECE4]/[0.08] text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40 leading-relaxed">
-                30 minutes · No obligation · No hard sell
-              </div>
-              <div className="mt-4 flex items-center gap-2 text-xs text-[#EDECE4]/80">
-                <span className="text-[#0CC481]">★★★★★</span>
-                <span>Rated 4.9/5 · 350+ businesses scaled</span>
-              </div>
+              </ul>
 
-              {/* US market price anchor, repeated beside the conversion
-                  point (developer brief Task 5.4) */}
-              <div className="mt-5 rounded-lg border border-[#EDECE4]/10 bg-white/[0.02] px-4 py-3">
-                <p className="text-xs text-[#EDECE4]/80 leading-relaxed">
+              <p className={`${MICRO} mt-7 border-t border-[#E3E6EC] pt-5 text-[#9AA3B1]`}>
+                <span className={NUM}>30</span> minutes
+                <span className="mx-1.5 text-[#C3CAD5]">·</span>
+                No obligation
+                <span className="mx-1.5 text-[#C3CAD5]">·</span>
+                No hard sell
+              </p>
+
+              {/* Competitor price anchor, repeated beside the conversion point. */}
+              <div className="mt-5 border-l-2 border-[#003DDB] bg-[#F5F8FF] py-4 pl-4 pr-4">
+                <p className="text-[13px] leading-relaxed text-[#2B3340]">
                   Most appointment-setting agencies charge{" "}
-                  <span className="text-white">$4,000–$10,000 a month</span>,
-                  lock you in for 3–6 months, and guarantee nothing. Here the
-                  meetings are guaranteed in writing, with no per-meeting fees
-                  and no lock-in — cancel any time.
+                  <span className={`${NUM} font-semibold text-[#0B0E14]`}>
+                    $4,000 to $10,000
+                  </span>{" "}
+                  a month, lock you in for three to six months, and guarantee
+                  nothing. Here the meetings are guaranteed in writing, with no
+                  per-meeting fees and no lock-in. Cancel any time.
                 </p>
               </div>
             </div>
-          </AnimatedSection>
+          </div>
 
           {/* Calendar embed */}
           <div className="lg:col-span-2">
-            <div className="rounded-xl border border-[#0CC481]/25 bg-white/[0.02] p-2 min-h-[600px] relative z-10">
+            <div className="relative z-10 min-h-[600px] rounded-[10px] border border-[#E3E6EC] bg-white p-2">
               <iframe
                 src={bookingSrc}
+                title="Book a strategy call"
                 style={{
                   width: "100%",
                   minHeight: "700px",
@@ -986,7 +929,10 @@ function Booking() {
   );
 }
 
-/* ─── STICKY MOBILE CTA ─── */
+/* ══════════════════════════════════════════════════════════════════
+   STICKY CTA
+   ══════════════════════════════════════════════════════════════════ */
+
 function StickyCta() {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -1003,20 +949,27 @@ function StickyCta() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed bottom-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-t border-[#EDECE4]/10 py-3 px-5 sm:px-8"
+          className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#E3E6EC] bg-white/95 px-5 py-3 backdrop-blur-md sm:px-8"
         >
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <div className={`${WRAP} flex items-center justify-between gap-4`}>
             <div className="hidden sm:block">
-              <p className="text-sm text-[#EDECE4]">
-                Qualified meetings, booked for you — guaranteed in writing
+              <p className="text-[14px] font-medium text-[#0B0E14]">
+                Qualified meetings, booked for you, guaranteed in writing
               </p>
-              <p className="font-supply text-[10px] uppercase tracking-[0.15em] text-[#EDECE4]/40">
-                15+ a month · No lock-in · Cancel any time
+              <p className={`${MICRO} mt-0.5 text-[#9AA3B1]`}>
+                <span className={NUM}>15+</span> a month
+                <span className="mx-1.5 text-[#C3CAD5]">·</span>
+                No lock-in
+                <span className="mx-1.5 text-[#C3CAD5]">·</span>
+                Cancel any time
               </p>
             </div>
-            <a href={BOOK_ANCHOR} className={`${BTN_CTA_SM} w-full sm:w-auto`}>
-              Book My Free Call
-              <ChevronRight className="w-4 h-4" />
+            <a
+              href={BOOK}
+              className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-[6px] bg-[#003DDB] px-5 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-[#0030AE] sm:w-auto"
+            >
+              Book my free call
+              <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </motion.div>
@@ -1025,24 +978,37 @@ function StickyCta() {
   );
 }
 
-/* ─── PAGE ─── */
+/* ══════════════════════════════════════════════════════════════════
+   PAGE
+   ══════════════════════════════════════════════════════════════════ */
+
 export default function MeetingsLanderPage() {
   return (
-    <div className="bg-[#080808] font-poppins overflow-x-clip">
-      <Header />
-      <Hero />
-      <VSL />
-      <VideoCaseStudies />
-      <BurnedBefore />
-      <FounderNote />
-      <RiskReversal />
-      <Mechanism />
-      <Timeline />
-      <Stats />
-      <WrittenTestimonials />
-      <FAQ />
-      <Booking />
+    <div data-theme="desk" className="min-h-screen bg-white font-sans">
+      <FunnelHeader
+        ctaHref={BOOK}
+        ctaLabel="Book my free call"
+        ctaLabelShort="Book a call"
+      />
+
+      <main>
+        <Hero />
+        <VSL />
+        <VideoCaseStudies />
+        <BurnedBefore />
+        <FounderNote />
+        <RiskReversal />
+        <Mechanism />
+        <Timeline />
+        <Proof />
+        <FAQ />
+        <Booking />
+      </main>
+
+      <FunnelFooter note="Qualified meetings, booked for you" />
+
       <StickyCta />
+      {/* Clears the sticky bar on mobile so it never covers the footer. */}
       <div className="h-16 sm:h-0" />
     </div>
   );

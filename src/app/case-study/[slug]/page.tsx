@@ -1,19 +1,36 @@
-/* Case-study detail — Morningside design language (see src/components/ms.ts).
- * Copy unchanged; visual system swapped. Server component. */
+/*
+ * /case-study/[slug] : the case-study detail page. Server component, so
+ * it can carry its own per-case metadata.
+ *
+ * REBUILT 2026-09-02 into the Desk visual system, on founder instruction.
+ * Copy is unchanged and still comes from ../data.ts. The five narrative
+ * sections now use the Desk numbered index rails, which is the closest
+ * structural match the system has: each rail label IS that section's
+ * <h2>, so the document outline survives the restyle.
+ *
+ * Two fixes carried over from the grid rebuild: the video is a
+ * click-to-load facade rather than an eager iframe, and both CTAs point
+ * at /meetings-3#book rather than /#book. /#book is now the Desk
+ * healthcare calendar, and these are lead-generation case studies, so
+ * that link had been sending every reader to the wrong offer.
+ *
+ * ⚠️ These pages carry specific revenue outcomes. The results-vary
+ * disclaimer near the metrics is required by Google's Unreliable Claims
+ * policy and by /guarantee-terms clause 7. Do not remove it.
+ */
 
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronRight, CheckCircle, ChevronLeft } from "lucide-react";
-import NovadaLogo from "@/components/NovadaLogo";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { CASE_STUDIES, getCaseStudy } from "../data";
-import {
-  GRAD_TEXT,
-  BTN_WHITE,
-  MS_CARD,
-  HERO_WASH,
-  GLOW_BOTTOM,
-} from "@/components/ms";
+import { FunnelHeader, FunnelFooter } from "@/components/desk/FunnelChrome";
+import VideoFacade from "@/components/desk/VideoFacade";
+import { Band, MICRO, NUM, PAD, WRAP, DISPLAY } from "@/components/desk/Band";
+
+const BOOK = "/meetings-3#book";
+const PROSE = "text-[15px] leading-[1.75] text-[#454E5C] md:text-[16px]";
 
 export function generateStaticParams() {
   return CASE_STUDIES.map((c) => ({ slug: c.slug }));
@@ -41,35 +58,23 @@ export async function generateMetadata({
   };
 }
 
-function Section({
-  eyebrow,
-  heading,
-  children,
-}: {
-  eyebrow: string;
-  heading: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-3">
-        {eyebrow}
-      </p>
-      <h2 className="text-2xl md:text-[28px] font-light tracking-tight text-[#EDECE4] mb-6 leading-tight">
-        {heading}
-      </h2>
-      {children}
-    </div>
-  );
-}
-
 function Paragraphs({ items }: { items: string[] }) {
   return (
-    <div className="space-y-5 text-base md:text-lg font-light text-[#EDECE4]/75 leading-[1.75]">
+    <div className={`${PROSE} max-w-[680px] space-y-5`}>
       {items.map((p, i) => (
         <p key={i}>{p}</p>
       ))}
     </div>
+  );
+}
+
+function SectionHead({ children }: { children: ReactNode }) {
+  return (
+    <p
+      className={`${DISPLAY} mb-7 text-[28px] text-[#0A0D14] sm:text-[34px] md:text-[40px]`}
+    >
+      {children}
+    </p>
   );
 }
 
@@ -83,160 +88,176 @@ export default async function CaseStudyDetailPage({
   if (!cs) notFound();
 
   return (
-    <div className="bg-[#080808] font-poppins">
-      {/* ── Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
-        <div className="max-container section-padding">
-          <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center">
-              <NovadaLogo variant="light" className="h-12 w-auto" />
+    <div data-theme="desk" className="min-h-screen bg-white font-sans">
+      <FunnelHeader
+        ctaHref={BOOK}
+        ctaLabel="See if you qualify"
+        ctaLabelShort="Book a call"
+      />
+
+      <main>
+        {/* ── Title block ── */}
+        <section className="border-t border-[#E3E6EC] bg-white">
+          <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] pb-10 pt-8 md:pb-14 md:pt-10`}>
+            <Link
+              href="/case-study"
+              className={`${MICRO} inline-flex items-center gap-1.5 text-[#5B6472] transition-colors hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2`}
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              All case studies
             </Link>
-            <Link href="/#book" className={`${BTN_WHITE} !py-2.5 !px-5`}>
-              See If You Qualify
-              <ChevronRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </header>
-      <div className="h-20" />
 
-      {/* ── Back link ── */}
-      <div className="section-padding pt-8 pb-2">
-        <div className="max-container max-w-4xl">
-          <Link
-            href="/case-study"
-            className="font-supply inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/50 hover:text-[#EDECE4] transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            All case studies
-          </Link>
-        </div>
-      </div>
-
-      {/* ── Title block ── */}
-      <section className="relative section-padding pt-8 pb-10 md:pt-10 md:pb-12 overflow-hidden">
-        <div className={HERO_WASH} />
-        <div className="relative max-container max-w-4xl">
-          <p className="font-supply text-xs uppercase tracking-[0.2em] text-[#0CC481] mb-4">
-            {cs.offeringLabel} · Case Study
-          </p>
-          <h1 className={`text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1.12] text-balance pb-1 ${GRAD_TEXT}`}>
-            {cs.pageTitle}
-          </h1>
-          <p className="mt-5 text-base md:text-lg font-light text-[#EDECE4]/70 max-w-3xl leading-relaxed">
-            {cs.pageSubtitle}
-          </p>
-          <div className="mt-6 flex items-center gap-3">
-            <span className="font-supply inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-[#EDECE4]/60">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0CC481]" />
-              {cs.customerName} — {cs.customerRole}, {cs.customerCompany}
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Video ── */}
-      <section className="section-padding pb-16 md:pb-20">
-        <div className="max-container max-w-4xl">
-          <div
-            className="relative rounded-xl overflow-hidden border border-[#EDECE4]/10 shadow-2xl"
-            style={{ paddingBottom: "56.25%" }}
-          >
-            <iframe
-              src={`https://www.youtube.com/embed/${cs.videoId}?rel=0`}
-              title={cs.pageTitle}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                border: "none",
-              }}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ── Introduction (1-sentence frame) ── */}
-      <section className="section-padding pb-12 md:pb-16">
-        <div className="max-container max-w-3xl">
-          <p className="text-lg md:text-xl font-light text-[#EDECE4] leading-[1.7] border-l-2 border-[#0CC481] pl-6">
-            {cs.introduction}
-          </p>
-        </div>
-      </section>
-
-      {/* ── Narrative body: 6-section case study ── */}
-      <section className="section-padding pb-24 md:pb-32">
-        <div className="max-container max-w-3xl space-y-16 md:space-y-20">
-          <Section eyebrow="The Founder" heading={`Meet ${cs.customerName}.`}>
-            <Paragraphs items={cs.theFounder} />
-          </Section>
-
-          <Section eyebrow="The Challenge" heading="Where the business was stuck.">
-            <Paragraphs items={cs.theChallenge} />
-          </Section>
-
-          <Section eyebrow="The Solution" heading="What we installed.">
-            <Paragraphs items={cs.theSolution} />
-          </Section>
-
-          <Section eyebrow="The Results" heading="What changed for the business.">
-            <Paragraphs items={cs.theResults} />
-
-            {/* Metrics card */}
-            <div className={`mt-8 ${MS_CARD} p-7 md:p-10`}>
-              <p className="font-supply text-xs uppercase tracking-[0.18em] text-[#0CC481] mb-5">
-                By the numbers
-              </p>
-              <ul className="space-y-3.5">
-                {cs.resultsMetrics.map((r, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3.5 text-base md:text-lg font-light text-[#EDECE4] leading-relaxed"
-                  >
-                    <CheckCircle className="w-5 h-5 text-[#0CC481] mt-1 flex-shrink-0" strokeWidth={1.5} />
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Section>
-
-          <Section eyebrow="In Their Words" heading={`${cs.customerName}'s reflection.`}>
-            <p className="text-base md:text-lg font-light text-[#EDECE4]/75 leading-[1.75]">
-              {cs.inTheirWords}
+            <p className={`${MICRO} mt-9 text-[#003DDB]`}>
+              {cs.offeringLabel}
+              <span className="mx-1.5 text-[#C3CAD5]">·</span>
+              Case study
             </p>
-          </Section>
-        </div>
-      </section>
 
-      {/* ── Final CTA ── */}
-      <section className="relative pt-8 pb-32 md:pb-40 section-padding overflow-hidden">
-        <div className={GLOW_BOTTOM} />
-        <div className="relative max-container text-center">
-          <p className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6">
-            Ready for the same outcome?
+            <h1
+              className={`${DISPLAY} mt-5 max-w-[20ch] text-[38px] text-[#0A0D14] sm:text-[50px] md:text-[62px]`}
+            >
+              {cs.pageTitle}
+            </h1>
+
+            <p className={`${PROSE} mt-6 max-w-[720px]`}>{cs.pageSubtitle}</p>
+
+            <div className="mt-8 border-t border-[#E3E6EC] pt-6">
+              <p className={`${MICRO} text-[#9AA3B1]`}>
+                <span className="text-[#0B0E14]">{cs.customerName}</span>
+                <span className="mx-1.5 text-[#C3CAD5]">·</span>
+                {cs.customerRole}, {cs.customerCompany}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Video ── */}
+        <section className="border-t border-[#E3E6EC] bg-[#F7F8FA]">
+          <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] py-10 md:py-14`}>
+            <div className="relative mx-auto aspect-video w-full max-w-[900px] overflow-hidden rounded-[10px] border border-[#E3E6EC] bg-[#0A0D14]">
+              <VideoFacade id={cs.videoId} title={cs.pageTitle} tone="dark" />
+            </div>
+          </div>
+        </section>
+
+        {/* ── Introduction ── */}
+        <section className="border-t border-[#E3E6EC] bg-white">
+          <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] py-12 md:py-16`}>
+            <p className="max-w-[760px] border-l-2 border-[#003DDB] pl-6 text-[18px] leading-[1.7] text-[#0B0E14] md:text-[21px]">
+              {cs.introduction}
+            </p>
+          </div>
+        </section>
+
+        {/* ── Narrative ── */}
+        <Band index="01" label="The founder">
+          <SectionHead>Meet {cs.customerName}</SectionHead>
+          <Paragraphs items={cs.theFounder} />
+        </Band>
+
+        <Band index="02" label="The challenge" tone="tint">
+          <SectionHead>Where the business was stuck</SectionHead>
+          <Paragraphs items={cs.theChallenge} />
+        </Band>
+
+        <Band index="03" label="The solution">
+          <SectionHead>What we installed</SectionHead>
+          <Paragraphs items={cs.theSolution} />
+        </Band>
+
+        <Band index="04" label="The results" tone="dark">
+          <p
+            className={`${DISPLAY} mb-7 text-[28px] text-white sm:text-[34px] md:text-[40px]`}
+          >
+            What changed for the business
           </p>
-          <h2 className={`text-3xl md:text-5xl font-light tracking-tight leading-[1.15] text-balance max-w-3xl mx-auto pb-2 ${GRAD_TEXT}`}>
-            See if your business qualifies for a partnership.
-          </h2>
-          <p className="mt-6 text-lg font-light text-[#EDECE4]/70 max-w-xl mx-auto leading-relaxed">
-            Every result on this page started with one conversation. Find
-            out if Novada Tech is the right partner to scale your business.
+          <div className="max-w-[680px] space-y-5 text-[15px] leading-[1.75] text-white/70 md:text-[16px]">
+            {cs.theResults.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+
+          <div className="mt-10 max-w-[720px] rounded-[10px] border border-white/10 bg-white/[0.03] p-6 md:p-8">
+            <p className={`${MICRO} text-white/50`}>By the numbers</p>
+            <ul className="mt-5 space-y-3.5">
+              {cs.resultsMetrics.map((r, i) => (
+                <li key={i} className="flex items-start gap-3.5">
+                  <span className="mt-[3px] flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-full bg-[#003DDB]">
+                    <Check className="h-3 w-3 text-white" strokeWidth={3} />
+                  </span>
+                  <span className="text-[15px] leading-relaxed text-white md:text-base">
+                    {r}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <p className="mt-6 max-w-[720px] text-[13px] leading-relaxed text-white/45">
+            Results shown are individual client outcomes and are not typical.
+            Your results will vary and are not guaranteed.
           </p>
-          <Link href="/#book" className={`${BTN_WHITE} mt-10`}>
-            See If You Qualify
-            <ChevronRight className="w-5 h-5" />
-          </Link>
-          <p className="font-supply mt-8 text-[10px] uppercase tracking-[0.2em] text-[#EDECE4]/35">
-            Rated 4.9/5 from 77+ independent client reviews
-          </p>
-        </div>
-      </section>
+        </Band>
+
+        <Band index="05" label="In their words">
+          <SectionHead>{cs.customerName}&rsquo;s reflection</SectionHead>
+          <p className={`${PROSE} max-w-[680px]`}>{cs.inTheirWords}</p>
+        </Band>
+
+        {/* ── Closing call to action ── */}
+        <section className="border-t border-[#E3E6EC] bg-[#F7F8FA]">
+          <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] py-16 md:py-20`}>
+            <div className="grid gap-10 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
+              <div className="lg:self-start">
+                <div className="flex items-center gap-3 lg:block">
+                  <span className={`${MICRO} ${NUM} text-[#9AA3B1]`}>06</span>
+                  <span
+                    aria-hidden
+                    className="h-px w-6 bg-[#E3E6EC] lg:my-3 lg:h-6 lg:w-px"
+                  />
+                  <h2 className={`${MICRO} text-[#0B0E14]`}>Next</h2>
+                </div>
+              </div>
+
+              <div className="min-w-0">
+                <p
+                  className={`${DISPLAY} max-w-[18ch] text-[30px] text-[#0A0D14] sm:text-[38px] md:text-[46px]`}
+                >
+                  Ready for the same outcome?
+                </p>
+                <p className={`${PROSE} mt-6 max-w-[560px]`}>
+                  Every result on this page started with one conversation. Find
+                  out if Novada Tech is the right partner to scale your business.
+                </p>
+
+                <div className="mt-9 flex flex-wrap items-center gap-4">
+                  <Link
+                    href={BOOK}
+                    className="inline-flex items-center justify-center gap-2 rounded-[6px] bg-[#003DDB] px-6 py-3.5 text-[14px] font-semibold text-white transition-colors hover:bg-[#0030AE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
+                  >
+                    See if you qualify
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/case-study"
+                    className="inline-flex items-center justify-center gap-2 rounded-[6px] border border-[#D3D8E2] bg-white px-6 py-3.5 text-[14px] font-semibold text-[#0B0E14] transition-colors hover:border-[#003DDB] hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
+                  >
+                    Read another
+                  </Link>
+                </div>
+
+                <p className={`${MICRO} mt-7 text-[#9AA3B1]`}>
+                  Rated <span className={`${NUM} text-[#0B0E14]`}>4.9/5</span>{" "}
+                  from <span className={`${NUM} text-[#0B0E14]`}>77+</span>{" "}
+                  independent client reviews
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <FunnelFooter note="Qualified meetings, booked for you" />
     </div>
   );
 }

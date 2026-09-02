@@ -1,164 +1,189 @@
 "use client";
 
-/* Case-study grid — Morningside design language (see src/components/ms.ts).
- * Copy unchanged; visual system swapped. */
+/*
+ * /case-study : the case-study grid.
+ *
+ * REBUILT 2026-09-02 into the Desk visual system, on founder instruction.
+ * Was the "Morningside" dark language (src/components/ms.ts). Copy is
+ * unchanged; the visual system and two behaviours are not.
+ *
+ * ── TWO FIXES MADE IN THIS REBUILD ───────────────────────────────────
+ *  1. PERFORMANCE. The old grid mounted a live YouTube iframe for every
+ *     case study, eight of them, on page load. That is roughly 8MB of
+ *     player script for a page most visitors scroll rather than watch.
+ *     Now a poster facade loads the player on click. See
+ *     src/components/desk/VideoFacade.tsx.
+ *  2. DESTINATION. Both CTAs pointed at /#book. That anchor is now the
+ *     Desk booking calendar, which books a healthcare review. These are
+ *     lead-generation case studies, so every visitor clicking "see if
+ *     you qualify" was being sent to the wrong offer's calendar. They
+ *     now point at /meetings-3#book, which is that offer's own booking
+ *     calendar and the only surviving page for it.
+ *
+ * Chrome is FunnelHeader/FunnelFooter rather than DeskNav. See the
+ * header of src/components/desk/FunnelChrome.tsx.
+ *
+ * ⚠️ These pages carry specific revenue outcomes, so the results-vary
+ * disclaimer under the grid is required by Google's Unreliable Claims
+ * policy and by /guarantee-terms clause 7. Do not remove it.
+ */
 
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import NovadaLogo from "@/components/NovadaLogo";
 import { CASE_STUDIES } from "./data";
-import {
-  GRAD_TEXT,
-  BTN_WHITE,
-  LINK_GREEN,
-  MS_CARD,
-  HERO_WASH,
-  GLOW_BOTTOM,
-} from "@/components/ms";
+import { FunnelHeader, FunnelFooter } from "@/components/desk/FunnelChrome";
+import VideoFacade from "@/components/desk/VideoFacade";
+import { MICRO, NUM, PAD, WRAP, DISPLAY } from "@/components/desk/Band";
+
+const BOOK = "/meetings-3#book";
+const BODY = "text-[15px] leading-relaxed text-[#454E5C] md:text-base";
 
 export default function CaseStudyIndexPage() {
   return (
-    <div className="bg-[#080808] font-poppins">
-      {/* ── Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#080808]/95 backdrop-blur-xl border-b border-[#EDECE4]/10">
-        <div className="max-container section-padding">
-          <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center">
-              <NovadaLogo variant="light" className="h-12 w-auto" />
-            </Link>
-            <Link href="/#book" className={`${BTN_WHITE} !py-2.5 !px-5`}>
-              See If You Qualify
-              <ChevronRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </header>
-      <div className="h-20" />
+    <div data-theme="desk" className="min-h-screen bg-white font-sans">
+      <FunnelHeader
+        ctaHref={BOOK}
+        ctaLabel="See if you qualify"
+        ctaLabelShort="Book a call"
+      />
 
-      {/* ── Hero ── */}
-      <section className="relative pt-12 pb-16 md:pt-16 md:pb-20 overflow-hidden">
-        <div className={HERO_WASH} />
-
-        <div className="relative max-container section-padding text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6"
-          >
-            Case Studies
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className={`text-4xl sm:text-5xl md:text-6xl font-light tracking-tight leading-[1.12] text-balance max-w-3xl mx-auto pb-1 ${GRAD_TEXT}`}
-          >
-            Real founders. Real results.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-base md:text-lg font-light text-[#EDECE4]/80 max-w-2xl mx-auto leading-relaxed"
-          >
-            Inside the Novada Tech partnership. Real numbers, real outcomes —
-            from filling pipelines with qualified meetings to automating
-            operations with custom AI.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ── Case studies grid ── */}
-      <section className="section-padding pb-24 md:pb-32">
-        <div className="max-container">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {CASE_STUDIES.map((c, i) => (
-              <motion.article
-                key={c.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: (i % 3) * 0.08 }}
-                className={`${MS_CARD} overflow-hidden flex flex-col hover:border-[#EDECE4]/[0.14] transition-colors`}
+      <main>
+        {/* ── Hero ── */}
+        <section className="border-t border-[#E3E6EC] bg-white">
+          <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] pb-12 pt-14 md:pb-16 md:pt-20`}>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <p className={`${MICRO} text-[#003DDB]`}>Case studies</p>
+              <h1
+                className={`${DISPLAY} mt-5 max-w-[16ch] text-[42px] text-[#0A0D14] sm:text-[56px] md:text-[72px]`}
               >
-                {/* Video embed */}
-                <div className="relative w-full aspect-video bg-black overflow-hidden">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${c.videoId}?rel=0`}
-                    title={c.pageTitle}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                    style={{ border: "none" }}
-                  />
-                </div>
+                Real founders. Real results.
+              </h1>
+              <p className={`${BODY} mt-6 max-w-[640px]`}>
+                Inside the Novada Tech partnership. Real numbers, real outcomes,
+                from filling pipelines with qualified meetings to automating
+                operations with custom AI.
+              </p>
 
-                {/* Card body */}
-                <div className="p-6 flex flex-col flex-1">
-                  {/* Offering badge */}
-                  <p className="font-supply text-[10px] uppercase tracking-[0.18em] text-[#EDECE4]/40 mb-3">
-                    {c.offeringLabel}
-                  </p>
+              <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3 border-t border-[#E3E6EC] pt-6">
+                <p className={`${MICRO} text-[#9AA3B1]`}>
+                  <span className={`${NUM} text-[#0B0E14]`}>
+                    {CASE_STUDIES.length}
+                  </span>{" "}
+                  case studies
+                </p>
+                <p className={`${MICRO} text-[#9AA3B1]`}>
+                  Rated <span className={`${NUM} text-[#0B0E14]`}>4.9/5</span>{" "}
+                  from <span className={`${NUM} text-[#0B0E14]`}>77+</span>{" "}
+                  independent reviews
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-                  {/* Headline */}
-                  <p className="text-base md:text-lg font-light text-[#EDECE4] leading-snug mb-4">
-                    {c.cardHeadline}
-                  </p>
+        {/* ── Grid ── */}
+        <section className="border-t border-[#E3E6EC] bg-[#F7F8FA]">
+          <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] py-12 md:py-16`}>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {CASE_STUDIES.map((c, i) => (
+                <motion.article
+                  key={c.slug}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.45, delay: (i % 3) * 0.07 }}
+                  className="group flex flex-col overflow-hidden rounded-[10px] border border-[#E3E6EC] bg-white transition-colors hover:border-[#C3CFE6]"
+                >
+                  <div className="relative aspect-video w-full bg-[#0A0D14]">
+                    <VideoFacade id={c.videoId} title={c.pageTitle} />
+                  </div>
 
-                  {/* Customer */}
-                  <p className="text-xs font-light text-[#EDECE4]/45 mb-5">
-                    {c.customerName} — {c.customerRole}, {c.customerCompany}
-                  </p>
+                  <div className="flex flex-1 flex-col p-6">
+                    <p className={`${MICRO} text-[#003DDB]`}>{c.offeringLabel}</p>
 
-                  {/* View case study CTA */}
-                  <div className="mt-auto">
+                    <p className="mt-4 text-[17px] font-semibold leading-snug tracking-tight text-[#0B0E14]">
+                      {c.cardHeadline}
+                    </p>
+
+                    <p className="mt-3 text-[13px] leading-relaxed text-[#5B6472]">
+                      {c.customerName}
+                      <span className="mx-1.5 text-[#C3CAD5]">·</span>
+                      {c.customerRole}, {c.customerCompany}
+                    </p>
+
+                    <div className="mt-6 flex-1" />
+
                     <Link
                       href={`/case-study/${c.slug}`}
-                      className={`${LINK_GREEN} group/cta`}
+                      className="inline-flex items-center gap-1.5 border-t border-[#E3E6EC] pt-4 text-[14px] font-semibold text-[#003DDB] transition-colors hover:text-[#0030AE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
                     >
-                      View Case Study
-                      <ChevronRight className="w-4 h-4 transition-transform group-hover/cta:translate-x-0.5" />
+                      Read the case study
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                     </Link>
                   </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
+                </motion.article>
+              ))}
+            </div>
 
-      {/* ── Final CTA ── */}
-      <section className="relative pt-12 pb-32 md:pb-40 section-padding overflow-hidden">
-        <div className={GLOW_BOTTOM} />
-        <div className="relative max-container text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="font-supply text-xs uppercase tracking-[0.25em] text-[#0CC481] mb-6">
-              Ready to be the next case study?
+            <p className="mx-auto mt-8 max-w-[640px] text-center text-[13px] leading-relaxed text-[#5B6472]">
+              Results shown are individual client outcomes and are not typical.
+              Your results will vary and are not guaranteed.
             </p>
-            <h2 className={`text-3xl md:text-6xl font-light tracking-tight leading-[1.15] text-balance max-w-4xl mx-auto pb-2 ${GRAD_TEXT}`}>
-              See if your business qualifies for a partnership.
-            </h2>
-            <p className="mt-6 text-lg font-light text-[#EDECE4]/70 max-w-xl mx-auto leading-relaxed">
-              Every result on this page started with one conversation. If
-              your business is ready to scale, let&apos;s see if it&apos;s a
-              fit.
-            </p>
-            <Link href="/#book" className={`${BTN_WHITE} mt-10`}>
-              See If You Qualify
-              <ChevronRight className="w-5 h-5" />
-            </Link>
-            <p className="font-supply mt-8 text-[10px] uppercase tracking-[0.2em] text-[#EDECE4]/35">
-              Rated 4.9/5 from 77+ independent client reviews
-            </p>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
+
+        {/* ── Closing call to action. Ink: the one desk moment here. ── */}
+        <section className="border-t border-[#E3E6EC] bg-[#0A0D14]">
+          <div className={`${WRAP} ${PAD} border-x border-white/10 py-16 md:py-24`}>
+            <div className="grid gap-10 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
+              <div className="lg:sticky lg:top-24 lg:self-start">
+                <div className="flex items-center gap-3 lg:block">
+                  <span className={`${MICRO} ${NUM} text-white/35`}>01</span>
+                  <span
+                    aria-hidden
+                    className="h-px w-6 bg-white/15 lg:my-3 lg:h-6 lg:w-px"
+                  />
+                  <h2 className={`${MICRO} text-white/75`}>Next</h2>
+                </div>
+              </div>
+
+              <div className="min-w-0">
+                <p
+                  className={`${DISPLAY} max-w-[18ch] text-[32px] text-white sm:text-[42px] md:text-[52px]`}
+                >
+                  Ready to be the next case study?
+                </p>
+                <p className="mt-6 max-w-[560px] text-[15px] leading-relaxed text-white/70 md:text-base">
+                  Every result on this page started with one conversation. If
+                  your business is ready to scale, let us see if it is a fit.
+                </p>
+
+                <div className="mt-9 flex flex-wrap items-center gap-4">
+                  <Link
+                    href={BOOK}
+                    className="inline-flex items-center justify-center gap-2 rounded-[6px] bg-white px-6 py-3.5 text-[14px] font-semibold text-[#0A0D14] transition-colors hover:bg-[#E8ECF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0D14]"
+                  >
+                    See if you qualify
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <p className={`${MICRO} text-white/40`}>
+                    <span className={NUM}>30</span> minutes
+                    <span className="mx-1.5 text-white/25">·</span>
+                    No obligation
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <FunnelFooter note="Qualified meetings, booked for you" />
     </div>
   );
 }
