@@ -402,7 +402,10 @@ export default function AssessmentCalculatorPage() {
         </section>
       </main>
 
-      <FunnelFooter note="Outsourced after-hours coordination" />
+      {/* No guarantee link: that page is about a minimum of fifteen sales
+          meetings a month, which is a different offer entirely and not a
+          promise we make about after-hours coordination. */}
+      <FunnelFooter note="Outsourced after-hours coordination" showGuarantee={false} />
     </div>
   );
 }

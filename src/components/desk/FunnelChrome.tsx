@@ -87,8 +87,21 @@ export function FunnelHeader({
 /**
  * Quiet closing footer. Carries identity, the legal links and the
  * company line. No offer navigation, for the reasons in the file header.
+ *
+ * `showGuarantee` must be false on any page that is not part of the
+ * meetings offer. /guarantee-terms is specifically about a minimum of
+ * fifteen qualified sales meetings a month, so linking to it from the
+ * after-hours calculator offers a reader a guarantee that has nothing to
+ * do with the page they are on, and that we do not make about after-hours
+ * coordination.
  */
-export function FunnelFooter({ note }: { note?: string }) {
+export function FunnelFooter({
+  note,
+  showGuarantee = true,
+}: {
+  note?: string;
+  showGuarantee?: boolean;
+}) {
   const year = new Date().getFullYear();
   return (
     <footer className="border-t border-[#E3E6EC] bg-[#F7F8FA]">
@@ -108,12 +121,14 @@ export function FunnelFooter({ note }: { note?: string }) {
           </div>
 
           <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <Link
-              href="/guarantee-terms"
-              className={`${MICRO_SM} text-[#5B6472] transition-colors hover:text-[#003DDB]`}
-            >
-              Guarantee and Terms
-            </Link>
+            {showGuarantee ? (
+              <Link
+                href="/guarantee-terms"
+                className={`${MICRO_SM} text-[#5B6472] transition-colors hover:text-[#003DDB]`}
+              >
+                Guarantee and Terms
+              </Link>
+            ) : null}
             <Link
               href="/privacy-policy"
               className={`${MICRO_SM} text-[#5B6472] transition-colors hover:text-[#003DDB]`}
