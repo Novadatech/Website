@@ -1,7 +1,9 @@
 "use client";
 
 /*
- * /meetings-3 — paid-ads lander (Meta cold traffic). Duplicate of /meetings-2
+ * /meetings-3 — paid-ads lander (Meta cold traffic). Was one of a pair with
+ * /meetings-2, the Google Ads lander, which was deleted on 2 Sep 2026 and now
+ * redirects here. This is the only surviving page for the meetings offer.
  * /meetings (Facebook) on 2026-07-26; diverged 2026-07-27 per the Google
  * Ads developer brief (Google Ads folder / 03 - DEVELOPER BRIEF).
  *

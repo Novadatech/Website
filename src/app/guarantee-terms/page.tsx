@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 // Guarantee & Terms — the accessible guarantee/refund policy page required
 // by Google Ads' Unreliable Claims policy (developer brief Task 5.2b).
-// Linked from the /meetings-2 guarantee claims and the lander footer.
+// Linked from the /meetings-3 guarantee claims and the lander footer.
 // Deliberately indexable: Google's ad review must be able to reach it.
 export const metadata: Metadata = {
   title: "Guarantee & Terms | Novada Tech",

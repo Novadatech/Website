@@ -28,6 +28,23 @@ const nextConfig: NextConfig = {
       { source: "/workforce-confirmed", destination: "/review-confirmed", permanent: true },
 
       /* ── Legacy meetings service funnel ── */
+
+      /* /meetings-2 was the US Google Ads lander, deleted 2 Sep 2026. It is
+         sent to /meetings-3 rather than home because the two pages were
+         byte-identical apart from the booking calendar, so anyone still
+         arriving from a live ad lands on the same offer instead of a home
+         page that talks about something else entirely.
+
+         ⚠️ If the Google Ads campaign is still running, change its final URL
+         to /meetings-3 rather than leaving it on the redirect. Google reads
+         the destination after the redirect for landing page checks, and a
+         redirect also drops the ad's own tracking template. Note that
+         bookings will then land on the calendar /meetings-3 uses, which was
+         the Meta one, so Google and Meta bookings can no longer be told
+         apart by calendar. Give Google Ads its own calendar again if that
+         attribution split matters. */
+      { source: "/meetings-2", destination: "/meetings-3", permanent: true },
+
       { source: "/meetings", destination: "/", permanent: true },
       { source: "/meetings-b", destination: "/", permanent: true },
       { source: "/get-meetings", destination: "/", permanent: true },

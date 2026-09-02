@@ -9,11 +9,10 @@ import LandingFooter from "./LandingFooter";
 // LandingFooter only. Each of these pages provides its own minimal fixed
 // header (logo + page-specific CTA) inside the page component.
 const STANDALONE_ROUTES = [
-  // Serves the /meetings-2 and /meetings-3 landers, so it shares their
-  // chrome. Moved here 2026-09-02: it was the last page falling through to
-  // the legacy Navbar/Footer, which linked to pages that are now deleted.
+  // Serves the /meetings-3 lander, so it shares its chrome. Moved here
+  // 2026-09-02: it was the last page falling through to the legacy
+  // Navbar/Footer, which linked to pages that are now deleted.
   "/guarantee-terms",
-  "/meetings-2",
   "/meetings-3",
   "/confirmed-call",
 ];
