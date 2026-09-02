@@ -458,7 +458,10 @@ export default function GuaranteeTermsPage() {
         <Summary />
         <Body />
       </main>
-      <FunnelFooter note="Qualified meetings, booked for you" />
+      <FunnelFooter
+        note="Qualified meetings, booked for you"
+        showSiteLegal={false}
+      />
     </div>
   );
 }

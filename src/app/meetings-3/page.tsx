@@ -1005,7 +1005,10 @@ export default function MeetingsLanderPage() {
         <Booking />
       </main>
 
-      <FunnelFooter note="Qualified meetings, booked for you" />
+      <FunnelFooter
+        note="Qualified meetings, booked for you"
+        showSiteLegal={false}
+      />
 
       <StickyCta />
       {/* Clears the sticky bar on mobile so it never covers the footer. */}

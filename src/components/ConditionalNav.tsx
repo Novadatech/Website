@@ -68,9 +68,12 @@ export default function ConditionalNav({ children }: { children: React.ReactNode
     return <>{children}</>;
   }
 
+  // Unlisted routes, including /_not-found. These belong to the main brand
+  // site rather than the meetings funnel, so the wordmark links home and
+  // the site legal links stay.
   return (
     <>
-      <FunnelHeader />
+      <FunnelHeader logoHref="/" />
       <main>{children}</main>
       <FunnelFooter showGuarantee={false} />
     </>

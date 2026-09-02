@@ -299,7 +299,11 @@ function LeakageCalculator() {
 export default function AssessmentCalculatorPage() {
   return (
     <div data-theme="desk" className="flex min-h-screen flex-col bg-white font-sans">
+      {/* This tool belongs to the after-hours offer, which is part of the
+          main brand site, so its wordmark still links home. The meetings
+          funnel pages deliberately do not. */}
       <FunnelHeader
+        logoHref="/"
         backLabel="Back to the desk"
         backHref="/workforce-ops-desk"
       />

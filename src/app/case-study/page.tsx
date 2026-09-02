@@ -183,7 +183,10 @@ export default function CaseStudyIndexPage() {
         </section>
       </main>
 
-      <FunnelFooter note="Qualified meetings, booked for you" />
+      <FunnelFooter
+        note="Qualified meetings, booked for you"
+        showSiteLegal={false}
+      />
     </div>
   );
 }
