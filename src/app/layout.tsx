@@ -3,7 +3,6 @@ import { Inter, Poppins, Space_Grotesk, Barlow_Condensed } from "next/font/googl
 import Script from "next/script";
 import "./globals.css";
 import ConditionalNav from "@/components/ConditionalNav";
-import ConditionalChatWidget from "@/components/ConditionalChatWidget";
 import LeadFormProvider from "@/components/LeadFormProvider";
 
 const inter = Inter({
@@ -129,10 +128,12 @@ fbq('init', '3515804598723791');
 fbq('track', 'PageView');`}
         </Script>
 
-        {/* Chat Widget — route-aware: /workforce loads the Novada
-            Workforce (AfterHours sub-account) widget, everything else
-            the main Novada Tech widget. */}
-        <ConditionalChatWidget />
+        {/* Chat widget REMOVED site-wide on founder instruction, 2026-09-02.
+            The component is retained at src/components/ConditionalChatWidget.tsx
+            with both widget IDs and the route logic intact. To restore it,
+            re-import it and mount it here. Do not re-add it to the Desk pages
+            without an approved script: the Website Rebuild Brief bans a
+            live-chat bot there on claims risk. */}
       </body>
     </html>
   );

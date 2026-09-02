@@ -1,5 +1,16 @@
 "use client";
 
+/* ⚠️ NOT MOUNTED. The chat widget was removed from the entire website on
+ * founder instruction, 2026-09-02. Nothing imports this component; it is
+ * kept because it holds the two widget IDs and the route logic, which are
+ * awkward to reconstruct.
+ *
+ * To restore: import it in src/app/layout.tsx and render it in <body>.
+ * Before doing so, note that the Website Rebuild Brief bans a live-chat bot
+ * on the Desk pages until its script is approved, on claims risk, which is
+ * why NO_CHAT_ROUTES exists below.
+ */
+
 import Script from "next/script";
 import { usePathname } from "next/navigation";
 
