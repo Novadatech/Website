@@ -9,16 +9,12 @@ import LandingFooter from "./LandingFooter";
 // LandingFooter only. Each of these pages provides its own minimal fixed
 // header (logo + page-specific CTA) inside the page component.
 const STANDALONE_ROUTES = [
-  "/apply",
-  "/meetings",
+  // Serves the /meetings-2 and /meetings-3 landers, so it shares their
+  // chrome. Moved here 2026-09-02: it was the last page falling through to
+  // the legacy Navbar/Footer, which linked to pages that are now deleted.
+  "/guarantee-terms",
   "/meetings-2",
   "/meetings-3",
-  "/meetings-b",
-  "/get-meetings",
-  "/sales-closer",
-  "/sales-closer2",
-  "/growth-infrastructure",
-  "/book-call",
   "/confirmed-call",
 ];
 
@@ -35,9 +31,11 @@ const STANDALONE_ROUTE_PREFIXES = ["/case-study"];
 //     system from the Website Rebuild Brief.
 //  2. The Novada Workforce pages, which carry their own dark chrome.
 //
-// The legacy Navbar/Footer are deliberately left in place for the older
-// dark pages (/about, /case-study, /growth-infrastructure and similar)
-// so this rebuild does not restyle pages that are out of its scope.
+// NOTE (2026-09-02): the legacy Navbar and Footer now have NO consumers.
+// Every surviving route is either a Desk page (below), a lander using
+// LandingFooter, or /case-study. Both components are kept in the repo but
+// are no longer rendered anywhere. Do not wire them back up without first
+// checking their links: they point at pages that were deleted.
 const BARE_ROUTES = [
   // Desk brand
   "/",
@@ -53,9 +51,6 @@ const BARE_ROUTES = [
   "/privacy-policy",
   "/terms-of-service",
   // Novada Workforce
-  "/workforce",
-  "/workforce-2",
-  "/workforce-confirmed",
   "/assessment-calculator",
 ];
 

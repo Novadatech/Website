@@ -283,14 +283,14 @@ export default function AssessmentCalculatorPage() {
       <header className="border-b border-[#EDECE4]/10">
         <div className="max-container section-padding">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <a href="/workforce" className="flex items-baseline gap-1.5">
+            <a href="/" className="flex items-baseline gap-1.5">
               <span className="text-white font-bold text-lg md:text-xl tracking-tight">Novada</span>
               <span className="font-semibold text-lg md:text-xl tracking-tight" style={{ color: ACCENT }}>
                 Workforce
               </span>
             </a>
             <a
-              href="/workforce"
+              href="/"
               className="text-sm text-[#EDECE4]/70 hover:text-white transition-colors"
             >
               Back to overview

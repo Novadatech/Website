@@ -27,7 +27,7 @@ export default function CaseStudyIndexPage() {
             <Link href="/" className="flex items-center">
               <NovadaLogo variant="light" className="h-12 w-auto" />
             </Link>
-            <Link href="/book-call" className={`${BTN_WHITE} !py-2.5 !px-5`}>
+            <Link href="/#book" className={`${BTN_WHITE} !py-2.5 !px-5`}>
               See If You Qualify
               <ChevronRight className="w-4 h-4" />
             </Link>
@@ -149,7 +149,7 @@ export default function CaseStudyIndexPage() {
               your business is ready to scale, let&apos;s see if it&apos;s a
               fit.
             </p>
-            <Link href="/book-call" className={`${BTN_WHITE} mt-10`}>
+            <Link href="/#book" className={`${BTN_WHITE} mt-10`}>
               See If You Qualify
               <ChevronRight className="w-5 h-5" />
             </Link>
