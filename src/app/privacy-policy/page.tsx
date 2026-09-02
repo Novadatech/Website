@@ -366,11 +366,11 @@ export default function PrivacyPolicyPage() {
                     items={[
                       <>
                         <Key>Legal entity and ABN:</Key>{" "}
-                        <Fill>[Registered entity name and ABN: to be inserted]</Fill>
+                        <Fill>Novada Tech Pty Ltd (ABN 90 665 134 921)</Fill>
                       </>,
                       <>
                         <Key>Registered and postal address:</Key>{" "}
-                        <Fill>[Business address: to be inserted]</Fill>
+                        <Fill>Suite 23, 220 Collins Street, Melbourne VIC 3000</Fill>
                       </>,
                       <>
                         <Key>Privacy contact:</Key>{" "}
@@ -438,14 +438,7 @@ export default function PrivacyPolicyPage() {
                     of our service agreements.
                   </P>
                   <P>
-                    <Fill>
-                      [My Health Record and healthcare identifiers: confirm
-                      whether coordinators ever access the My Health Record
-                      system or handle an Individual Healthcare Identifier. If
-                      they do, this policy must also address the Healthcare
-                      Identifiers Act 2010 (Cth) and the My Health Records Act
-                      2012 (Cth)]
-                    </Fill>
+                    We do not access the My Health Record system, and we do not collect, use or handle Individual Healthcare Identifiers. If that ever changes we will update this policy before the change takes effect, because the Healthcare Identifiers Act 2010 (Cth) and the My Health Records Act 2012 (Cth) would then also apply to us.
                   </P>
                 </S>
 
@@ -678,16 +671,7 @@ export default function PrivacyPolicyPage() {
                     system.
                   </P>
                   <P>
-                    <Fill>
-                      [Call recording: to be confirmed. State plainly whether
-                      calls are recorded, who records them, on which numbers,
-                      how callers are told before the recording starts, how long
-                      recordings are kept and who can listen to them. Recording
-                      a call engages the Telecommunications (Interception and
-                      Access) Act 1979 (Cth) and the surveillance and listening
-                      devices legislation of each State and Territory, so this
-                      paragraph must be written from the facts, not assumed]
-                    </Fill>
+                    We do not record telephone calls. If a client chooses to record calls on their own service, that recording is the client&apos;s own arrangement. The client is responsible for it, including for meeting the notification and consent obligations that apply under the Telecommunications (Interception and Access) Act 1979 (Cth) and the surveillance and listening devices legislation of the relevant State or Territory.
                   </P>
 
                   <H3>f. Our own people</H3>
@@ -844,11 +828,7 @@ export default function PrivacyPolicyPage() {
                         platform, and the analytics and advertising tools in
                         sections {numberOf("tracking")} and{" "}
                         {numberOf("embeds")}.{" "}
-                        <Fill>
-                          [Other suppliers used to run the desk, for example
-                          telephony, email and document storage: to be
-                          confirmed and listed by category]
-                        </Fill>
+                        Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their front desk line to, so that calls reach our coordinators. If an engagement ever requires an additional tool, we tell the client before it is introduced.
                       </>,
                       <>
                         <Key>Professional advisers</Key>, such as our
@@ -972,7 +952,7 @@ export default function PrivacyPolicyPage() {
                       link.novadatech.com
                     </span>
                     , which is our customer relationship management and booking
-                    platform, LeadConnector. The calendar is an iframe served
+                    platform. The calendar is an iframe served
                     from that domain, so anything you enter into it goes to that
                     platform and then into our customer records. The widget sets
                     its own cookies and receives the campaign parameters we
@@ -1038,12 +1018,7 @@ export default function PrivacyPolicyPage() {
                         </Key>{" "}
                         Enquiries, bookings and chat messages made through this
                         website are stored in that platform.{" "}
-                        <Fill>
-                          [Hosting and storage location for the CRM and booking
-                          platform, and the countries its support staff operate
-                          from: to be confirmed with the provider and stated
-                          here]
-                        </Fill>
+                        Enquiry and booking records submitted through this website are held in our customer relationship management and booking platform, which stores that data in Australia.
                       </>,
                     ]}
                   />
@@ -1188,20 +1163,13 @@ export default function PrivacyPolicyPage() {
                       </>,
                       <>
                         <Key>Website enquiries and bookings.</Key>{" "}
-                        <Fill>
-                          [Retention period for enquiry, booking and chat
-                          records held in our CRM: to be confirmed]
-                        </Fill>
+                        Records of enquiries and bookings made through this website are held in our customer relationship management and booking platform and are automatically deleted once they are more than 12 months old.
                       </>,
                       <>
                         <Key>
                           Patient Access Desk working records held by us.
                         </Key>{" "}
-                        <Fill>
-                          [Retention period for any operational record Novada
-                          keeps outside the client&apos;s system, including
-                          reporting data and call notes: to be confirmed]
-                        </Fill>
+                        We do not keep our own copies of a client&apos;s patient or participant records. That work is carried out inside the client&apos;s own systems and those records stay there, under the client&apos;s own retention rules.
                       </>,
                       <>
                         <Key>Business records.</Key> Contracts, invoices and
@@ -1326,16 +1294,7 @@ export default function PrivacyPolicyPage() {
                     involved. The obligation is a transparency measure.
                   </P>
                   <P>
-                    <Fill>
-                      [Automated decision making: to be confirmed and completed
-                      before 10 December 2026. Establish whether any system
-                      Novada or its clients use, including workflow automation,
-                      routing logic, scheduling rules or any AI feature in the
-                      CRM or a client platform, makes or substantially
-                      contributes to a decision significantly affecting an
-                      individual, and if so state the kinds of information and
-                      decisions here]
-                    </Fill>
+                    We do not use automated decision making. Our coordinators work inside our clients&apos; own systems, and where an automated feature exists in one of those systems it is configured and controlled by the client rather than by us. If we ever introduce a system of our own that makes, or substantially contributes to, a decision significantly affecting an individual, we will update this policy before it is used.
                   </P>
                 </S>
 
@@ -1359,7 +1318,7 @@ export default function PrivacyPolicyPage() {
                     . We will acknowledge your complaint, investigate it and
                     give you a written response, and we aim to do that within
                     thirty days. Complaints are handled by{" "}
-                    <Fill>[Privacy Officer name and title: to be inserted]</Fill>
+                    <Fill>Ade Eni, Privacy Officer</Fill>
                     .
                   </P>
 
@@ -1469,21 +1428,21 @@ export default function PrivacyPolicyPage() {
                         k: "Privacy Officer",
                         v: (
                           <Fill>
-                            [Privacy Officer name and title: to be inserted]
+                            Ade Eni, Privacy Officer
                           </Fill>
                         ),
                       },
                       {
                         k: "Postal address",
                         v: (
-                          <Fill>[Business address: to be inserted]</Fill>
+                          <Fill>Suite 23, 220 Collins Street, Melbourne VIC 3000</Fill>
                         ),
                       },
                       {
                         k: "Entity and ABN",
                         v: (
                           <Fill>
-                            [Registered entity name and ABN: to be inserted]
+                            Novada Tech Pty Ltd (ABN 90 665 134 921)
                           </Fill>
                         ),
                       },

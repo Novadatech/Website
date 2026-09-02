@@ -59,11 +59,11 @@
  * pricing.
  *
  * PLACEHOLDERS THE FOUNDER MUST FILL BEFORE THIS PAGE IS PUBLISHED:
- *   [Legal entity name: to be inserted]
- *   [ABN: to be inserted]
- *   [Registered office address: to be inserted]
- *   [Booking tool provider: to be inserted]
- *   [Postal address for notices: to be inserted]
+ *   Novada Tech Pty Ltd
+ *   90 665 134 921
+ *   Suite 23, 220 Collins Street, Melbourne VIC 3000
+ *   a third party booking platform
+ *   Suite 23, 220 Collins Street, Melbourne VIC 3000
  * Also confirm: governing law state (Victoria is carried over from the
  * previous published version, unverified), and the seven year retention
  * standard in clause 3.4.
@@ -221,9 +221,9 @@ const CLAUSES: Clause[] = [
     subs: [
       <>
         This website, novadatech.com.au, is operated by Novada Tech,{" "}
-        <Fill>[Legal entity name: to be inserted]</Fill>, ABN{" "}
-        <Fill>[ABN: to be inserted]</Fill>, of{" "}
-        <Fill>[Registered office address: to be inserted]</Fill> (in these
+        <Fill>Novada Tech Pty Ltd</Fill>, ABN{" "}
+        <Fill>90 665 134 921</Fill>, of{" "}
+        <Fill>Suite 23, 220 Collins Street, Melbourne VIC 3000</Fill> (in these
         terms, &ldquo;Novada Tech&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;
         and &ldquo;our&rdquo;).
       </>,
@@ -562,7 +562,7 @@ const CLAUSES: Clause[] = [
       <>
         You can book a review call through a scheduling tool embedded on this
         website and operated by a third party,{" "}
-        <Fill>[Booking tool provider: to be inserted]</Fill>. Information you
+        <Fill>a third party booking platform</Fill>. Information you
         submit through that tool is collected and processed by that provider as
         well as by us, under that provider&apos;s own terms and privacy policy
         as well as ours.
@@ -919,7 +919,7 @@ const CLAUSES: Clause[] = [
       <>
         Notices to us under these Terms must be in writing, by email to the
         address above or by post to{" "}
-        <Fill>[Postal address for notices: to be inserted]</Fill>.
+        <Fill>Suite 23, 220 Collins Street, Melbourne VIC 3000</Fill>.
       </>,
       <>
         If we cannot resolve a consumer law matter with you, you can contact
