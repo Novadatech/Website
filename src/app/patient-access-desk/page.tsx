@@ -347,29 +347,40 @@ type DeskStep = {
   delta?: string;
 };
 
+/* Re-scripted 2026-09-05 for the AI-inclusive position. The log now shows
+   the practice's OWN AI receptionist taking the easy half and a person
+   owning the half it hands back. The AI is labelled as the practice's so
+   the reader never files us as the software; the deck under the h1 makes
+   the tool optional. This is the page's argument in four lines. */
 const EVENT = {
   time: "7:42 PM",
   source: "Clinic",
-  text: "New patient call, after close.",
+  text: "New patient enquiry, after close.",
 };
 
 const STEPS_LOG: DeskStep[] = [
   {
     time: "7:42 PM",
-    label: "Answered in your practice name",
+    label: "Answered by the practice's own AI receptionist",
     state: "Answered",
   },
   {
-    time: "7:46 PM",
-    label: "Booked in your practice software",
-    state: "Booked",
-    delta: "+4 min",
+    time: "7:44 PM",
+    label: "Handed back. The booking rules do not cover it",
+    state: "Escalated",
+    delta: "+2 min",
   },
   {
-    time: "7:47 PM",
+    time: "7:51 PM",
+    label: "A coordinator rings back and books it in your software",
+    state: "Booked",
+    delta: "+9 min",
+  },
+  {
+    time: "7:52 PM",
     label: "Logged for your monthly report",
     state: "Logged",
-    delta: "+5 min",
+    delta: "+10 min",
   },
 ];
 
@@ -551,7 +562,8 @@ function Hero() {
               transition={{ duration: 0.5 }}
               className={`${MICRO_TIGHT} text-[#003DDB]`}
             >
-              Managed Patient Access Operations{" "}
+              Managed operations{" "}
+              <span className="text-[#C3CAD5]">·</span> Patient access{" "}
               <span className="text-[#C3CAD5]">·</span> Australia
             </motion.p>
 
@@ -573,12 +585,15 @@ function Hero() {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="mt-5 max-w-[560px] text-[15.5px] leading-[1.58] text-[#454E5C] md:text-[17px]"
             >
-              Novada runs the phone-and-schedule workload for Australian
+              Novada runs the patient access function for Australian
               practices: dental, physiotherapy, occupational therapy,
-              psychology, podiatry, speech pathology and veterinary. We answer
-              the calls, make the booking inside the software you already run,
-              work the recall list every week and follow up the ones who did
-              not attend. Alongside your front desk, not instead of it.
+              psychology, podiatry, speech pathology and veterinary. Calls and
+              bookings inside the software you already run. The recall list
+              worked by phone, not by SMS. One report a month, measured against
+              a baseline we take before we start. If you already run an AI
+              receptionist, or you are about to, we configure it, supervise it
+              and own what it hands back. Alongside your front desk, never
+              instead of it.
             </motion.p>
 
             <motion.div
@@ -655,8 +670,10 @@ function Hero() {
 
 const PAINS = [
   "The phone rings out while your front desk is with the patient standing in front of them.",
+  "Something answered after hours and nobody ever found out what happened next.",
   "The recall and reactivation list never actually gets run.",
-  "Cancellations leave holes in today's book that nobody has time to fill.",
+  "Short-notice cancellations leave holes in today's book that nobody has time to fill.",
+  "Patient access is split between reception, the software and whoever has a spare minute, so it belongs to nobody.",
   "You're about to add another admin salary just to keep up.",
 ];
 
@@ -706,61 +723,60 @@ function Decision() {
   );
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   6 · WHEN THE PHONE RINGS
-   Ink surface, and the first of the two desk moments. A practice owner
-   arriving from an ad is not buying a capability list, they are buying
-   the answer to "what happens to the phone while my receptionist is with
-   the patient standing at the counter". So the sequence is drawn as a
-   desk log with a node rail, the same device as the hero surface, and
-   the hardest rule on the page sits INSIDE step 04 rather than in a
-   disclaimer nobody reads: anything clinical stops with us.
+/* ════════════════════════════════════════════════════════════════════
+   6 · WHAT YOU'RE BUYING  (replaced "When the phone rings", 2026-09-05)
+   Ink surface, the first desk moment. The old band dramatised a
+   coordinator answering the phone, which is the half of this offer that
+   AI receptionists are commoditising. This band puts the three-layer
+   stack from the ratified Offer Positioning Report in its place, on the
+   same node rail, so the visitor is told what they are buying before they
+   are told what we do.
 
-   The five state chips are interface labels in the same vocabulary as
-   StateChip above (Answered / Booked / Logged). Step 02's chip reads
-   "Identified" and that word was chosen with a lawyer's eye: it says we
-   worked out what KIND of call it is, and it carefully does not say we
-   formed any view about a patient. The two clinical-sounding
-   alternatives a designer reaches for first are both forbidden here. Do
-   not substitute one in to save a character.
+   ⚠️ The third layer is "The accountability", never "the warranty". Our
+   Terms of Service disclaim warranties on this website and the word is
+   consumer-law charged in Australia. Substance unchanged.
+
+   ⚠️ The closing line keeps the platform on the right side of the
+   clinical boundary. Do not cut it for length. The category paragraph
+   after it is where the noun is defined by non-example, which is the
+   only way a practice owner should ever meet it.
    ══════════════════════════════════════════════════════════════════ */
 
-const PHONE_SEQUENCE: { state: string; body: string }[] = [
+const STACK: { state: string; title: string; body: string }[] = [
   {
-    state: "Answered",
-    body: "A coordinator answers in your practice name, on your number. Not a message bank, not a queue.",
+    state: "Platform",
+    title: "The platform",
+    body: "Our own platform sits underneath the desk. Every call, enquiry and message is captured and logged the moment it happens, the record assembles itself as the work is done, and the monthly report is written out of that log rather than out of somebody's memory. Nothing is reconstructed after the fact.",
   },
   {
-    state: "Identified",
-    body: "We work out what it is: a new patient enquiry, a reschedule, a short-notice cancellation, an account question, or something for the practitioner.",
+    state: "People",
+    title: "The people",
+    body: "A small onshore team, named, who learn how your practice runs. They own everything that takes judgment: the caller who is not in the script, the exception a tool hands back, the booking rule that needs somebody to decide, and the patient who has ignored three text messages and will only move for a phone call.",
   },
   {
-    state: "Booked",
-    body: "The booking goes into your own software, in the right practitioner's column, under your booking rules.",
-  },
-  {
-    state: "Escalated",
-    body: "Anything clinical stops with us and goes to your team. We do not triage, we do not assess urgency and we do not give advice.",
-  },
-  {
-    state: "Logged",
-    body: "Every enquiry is logged: what it was, how fast it was answered, whether it booked, and if it did not, the reason why.",
+    state: "Accountability",
+    title: "The accountability",
+    body: "A baseline measured inside your own software before we change anything. A monthly Patient Access Report of what actually happened against it. A complete log of every enquiry and every action we took, which stays yours. And a named Australian company that answers for the function, written into your services agreement.",
   },
 ];
 
-function PhoneRings() {
+function WhatYouAreBuying() {
   return (
-    <Band index="02" label="When the phone rings" tone="dark">
+    <Band index="02" label="What you're buying" tone="dark">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-white sm:text-[40px] md:text-[48px]`}
         >
-          What happens while reception is with a patient.
+          Not staff. Not software. A function with an owner.
         </h3>
+        <p className="mt-5 max-w-[720px] text-[15.5px] leading-[1.62] text-white/70 md:text-[17px]">
+          Every engagement is the same three layers, and you can see all three
+          from the first week.
+        </p>
       </AnimatedSection>
 
       <div className="mt-9 border-l border-white/[0.12]">
-        {PHONE_SEQUENCE.map((s, i) => (
+        {STACK.map((s, i) => (
           <AnimatedSection key={s.state} delay={i * 0.06}>
             <div className="relative border-b border-white/[0.07] py-5 pl-5 last:border-b-0 sm:pl-7">
               <span
@@ -781,13 +797,28 @@ function PhoneRings() {
                   {s.state}
                 </span>
               </div>
-              <p className="mt-2.5 max-w-[820px] text-[15.5px] leading-[1.58] text-white/85 md:text-[16.5px]">
+              <p className="mt-2.5 text-[17px] font-semibold tracking-tight text-white md:text-[18px]">
+                {s.title}
+              </p>
+              <p className="mt-2 max-w-[820px] text-[15.5px] leading-[1.58] text-white/80 md:text-[16.5px]">
                 {s.body}
               </p>
             </div>
           </AnimatedSection>
         ))}
       </div>
+
+      <AnimatedSection delay={0.1}>
+        <p className="mt-9 max-w-[820px] border-l-2 border-[#3A6CFF] pl-6 text-[17px] font-medium leading-[1.5] text-white md:text-[20px]">
+          Our platform makes the record. Our people make the decisions.
+        </p>
+        <p className="mt-6 max-w-[760px] pl-6 text-[15px] leading-[1.62] text-white/65 md:text-[16px]">
+          Three layers, one engagement, one team. This is managed operations.
+          It is not admin help and it is not another piece of software, and it
+          should not be compared to either. The comparison that matters is the
+          hire you were about to make, and who answers when the function fails.
+        </p>
+      </AnimatedSection>
     </Band>
   );
 }
@@ -819,7 +850,7 @@ const THE_LIST = [
 
 function TheList() {
   return (
-    <Band index="03" label="The list">
+    <Band index="04" label="The list" tone="tint">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[860px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -830,7 +861,8 @@ function TheList() {
           Not because anyone is slack. Because the recall list is the only job
           at the front desk with nobody standing in front of it. The phone
           rings, a patient walks in, and the half-worked list waits until
-          tomorrow. Then tomorrow does the same thing.
+          tomorrow. Then tomorrow does the same thing. No software has fixed
+          this, because it was never a software problem.
         </p>
       </AnimatedSection>
 
@@ -859,38 +891,165 @@ function TheList() {
   );
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   8 · BEFORE YOU CHOOSE ANYONE
-   Five questions, asked and deliberately NOT answered one at a time.
-   Answering them individually would turn the section into a comparison,
-   and this page never names a competitor and never asserts what anyone
-   else does or cannot do. It asks. The single closing line answers all
-   five at once and hands the proof burden back to us, at the review.
+/* ════════════════════════════════════════════════════════════════════
+   12 · MORE THAN ONE SITE  (added 2026-09-05)
+   The multi-site and dental-group argument from the Strategic Direction
+   Memo: the back office is where scale wins, and an independent group can
+   buy that scale without selling. Argued from administration economics,
+   deliberately NOT from any claim about which software resists AI, which
+   would be a capability claim about named vendors and a closing window.
+   ══════════════════════════════════════════════════════════════════ */
+
+const MULTI_SITE = [
+  "One set of booking rules across every site, and one place an enquiry lands no matter which site the patient rang.",
+  "One recall list, worked at each practitioner's own interval, at every site.",
+  "One report a month, with each site's numbers next to the others.",
+  "A new site opens onto a desk that is already running, instead of onto a hire and a handover.",
+];
+
+function MultiSite() {
+  return (
+    <Band index="08" label="More than one site" tone="tint">
+      <AnimatedSection>
+        <h3
+          className={`${DISPLAY} max-w-[860px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
+        >
+          The back office is where scale actually shows up.
+        </h3>
+        <div className="mt-6 max-w-[820px] space-y-4 text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          <p>
+            A group with three sites usually has three front desks, three ways
+            of answering the phone and three versions of the recall list. The
+            clinical side does not scale that way and should not. The
+            administration side does, and it is the only part of a group that
+            gets cheaper to run the more of it there is.
+          </p>
+          <p>
+            What a corporate group actually holds that an independent one does
+            not is a single back office running every site. That is buyable,
+            and buying it does not require selling anything.
+          </p>
+        </div>
+      </AnimatedSection>
+
+      <div className="mt-9 border-t border-[#D3D8E2]">
+        {MULTI_SITE.map((line, i) => (
+          <AnimatedSection key={line} delay={i * 0.05}>
+            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 border-b border-[#E3E6EC] py-4 transition-colors duration-200 hover:bg-white sm:grid-cols-[52px_minmax(0,1fr)] sm:px-3">
+              <span className={`${MICRO} ${NUM} pt-[3px] text-[#9AA3B1]`}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-[15px] leading-[1.6] text-[#0B0E14] md:text-[16px]">
+                {line}
+              </p>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+    </Band>
+  );
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   8 · SUPERVISION  (replaced "Before you choose anyone", 2026-09-05)
+   The crux of the inverted position, and the band the page is judged
+   on. The organising insight from the ratified report: every AI
+   receptionist sold is an employee nobody supervises.
+
+   THREE RULES GOVERN EVERY AI SENTENCE HERE, and they are the reason
+   this band survives Section 6 of the report:
+    1. Never a product, never a company, never a capability claim about
+       anyone else. Every criticism is aimed at the practice's
+       ARRANGEMENT (who is rostered to check), never at the software.
+    2. Open by telling them to buy it. The first four sentences are the
+       most generous thing anyone in this market says about these tools.
+       That is what buys the right to the next paragraph.
+    3. Reframe escalation, an advertised feature, as a compliment, then
+       follow the handed-back call one step further than the vendor's
+       page does: into the practice, onto a person already with a patient.
+
+   The five questions were the old band's device. They are re-aimed so
+   they apply equally to the software, the front desk and to us, which
+   is what stops the band reading as a comparison table.
    ══════════════════════════════════════════════════════════════════ */
 
 const FIVE_QUESTIONS = [
-  "Will you make the booking inside my software, or send me a message about it?",
-  "Will you work my recall list by phone, or only send an SMS?",
-  "Will you follow up someone who did not attend, and get them rebooked?",
-  "Is it the same small team every week, and will they learn how my practice runs?",
-  "Will you tell me why an enquiry did not turn into a booking?",
+  "When a booking goes in wrong, who finds it before the patient arrives?",
+  "When the caller is not in the script, who does the call get handed to?",
+  "Who rings the patient who has ignored three text messages?",
+  "Who reads a month of this and changes how next month runs?",
+  "When it does not work, whose name is on it?",
 ];
 
-function BeforeYouChoose() {
+function Supervision() {
   return (
-    <Band index="04" label="Before you choose anyone" tone="tint">
+    <Band index="03" label="Supervision">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[900px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
         >
-          Five questions worth asking anyone who offers to answer your phones.
+          Buy the AI receptionist. Then ask who supervises it.
         </h3>
+        <div className="mt-6 max-w-[820px] space-y-4 text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          <p>
+            AI receptionists are good and they are getting better. In cloud
+            practice software they now write a booking into the diary while
+            the caller is still on the line. If your practice runs one, keep
+            it. If you are about to buy one, buy it.
+          </p>
+          <p>
+            Then look at what you have just added: a new pair of hands at your
+            front desk, working an unfamiliar job, with nobody rostered to
+            check what it did.
+          </p>
+          <p>
+            Escalation is the part every one of these tools does well, and it
+            is the part practices are least ready for. When the caller is not
+            in the script the call gets handed back, and it gets handed back to
+            whoever is already busy. A booking can go into the wrong
+            practitioner&apos;s column; people do that too, and the question is
+            the same either way, which is who finds it before the patient
+            arrives. An enquiry that did not book is a decision somebody has to
+            make tomorrow morning. And at the end of the month somebody has to
+            read all of it and change how next month runs.
+          </p>
+          <p>
+            None of that is a criticism of the software. It is the job the
+            software does not have. Every practice management system on this
+            page already has a recall list built into it. The list was never
+            the hard part. Ringing it was.
+          </p>
+        </div>
       </AnimatedSection>
 
-      <div className="mt-9 border-t border-[#D3D8E2]">
+      <AnimatedSection delay={0.08}>
+        <p className="mt-8 max-w-[860px] border-l-2 border-[#B4501A] pl-5 text-[17px] font-medium leading-[1.5] text-[#0B0E14] md:text-[21px]">
+          Every AI receptionist sold is an employee nobody supervises.
+        </p>
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.1}>
+        <p className="mt-8 max-w-[820px] text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          We are not another one of them and we are not against them. We run
+          the function they sit inside. We configure the tool you have or the
+          one you choose, we read what it did every week, we take everything
+          it hands back, and we ring the people it was never going to move. One
+          team owns the whole thing, and one report a month tells you how it
+          went.
+        </p>
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.12}>
+        <p className={`${MICRO} mt-12 text-[#9AA3B1]`}>
+          Five questions. Ask them of your software, ask them of your front
+          desk, and ask them of us.
+        </p>
+      </AnimatedSection>
+
+      <div className="mt-4 border-t border-[#D3D8E2]">
         {FIVE_QUESTIONS.map((q, i) => (
           <AnimatedSection key={q} delay={i * 0.06}>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-2 border-b border-[#E3E6EC] py-5 transition-colors duration-200 hover:bg-white sm:grid-cols-[52px_minmax(0,1fr)_96px] sm:px-3">
+            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-2 border-b border-[#E3E6EC] py-5 transition-colors duration-200 hover:bg-[#F7F8FA] sm:grid-cols-[52px_minmax(0,1fr)_96px] sm:px-3">
               <span className={`${MICRO} ${NUM} pt-1 text-[#003DDB]`}>
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -908,11 +1067,11 @@ function BeforeYouChoose() {
       </div>
 
       <AnimatedSection delay={0.1}>
-        <div className="mt-9 max-w-[860px] rounded-[12px] border border-[#E3E6EC] bg-white p-6 md:p-7">
+        <div className="mt-9 max-w-[860px] rounded-[12px] border border-[#E3E6EC] bg-[#F7F8FA] p-6 md:p-7">
           <p className={`${MICRO} text-[#9AA3B1]`}>Our answer</p>
           <p className="mt-4 text-[16px] font-medium leading-[1.58] text-[#0B0E14] md:text-[18px]">
-            We built the desk so that the answer to all five is yes. Ask us to
-            prove any of them at the review.
+            One name against all five, and it is a person, not a setting. The
+            monthly report is where you check we meant it.
           </p>
         </div>
       </AnimatedSection>
@@ -929,11 +1088,12 @@ function BeforeYouChoose() {
    ══════════════════════════════════════════════════════════════════ */
 
 const WE_RUN = [
-  "Calls, web enquiries and messages: answered, including evenings and Saturday.",
+  "Calls, web enquiries and messages, answered in your practice name, including evenings and Saturday.",
+  "Your AI receptionist, if you have one or want one: configured to your booking rules, reviewed every week, and every call it hands back comes to us instead of to your front desk.",
   "Bookings, rescheduling and new-patient intake, directly in your own software: Cliniko, Halaxy, Nookal, PracSuite, Dental4Windows, Praktika, Exact, Best Practice, ezyVet and whatever else you already run.",
-  "Recalls and reactivation, run every week, by phone.",
-  "Cancellation recovery, and same-day follow-up on FTAs and no-shows.",
-  "A monthly Patient Access Report: every enquiry, response time, booking outcome and reason lost.",
+  "Recalls and reactivation, worked every week, by phone, at the interval your practitioner set.",
+  "Short-notice cancellations filled, and same-day follow-up on FTAs and no-shows.",
+  "A monthly Patient Access Report: every enquiry, how fast it was answered, what booked, and the reason for the ones that did not, measured against the baseline we took before we started.",
 ];
 
 function WhatWeRun() {
@@ -943,8 +1103,11 @@ function WhatWeRun() {
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
         >
-          The phone-and-schedule workload, handled.
+          One desk owns all of it.
         </h3>
+        <p className="mt-5 max-w-[720px] text-[15.5px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          One engagement, one team. You do not assemble this out of parts.
+        </p>
       </AnimatedSection>
 
       <div className="mt-9 border-t border-[#E3E6EC]">
@@ -989,6 +1152,10 @@ const BOUNDARIES = [
   {
     tag: "Your rules",
     body: "Recall contact follows the interval your practitioner set. We never contact a patient to hit a number.",
+  },
+  {
+    tag: "Never",
+    body: "We do not sell software. If an AI receptionist suits your practice, you hold that contract yourself, and you can change it or end it without changing us.",
   },
   {
     tag: "Never",
@@ -1064,7 +1231,7 @@ function Scope() {
 const ACCESS_ITEMS = [
   "Named coordinators, each with their own login under your practice's own access control. Never a shared account.",
   "Permissions limited to the parts of your software the work actually needs.",
-  "Your patient information stays in your systems, and stays in Australia.",
+  "Your patient information stays in your systems, and stays in Australia. Our people are in Australia too. Under Australian Privacy Principle 8 and section 16C of the Privacy Act 1988, a practice that sends patient information to an overseas recipient is still accountable for what that recipient does with it. Nothing here leaves the country.",
   "A written agreement that mirrors your obligations under the Australian Privacy Principles.",
   "We can be named in your practice's privacy policy as a contracted service provider.",
 ];
@@ -1169,7 +1336,7 @@ const EVIDENCE = [
 
 function WhyNow() {
   return (
-    <Band index="08" label="Why now" tone="tint">
+    <Band index="09" label="Why now">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1229,20 +1396,61 @@ const PROOF_TAGS = [
 
 function Proof() {
   return (
-    <Band index="09" label="Proof of operations" tone="dark">
+    <Band index="10" label="Proof" tone="dark">
+      {/* Rewritten 2026-09-05 and absorbing the old "The numbers" band.
+          The ratified report's honesty doctrine requires saying plainly
+          that there is no clinic client yet. Stated flatly, in bold, in the
+          first sentence, then answered in the same breath by an operation
+          that runs tonight and by the baseline. "You will see it in your
+          own numbers before we tell you" is a stronger trust claim than any
+          testimonial could be, which is why this converts rather than
+          apologises. The same admission is repeated once in the FAQ for the
+          sceptic who scrolls straight there. */}
       <AnimatedSection>
         <p className={`${MICRO} text-white/45`}>
-          Why trust us with your phones
+          What we can prove, and what we cannot
         </p>
         <p className="mt-6 max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[19px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
-          Our team already runs a 24/7 coordination desk for Australian care
-          providers: every call answered, every night of the year, inside their
-          systems and to their protocols.
+          We will not put proof on this page that we do not have.
         </p>
-        <p className="mt-6 max-w-[720px] pl-6 text-[15px] leading-[1.62] text-white/65 md:text-[16px]">
-          We measure everything we do, and we&apos;ll show you your own
-          numbers, not recycled industry statistics.
-        </p>
+        <div className="mt-8 max-w-[760px] space-y-5 pl-6 text-[15.5px] leading-[1.62] text-white/75 md:text-[16.5px]">
+          <p>
+            <span className="font-semibold text-white">
+              We do not have a clinic client to show you yet.
+            </span>{" "}
+            This desk is new and the practices we are speaking to now will be
+            the first. We are not going to invent a case study, borrow an
+            American one, or print a number here that we cannot trace back to
+            a source.
+          </p>
+          <p>
+            <span className="font-semibold text-white">
+              What we do have is an operation that already runs.
+            </span>{" "}
+            Our team runs a 24/7 coordination desk for Australian care
+            providers: every night of the year, inside their systems and to
+            their protocols. The people, the platform and the handover
+            discipline described on this page are the ones running that desk
+            tonight.
+          </p>
+          <p>
+            <span className="font-semibold text-white">
+              And we have the measurement.
+            </span>{" "}
+            Before we change anything at your practice we take a baseline
+            inside your own software. Every month after that, the report shows
+            what happened against it. If the desk is not working you will see
+            it in your own numbers before we tell you, and the engagement is
+            month to month, so you can leave.
+          </p>
+          <p>
+            You will see a lot of numbers in this market. We checked them.
+            Most cannot be traced to any source and several are American
+            figures dressed up as Australian ones. So the only numbers we will
+            ever put in front of you are your own: what came in, how fast it
+            was answered, what booked, and why the rest did not.
+          </p>
+        </div>
       </AnimatedSection>
 
       <AnimatedSection delay={0.12}>
@@ -1268,18 +1476,18 @@ function Proof() {
 const STEPS = [
   {
     n: "01",
-    title: "The review",
-    body: "We map your call, booking, recall and cancellation workload, and what it is costing you today.",
+    title: "The Capacity Review",
+    body: "We map what actually reaches your desk: calls, enquiries, recalls, cancellations and FTAs. We look at what you run today, including anything that answers for you. Then we put that next to the cost of the hire you were considering.",
   },
   {
     n: "02",
     title: "The baseline",
-    body: "Week one. We measure your current numbers inside your own software, before we change anything.",
+    body: "Week one, before we change anything. We measure your current numbers inside your own software, and that measurement is what every monthly report is scored against for as long as we run the desk.",
   },
   {
     n: "03",
     title: "The desk runs",
-    body: "We take the workload, and the monthly report shows every call, booking and recovery from day one.",
+    body: "We take the function. Your tools stay yours, your software stays the system of record, and from the first month the report shows every enquiry, every booking, and everything we did not manage to save.",
   },
 ];
 
@@ -1288,7 +1496,7 @@ function HowItStarts() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <Band index="10" label="How it starts" tone="tint">
+    <Band index="11" label="How it starts" tone="tint">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1362,6 +1570,10 @@ const FAQS = [
     a: "No. Front of house needs people at the counter, and your patients should see the same faces. We take the phone-and-schedule load so your team can look after whoever is standing in front of them, and so the recall list actually gets worked.",
   },
   {
+    q: "We already run an AI receptionist. Where does that leave you?",
+    a: "Running it. We configure it to your booking rules, we review what it did every week, and every call it cannot finish comes to us instead of to your front desk. You keep that contract yourself and you can change it without changing us. And if you do not have one and do not want one, nothing about the desk changes. The tool is optional. The desk is not.",
+  },
+  {
     q: "Do you triage?",
     a: "No, and we never will. We do not assess urgency and we do not give clinical advice. Anything clinical goes to your team under a protocol we agree in writing before we take a call. Be careful of anyone in this market who offers to triage for you.",
   },
@@ -1376,6 +1588,10 @@ const FAQS = [
   {
     q: "What happens if you make a mistake in the book?",
     a: "We tell you the same day, in the handover, with what happened and what we did about it. Errors are logged in the monthly report alongside everything else. A desk that hides its mistakes is worse than no desk.",
+  },
+  {
+    q: "How many clinics do you run this for?",
+    a: "None yet, and we are not going to pretend otherwise. This desk is new and the practices we are speaking to now will be the first. What is not new is the operation underneath it: our team runs a 24/7 coordination desk for Australian care providers, every night of the year. And we do not ask you to take the result on trust, because your baseline is measured inside your own software before we start.",
   },
   {
     /* Corrected 2026-09-05 on the founder's confirmation. This previously
@@ -1394,7 +1610,7 @@ function Questions() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <Band id="faq" index="11" label="Questions">
+    <Band id="faq" index="12" label="Questions">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1437,55 +1653,6 @@ function Questions() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   16 · THE NUMBERS
-   The measurement position, and the last thing read before the booking
-   band. It is here rather than beside the citations table because it is
-   not evidence, it is a refusal: we will not put an untraceable industry
-   figure in front of a practice owner, and the only numbers we will show
-   them are their own. That refusal is what makes the four sourced rows
-   in band 08 worth reading.
-
-   No competitor is named and nothing is asserted about any particular
-   business. The claim is about figures circulating in the market, and
-   the standard it sets is one this page then has to meet itself.
-   ══════════════════════════════════════════════════════════════════ */
-
-function TheNumbers() {
-  return (
-    <Band index="12" label="The numbers" tone="tint">
-      <AnimatedSection>
-        <h3
-          className={`${DISPLAY} max-w-[880px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
-        >
-          We will not quote you an industry statistic.
-        </h3>
-        <p className="mt-6 max-w-[820px] text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
-          You will see a lot of numbers in this market. We checked them. Most
-          cannot be traced to any source, and several are American figures
-          dressed up as Australian ones. So we do not use them.
-        </p>
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.08}>
-        <p className="mt-8 max-w-[860px] border-l-2 border-[#003DDB] pl-5 text-[17px] font-medium leading-[1.5] text-[#0B0E14] md:text-[21px]">
-          The only numbers we will put in front of you are your own: what came
-          in, how fast it was answered, what booked, and why the rest did not.
-        </p>
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.14}>
-        <div className="mt-8 flex flex-wrap items-baseline gap-x-2 gap-y-1 border-t border-[#D3D8E2] pt-4">
-          <span className={`${MICRO} text-[#9AA3B1]`}>Standing rule</span>
-          <span className="text-[13.5px] leading-snug text-[#5B6472]">
-            Every industry figure on this page carries its source in the same breath.
-          </span>
-        </div>
-      </AnimatedSection>
-    </Band>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════
    17 · BOOK
    ══════════════════════════════════════════════════════════════════ */
 
@@ -1506,8 +1673,9 @@ function FinalCta() {
                 Book a capacity review.
               </h3>
               <p className="mt-5 max-w-[620px] text-[16px] leading-[1.62] text-white/65 md:text-[17px]">
-                We&apos;ll map your call, booking and recall workload, and show
-                you exactly what we&apos;d measure in your first 30 days.
+                We will map what reaches your desk, look at whatever answers
+                for you today, and show you exactly what we would measure in
+                your first thirty days. Nothing is committed at the end of it.
               </p>
             </AnimatedSection>
 
@@ -1541,24 +1709,27 @@ export default function PatientAccessDeskPage() {
       <main>
         <Hero />
         <Decision />
-        <PhoneRings />
+        <WhatYouAreBuying />
+        <Supervision />
         <TheList />
-        <BeforeYouChoose />
         <WhatWeRun />
         <Scope />
         <AccessPrivacy />
+        <MultiSite />
         <WhyNow />
         <Proof />
         <HowItStarts />
         <Questions />
-        <TheNumbers />
         <FinalCta />
       </main>
 
       <DeskFooter />
+      {/* Tagline changed 2026-09-05. Was "Every call answered. Every booking
+          made. Everything measured.", which is the old offer and reads as a
+          service level our Terms of Service disclaim. */}
       <StickyCta
         label="Book a Capacity Review"
-        tagline="Every call answered. Every booking made. Everything measured."
+        tagline="We run it, and we answer for it."
       />
     </div>
   );
