@@ -27,6 +27,13 @@ const nextConfig: NextConfig = {
       { source: "/workforce-2", destination: "/workforce-ops-desk", permanent: true },
       { source: "/workforce-confirmed", destination: "/review-confirmed", permanent: true },
 
+      /* Comparison copy of the repositioned care page, created and deleted
+         on 5 Sep 2026 after the founder compared the two versions side by
+         side and kept the original. TEMPORARY (307), not permanent: this
+         is a scratch URL likely to be reused for the next comparison, and
+         browsers cache a 308 hard enough to poison it for that reuse. */
+      { source: "/workforce-ops-desk-2", destination: "/workforce-ops-desk", permanent: false },
+
       /* ── Legacy meetings service funnel ── */
 
       /* /meetings-2 was the US Google Ads lander, deleted 2 Sep 2026. It is
