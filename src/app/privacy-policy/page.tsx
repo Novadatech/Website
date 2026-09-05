@@ -1137,11 +1137,27 @@ export default function PrivacyPolicyPage() {
                   </P>
                   <List
                     items={[
+                      /* Rewritten 2026-09-05 on the founder's confirmation of
+                         what we actually hold. The distinction below is the
+                         whole answer and it is load bearing: we keep our own
+                         record of the work we did, and we do not keep copies
+                         of the client's patient or participant records. The
+                         marketing position rests on this, because what we
+                         undertake to produce at an audit is our own log, not
+                         the client's file. Do not blur the two. */
                       <>
-                        <Key>Workforce Ops Desk compliance records.</Key>{" "}
-                        Onboarding, induction, training and compliance records
-                        we maintain for care provider clients are kept to a{" "}
-                        <Key>seven year statutory retention standard</Key>.
+                        <Key>Our own record of the work.</Key> We keep our own
+                        operational log of what we did and when: what came in,
+                        what we did about it, who did it, what we escalated and
+                        to whom, and what we reported to the client. That log
+                        is our record, not a copy of theirs, and it is what our
+                        monthly reports and any audit response are built from.
+                        For care provider clients, the onboarding, induction,
+                        training and compliance records we maintain are kept to
+                        a <Key>seven year statutory retention standard</Key>.
+                        For practice clients we keep the log for as long as we
+                        need it to answer for the work, and no longer than our
+                        limitation period obligations require.
                       </>,
                       <>
                         <Key>Records inside a client&apos;s system.</Key> These
@@ -1167,9 +1183,17 @@ export default function PrivacyPolicyPage() {
                       </>,
                       <>
                         <Key>
-                          Patient Access Desk working records held by us.
+                          Copies of a client&apos;s patient or participant
+                          records.
                         </Key>{" "}
-                        We do not keep our own copies of a client&apos;s patient or participant records. That work is carried out inside the client&apos;s own systems and those records stay there, under the client&apos;s own retention rules.
+                        We do not keep them. That work is carried out inside
+                        the client&apos;s own systems and those records stay
+                        there, under the client&apos;s own retention rules.
+                        Where our own log necessarily names a patient or a
+                        participant, for example to record that a call was
+                        returned or a booking was made, we hold that entry as
+                        part of our record of the work we did. It is not a copy
+                        of the client&apos;s file, and we do not assemble one.
                       </>,
                       <>
                         <Key>Business records.</Key> Contracts, invoices and

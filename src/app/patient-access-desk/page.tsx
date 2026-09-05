@@ -1378,8 +1378,15 @@ const FAQS = [
     a: "We tell you the same day, in the handover, with what happened and what we did about it. Errors are logged in the monthly report alongside everything else. A desk that hides its mistakes is worse than no desk.",
   },
   {
+    /* Corrected 2026-09-05 on the founder's confirmation. This previously
+       read "the first three months cover the work of learning your
+       practice. After that, thirty days' notice", which described a
+       three-month minimum term. That is lock-in, and it contradicted the
+       ratified position (month to month, no lock-in) as well as the
+       company's own offer documents. Nothing else on the site stated a
+       term, so this was the single source of the contradiction. */
     q: "Are we locked in?",
-    a: "The first three months cover the work of learning your practice. After that, thirty days' notice, and your playbook and your data stay yours.",
+    a: "No. The engagement is month to month, with no minimum term, no lock-in and no exit fee. Your playbook and your data stay yours either way.",
   },
 ];
 
