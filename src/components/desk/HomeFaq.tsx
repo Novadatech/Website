@@ -32,6 +32,13 @@ const FAQS = [
     q: "Is this an answering service?",
     a: "We answer your calls, and we finish the job as well. That second half is the difference. An answering service takes a message and hands the problem back to your team. Our coordinators answer the phone, make the booking in your software, run the recall, coordinate the shift cover, keep the record and report the outcome.",
   },
+  // Added 2026-09-05. The category noun is a pricing decision (it decides
+  // what a visitor compares us to), so it gets defined here, in the words
+  // a practice owner or care provider would actually use to ask.
+  {
+    q: "What does managed operations actually mean?",
+    a: "It is a plain way of saying somebody owns the job. You are not buying hours from us and you are not buying a tool you have to run yourself. You are handing over a function: our platform does the capture, the logging and the reporting, our coordinators handle the parts that take judgment, and one Australian company is named and accountable for how the function runs. That last part is what makes it managed.",
+  },
   {
     q: "Do you replace our receptionist?",
     a: "No, and we won't pretend to. Front-of-house needs people at the counter. We carry the phone-and-schedule load so your team can look after the person in front of them.",
@@ -57,9 +64,17 @@ const FAQS = [
     q: "Who can see our information?",
     a: "Named coordinators, each with their own login under your own access control, with permissions limited to the work. Never a shared account. Your information stays in your systems and stays in Australia, under a written agreement that mirrors your obligations under the Australian Privacy Principles.",
   },
+  // Added 2026-09-05. Taught, not asserted: both substitutes are conceded
+  // as real before the accountability point lands. No vendor, country,
+  // figure or growth word. The wrap line is the way in for a provider who
+  // already offshores.
+  {
+    q: "Why not send this offshore, or just use software?",
+    a: "Both are real. Hours can be bought offshore, and for pure back office work that is legal. Tasks can be bought as software, and we use software ourselves underneath our own desk. What neither of them carries is the accountability. Under Australian Privacy Principle 8 and section 16C of the Privacy Act, information you send overseas stays your responsibility, and records duties stay with you regardless of who does the typing. If you already have an offshore team, we are not asking you to change it. We wrap what you have.",
+  },
   {
     q: "How does pricing work?",
-    a: "It's based on workload, and benchmarked against the all-in cost of the role you'd otherwise hire. That's exactly what the review works out.",
+    a: "It's based on workload, and benchmarked against the all-in cost of the role you'd otherwise hire. Never an hourly rate. That's exactly what the review works out.",
   },
   {
     q: "How do we start?",

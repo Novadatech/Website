@@ -45,10 +45,15 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
-  title: "Novada | The Desk for Australian Healthcare: Clinics & Care Providers",
+  // Rebuilt 2026-09-05 around the ratified category noun. "Rosters covered"
+  // is gone: it reads as the shift-cover claim our Terms disclaim.
+  title: "Novada | Managed Operations for Australian Clinics and Care Providers",
   description:
-    "Novada runs the front desk for Australian clinics and the coordination desk for care providers. Calls answered, bookings made in your systems, rosters covered, everything measured monthly.",
+    "We run the patient access desk for Australian clinics and the coordination desk for care providers, inside your own systems. Onshore. Nothing clinical, ever.",
   keywords: [
+    "managed operations",
+    "managed healthcare operations",
+    "managed care operations Australia",
     "patient access",
     "practice front desk support",
     "after-hours coordination for care providers",
@@ -58,9 +63,9 @@ export const metadata: Metadata = {
     "Australia",
   ],
   openGraph: {
-    title: "Novada | The Desk for Australian Healthcare: Clinics & Care Providers",
+    title: "Novada | Managed Operations for Australian Clinics and Care Providers",
     description:
-      "Revenue is won or lost at the desk. Novada runs the front desk for Australian clinics and the coordination desk for care providers. Alongside your team, not instead of them.",
+      "Somebody has to own the workload. We run it, and we answer for it. Managed operations for Australian clinics and care providers, alongside your team, not instead of them.",
     type: "website",
     locale: "en_AU",
   },

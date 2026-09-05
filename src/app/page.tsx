@@ -84,6 +84,24 @@
  * the three rows removed on 2026-09-05 and the reasoning. Never add a
  * figure that cannot be traced to a named instrument or publication.
  *
+ * REPOSITION PASS 2026-09-05, against the Offer Positioning Report ratified
+ * that day. What changed: the hero drops "Revenue is won or lost at the
+ * desk" (a growth-shaped claim on a page carrying care copy) and the
+ * subhead's "every call answered, every shift covered" (both are service
+ * levels our Terms disclaim, and the founder confirmed we do not make the
+ * shift-cover claim); a new band 03 installs the category noun and the
+ * three-layer stack BEFORE the visitor routes, so the noun they carry onto
+ * an offer page is the one we chose; a new band 08 teaches what got cheap
+ * and what did not, with the APP 8 fact pattern sourced; the two desk
+ * cards each gain the ownership sentence; two FAQs define the noun and
+ * answer the cheap-substitute objection. Two tone flips (Why now to tint,
+ * Measurement to white) preserve the alternation around the insertions.
+ *
+ * ⚠️ DELIBERATELY NOT ON THIS PAGE, by founder decision the same day: the
+ * clinic AI-supervision framing, and the "no clinic client yet" honesty
+ * line. Both live on /patient-access-desk only. This is the organic,
+ * two-audience surface and the wrong place to debut either.
+ *
  * ⚠️ NOTHING CLINICAL, AND NO CLINICAL CAPABILITY. We have no clinicians.
  * Nothing here may imply that we triage, assess urgency or advise. The
  * only place those verbs may appear is inside a reviewed NEGATION, as in
@@ -567,6 +585,8 @@ function Hero() {
               transition={{ duration: 0.5 }}
               className={`${MICRO} flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[#003DDB]`}
             >
+              <span>Managed operations</span>
+              <span aria-hidden className="h-3 w-px bg-[#C3CAD5]" />
               <span>Healthcare Clinics</span>
               <span aria-hidden className="h-3 w-px bg-[#C3CAD5]" />
               <span>Care Providers</span>
@@ -580,8 +600,15 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.08 }}
               className={`${DISPLAY} mt-6 text-[46px] text-[#0B0E14] sm:text-[60px] lg:text-[74px]`}
             >
-              Revenue is won or lost at the desk.{" "}
-              <span className="text-[#003DDB]">We run it.</span>
+              {/* Changed 2026-09-05. "Revenue is won or lost at the desk"
+                  was a growth-shaped performance claim on a page that
+                  carries care copy. This is the ratified identity line.
+                  "Workload" rather than "desk" so the sentence cannot be
+                  read against the never-replace-a-whole-role rule. */}
+              Somebody has to own the workload.{" "}
+              <span className="text-[#003DDB]">
+                We run it, and we answer for it.
+              </span>
             </motion.h1>
 
             <motion.p
@@ -590,10 +617,11 @@ function Hero() {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="mt-6 max-w-[560px] text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]"
             >
-              Novada runs the front desk for Australian clinics and the
-              coordination desk for care providers. Every call answered, every
-              shift covered, everything measured. Alongside your team, not
-              instead of them.
+              Novada runs the patient access desk for Australian clinics and
+              the coordination desk for care providers. Our platform
+              underneath, our people where it takes judgment, and one
+              Australian company answerable for the whole of it. Alongside your
+              team, not instead of them.
             </motion.p>
 
             <motion.div
@@ -713,6 +741,7 @@ function Problem() {
     </Band>
   );
 }
+
 
 /* ══════════════════════════════════════════════════════════════════
    5 · THE WEEK, DRAWN
@@ -866,6 +895,117 @@ function WeekSurface() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
+   5b · WHAT IT IS  (added 2026-09-05)
+   The three-layer stack and the category noun, placed BEFORE the two
+   desk cards on purpose. The noun a visitor absorbs is the noun they
+   carry onto the offer page, so it has to be installed before they route,
+   and both cards then read as instances of one architecture rather than
+   two unrelated services.
+
+   Two-buyer legibility is structural, not tonal: every row is one layer
+   sentence true for everybody, then "In a clinic:", then "In a care
+   setting:", always in that order. A practice owner reads the second line
+   of all three rows and gets a whole picture; a care provider reads the
+   third. Neither reads the other's.
+
+   ⚠️ Layer three is "The accountability", never "the warranty". Our
+   Terms of Service disclaim warranties on this website and the word is
+   consumer-law charged here. Substance unchanged.
+
+   ⚠️ Platform verbs are clerical only: captures, logs, assembles,
+   builds, reports. It never decides, assesses, triages, handles or
+   manages, and it never takes a person as its object. Bounded by the
+   closing line, which must not be cut for length.
+   ══════════════════════════════════════════════════════════════════ */
+
+const STACK = [
+  {
+    n: "01",
+    tag: "Ours",
+    title: "The platform",
+    body: "Our own software layer sits under the desk. It captures what came in, logs what was done, assembles the record and builds the monthly report. It is why the desk does not forget, and why the evidence exists the moment something happens instead of being reconstructed later.",
+    clinic: "Every enquiry logged with the reason it did or did not become a booking.",
+    care: "Every overnight event timestamped and waiting in the morning handover.",
+  },
+  {
+    n: "02",
+    tag: "Onshore",
+    title: "The people",
+    body: "Named coordinators, onshore, who own everything that takes judgment. Not a queue, and not a script.",
+    clinic: "The patient who has ignored three text messages and needs an actual person to ring.",
+    care: "The 4am call-off, and the event at 11pm that nobody wrote a rule for.",
+  },
+  {
+    n: "03",
+    tag: "In writing",
+    title: "The accountability",
+    body: "A baseline measured inside your own systems before we change anything, a monthly report of outcomes against it, records kept to the standard your sector has to meet, and one named Australian company accountable for the function. What we answer for is the work and the record. We do not promise a number we do not control.",
+    clinic: "The monthly Patient Access Report, read against week one.",
+    care: "An audit-ready trail of after-hours decisions, handovers and escalations.",
+  },
+];
+
+function WhatItIs() {
+  return (
+    <Band id="what" index="03" label="What it is" tone="tint">
+      <AnimatedSection>
+        <h3
+          className={`${DISPLAY} max-w-[820px] text-[32px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
+        >
+          You are not buying hours, and you are not buying software.
+        </h3>
+        <p className="mt-6 max-w-[860px] border-l-2 border-[#003DDB] pl-5 text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          You are buying a function that somebody else owns. That is what
+          managed operations means: our platform underneath, our people
+          wherever the job takes judgment, and one Australian company
+          answerable for how the whole thing runs. Three layers, and you get to
+          see all three.
+        </p>
+      </AnimatedSection>
+
+      <div className="mt-10 border-t border-[#D3D8E2]">
+        {STACK.map((r, i) => (
+          <AnimatedSection key={r.n} delay={i * 0.06}>
+            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-6 sm:grid-cols-[52px_minmax(0,1fr)_148px] sm:px-3">
+              <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1]`}>{r.n}</span>
+              <div className="min-w-0">
+                <p className="text-[17px] font-semibold tracking-tight text-[#0B0E14] md:text-[18px]">
+                  {r.title}
+                </p>
+                <p className="mt-2.5 max-w-[640px] text-[15px] leading-[1.62] text-[#454E5C] md:text-[16px]">
+                  {r.body}
+                </p>
+                <ul className="mt-4 max-w-[640px] space-y-2">
+                  <li className="grid grid-cols-[118px_minmax(0,1fr)] gap-x-3 text-[14px] leading-[1.55] sm:grid-cols-[132px_minmax(0,1fr)]">
+                    <span className={`${MICRO} pt-[2px] text-[#003DDB]`}>In a clinic</span>
+                    <span className="text-[#39424E]">{r.clinic}</span>
+                  </li>
+                  <li className="grid grid-cols-[118px_minmax(0,1fr)] gap-x-3 text-[14px] leading-[1.55] sm:grid-cols-[132px_minmax(0,1fr)]">
+                    <span className={`${MICRO} pt-[2px] text-[#003DDB]`}>In a care setting</span>
+                    <span className="text-[#39424E]">{r.care}</span>
+                  </li>
+                </ul>
+              </div>
+              <span
+                className={`${MICRO} col-start-2 justify-self-start rounded-[4px] border border-[#DCE0E8] bg-white px-2 py-[3px] text-[#5B6472] sm:col-start-3 sm:justify-self-end`}
+              >
+                {r.tag}
+              </span>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      <AnimatedSection delay={0.1}>
+        <p className="mt-9 max-w-[820px] border-l-2 border-[#003DDB] pl-5 text-[17px] font-medium leading-[1.55] text-[#0B0E14] md:text-[19px]">
+          Automation makes the evidence. People make the decisions.
+        </p>
+      </AnimatedSection>
+    </Band>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
    6 · THE TWO DESKS
    ══════════════════════════════════════════════════════════════════ */
 
@@ -874,7 +1014,7 @@ const DESKS = [
     index: "01",
     eyebrow: "For clinics",
     title: "The Patient Access Desk",
-    body: "For dental, physio, OT, psychology, podiatry, speech and vet practices. We answer the calls, make the booking inside the software you already run, work the recall list every week, fill short-notice cancellations and follow up the ones who did not attend. So a practice can take on more patients without automatically adding another front-desk salary.",
+    body: "For dental, physio, OT, psychology, podiatry, speech and vet practices. We answer the calls, make the booking inside the software you already run, work the recall list every week, fill short-notice cancellations and follow up the ones who did not attend. One team owns the function, and the monthly Patient Access Report is the thing we answer for. So a practice can add capacity without automatically adding another front-desk salary.",
     href: "/patient-access-desk",
     cta: "For Clinics",
   },
@@ -882,7 +1022,7 @@ const DESKS = [
     index: "02",
     eyebrow: "For care providers",
     title: "The Workforce Ops Desk",
-    body: "For NDIS, home care and aged care providers. Rostering administration, the after-hours line, call-offs coordinated from your own approved workers, incidents escalated to your matrix and documented, and worker and service records kept to the 7-year statutory standard. So your managers stop being the overnight department.",
+    body: "For NDIS, home care and aged care providers. Rostering administration, the after-hours line, call-offs coordinated from your own approved workers, incidents escalated to your matrix and documented, and worker and service records kept to the 7-year statutory standard. Back office only, by design. One team owns the function, and the monthly report is the thing we answer for. So your managers stop being the overnight department.",
     href: "/workforce-ops-desk",
     cta: "For Care Providers",
   },
@@ -890,7 +1030,7 @@ const DESKS = [
 
 function TwoDesks() {
   return (
-    <Band id="desks" index="03" label="Two desks">
+    <Band id="desks" index="04" label="Two desks">
       <div className="grid gap-4 md:grid-cols-2">
         {DESKS.map((d, i) => (
           <AnimatedSection key={d.href} delay={i * 0.08} className="h-full">
@@ -980,7 +1120,7 @@ const STEPS = [
   {
     n: "03",
     title: "The desk runs",
-    body: "We take the workload, and the monthly report shows every call, booking, recovery and event from day one.",
+    body: "We take the workload and we own it. The monthly report shows every call, booking, recovery and event against your baseline, from day one.",
   },
 ];
 
@@ -989,7 +1129,7 @@ function HowItWorks() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <Band id="how" index="04" label="How it works" tone="tint">
+    <Band id="how" index="05" label="How it works" tone="tint">
       <div ref={ref} className="relative">
         {/* the rail, drawn once on entry */}
         <span
@@ -1081,7 +1221,7 @@ const BOUNDARIES = [
 
 function Boundaries() {
   return (
-    <Band index="05" label="Scope">
+    <Band index="06" label="Scope">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[32px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1116,6 +1256,7 @@ function Boundaries() {
   );
 }
 
+
 /* ══════════════════════════════════════════════════════════════════
    9 · ACCESS AND PRIVACY
    The only NEW band added in the 2026-09-01 pass, and it sits directly
@@ -1143,7 +1284,7 @@ const ACCESS_ITEMS = [
 
 function AccessPrivacy() {
   return (
-    <Band index="06" label="Access and privacy" tone="tint">
+    <Band index="07" label="Access and privacy" tone="tint">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[32px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1176,6 +1317,101 @@ function AccessPrivacy() {
             Practices and providers that deliver a health service do not get
             the small business exemption from the Privacy Act, whatever their
             turnover. Your obligations are the ones we work inside.
+          </p>
+        </div>
+      </AnimatedSection>
+    </Band>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   9b · WHAT GOT CHEAP  (added 2026-09-05)
+   Two waves moving through the operations layer of healthcare, and the
+   three things neither of them buys. Taught, never asserted, and never
+   as a rebuke: it opens by conceding both substitutes are real and that
+   we use the second one ourselves.
+
+   ⚠️ Section 6 of the ratified report governs every word: no competitor,
+   offshore vendor, country or AI product named in any frame; no hourly
+   figure or price band (the source documents carry both and neither may
+   appear); no scare framing; and, because this page carries care copy,
+   nothing that reads as a referral, incentive or growth promise.
+
+   ⚠️ Only row 01 carries a statistic-grade claim and it prints its
+   source. Row 02 is argument and says so. Row 03 is argument. The
+   seven-year records duty is deliberately NOT cited here: its only
+   available citation ("NDIS legislation, 2026") names no instrument, and
+   this page just purged three figures for exactly that defect.
+
+   The closing panel is the wrap play: a provider who already offshores is
+   offered a way in, not a telling-off.
+   ══════════════════════════════════════════════════════════════════ */
+
+const CHEAP = [
+  {
+    tag: "Accountability",
+    body: "Under Australian Privacy Principle 8 and section 16C of the Privacy Act, a business that sends personal information overseas remains accountable for what the overseas recipient does with it, and patient and participant records are sensitive health information. In the NDIS, worker screening clearances attach to roles involving support delivery or more than incidental participant contact, and a worker outside Australia cannot hold one. The task can move. The accountability does not.",
+    source: "Privacy Act 1988 (Cth), APP 8 and s 16C; NDIS Commission worker screening scope",
+  },
+  {
+    tag: "Judgment",
+    body: "Every tool that absorbs more of the routine hands back more exceptions, and an exception is the part with a person's name on it. The caller who is not in the script. The 4am call-off. The patient who has ignored three text messages. The record that has to be right before anybody relies on it.",
+    source: "Argument, not a statistic",
+  },
+  {
+    tag: "Evidence",
+    body: "Software reports activity. Bought hours report time. Neither of those is a record with somebody standing behind it, and the duty to keep one sits with the practice or the provider whoever does the typing.",
+    source: "Argument, not a statistic",
+  },
+];
+
+function WhatGotCheap() {
+  return (
+    <Band id="cheap" index="08" label="What got cheap">
+      <AnimatedSection>
+        <h3
+          className={`${DISPLAY} max-w-[820px] text-[32px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
+        >
+          Two things got cheap. Three things did not.
+        </h3>
+        <p className="mt-6 max-w-[860px] border-l-2 border-[#003DDB] pl-5 text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          Hours can be bought offshore, and for pure back office work that is
+          lawful. Tasks can be bought as software, including software that now
+          writes a booking straight into a practice diary. We are not going to
+          pretend either of those is not real, and we use the second one
+          ourselves, underneath our own desk. What follows is the part neither
+          of them buys.
+        </p>
+      </AnimatedSection>
+
+      <div className="mt-10 border-t border-[#D3D8E2]">
+        {CHEAP.map((r, i) => (
+          <AnimatedSection key={r.tag} delay={i * 0.06}>
+            <div className="grid gap-y-3 border-b border-[#E3E6EC] py-6 sm:grid-cols-[minmax(0,1fr)_220px] sm:gap-x-8 sm:px-3">
+              <div>
+                <p className={`${MICRO} text-[#003DDB]`}>{r.tag}</p>
+                <p className="mt-3 max-w-[640px] text-[15px] leading-[1.62] text-[#454E5C] md:text-[16px]">
+                  {r.body}
+                </p>
+              </div>
+              <p className={`${MICRO_SM} self-end text-[#9AA3B1] sm:text-right`}>
+                {r.source}
+              </p>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      <AnimatedSection delay={0.12}>
+        <div className="mt-10 max-w-[860px] rounded-[12px] border border-[#E3E6EC] bg-[#F7F8FA] p-6 md:p-7">
+          <p className={`${MICRO} text-[#9AA3B1]`}>
+            If you already work with an offshore team
+          </p>
+          <p className="mt-4 text-[15.5px] leading-[1.62] text-[#454E5C] md:text-[16.5px]">
+            We are not asking you to change it. We wrap what you have: the
+            after-hours judgment layer, a check over the work that comes back,
+            and the records trail that makes the whole arrangement defensible
+            when somebody asks to see it.
           </p>
         </div>
       </AnimatedSection>
@@ -1232,7 +1468,7 @@ const EVIDENCE = [
 
 function WhyNow() {
   return (
-    <Band index="07" label="Why now">
+    <Band index="09" label="Why now" tone="tint">
       {/* table header */}
       <div className="hidden grid-cols-[240px_minmax(0,1fr)_220px] gap-6 border-b border-[#D3D8E2] pb-3 lg:grid">
         <span className={`${MICRO} text-[#9AA3B1]`}>Figure</span>
@@ -1291,7 +1527,7 @@ const REPORT_FIELDS = [
 
 function Measurement() {
   return (
-    <Band index="08" label="Measurement" tone="tint">
+    <Band index="10" label="Measurement">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-14">
         <AnimatedSection>
           <h3
@@ -1302,8 +1538,11 @@ function Measurement() {
           <p className="mt-6 max-w-[600px] text-[16px] leading-[1.65] text-[#454E5C] md:text-[17px]">
             We traced this market&apos;s most-quoted numbers to their sources,
             and most dissolved on contact. So we don&apos;t use them. Instead
-            we measure your desk: every enquiry, response time, booking
-            outcome and reason lost, reported monthly.{" "}
+            we measure your desk: in a clinic, every enquiry, response time,
+            booking outcome and reason lost; in a care setting, every event,
+            escalation, cover arranged and handover. Reported monthly against
+            the baseline we measured in week one, before we changed anything.
+            That report is the thing we answer for.{" "}
             <span className="font-medium text-[#0B0E14]">
               Every industry figure on this website carries its source in the same breath.
             </span>
@@ -1337,6 +1576,10 @@ function Measurement() {
               </span>
             </div>
           </div>
+          <p className="mt-3 text-[13px] leading-[1.55] text-[#5B6472]">
+            A care provider&apos;s report carries events, escalations, cover
+            arranged and handovers in place of the four above.
+          </p>
         </AnimatedSection>
       </div>
     </Band>
@@ -1356,7 +1599,7 @@ const PROOF_TAGS = [
 
 function Proof() {
   return (
-    <Band index="09" label="Proof of operations" tone="dark">
+    <Band index="11" label="Proof of operations" tone="dark">
       <AnimatedSection>
         <p className="max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[20px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
           This isn&apos;t a proposal. Our desk answers after-hours calls for
@@ -1396,7 +1639,7 @@ function FinalCta() {
         className={`${WRAP} ${PAD} ${BAND} border-x border-white/10`}
       >
         <div className="grid gap-8 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
-          <Rail index="10" label="Book" tone="dark" />
+          <Rail index="12" label="Book" tone="dark" />
           <div className="min-w-0">
             <AnimatedSection>
               <h3
@@ -1405,8 +1648,13 @@ function FinalCta() {
                 Book a review.
               </h3>
               <p className="mt-5 max-w-[620px] text-[16px] leading-[1.62] text-white/65 md:text-[17px]">
-                We&apos;ll map your workload and show you exactly what
-                we&apos;d measure in your first 30 days.
+                Two reviews, one form. Clinics book a Capacity Review: we map
+                your call, booking and recall workload against what the next
+                front-desk hire would actually cost. Care providers book an
+                Operations Review: we map your after-hours load, coordination
+                workload and record-keeping obligations. Either way you leave
+                with the list of what we would measure in your first 30 days,
+                in your own numbers.
               </p>
             </AnimatedSection>
 
@@ -1449,7 +1697,8 @@ export default function DesignBHomePage() {
                   <p className="text-[16px] leading-[1.62] text-white/65 md:text-[17px]">
                     Every unfilled square is a call that rang out, a recall
                     that never got run, or a shift that fell over with nobody
-                    on it.
+                    on it. More tools and more hours make the squares busier.
+                    Neither of them puts anybody in charge of them.
                   </p>
                 </AnimatedSection>
                 <WeekSurface />
@@ -1458,10 +1707,12 @@ export default function DesignBHomePage() {
           </div>
         </section>
 
+        <WhatItIs />
         <TwoDesks />
         <HowItWorks />
         <Boundaries />
         <AccessPrivacy />
+        <WhatGotCheap />
         <WhyNow />
         <Measurement />
         <Proof />
