@@ -35,6 +35,7 @@ const SELF_CHROMED_ROUTES = [
   "/",
   "/patient-access-desk",
   "/workforce-ops-desk",
+  "/workforce-ops-desk-2", // comparison copy, noindex, 2026-09-05
   "/why-novada",
   "/review-confirmed",
   // Legal. These MUST be listed: without it they render DeskNav/DeskFooter

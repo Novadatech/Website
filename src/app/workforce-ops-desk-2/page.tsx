@@ -1,5 +1,13 @@
 "use client";
 
+/* ⚠️ COMPARISON COPY of the repositioned Workforce Ops Desk (commit
+   9b37040), created 2026-09-05 at the founder's request. The live offer
+   page /workforce-ops-desk was restored to its pre-reposition state at the
+   same time so the two can be compared side by side. This route is
+   noindex and linked from nowhere. It is not an offer page. Delete it once
+   the comparison is done, or promote it by copying it back over the live
+   route; do not leave both indexable. */
+
 /*
  * /workforce-ops-desk : the care-provider offer page (NDIS, home care,
  * aged care).
@@ -528,7 +536,7 @@ function Hero() {
               transition={{ duration: 0.5 }}
               className={`${MICRO_TIGHT} text-[#003DDB]`}
             >
-              Managed Workforce Operations{" "}
+              Managed operations{" "}
               <span className="text-[#C3CAD5]">·</span> NDIS{" "}
               <span className="text-[#C3CAD5]">·</span> Home Care{" "}
               <span className="text-[#C3CAD5]">·</span> Aged Care
@@ -540,10 +548,19 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.08 }}
               className={`${DISPLAY} mt-4 text-[38px] text-[#0B0E14] sm:text-[54px] lg:text-[68px]`}
             >
-              Add operations capacity.{" "}
-              <span className="text-[#003DDB]">
-                Not another coordinator&apos;s salary.
-              </span>
+              {/* Changed 2026-09-05. Was "Add operations capacity. Not
+                  another coordinator's salary." Two reasons. The ratified
+                  identity line is the only sentence on this page that
+                  neither an offshore team nor a software product can say
+                  back to us, so it earns the largest type. And "add
+                  capacity" in a care context sits one reading away from
+                  taking on more participants, which is growth-shaped
+                  language on a page governed by the inducement rules. The
+                  hire comparison is not lost: it stays on the fold in the
+                  last clause of the deck below, and band 01 still gives it
+                  a full display treatment. */}
+              We run your back office.{" "}
+              <span className="text-[#003DDB]">And we answer for it.</span>
             </motion.h1>
 
             <motion.p
@@ -552,11 +569,12 @@ function Hero() {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="mt-5 max-w-[560px] text-[15.5px] leading-[1.58] text-[#454E5C] md:text-[17px]"
             >
-              Novada runs the coordination desk for Australian NDIS, home care
-              and aged care providers. Rostering administration, the
-              after-hours line, intake, onboarding and the records that have to
-              survive an audit. Inside the systems you already run, by people
-              who know what a 4am call-off actually involves.
+              Managed operations for Australian NDIS, home care and aged care
+              providers. Rostering administration, the after-hours line,
+              intake, onboarding and the records that have to survive an audit.
+              Our own platform captures and logs it. Our people, onshore,
+              handle what needs a decision. It is a function you hand over, not
+              a salary you add.
             </motion.p>
 
             <motion.div
@@ -793,9 +811,102 @@ const NIGHT_EVENTS = [
   "A missed home care visit for a client who should not be left without support.",
 ];
 
+/* ══════════════════════════════════════════════════════════════════
+   03 · WHAT YOU'RE BUYING  (added 2026-09-05)
+
+   The three-layer stack from the Offer Positioning Report ratified on
+   5 September 2026, which calls it "the heart of how the offer should be
+   understood anywhere it is explained".
+
+   It sits directly after the 4am sequence on purpose: the stack then
+   explains something the visitor has just watched, rather than arriving
+   as an abstract diagram before they know what the desk does.
+
+   ⚠️ THE THIRD LAYER IS CALLED "THE ACCOUNTABILITY", NOT "THE WARRANTY".
+   The report names it the warranty. Our own Terms of Service say
+   "Nothing on this website is a guarantee, a warranty, a service level, a
+   response time commitment or an uptime commitment", and warranty is a
+   consumer-law charged word in Australia. The substance of the layer is
+   unchanged. If the founder wants the literal noun, the Terms have to be
+   amended first and it needs a lawyer, not a copywriter.
+
+   ⚠️ The closing line is the one that keeps the platform on the right
+   side of the clinical boundary. Do not cut it for length.
+   ══════════════════════════════════════════════════════════════════ */
+
+const STACK = [
+  {
+    n: "01",
+    tag: "Ours",
+    title: "The platform",
+    body: "Our own platform sits under the desk. It captures what came in, logs what was done, assembles the record and builds the monthly report. It is why the desk does not forget, why the evidence of an event exists from the moment the event happens, and why we are not a room of people answering phones.",
+  },
+  {
+    n: "02",
+    tag: "Onshore",
+    title: "The people",
+    body: "Named coordinators, onshore, who own everything that takes judgment. The 4am call-off. The ambiguous incident. The exception the software hands back. The call no automation was ever going to land.",
+  },
+  {
+    n: "03",
+    tag: "In writing",
+    title: "The accountability",
+    body: "A baseline measured before we change anything. A monthly report of what actually happened against it. Records kept to the seven year statutory standard. And one named Australian company answerable for the function.",
+  },
+];
+
+function WhatYouAreBuying() {
+  return (
+    <Band index="03" label="What you're buying">
+      <AnimatedSection>
+        <p className={`${MICRO} text-[#003DDB]`}>Managed operations</p>
+        <h3
+          className={`${DISPLAY} mt-4 max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
+        >
+          Not staff. Not software. A function somebody answers for.
+        </h3>
+        <p className="mt-5 max-w-[760px] text-[15.5px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          Every engagement is three layers, and you can see all three. That is
+          the difference between handing over a function and buying hours or
+          buying a tool.
+        </p>
+      </AnimatedSection>
+
+      <div className="mt-10 border-t border-[#D3D8E2]">
+        {STACK.map((s, i) => (
+          <AnimatedSection key={s.n} delay={i * 0.06}>
+            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-6 sm:grid-cols-[52px_minmax(0,1fr)_148px] sm:px-3">
+              <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1]`}>{s.n}</span>
+              <div>
+                <p className="text-[17px] font-semibold tracking-tight text-[#0B0E14] md:text-[18px]">
+                  {s.title}
+                </p>
+                <p className="mt-2.5 max-w-[620px] text-[15px] leading-[1.62] text-[#454E5C] md:text-[16px]">
+                  {s.body}
+                </p>
+              </div>
+              <span
+                className={`${MICRO} justify-self-start text-[#9AA3B1] sm:justify-self-end`}
+              >
+                {s.tag}
+              </span>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      <AnimatedSection delay={0.1}>
+        <p className="mt-9 max-w-[760px] border-l-2 border-[#003DDB] pl-5 text-[17px] font-medium leading-[1.55] text-[#0B0E14] md:text-[19px]">
+          Automation makes the evidence. People make the decisions.
+        </p>
+      </AnimatedSection>
+    </Band>
+  );
+}
+
 function NightShift() {
   return (
-    <Band index="03" label="The night shift" tone="tint">
+    <Band index="04" label="The night shift" tone="tint">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -871,7 +982,7 @@ const MODULES = [
 
 function TwoWays() {
   return (
-    <Band index="04" label="Two ways to engage">
+    <Band index="05" label="Two ways to engage">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -930,6 +1041,58 @@ function TwoWays() {
           </AnimatedSection>
         ))}
       </div>
+
+      {/* ── THE WORKFORCE POOL (added 2026-09-05) ──────────────────────
+          Cleared by the founder's lawyer on 5 September 2026 as NOT
+          labour hire, in Victoria and in QLD, SA and the ACT, with no
+          accessorial risk to Novada on worker classification and no NDIS
+          registration obligation triggered.
+
+          THE STRUCTURE, because the copy has to stay inside what was
+          cleared: Novada owns the pool. Each worker operates under their
+          own ABN. The service agreement is between the CLIENT and the
+          WORKER, and the client pays the worker directly. Novada does not
+          pay the workers. Never write anything that implies we employ,
+          supply or pay them.
+
+          ⚠️ NO GUARANTEE OF COVER. Never "every shift covered" or any
+          equivalent. Our Terms of Service expressly disclaim "that a
+          shift will be filled, that a call-off will be covered", the
+          assessment calculator says worker availability can never be
+          guaranteed, and the founder has confirmed we do not make the
+          claim. The wording below is the founder's own framing.
+
+          ⚠️ NO PRICING, and equally no implication that pool access is
+          free. There is a platform access fee. Section 6 bans printing
+          any figure, so the last line discloses that access is charged
+          and sends the number to the review, which is where every
+          pricing conversation belongs. */}
+      <AnimatedSection delay={0.16}>
+        <div className="mt-4 rounded-[12px] border border-[#E3E6EC] bg-[#F7F8FA] p-6 md:p-8">
+          <p className={`${MICRO} text-[#003DDB]`}>
+            When nobody internal can take the shift
+          </p>
+          <h4 className="mt-4 max-w-[720px] text-[19px] font-semibold tracking-tight text-[#0B0E14] md:text-[22px]">
+            Every client can draw on our workforce pool.
+          </h4>
+          <p className="mt-4 max-w-[760px] text-[15.5px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+            Coordinating cover starts with your own people, against your own
+            rules. Where none of your internal staff is available to take the
+            shift, we access our workforce pool to find a replacement. Every
+            worker in it holds an{" "}
+            <span className="font-semibold text-[#0B0E14]">
+              NDIS Worker Screening clearance
+            </span>
+            .
+          </p>
+          <p className="mt-4 max-w-[760px] text-[15px] leading-[1.62] text-[#5B6472]">
+            The worker contracts with you directly and you pay them directly.
+            We are not a labour hire provider and we do not employ them. Pool
+            access is charged separately from the desk, and we walk you through
+            exactly how on your Operations Review.
+          </p>
+        </div>
+      </AnimatedSection>
     </Band>
   );
 }
@@ -975,7 +1138,7 @@ const BOUNDARIES = [
 
 function Scope() {
   return (
-    <Band index="05" label="Scope" tone="tint">
+    <Band index="07" label="Scope" tone="tint">
       <AnimatedSection>
         <p className={`${MICRO} text-[#9AA3B1]`}>Back office only</p>
         <h3
@@ -1075,7 +1238,7 @@ const EVIDENCE = [
 
 function WhyNow() {
   return (
-    <Band index="06" label="Why now">
+    <Band index="08" label="Why now">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1178,11 +1341,120 @@ const PROOF_TAGS = [
   "Inside your own systems",
 ];
 
-function Proof() {
+/* ══════════════════════════════════════════════════════════════════
+   06 · ACCOUNTABILITY  (added 2026-09-05)
+
+   The strategic opening of the whole care position, and the only
+   argument on this page an offshore alternative structurally cannot
+   answer. It absorbed the old "Proof of operations" band, which now
+   closes it: the fact pattern resolves into something we already do
+   every night, so the band ends on relief rather than on a warning.
+
+   ⚠️ TAUGHT, NEVER ASSERTED, AND NEVER AS A REBUKE. Much of this market
+   quietly uses offshore administration and that is lawful for genuine
+   back office work. The position wins by putting the fact pattern in
+   writing, not by attacking anyone's choice. Section 6 of the ratified
+   report bans scare framing and bans naming any competitor, offshore
+   vendor or country in a critical frame. The wrap panel exists so a
+   provider who already offshores is offered a way in rather than a
+   telling-off.
+
+   ⚠️ NO COUNTRY OR CITY IS NAMED. The source memo says "keep your team
+   in Manila". On the page that reads as a dig at a nationality, assumes
+   facts about the reader, and excludes providers offshoring elsewhere.
+   "Your offshore administrative team" does the same work with none of it.
+
+   ⚠️ EVERY ROW PRINTS ITS SOURCE. The claim that an overseas worker
+   cannot hold an NDIS Worker Screening clearance is the sharpest
+   sentence here. It comes from the ratified report. If it cannot be tied
+   to the instrument on request, cut that row: the other two carry the
+   band without it.
+   ══════════════════════════════════════════════════════════════════ */
+
+const ACCOUNTABILITY_ROWS = [
+  {
+    tag: "APP 8 and section 16C",
+    body: "When a provider discloses personal information to an overseas recipient, it must take reasonable steps to ensure that recipient does not breach the Australian Privacy Principles, and it can be held accountable for what the recipient does as though it had done it itself. Participant records are sensitive health information.",
+    source: "Privacy Act 1988 (Cth), APP 8 and section 16C",
+  },
+  {
+    tag: "Worker screening",
+    body: "NDIS worker screening applies to risk-assessed roles: delivering supports, or more than incidental contact with participants. A worker outside Australia cannot hold an NDIS Worker Screening clearance, so any role that drifts toward participant contact is closed to them.",
+    source: "NDIS Commission, worker screening requirements",
+  },
+  {
+    tag: "Records",
+    body: "The seven year retention duty for worker and service records sits with the provider, whoever does the typing.",
+    source: "NDIS legislation, 2026",
+  },
+];
+
+function Accountability() {
   return (
-    <Band index="07" label="Proof of operations" tone="dark">
+    <Band index="06" label="Accountability" tone="dark">
       <AnimatedSection>
-        <p className={`${MICRO} text-white/45`}>This isn&apos;t a proposal</p>
+        <h3
+          className={`${DISPLAY} max-w-[820px] text-[30px] text-white sm:text-[40px] md:text-[48px]`}
+        >
+          The task can be offshored. The accountability cannot.
+        </h3>
+        <p className="mt-6 max-w-[760px] text-[15.5px] leading-[1.62] text-white/70 md:text-[17px]">
+          A lot of providers in this sector use offshore administrative teams,
+          and for genuine back office work that is lawful. This is not an
+          argument against it. It is the part of the picture that almost nobody
+          puts in writing.
+        </p>
+      </AnimatedSection>
+
+      <div className="mt-10 border-t border-white/10">
+        {ACCOUNTABILITY_ROWS.map((r, i) => (
+          <AnimatedSection key={r.tag} delay={i * 0.06}>
+            <div className="grid gap-y-3 border-b border-white/10 py-6 sm:grid-cols-[minmax(0,1fr)_190px] sm:gap-x-8 sm:px-3">
+              <div>
+                <p className={`${MICRO} text-[#7AA2FF]`}>{r.tag}</p>
+                <p className="mt-3 max-w-[620px] text-[15px] leading-[1.62] text-white/80 md:text-[16px]">
+                  {r.body}
+                </p>
+              </div>
+              <p
+                className={`${MICRO_TIGHT} self-end text-white/40 sm:text-right`}
+              >
+                {r.source}
+              </p>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      <AnimatedSection delay={0.1}>
+        <p className="mt-9 max-w-[820px] border-l-2 border-[#3A6CFF] pl-6 text-[17px] font-medium leading-[1.5] text-white md:text-[20px]">
+          None of that makes offshoring wrong. It makes the accountable party
+          the thing you are actually buying. Ours is onshore, named in your
+          agreement, and answerable under Australian law.
+        </p>
+      </AnimatedSection>
+
+      {/* The wrap play. Converts the position's biggest perceived threat
+          into its lowest friction way in. */}
+      <AnimatedSection delay={0.14}>
+        <div className="mt-10 rounded-[12px] border border-white/10 bg-white/[0.04] p-6 md:p-8">
+          <p className={`${MICRO} text-white/45`}>
+            If you already have an offshore administrative team
+          </p>
+          <p className="mt-4 max-w-[760px] text-[15.5px] leading-[1.62] text-white/80 md:text-[17px]">
+            Keep them. We are not asking you to move anyone. We take the
+            after-hours line and the calls that need a decision, we run quality
+            assurance over the administrative work that comes back, and we
+            assemble the records to the standard your audit will apply, the
+            offshore work included. You keep the arrangement you built. The
+            function becomes one somebody answers for.
+          </p>
+        </div>
+      </AnimatedSection>
+
+      {/* Absorbed from the old "Proof of operations" band, verbatim. */}
+      <AnimatedSection delay={0.18}>
+        <p className={`${MICRO} mt-12 text-white/45`}>This isn&apos;t a proposal</p>
         <p className="mt-6 max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[19px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
           Our desk answers after-hours calls for Australian care providers
           every night of the year, inside their systems, to their escalation
@@ -1190,7 +1462,7 @@ function Proof() {
         </p>
       </AnimatedSection>
 
-      <AnimatedSection delay={0.12}>
+      <AnimatedSection delay={0.22}>
         <div className="mt-10 flex flex-wrap gap-2">
           {PROOF_TAGS.map((t) => (
             <span
@@ -1233,8 +1505,13 @@ const STEPS: { n: string; title: string; body: string; points?: string[] }[] = [
   },
   {
     n: "03",
+    title: "The baseline",
+    body: "Before we change anything we measure what is happening now: what comes in after hours, what it takes to resolve, what gets recorded and what does not. That measurement is the only benchmark we ever report against.",
+  },
+  {
+    n: "04",
     title: "The desk runs",
-    body: "Cover starts, the structured handover lands every morning, and the monthly report shows every event.",
+    body: "Cover starts, the structured handover lands every morning, and the monthly report shows every event against your baseline.",
   },
 ];
 
@@ -1243,7 +1520,7 @@ function HowItStarts() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <Band index="08" label="How it starts" tone="tint">
+    <Band index="09" label="How it starts" tone="tint">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1334,6 +1611,14 @@ const FAQS = [
   {
     q: "Can you authorise PRN medication or a restrictive practice?",
     a: "No, and we never will. Those decisions belong with your clinical people and your Authorised Program Officer. What we do is get the question to the right person quickly, and make sure the event is documented properly either way.",
+  },
+  {
+    q: "We already use an offshore administrative team. Is this a replacement?",
+    a: "No. Keep the team you have. We take the after-hours line and the calls that need a decision, we run quality assurance over the administrative work that comes back, and we assemble the records to the standard your audit will apply. Under Australian Privacy Principle 8 and section 16C of the Privacy Act 1988, accountability for participant information disclosed overseas stays with you either way. What changes is that the function has somebody answering for it.",
+  },
+  {
+    q: "Is this software, or is it people?",
+    a: "Both, and the split is the whole point. Our own platform does the capturing, the logging, the record assembly and the monthly report. Our people, onshore, take the calls and work out what happens next. Automation makes the evidence. People make the decisions. No software of ours decides anything about a participant, and neither do we.",
   },
   {
     q: "Are we handing over our coordinator's job?",
@@ -1445,11 +1730,12 @@ export default function WorkforceOpsDeskPage() {
         <Hero />
         <Decision />
         <PhoneRings />
+        <WhatYouAreBuying />
         <NightShift />
         <TwoWays />
+        <Accountability />
         <Scope />
         <WhyNow />
-        <Proof />
         <HowItStarts />
         <Questions />
         <FinalCta />

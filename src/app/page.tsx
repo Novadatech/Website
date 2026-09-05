@@ -72,17 +72,10 @@
  * entirely in new copy: the verb for getting bigger and its noun, the
  * word for sending someone your way, and the four words for paying
  * somebody to do it. They are deliberately not written out here either,
- * so they cannot be copied by accident into rendered output. As of
- * 2026-09-05 there is NO surviving instance on this page. The last one
- * was a past-tense verb inside the CPA Australia statistic, and that row
- * was removed along with the two other unapproved figures. Any future
- * hit for that family of words is now a real defect, not a known
- * exception.
- *
- * ⚠️ STATISTICS. Every figure here comes from the approved library and
- * prints its source in the same row. See the block above EVIDENCE for
- * the three rows removed on 2026-09-05 and the reasoning. Never add a
- * figure that cannot be traced to a named instrument or publication.
+ * so they cannot be copied by accident into rendered output. The one
+ * surviving instance is a past-tense verb inside the CPA Australia
+ * statistic in band 07, which is quoted, sourced, and must not be
+ * reworded.
  *
  * ⚠️ NOTHING CLINICAL, AND NO CLINICAL CAPABILITY. We have no clinicians.
  * Nothing here may imply that we triage, assess urgency or advise. The
@@ -1189,44 +1182,21 @@ function AccessPrivacy() {
    same row, which is the whole argument of the section below it.
    ══════════════════════════════════════════════════════════════════ */
 
-/* ⚠️ EVERY ROW HERE MUST COME FROM THE APPROVED STATISTICS LIBRARY.
-   Section 6 of the ratified Offer Positioning Report (5 September 2026):
-   "Statistics only from the approved library, each with its source in the
-   same breath."
-
-   THREE ROWS WERE REMOVED ON 2026-09-05 because they were not in it:
-     · "$87,740 to $114,827" (BMJ Open, 2025). Two Queensland physiotherapy
-       clinics presented as a per-clinic figure, and a close relative of the
-       "$X lost per missed call" family that the sector research bans
-       outright. The same research warns of a widely misattributed
-       Australian non-attendance study.
-     · "46% vs 13%" (CPA Australia). The survey is Asia-Pacific; the
-       Australia-only split was never confirmed.
-     · "+4.75%" award increase, 1 July 2026. Unverified. Only the
-       superannuation half of that row was ever sourceable, so the row
-       below keeps that half and states the annual review as the structural
-       fact it is, without asserting a rate.
-
-   This band is the page's own argument that every figure carries its
-   source, and the Measurement band below says in as many words that this
-   market's most-quoted numbers dissolve on contact. An unsourceable row
-   here does more damage than an empty one. If a figure cannot be traced to
-   a named instrument or publication, leave it out. */
 const EVIDENCE = [
   {
-    figure: "20.2%",
-    body: "20.2% of Australians delayed or did not see a GP in 2024-25 for reasons other than cost, including that the service was not available when required or the wait was too long. That is up from 17.4% the year before.",
-    source: "Australian Bureau of Statistics, Patient Experiences 2024-25",
+    figure: "+4.75%",
+    body: "Award wages rose again on 1 July 2026, with superannuation now at 12%. The cost of the next admin hire rises every July.",
+    source: "Fair Work Commission; ATO",
   },
   {
-    figure: "25%",
-    body: "25% of Australians delayed seeing or did not see a dental professional in 2024-25. Cost was the reason for 16%. Not every barrier is price.",
-    source: "Australian Bureau of Statistics, Patient Experiences 2024-25",
+    figure: "46% vs 13%",
+    body: "46% of Australian small businesses grew revenue last year. Only 13% grew headcount.",
+    source: "CPA Australia Asia-Pacific Small Business Survey",
   },
   {
-    figure: "12%",
-    body: "Superannuation reached 12% on 1 July 2025, the last step of the increase, and award wages are reviewed every year with effect from 1 July. The cost of the next hire goes up on a schedule.",
-    source: "Australian Taxation Office; Fair Work Commission annual wage review",
+    figure: "$87,740 to $114,827",
+    body: "What missed appointments cost two Queensland physiotherapy clinics per clinic, per year, in a peer-reviewed study.",
+    source: "BMJ Open, 2025",
   },
 ];
 
