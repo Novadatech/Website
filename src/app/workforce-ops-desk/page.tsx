@@ -983,12 +983,25 @@ function Scope() {
         >
           Back office only, by design.
         </h3>
+        {/* ⚠️ CORRECTED 2026-09-05. This paragraph previously read "never
+            make worker-to-participant matching decisions". The founder
+            confirmed that we do match: to fill a shift we work the client's
+            own roster rules to find who can take it. Claiming otherwise was
+            a false statement about our own scope, sitting in the band whose
+            entire job is to be the page's trust asset.
+
+            The true boundary is narrower and is what this now says: we find
+            cover against the client's rules, from workers the client has
+            already approved, and anything turning on a participant's needs
+            remains the provider's decision. Do not restore the absolute. */}
         <p className="mt-6 max-w-[900px] border-l-2 border-[#003DDB] pl-5 text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
-          We never deliver supports, never make worker-to-participant matching
-          decisions, and never hold the participant relationship. Onshore team;
-          worker screening clearances held wherever participant contact is
-          plausible; your data stays in your own systems (ShiftCare, FlowLogic,
-          Brevity, Carelink and more).
+          We never deliver supports and never hold the participant
+          relationship. When a shift needs covering we work your own rules to
+          find who can take it, from the workers you have already approved,
+          and anything that turns on a participant&apos;s needs stays your
+          decision. Onshore team; worker screening clearances held wherever
+          participant contact is plausible; your data stays in your own systems
+          (ShiftCare, FlowLogic, Brevity, Carelink and more).
         </p>
       </AnimatedSection>
 
@@ -1443,9 +1456,17 @@ export default function WorkforceOpsDeskPage() {
       </main>
 
       <DeskFooter />
+      {/* ⚠️ TAGLINE CHANGED 2026-09-05. It was "Every call answered. Every
+          shift covered. Everything measured." Two problems, both live on
+          every scroll of the page. Our own Terms of Service expressly
+          disclaim "that a shift will be filled, that a call-off will be
+          covered", and they disclaim service levels generally, which "every
+          call answered" also is. The founder has confirmed we do not make
+          the shift-cover claim. The replacement describes how the desk runs
+          without promising an outcome or a service level. */}
       <StickyCta
         label="Book an Operations Review"
-        tagline="Every call answered. Every shift covered. Everything measured."
+        tagline="Run onshore. Recorded as it happens. Answered for by name."
       />
     </div>
   );
