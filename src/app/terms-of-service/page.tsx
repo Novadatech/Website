@@ -302,29 +302,25 @@ const CLAUSES: Clause[] = [
     title: "What the desk does",
     subs: [
       <>
-        We run the desk for Australian healthcare businesses. This website
-        describes two service lines.
+        We run the back office for Australian care providers: NDIS, home care
+        and aged care. This website describes two service lines.
       </>,
       <>
-        The Patient Access Desk is for private healthcare clinics, including
-        dental, physiotherapy, occupational therapy, psychology, podiatry,
-        speech pathology and veterinary practices. Coordinators answer the
-        clinic&apos;s calls, web enquiries and messages, including in the
-        evenings and on Saturday; make, reschedule and cancel bookings inside
-        the clinic&apos;s own practice management software; run recall and
-        reactivation lists; recover cancellations; follow up missed
-        appointments; and deliver a monthly report.
+        The Operations Partner runs the operation. It covers the after-hours
+        line, roster and call-off coordination, intake administration, and the
+        maintenance of statutory records, worked inside the provider&apos;s own
+        systems, with a structured handover each morning and a monthly report.
       </>,
       <>
-        The Workforce Ops Desk is for NDIS, home care and aged care providers.
-        It covers rostering administration, after-hours call handling and
-        call-off coordination, intake administration, onboarding, induction and
-        training records, and the maintenance of compliance records, worked
-        inside the provider&apos;s own systems.
+        The Workforce Partner builds and backs the workforce. It covers
+        recruitment run as a continuous function for the provider&apos;s own
+        team, onboarding administration, induction and training administration,
+        and access to a pool of independent workers a provider may engage
+        directly. Clause {NO.workers} sets out what that does and does not mean.
       </>,
       <>
         Records we maintain on your behalf are kept for the retention period
-        recorded in your services agreement. For the Workforce Ops Desk that
+        recorded in your services agreement. For the Operations Partner that
         period is set to a seven year standard, so that it sits with the record
         keeping periods our care sector clients work to. The period that binds
         us is the one written into your services agreement.
@@ -342,8 +338,8 @@ const CLAUSES: Clause[] = [
     title: "Alongside your team, not instead of it",
     subs: [
       <>
-        We work alongside your people. We do not replace your front desk, your
-        coordinators, or any other role in your organisation, and we do not
+        We work alongside your people. We do not replace your coordinators,
+        your managers, or any other role in your organisation, and we do not
         describe our service as doing so.
       </>,
       <>
@@ -353,8 +349,8 @@ const CLAUSES: Clause[] = [
       </>,
       <>
         We work inside your systems. You remain the system of record for your
-        patient, client and participant information, and you remain the entity
-        responsible for that information under privacy law. Nothing migrates to
+        participant, client, resident and worker information, and you remain
+        the entity responsible for that information under privacy law. Nothing migrates to
         us and nothing of yours is replaced.
       </>,
       <>Our coordinators are located onshore in Australia.</>,
@@ -367,9 +363,8 @@ const CLAUSES: Clause[] = [
     subs: [
       <>
         We do not provide clinical services of any kind. We do not triage. We
-        do not assess. We do not give clinical, medical, health, allied health,
-        veterinary or care advice, and we do not make or contribute to clinical
-        decisions.
+        do not assess. We do not give clinical, medical, health or care advice,
+        and we do not make or contribute to clinical decisions.
       </>,
       <>
         Anything clinical, and any emergency, is routed to your own people
@@ -377,8 +372,8 @@ const CLAUSES: Clause[] = [
         call.
       </>,
       <>
-        Nothing on this website is clinical, medical, veterinary, legal,
-        financial or tax advice, and nothing on it should be relied on as
+        Nothing on this website is clinical, medical, legal, financial or tax
+        advice, and nothing on it should be relied on as
         advice of any kind.
       </>,
       <>
@@ -402,17 +397,28 @@ const CLAUSES: Clause[] = [
 
   {
     id: "workers",
-    title: "We do not supply workers",
+    title: "Workers, and who engages them",
     subs: [
       <>
-        We are not a staffing agency, a labour hire provider, an employment
-        agency or a recruitment agency. We do not supply workers to you and we
-        do not recruit workers for you.
+        We do not employ, supply, direct or pay the workers who deliver your
+        supports or care. We never have. Where the Workforce Partner performs
+        recruitment, we source and screen candidates against criteria you set,
+        for your own workforce, and every hiring decision is yours. A worker
+        you hire joins your organisation, not ours.
+      </>,
+      <>
+        Where you engage a worker from the pool described in clause{" "}
+        {NO.desk}, the service agreement is between you and that worker. You
+        approve the engagement against your own criteria and you pay the worker
+        directly. We verify screening and credentials, make availability
+        visible to you, and record the evidence of the engagement. We do not
+        employ those workers, we do not manage their performance and we do not
+        run their payroll. We make no commitment that any shift will be filled.
       </>,
       <>
         Our coordinators are our own personnel. Providing the services does not
         make them your employees, contractors or workers, and does not create
-        an employment, labour hire or agency relationship between you and them.
+        an employment or agency relationship between you and them.
       </>,
       <>
         Where we coordinate a shift, we are administering your roster, your
@@ -441,10 +447,10 @@ const CLAUSES: Clause[] = [
         rules and standards made under it.
       </>,
       <>
-        If you are a healthcare clinic, you retain your own obligations under
+        If you deliver a health service, you retain your own obligations under
         the Health Practitioner Regulation National Law as it applies in your
         state or territory, and under any professional, accreditation or
-        registration standards that apply to your practice.
+        registration standards that apply to your organisation.
       </>,
       <>
         Our role is back-office administration carried out under delegated
@@ -465,7 +471,7 @@ const CLAUSES: Clause[] = [
         You are responsible for making sure that the delegated authority you
         give us, and the access you give us to your systems, is lawful and
         consistent with your own obligations and with your agreements with your
-        patients, clients, participants and workers.
+        participants, clients, residents and workers.
       </>,
     ],
   },
@@ -476,16 +482,15 @@ const CLAUSES: Clause[] = [
     subs: [
       <>
         We do not guarantee outcomes. We do not guarantee that a shift will be
-        filled, that a call-off will be covered, that an appointment will be
-        booked or kept, that a recall or reactivation list will convert, or
-        that your revenue will change.
+        filled, that a call-off will be covered, that a candidate will be found
+        or hired, or that your revenue will change.
       </>,
       <>
         Outcomes depend on matters outside our control, including the
-        availability of workers and carers, the availability of your
-        practitioners, the decisions of your patients, clients and
-        participants, your own staffing, rosters and systems, and the
-        performance of third party software and telecommunications.
+        availability of workers and carers, the decisions of your
+        participants, clients and residents, your own staffing, rosters and
+        systems, and the performance of third party software and
+        telecommunications.
       </>,
       <>
         Nothing on this website is a guarantee, a warranty, a service level, a
@@ -573,7 +578,8 @@ const CLAUSES: Clause[] = [
         organisation.
       </>,
       <>
-        Do not submit patient, client or participant personal information
+        Do not submit participant, client, resident or worker personal
+        information
         through any form, booking tool or chat on this website, and in
         particular do not submit health information. Those channels are not set
         up to receive it. If information of that kind needs to reach us, we
@@ -636,8 +642,8 @@ const CLAUSES: Clause[] = [
         (Cth) and the Australian Privacy Principles.
       </>,
       <>
-        For the services, you hold the relationship with your patients, clients
-        and participants, you remain the entity responsible for their
+        For the services, you hold the relationship with your participants,
+        clients and residents, you remain the entity responsible for their
         information, and our handling of it is governed by your services
         agreement rather than by these Terms.
       </>,
@@ -669,8 +675,8 @@ const CLAUSES: Clause[] = [
         granted.
       </>,
       <>
-        &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;The Patient
-        Access Desk&rdquo; and &ldquo;The Workforce Ops Desk&rdquo; are used by
+        &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;The
+        Operations Partner&rdquo; and &ldquo;The Workforce Partner&rdquo; are used by
         us as trade marks. You must not use them without our written
         permission, except to refer to us fairly and accurately.
       </>,
@@ -972,7 +978,7 @@ function Hero() {
 
         <p className="mt-6 max-w-[680px] text-[16px] leading-[1.7] text-[#454E5C] md:text-[17px]">
           These terms apply to your use of novadatech.com.au. They are not the
-          agreement under which we run a desk for your clinic or your care
+          agreement under which we run the back office for your care
           organisation. That work is governed by a separate services agreement
           you sign with us.
         </p>

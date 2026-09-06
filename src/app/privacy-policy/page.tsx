@@ -248,7 +248,8 @@ function Hero() {
           answer calls and enquiries, make and change bookings, coordinate
           rosters and maintain records, and we do that work inside the systems
           our clients already run. That means we come into contact with{" "}
-          <Key>health information</Key> about their patients and participants,
+          <Key>health information</Key> about their participants, clients and
+          residents,
           which Australian privacy law treats as sensitive information and
           protects more strictly than ordinary personal information.
         </p>
@@ -257,7 +258,7 @@ function Hero() {
           This policy explains what we collect, why we collect it, who we
           disclose it to, how long we keep it and what you can do about it. It
           is written for two different readers: someone using this website, and
-          someone whose information we handle because their clinic or care
+          someone whose information we handle because their care
           provider engaged us. Section {numberOf("who")} explains which one you
           are.
         </p>
@@ -336,12 +337,12 @@ export default function PrivacyPolicyPage() {
                     This policy sets out how Novada Tech handles personal
                     information, including health information. It applies to
                     this website, to enquiries and bookings made through it, and
-                    to the desk services we provide to Australian clinics and
+                    to the services we provide to Australian
                     care providers.
                   </P>
                   <P>
                     It describes our practices. It is not legal advice, and it
-                    does not replace the privacy policy of the clinic or care
+                    does not replace the privacy policy of the care
                     provider that holds your record. Where we handle information
                     on behalf of a client, that client&apos;s own policy and
                     consent arrangements govern the record itself, and this
@@ -401,23 +402,23 @@ export default function PrivacyPolicyPage() {
                     <Key>inside the client&apos;s own systems</Key>, using
                     access the client grants us, under the client&apos;s
                     instructions and the terms of our service agreement. For
-                    clinics that means practice management software such as
-                    Cliniko, Halaxy, Dental4Windows, ezyVet or Best Practice.
+                    care providers that means the care management platform they already run, such as
+                    ShiftCare, FlowLogic, Brevity or Carelink.
                     For care providers it means platforms such as ShiftCare,
                     FlowLogic, Brevity or Carelink. Nothing migrates to a Novada
                     system. The client keeps the system of record.
                   </P>
                   <P>
-                    In that role the clinic or care provider is generally the
-                    organisation with the primary relationship to the patient or
+                    In that role the care provider is generally the
+                    organisation with the primary relationship to the participant or
                     participant, and the organisation that holds the record. We
                     handle that information as a service provider, for the
                     client&apos;s purposes, and not for our own.
                   </P>
 
-                  <Note label="If you are a patient or a participant">
+                  <Note label="If you are a participant, client or resident">
                     <P>
-                      Your record belongs to your clinic or care provider, not
+                      Your record belongs to your care provider, not
                       to Novada. Requests to see it, correct it or complain
                       about it should go to them first, because they hold it and
                       they can act on it. If you contact us instead, we will
@@ -472,7 +473,7 @@ export default function PrivacyPolicyPage() {
                         Section 6D(4)(b) removes the exemption from an entity
                         that provides a health service to another individual and
                         holds health information other than in an employee
-                        record. Turnover is irrelevant. Our clinic and care
+                        record. Turnover is irrelevant. Our care
                         provider clients are covered by the Privacy Act whatever
                         their size.
                       </>,
@@ -615,12 +616,7 @@ export default function PrivacyPolicyPage() {
                   <P>
                     If you contact us or book a review, we collect your name,
                     email address, phone number, business name and role, the
-                    type of clinic or care service you run, the appointment time
-                    you choose, anything you write to us and the answers to any
-                    questions the booking form asks. We also record which page
-                    of this website produced the booking, so we know which
-                    enquiry came from where.
-                  </P>
+                    type of care service you run, the workload you described, </P>
 
                   <H3>c. Clients, suppliers and their people</H3>
                   <P>
@@ -634,27 +630,31 @@ export default function PrivacyPolicyPage() {
                     client&apos;s systems
                   </H3>
                   <P>
-                    For the <Key>Patient Access Desk</Key>, working inside a
-                    clinic&apos;s practice management software, this can
-                    include: patient names and contact details; the reason given
-                    for an appointment; the practitioner, service and
-                    appointment date and time; referral details and health fund
-                    or scheme details where the clinic&apos;s system captures
-                    them; cancellation, no-show, recall and reactivation status;
-                    and the notes we record in the clinic&apos;s system about
-                    each contact. Much of this is health information.
+                    For the <Key>Operations Partner</Key>, working inside a
+                    provider&apos;s care management platform, this can include:
+                    participant, client and resident names and contact details;
+                    service, shift and rostering details; call-off and
+                    availability records; notes and escalations recorded during
+                    after-hours calls; intake administration records; and the
+                    statutory records we maintain on the client&apos;s behalf.
+                    Some of this is health information.
                   </P>
                   <P>
-                    For the <Key>Workforce Ops Desk</Key>, working inside a
-                    provider&apos;s care management platform, this can include:
-                    participant and client names and contact details; service,
-                    shift and rostering details; call-off and availability
-                    records; notes and escalations recorded during after-hours
-                    calls; intake administration records; and worker records
-                    covering onboarding, induction, training, qualifications,
-                    screening and compliance. Screening records can include
-                    criminal record information, which is also sensitive
-                    information under the Privacy Act.
+                    For the <Key>Workforce Partner</Key>, this can include
+                    candidate and worker names and contact details; work
+                    history, qualifications and referee details; onboarding,
+                    induction and training records; and screening and
+                    credential records. Screening records can include criminal
+                    record information, which is also sensitive information
+                    under the Privacy Act.
+                  </P>
+                  <P>
+                    Where a client engages a worker from the pool, we hold the
+                    worker&apos;s screening and credential verification and the
+                    record of the engagement itself. The service agreement for
+                    that engagement is between the client and the worker; we do
+                    not employ those workers and we do not run their payroll, so
+                    we do not hold their pay records.
                   </P>
                   <P>
                     The employee records exemption in section 7B(3) of the{" "}
@@ -691,8 +691,8 @@ export default function PrivacyPolicyPage() {
                     about an individual&apos;s health or disability, information
                     about a health service provided or to be provided to them,
                     and other personal information collected in the course of
-                    providing a health service. An appointment record that names
-                    a patient and the practitioner they are seeing is health
+                    providing a health service. A roster record that names a
+                    participant and the support they are receiving is health
                     information.
                   </P>
                   <P>
@@ -785,7 +785,7 @@ export default function PrivacyPolicyPage() {
                     ]}
                   />
                   <P>
-                    Where we collect a patient&apos;s or participant&apos;s
+                    Where we collect a participant&apos;s
                     information, we are collecting it for the client, into the
                     client&apos;s record, and the client is responsible for the
                     collection notice that goes with it.
@@ -798,9 +798,10 @@ export default function PrivacyPolicyPage() {
                   <List
                     items={[
                       "answer calls, messages and enquiries for our clients and for ourselves;",
-                      "make, reschedule and cancel bookings in a client's system, run recall and reactivation lists, recover cancellations and follow up no-shows;",
-                      "administer rosters, coordinate call-offs and after-hours cover, process intake administration and maintain onboarding, induction, training and compliance records for care providers;",
-                      "produce the monthly report we give each client, covering enquiries, response times, booking outcomes and reasons lost;",
+                      "administer rosters, coordinate call-offs and after-hours cover, process intake administration and maintain the statutory records a client is required to keep;",
+                      "source and screen candidates against a client's criteria for the client's own workforce, administer onboarding, and maintain induction, training, screening and credential records;",
+                      "verify screening and credentials for workers in the pool, make availability visible to a client, and record the evidence of an engagement a client enters into directly with a worker;",
+                      "produce the monthly report we give each client, covering what came in, what we did, what was escalated and what was recorded, measured against the baseline taken at onboarding;",
                       "respond to your enquiry, prepare for a review call and follow up with you;",
                       "operate, secure, measure and improve this website;",
                       "invoice, keep our own business records and meet our legal and tax obligations; and",
@@ -828,7 +829,7 @@ export default function PrivacyPolicyPage() {
                         platform, and the analytics and advertising tools in
                         sections {numberOf("tracking")} and{" "}
                         {numberOf("embeds")}.{" "}
-                        Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their front desk line to, so that calls reach our coordinators. If an engagement ever requires an additional tool, we tell the client before it is introduced.
+                        Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their after-hours line to, so that calls reach our coordinators. If an engagement ever requires an additional tool, we tell the client before it is introduced.
                       </>,
                       <>
                         <Key>Professional advisers</Key>, such as our
@@ -1026,7 +1027,7 @@ export default function PrivacyPolicyPage() {
                     <Key>
                       The desk service itself is delivered onshore.
                     </Key>{" "}
-                    Our coordinators are in Australia, and patient and
+                    Our coordinators are in Australia, and participant and
                     participant records stay in the client&apos;s own system. We
                     do not export a client&apos;s records overseas as part of
                     delivering the service, and we do not send health
@@ -1066,21 +1067,20 @@ export default function PrivacyPolicyPage() {
                   </P>
 
                   <H3>
-                    Recalls, reminders and reactivation messages sent for a
-                    clinic
+                    Messages we send on a client&apos;s behalf
                   </H3>
                   <P>
-                    When we run a recall list, a reactivation campaign, an
-                    appointment reminder or a no-show follow-up, we do it{" "}
-                    <Key>as the clinic, not as Novada</Key>. Those are the
-                    clinic&apos;s messages, sent from the clinic&apos;s system,
-                    to the clinic&apos;s patients, under the clinic&apos;s own
-                    consent records and instructions, and opt-outs are recorded
-                    in the clinic&apos;s system.
+                    When we contact a client&apos;s workers, candidates,
+                    participants or their nominated contacts, we do so{" "}
+                    <Key>as the client, not as Novada</Key>. Those are the
+                    client&apos;s messages, sent from the client&apos;s system,
+                    under the client&apos;s own consent records and
+                    instructions, and opt-outs are recorded in the
+                    client&apos;s system.
                   </P>
-                  <Note label="If you want a clinic's messages to stop">
+                  <Note label="If you want a client's messages to stop">
                     <P>
-                      Reply as the message tells you, or contact the clinic
+                      Reply as the message tells you, or contact the provider
                       directly, because the consent record lives with them. You
                       can also tell us at{" "}
                       <a
@@ -1089,8 +1089,8 @@ export default function PrivacyPolicyPage() {
                       >
                         support@novadatech.com.au
                       </a>{" "}
-                      and we will pass it on to the clinic and record it in
-                      their system.
+                      and we will pass it on to them and record it in their
+                      system.
                     </P>
                   </Note>
                 </S>
@@ -1141,7 +1141,7 @@ export default function PrivacyPolicyPage() {
                          what we actually hold. The distinction below is the
                          whole answer and it is load bearing: we keep our own
                          record of the work we did, and we do not keep copies
-                         of the client's patient or participant records. The
+                         of the client's participant, client or resident records. The
                          marketing position rests on this, because what we
                          undertake to produce at an audit is our own log, not
                          the client's file. Do not blur the two. */
@@ -1155,7 +1155,7 @@ export default function PrivacyPolicyPage() {
                         For care provider clients, the onboarding, induction,
                         training and compliance records we maintain are kept to
                         a <Key>seven year statutory retention standard</Key>.
-                        For practice clients we keep the log for as long as we
+                        For all other engagements we keep the log for as long as we
                         need it to answer for the work, and no longer than our
                         limitation period obligations require.
                       </>,
@@ -1183,13 +1183,13 @@ export default function PrivacyPolicyPage() {
                       </>,
                       <>
                         <Key>
-                          Copies of a client&apos;s patient or participant
+                          Copies of a client&apos;s participant, client or resident
                           records.
                         </Key>{" "}
                         We do not keep them. That work is carried out inside
                         the client&apos;s own systems and those records stay
                         there, under the client&apos;s own retention rules.
-                        Where our own log necessarily names a patient or a
+                        Where our own log necessarily names a participant or a
                         participant, for example to record that a call was
                         returned or a booking was made, we hold that entry as
                         part of our record of the work we did. It is not a copy
@@ -1253,9 +1253,9 @@ export default function PrivacyPolicyPage() {
                   </P>
                   <Note label="Which organisation to ask">
                     <P>
-                      If the information is in a <Key>patient or participant
-                      record held in a clinic&apos;s or provider&apos;s
-                      system</Key>, ask that clinic or provider. They hold the
+                      If the information is in a <Key>participant, client or
+                      resident record held in a provider&apos;s
+                      system</Key>, ask that provider. They hold the
                       record and they can act on it. Equivalent access and
                       correction rights exist under Health Privacy Principles 6
                       and 7 of the{" "}
@@ -1292,9 +1292,10 @@ export default function PrivacyPolicyPage() {
                     question by phone without giving your name.
                   </P>
                   <P>
-                    We cannot make or change a booking in a clinic&apos;s system
-                    anonymously, because the clinic&apos;s record has to
-                    identify the patient it belongs to.
+                    We cannot coordinate a shift or update a record in a
+                    provider&apos;s system anonymously, because the
+                    provider&apos;s record has to identify the person it
+                    belongs to.
                   </P>
                 </S>
 
@@ -1400,7 +1401,7 @@ export default function PrivacyPolicyPage() {
                     ]}
                   />
                   <P>
-                    If your complaint is about a record held by your clinic or
+                    If your complaint is about a record held by your care
                     care provider rather than by us, raise it with them first.
                     They hold the record.
                   </P>
