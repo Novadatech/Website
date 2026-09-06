@@ -11,17 +11,28 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
+/**
+ * `href` defaults to the in-page calendar. Why Novada has no #book section
+ * (its closing band is id="review"), so it passes "/#book"; without that the
+ * sticky button was a dead click on that page. Added 2026-09-06.
+ *
+ * The default `tagline` names both offers, which is right on the home page
+ * (organic traffic, both offers shown) and wrong on a single-audience ad
+ * lander, so each offer page passes its own. It previously read "Every call
+ * answered. Every shift covered. Everything measured.", a shift-cover claim
+ * our Terms of Service disclaim and the founder struck on 5 September; any
+ * page that did not pass a tagline silently inherited it.
+ */
 export default function StickyCta({
   label = "Book a Desk Review",
   tone = "light",
-  /* The default names both offers, which is right on the home page (organic
-     traffic, both offers shown) and wrong on a single-audience ad lander.
-     Each offer page passes its own. */
-  tagline = "Every call answered. Every shift covered. Everything measured.",
+  tagline = "One partner runs your operation. The other builds and backs your workforce.",
+  href = "#book",
 }: {
   label?: string;
   tone?: "light" | "dark";
   tagline?: string;
+  href?: string;
 }) {
   const [show, setShow] = useState(false);
   const dark = tone === "dark";
@@ -67,7 +78,7 @@ export default function StickyCta({
               {tagline}
             </p>
             <a
-              href="#book"
+              href={href}
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#003DDB] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#0031ae] sm:w-auto"
             >
               {label}

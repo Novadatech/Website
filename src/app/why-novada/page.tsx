@@ -337,8 +337,8 @@ function Hero() {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="mt-6 max-w-[560px] text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]"
             >
-              Every healthcare business has a desk. Revenue is won or lost
-              there, and it is a role staffed{" "}
+              Every care provider has two halves that aren&apos;t the care itself.
+              Whether they hold together is decided there, and it is a role staffed{" "}
               <span className={`${NUM} font-medium text-[#003DDB]`}>38</span> of
               the <span className={`${NUM} font-medium text-[#0B0E14]`}>168</span>{" "}
               hours the work actually arrives in.
@@ -396,10 +396,10 @@ const UNSOURCED = [
 ];
 
 const REPORT_FIELDS = [
-  "Every enquiry",
-  "Response time",
-  "Booking outcome",
-  "Reason lost",
+  "Every call and event",
+  "Answered",
+  "Escalated",
+  "Recorded",
 ];
 
 function ReportSchematic() {
@@ -739,9 +739,16 @@ export default function WhyNovadaPage() {
       </main>
 
       <DeskFooter />
+      {/* Changed 2026-09-06. The previous tagline promised every shift
+          covered, which our Terms of Service expressly disclaim and which the
+          founder confirmed on 5 September we do not claim. It had been removed
+          from the care page that day and missed here. The href is explicit
+          because this page has no #book section: its closing band is
+          id="review" and the calendar lives on the home page. */}
       <StickyCta
-        label="Book a Desk Review"
-        tagline="Every call answered. Every shift covered. Everything measured."
+        label="Book a Review"
+        tagline="We run it, and we answer for it."
+        href="/#book"
       />
     </div>
   );

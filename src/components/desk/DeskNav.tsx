@@ -25,6 +25,10 @@ const NAV_ITEMS = [
 export default function DeskNav({ tone = "light" }: { tone?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  // Book on the page the visitor is already on when it owns a calendar.
+  // Sending a paid visitor from an offer page to the home calendar loses the
+  // single-offer context and attributes the booking to the home page.
+  const bookHref = ["/", "/operations-partner", "/workforce-partner"].includes(pathname) ? "#book" : "/#book";
   const dark = tone === "dark";
 
   return (
@@ -67,7 +71,7 @@ export default function DeskNav({ tone = "light" }: { tone?: "light" | "dark" })
           </nav>
 
           <div className="flex items-center gap-2">
-            <a href="/#book" className={`${BTN_PRIMARY_SM} hidden sm:inline-flex`}>
+            <a href={bookHref} className={`${BTN_PRIMARY_SM} hidden sm:inline-flex`}>
               Book a Review
             </a>
             <button
@@ -97,7 +101,7 @@ export default function DeskNav({ tone = "light" }: { tone?: "light" | "dark" })
               </Link>
             ))}
             <a
-              href="/#book"
+              href={bookHref}
               onClick={() => setOpen(false)}
               className={`${BTN_PRIMARY_SM} mt-4 w-full`}
             >

@@ -875,7 +875,7 @@ function Pool() {
       <div className="mt-10 border-t border-[#D3D8E2]">
         {POOL_FACTS.map((r, i) => (
           <AnimatedSection key={r.tag} delay={i * 0.06}>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-5 sm:grid-cols-[160px_minmax(0,1fr)] sm:px-3">
+            <div className="grid grid-cols-1 items-start gap-x-4 gap-y-2 border-b border-[#E3E6EC] py-5 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-y-3 sm:px-3">
               <span className={`${MICRO} pt-[2px] text-[#003DDB]`}>{r.tag}</span>
               <p className="text-[15px] leading-[1.62] text-[#0B0E14] md:text-[16px]">
                 {r.body}
@@ -1342,7 +1342,7 @@ export default function WorkforcePartnerPage() {
         <FinalCta />
       </main>
 
-      <DeskFooter />
+      <DeskFooter bookHref="#book" />
       <StickyCta
         label="Book a Workforce Review"
         tagline="We build and back your workforce, and we answer for the file."

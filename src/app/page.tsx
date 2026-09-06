@@ -422,7 +422,7 @@ function OperationsSurface() {
         <span className={`${MICRO_SM} w-[64px] shrink-0 text-white/30`}>
           Time
         </span>
-        <span className={`${MICRO_SM} w-[74px] shrink-0 text-white/30`}>
+        <span className={`${MICRO_SM} w-[96px] shrink-0 text-white/30`}>
           Source
         </span>
         <span className={`${MICRO_SM} flex-1 text-white/30`}>Event</span>
@@ -445,7 +445,7 @@ function OperationsSurface() {
               <span className={`${NUM} w-[64px] shrink-0 text-[13px] text-white/60`}>
                 {ev.time}
               </span>
-              <span className="w-[74px] shrink-0">
+              <span className="w-[96px] shrink-0">
                 <span
                   className={`${MICRO_SM} inline-flex rounded-[4px] border border-white/10 bg-white/[0.05] px-2 py-[3px] text-white/60`}
                 >
@@ -950,7 +950,7 @@ const STEPS = [
   {
     n: "01",
     title: "The review",
-    body: "We map your call, booking and coordination workload, and what it is costing you today.",
+    body: "We map your call, call-off and coordination workload, and what it is costing you today.",
   },
   {
     n: "02",
@@ -960,7 +960,7 @@ const STEPS = [
   {
     n: "03",
     title: "The desk runs",
-    body: "We take the workload, and the monthly report shows every call, booking, recovery and event from day one.",
+    body: "We take the workload, and the monthly report shows every call, escalation, cover arranged and event from day one.",
   },
 ];
 
@@ -1034,7 +1034,7 @@ function HowItWorks() {
    ══════════════════════════════════════════════════════════════════ */
 
 const SCOPE_STANDING =
-  "Nothing clinical: no triage, no advice. Urgent matters route straight to your team under an agreed protocol. Nothing at the front counter: greeting, payments and in-person care stay with your people.";
+  "Nothing clinical: no triage, no advice. Urgent matters route straight to your team under an agreed protocol. Nothing that is the care itself: every decision that turns on a participant stays with your people.";
 
 const BOUNDARIES = [
   {
@@ -1239,10 +1239,10 @@ function WhyNow() {
    ══════════════════════════════════════════════════════════════════ */
 
 const REPORT_FIELDS = [
-  "Every enquiry",
-  "Response time",
-  "Booking outcome",
-  "Reason lost",
+  "Every call and event",
+  "Answered",
+  "Escalated",
+  "Recorded",
 ];
 
 function Measurement() {
@@ -1258,8 +1258,8 @@ function Measurement() {
           <p className="mt-6 max-w-[600px] text-[16px] leading-[1.65] text-[#454E5C] md:text-[17px]">
             We traced this market&apos;s most-quoted numbers to their sources,
             and most dissolved on contact. So we don&apos;t use them. Instead
-            we measure your desk: every enquiry, response time, booking
-            outcome and reason lost, reported monthly.{" "}
+            we measure your desk: every call and event, what was answered,
+            what was escalated and what was recorded, reported monthly.{" "}
             <span className="font-medium text-[#0B0E14]">
               Every industry figure on this website carries its source in the same breath.
             </span>
@@ -1425,8 +1425,11 @@ export default function DesignBHomePage() {
         <FinalCta />
       </main>
 
-      <DeskFooter />
-      <StickyCta />
+      <DeskFooter bookHref="#book" />
+      <StickyCta
+        label="Book a Review"
+        tagline="One partner runs your operation. The other builds and backs your workforce."
+      />
     </div>
   );
 }

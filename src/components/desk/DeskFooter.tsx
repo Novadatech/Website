@@ -13,7 +13,19 @@
 import Link from "next/link";
 import { CONTAINER, SECTION } from "./tokens";
 
-export default function DeskFooter({ tone = "light" }: { tone?: "light" | "dark" }) {
+/**
+ * `bookHref`: pages that own a #book calendar pass "#book" so a visitor books
+ * on the page they are already on. Sending a paid visitor from an offer page
+ * to the home calendar loses the single-offer context and misattributes the
+ * booking. Every other route keeps the cross-page default. Added 2026-09-06.
+ */
+export default function DeskFooter({
+  tone = "light",
+  bookHref = "/#book",
+}: {
+  tone?: "light" | "dark";
+  bookHref?: string;
+}) {
   const dark = tone === "dark";
   return (
     <footer className={dark ? "border-t border-white/10 bg-[#05070C]" : "border-t border-[#E2E7EE] bg-[#F4F6FA]"}>
@@ -28,7 +40,7 @@ export default function DeskFooter({ tone = "light" }: { tone?: "light" | "dark"
               </span>
             </div>
             <p className={`text-sm leading-relaxed max-w-[260px] ${dark ? "text-white/50" : "text-[#5A6676]"}`}>
-              We run the desk for Australian healthcare businesses. Alongside
+              We run the back office for Australian care providers. Alongside
               your team, not instead of them.
             </p>
           </div>
@@ -72,7 +84,7 @@ export default function DeskFooter({ tone = "light" }: { tone?: "light" | "dark"
                 </a>
               </li>
               <li>
-                <a href="/#book" className={`text-sm transition-colors ${dark ? "text-white/60 hover:text-white" : "text-[#39424E] hover:text-[#003DDB]"}`}>
+                <a href={bookHref} className={`text-sm transition-colors ${dark ? "text-white/60 hover:text-white" : "text-[#39424E] hover:text-[#003DDB]"}`}>
                   Book a review
                 </a>
               </li>

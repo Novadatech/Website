@@ -616,7 +616,7 @@ function Hero() {
 const PAINS = [
   "Managers carry the on-call phone all night, then work a full day.",
   "A 4am call-off means someone senior is awake finding cover.",
-  "Onboarding, induction and training records live in six places, none of them audit-ready.",
+  "The compliance records an auditor will ask for live across a drive, two spreadsheets and one departed coordinator's memory.",
   "Your coordinator just resigned, and the phone doesn't care.",
 ];
 
@@ -943,7 +943,7 @@ const MODULES = [
     items: [
       "Daytime rostering administration.",
       "Enquiry and intake admin.",
-      "Onboarding, induction and training administration.",
+      "The monthly Ops Report, every outcome against the baseline we took before we started.",
       "Compliance records maintained to the 7-year statutory standard, produced on demand at audit.",
     ],
   },
@@ -1511,7 +1511,7 @@ const FAQS = [
   },
   {
     q: "Are we handing over our coordinator's job?",
-    a: "Only the parts you choose. Some providers start with the nights and keep everything else in house. Others hand over the whole desk. The scope is written down before we take a call, and you can change it.",
+    a: "The function, not the person. We take the after-hours line, the coordination workload, the intake administration and the records. Your coordinator keeps the participant relationship and every decision that turns on a participant. The scope is written down before we take a call.",
   },
 ];
 
@@ -1630,7 +1630,7 @@ export default function WorkforceOpsDeskPage() {
         <FinalCta />
       </main>
 
-      <DeskFooter />
+      <DeskFooter bookHref="#book" />
       {/* ⚠️ TAGLINE CHANGED 2026-09-05. It was "Every call answered. Every
           shift covered. Everything measured." Two problems, both live on
           every scroll of the page. Our own Terms of Service expressly
