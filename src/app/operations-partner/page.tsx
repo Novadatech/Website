@@ -754,53 +754,55 @@ function PhoneRings() {
   );
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   7b · WHAT YOU'RE BUYING  (added 2026-09-06)
-   The three-layer stack from the Two Partners document. Sits straight
-   after the 4am sequence so it explains something the visitor has just
-   watched rather than arriving as an abstract diagram.
+/* The three layers, as three cards. Re-displayed 2026-09-06: this was
+   three 60-word paragraphs, which is the single densest prose block on
+   the page and sits at scroll three of a paid lander.
 
-   ⚠️ SUPPORT24 NAMING RAILS, all three of them live in this band:
-    1. It labels the PLATFORM LAYER only, never the company, never the
-       offer. First mention on the page is here, as "Support24, our own
-       platform", which is the required form.
-    2. It never sits in a sentence about helping or supporting. The name
-       reads as "support"; a sentence like "Support24 supports your team"
-       silently converts a platform into a service claim.
-    3. It never shares a sentence with a coverage claim. The 24 must not
-       be read as an always-on promise. Coverage is scoped in writing per
-       engagement, and row 01 says exactly that, in its own sentence,
-       deliberately separated from the platform name.
-
-   ⚠️ The third layer is "The warranty" here, which the document uses,
-   but note our Terms of Service disclaim warranties ON THE WEBSITE. The
-   copy therefore warrants only the work and the record, and says so in
-   the row, with the commitments located in the services agreement, which
-   is where the Terms require them to live.
-
-   ⚠️ Platform verbs are clerical only: captures, logs, assembles,
-   builds. It never decides, assesses, triages or handles a person.
-   Bounded by the closing line, which must not be cut for length.
-   ══════════════════════════════════════════════════════════════════ */
-
+   `footer` is not decoration. It carries the sentences that must not be
+   read as part of the capability list above them: on the platform card,
+   that the hours we cover are scoped separately (the Support24 naming
+   rail forbids the platform sharing a sentence with a coverage claim),
+   and on the third card, that what we warrant is the work and the record,
+   which is what our Terms of Service require. Keep them under their own
+   hairline. */
 const STACK = [
   {
     n: "01",
     tag: "Ours",
     title: "The platform",
-    body: "Support24, our own platform, sits underneath the desk. It captures every call and event as it happens, logs what was done, assembles the record and builds your monthly report. It is why nothing is forgotten, why the evidence of an event exists from the moment the event happens, and why we are not a room of people answering phones. The hours we cover are a separate matter, scoped in writing before we start.",
+    points: [
+      "Support24, our own platform, sits underneath the desk.",
+      "Captures every call and event as it happens.",
+      "Logs what was done, assembles the record, builds your monthly report.",
+      "Why nothing is forgotten, and why the evidence of an event exists from the moment it happens.",
+    ],
+    footer:
+      "The hours we cover are a separate matter, scoped in writing before we start.",
   },
   {
     n: "02",
     tag: "Onshore",
     title: "The people",
-    body: "Named coordinators, onshore, with worker screening clearances held wherever participant contact is plausible. They own everything that takes judgment: the 4am call-off, the ambiguous incident at 11pm, the exception the software hands back, the call no automation was ever going to land.",
+    points: [
+      "Named coordinators, onshore.",
+      "Worker screening clearances held wherever participant contact is plausible.",
+      "They own everything that takes judgment: the 4am call-off, the ambiguous incident at 11pm, the exception the software hands back.",
+      "The call no automation was ever going to land.",
+    ],
+    footer: null,
   },
   {
     n: "03",
     tag: "In writing",
     title: "The warranty",
-    body: "A baseline measured before we change anything. A monthly Ops Report of what actually happened against it. Statutory records maintained continuously to the seven year standard, audit-ready by construction. And one named Australian company answerable for the function. What we warrant is the work and the record, set out in your services agreement.",
+    points: [
+      "A baseline measured before we change anything.",
+      "A monthly Ops Report of what actually happened against it.",
+      "Statutory records maintained continuously to the seven year standard, audit-ready by construction.",
+      "One named Australian company answerable for the function.",
+    ],
+    footer:
+      "What we warrant is the work and the record, set out in your services agreement.",
   },
 ];
 
@@ -821,24 +823,35 @@ function WhatYouAreBuying() {
         </p>
       </AnimatedSection>
 
-      <div className="mt-10 border-t border-[#D3D8E2]">
+      <div className="mt-10 grid gap-px overflow-hidden rounded-[12px] border border-[#E3E6EC] bg-[#E3E6EC] md:grid-cols-3">
         {STACK.map((r, i) => (
-          <AnimatedSection key={r.n} delay={i * 0.06}>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-6 sm:grid-cols-[52px_minmax(0,1fr)_148px] sm:px-3">
-              <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1]`}>{r.n}</span>
-              <div className="min-w-0">
-                <p className="text-[17px] font-semibold tracking-tight text-[#0B0E14] md:text-[18px]">
-                  {r.title}
-                </p>
-                <p className="mt-2.5 max-w-[640px] text-[15px] leading-[1.62] text-[#454E5C] md:text-[16px]">
-                  {r.body}
-                </p>
+          <AnimatedSection key={r.n} delay={i * 0.07} className="h-full">
+            <div className="flex h-full flex-col bg-white p-6 md:p-7">
+              <div className="flex items-center justify-between gap-3 border-b border-[#E3E6EC] pb-3.5">
+                <span className={`${MICRO} ${NUM} text-[#9AA3B1]`}>{r.n}</span>
+                <span className={`${MICRO} text-[#003DDB]`}>{r.tag}</span>
               </div>
-              <span
-                className={`${MICRO} col-start-2 justify-self-start rounded-[4px] border border-[#DCE0E8] bg-white px-2 py-[3px] text-[#5B6472] sm:col-start-3 sm:justify-self-end`}
-              >
-                {r.tag}
-              </span>
+              <p className="mt-5 text-[19px] font-semibold tracking-tight text-[#0B0E14] md:text-[20px]">
+                {r.title}
+              </p>
+              <ul className="mt-4 flex-1 space-y-2.5">
+                {r.points.map((pt) => (
+                  <li
+                    key={pt}
+                    className="grid grid-cols-[13px_minmax(0,1fr)] gap-x-2.5 text-[14.5px] leading-[1.58] text-[#454E5C]"
+                  >
+                    <span aria-hidden className="pt-[8px]">
+                      <span className="block h-[4px] w-[4px] rounded-full bg-[#C3CFE6]" />
+                    </span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+              {r.footer ? (
+                <p className="mt-5 border-t border-[#E3E6EC] pt-4 text-[13.5px] leading-[1.55] text-[#5B6472]">
+                  {r.footer}
+                </p>
+              ) : null}
             </div>
           </AnimatedSection>
         ))}
@@ -1312,7 +1325,7 @@ const EVIDENCE = [
 
 function WhyNow() {
   return (
-    <Band index="08" label="Why now" tone="tint">
+    <Band index="08" label="Why now">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}

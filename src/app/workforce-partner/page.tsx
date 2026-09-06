@@ -95,6 +95,10 @@ const DISPLAY =
   "font-condensed font-bold uppercase leading-[0.92] tracking-[-0.012em]";
 
 /** CTA floor: 14px / 600. Never smaller, on any breakpoint. */
+/** Primary CTA on an ink surface: inverts so it still carries the most weight. */
+const BTN_ON_INK =
+  "group inline-flex items-center justify-center gap-2 rounded-[6px] bg-white px-6 py-3.5 text-[15px] font-semibold text-[#0A0D14] transition-colors duration-200 hover:bg-[#E8ECF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0D14]";
+
 const BTN_PRIMARY =
   "group inline-flex items-center justify-center gap-2 rounded-[6px] bg-[#003DDB] px-6 py-3.5 text-[15px] font-semibold text-white transition-colors duration-200 hover:bg-[#0030AE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
 
@@ -652,89 +656,106 @@ function Decision() {
   );
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   6 · WHAT YOU'RE BUYING
-   The three-layer stack. Recruitilon is introduced here and only here,
-   under its naming rails.
-
-   ⚠️ RECRUITILON NAMING RAILS (section 8, binding):
-    · It labels the PLATFORM LAYER only, never the company, never the
-      offer. First mention on this page is here, as "Recruitilon, our own
-      platform", which is the required form.
-    · It must NEVER sit in a sentence claiming we employ, supply or place
-      workers. Its verbs are clerical and evidentiary: verifies, surfaces,
-      records, tracks. It never assigns, places, supplies or engages
-      anybody.
-
-   ⚠️ The third layer is the WORKER FILE, which is this offer's whole
-   warranty. Our Terms of Service disclaim warranties on the website, so
-   the row warrants the work and the record only, and locates the
-   commitments in the services agreement.
-   ══════════════════════════════════════════════════════════════════ */
-
+/* The three layers, as three cards. See the note on the Operations
+   Partner: same component, same reasoning. The Recruitilon naming rail
+   governs card 01, so its verbs stay clerical (verifies, tracks,
+   surfaces, records) and it never claims we employ, supply or place
+   anybody. Card 03's footer carries the warranty limit our Terms of
+   Service require. */
 const STACK = [
   {
     n: "01",
     tag: "Ours",
     title: "The platform",
-    body: "Recruitilon, our own platform, holds the workforce evidence. It verifies screening and credentials, tracks induction and training to completion, surfaces who is available and current, and records the evidence of every engagement as it happens. It is why a worker's file is current on the day somebody asks for it, rather than assembled the week before an audit.",
+    points: [
+      "Recruitilon, our own platform, holds the workforce evidence.",
+      "Verifies screening and credentials.",
+      "Tracks induction and training to completion.",
+      "Surfaces who is available and current, and records the evidence of every engagement.",
+    ],
+    footer:
+      "Why a worker's file is current on the day somebody asks for it, rather than assembled the week before an audit.",
   },
   {
     n: "02",
     tag: "Onshore",
     title: "The people",
-    body: "Named coordinators, onshore, with worker screening clearances held wherever participant contact is plausible. They run the recruitment function for your own team, chase what needs chasing, and own the judgment calls: the candidate worth a second look, the credential about to lapse, the gap at 4am.",
+    points: [
+      "Named coordinators, onshore.",
+      "Worker screening clearances held wherever participant contact is plausible.",
+      "They run the recruitment function for your own team and chase what needs chasing.",
+      "They own the judgment calls: the candidate worth a second look, the credential about to lapse, the gap at 4am.",
+    ],
+    footer: null,
   },
   {
     n: "03",
     tag: "In writing",
     title: "The worker file",
-    body: "Screening verified before a shift is ever offered. Credentials current. Induction and training evidenced. Every pool engagement generating its own record. And one named Australian company answerable for the file. What we warrant is the work and the record, set out in your services agreement.",
+    points: [
+      "Screening verified before a shift is ever offered.",
+      "Credentials current.",
+      "Induction and training evidenced.",
+      "Every pool engagement generating its own record, and one named Australian company answerable for the file.",
+    ],
+    footer:
+      "What we warrant is the work and the record, set out in your services agreement.",
   },
 ];
 
 function WhatYouAreBuying() {
   return (
-    <Band index="02" label="What you're buying" tone="dark">
+    <Band index="02" label="What you're buying">
       <AnimatedSection>
-        <p className={`${MICRO} text-[#7AA2FF]`}>Managed operations</p>
+        <p className={`${MICRO} text-[#003DDB]`}>Managed operations</p>
         <h3
-          className={`${DISPLAY} mt-4 max-w-[820px] text-[30px] text-white sm:text-[40px] md:text-[48px]`}
+          className={`${DISPLAY} mt-4 max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
         >
           Not staff. Not software. A function somebody answers for.
         </h3>
-        <p className="mt-5 max-w-[760px] text-[15.5px] leading-[1.62] text-white/70 md:text-[17px]">
+        <p className="mt-5 max-w-[760px] text-[15.5px] leading-[1.62] text-[#454E5C] md:text-[17px]">
           Every engagement is three layers, and you can see all three. That is
           the difference between handing over a function and buying hours or
           buying a tool.
         </p>
       </AnimatedSection>
 
-      <div className="mt-10 border-t border-white/10">
+      <div className="mt-10 grid gap-px overflow-hidden rounded-[12px] border border-[#E3E6EC] bg-[#E3E6EC] md:grid-cols-3">
         {STACK.map((r, i) => (
-          <AnimatedSection key={r.n} delay={i * 0.06}>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-white/10 py-6 sm:grid-cols-[52px_minmax(0,1fr)_148px] sm:px-3">
-              <span className={`${MICRO} ${NUM} pt-1 text-white/35`}>{r.n}</span>
-              <div className="min-w-0">
-                <p className="text-[17px] font-semibold tracking-tight text-white md:text-[18px]">
-                  {r.title}
-                </p>
-                <p className="mt-2.5 max-w-[640px] text-[15px] leading-[1.62] text-white/75 md:text-[16px]">
-                  {r.body}
-                </p>
+          <AnimatedSection key={r.n} delay={i * 0.07} className="h-full">
+            <div className="flex h-full flex-col bg-white p-6 md:p-7">
+              <div className="flex items-center justify-between gap-3 border-b border-[#E3E6EC] pb-3.5">
+                <span className={`${MICRO} ${NUM} text-[#9AA3B1]`}>{r.n}</span>
+                <span className={`${MICRO} text-[#003DDB]`}>{r.tag}</span>
               </div>
-              <span
-                className={`${MICRO} col-start-2 justify-self-start rounded-[4px] border border-white/10 bg-white/[0.04] px-2 py-[3px] text-white/55 sm:col-start-3 sm:justify-self-end`}
-              >
-                {r.tag}
-              </span>
+              <p className="mt-5 text-[19px] font-semibold tracking-tight text-[#0B0E14] md:text-[20px]">
+                {r.title}
+              </p>
+              <ul className="mt-4 flex-1 space-y-2.5">
+                {r.points.map((pt) => (
+                  <li
+                    key={pt}
+                    className="grid grid-cols-[13px_minmax(0,1fr)] gap-x-2.5 text-[14.5px] leading-[1.58] text-[#454E5C]"
+                  >
+                    <span aria-hidden className="pt-[8px]">
+                      <span className="block h-[4px] w-[4px] rounded-full bg-[#C3CFE6]" />
+                    </span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+              {r.footer ? (
+                <p className="mt-5 border-t border-[#E3E6EC] pt-4 text-[13.5px] leading-[1.55] text-[#5B6472]">
+                  {r.footer}
+                </p>
+              ) : null}
             </div>
           </AnimatedSection>
         ))}
       </div>
 
       <AnimatedSection delay={0.1}>
-        <p className="mt-9 max-w-[820px] border-l-2 border-[#3A6CFF] pl-6 text-[17px] font-medium leading-[1.5] text-white md:text-[20px]">
+        <p className="mt-9 max-w-[760px] border-l-2 border-[#003DDB] pl-5 text-[17px] font-medium leading-[1.55] text-[#0B0E14] md:text-[19px]">
           Automation makes the evidence. People make the decisions.
         </p>
       </AnimatedSection>
@@ -847,79 +868,122 @@ function Lifecycle() {
    commercial conversation belongs.
    ══════════════════════════════════════════════════════════════════ */
 
-const POOL_FACTS = [
+const POOL_SPLIT = [
   {
-    tag: "Independent",
-    body: "Pool workers are independent businesses operating on their own ABN. They are not our employees, we do not manage their performance, and we do not run their payroll.",
+    side: "Yours",
+    points: [
+      "The approval: every engagement, against your own criteria.",
+      "The agreement: a direct service agreement between you and the worker.",
+      "The payment: you pay the worker directly.",
+      "The match: whether a worker suits a particular participant.",
+    ],
   },
   {
-    tag: "Your agreement",
-    body: "Every engagement is a direct service agreement between you and the worker. You approve it against your own criteria, and you pay the worker directly.",
-  },
-  {
-    tag: "Verified first",
-    body: "Screening and credentials are verified on our platform before a shift is ever offered, and every engagement generates its own record.",
-  },
-  {
-    tag: "Never promised",
-    body: "No fill is ever guaranteed. Availability is availability, and anyone in this sector who promises you otherwise is selling something they cannot deliver.",
+    side: "Ours",
+    points: [
+      "Screening and credentials, verified on our platform before a shift is ever offered.",
+      "Who is screened, current and available, surfaced to you.",
+      "The evidence of every engagement, recorded.",
+    ],
   },
 ];
 
 function Pool() {
   return (
-    <Band index="04" label="The pool">
+    <Band index="04" label="The pool" tone="dark">
       <AnimatedSection>
-        <p className={`${MICRO} text-[#003DDB]`}>
+        <p className={`${MICRO} text-[#7AA2FF]`}>
           When your own people cannot cover it
         </p>
         <h3
-          className={`${DISPLAY} mt-4 max-w-[860px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
+          className={`${DISPLAY} mt-4 max-w-[860px] text-[30px] text-white sm:text-[40px] md:text-[48px]`}
         >
           A pool of screened workers, engaged by you, evidenced by us.
         </h3>
-        <p className="mt-6 max-w-[820px] text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+        <p className="mt-6 max-w-[820px] text-[16px] leading-[1.62] text-white/70 md:text-[17px]">
           Cover always starts with your own team, against your own rules. The
           pool exists for the moment after that: when the shift cannot be
           filled from your own people and the alternative is a manager on the
           phone at 4am working through a list. Every worker in it holds a
           current{" "}
-          <span className="font-semibold text-[#0B0E14]">
+          <span className="font-semibold text-white">
             NDIS Worker Screening clearance
           </span>
           , checked before anything is offered.
         </p>
       </AnimatedSection>
 
-      <div className="mt-10 border-t border-[#D3D8E2]">
-        {POOL_FACTS.map((r, i) => (
-          <AnimatedSection key={r.tag} delay={i * 0.06}>
-            <div className="grid grid-cols-1 items-start gap-x-4 gap-y-2 border-b border-[#E3E6EC] py-5 sm:grid-cols-[160px_minmax(0,1fr)] sm:gap-y-3 sm:px-3">
-              <span className={`${MICRO} pt-[2px] text-[#003DDB]`}>{r.tag}</span>
-              <p className="text-[15px] leading-[1.62] text-[#0B0E14] md:text-[16px]">
-                {r.body}
+      {/* Yours / ours. Re-displayed 2026-09-06 from a four-row register.
+          The split is the argument: a provider reading this needs to see at
+          a glance which side of the arrangement they hold, because that is
+          exactly what makes the pool defensible. Every line is one of the
+          pool's facts, unchanged. */}
+      <div className="mt-10 grid gap-px overflow-hidden rounded-[12px] border border-white/10 bg-white/10 md:grid-cols-2">
+        {POOL_SPLIT.map((col, i) => (
+          <AnimatedSection key={col.side} delay={i * 0.08} className="h-full">
+            <div className="flex h-full flex-col bg-[#0A0D14] p-6 md:p-7">
+              <p className={`${MICRO} border-b border-white/10 pb-3.5 text-[#7AA2FF]`}>
+                {col.side}
               </p>
+              <ul className="mt-5 space-y-3">
+                {col.points.map((pt) => (
+                  <li
+                    key={pt}
+                    className="grid grid-cols-[13px_minmax(0,1fr)] gap-x-2.5 text-[15px] leading-[1.6] text-white/80"
+                  >
+                    <span aria-hidden className="pt-[8px]">
+                      <span className="block h-[4px] w-[4px] rounded-full bg-[#3A6CFF]" />
+                    </span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </AnimatedSection>
         ))}
       </div>
 
-      <AnimatedSection delay={0.12}>
-        <p className={`${MICRO} mt-8 text-[#9AA3B1]`}>
+      {/* The worker's own status, and the one promise we refuse to make.
+          Both are load bearing: the first keeps the pool's characterisation
+          to its facts, the second is disclaimed in our Terms of Service and
+          the founder has confirmed we never claim it. */}
+      <AnimatedSection delay={0.14}>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="rounded-[12px] border border-white/10 bg-white/[0.04] p-6">
+            <p className={`${MICRO} text-white/45`}>The worker</p>
+            <p className="mt-3 text-[15px] leading-[1.62] text-white/80">
+              Pool workers are independent businesses operating on their own
+              ABN. They are not our employees, we do not manage their
+              performance, and we do not run their payroll.
+            </p>
+          </div>
+          <div className="rounded-[12px] border border-white/10 bg-white/[0.04] p-6">
+            <p className={`${MICRO} text-[#E08A4C]`}>Never promised</p>
+            <p className="mt-3 text-[15px] leading-[1.62] text-white/80">
+              No fill is ever guaranteed. Availability is availability, and
+              anyone in this sector who promises you otherwise is selling
+              something they cannot deliver.
+            </p>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.18}>
+        <p className={`${MICRO} mt-8 text-white/45`}>
           Access to the pool is charged separately from the engagement, and we
           walk you through exactly how on your Workforce Review.
         </p>
       </AnimatedSection>
 
-      <AnimatedSection delay={0.16}>
-        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-[#E3E6EC] pt-6">
-          <a href="#book" className={BTN_PRIMARY}>
+      <AnimatedSection delay={0.22}>
+        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-white/10 pt-6">
+          <a href="#book" className={BTN_ON_INK}>
             Book a Workforce Review
             <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
-          <span className={`${MICRO} text-[#9AA3B1]`}>
+          <span className={`${MICRO} text-white/45`}>
             <span className={NUM}>30</span> minutes
-            <span className="mx-1.5 text-[#C3CAD5]">·</span>
+            <span className="mx-1.5 text-white/25">·</span>
             Nothing committed
           </span>
         </div>
