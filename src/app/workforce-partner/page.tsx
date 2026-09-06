@@ -778,27 +778,34 @@ function WhatYouAreBuying() {
 const LIFECYCLE = [
   {
     n: "01",
+    tag: "Yours",
     title: "Recruitment",
     body: "A standing pipeline of care worker candidates, sourced and screened against your criteria for your own workforce. Not a burst of activity when somebody resigns. Every hiring decision is yours, and the worker joins your team, not ours.",
   },
   {
     n: "02",
+    tag: "Recorded",
     title: "Onboarding administration",
     body: "The checks, the paperwork and the records that turn a hired worker into an engageable one. Chased to completion by somebody whose actual job it is, and recorded as it goes rather than reconstructed later.",
   },
   {
     n: "03",
+    tag: "Surfaced",
     title: "Induction and training administration",
     body: "Scheduling, completion tracking, and the records maintained so every worker's file is current. When a credential is approaching its expiry, that is surfaced before it lapses, not after.",
   },
   {
     n: "04",
+    tag: "Engaged by you",
     title: "The pool behind it",
     body: "Pre-screened, credentialed independent workers available for the moments a shift cannot be filled from your own people. Described in full in the next section, because how it works is the part that matters.",
   },
 ];
 
 function Lifecycle() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
     <Band index="03" label="The lifecycle" tone="tint">
       <AnimatedSection>
@@ -814,22 +821,50 @@ function Lifecycle() {
         </p>
       </AnimatedSection>
 
-      <div className="mt-10 border-t border-[#D3D8E2]">
-        {LIFECYCLE.map((r, i) => (
-          <AnimatedSection key={r.n} delay={i * 0.06}>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-6 sm:grid-cols-[52px_minmax(0,1fr)] sm:px-3">
-              <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1]`}>{r.n}</span>
-              <div className="min-w-0">
-                <p className="text-[17px] font-semibold tracking-tight text-[#0B0E14] md:text-[18px]">
-                  {r.title}
-                </p>
-                <p className="mt-2.5 max-w-[660px] text-[15px] leading-[1.62] text-[#454E5C] md:text-[16px]">
-                  {r.body}
-                </p>
+      {/* A rail, not a list. Re-displayed 2026-09-06: four numbered
+          sentences described a sequence without ever drawing one, which is
+          the pattern that made these pages read as an article. The rail is
+          the same device the How it starts band uses, so the page repeats
+          its own vocabulary rather than inventing a new one. Collapses to a
+          single column at narrow widths, where the connecting line is
+          dropped. */}
+      <div ref={ref} className="relative mt-12">
+        <span
+          aria-hidden
+          className="absolute left-0 right-0 top-[10px] hidden h-px bg-[#DCE0E8] lg:block"
+        />
+        <motion.span
+          aria-hidden
+          initial={{ scaleX: 0 }}
+          animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 1.1, ease: [0.25, 0.4, 0.25, 1] }}
+          style={{ transformOrigin: "left" }}
+          className="absolute left-0 right-0 top-[10px] hidden h-px bg-[#003DDB] lg:block"
+        />
+
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {LIFECYCLE.map((r, i) => (
+            <div key={r.n} className="relative lg:pt-9">
+              <motion.span
+                aria-hidden
+                initial={{ scale: 0 }}
+                animate={inView ? { scale: 1 } : { scale: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 + i * 0.25 }}
+                className="absolute left-0 top-[6px] hidden h-[9px] w-[9px] rotate-45 border border-[#003DDB] bg-[#F7F8FA] lg:block"
+              />
+              <div className="flex items-center gap-3">
+                <span className={`${MICRO} ${NUM} text-[#9AA3B1]`}>{r.n}</span>
+                <span className={`${MICRO} text-[#003DDB]`}>{r.tag}</span>
               </div>
+              <p className="mt-3.5 text-[18px] font-semibold tracking-tight text-[#0B0E14] md:text-[19px]">
+                {r.title}
+              </p>
+              <p className="mt-3 text-[15px] leading-[1.62] text-[#454E5C]">
+                {r.body}
+              </p>
             </div>
-          </AnimatedSection>
-        ))}
+          ))}
+        </div>
       </div>
     </Band>
   );

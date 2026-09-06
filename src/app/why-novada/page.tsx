@@ -566,10 +566,10 @@ function Principles() {
         </h3>
       </AnimatedSection>
 
-      <div className="mt-10 border-t border-[#D3D8E2]">
+      <div className="mt-10 grid gap-px overflow-hidden rounded-[12px] border border-[#E3E6EC] bg-[#E3E6EC] md:grid-cols-2">
         {PRINCIPLES.map((p, i) => (
           <AnimatedSection key={p.title} delay={i * 0.06}>
-            <div className="grid gap-x-8 gap-y-4 border-b border-[#E3E6EC] py-7 lg:grid-cols-[52px_minmax(0,300px)_minmax(0,1fr)] lg:gap-y-0 lg:px-3">
+            <div className="flex h-full flex-col gap-y-4 bg-white p-6 md:p-7">
               <span
                 className={`${MICRO} ${NUM} hidden pt-1 text-[#9AA3B1] lg:block`}
               >

@@ -1118,11 +1118,26 @@ function Boundaries() {
    ══════════════════════════════════════════════════════════════════ */
 
 const ACCESS_ITEMS = [
-  "Named coordinators, each with their own login under your own access control. Never a shared account.",
-  "Permissions limited to the parts of your systems the work actually needs.",
-  "Your information stays in your systems, and stays in Australia.",
-  "A written agreement that mirrors your obligations under the Australian Privacy Principles.",
-  "We can be named in your privacy policy as a contracted service provider.",
+  {
+    key: "Logins",
+    body: "Named coordinators, each with their own login under your own access control. Never a shared account.",
+  },
+  {
+    key: "Permissions",
+    body: "Limited to the parts of your systems the work actually needs.",
+  },
+  {
+    key: "Data",
+    body: "Your information stays in your systems, and stays in Australia.",
+  },
+  {
+    key: "Agreement",
+    body: "Written, and mirrors your obligations under the Australian Privacy Principles.",
+  },
+  {
+    key: "Privacy policy",
+    body: "We can be named in yours as a contracted service provider.",
+  },
 ];
 
 function AccessPrivacy() {
@@ -1138,13 +1153,13 @@ function AccessPrivacy() {
 
       <div className="mt-9 border-t border-[#D3D8E2]">
         {ACCESS_ITEMS.map((item, i) => (
-          <AnimatedSection key={item} delay={i * 0.05}>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 border-b border-[#E3E6EC] py-5 sm:grid-cols-[52px_minmax(0,1fr)] sm:px-3">
-              <span className={`${MICRO} ${NUM} pt-1 text-[#003DDB]`}>
-                {String(i + 1).padStart(2, "0")}
+          <AnimatedSection key={item.key} delay={i * 0.05}>
+            <div className="grid grid-cols-1 items-start gap-x-6 gap-y-1.5 border-b border-[#E3E6EC] py-5 sm:grid-cols-[168px_minmax(0,1fr)] sm:px-3">
+              <span className={`${MICRO} pt-[3px] text-[#003DDB]`}>
+                {item.key}
               </span>
-              <p className="text-[15px] leading-[1.6] text-[#0B0E14] md:text-[16px]">
-                {item}
+              <p className="text-[15px] leading-[1.62] text-[#0B0E14] md:text-[16px]">
+                {item.body}
               </p>
             </div>
           </AnimatedSection>
