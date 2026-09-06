@@ -45,22 +45,29 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
-  title: "Novada | The Desk for Australian Healthcare: Clinics & Care Providers",
+  // Rebuilt 2026-09-06 for the two Partners. Novada Tech is now an
+  // Australian care-sector company only: no clinic vocabulary anywhere,
+  // including keywords and structured data. No pricing, by the founder's
+  // direct decision of the same day.
+  title:
+    "Novada | Managed Operations and Workforce for Australian Care Providers",
   description:
-    "Novada runs the front desk for Australian clinics and the coordination desk for care providers. Calls answered, bookings made in your systems, rosters covered, everything measured monthly.",
+    "Two offers for Australian NDIS, home care and aged care providers. One partner runs your operation, the other builds and backs your workforce. Onshore people, our own platforms, and a named Australian company accountable for the outcome.",
   keywords: [
-    "patient access",
-    "practice front desk support",
+    "managed operations for NDIS providers",
     "after-hours coordination for care providers",
-    "NDIS workforce operations",
-    "roster coordination",
-    "clinic phone and schedule support",
+    "roster and call-off coordination",
+    "care worker onboarding administration",
+    "induction and training records for care providers",
+    "onshore back office for care providers",
+    "aged care and home care administration",
     "Australia",
   ],
   openGraph: {
-    title: "Novada | The Desk for Australian Healthcare: Clinics & Care Providers",
+    title:
+      "Novada | Managed Operations and Workforce for Australian Care Providers",
     description:
-      "Revenue is won or lost at the desk. Novada runs the front desk for Australian clinics and the coordination desk for care providers. Alongside your team, not instead of them.",
+      "One partner runs your operation. The other builds and backs your workforce. Managed operations for Australian NDIS, home care and aged care providers, alongside your team, not instead of them.",
     type: "website",
     locale: "en_AU",
   },

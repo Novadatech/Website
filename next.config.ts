@@ -22,6 +22,21 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
+      /* ── The Two Partners, 6 September 2026 ──────────────────────
+         The company repositioned onto two care-sector offers and the
+         clinic offer was separated out entirely. Both old offer URLs
+         carried real search equity, so both redirect permanently.
+
+         ⚠️ /patient-access-desk goes to /workforce-partner because that
+         is the route that replaced it, NOT because the offers are
+         related. They are not: one was a clinic offer and the other is
+         care workforce. Anyone landing from an old clinic search will
+         find a care page. That is the intended consequence of separating
+         the clinic offer; there is nowhere else on this site to send
+         them, and a 404 is worse. */
+      { source: "/workforce-ops-desk", destination: "/operations-partner", permanent: true },
+      { source: "/patient-access-desk", destination: "/workforce-partner", permanent: true },
+
       /* ── Novada Workforce, superseded by the Desk positioning ── */
       { source: "/workforce", destination: "/workforce-ops-desk", permanent: true },
       { source: "/workforce-2", destination: "/workforce-ops-desk", permanent: true },

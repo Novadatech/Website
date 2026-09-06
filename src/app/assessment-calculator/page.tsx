@@ -304,8 +304,8 @@ export default function AssessmentCalculatorPage() {
           funnel pages deliberately do not. */}
       <FunnelHeader
         logoHref="/"
-        backLabel="Back to the desk"
-        backHref="/workforce-ops-desk"
+        backLabel="Back to the Operations Partner"
+        backHref="/operations-partner"
       />
 
       <main className="flex-1">
@@ -409,7 +409,7 @@ export default function AssessmentCalculatorPage() {
       {/* No guarantee link: that page is about a minimum of fifteen sales
           meetings a month, which is a different offer entirely and not a
           promise we make about after-hours coordination. */}
-      <FunnelFooter note="Outsourced after-hours coordination" showGuarantee={false} />
+      <FunnelFooter note="After-hours coordination, run onshore" showGuarantee={false} />
     </div>
   );
 }

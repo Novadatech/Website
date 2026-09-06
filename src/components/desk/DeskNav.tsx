@@ -15,8 +15,10 @@ import { Menu, X } from "lucide-react";
 import { BTN_PRIMARY_SM, CONTAINER, SECTION } from "./tokens";
 
 const NAV_ITEMS = [
-  { href: "/patient-access-desk", label: "For Clinics" },
-  { href: "/workforce-ops-desk", label: "For Care Providers" },
+  // The two offers, in the order the document names them: one partner
+  // runs your operation, the other builds and backs your workforce.
+  { href: "/operations-partner", label: "Operations Partner" },
+  { href: "/workforce-partner", label: "Workforce Partner" },
   { href: "/why-novada", label: "Why Novada" },
 ];
 
@@ -66,7 +68,7 @@ export default function DeskNav({ tone = "light" }: { tone?: "light" | "dark" })
 
           <div className="flex items-center gap-2">
             <a href="/#book" className={`${BTN_PRIMARY_SM} hidden sm:inline-flex`}>
-              Book a Desk Review
+              Book a Review
             </a>
             <button
               type="button"
@@ -99,7 +101,7 @@ export default function DeskNav({ tone = "light" }: { tone?: "light" | "dark" })
               onClick={() => setOpen(false)}
               className={`${BTN_PRIMARY_SM} mt-4 w-full`}
             >
-              Book a Desk Review
+              Book a Review
             </a>
           </div>
         </div>

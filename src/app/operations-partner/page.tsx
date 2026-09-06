@@ -1,83 +1,65 @@
 "use client";
 
 /*
- * /workforce-ops-desk : the care-provider offer page (NDIS, home care,
- * aged care).
+ * /operations-partner : THE OPERATIONS PARTNER.
+ * One of Novada Tech's two offers. Platform: Support24.
  *
- * ⚠️ LEGAL CONSTRAINT ON THIS PAGE SPECIFICALLY: the 2026 NDIS
- * inducement ban carries criminal exposure, so no inducement language
- * of any kind appears here, in copy, alt text, interface labels,
- * comments or metadata. That covers every promise of expansion, every
- * invitation to send participants our way, and every suggestion of a
- * payment, benefit or thank-you for doing so. This is not a style
- * preference. The prohibited vocabulary is deliberately NOT written
- * out anywhere in this file, so that it can never be copied by
- * accident into rendered output. The ONLY hits any audit grep should
- * return in that family are two regulator names printed as sources in
- * the copy below. Both are citations of a regulator, never offers, and
- * both are legally required to be named where they appear.
+ * Rebuilt 2026-09-06 from the former Workforce Ops Desk page, against
+ * "NOVADA · THE TWO PARTNERS" (ratified 5 September 2026), which
+ * supersedes all previous positioning documents in full.
  *
- * ⚠️ NOTHING CLINICAL, AND NO CLINICAL CAPABILITY. We have no nurses
- * and no clinicians. Nothing on this page may imply that we evaluate a
- * participant's condition, give advice, or hand out, sign off or check
- * medication, or that we approve a restrictive practice. We recognise
- * the event, we escalate it under the provider's written authority, and
- * we document it. That is the whole of it. The clinical verbs a writer
- * reaches for by reflex are all off limits here, in copy and in state
- * labels alike, and the state labels in band 02 were chosen with that
- * in mind. The only place a clinical verb may appear is inside a
- * legally reviewed NEGATION, as in the scope boundaries in band 05.
+ * THE LINE BETWEEN THE TWO OFFERS, and the sentence the whole site turns
+ * on: one partner runs your operation; the other builds and backs your
+ * workforce. This page is the first of those. Recruitment, onboarding,
+ * induction, training and the workforce pool belong to the Workforce
+ * Partner and must never appear here.
  *
- * REBUILT 2026-08-27 into the home page's design system (Direction B):
- * white canvas, one continuous 1px hairline frame running the length of
- * the page (border-x on every band), a reserved ink surface (#0A0D14)
- * used only for desk moments, a left index rail whose micro-caps label
- * IS the section h2, Barlow Condensed bold caps for display, Space
- * Grotesk with tabular-nums for labels and figures, Inter for body,
- * #003DDB as the only chromatic accent for state, #B4501A as a scarce
- * signal colour. Modelled on: src/app/page.tsx.
+ * ⚠️ ONE OFFER, FULL SCOPE. The old page sold two tiers, "start with the
+ * nights" or "hand over the desk". That is gone. The Operations Partner
+ * is a single offer at a single flat fee covering After-Hours Continuity
+ * AND Managed Operations by day. Never reintroduce tiering, and never
+ * call the daytime component "Managed Workforce Operations": the word
+ * workforce now belongs to the other offer entirely.
  *
- * TRAFFIC MODEL: this is now a PAID-AD landing page. Cold traffic, one
- * audience (care providers), mostly mobile, arriving from a single ad.
- * That drives four things the home page does not do:
- *   1. ONE audience. The Patient Access Desk is never named in the
- *      hero. The only cross-link is in DeskFooter.
- *   2. The hiring decision is ON THE FOLD, in the h1, and restated in
- *      display type directly below it rather than 40% down the page.
- *   3. A "Built for" self-identification strip sits directly under the
- *      status strip so a visitor recognises themselves in under a
- *      second. Static row, deliberately NOT a marquee: a marquee caused
- *      layout overflow.
- *   4. Type floor is 12px. The home page's 9px badges are not repeated
- *      here: every micro-caps label on this page is 12px, and every CTA
- *      is 14px/600 or larger.
+ * ⚠️ SUPPORT24 NAMING RAILS (section 8, binding, and easy to breach by
+ * accident):
+ *   · It labels the PLATFORM LAYER only. Never the company, never the
+ *     offer. First mention on any surface is "Support24, our own
+ *     platform".
+ *   · It must NEVER sit in a sentence about helping or supporting. The
+ *     name reads as "support" and a sentence like "Support24 supports
+ *     your team" turns a platform into a service claim.
+ *   · It must NEVER share a sentence with a coverage claim. The 24 must
+ *     not be read as an always-on promise. Coverage is scoped in writing
+ *     per engagement, and the page says so.
  *
- * COPY: every sentence on this page is legally reviewed copy, supplied
- * and laid out, not written here. The only additions are interface
- * labels (timestamps, state words, column headings, rail labels) and
- * the unbranded rating lockup already live on the home page and in
- * ProofStack.
+ * ⚠️ NO PRICING. Founder's direct decision, 6 September 2026: the
+ * simplified pricing is NOT displayed on the website. No figures, no
+ * ranges, no "from", no hints, including in metadata. The anchor is the
+ * hire, argued without a number.
  *
- * SECTOR-FLUENCY PASS 2026-09-01. A specialist competitor was covering
- * this ground with far more of the sector's own vocabulary, so four
- * things were added, all of them supplied copy:
- *   · "When the phone rings" (band 02, ink surface): the 4am sequence,
- *     answered through to logged, with the escalation and 000 rule
- *     stated inside the sequence rather than in a disclaimer.
- *   · "The night shift" (band 03): the seven events we are built for,
- *     in the register the sector actually uses (SIL, Behaviour Support
- *     Plan, PRN, restrictive practice, reportable incident).
- *   · Scope (band 05) now carries the five hard boundaries and the
- *     "if we cannot reach your contacts" rule.
- *   · Two further sourced obligations sit under Why now, deliberately
- *     subordinate in weight so the three headline statistics stay
- *     dominant. Both print their source, same as the three above them.
- * No metric, response time, volume or percentage was invented. The only
- * figures on this page are the five that print a source.
+ * ⚠️ THE POOL IS NOT THIS OFFER. If a visitor needs cover from outside
+ * their own people, that is the Workforce Partner. This page coordinates
+ * cover from the client's OWN approved workers and says so.
  *
- * Also binding: no pricing, nothing clinical, no guarantees, approved
- * statistics only with their source printed in the same row, Australian
- * spelling, no em dashes, never "answering service" or "BPO".
+ * ⚠️ 2026 NDIS INDUCEMENT BAN: criminal exposure. No referral, incentive,
+ * gift or growth-promise language anywhere, in copy, alt text, interface
+ * labels, comments or metadata. The prohibited vocabulary is deliberately
+ * not written out in this file so it cannot be copied into output by
+ * accident.
+ *
+ * ⚠️ NOTHING CLINICAL, EVER. We have no clinicians. We recognise the
+ * event, escalate it under the provider's written authority, and document
+ * it. Clinical verbs may appear only inside a reviewed NEGATION.
+ *
+ * ⚠️ NOTHING CLINIC-FACING. The clinic offer is separated from the
+ * company (document section 1). No patients, practices, practitioners,
+ * recall or practice-software vocabulary on this page, ever.
+ *
+ * Also binding: statistics only from the approved library with their
+ * source printed in the same row; Australian spelling; no em dashes;
+ * never "admin support", "virtual assistant", "outsourcing", "labour
+ * hire", "staffing agency", "staff supply" or any hourly figure.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -528,7 +510,7 @@ function Hero() {
               transition={{ duration: 0.5 }}
               className={`${MICRO_TIGHT} text-[#003DDB]`}
             >
-              Managed Workforce Operations{" "}
+              The Operations Partner{" "}
               <span className="text-[#C3CAD5]">·</span> NDIS{" "}
               <span className="text-[#C3CAD5]">·</span> Home Care{" "}
               <span className="text-[#C3CAD5]">·</span> Aged Care
@@ -540,10 +522,8 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.08 }}
               className={`${DISPLAY} mt-4 text-[38px] text-[#0B0E14] sm:text-[54px] lg:text-[68px]`}
             >
-              Add operations capacity.{" "}
-              <span className="text-[#003DDB]">
-                Not another coordinator&apos;s salary.
-              </span>
+              We run your operation.{" "}
+              <span className="text-[#003DDB]">And we answer for it.</span>
             </motion.h1>
 
             <motion.p
@@ -552,11 +532,13 @@ function Hero() {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="mt-5 max-w-[560px] text-[15.5px] leading-[1.58] text-[#454E5C] md:text-[17px]"
             >
-              Novada runs the coordination desk for Australian NDIS, home care
-              and aged care providers. Rostering administration, the
-              after-hours line, intake, onboarding and the records that have to
-              survive an audit. Inside the systems you already run, by people
-              who know what a 4am call-off actually involves.
+              The Operations Partner is one of two offers. It runs the
+              operation for Australian NDIS, home care and aged care
+              providers: the after-hours line, roster and call-off
+              coordination, intake administration, and the statutory records
+              that have to survive an audit. Inside the systems you already
+              run, by people who know what a 4am call-off actually involves.
+              It is a function you hand over, not a salary you add.
             </motion.p>
 
             <motion.div
@@ -772,6 +754,105 @@ function PhoneRings() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
+   7b · WHAT YOU'RE BUYING  (added 2026-09-06)
+   The three-layer stack from the Two Partners document. Sits straight
+   after the 4am sequence so it explains something the visitor has just
+   watched rather than arriving as an abstract diagram.
+
+   ⚠️ SUPPORT24 NAMING RAILS, all three of them live in this band:
+    1. It labels the PLATFORM LAYER only, never the company, never the
+       offer. First mention on the page is here, as "Support24, our own
+       platform", which is the required form.
+    2. It never sits in a sentence about helping or supporting. The name
+       reads as "support"; a sentence like "Support24 supports your team"
+       silently converts a platform into a service claim.
+    3. It never shares a sentence with a coverage claim. The 24 must not
+       be read as an always-on promise. Coverage is scoped in writing per
+       engagement, and row 01 says exactly that, in its own sentence,
+       deliberately separated from the platform name.
+
+   ⚠️ The third layer is "The warranty" here, which the document uses,
+   but note our Terms of Service disclaim warranties ON THE WEBSITE. The
+   copy therefore warrants only the work and the record, and says so in
+   the row, with the commitments located in the services agreement, which
+   is where the Terms require them to live.
+
+   ⚠️ Platform verbs are clerical only: captures, logs, assembles,
+   builds. It never decides, assesses, triages or handles a person.
+   Bounded by the closing line, which must not be cut for length.
+   ══════════════════════════════════════════════════════════════════ */
+
+const STACK = [
+  {
+    n: "01",
+    tag: "Ours",
+    title: "The platform",
+    body: "Support24, our own platform, sits underneath the desk. It captures every call and event as it happens, logs what was done, assembles the record and builds your monthly report. It is why nothing is forgotten, why the evidence of an event exists from the moment the event happens, and why we are not a room of people answering phones. The hours we cover are a separate matter, scoped in writing before we start.",
+  },
+  {
+    n: "02",
+    tag: "Onshore",
+    title: "The people",
+    body: "Named coordinators, onshore, with worker screening clearances held wherever participant contact is plausible. They own everything that takes judgment: the 4am call-off, the ambiguous incident at 11pm, the exception the software hands back, the call no automation was ever going to land.",
+  },
+  {
+    n: "03",
+    tag: "In writing",
+    title: "The warranty",
+    body: "A baseline measured before we change anything. A monthly Ops Report of what actually happened against it. Statutory records maintained continuously to the seven year standard, audit-ready by construction. And one named Australian company answerable for the function. What we warrant is the work and the record, set out in your services agreement.",
+  },
+];
+
+function WhatYouAreBuying() {
+  return (
+    <Band index="03" label="What you're buying">
+      <AnimatedSection>
+        <p className={`${MICRO} text-[#003DDB]`}>Managed operations</p>
+        <h3
+          className={`${DISPLAY} mt-4 max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
+        >
+          Not staff. Not software. A function somebody answers for.
+        </h3>
+        <p className="mt-5 max-w-[760px] text-[15.5px] leading-[1.62] text-[#454E5C] md:text-[17px]">
+          Every engagement is three layers, and you can see all three. That is
+          the difference between handing over a function and buying hours or
+          buying a tool.
+        </p>
+      </AnimatedSection>
+
+      <div className="mt-10 border-t border-[#D3D8E2]">
+        {STACK.map((r, i) => (
+          <AnimatedSection key={r.n} delay={i * 0.06}>
+            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-6 sm:grid-cols-[52px_minmax(0,1fr)_148px] sm:px-3">
+              <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1]`}>{r.n}</span>
+              <div className="min-w-0">
+                <p className="text-[17px] font-semibold tracking-tight text-[#0B0E14] md:text-[18px]">
+                  {r.title}
+                </p>
+                <p className="mt-2.5 max-w-[640px] text-[15px] leading-[1.62] text-[#454E5C] md:text-[16px]">
+                  {r.body}
+                </p>
+              </div>
+              <span
+                className={`${MICRO} col-start-2 justify-self-start rounded-[4px] border border-[#DCE0E8] bg-white px-2 py-[3px] text-[#5B6472] sm:col-start-3 sm:justify-self-end`}
+              >
+                {r.tag}
+              </span>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      <AnimatedSection delay={0.1}>
+        <p className="mt-9 max-w-[760px] border-l-2 border-[#003DDB] pl-5 text-[17px] font-medium leading-[1.55] text-[#0B0E14] md:text-[19px]">
+          Automation makes the evidence. People make the decisions.
+        </p>
+      </AnimatedSection>
+    </Band>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
    7 · THE NIGHT SHIFT
    The recognition register. Every line is an event the sector names in
    its own vocabulary, so a provider reads two or three of these and
@@ -795,7 +876,7 @@ const NIGHT_EVENTS = [
 
 function NightShift() {
   return (
-    <Band index="03" label="The night shift" tone="tint">
+    <Band index="04" label="The night shift" tone="tint">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -844,8 +925,8 @@ function NightShift() {
 const MODULES = [
   {
     index: "01",
-    eyebrow: "Start with the nights",
-    coverage: "One part of the desk",
+    eyebrow: "Overnight, weekends, public holidays",
+    coverage: "Included",
     title: "After-Hours Continuity",
     items: [
       "Call handling from close of business to morning, plus weekends.",
@@ -856,11 +937,10 @@ const MODULES = [
   },
   {
     index: "02",
-    eyebrow: "Hand over the desk",
-    coverage: "The whole desk",
-    title: "Managed Workforce Operations",
+    eyebrow: "Business hours",
+    coverage: "Included",
+    title: "Managed Operations",
     items: [
-      "Everything in After-Hours Continuity.",
       "Daytime rostering administration.",
       "Enquiry and intake admin.",
       "Onboarding, induction and training administration.",
@@ -871,17 +951,17 @@ const MODULES = [
 
 function TwoWays() {
   return (
-    <Band index="04" label="Two ways to engage">
+    <Band index="05" label="What we run">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
         >
-          Start with the nights. Or hand over the desk.
+          One offer. Both halves of the operation.
         </h3>
         <p className="mt-5 max-w-[720px] text-[15.5px] leading-[1.62] text-[#454E5C] md:text-[17px]">
-          After hours is one way in. The whole coordination desk is the other.
-          Either way, the hours we cover are written into the scope before we
-          take a call.
+          The Operations Partner is a single engagement covering both. The
+          hours we cover, and the protocol we follow inside them, are written
+          into the scope before we take a single call.
         </p>
       </AnimatedSection>
 
@@ -975,7 +1055,7 @@ const BOUNDARIES = [
 
 function Scope() {
   return (
-    <Band index="05" label="Scope" tone="tint">
+    <Band index="06" label="Scope" tone="tint">
       <AnimatedSection>
         <p className={`${MICRO} text-[#9AA3B1]`}>Back office only</p>
         <h3
@@ -1043,6 +1123,141 @@ function Scope() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
+   9b · ACCOUNTABILITY  (added 2026-09-06)
+   The strategic opening of the position and the only argument on this
+   page that an offshore desk structurally cannot answer.
+
+   ⚠️ TAUGHT, NEVER ASSERTED, AND NEVER A REBUKE. Much of this market
+   quietly uses offshore administration and that is lawful for genuine
+   back office work. The band opens by conceding it and closes with the
+   wrap, so a provider who already offshores is offered a way in rather
+   than a telling-off. Section 8 bans scare framing and bans naming any
+   competitor, offshore vendor or country in a critical frame. No country
+   or city appears here for that reason: it would read as a dig at a
+   nationality and assume facts about the reader.
+
+   ⚠️ Every row prints its source. The claim that an overseas worker
+   cannot hold an NDIS Worker Screening clearance is the sharpest sentence
+   on the page; it comes from the ratified document. If it cannot be tied
+   to the instrument on request, cut that row. The other two carry the
+   band without it.
+   ══════════════════════════════════════════════════════════════════ */
+
+const PROOF_TAGS = [
+  "Real people, onshore",
+  "Australian owned",
+  "Nothing clinical, ever",
+  "Inside your own systems",
+];
+
+const ACCOUNTABILITY_ROWS = [
+  {
+    tag: "APP 8 and section 16C",
+    body: "When a provider discloses personal information to an overseas recipient, it must take reasonable steps to ensure that recipient does not breach the Australian Privacy Principles, and it can be held accountable for what the recipient does as though it had done it itself. Participant records are sensitive health information.",
+    source: "Privacy Act 1988 (Cth), APP 8 and section 16C",
+  },
+  {
+    tag: "Worker screening",
+    body: "NDIS worker screening applies to risk-assessed roles: delivering supports, or more than incidental contact with participants. A worker outside Australia cannot hold an NDIS Worker Screening clearance, so any role that drifts toward participant contact is closed to them.",
+    source: "NDIS Commission, worker screening requirements",
+  },
+  {
+    tag: "Records",
+    body: "The seven year retention duty for worker and service records sits with the provider, whoever does the typing.",
+    source: "NDIS legislation, 2026",
+  },
+];
+
+function Accountability() {
+  return (
+    <Band index="07" label="Accountability" tone="dark">
+      <AnimatedSection>
+        <h3
+          className={`${DISPLAY} max-w-[820px] text-[30px] text-white sm:text-[40px] md:text-[48px]`}
+        >
+          The task can be offshored. The accountability cannot.
+        </h3>
+        <p className="mt-6 max-w-[760px] text-[15.5px] leading-[1.62] text-white/70 md:text-[17px]">
+          A lot of providers in this sector use offshore administrative teams,
+          and for genuine back office work that is lawful. This is not an
+          argument against it. It is the part of the picture that almost nobody
+          puts in writing.
+        </p>
+      </AnimatedSection>
+
+      <div className="mt-10 border-t border-white/10">
+        {ACCOUNTABILITY_ROWS.map((r, i) => (
+          <AnimatedSection key={r.tag} delay={i * 0.06}>
+            <div className="grid gap-y-3 border-b border-white/10 py-6 sm:grid-cols-[minmax(0,1fr)_190px] sm:gap-x-8 sm:px-3">
+              <div>
+                <p className={`${MICRO} text-[#7AA2FF]`}>{r.tag}</p>
+                <p className="mt-3 max-w-[620px] text-[15px] leading-[1.62] text-white/80 md:text-[16px]">
+                  {r.body}
+                </p>
+              </div>
+              <p className={`${MICRO_TIGHT} self-end text-white/40 sm:text-right`}>
+                {r.source}
+              </p>
+            </div>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      <AnimatedSection delay={0.1}>
+        <p className="mt-9 max-w-[820px] border-l-2 border-[#3A6CFF] pl-6 text-[17px] font-medium leading-[1.5] text-white md:text-[20px]">
+          None of that makes offshoring wrong. It makes the accountable party
+          the thing you are actually buying. Ours is onshore, named in your
+          agreement, and answerable under Australian law.
+        </p>
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.14}>
+        <div className="mt-10 rounded-[12px] border border-white/10 bg-white/[0.04] p-6 md:p-8">
+          <p className={`${MICRO} text-white/45`}>
+            If you already have an offshore administrative team
+          </p>
+          <p className="mt-4 max-w-[760px] text-[15.5px] leading-[1.62] text-white/80 md:text-[17px]">
+            Keep them. We are not asking you to move anyone. We take the
+            after-hours line and the calls that need a decision, we run quality
+            assurance over the administrative work that comes back, and we
+            assemble the records to the standard your audit will apply, the
+            offshore work included. You keep the arrangement you built. The
+            function becomes one somebody answers for.
+          </p>
+        </div>
+      </AnimatedSection>
+
+      {/* Absorbed from the old standalone "Proof of operations" band on
+          2026-09-06. It closes this band rather than opening its own so
+          the ink surface stays scarce (02, 07 and Book only) and so the
+          legal fact pattern resolves into something we already do every
+          night, which ends the section on relief rather than on warning. */}
+      <AnimatedSection delay={0.18}>
+        <p className={`${MICRO} mt-12 text-white/45`}>This isn&apos;t a proposal</p>
+        <p className="mt-6 max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[19px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
+          Our desk answers after-hours calls for Australian care providers
+          every night of the year, inside their systems, to their escalation
+          protocols, with a structured handover waiting every morning.
+        </p>
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.22}>
+        <div className="mt-10 flex flex-wrap gap-2">
+          {PROOF_TAGS.map((t) => (
+            <span
+              key={t}
+              className={`${MICRO_TIGHT} rounded-[4px] border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-white/60`}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </AnimatedSection>
+    </Band>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
    10 · WHY NOW
    Rendered as a citations table. Every figure prints its source in the
    same row, which is binding copy rule 6: a statistic never travels
@@ -1075,7 +1290,7 @@ const EVIDENCE = [
 
 function WhyNow() {
   return (
-    <Band index="06" label="Why now">
+    <Band index="08" label="Why now" tone="tint">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1164,47 +1379,6 @@ function WhyNow() {
   );
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   11 · PROOF OF OPERATIONS
-   Ink surface. The second desk moment: the one place on the page that
-   asserts an operation already running, so it keeps the reserved
-   colour it shares with band 02.
-   ══════════════════════════════════════════════════════════════════ */
-
-const PROOF_TAGS = [
-  "Real people, onshore",
-  "Australian owned",
-  "Nothing clinical, ever",
-  "Inside your own systems",
-];
-
-function Proof() {
-  return (
-    <Band index="07" label="Proof of operations" tone="dark">
-      <AnimatedSection>
-        <p className={`${MICRO} text-white/45`}>This isn&apos;t a proposal</p>
-        <p className="mt-6 max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[19px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
-          Our desk answers after-hours calls for Australian care providers
-          every night of the year, inside their systems, to their escalation
-          protocols, with a structured handover waiting every morning.
-        </p>
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.12}>
-        <div className="mt-10 flex flex-wrap gap-2">
-          {PROOF_TAGS.map((t) => (
-            <span
-              key={t}
-              className={`${MICRO_TIGHT} rounded-[4px] border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-white/60`}
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </AnimatedSection>
-    </Band>
-  );
-}
 
 /* ══════════════════════════════════════════════════════════════════
    12 · HOW IT STARTS
@@ -1243,7 +1417,7 @@ function HowItStarts() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <Band index="08" label="How it starts" tone="tint">
+    <Band index="09" label="How it starts" tone="tint">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1345,7 +1519,7 @@ function Questions() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <Band id="faq" index="09" label="Questions">
+    <Band id="faq" index="10" label="Questions">
       <AnimatedSection>
         <h3
           className={`${DISPLAY} max-w-[820px] text-[30px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
@@ -1399,7 +1573,7 @@ function FinalCta() {
     >
       <div className={`${WRAP} ${PAD} ${BAND} border-x border-white/10`}>
         <div className="grid gap-8 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
-          <Rail index="10" label="Book" tone="dark" />
+          <Rail index="11" label="Book" tone="dark" />
           <div className="min-w-0">
             <AnimatedSection>
               <h3
@@ -1417,7 +1591,7 @@ function FinalCta() {
             <AnimatedSection delay={0.1}>
               <div className="mt-10 max-w-[940px]">
                 <BookingEmbed
-                  source="workforce-ops-desk"
+                  source="operations-partner"
                   title="Book an operations review with Novada"
                   tone="dark"
                 />
@@ -1445,11 +1619,12 @@ export default function WorkforceOpsDeskPage() {
         <Hero />
         <Decision />
         <PhoneRings />
+        <WhatYouAreBuying />
         <NightShift />
         <TwoWays />
         <Scope />
+        <Accountability />
         <WhyNow />
-        <Proof />
         <HowItStarts />
         <Questions />
         <FinalCta />
@@ -1466,7 +1641,7 @@ export default function WorkforceOpsDeskPage() {
           without promising an outcome or a service level. */}
       <StickyCta
         label="Book an Operations Review"
-        tagline="Run onshore. Recorded as it happens. Answered for by name."
+        tagline="We run your operation, and we answer for it."
       />
     </div>
   );

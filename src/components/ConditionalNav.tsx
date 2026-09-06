@@ -33,8 +33,8 @@ import { FunnelHeader, FunnelFooter } from "./desk/FunnelChrome";
 const SELF_CHROMED_ROUTES = [
   // Desk offer
   "/",
-  "/patient-access-desk",
-  "/workforce-ops-desk",
+  "/operations-partner",
+  "/workforce-partner",
   "/why-novada",
   "/review-confirmed",
   // Legal. These MUST be listed: without it they render DeskNav/DeskFooter

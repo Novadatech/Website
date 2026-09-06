@@ -1,86 +1,64 @@
 "use client";
 
 /*
- * Home page. Design direction B, chosen by the founder 2026-08-27 after a
- * three-way comparison reviewed independently by a conversion specialist
- * and a brand/positioning specialist.
+ * Home page.
  *
- * TRAFFIC MODEL (founder, 2026-08-27). This drives the page's job:
- *   This page serves ORGANIC SEARCH traffic, so it deliberately presents
- *   BOTH offers and routes the visitor onward. Paid ads do NOT land here:
- *   each ad goes to its own offer page (/patient-access-desk for clinics,
- *   /workforce-ops-desk for care providers), which is where the
- *   single-audience, cold-traffic optimisation belongs.
- *   A conversion reviewer flagged "the hero serves two buyers" as a fault.
- *   That critique assumed paid traffic and does NOT apply here. Serving
- *   both offers is correct on this page. Do not "fix" it.
+ * REBUILT 2026-09-06 for THE TWO PARTNERS, against the executive
+ * positioning document ratified 5 September 2026, which supersedes all
+ * previous positioning documents in full.
  *
- * BINDING COPY RULES (brief section 9), do not relax without sign-off:
- *  - Australian spelling. No em dashes anywhere.
- *  - No pricing. No numbers, ranges, anchors or hints.
- *  - Never claim we replace a receptionist or any whole role.
- *  - Nothing clinical: no triage, assessment or advice language.
- *  - No guarantees, ROI promises or performance claims.
- *  - Only the three approved statistics, each printing its source. The
- *    168/38 figure is arithmetic, not a statistic, and carries no source.
- *  - Rating stays unbranded, links to /case-study. No client names, logos
- *    or written testimonials.
- *  - Any depicted desk activity is illustrative and must be labelled so.
+ * WHAT THIS PAGE IS NOW. Novada Tech is an Australian care-sector
+ * company with two offers, and this page presents exactly those two and
+ * routes the visitor onward:
+ *   · The Operations Partner runs the operation. Platform: Support24.
+ *   · The Workforce Partner builds and backs the workforce. Platform:
+ *     Recruitilon.
+ * The line between them is the sentence the whole site turns on: one
+ * partner runs your operation; the other builds and backs your
+ * workforce. A provider can hold either or both; neither requires the
+ * other.
  *
- * SECTOR-FLUENCY PASS 2026-09-01. Brought to the standard the two offer
- * pages already meet, WITHOUT narrowing the page to one audience and
- * without turning it into a third offer page. Every word added was
- * supplied. What changed:
- *   · Both desk card bodies replaced, so each names the sectors it
- *     serves and the work in that sector's own words.
- *   · The hero board's care event now names the shift type.
- *   · Scope (band 05) restructured to the offer pages' pattern: the two
- *     existing "out of scope" sentences moved verbatim into the standing
- *     paragraph, and the rows now carry the hard boundaries, including
- *     the no-triage rule in full, duty of care in a care setting, and
- *     who owns the recall interval in a clinic.
- *   · ONE new band, "Access and privacy" (band 06), directly after
- *     Scope.
- *   · The systems both buyers already run are named once, in the Two
- *     Desks band, which is where the visitor is choosing.
- *   · Two FAQ items added in the shared HomeFaq component, which this
- *     route is now the sole consumer of.
- * Band surfaces after Scope were re-alternated (Why now to white,
- * Measurement to tint) so the new band does not sit against a second
- * tinted band and read as one merged section.
+ * ⚠️ NOTHING CLINIC-FACING, ANYWHERE. The clinic offer has been
+ * separated from the company entirely and returns later as a standalone
+ * product with its own identity (document section 1). Until then no
+ * patients, practices, practitioners, recall, front desk or practice
+ * software vocabulary appears on any Novada surface. The old clinic page
+ * is preserved, unrouted, at src/app/_archive-clinic-offer/.
  *
- * ⚠️ VOCABULARY. Two Australian traps govern every word here, and both
- * apply harder on this page than on either offer page, because this page
- * carries clinic and care copy side by side.
- * First: the three letter word for a hole in the diary already means
- * something else in Australian healthcare. It is the patient's out of
- * pocket cost after a rebate, so it is never used as a scheduling word,
- * and it is deliberately not written out anywhere in this file so that
- * it cannot be copied by accident into rendered output. Any hit an audit
- * returns for it is a Tailwind spacing class and nothing else. Say empty
- * slots, unfilled appointments or short-notice cancellations.
- * Second: a family of American front-desk and dental-marketing
- * vocabulary marks a supplier as foreign on sight. That family is
- * likewise absent from this file in copy, labels, alt text and comments
- * alike. It covers the American word for a due-for-a-visit list, the
- * American words for the counter, the room and the person who runs it,
- * the whole family of American billing terms, and the marketing word for
- * a person who has not become a patient yet.
+ * TRAFFIC MODEL (unchanged, and still load bearing): this page serves
+ * ORGANIC SEARCH, so it deliberately presents BOTH offers and routes
+ * onward. Paid ads do NOT land here; each ad goes to its own offer page,
+ * which is where single-audience cold-traffic optimisation belongs. A
+ * conversion reviewer once flagged "the hero serves two buyers" as a
+ * fault. That critique assumed paid traffic and does not apply. Serving
+ * both offers is correct here. Do not "fix" it.
  *
- * ⚠️ NDIS INDUCEMENT. This page carries care-provider copy, so the
- * whole family of words a regulator reads as an inducement is avoided
- * entirely in new copy: the verb for getting bigger and its noun, the
- * word for sending someone your way, and the four words for paying
- * somebody to do it. They are deliberately not written out here either,
- * so they cannot be copied by accident into rendered output. The one
- * surviving instance is a past-tense verb inside the CPA Australia
- * statistic in band 07, which is quoted, sourced, and must not be
- * reworded.
+ * ⚠️ NO PRICING. Founder's direct decision, 6 September 2026: the
+ * simplified pricing is NOT displayed on the website. No figures, no
+ * ranges, no "from", no hints, including in metadata.
  *
- * ⚠️ NOTHING CLINICAL, AND NO CLINICAL CAPABILITY. We have no clinicians.
- * Nothing here may imply that we triage, assess urgency or advise. The
- * only place those verbs may appear is inside a reviewed NEGATION, as in
- * the Scope rows and the FAQ.
+ * ⚠️ PLATFORM NAMING RAILS. A platform name labels the platform layer
+ * only, never the company and never an offer. Support24 must never sit
+ * in a sentence about helping or supporting, and never share a sentence
+ * with a coverage claim (the 24 must not read as an always-on promise;
+ * coverage is scoped in writing per engagement). Recruitilon must never
+ * sit in a sentence claiming we employ, supply or place workers. This
+ * page mentions neither platform: they are introduced on their own offer
+ * pages, where the rails can be held in context.
+ *
+ * ⚠️ CARE RAILS, criminal exposure. The 2026 NDIS inducement provisions
+ * ban referral, incentive, gift and growth-promise language of any kind.
+ * That whole family of words is deliberately not written out in this
+ * file so it cannot be copied into rendered output by accident.
+ *
+ * ⚠️ NOTHING CLINICAL, AND NO CLINICAL CAPABILITY. We have no
+ * clinicians. Clinical verbs may appear only inside a reviewed NEGATION,
+ * as in the Scope rows and the FAQ.
+ *
+ * Also binding: statistics only from the approved library, each printing
+ * its source in the same breath; never "admin support", "virtual
+ * assistant", "outsourcing", "labour hire", "staffing agency", "staff
+ * supply", or any hourly figure; Australian spelling; no em dashes.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -328,28 +306,15 @@ type DeskEvent = {
   steps: DeskStep[];
 };
 
+/* Two events, one per offer, so the surface shows the same split the
+   page is built on: the Operations Partner covering a call-off, and the
+   Workforce Partner catching a credential before the roster does.
+   Rewritten 2026-09-06; the clinic event that used to open this array
+   went with the clinic offer. Labelled illustrative in the chrome. */
 const NIGHT: DeskEvent[] = [
   {
-    time: "7:42 PM",
-    source: "Clinic",
-    text: "New patient call, after close.",
-    steps: [
-      {
-        time: "7:42 PM",
-        label: "Answered in your practice name",
-        state: "Answered",
-      },
-      {
-        time: "7:46 PM",
-        label: "Booked in your practice software",
-        state: "Booked",
-        delta: "+4 min",
-      },
-    ],
-  },
-  {
     time: "4:03 AM",
-    source: "Care",
+    source: "Operations",
     text: "Support worker calls off a 6am SIL shift.",
     steps: [
       {
@@ -363,6 +328,24 @@ const NIGHT: DeskEvent[] = [
         label: "In your morning handover",
         state: "Handed over",
         delta: "+3 h 36 min",
+      },
+    ],
+  },
+  {
+    time: "9:12 AM",
+    source: "Workforce",
+    text: "A worker's screening clearance is approaching expiry.",
+    steps: [
+      {
+        time: "9:12 AM",
+        label: "Flagged before it lapses, not after",
+        state: "Surfaced",
+      },
+      {
+        time: "9:40 AM",
+        label: "Renewal chased and the file updated",
+        state: "Evidenced",
+        delta: "+28 min",
       },
     ],
   },
@@ -531,7 +514,7 @@ function OperationsSurface() {
           </span>
         </span>
         <p className="text-[13px] leading-snug text-white/70">
-          Both handled. Nobody at the practice or the office was woken.
+          Both handled. Nobody senior was woken.
         </p>
         <p className="mt-2 text-[13px] leading-snug text-white/50">
           We answer the call, and we finish the job. An answering service
@@ -560,11 +543,13 @@ function Hero() {
               transition={{ duration: 0.5 }}
               className={`${MICRO} flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[#003DDB]`}
             >
-              <span>Healthcare Clinics</span>
+              <span>Managed operations</span>
               <span aria-hidden className="h-3 w-px bg-[#C3CAD5]" />
-              <span>Care Providers</span>
+              <span>NDIS</span>
               <span aria-hidden className="h-3 w-px bg-[#C3CAD5]" />
-              <span>Australia</span>
+              <span>Home Care</span>
+              <span aria-hidden className="h-3 w-px bg-[#C3CAD5]" />
+              <span>Aged Care</span>
             </motion.p>
 
             <motion.h1
@@ -573,8 +558,9 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.08 }}
               className={`${DISPLAY} mt-6 text-[46px] text-[#0B0E14] sm:text-[60px] lg:text-[74px]`}
             >
-              Revenue is won or lost at the desk.{" "}
-              <span className="text-[#003DDB]">We run it.</span>
+              A provider&apos;s world has two halves that aren&apos;t the
+              care itself.{" "}
+              <span className="text-[#003DDB]">We run both.</span>
             </motion.h1>
 
             <motion.p
@@ -583,10 +569,11 @@ function Hero() {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="mt-6 max-w-[560px] text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]"
             >
-              Novada runs the front desk for Australian clinics and the
-              coordination desk for care providers. Every call answered, every
-              shift covered, everything measured. Alongside your team, not
-              instead of them.
+              Two offers for Australian NDIS, home care and aged care
+              providers. One partner runs your operation. The other builds and
+              backs your workforce. Onshore people, our own platforms, and a
+              named Australian company answerable for the outcome. Alongside
+              your team, not instead of them.
             </motion.p>
 
             <motion.div
@@ -660,9 +647,9 @@ function Hero() {
    ══════════════════════════════════════════════════════════════════ */
 
 const DROPPED = [
-  "The new-patient call rings out while reception is with the patient standing in front of them.",
-  "The recall list has 400 names and nobody has time to run it.",
   "It is 4am, a shift just fell over, and someone senior is awake finding cover.",
+  "A worker's screening lapsed three weeks ago and nobody noticed until the roster did.",
+  "The records an auditor will ask for live across a drive, two spreadsheets and one coordinator's memory.",
 ];
 
 function Problem() {
@@ -865,19 +852,19 @@ function WeekSurface() {
 const DESKS = [
   {
     index: "01",
-    eyebrow: "For clinics",
-    title: "The Patient Access Desk",
-    body: "For dental, physio, OT, psychology, podiatry, speech and vet practices. We answer the calls, make the booking inside the software you already run, work the recall list every week, fill short-notice cancellations and follow up the ones who did not attend. So a practice can take on more patients without automatically adding another front-desk salary.",
-    href: "/patient-access-desk",
-    cta: "For Clinics",
+    eyebrow: "Runs your operation",
+    title: "The Operations Partner",
+    body: "The after-hours line answered by a person, roster and call-off coordination inside your own systems and against your own rules, intake administration, and the statutory records kept continuously to the seven-year standard. A structured handover lands every morning: what happened, who was contacted, what is covered, what needs a decision.",
+    href: "/operations-partner",
+    cta: "The Operations Partner",
   },
   {
     index: "02",
-    eyebrow: "For care providers",
-    title: "The Workforce Ops Desk",
-    body: "For NDIS, home care and aged care providers. Rostering administration, the after-hours line, call-offs coordinated from your own approved workers, incidents escalated to your matrix and documented, and worker and service records kept to the 7-year statutory standard. So your managers stop being the overnight department.",
-    href: "/workforce-ops-desk",
-    cta: "For Care Providers",
+    eyebrow: "Builds and backs your workforce",
+    title: "The Workforce Partner",
+    body: "Recruitment run as a continuous function for your own team, with every hiring decision yours. Onboarding administration, induction and training records kept current, and a pool of pre-screened independent workers you engage directly for the moments a shift cannot be filled from your own people.",
+    href: "/workforce-partner",
+    cta: "The Workforce Partner",
   },
 ];
 
@@ -945,9 +932,9 @@ function TwoDesks() {
             Inside your own systems
           </span>
           <p className="max-w-[820px] text-[14px] leading-[1.6] text-[#454E5C] md:text-[15px]">
-            Cliniko, Halaxy, Nookal, PracSuite, Dental4Windows, Praktika, Exact
-            and ezyVet on the clinic side; ShiftCare, FlowLogic, Brevity and
-            Carelink on the care side.
+            ShiftCare, FlowLogic, Brevity, Carelink and whatever else you
+            already run. Nothing migrates, and your systems stay the system of
+            record.
           </p>
         </div>
       </AnimatedSection>
@@ -1052,19 +1039,23 @@ const SCOPE_STANDING =
 const BOUNDARIES = [
   {
     tag: "Never",
-    body: "We do not triage. We do not assess urgency, and we do not give clinical advice. Anything clinical goes to your team, under a protocol agreed in writing before we take a single call.",
+    body: "We do not triage. We do not assess urgency, and we do not give clinical advice. Anything clinical goes to your on-call clinician or your Authorised Program Officer, under a protocol agreed in writing before we take a single call.",
   },
   {
     tag: "Stays with you",
-    body: "In a care setting your duty of care does not transfer. Incident classification and notification stay with you, and what we hand over is a complete, timestamped record to make them with.",
+    body: "Your duty of care does not transfer. Incident classification and notification stay with you, and what we hand over is a complete, timestamped record to make them with.",
   },
   {
     tag: "Your rules",
-    body: "In a clinic, recall contact follows the interval your practitioner set. We never contact a patient to hit a number, and we do not ask your patients for reviews.",
+    body: "Coordination follows the cover lists and written rules you give us. Anything outside them is escalated, never decided by us.",
+  },
+  {
+    tag: "Yours",
+    body: "Every hiring decision is yours, and deciding whether a worker suits a particular participant stays with you.",
   },
   {
     tag: "Boundary",
-    body: "We work alongside your front desk, not instead of it.",
+    body: "We work alongside your team, not instead of them. We never deliver supports or care, and we never hold the participant relationship.",
   },
   {
     tag: "Standing",
@@ -1166,9 +1157,9 @@ function AccessPrivacy() {
             The small business exemption
           </h4>
           <p className="mt-4 text-[15.5px] leading-[1.62] text-[#0B0E14] md:text-[16.5px]">
-            Practices and providers that deliver a health service do not get
-            the small business exemption from the Privacy Act, whatever their
-            turnover. Your obligations are the ones we work inside.
+            Providers that deliver a health service do not get the small
+            business exemption from the Privacy Act, whatever their turnover.
+            Your obligations are the ones we work inside.
           </p>
         </div>
       </AnimatedSection>
@@ -1192,11 +1183,6 @@ const EVIDENCE = [
     figure: "46% vs 13%",
     body: "46% of Australian small businesses grew revenue last year. Only 13% grew headcount.",
     source: "CPA Australia Asia-Pacific Small Business Survey",
-  },
-  {
-    figure: "$87,740 to $114,827",
-    body: "What missed appointments cost two Queensland physiotherapy clinics per clinic, per year, in a peer-reviewed study.",
-    source: "BMJ Open, 2025",
   },
 ];
 
@@ -1417,9 +1403,9 @@ export default function DesignBHomePage() {
               <div className="min-w-0">
                 <AnimatedSection className="mb-9 max-w-[720px]">
                   <p className="text-[16px] leading-[1.62] text-white/65 md:text-[17px]">
-                    Every unfilled square is a call that rang out, a recall
-                    that never got run, or a shift that fell over with nobody
-                    on it.
+                    Every unfilled square is a call that rang out, a
+                    credential that lapsed unnoticed, or a shift that fell
+                    over with nobody on it.
                   </p>
                 </AnimatedSection>
                 <WeekSurface />

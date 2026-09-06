@@ -1,6 +1,34 @@
 "use client";
 
 /*
+ * ══════════════════════════════════════════════════════════════════════
+ * ARCHIVED CLINIC OFFER · The Patient Access Desk
+ * Preserved 2026-09-06 at the founder's request.
+ *
+ * This folder is prefixed with an underscore, which makes it a PRIVATE
+ * folder in the Next.js App Router: nothing here is routed and nothing
+ * here is served. That is deliberate. The Two Partners positioning
+ * document (5 September 2026, section 1) separates the clinic offer from
+ * Novada Tech entirely and states that nothing clinic-facing belongs
+ * anywhere in the company's presence until it returns as a standalone
+ * product with its own identity.
+ *
+ * The code is kept whole so it can be lifted into that new site rather
+ * than rebuilt. It is also in git history at commit b8db797 if this
+ * folder is ever removed.
+ *
+ * ⚠️ Do not route this. Do not link to it. Do not copy fragments of it
+ * into a Novada page: the vocabulary here (patients, practices, recall,
+ * practitioners, PMS names) is banned on every Novada surface while the
+ * separation stands.
+ *
+ * To revive it elsewhere: this page depends on components/desk/DeskNav,
+ * DeskFooter, BookingEmbed, StickyCta and components/AnimatedSection.
+ * ══════════════════════════════════════════════════════════════════════
+ */
+
+
+/*
  * /patient-access-desk : the clinic-side offer page.
  *
  * REBUILT 2026-08-27 into the home page's design system (Direction B):

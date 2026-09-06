@@ -23,6 +23,13 @@ import { ChevronDown } from "lucide-react";
 import { CARD, CONTAINER, EYEBROW, H2, SECTION } from "./tokens";
 
 const FAQS = [
+  // Added 2026-09-06. The first thing a visitor needs is the line
+  // between the two offers, because everything else on the site assumes
+  // they already have it.
+  {
+    q: "What is the difference between the two Partners?",
+    a: "One runs your operation, the other builds and backs your workforce. The Operations Partner takes the after-hours line, roster and call-off coordination, intake administration and the statutory records. The Workforce Partner runs recruitment for your own team, onboarding, induction and training administration, and the pool behind your roster. You can hold either or both, and neither requires the other.",
+  },
   {
     // ⚠️ Reworded 2026-08-27 on founder feedback. The previous answer read
     // "Answering services take messages. We complete the work", which could
@@ -30,40 +37,37 @@ const FAQS = [
     // needs someone else to pick up. We answer AND finish the job, so the
     // answer now says both, in that order.
     q: "Is this an answering service?",
-    a: "We answer your calls, and we finish the job as well. That second half is the difference. An answering service takes a message and hands the problem back to your team. Our coordinators answer the phone, make the booking in your software, run the recall, coordinate the shift cover, keep the record and report the outcome.",
+    a: "We answer your calls, and we finish the job as well. That second half is the difference. An answering service takes a message and hands the problem back to your team. Our coordinators answer the phone, coordinate the cover in your own systems, keep the record and report the outcome."
   },
   {
-    q: "Do you replace our receptionist?",
-    a: "No, and we won't pretend to. Front-of-house needs people at the counter. We carry the phone-and-schedule load so your team can look after the person in front of them.",
+    q: "Do you replace our coordinator?",
+    a: "No, and we won't pretend to. We take the function, not the person: the after-hours line, the coordination workload, the records and the reporting. Most providers keep their coordinator and stop losing them to the parts of the job nobody wants."
   },
   {
     q: "What systems do you work in?",
-    a: "Yours. Practice management systems (Cliniko, Halaxy, Dental4Windows, ezyVet, Best Practice and more) and care platforms (ShiftCare, FlowLogic, Brevity, Carelink and more). Your data never leaves your systems.",
+    a: "Yours. ShiftCare, FlowLogic, Brevity, Carelink and more. Your data never leaves your systems."
   },
   {
     q: "What about clinical calls?",
-    a: "We never give clinical advice or triage. Anything clinical routes to your team immediately under a protocol we agree in writing before we take a single call.",
+    a: "We never give clinical advice or triage. Anything clinical routes to your on-call clinician or your Authorised Program Officer immediately, under a protocol we agree in writing before we take a single call."
   },
-  // Added 2026-09-01. Sits directly under the clinical-calls answer on
-  // purpose: that answer is the summary, this one is the rule stated in
-  // full, and it names where a clinical matter goes in EACH setting,
-  // which the summary above does not. Both offer pages carry the same
-  // pairing, so the wording is consistent across all three routes.
+  // Sits directly under the clinical-calls answer on purpose: that
+  // answer is the summary, this one is the rule stated in full.
   {
     q: "Do you triage or give advice?",
-    a: "No, and we never will. We do not assess urgency and we do not give clinical advice. In a clinic, anything clinical goes to your practitioners. In a care setting it goes to your on-call clinician or your Authorised Program Officer. The protocol is agreed in writing before we take a single call.",
+    a: "No, and we never will. We do not assess urgency and we do not give clinical advice. Anything clinical goes to your on-call clinician or your Authorised Program Officer. The protocol is agreed in writing before we take a single call."
   },
   {
     q: "Who can see our information?",
-    a: "Named coordinators, each with their own login under your own access control, with permissions limited to the work. Never a shared account. Your information stays in your systems and stays in Australia, under a written agreement that mirrors your obligations under the Australian Privacy Principles.",
+    a: "Named coordinators, each with their own login under your own access control, with permissions limited to the work. Never a shared account. Your information stays in your systems and stays in Australia, under a written agreement that mirrors your obligations under the Australian Privacy Principles."
   },
   {
     q: "How does pricing work?",
-    a: "It's based on workload, and benchmarked against the all-in cost of the role you'd otherwise hire. That's exactly what the review works out.",
+    a: "One flat fee per Partner, benchmarked against the all-in cost of the role you would otherwise add. Never an hourly rate, and no per-call or after-hours surcharges. The review works out which Partner you need."
   },
   {
     q: "How do we start?",
-    a: "A short review, then a measured baseline week inside your systems, then the desk runs and the monthly report starts.",
+    a: "A short review, then a measured baseline before we change anything, then the function runs and the monthly report starts."
   },
 ];
 

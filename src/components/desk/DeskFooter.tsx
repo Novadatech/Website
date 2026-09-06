@@ -39,13 +39,13 @@ export default function DeskFooter({ tone = "light" }: { tone?: "light" | "dark"
             </h3>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/patient-access-desk" className={`text-sm transition-colors ${dark ? "text-white/60 hover:text-white" : "text-[#39424E] hover:text-[#003DDB]"}`}>
-                  The Patient Access Desk
+                <Link href="/operations-partner" className={`text-sm transition-colors ${dark ? "text-white/60 hover:text-white" : "text-[#39424E] hover:text-[#003DDB]"}`}>
+                  The Operations Partner
                 </Link>
               </li>
               <li>
-                <Link href="/workforce-ops-desk" className={`text-sm transition-colors ${dark ? "text-white/60 hover:text-white" : "text-[#39424E] hover:text-[#003DDB]"}`}>
-                  The Workforce Ops Desk
+                <Link href="/workforce-partner" className={`text-sm transition-colors ${dark ? "text-white/60 hover:text-white" : "text-[#39424E] hover:text-[#003DDB]"}`}>
+                  The Workforce Partner
                 </Link>
               </li>
               <li>

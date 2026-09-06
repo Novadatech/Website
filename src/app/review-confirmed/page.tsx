@@ -60,20 +60,23 @@ export default function ReviewConfirmedPage() {
     }
   }, []);
 
-  const isClinic = source === "patient-access-desk";
-  const isCare = source === "workforce-ops-desk";
+  // Rewired 2026-09-06 for the two Partners. The clinic branch is gone
+  // with the clinic offer; the neutral fallback covers anyone whose
+  // sessionStorage did not survive (private browsing, a shared link).
+  const isOps = source === "operations-partner";
+  const isWorkforce = source === "workforce-partner";
 
-  const backHref = isClinic
-    ? "/patient-access-desk"
-    : isCare
-      ? "/workforce-ops-desk"
+  const backHref = isOps
+    ? "/operations-partner"
+    : isWorkforce
+      ? "/workforce-partner"
       : "/";
 
-  const numbersLine = isClinic
-    ? "Roughly how many calls and new patient enquiries come in each week, who handles them today, and what happens to the ones that arrive after you close. Estimates are fine."
-    : isCare
-      ? "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your worker and service records currently live. Estimates are fine."
-      : "Roughly how many calls and enquiries come in each week, who handles them today, and what happens to the ones that arrive after you close. Estimates are fine.";
+  const numbersLine = isOps
+    ? "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your service records currently live. Estimates are fine."
+    : isWorkforce
+      ? "Roughly how many people you hire in a year, how long a hire currently takes, and where your worker screening, induction and training records live today. Estimates are fine."
+      : "Roughly how many after-hours calls and call-offs come in each week, how often you are hiring, and where your records currently live. Estimates are fine.";
 
   return (
     <div data-theme="desk" className="min-h-screen bg-white font-sans">

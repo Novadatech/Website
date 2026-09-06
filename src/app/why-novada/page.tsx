@@ -12,7 +12,7 @@
  * Grotesk with tabular-nums for labels and figures, Inter for body,
  * #003DDB as the only chromatic accent for state, #B4501A as a scarce
  * signal colour. Reference: src/app/page.tsx and
- * src/app/patient-access-desk/page.tsx.
+ * src/app/operations-partner/page.tsx.
  *
  * PAGE ROLE, which is NOT the offer pages' role: this page is reached
  * from the main navigation by a visitor who is already interested and is
@@ -245,13 +245,13 @@ function StatusStrip() {
 const DESK_DEFINITION = [
   {
     index: "01",
-    key: "In a clinic",
-    body: "it is the front desk turning calls into appointments.",
+    key: "The operation",
+    body: "the after-hours line, the roster and the records that have to survive an audit.",
   },
   {
     index: "02",
-    key: "In a care business",
-    body: "it is the coordination office turning rosters into delivered hours.",
+    key: "The workforce",
+    body: "the hiring, the onboarding, the training records and the cover behind the roster.",
   },
 ];
 
@@ -316,8 +316,9 @@ function Hero() {
               transition={{ duration: 0.5 }}
               className={`${MICRO_TIGHT} text-[#003DDB]`}
             >
-              Why Novada <span className="text-[#C3CAD5]">·</span> Clinics and
-              care providers <span className="text-[#C3CAD5]">·</span> Australia
+              Why Novada <span className="text-[#C3CAD5]">·</span> NDIS, home
+              care and aged care <span className="text-[#C3CAD5]">·</span>{" "}
+              Australia
             </motion.p>
 
             <motion.h1
@@ -528,7 +529,7 @@ const PRINCIPLES = [
     title: "Alongside, not instead",
     tag: "Boundary",
     signal: false,
-    body: "We never replace your front desk or your coordinators. We carry the phone-and-schedule load so the people at the counter can look after the person in front of them. Nothing at the front counter changes: greeting, payments and in-person care stay with your team.",
+    body: "We never replace your coordinators or your managers. We take the function, not the people: the after-hours line, the coordination workload, the hiring and the records. What stays with your team is the care itself and every decision that turns on a participant.",
   },
   {
     index: "02",
@@ -549,7 +550,7 @@ const PRINCIPLES = [
     title: "Your systems, not ours",
     tag: "Standing",
     signal: false,
-    body: "We work in the practice management and care platforms you already run. Nothing migrates, nothing is replaced, and you keep the system of record.",
+    body: "We work in the care platforms you already run. Nothing migrates, nothing is replaced, and you keep the system of record.",
   },
 ];
 
@@ -617,14 +618,14 @@ function Principles() {
 
 const OFFERS = [
   {
-    who: "For clinics",
-    name: "The Patient Access Desk",
-    href: "/patient-access-desk",
+    who: "Runs your operation",
+    name: "The Operations Partner",
+    href: "/operations-partner",
   },
   {
-    who: "For care providers",
-    name: "The Workforce Ops Desk",
-    href: "/workforce-ops-desk",
+    who: "Builds and backs your workforce",
+    name: "The Workforce Partner",
+    href: "/workforce-partner",
   },
 ];
 
@@ -639,9 +640,8 @@ function Proof() {
           waiting every morning.
         </p>
         <p className="mt-6 max-w-[720px] pl-6 text-[15px] leading-[1.62] text-white/65 md:text-[16px]">
-          That operating capability is the credibility base for both the Patient
-          Access Desk and the Workforce Ops Desk. It is the same team and the
-          same discipline.
+          That operating capability is the credibility base for both
+          Partners. It is the same team and the same discipline.
         </p>
       </AnimatedSection>
 
