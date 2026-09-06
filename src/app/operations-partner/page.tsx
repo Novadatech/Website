@@ -1058,6 +1058,13 @@ function TwoWays() {
    volunteering rather than being asked about.
    ══════════════════════════════════════════════════════════════════ */
 
+const STANDING = [
+  "Onshore team",
+  "Worker screening clearances where participant contact is plausible",
+  "Your data stays in your own systems",
+  "ShiftCare \u00b7 FlowLogic \u00b7 Brevity \u00b7 Carelink and more",
+];
+
 const BOUNDARIES = [
   {
     tag: "Boundary",
@@ -1107,27 +1114,33 @@ function Scope() {
           relationship. When a shift needs covering we work your own rules to
           find who can take it, from the workers you have already approved,
           and anything that turns on a participant&apos;s needs stays your
-          decision. Onshore team; worker screening clearances held wherever
-          participant contact is plausible; your data stays in your own systems
-          (ShiftCare, FlowLogic, Brevity, Carelink and more).
+          decision.
         </p>
+      </AnimatedSection>
+
+      {/* The standing claims, lifted out of the paragraph above. They are a
+          specification, not prose, and a cautious reader scans for them. */}
+      <AnimatedSection delay={0.08}>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {STANDING.map((c) => (
+            <span
+              key={c}
+              className={`${MICRO_TIGHT} rounded-[4px] border border-[#DCE0E8] bg-white px-2.5 py-[5px] text-[#5B6472]`}
+            >
+              {c}
+            </span>
+          ))}
+        </div>
       </AnimatedSection>
 
       <div className="mt-10 border-t border-[#D3D8E2]">
         {BOUNDARIES.map((b, i) => (
           <AnimatedSection key={b.body} delay={i * 0.05}>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-5 sm:grid-cols-[52px_minmax(0,1fr)_148px] sm:items-center sm:px-3">
-              <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1] sm:pt-0`}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="text-[15px] leading-[1.6] text-[#0B0E14] md:text-[16px]">
+            <div className="grid grid-cols-1 items-start gap-x-6 gap-y-2 border-b border-[#E3E6EC] py-5 sm:grid-cols-[168px_minmax(0,1fr)] sm:px-3">
+              <span className={`${MICRO} pt-[3px] text-[#003DDB]`}>{b.tag}</span>
+              <p className="text-[15px] leading-[1.62] text-[#0B0E14] md:text-[16px]">
                 {b.body}
               </p>
-              <span
-                className={`${MICRO_TIGHT} col-start-2 justify-self-start rounded-[4px] border border-[#DCE0E8] bg-white px-2 py-[3px] text-[#5B6472] sm:col-start-3 sm:justify-self-end`}
-              >
-                {b.tag}
-              </span>
             </div>
           </AnimatedSection>
         ))}
@@ -1176,6 +1189,24 @@ const PROOF_TAGS = [
   "Australian owned",
   "Nothing clinical, ever",
   "Inside your own systems",
+];
+
+const OFFSHORE_WRAP = [
+  {
+    side: "You keep",
+    points: [
+      "Your team. We are not asking you to move anyone.",
+      "The arrangement you built.",
+    ],
+  },
+  {
+    side: "We add",
+    points: [
+      "The after-hours line and the calls that need a decision.",
+      "Quality assurance over the administrative work that comes back.",
+      "The records, assembled to the standard your audit will apply, the offshore work included.",
+    ],
+  },
 ];
 
 const ACCOUNTABILITY_ROWS = [
@@ -1240,17 +1271,35 @@ function Accountability() {
       </AnimatedSection>
 
       <AnimatedSection delay={0.14}>
-        <div className="mt-10 rounded-[12px] border border-white/10 bg-white/[0.04] p-6 md:p-8">
+        <div className="mt-10">
           <p className={`${MICRO} text-white/45`}>
             If you already have an offshore administrative team
           </p>
-          <p className="mt-4 max-w-[760px] text-[15.5px] leading-[1.62] text-white/80 md:text-[17px]">
-            Keep them. We are not asking you to move anyone. We take the
-            after-hours line and the calls that need a decision, we run quality
-            assurance over the administrative work that comes back, and we
-            assemble the records to the standard your audit will apply, the
-            offshore work included. You keep the arrangement you built. The
-            function becomes one somebody answers for.
+          <div className="mt-4 grid gap-px overflow-hidden rounded-[12px] border border-white/10 bg-white/10 md:grid-cols-2">
+            {OFFSHORE_WRAP.map((col) => (
+              <div key={col.side} className="bg-[#0A0D14] p-6 md:p-7">
+                <p className={`${MICRO} border-b border-white/10 pb-3.5 text-[#7AA2FF]`}>
+                  {col.side}
+                </p>
+                <ul className="mt-5 space-y-3">
+                  {col.points.map((pt) => (
+                    <li
+                      key={pt}
+                      className="grid grid-cols-[13px_minmax(0,1fr)] gap-x-2.5 text-[15px] leading-[1.6] text-white/80"
+                    >
+                      <span aria-hidden className="pt-[8px]">
+                        <span className="block h-[4px] w-[4px] rounded-full bg-[#3A6CFF]" />
+                      </span>
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-[15.5px] leading-[1.62] text-white/70 md:text-[17px]">
+            You keep the arrangement you built. The function becomes one
+            somebody answers for.
           </p>
         </div>
       </AnimatedSection>
