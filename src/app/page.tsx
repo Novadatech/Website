@@ -267,7 +267,7 @@ function StatusStrip() {
       <div
         className={`${WRAP} ${PAD} flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-x border-[#E3E6EC] py-2.5`}
       >
-        <span className={`${MICRO} flex items-center gap-2.5 text-[#5B6472]`}>
+        <span className={`${MICRO} hidden items-center gap-2.5 text-[#5B6472] sm:flex`}>
           <span className="relative flex h-[6px] w-[6px]" aria-hidden>
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#003DDB] opacity-50" />
             <span className="relative inline-flex h-[6px] w-[6px] rounded-full bg-[#003DDB]" />
@@ -856,7 +856,7 @@ const DESKS = [
     title: "The Operations Partner",
     body: "The after-hours line answered by a person, roster and call-off coordination inside your own systems and against your own rules, intake administration, and the statutory records kept continuously to the seven-year standard. A structured handover lands every morning: what happened, who was contacted, what is covered, what needs a decision.",
     href: "/operations-partner",
-    cta: "The Operations Partner",
+    cta: "See the Operations Partner",
   },
   {
     index: "02",
@@ -864,7 +864,7 @@ const DESKS = [
     title: "The Workforce Partner",
     body: "Recruitment run as a continuous function for your own team, with every hiring decision yours. Onboarding administration, induction and training records kept current, and a pool of pre-screened independent workers you engage directly for the moments a shift cannot be filled from your own people.",
     href: "/workforce-partner",
-    cta: "The Workforce Partner",
+    cta: "See the Workforce Partner",
   },
 ];
 

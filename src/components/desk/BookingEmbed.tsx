@@ -1,27 +1,24 @@
 "use client";
 
 /*
- * Booking embed for the Desk pages.
+ * The single booking calendar, embedded on the home page and on both
+ * offer pages. One conversion event for the whole site.
  *
- * Brief section 6: one conversion action sitewide, built as a
- * button-plus-embed-slot so the calendar can be swapped without a
- * rebuild. That is why the calendar id lives in a single constant here
- * rather than being pasted into each page.
+ * ⚠️ THE WIDGET'S OWN TITLE AND DESCRIPTION LIVE IN THE BOOKING PLATFORM,
+ * NOT HERE, and as of 6 September 2026 they still read "Book An
+ * Operations Desk Review" with an operations-only description. That means
+ * a Workforce Partner visitor presses "Book a Workforce Review" and is
+ * shown the other offer at the moment of commitment. Renaming it is a
+ * founder task in the platform; flagged, not fixable from this file.
  *
- * ⚠️ CALENDAR MISMATCH, FLAGGED TO THE FOUNDER 2026-08-26:
- * DESK_CALENDAR_ID currently points at the existing Workforce calendar
- * (founder-directed). Inside the widget that calendar still presents as
- * "After-Hours Cost Review", 45 minutes, with an after-hours-specific
- * description. That reads correctly for care providers and incorrectly
- * for a dental or physio clinic booking from the home page.
+ * ⚠️ Snapshot the calendar before any edit there: a partial save silently
+ * reverts the duration and the redirect target.
  *
- * Because of that, no page copy states a call duration: the widget is the
- * single source of truth for what the visitor is booking, and copy that
- * said "20 minutes" would contradict what they can see. When a neutral
- * review calendar exists, swap the id below and the duration wording can
- * be reinstated from the brief.
- *
- * The calendar already redirects to /workforce-confirmed on booking.
+ * `source` is written to sessionStorage as nvt_booking_source and read by
+ * /review-confirmed to tailor its next steps, so it must name the page.
+ * The iframe is lazy loaded: it is roughly 760px tall and sits ten
+ * thousand pixels down, so eager loading competed with the hero for
+ * bandwidth on a phone.
  */
 
 import { useEffect } from "react";
@@ -75,7 +72,8 @@ export default function BookingEmbed({
   return (
     <div className={frame}>
       <iframe
-        src={src}
+
+        loading="lazy"        src={src}
         style={{
           width: "100%",
           minHeight: "760px",

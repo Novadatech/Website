@@ -400,6 +400,20 @@ function RosterSurface() {
         </span>
       </div>
 
+      {/* Column header, matching the Operations Partner surface exactly so
+          the two offer pages read as one system. Hidden below sm, where the
+          rows stack. */}
+      <div className="hidden items-center gap-x-3 border-b border-white/[0.07] bg-white/[0.02] px-5 py-2 sm:flex">
+        <span className={`${MICRO_TIGHT} w-[64px] shrink-0 text-white/30`}>
+          Time
+        </span>
+        <span className={`${MICRO_TIGHT} w-[76px] shrink-0 text-white/30`}>
+          Source
+        </span>
+        <span className={`${MICRO_TIGHT} flex-1 text-white/30`}>Event</span>
+        <span className={`${MICRO_TIGHT} text-white/30`}>State</span>
+      </div>
+
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3.5 sm:px-5">
         <span className={`${MICRO} ${NUM} text-white/45`}>{EVENT.time}</span>
         <span
@@ -443,7 +457,7 @@ function RosterSurface() {
         })}
       </div>
 
-      <div className="flex items-center gap-2.5 border-t border-white/[0.07] px-4 py-3 sm:px-5">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/[0.07] bg-white/[0.02] px-4 py-3.5 sm:px-5">
         <span
           aria-hidden
           className={`h-[7px] w-[7px] rounded-full transition-colors duration-500 ${
@@ -456,6 +470,10 @@ function RosterSurface() {
             {Math.min(phase, TOTAL_STEPS)} / {TOTAL_STEPS}
           </span>
         </span>
+        <p className="text-[13.5px] leading-snug text-white/70">
+          Surfaced, approved by you, evidenced. The engagement has its own
+          record.
+        </p>
       </div>
     </div>
   );
@@ -481,9 +499,10 @@ function Hero() {
               className={`${MICRO_TIGHT} text-[#003DDB]`}
             >
               The Workforce Partner{" "}
-              <span className="text-[#C3CAD5]">·</span> NDIS{" "}
-              <span className="text-[#C3CAD5]">·</span> Home Care{" "}
-              <span className="text-[#C3CAD5]">·</span> Aged Care
+              <span className="text-[#C3CAD5]">·</span> Recruitment{" "}
+              <span className="text-[#C3CAD5]">·</span> Onboarding,
+              induction and training records{" "}
+              <span className="text-[#C3CAD5]">·</span> The pool
             </motion.p>
 
             <motion.h1
@@ -594,10 +613,10 @@ function Decision() {
         <p
           className={`${DISPLAY} max-w-[940px] text-[28px] text-[#0B0E14] sm:text-[36px] md:text-[44px]`}
         >
-          Before you add another coordinator or another placement fee, we
-          benchmark the workload against what that actually costs you:{" "}
+          Before you add another coordinator or another placement fee, see
+          what the workload actually costs you.{" "}
           <span className="text-[#003DDB]">
-            your numbers, not industry claims.
+            Your numbers, not industry claims.
           </span>
         </p>
       </AnimatedSection>
@@ -891,6 +910,20 @@ function Pool() {
           walk you through exactly how on your Workforce Review.
         </p>
       </AnimatedSection>
+
+      <AnimatedSection delay={0.16}>
+        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-[#E3E6EC] pt-6">
+          <a href="#book" className={BTN_PRIMARY}>
+            Book a Workforce Review
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </a>
+          <span className={`${MICRO} text-[#9AA3B1]`}>
+            <span className={NUM}>30</span> minutes
+            <span className="mx-1.5 text-[#C3CAD5]">·</span>
+            Nothing committed
+          </span>
+        </div>
+      </AnimatedSection>
     </Band>
   );
 }
@@ -1074,6 +1107,10 @@ function Accountability() {
           Our desk already operates for Australian care providers every night of
           the year, inside their systems and to their protocols, with a
           structured handover waiting every morning.
+        </p>
+        <p className="mt-6 max-w-[760px] pl-6 text-[15px] leading-[1.62] text-white/65 md:text-[16px]">
+          That operating capability is the credibility base for both Partners.
+          It is the same team and the same discipline.
         </p>
       </AnimatedSection>
 

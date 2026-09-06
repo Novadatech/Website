@@ -511,9 +511,10 @@ function Hero() {
               className={`${MICRO_TIGHT} text-[#003DDB]`}
             >
               The Operations Partner{" "}
-              <span className="text-[#C3CAD5]">·</span> NDIS{" "}
-              <span className="text-[#C3CAD5]">·</span> Home Care{" "}
-              <span className="text-[#C3CAD5]">·</span> Aged Care
+              <span className="text-[#C3CAD5]">·</span> After-hours line{" "}
+              <span className="text-[#C3CAD5]">·</span> Roster and call-off
+              coordination{" "}
+              <span className="text-[#C3CAD5]">·</span> Statutory records
             </motion.p>
 
             <motion.h1
@@ -847,6 +848,20 @@ function WhatYouAreBuying() {
         <p className="mt-9 max-w-[760px] border-l-2 border-[#003DDB] pl-5 text-[17px] font-medium leading-[1.55] text-[#0B0E14] md:text-[19px]">
           Automation makes the evidence. People make the decisions.
         </p>
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.16}>
+        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-[#E3E6EC] pt-6">
+          <a href="#book" className={BTN_PRIMARY}>
+            Book an Operations Review
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </a>
+          <span className={`${MICRO} text-[#9AA3B1]`}>
+            <span className={NUM}>30</span> minutes
+            <span className="mx-1.5 text-[#C3CAD5]">·</span>
+            Nothing committed
+          </span>
+        </div>
       </AnimatedSection>
     </Band>
   );
@@ -1277,9 +1292,16 @@ const EVIDENCE = [
     source: "StewartBrown, nine months to March 2026",
   },
   {
-    figure: "72%+",
-    body: "Staff costs now exceed 72% of operating revenue in residential aged care, and award wages rose again in July.",
-    source: "StewartBrown; Fair Work Commission",
+    /* Replaced 2026-09-06. The row read "72%+ staff costs", citing
+       StewartBrown. The approved library holds ~71.3% at MEDIUM confidence
+       with the instruction "verify against primary before use", so the
+       published figure was both rounded up and outside the library, on a
+       page whose neighbouring band promises every number carries its
+       source. This row is HIGH confidence in the library and is a stronger
+       argument besides. */
+    figure: "62%",
+    body: "62% of residential aged care homes operated at a loss in the nine months to March 2026, up from 49% the year before.",
+    source: "StewartBrown Aged Care Financial Performance Survey, July 2026",
   },
   {
     figure: "7 years",
