@@ -486,8 +486,9 @@ function Measurement() {
         <AnimatedSection>
           <p className={`${MICRO} text-white/35`}>Instead</p>
           <p className="mt-5 max-w-[560px] text-[16px] leading-[1.62] text-white/75 md:text-[17px]">
-            Instead we measure your desk: every enquiry, response time, booking
-            outcome and reason lost, reported monthly.
+            Instead we measure your desk: every call and event, what was
+            answered, what was escalated and what was recorded, reported
+            monthly against the baseline we took before we changed anything.
           </p>
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
