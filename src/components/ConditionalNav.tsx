@@ -37,6 +37,9 @@ const SELF_CHROMED_ROUTES = [
   "/workforce-partner",
   "/why-novada",
   "/review-confirmed",
+  // The shareable booking link. Self-chromed with FunnelHeader/FunnelFooter,
+  // so it MUST be listed here or it ships two headers and two footers.
+  "/book",
   // Legal. These MUST be listed: without it they render DeskNav/DeskFooter
   // *and* a second nav, which drags "15+ qualified sales meetings every
   // month, guaranteed" onto a page whose whole point is that we guarantee

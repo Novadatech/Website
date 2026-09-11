@@ -71,7 +71,9 @@ const nextConfig: NextConfig = {
       { source: "/meetings-b", destination: "/", permanent: true },
       { source: "/get-meetings", destination: "/", permanent: true },
       { source: "/apply", destination: "/", permanent: true },
-      { source: "/book-call", destination: "/", permanent: true },
+      // Retired lander whose name is now literally true. Pointed at the real
+      // booking page rather than the home page, 11 September 2026.
+      { source: "/book-call", destination: "/book", permanent: true },
       { source: "/sales-closer", destination: "/", permanent: true },
       { source: "/sales-closer2", destination: "/", permanent: true },
 
