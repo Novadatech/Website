@@ -414,6 +414,7 @@ export default function ServicePage(p: ServicePageProps) {
                 <AnimatedSection delay={0.08}>
                   <div className="mt-12 max-w-[940px]">
                     <BookingEmbed
+                      audience={p.offer.audience}
                       source={`${p.offer.audience}-${p.offer.slug}`}
                       title={`${CTA_LABEL} with Novada`}
                       tone="dark"

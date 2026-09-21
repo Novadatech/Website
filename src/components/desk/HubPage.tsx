@@ -380,6 +380,7 @@ export default function HubPage({
                 <AnimatedSection delay={0.08}>
                   <div className="mt-12 max-w-[940px]">
                     <BookingEmbed
+                      audience={audience.slug}
                       source={`${audience.slug}-hub`}
                       title={`${CTA_LABEL} with Novada`}
                       tone="dark"

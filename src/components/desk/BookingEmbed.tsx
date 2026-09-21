@@ -68,17 +68,34 @@ import { useEffect, useState } from "react";
 import { CARD, MICRO } from "./tokens";
 import { CTA_LABEL } from "@/content/offers";
 
-/* ⚠️ THE AUSTRALIAN CALENDAR, and it is NOT the one .com uses.
-   .com books into 7Jpcos7VK92p2vDDTdvE; this domain books into
-   InaO8Qj92uCQ8BglSMhW.
-
-   ⚠️ OPEN ISSUE: this one calendar is named "Book An Operations
-   Review" and now serves BOTH doors. A practice lead reaching the
-   calendar therefore sees the care offer's name at the exact moment
-   they commit. Renaming it to match CTA_LABEL fixes that and also
-   fixes the pre-existing leak for Workforce leads. Founder decision,
-   not shipped yet. */
-const DESK_CALENDAR_ID = "InaO8Qj92uCQ8BglSMhW";
+/*
+ * ══════════════════════════════════════════════════════════════════════
+ * ⚠️ THE CALENDAR IS CHOSEN BY AUDIENCE, NOT BY DOMAIN. Both domains use
+ * the SAME two calendars, one per offer, confirmed by the founder on
+ * 21 September 2026:
+ *
+ *   practices  7Jpcos7VK92p2vDDTdvE   "Book a Clinic Desk Review"
+ *   care       InaO8Qj92uCQ8BglSMhW   "Book A Care Desk Review"
+ *
+ * Before this the calendar was hardcoded per site, so every page on a
+ * domain booked into the same calendar whichever door the reader came
+ * through. That put a care provider into a calendar named for clinics,
+ * and a practice into one named for care, at the exact moment of
+ * commitment.
+ *
+ * ⚠️ `audience` IS REQUIRED AND HAS NO DEFAULT. A default is how the
+ * wrong calendar gets shipped silently: the page compiles, the widget
+ * loads, and nothing looks broken until somebody reads the heading on
+ * the booking form. Add the prop at the call site.
+ *
+ * ⚠️ Snapshot a calendar before any edit in the provider's UI: a partial
+ * save silently reverts the duration and the redirect target.
+ * ══════════════════════════════════════════════════════════════════════
+ */
+const CALENDARS: Record<"practices" | "care", string> = {
+  practices: "7Jpcos7VK92p2vDDTdvE",
+  care: "InaO8Qj92uCQ8BglSMhW",
+};
 const RESIZER_SRC = "https://link.novadatech.com/js/form_embed.js";
 
 /**
@@ -98,10 +115,13 @@ function ensureResizer() {
 }
 
 export default function BookingEmbed({
+  audience,
   source,
   title = `${CTA_LABEL} with Novada`,
   tone = "light",
 }: {
+  /** Which offer's calendar to load. Required: see the note above. */
+  audience: "practices" | "care";
   /** CRM attribution: which page produced the booking. */
   source: string;
   title?: string;
@@ -124,8 +144,8 @@ export default function BookingEmbed({
   }, [source]);
 
   const src =
-    `https://link.novadatech.com/widget/booking/${DESK_CALENDAR_ID}` +
-    `?utm_source=novadatech.com&utm_medium=website&utm_campaign=clinic` +
+    `https://link.novadatech.com/widget/booking/${CALENDARS[audience]}` +
+    `?utm_source=novadatech.com.au&utm_medium=website&utm_campaign=${audience}` +
     `&utm_content=${encodeURIComponent(source)}`;
 
   const dark = tone === "dark";
@@ -170,7 +190,7 @@ export default function BookingEmbed({
              never completes, a scrollable calendar is usable and a clipped
              one is not. */
           scrolling="auto"
-          id={`${DESK_CALENDAR_ID}_${source}`}
+          id={`${CALENDARS[audience]}_${source}`}
           title={title}
         />
       </div>

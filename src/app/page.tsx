@@ -32,7 +32,6 @@ import { ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
-import BookingEmbed from "@/components/desk/BookingEmbed";
 import StickyCta from "@/components/desk/StickyCta";
 import Faq from "@/components/desk/Faq";
 import { Band, BandHeading, Rail, Statement } from "@/components/desk/Band";
@@ -424,13 +423,36 @@ function FinalCta() {
                 Nothing is signed on the call.
               </p>
             </AnimatedSection>
+            {/* ── NO CALENDAR ON THE ROUTER, and that is deliberate.
+                Each offer books into its own calendar, so any calendar
+                placed here would be named for one of the two audiences
+                and wrong for the other at the exact moment of
+                commitment. The router's job is to route; it hands the
+                reader to the right door and the calendar is the first
+                thing on it. ── */}
             <AnimatedSection delay={0.08}>
-              <div className="mt-12 max-w-[940px]">
-                <BookingEmbed
-                  source="home-router"
-                  title={`${CTA_LABEL} with Novada`}
-                  tone="dark"
-                />
+              <div className="mt-12 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
+                {AUDIENCES.map((a) => (
+                  <Link
+                    key={a.slug}
+                    href={`${a.href}#book`}
+                    className="group flex h-full flex-col bg-canvas-raised p-6 transition-colors duration-150 ease-standard hover:bg-[#161C29] md:p-8"
+                  >
+                    <span className={`${MICRO} text-brand-200`}>{a.name}</span>
+                    <span className="mt-3 flex items-start justify-between gap-3">
+                      <span className="text-lg font-semibold text-white">
+                        Book a review
+                      </span>
+                      <ArrowRight
+                        aria-hidden
+                        className="mt-1 h-5 w-5 shrink-0 text-white/40 transition-[transform,color] duration-150 ease-standard group-hover:translate-x-1 group-hover:text-brand-200"
+                      />
+                    </span>
+                    <span className="mt-3 block text-sm text-white/60">
+                      {a.who}
+                    </span>
+                  </Link>
+                ))}
               </div>
             </AnimatedSection>
           </div>

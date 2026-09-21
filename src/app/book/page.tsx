@@ -126,6 +126,7 @@ export default function BookPage() {
             <AnimatedSection>
               <div className="mx-auto max-w-[940px]">
                 <BookingEmbed
+                  audience="care"
                   source="book-link"
                   title="Book a review with Novada"
                   tone="dark"

@@ -1523,6 +1523,7 @@ function FinalCta() {
             <AnimatedSection delay={0.1}>
               <div className="mt-10 max-w-[940px]">
                 <BookingEmbed
+                  audience="practices"
                   source="patient-access-desk"
                   title="Book a capacity review with Novada"
                   tone="dark"

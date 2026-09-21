@@ -55,28 +55,78 @@ export default function ReviewConfirmedPage() {
     try {
       const s = sessionStorage.getItem("nvt_booking_source");
       if (s) setSource(s);
+
+      /* ⚠️ THE META EVENT FIRES FROM HERE, not the inline script. It used
+         to be a bare fbq('track','Schedule') with no parameters, so an
+         Australian booking could not be told apart from any other, and
+         once this domain gained a practices door it could not be told
+         apart by offer either. The URL separates the markets and
+         content_category separates the offers. */
+      const a =
+        s === "book-link" || s?.startsWith("care")
+          ? "care"
+          : s?.startsWith("practices")
+            ? "practices"
+            : "unattributed";
+      const w = window as unknown as { fbq?: (...a: unknown[]) => void };
+      w.fbq?.(
+        "track",
+        "Schedule",
+        {
+          content_name:
+            a === "practices" ? "Practice Desk review" : "Care Desk review",
+          content_category: a,
+        },
+        {
+          eventID:
+            a + "-" + Date.now() + "-" + Math.random().toString(36).slice(2, 10),
+        },
+      );
     } catch {
-      /* private browsing: neutral fallback is correct */
+      /* private browsing or a blocked pixel: the booking still happened */
     }
   }, []);
 
-  // Rewired 2026-09-06 for the two Partners. The clinic branch is gone
-  // with the clinic offer; the neutral fallback covers anyone whose
-  // sessionStorage did not survive (private browsing, a shared link).
-  const isOps = source === "operations-partner";
-  const isWorkforce = source === "workforce-partner";
+  /*
+   * ⚠️ REWIRED 21 SEPTEMBER 2026 FOR THE TWO DOORS, and it had to be:
+   * this branched on source === "operations-partner" / "workforce-partner",
+   * and BookingEmbed has not written either of those since the restructure.
+   * Every booking was silently falling through to the neutral fallback and
+   * the back link was pointing at the home page.
+   *
+   * `nvt_booking_source` now looks like "care-operations",
+   * "practices-patient-access", "care-hub" or "book-link". The audience is
+   * the part before the first hyphen; "book-link" is the shareable care
+   * link, so it counts as care.
+   */
+  const audience =
+    source === "book-link" || source?.startsWith("care")
+      ? "care"
+      : source?.startsWith("practices")
+        ? "practices"
+        : null;
 
-  const backHref = isOps
-    ? "/operations-partner"
-    : isWorkforce
-      ? "/workforce-partner"
-      : "/";
+  const BACK: Record<string, string> = {
+    "care-operations": "/care/operations",
+    "care-workforce": "/care/workforce",
+    "care-hub": "/care",
+    "book-link": "/care",
+    "practices-patient-access": "/practices/patient-access",
+    "practices-workforce": "/practices/workforce",
+    "practices-hub": "/practices",
+  };
+  const backHref = (source && BACK[source]) || (audience ? `/${audience}` : "/");
 
-  const numbersLine = isOps
-    ? "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your service records currently live. Estimates are fine."
-    : isWorkforce
-      ? "Roughly how many people you hire in a year, how long a hire currently takes, and where your worker screening, induction and training records live today. Estimates are fine."
-      : "Roughly how many after-hours calls and call-offs come in each week, how often you are hiring, and where your records currently live. Estimates are fine.";
+  const numbersLine =
+    source === "care-operations"
+      ? "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your service records currently live. Estimates are fine."
+      : source === "care-workforce" || source === "practices-workforce"
+        ? "Roughly how many people you hire in a year, how long a hire currently takes, and where your worker screening, induction and training records live today. Estimates are fine."
+        : source === "practices-patient-access"
+          ? "Roughly how many calls and new patient enquiries come in each week, who handles them today, and how much of your recall list actually gets worked. Estimates are fine."
+          : audience === "practices"
+            ? "Roughly how many calls and enquiries come in each week, who handles them today, and how hiring works at the moment. Estimates are fine."
+            : "Roughly how many after-hours calls and call-offs come in each week, how often you are hiring, and where your records currently live. Estimates are fine.";
 
   return (
     <div data-theme="desk" className="min-h-screen bg-white font-sans">
@@ -99,8 +149,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '3515804598723791');
-fbq('track', 'Schedule');`}
+fbq('init', '3515804598723791');`}
       </Script>
 
       <DeskNav />
