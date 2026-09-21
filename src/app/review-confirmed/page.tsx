@@ -88,6 +88,31 @@ export default function ReviewConfirmedPage() {
   }, []);
 
   /*
+   * ⚠️ THIS PAGE MUST BE MARKET-NEUTRAL, and that is not the same rule as
+   * the rest of the site.
+ *
+   * Every page on this domain is written for one market. This one cannot
+   * be, because a calendar has exactly ONE redirect and each calendar is
+   * embedded on BOTH domains. So this page receives bookers from the other
+   * market as well as its own, and it has no way to tell which is which:
+   * `nvt_booking_source` lives in sessionStorage, which is per-origin, so a
+   * cross-domain arrival brings nothing with it and lands on the neutral
+   * fallback by definition.
+ *
+   * Therefore: no market spelling (inquiry / enquiry), no market-specific
+   * nouns (roster / schedule, licence / license, caregiver / support
+   * worker, 911 / 000). Say the thing both markets say.
+ *
+   * ⚠️ THE NEUTRAL FALLBACK IS NOT AN EDGE CASE HERE. It is what every
+   * cross-market booker sees, so it has to read as finished copy rather
+   * than a degraded default.
+ *
+   * The real fix is one calendar per offer PER MARKET, four in total, at
+   * which point each page receives only its own market and this rule can
+   * relax. Until then, neutral.
+ */
+
+  /*
    * ⚠️ REWIRED 21 SEPTEMBER 2026 FOR THE TWO DOORS, and it had to be:
    * this branched on source === "operations-partner" / "workforce-partner",
    * and BookingEmbed has not written either of those since the restructure.
@@ -121,11 +146,11 @@ export default function ReviewConfirmedPage() {
     source === "care-operations"
       ? "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your service records currently live. Estimates are fine."
       : source === "care-workforce" || source === "practices-workforce"
-        ? "Roughly how many people you hire in a year, how long a hire currently takes, and where your worker screening, induction and training records live today. Estimates are fine."
+        ? "Roughly how many people you hire in a year, how long a hire currently takes, and where your screening, onboarding and training records live today. Estimates are fine."
         : source === "practices-patient-access"
-          ? "Roughly how many calls and new patient enquiries come in each week, who handles them today, and how much of your recall list actually gets worked. Estimates are fine."
+          ? "Roughly how many calls come in each week, how many of those are new patients, who handles them today, and how much of your recall list actually gets worked. Estimates are fine."
           : audience === "practices"
-            ? "Roughly how many calls and enquiries come in each week, who handles them today, and how hiring works at the moment. Estimates are fine."
+            ? "Roughly how many calls come in each week, how many of those are new patients, who handles them today, and how hiring works at the moment. Estimates are fine."
             : "Roughly how many after-hours calls and call-offs come in each week, how often you are hiring, and where your records currently live. Estimates are fine.";
 
   return (
