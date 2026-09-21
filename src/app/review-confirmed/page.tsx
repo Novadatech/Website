@@ -240,14 +240,19 @@ fbq('init', '3515804598723791');`}
         <section className="border-t border-[#E3E6EC] bg-white">
           <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] py-14`}>
             <p className="text-[15px] text-[#4A5361]">
+              {/* ⚠️ THE PHONE NUMBER CAME OFF ON 21 SEPTEMBER 2026, and it
+                  is the market-neutral rule at the top of this file doing
+                  the work. A +61 number is the single strongest "this is a
+                  foreign company" signal a reader can meet, and since each
+                  calendar redirects to one domain regardless of where the
+                  booking was made, American care bookers land on this page.
+                  Email is the one contact route that reads correctly in
+                  both markets, and it is already the only one on .com.
+
+                  Put a number back only when there are four calendars and
+                  this page receives its own market again, and then put the
+                  RIGHT country's number on each domain. */}
               Need to reach us before the call?{" "}
-              <a
-                href="tel:+61485000813"
-                className="font-semibold text-[#003DDB] underline-offset-4 hover:underline"
-              >
-                +61 485 000 813
-              </a>{" "}
-              or{" "}
               <a
                 href="mailto:support@novadatech.com.au"
                 className="font-semibold text-[#003DDB] underline-offset-4 hover:underline"
