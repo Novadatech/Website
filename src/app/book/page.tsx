@@ -56,7 +56,13 @@ import type { Metadata } from "next";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingEmbed from "@/components/desk/BookingEmbed";
 import { FunnelHeader, FunnelFooter } from "@/components/desk/FunnelChrome";
-import { BAND_Y, DISPLAY, MICRO, NUM, PAD, WRAP } from "@/components/desk/Band";
+/* ⚠️ BAND_Y now comes from the desk tokens, everything else from the
+   legacy block at the bottom of Band.tsx. When the desk system was
+   ported here on 21 September 2026, Band.tsx began importing BAND_Y
+   from ./tokens, so it can no longer also declare one. The token value
+   adds lg:py-32, which is the only visible change to this page. */
+import { BAND_Y } from "@/components/desk/tokens";
+import { DISPLAY, MICRO, NUM, PAD, WRAP } from "@/components/desk/Band";
 
 export const metadata: Metadata = {
   title: "Book a review | Novada Tech",
@@ -95,7 +101,7 @@ export default function BookPage() {
           <div className={`${WRAP} ${PAD} border-x border-[#E3E6EC] py-12 md:py-16`}>
             <AnimatedSection>
               <p className={`${MICRO} text-[#003DDB]`}>
-                Book a review <span className="text-[#C3CAD5]">·</span>{" "}
+                Book a review <span aria-hidden className="text-ink-300">·</span>{" "}
                 <span className={NUM}>30</span> minutes
               </p>
               <h1

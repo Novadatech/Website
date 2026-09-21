@@ -27,19 +27,25 @@ const nextConfig: NextConfig = {
          clinic offer was separated out entirely. Both old offer URLs
          carried real search equity, so both redirect permanently.
 
-         ⚠️ /patient-access-desk goes to /workforce-partner because that
-         is the route that replaced it, NOT because the offers are
-         related. They are not: one was a clinic offer and the other is
-         care workforce. Anyone landing from an old clinic search will
-         find a care page. That is the intended consequence of separating
-         the clinic offer; there is nowhere else on this site to send
-         them, and a 404 is worse. */
-      { source: "/workforce-ops-desk", destination: "/operations-partner", permanent: true },
-      { source: "/patient-access-desk", destination: "/workforce-partner", permanent: true },
+         ⚠️ RESOLVED 21 SEPTEMBER 2026. /patient-access-desk used to be
+         sent to /workforce-partner, with a note saying the offers were
+         unrelated and there was simply nowhere better to send a clinic
+         visitor once the clinic offer left the company. The two-door
+         restructure gives this domain a practices door again, so that
+         compromise is over: the URL now lands on the page it always
+         should have. */
+      { source: "/patient-access-desk", destination: "/practices/patient-access", permanent: true },
+
+      /* ── The two-door restructure, 21 September 2026 ──────────────
+         The Partner nouns are retired and both offer pages moved under
+         /care. All four of these carried real search equity. */
+      { source: "/operations-partner", destination: "/care/operations", permanent: true },
+      { source: "/workforce-partner", destination: "/care/workforce", permanent: true },
+      { source: "/workforce-ops-desk", destination: "/care/operations", permanent: true },
 
       /* ── Novada Workforce, superseded by the Desk positioning ── */
-      { source: "/workforce", destination: "/workforce-ops-desk", permanent: true },
-      { source: "/workforce-2", destination: "/workforce-ops-desk", permanent: true },
+      { source: "/workforce", destination: "/care/operations", permanent: true },
+      { source: "/workforce-2", destination: "/care/operations", permanent: true },
       { source: "/workforce-confirmed", destination: "/review-confirmed", permanent: true },
 
       /* Comparison copy of the repositioned care page, created and deleted
@@ -47,7 +53,7 @@ const nextConfig: NextConfig = {
          side and kept the original. TEMPORARY (307), not permanent: this
          is a scratch URL likely to be reused for the next comparison, and
          browsers cache a 308 hard enough to poison it for that reuse. */
-      { source: "/workforce-ops-desk-2", destination: "/workforce-ops-desk", permanent: false },
+      { source: "/workforce-ops-desk-2", destination: "/care/operations", permanent: false },
 
       /* ── Legacy meetings service funnel ── */
 

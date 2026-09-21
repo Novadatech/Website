@@ -3,6 +3,7 @@ import { Inter, Poppins, Space_Grotesk, Barlow_Condensed } from "next/font/googl
 import Script from "next/script";
 import "./globals.css";
 import ConditionalNav from "@/components/ConditionalNav";
+import RevealRoot from "@/components/RevealRoot";
 import LeadFormProvider from "@/components/LeadFormProvider";
 
 const inter = Inter({
@@ -84,6 +85,25 @@ export default function RootLayout({
       className={`${inter.variable} ${poppins.variable} ${spaceGrotesk.variable} ${barlowCondensed.variable}`}
     >
       <head>
+        {/* THE MOTION FLAG. Runs before first paint, and is the reason
+            the page can ship VISIBLE and still animate.
+
+            ⚠️ PORTED FROM novadatech.com ON 21 SEPTEMBER 2026, together
+            with a rebuilt AnimatedSection. The version this replaced was
+            a framer-motion client component driven by useInView, and
+            useInView is false during server rendering, so every wrapped
+            block on this domain server-rendered at opacity:0 and needed
+            hydration to become visible. On a phone on a weak connection
+            that is a blank page.
+
+            Keep it inline and keep it here. A deferred file, or the same
+            code in a component, both run after paint, which produces a
+            visible flash of content that then hides itself. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(window.matchMedia&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('anim')}}catch(e){}`,
+          }}
+        />
         {/* Google Tag Manager — main snippet, in <head> only.
             Using a raw <script> tag (not next/script) so it lives ONLY in
             <head>. next/script with strategy="beforeInteractive" was
@@ -100,6 +120,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
       </head>
       <body className="font-sans antialiased">
+        {/* Flips each .reveal block to .in once, in view. See
+            components/RevealRoot.tsx. */}
+        <RevealRoot />
         {/* Google Tag Manager (noscript) — body has ONLY this, no JS script */}
         <noscript>
           <iframe

@@ -138,7 +138,7 @@ function Rail({
     <div className="lg:sticky lg:top-28 lg:self-start">
       <div className="flex items-center gap-3 lg:block">
         <span
-          className={`${MICRO} ${NUM} ${dark ? "text-white/35" : "text-[#9AA3B1]"}`}
+          className={`${MICRO} ${NUM} ${dark ? "text-white/55" : "text-ink-500"}`}
         >
           {index}
         </span>
@@ -226,8 +226,8 @@ function StatusStrip() {
           <span className="font-semibold text-[#0B0E14]">
             Real people, onshore
           </span>{" "}
-          <span className="text-[#C3CAD5]">·</span> Australian owned{" "}
-          <span className="text-[#C3CAD5]">·</span> Nothing clinical, ever
+          <span aria-hidden className="text-ink-300">·</span> Australian owned{" "}
+          <span aria-hidden className="text-ink-300">·</span> Nothing clinical, ever
         </span>
       </div>
     </div>
@@ -282,7 +282,7 @@ function DeskDefinition() {
           }`}
         >
           <span className="flex items-center gap-2.5">
-            <span className={`${MICRO} ${NUM} text-white/30`}>{d.index}</span>
+            <span className={`${MICRO} ${NUM} text-white/55`}>{d.index}</span>
             <span aria-hidden className="h-3 w-px bg-white/15" />
             <span className={`${MICRO} text-[#A6BEFF]`}>{d.key}</span>
           </span>
@@ -316,8 +316,8 @@ function Hero() {
               transition={{ duration: 0.5 }}
               className={`${MICRO_TIGHT} text-[#003DDB]`}
             >
-              Why Novada <span className="text-[#C3CAD5]">·</span> NDIS, home
-              care and aged care <span className="text-[#C3CAD5]">·</span>{" "}
+              Why Novada <span aria-hidden className="text-ink-300">·</span> NDIS, home
+              care and aged care <span aria-hidden className="text-ink-300">·</span>{" "}
               Australia
             </motion.p>
 
@@ -349,7 +349,7 @@ function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.42 }}
-              className={`${MICRO_TIGHT} mt-5 max-w-[452px] border-t border-[#E3E6EC] pt-3 text-[#9AA3B1]`}
+              className={`${MICRO_TIGHT} mt-5 max-w-[452px] border-t border-[#E3E6EC] pt-3 text-ink-500`}
             >
               Arithmetic, not a statistic
             </motion.p>
@@ -451,10 +451,10 @@ function Measurement() {
       {/* the citations table, run in reverse */}
       <AnimatedSection delay={0.08}>
         <div className="mt-10 hidden grid-cols-[minmax(0,1fr)_200px] gap-6 border-b border-white/[0.12] pb-3 lg:grid">
-          <span className={`${MICRO} text-white/35`}>
+          <span className={`${MICRO} text-white/55`}>
             The most-quoted numbers
           </span>
-          <span className={`${MICRO} text-white/35`}>Traced to</span>
+          <span className={`${MICRO} text-white/55`}>Traced to</span>
         </div>
       </AnimatedSection>
 
@@ -484,7 +484,7 @@ function Measurement() {
       {/* what replaces them */}
       <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-14">
         <AnimatedSection>
-          <p className={`${MICRO} text-white/35`}>Instead</p>
+          <p className={`${MICRO} text-white/55`}>Instead</p>
           <p className="mt-5 max-w-[560px] text-[16px] leading-[1.62] text-white/75 md:text-[17px]">
             Instead we measure your desk: every call and event, what was
             answered, what was escalated and what was recorded, reported
@@ -571,14 +571,14 @@ function Principles() {
           <AnimatedSection key={p.title} delay={i * 0.06}>
             <div className="flex h-full flex-col gap-y-4 bg-white p-6 md:p-7">
               <span
-                className={`${MICRO} ${NUM} hidden pt-1 text-[#9AA3B1] lg:block`}
+                className={`${MICRO} ${NUM} hidden pt-1 text-ink-500 lg:block`}
               >
                 {p.index}
               </span>
 
               <div>
                 <span className="flex items-center gap-2.5 lg:hidden">
-                  <span className={`${MICRO} ${NUM} text-[#9AA3B1]`}>
+                  <span className={`${MICRO} ${NUM} text-ink-500`}>
                     {p.index}
                   </span>
                   <span aria-hidden className="h-3 w-px bg-[#D3D8E2]" />
@@ -590,7 +590,7 @@ function Principles() {
                   className={`${MICRO_TIGHT} mt-3 inline-flex rounded-[4px] border px-2 py-[4px] ${
                     p.signal
                       ? "border-[#E0C3AE] bg-[#FBF2EC] text-[#B4501A]"
-                      : "border-[#DCE0E8] bg-white text-[#7B8492]"
+                      : "border-[#DCE0E8] bg-white text-ink-500"
                   }`}
                 >
                   {p.tag}
@@ -661,7 +661,7 @@ function Proof() {
                 </span>
                 {/* A route reads as a route, so it stays lower case. */}
                 <span
-                  className={`${MICRO_TIGHT} mt-1.5 block normal-case text-white/30`}
+                  className={`${MICRO_TIGHT} mt-1.5 block normal-case text-white/55`}
                 >
                   {o.href}
                 </span>
@@ -710,10 +710,10 @@ function FinalCta() {
         </div>
 
         <p
-          className={`${MICRO_TIGHT} mt-8 border-t border-[#E3E6EC] pt-4 text-[#9AA3B1]`}
+          className={`${MICRO_TIGHT} mt-8 border-t border-[#E3E6EC] pt-4 text-ink-500`}
         >
-          Real people, onshore <span className="text-[#C3CAD5]">·</span>{" "}
-          Australian owned <span className="text-[#C3CAD5]">·</span> Nothing
+          Real people, onshore <span aria-hidden className="text-ink-300">·</span>{" "}
+          Australian owned <span aria-hidden className="text-ink-300">·</span> Nothing
           clinical, ever
         </p>
       </AnimatedSection>

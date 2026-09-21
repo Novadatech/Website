@@ -1,641 +1,192 @@
-"use client";
-
 /*
- * Home page.
+ * novadatech.com, the homepage.
  *
- * REBUILT 2026-09-06 for THE TWO PARTNERS, against the executive
- * positioning document ratified 5 September 2026, which supersedes all
- * previous positioning documents in full.
+ * ══════════════════════════════════════════════════════════════════════
+ * REBUILT 21 SEPTEMBER 2026 AS A ROUTER, NOT A SALES PAGE.
  *
- * WHAT THIS PAGE IS NOW. Novada Tech is an Australian care-sector
- * company with two offers, and this page presents exactly those two and
- * routes the visitor onward:
- *   · The Operations Partner runs the operation. Platform: Support24.
- *   · The Workforce Partner builds and backs the workforce. Platform:
- *     Recruitilon.
- * The line between them is the sentence the whole site turns on: one
- * partner runs your operation; the other builds and backs your
- * workforce. A provider can hold either or both; neither requires the
- * other.
+ * This page used to sell the practice offer. It cannot any more, because
+ * the site now serves two audiences whose vocabularies must never cross,
+ * and no single page can sell to a dentist and a home care provider in
+ * the same breath without one of them deciding it is not for them.
  *
- * ⚠️ NOTHING CLINIC-FACING, ANYWHERE. The clinic offer has been
- * separated from the company entirely and returns later as a standalone
- * product with its own identity (document section 1). Until then no
- * patients, practices, practitioners, recall, front desk or practice
- * software vocabulary appears on any Novada surface. The old clinic page
- * is preserved, unrouted, at src/app/_archive-clinic-offer/.
+ * ⚠️ ITS JOB IS NOW NARROW: say what Novada does in one sentence, and
+ * get the visitor through the correct door. The argument, the devices,
+ * the desks and the booking pressure live on /practices and /care.
  *
- * TRAFFIC MODEL (unchanged, and still load bearing): this page serves
- * ORGANIC SEARCH, so it deliberately presents BOTH offers and routes
- * onward. Paid ads do NOT land here; each ad goes to its own offer page,
- * which is where single-audience cold-traffic optimisation belongs. A
- * conversion reviewer once flagged "the hero serves two buyers" as a
- * fault. That critique assumed paid traffic and does not apply. Serving
- * both offers is correct here. Do not "fix" it.
+ * ⚠️ PAID TRAFFIC MUST NEVER LAND HERE. Meta and Google ad sets point at
+ * /practices, /care, or an offer page beneath them. A visitor the ad has
+ * already qualified should not be asked to qualify themselves again. If
+ * this page starts receiving paid traffic, the ads are misconfigured,
+ * not the page.
  *
- * ⚠️ NO PRICING. Founder's direct decision, 6 September 2026: the
- * simplified pricing is NOT displayed on the website. No figures, no
- * ranges, no "from", no hints, including in metadata.
- *
- * ⚠️ PLATFORM NAMING RAILS. A platform name labels the platform layer
- * only, never the company and never an offer. Support24 must never sit
- * in a sentence about helping or supporting, and never share a sentence
- * with a coverage claim (the 24 must not read as an always-on promise;
- * coverage is scoped in writing per engagement). Recruitilon must never
- * sit in a sentence claiming we employ, supply or place workers. This
- * page mentions neither platform: they are introduced on their own offer
- * pages, where the rails can be held in context.
- *
- * ⚠️ CARE RAILS, criminal exposure. The 2026 NDIS inducement provisions
- * ban referral, incentive, gift and growth-promise language of any kind.
- * That whole family of words is deliberately not written out in this
- * file so it cannot be copied into rendered output by accident.
- *
- * ⚠️ NOTHING CLINICAL, AND NO CLINICAL CAPABILITY. We have no
- * clinicians. Clinical verbs may appear only inside a reviewed NEGATION,
- * as in the Scope rows and the FAQ.
- *
- * Also binding: statistics only from the approved library, each printing
- * its source in the same breath; never "admin support", "virtual
- * assistant", "outsourcing", "labour hire", "staffing agency", "staff
- * supply", or any hourly figure; Australian spelling; no em dashes.
+ * ⚠️ THE POSITION LINE CHANGED with this rebuild, and the reason is
+ * structural. "We run your front desk, and everything behind it" is
+ * clinic-shaped: a care provider has no front desk. See the header of
+ * src/content/offers.ts for the full reasoning.
+ * ══════════════════════════════════════════════════════════════════════
  */
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
-import HomeFaq from "@/components/desk/HomeFaq";
 import BookingEmbed from "@/components/desk/BookingEmbed";
 import StickyCta from "@/components/desk/StickyCta";
+import Faq from "@/components/desk/Faq";
+import { Band, BandHeading, Rail, Statement } from "@/components/desk/Band";
+import {
+  BAND_Y,
+  BTN_ON_INK,
+  BTN_PRIMARY,
+  D1,
+  D2,
+  D4,
+  FRAME,
+  GUTTER,
+  HERO_Y,
+  MICRO,
+  NUM,
+  RAIL_GRID,
+} from "@/components/desk/tokens";
+import {
+  AUDIENCES,
+  BOUNDARIES,
+  CTA_LABEL,
+  HOW_IT_STARTS,
+  OPERATING_PROOF,
+  POSITION,
+  POSITION_SUB,
+  offersFor,
+} from "@/content/offers";
 
-/* ══════════════════════════════════════════════════════════════════
-   DESIGN TOKENS
-   Written as complete class strings so the Tailwind scanner sees the
-   literal arbitrary values. Never interpolate a colour into a class.
-   ══════════════════════════════════════════════════════════════════ */
-
-const WRAP = "mx-auto w-full max-w-[1240px]";
-const PAD = "px-5 sm:px-8 lg:px-12";
-const BAND = "py-16 md:py-24";
-
-/** Micro-caps interface label. Space Grotesk stands in for a technical grotesk. */
-/* Raised from 10px on 2026-08-27 so the home page matches the 12px floor the
-   offer pages use. This class carries the left-rail labels, and those labels
-   ARE the section headings, so they were the smallest structural type on the
-   page. Tracking is tightened from 0.16em to 0.14em so the longer labels
-   still fit the rail at 390px. */
-const MICRO =
-  "font-supply text-[12px] font-medium uppercase tracking-[0.14em]";
-/* Raised from 9px on 2026-08-27. A conversion review found the 9px class was
-   carrying the timeline card's ANSWERED / BOOKED / COVERED / HANDED OVER
-   badges, which are the page's proof, rendered as its smallest type.
-   2026-09-01: the last four 11px classes went too, so the floor is now a
-   flat 12px, matching both offer pages. Those four were the desk board's
-   event and step timestamps, its elapsed deltas, and the week grid's daily
-   hour totals. The two timestamp columns were widened by 6px to suit.
-   NOTHING ON THIS PAGE MAY GO BELOW 12px. */
-const MICRO_SM =
-  "font-supply text-[12px] font-medium uppercase tracking-[0.12em]";
-/** Any figure a reader might compare to another figure gets tabular nums. */
-const NUM = "font-supply tabular-nums";
-
-const DISPLAY =
-  "font-condensed font-bold uppercase leading-[0.92] tracking-[-0.012em]";
-
-const BTN_PRIMARY =
-  "group inline-flex items-center justify-center gap-2 rounded-[6px] bg-[#003DDB] px-6 py-3.5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-[#0030AE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
-const BTN_GHOST =
-  "group inline-flex items-center justify-center gap-2 rounded-[6px] border border-[#D3D8E2] bg-white px-6 py-3.5 text-[14px] font-semibold text-[#0B0E14] transition-colors duration-200 hover:border-[#003DDB] hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
-
-/* ══════════════════════════════════════════════════════════════════
-   HOOKS
-   ══════════════════════════════════════════════════════════════════ */
-
-/** Respects the OS reduced-motion setting. Read once on mount. */
-function useReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-  }, []);
-  return reduced;
-}
-
-/** Counts to a target once activated. Eased, rounded, tabular safe. */
-function useCountUp(target: number, active: boolean, duration = 1000) {
-  const [value, setValue] = useState(0);
-  const reduced = useReducedMotion();
-
-  useEffect(() => {
-    if (!active) return;
-    if (reduced) {
-      setValue(target);
-      return;
-    }
-    let frame = 0;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setValue(Math.round(target * eased));
-      if (p < 1) frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [target, active, duration, reduced]);
-
-  return value;
-}
-
-/**
- * Wall clock for the desk, in Sydney time. Mount guarded so the server
- * and the first client render agree, otherwise React reports a
- * hydration mismatch every single load.
- */
-function useSydneyClock() {
-  const [time, setTime] = useState<string | null>(null);
-  useEffect(() => {
-    const read = () =>
-      new Intl.DateTimeFormat("en-AU", {
-        timeZone: "Australia/Sydney",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      }).format(new Date());
-    setTime(read());
-    const id = window.setInterval(() => setTime(read()), 1000);
-    return () => window.clearInterval(id);
-  }, []);
-  return time;
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   PRIMITIVES
-   ══════════════════════════════════════════════════════════════════ */
-
-type Tone = "light" | "tint" | "dark";
-
-/** The left index rail. Its label is the section heading. */
-function Rail({
-  index,
-  label,
-  tone = "light",
-}: {
-  index: string;
-  label: string;
-  tone?: Tone;
-}) {
-  const dark = tone === "dark";
-  return (
-    <div className="lg:sticky lg:top-28 lg:self-start">
-      <div className="flex items-center gap-3 lg:block">
-        <span
-          className={`${MICRO} ${NUM} ${dark ? "text-white/35" : "text-[#9AA3B1]"}`}
-        >
-          {index}
-        </span>
-        <span
-          aria-hidden
-          className={`h-px w-6 lg:my-3 lg:h-6 lg:w-px ${
-            dark ? "bg-white/15" : "bg-[#E3E6EC]"
-          }`}
-        />
-        <h2
-          className={`${MICRO} ${dark ? "text-white/75" : "text-[#0B0E14]"}`}
-        >
-          {label}
-        </h2>
-      </div>
-    </div>
-  );
-}
-
-/**
- * One horizontal band of the page. Carries the continuous vertical
- * hairlines and the rail gutter so every section shares one rhythm.
- */
-function Band({
-  id,
-  index,
-  label,
-  tone = "light",
-  children,
-}: {
-  id?: string;
-  index: string;
-  label: string;
-  tone?: Tone;
-  children: React.ReactNode;
-}) {
-  const dark = tone === "dark";
-  const surface =
-    tone === "dark"
-      ? "border-white/10 bg-[#0A0D14]"
-      : tone === "tint"
-        ? "border-[#E3E6EC] bg-[#F7F8FA]"
-        : "border-[#E3E6EC] bg-white";
-  return (
-    <section id={id} className={`scroll-mt-28 border-t ${surface}`}>
-      <div
-        className={`${WRAP} ${PAD} ${BAND} border-x ${
-          dark ? "border-white/10" : "border-[#E3E6EC]"
-        }`}
-      >
-        <div className="grid gap-8 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
-          <Rail index={index} label={label} tone={tone} />
-          <div className="min-w-0">{children}</div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   1 · STATUS STRIP
-   Sits directly under the nav and carries the hero small line as
-   interface chrome, plus a live Sydney wall clock.
-   ══════════════════════════════════════════════════════════════════ */
-
-function StatusStrip() {
-  const clock = useSydneyClock();
-  return (
-    <div className="border-b border-[#E3E6EC] bg-[#F7F8FA]">
-      <div
-        className={`${WRAP} ${PAD} flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-x border-[#E3E6EC] py-2.5`}
-      >
-        <span className={`${MICRO} hidden items-center gap-2.5 text-[#5B6472] sm:flex`}>
-          <span className="relative flex h-[6px] w-[6px]" aria-hidden>
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#003DDB] opacity-50" />
-            <span className="relative inline-flex h-[6px] w-[6px] rounded-full bg-[#003DDB]" />
-          </span>
-          Sydney
-          <span className={`${NUM} text-[#0B0E14]`}>{clock ?? "00:00:00"}</span>
-        </span>
-        <span className={`${MICRO} text-[#7B8492]`}>
-          Real people, onshore <span className="text-[#C3CAD5]">·</span>{" "}
-          Australian owned <span className="text-[#C3CAD5]">·</span> Nothing
-          clinical, ever
-        </span>
-      </div>
-    </div>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   2 · THE OPERATIONS SURFACE (hero visual)
-   Two approved events resolving overnight. Every timestamp and label
-   is from the approved list. The elapsed figures are arithmetic on
-   those timestamps. The whole panel is labelled illustrative.
-   ══════════════════════════════════════════════════════════════════ */
-
-type DeskStep = {
-  time: string;
-  label: string;
-  state: string;
-  delta?: string;
+export const metadata: Metadata = {
+  title: "Novada | We run everything except the care",
+  description:
+    "Managed operations for healthcare practices and care providers. Run by our own team, inside the systems you already use, alongside your people and never instead of them. Nothing clinical, ever.",
+  openGraph: {
+    locale: "en_AU",
+    siteName: "Novada",
+    title: "We run everything except the care | Novada",
+    description:
+      "Two desks for practices, two for care providers. Alongside your team, never instead of it, and never anything clinical.",
+    type: "website",
+  },
 };
 
-type DeskEvent = {
-  time: string;
-  source: string;
-  text: string;
-  steps: DeskStep[];
-};
-
-/* Two events, one per offer, so the surface shows the same split the
-   page is built on: the Operations Partner covering a call-off, and the
-   Workforce Partner catching a credential before the roster does.
-   Rewritten 2026-09-06; the clinic event that used to open this array
-   went with the clinic offer. Labelled illustrative in the chrome. */
-const NIGHT: DeskEvent[] = [
-  {
-    time: "4:03 AM",
-    source: "Operations",
-    text: "Support worker calls off a 6am SIL shift.",
-    steps: [
-      {
-        time: "4:19 AM",
-        label: "Cover arranged from your approved team",
-        state: "Covered",
-        delta: "+16 min",
-      },
-      {
-        time: "7:55 AM",
-        label: "In your morning handover",
-        state: "Handed over",
-        delta: "+3 h 36 min",
-      },
-    ],
-  },
-  {
-    time: "9:12 AM",
-    source: "Workforce",
-    text: "A worker's screening clearance is approaching expiry.",
-    steps: [
-      {
-        time: "9:12 AM",
-        label: "Flagged before it lapses, not after",
-        state: "Surfaced",
-      },
-      {
-        time: "9:40 AM",
-        label: "Renewal chased and the file updated",
-        state: "Evidenced",
-        delta: "+28 min",
-      },
-    ],
-  },
-];
-
-const TOTAL_STEPS = 4;
-
-function StateChip({ step, resolved }: { step: DeskStep; resolved: boolean }) {
+function Dot() {
   return (
-    <span className="ml-auto flex shrink-0 items-center gap-2.5">
-      {step.delta ? (
-        <span
-          className={`${NUM} text-[12px] transition-opacity duration-500 ${
-            resolved ? "text-white/40 opacity-100" : "opacity-0"
-          }`}
-        >
-          {step.delta}
-        </span>
-      ) : null}
-      <span
-        className={`${MICRO_SM} inline-flex items-center gap-1.5 rounded-[4px] border px-2 py-[3px] transition-colors duration-500 ${
-          resolved
-            ? "border-[#3A6CFF]/40 bg-[#3A6CFF]/[0.14] text-[#A6BEFF]"
-            : "border-white/10 bg-white/[0.03] text-white/30"
-        }`}
-      >
-        <span
-          aria-hidden
-          className={`h-[5px] w-[5px] rounded-full ${
-            resolved ? "bg-[#3A6CFF]" : "animate-pulse bg-white/25"
-          }`}
-        />
-        {resolved ? step.state : "Working"}
-      </span>
+    <span aria-hidden className="text-ink-300">
+      ·
     </span>
   );
 }
 
-function OperationsSurface() {
-  const [phase, setPhase] = useState(0);
-  const reduced = useReducedMotion();
-
-  useEffect(() => {
-    if (reduced) {
-      setPhase(TOTAL_STEPS);
-      return;
-    }
-    const timers = Array.from({ length: TOTAL_STEPS }, (_, i) =>
-      window.setTimeout(() => setPhase(i + 1), 900 + i * 700),
-    );
-    return () => timers.forEach((t) => window.clearTimeout(t));
-  }, [reduced]);
-
-  return (
-    <div className="rounded-[12px] border border-white/[0.09] bg-[#0A0D14] shadow-[0_24px_70px_-28px_rgba(11,14,20,0.55)]">
-      {/* chrome */}
-      <div className="flex items-center justify-between gap-3 border-b border-white/[0.07] px-4 py-3 sm:px-5">
-        <span className={`${MICRO} flex items-center gap-2.5 text-white/60`}>
-          <span className="relative flex h-[6px] w-[6px]" aria-hidden>
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#3A6CFF] opacity-60" />
-            <span className="relative inline-flex h-[6px] w-[6px] rounded-full bg-[#3A6CFF]" />
-          </span>
-          Overnight
-        </span>
-        <span
-          className={`${MICRO_SM} rounded-[4px] border border-dashed border-white/20 px-2 py-[3px] text-white/45`}
-        >
-          Illustrative example
-        </span>
-      </div>
-
-      {/* column header */}
-      <div className="hidden items-center gap-x-3 border-b border-white/[0.07] bg-white/[0.02] px-5 py-2 sm:flex">
-        <span className={`${MICRO_SM} w-[64px] shrink-0 text-white/30`}>
-          Time
-        </span>
-        <span className={`${MICRO_SM} w-[96px] shrink-0 text-white/30`}>
-          Source
-        </span>
-        <span className={`${MICRO_SM} flex-1 text-white/30`}>Event</span>
-        <span className={`${MICRO_SM} text-white/30`}>State</span>
-      </div>
-
-      {/* the night */}
-      <div>
-        {NIGHT.map((ev, ei) => (
-          <div
-            key={ev.time}
-            className={ei === 1 ? "border-t border-white/[0.07]" : ""}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.15 + ei * 0.4 }}
-              className="flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3.5 sm:px-5"
-            >
-              <span className={`${NUM} w-[64px] shrink-0 text-[13px] text-white/60`}>
-                {ev.time}
-              </span>
-              <span className="w-[96px] shrink-0">
-                <span
-                  className={`${MICRO_SM} inline-flex rounded-[4px] border border-white/10 bg-white/[0.05] px-2 py-[3px] text-white/60`}
-                >
-                  {ev.source}
-                </span>
-              </span>
-              <span className="w-full text-[13.5px] leading-snug text-white sm:w-auto sm:flex-1">
-                {ev.text}
-              </span>
-            </motion.div>
-
-            <div className="pb-2 pl-[26px] pr-4 sm:pl-[38px] sm:pr-5">
-              <div className="border-l border-white/[0.12]">
-                {ev.steps.map((s, si) => {
-                  const gi = ei * 2 + si;
-                  const resolved = phase > gi;
-                  return (
-                    <motion.div
-                      key={s.time + s.label}
-                      initial={{ opacity: 0, x: -4 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{
-                        duration: 0.4,
-                        delay: 0.3 + ei * 0.4 + si * 0.12,
-                      }}
-                      className="relative py-2.5 pl-4"
-                    >
-                      <span
-                        aria-hidden
-                        className={`absolute -left-[4px] top-[14px] h-[7px] w-[7px] rounded-full border-2 border-[#0A0D14] transition-colors duration-500 ${
-                          resolved ? "bg-[#3A6CFF]" : "bg-[#3B4250]"
-                        }`}
-                      />
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-                        <span
-                          className={`${NUM} w-[58px] shrink-0 text-[12px] text-white/40`}
-                        >
-                          {s.time}
-                        </span>
-                        <span className="min-w-[150px] flex-1 text-[13px] leading-snug text-white/85">
-                          {s.label}
-                        </span>
-                        <StateChip step={s} resolved={resolved} />
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* resolution */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/[0.07] bg-white/[0.02] px-4 py-3.5 sm:px-5">
-        <span className={`${MICRO} flex items-center gap-2 text-[#A6BEFF]`}>
-          <span
-            aria-hidden
-            className={`h-[5px] w-[5px] rounded-full transition-colors duration-500 ${
-              phase >= TOTAL_STEPS ? "bg-[#3A6CFF]" : "bg-white/25"
-            }`}
-          />
-          Resolved{" "}
-          <span className={NUM}>
-            {phase} / {TOTAL_STEPS}
-          </span>
-        </span>
-        <p className="text-[13px] leading-snug text-white/70">
-          Both handled. Nobody senior was woken.
-        </p>
-        <p className="mt-2 text-[13px] leading-snug text-white/50">
-          We answer the call, and we finish the job. An answering service
-          takes a message and hands it back.
-        </p>
-      </div>
-    </div>
-  );
-}
+/* The three things this business is most often wrongly assumed to be.
+   Each is a statement about how the service is staffed and bounded, not
+   a performance claim, so none needs a source. */
+const PROOF_STRIP = [
+  "Our own team",
+  "Never a call centre",
+  "Nothing clinical, ever",
+];
 
 /* ══════════════════════════════════════════════════════════════════
-   3 · HERO
+   THE OPENING
+   The position, then the two doors, inside the same screen. A visitor
+   decides in about three seconds whether this is for them, and on this
+   page the answer they need is not "what is this" but "which half am
+   I". The doors are therefore the largest object in the fold.
    ══════════════════════════════════════════════════════════════════ */
 
 function Hero() {
   return (
-    <section className="border-t border-[#E3E6EC] bg-white">
+    <section className="relative overflow-hidden border-b border-white/10 bg-canvas-ink">
       <div
-        className={`${WRAP} ${PAD} border-x border-[#E3E6EC] py-14 md:py-20`}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.04fr)] lg:gap-16">
-          <div>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className={`${MICRO} flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[#003DDB]`}
-            >
-              <span>Managed operations</span>
-              <span aria-hidden className="h-3 w-px bg-[#C3CAD5]" />
-              <span>NDIS</span>
-              <span aria-hidden className="h-3 w-px bg-[#C3CAD5]" />
-              <span>Home Care</span>
-              <span aria-hidden className="h-3 w-px bg-[#C3CAD5]" />
-              <span>Aged Care</span>
-            </motion.p>
+        <div className="absolute -left-40 -top-56 h-[620px] w-[620px] rounded-full bg-brand-500/20 blur-[130px]" />
+        <div className="absolute -bottom-72 -right-40 h-[560px] w-[560px] rounded-full bg-signal-600/10 blur-[140px]" />
+      </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.08 }}
-              className={`${DISPLAY} mt-6 text-[46px] text-[#0B0E14] sm:text-[60px] lg:text-[74px]`}
-            >
-              A provider&apos;s world has two halves that aren&apos;t the
-              care itself.{" "}
-              <span className="text-[#003DDB]">We run both.</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.2 }}
-              className="mt-6 max-w-[560px] text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]"
-            >
-              Two offers for Australian NDIS, home care and aged care
-              providers. One partner runs your operation. The other builds and
-              backs your workforce. Onshore people, our own platforms, and a
-              named Australian company answerable for the outcome. Alongside
-              your team, not instead of them.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.32 }}
-              className="mt-9 flex flex-col gap-3 sm:flex-row"
-            >
-              <a href="#book" className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-                Book a Desk Review
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </a>
-              <a href="#how" className={`${BTN_GHOST} w-full sm:w-auto`}>
-                See how it works
-              </a>
-            </motion.div>
-
-            {/* Trust line as a two row readout. The figures share a fixed
-                column so they align on the decimal, which is why this is
-                not a wrapping inline sentence with a dangling divider. */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="mt-10 max-w-[452px] border-t border-[#E3E6EC]"
-            >
-              <div className="flex items-center gap-3 border-b border-[#EDEFF3] py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
-              >
-                <Star
-                  className="h-3.5 w-3.5 shrink-0 fill-[#003DDB] text-[#003DDB]"
-                  aria-hidden
-                />
-                <span
-                  className={`${NUM} w-[46px] shrink-0 text-[15px] font-semibold text-[#0B0E14]`}
-                >
-                  4.9/5
-                </span>
-                <span className="text-[13px] text-[#5B6472]">
-                  from 77+ independent client reviews
-                </span>
-              </div>
-              <div className="flex items-center gap-3 py-3">
-                <span aria-hidden className="h-3.5 w-3.5 shrink-0" />
-                <span
-                  className={`${NUM} w-[46px] shrink-0 text-[15px] font-semibold text-[#0B0E14]`}
-                >
-                  350+
-                </span>
-                <span className="text-[13px] text-[#5B6472]">
-                  Australian businesses supported
-                </span>
-              </div>
-            </motion.div>
+      <div
+        className={`${FRAME} ${GUTTER} ${HERO_Y} relative border-x border-white/10`}
+      >
+        <div className={RAIL_GRID}>
+          <div aria-hidden className="lg:sticky lg:top-28 lg:self-start">
+            <span className="block h-px w-10 bg-brand-200 lg:mt-3 lg:h-10 lg:w-0.5" />
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
-          >
-            <OperationsSurface />
-          </motion.div>
+          <div className="min-w-0">
+            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              {PROOF_STRIP.map((t) => (
+                <li
+                  key={t}
+                  className={`${MICRO} flex items-center gap-2 text-brand-200`}
+                >
+                  <span aria-hidden className="h-1 w-1 rounded-full bg-brand-200" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+
+            <h1 className={`${D1} mt-9 max-w-display text-white`}>{POSITION}</h1>
+
+            <p className="mt-7 max-w-prose text-base text-white/70">
+              {POSITION_SUB}
+            </p>
+
+            {/* ── THE TWO DOORS. The main event of this page. Each is a
+                whole link, so on a phone a text target becomes a card
+                target. Content comes from the shared AUDIENCES source so
+                the pair cannot drift apart. ── */}
+            <div className="mt-11 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
+              {AUDIENCES.map((a) => (
+                <Link
+                  key={a.slug}
+                  href={a.href}
+                  className="group flex h-full flex-col bg-canvas-raised p-6 transition-colors duration-150 ease-standard hover:bg-[#161C29] md:p-8"
+                >
+                  <span className="flex items-start justify-between gap-3">
+                    <span className={`${D2} text-white`}>{a.name}</span>
+                    <ArrowRight
+                      aria-hidden
+                      className="mt-1.5 h-5 w-5 shrink-0 text-white/40 transition-[transform,color] duration-150 ease-standard group-hover:translate-x-1 group-hover:text-brand-200"
+                    />
+                  </span>
+                  <span className="mt-3 block text-sm text-white/60">
+                    {a.who}
+                  </span>
+                  <span className="mt-6 flex flex-col gap-2 border-t border-white/10 pt-5">
+                    {offersFor(a.slug).map((o) => (
+                      <span
+                        key={o.href}
+                        className="text-sm font-medium text-white/85"
+                      >
+                        {o.name}
+                      </span>
+                    ))}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <a href="#book" className={BTN_ON_INK}>
+                {CTA_LABEL}
+                <ArrowRight
+                  aria-hidden
+                  className="h-4 w-4 transition-transform duration-150 ease-standard group-hover:translate-x-0.5"
+                />
+              </a>
+              <span className="text-sm text-white/60">
+                <span className={NUM}>30</span> minutes <Dot /> Nothing signed on
+                the call
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -643,51 +194,38 @@ function Hero() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   4 · THE PROBLEM, AS A LOG OF WORK THAT LEFT
+   WHY IT HAPPENS
+   The one argument that is true in both worlds, stated without either
+   world's vocabulary. This is the band that earns the rest of the page,
+   and it is deliberately short: the audience-specific version, with its
+   device, is one click away on each hub.
    ══════════════════════════════════════════════════════════════════ */
 
-const DROPPED = [
-  "It is 4am, a shift just fell over, and someone senior is awake finding cover.",
-  "A worker's screening lapsed three weeks ago and nobody noticed until the roster did.",
-  "The records an auditor will ask for live across a drive, two spreadsheets and one coordinator's memory.",
-];
-
-function Problem() {
+function Mechanism() {
   return (
-    <Band index="01" label="The event" tone="tint">
-      <div className="border-t border-[#E3E6EC]">
-        {DROPPED.map((line, i) => (
-          <AnimatedSection key={line} delay={i * 0.07}>
-            <div className="group grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-6 transition-colors duration-200 hover:bg-white sm:grid-cols-[52px_minmax(0,1fr)_136px] sm:items-center sm:px-3">
-              <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1] sm:pt-0`}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="text-[16px] leading-[1.5] text-[#0B0E14] md:text-[18px]">
-                {line}
-              </p>
-              <span
-                className={`${MICRO} col-start-2 flex items-center gap-1.5 text-[#B4501A] sm:col-start-3 sm:justify-end`}
-              >
-                Left the desk
-                <ArrowUpRight
-                  className="h-3 w-3 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  aria-hidden
-                />
-              </span>
-            </div>
-          </AnimatedSection>
-        ))}
-      </div>
+    <Band index="01" label="Why it happens" tone="tint">
+      <AnimatedSection>
+        <BandHeading>Nobody is doing anything wrong.</BandHeading>
+        <p className="mt-8 max-w-prose text-base text-ink-600">
+          Every business that delivers care has a second business inside it.
+          The phone, the schedule, the hiring, the records, the payroll. None
+          of it is the work you trained for, none of it can be skipped, and all
+          of it arrives while you are busy doing the actual job.
+        </p>
+        <p className="mt-5 max-w-prose text-base text-ink-600">
+          So it gets handed to whoever is nearest. A front desk staffer mid-checkout.
+          A manager holding an on-call phone at four in the morning. Somebody
+          competent, already fully occupied, making the correct decision to
+          deal with the person in front of them first, every single time.
+        </p>
+      </AnimatedSection>
 
-      <AnimatedSection delay={0.12}>
+      <AnimatedSection delay={0.08}>
         <p
-          className={`${DISPLAY} mt-10 max-w-[940px] text-[28px] text-[#0B0E14] sm:text-[36px] md:text-[44px]`}
+          className={`${D4} mt-12 max-w-headline border-l-2 border-brand-500 pl-6 text-ink-950`}
         >
-          Different businesses, same event: work that reached the desk and
-          left.{" "}
-          <span className="text-[#003DDB]">
-            The desk is a 168-hour job staffed for 38.
-          </span>
+          It is structural, not a staffing failure, and it does not get solved
+          by asking the same people to try harder.
         </p>
       </AnimatedSection>
     </Band>
@@ -695,403 +233,87 @@ function Problem() {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   5 · THE WEEK, DRAWN
-   168 hours against the 38 a standard full-time desk covers.
-   Mon to Thu 9 to 5 plus Fri 9 to 3. Arithmetic, not a statistic, so
-   the slot where a source would sit says exactly that.
+   THE TWO DOORS, AT FULL WIDTH
+   The fold carries them as a choice. This band carries them as an
+   explanation, for the visitor who scrolled instead of clicking.
    ══════════════════════════════════════════════════════════════════ */
 
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
-const STAFFED: Record<number, [number, number]> = {
-  0: [9, 17],
-  1: [9, 17],
-  2: [9, 17],
-  3: [9, 17],
-  4: [9, 15],
-};
-const HOUR_TICKS = [0, 6, 12, 18];
-
-function WeekSurface() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const reduced = useReducedMotion();
-
-  const total = useCountUp(168, inView);
-  const covered = useCountUp(38, inView);
-  const uncovered = useCountUp(130, inView);
-
+function Doors() {
   return (
-    <div ref={ref}>
-      {/* the three figures */}
-      <div className="grid gap-px overflow-hidden rounded-[12px] border border-white/[0.09] bg-white/[0.09] sm:grid-cols-3">
-        {[
-          { v: total, k: "Hours the work arrives", tone: "plain" },
-          { v: covered, k: "Hours the desk is staffed", tone: "blue" },
-          { v: uncovered, k: "Hours nobody is at the desk", tone: "plain" },
-        ].map((cell) => (
-          <div key={cell.k} className="bg-[#0A0D14] px-6 py-7">
-            <p
-              className={`${NUM} text-[52px] font-medium leading-none md:text-[64px] ${
-                cell.tone === "blue" ? "text-[#3A6CFF]" : "text-white"
-              }`}
-            >
-              {cell.v}
-            </p>
-            <p className={`${MICRO} mt-3 text-white/45`}>{cell.k}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* the grid */}
-      <div className="mt-4 rounded-[12px] border border-white/[0.09] bg-[#111621] p-5 md:p-7">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-          <span className={`${MICRO} text-white/45`}>
-            One week <span className="text-white/20">·</span> 7 days{" "}
-            <span className="text-white/20">·</span> 24 hours
-          </span>
-          <span className="flex items-center gap-4">
-            <span className={`${MICRO} flex items-center gap-2 text-white/45`}>
-              <span
-                aria-hidden
-                className="h-[10px] w-[10px] rounded-[2px] bg-[#3A6CFF]"
-              />
-              Staffed
-            </span>
-            <span className={`${MICRO} flex items-center gap-2 text-white/45`}>
-              <span
-                aria-hidden
-                className="h-[10px] w-[10px] rounded-[2px] bg-white/[0.05] ring-1 ring-inset ring-white/[0.09]"
-              />
-              Not staffed
-            </span>
-          </span>
-        </div>
-
-        {/* hour axis */}
-        <div className="mb-2 flex items-center gap-2 md:gap-3">
-          <span className="w-8 shrink-0 md:w-10" />
-          <div className="relative h-3 flex-1">
-            {HOUR_TICKS.map((h) => (
-              <span
-                key={h}
-                className={`${MICRO_SM} ${NUM} absolute top-0 text-white/25`}
-                style={{ left: `${(h / 24) * 100}%` }}
-              >
-                {String(h).padStart(2, "0")}
-              </span>
-            ))}
-          </div>
-          <span className={`${MICRO_SM} w-8 shrink-0 text-right text-white/25`}>
-            Hrs
-          </span>
-        </div>
-
-        {/* rows */}
-        <div className="space-y-[3px]">
-          {DAYS.map((day, d) => {
-            const range = STAFFED[d];
-            const dayTotal = range ? range[1] - range[0] : 0;
-            return (
-              <div key={day} className="flex items-center gap-2 md:gap-3">
-                <span
-                  className={`${MICRO_SM} w-8 shrink-0 text-white/40 md:w-10`}
-                >
-                  {day}
-                </span>
-                <div className="flex flex-1 gap-[2px] md:gap-[3px]">
-                  {Array.from({ length: 24 }).map((_, h) => {
-                    const on = !!range && h >= range[0] && h < range[1];
-                    return (
-                      <motion.span
-                        key={h}
-                        initial={{ opacity: reduced ? 1 : 0 }}
-                        animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                        transition={{
-                          duration: 0.28,
-                          delay: reduced ? 0 : (d * 24 + h) * 0.0035,
-                        }}
-                        className={`h-[14px] flex-1 rounded-[2px] md:h-[18px] ${
-                          on
-                            ? "bg-[#3A6CFF] shadow-[0_0_10px_-2px_rgba(58,108,255,0.7)]"
-                            : "bg-white/[0.045] ring-1 ring-inset ring-white/[0.07]"
-                        }`}
-                      />
-                    );
-                  })}
-                </div>
-                <span
-                  className={`${NUM} w-8 shrink-0 text-right text-[12px] ${
-                    dayTotal ? "text-white/70" : "text-white/20"
-                  }`}
-                >
-                  {dayTotal}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-white/[0.08] pt-5">
-          <p className="max-w-[560px] text-[14px] leading-relaxed text-white/70">
-            Mon to Thu 9 to 5, Fri 9 to 3.
-          </p>
-          {/* where a source would sit on any other number */}
-          <span className={`${MICRO_SM} text-white/30`}>
-            Arithmetic, not a statistic
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   6 · THE TWO DESKS
-   ══════════════════════════════════════════════════════════════════ */
-
-const DESKS = [
-  {
-    index: "01",
-    eyebrow: "Runs your operation",
-    title: "The Operations Partner",
-    body: "The after-hours line answered by a person, roster and call-off coordination inside your own systems and against your own rules, intake administration, and the statutory records kept continuously to the seven-year standard. A structured handover lands every morning: what happened, who was contacted, what is covered, what needs a decision.",
-    href: "/operations-partner",
-    cta: "See the Operations Partner",
-  },
-  {
-    index: "02",
-    eyebrow: "Builds and backs your workforce",
-    title: "The Workforce Partner",
-    body: "Recruitment run as a continuous function for your own team, with every hiring decision yours. Onboarding administration, induction and training records kept current, and a pool of pre-screened independent workers you engage directly for the moments a shift cannot be filled from your own people.",
-    href: "/workforce-partner",
-    cta: "See the Workforce Partner",
-  },
-];
-
-function TwoDesks() {
-  return (
-    <Band id="desks" index="03" label="Two desks">
-      <div className="grid gap-4 md:grid-cols-2">
-        {DESKS.map((d, i) => (
-          <AnimatedSection key={d.href} delay={i * 0.08} className="h-full">
-            <a
-              href={d.href}
-              className="group flex h-full flex-col overflow-hidden rounded-[12px] border border-[#E3E6EC] bg-white transition-colors duration-200 hover:border-[#003DDB]/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
-            >
-              {/* panel chrome */}
-              <div className="flex items-center justify-between gap-3 border-b border-[#E3E6EC] bg-[#F7F8FA] px-5 py-3 transition-colors duration-200 group-hover:bg-[#F1F4FB]">
-                <span className={`${MICRO} flex items-center gap-2.5`}>
-                  <span className={`${NUM} text-[#9AA3B1]`}>{d.index}</span>
-                  <span aria-hidden className="h-3 w-px bg-[#D3D8E2]" />
-                  <span className="text-[#003DDB]">{d.eyebrow}</span>
-                </span>
-                {/* A route reads as a route, so it stays lower case. */}
-                <span
-                  className={`${MICRO_SM} hidden normal-case tracking-[0.06em] text-[#9AA3B1] sm:block`}
-                >
-                  {d.href}
-                </span>
-              </div>
-
-              <div className="flex flex-1 flex-col p-6 md:p-8">
-                <h3
-                  className={`${DISPLAY} text-[32px] text-[#0B0E14] md:text-[40px]`}
-                >
-                  {d.title}
-                </h3>
-                <p className="mt-5 flex-1 text-[15px] leading-[1.62] text-[#454E5C]">
-                  {d.body}
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between gap-3 border-t border-[#E3E6EC] px-6 py-4 md:px-8">
-                <span className="text-[14px] font-semibold text-[#003DDB]">
-                  {d.cta}
-                </span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-[6px] border border-[#E3E6EC] transition-colors duration-200 group-hover:border-[#003DDB] group-hover:bg-[#003DDB]">
-                  <ArrowRight
-                    className="h-4 w-4 text-[#003DDB] transition-colors duration-200 group-hover:text-white"
-                    aria-hidden
-                  />
-                </span>
-              </div>
-            </a>
-          </AnimatedSection>
-        ))}
-      </div>
-
-      {/* Both cards promise the client's own software, so the band names it
-          once, here, where the visitor is choosing between the two desks.
-          A practice owner or a coordination manager scans this line for
-          their own system and stops reading if it is not there. The label
-          is the interface label already used as a proof tag on both offer
-          pages, not new copy. */}
-      <AnimatedSection delay={0.16}>
-        <div className="mt-6 flex flex-col gap-x-6 gap-y-2 border-t border-[#E3E6EC] pt-5 lg:flex-row lg:items-baseline">
-          <span className={`${MICRO} shrink-0 text-[#9AA3B1]`}>
-            Inside your own systems
-          </span>
-          <p className="max-w-[820px] text-[14px] leading-[1.6] text-[#454E5C] md:text-[15px]">
-            ShiftCare, FlowLogic, Brevity, Carelink and whatever else you
-            already run. Nothing migrates, and your systems stay the system of
-            record.
-          </p>
-        </div>
+    <Band index="02" label="Which half you are">
+      <AnimatedSection>
+        <BandHeading>Two audiences. Four desks. One boundary.</BandHeading>
+        <p className="mt-8 max-w-prose text-base text-ink-600">
+          The work that keeps a practice running and the work that keeps a care
+          service running are not the same work, so they do not get the same
+          pages. Pick the half you are in and everything after it is written
+          for you.
+        </p>
       </AnimatedSection>
-    </Band>
-  );
-}
 
-/* ══════════════════════════════════════════════════════════════════
-   7 · HOW IT WORKS
-   ══════════════════════════════════════════════════════════════════ */
-
-const STEPS = [
-  {
-    n: "01",
-    title: "The review",
-    body: "We map your call, call-off and coordination workload, and what it is costing you today.",
-  },
-  {
-    n: "02",
-    title: "The baseline",
-    body: "Week one. We measure your current numbers inside your own systems, before we change anything.",
-  },
-  {
-    n: "03",
-    title: "The desk runs",
-    body: "We take the workload, and the monthly report shows every call, escalation, cover arranged and event from day one.",
-  },
-];
-
-function HowItWorks() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <Band id="how" index="04" label="How it works" tone="tint">
-      <div ref={ref} className="relative">
-        {/* the rail, drawn once on entry */}
-        <span
-          aria-hidden
-          className="absolute left-0 right-0 top-[10px] hidden h-px bg-[#DCE0E8] md:block"
-        />
-        <motion.span
-          aria-hidden
-          initial={{ scaleX: 0 }}
-          animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
-          transition={{ duration: 1.1, ease: [0.25, 0.4, 0.25, 1] }}
-          style={{ transformOrigin: "left" }}
-          className="absolute left-0 right-0 top-[10px] hidden h-px bg-[#003DDB] md:block"
-        />
-
-        <div className="grid gap-10 md:grid-cols-3 md:gap-8">
-          {STEPS.map((s, i) => (
-            <div key={s.n} className="relative md:pt-9">
-              <motion.span
+      <div className="mt-12 grid gap-px overflow-hidden rounded-lg bg-ink-200 shadow-raise md:grid-cols-2">
+        {AUDIENCES.map((a) => (
+          <Link
+            key={a.slug}
+            href={a.href}
+            className="group flex h-full flex-col bg-white p-7 transition-colors duration-150 ease-standard hover:bg-brand-50 md:p-9"
+          >
+            <span className={`${MICRO} text-brand-500`}>{a.name}</span>
+            <span className="mt-4 max-w-prose text-base text-ink-950">
+              {a.who}
+            </span>
+            <span className="mt-6 block max-w-prose text-base text-ink-600">
+              {a.moment}
+            </span>
+            <span className="mt-7 flex flex-col gap-3 border-t border-ink-100 pt-6">
+              {offersFor(a.slug).map((o) => (
+                <span key={o.href} className="block">
+                  <span className="block text-sm font-semibold text-ink-950">
+                    {o.name}
+                  </span>
+                  <span className="mt-1 block text-sm text-ink-600">
+                    {o.summary}
+                  </span>
+                </span>
+              ))}
+            </span>
+            <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-500">
+              {a.name}
+              <ArrowRight
                 aria-hidden
-                initial={{ scale: 0 }}
-                animate={inView ? { scale: 1 } : { scale: 0 }}
-                transition={{ duration: 0.3, delay: 0.3 + i * 0.3 }}
-                className="absolute left-0 top-[6px] hidden h-[9px] w-[9px] rotate-45 border border-[#003DDB] bg-[#F7F8FA] md:block"
+                className="h-4 w-4 transition-transform duration-150 ease-standard group-hover:translate-x-0.5"
               />
-              <p
-                className={`${NUM} text-[64px] font-medium leading-none text-[#EDEFF3] md:text-[76px] [-webkit-text-stroke:1px_#D3D8E2]`}
-              >
-                {s.n}
-              </p>
-              <h3 className="mt-4 text-[19px] font-semibold tracking-tight text-[#0B0E14] md:text-[21px]">
-                {s.title}
-              </h3>
-              <p className="mt-3 max-w-[380px] text-[15px] leading-[1.62] text-[#454E5C]">
-                {s.body}
-              </p>
-            </div>
-          ))}
-        </div>
+            </span>
+          </Link>
+        ))}
       </div>
     </Band>
   );
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   8 · WHAT WE DON'T DO
-   Restructured 2026-09-01 to the pattern both offer pages already use:
-   the two "out of scope" sentences are lifted, word for word, into the
-   standing paragraph under the heading, and the numbered rows carry the
-   hard boundaries stated AS boundaries. Nothing was cut. The rows are
-   where a cautious reader and their lawyer look first, so the three
-   rules added here are the three this page previously only implied: the
-   no-triage rule in full, the fact that duty of care does not move in a
-   care setting, and who owns the recall interval in a clinic.
-
-   Row 03 is the one a reader will not expect and is the reason it is
-   here. Everything about how this market is paid pushes a contractor to
-   over-ring a recall list. Saying out loud that the interval belongs to
-   the practitioner is the difference between an operations desk and a
-   call centre. The tags are interface labels only, and they are the
-   same label set both offer pages use.
+   BOUNDARIES
+   Only the four that hold for BOTH audiences. The audience-specific
+   ones live on the hubs, where they can use that audience's words.
    ══════════════════════════════════════════════════════════════════ */
-
-const SCOPE_STANDING =
-  "Nothing clinical: no triage, no advice. Urgent matters route straight to your team under an agreed protocol. Nothing that is the care itself: every decision that turns on a participant stays with your people.";
-
-const BOUNDARIES = [
-  {
-    tag: "Never",
-    body: "We do not triage. We do not assess urgency, and we do not give clinical advice. Anything clinical goes to your on-call clinician or your Authorised Program Officer, under a protocol agreed in writing before we take a single call.",
-  },
-  {
-    tag: "Stays with you",
-    body: "Your duty of care does not transfer. Incident classification and notification stay with you, and what we hand over is a complete, timestamped record to make them with.",
-  },
-  {
-    tag: "Your rules",
-    body: "Coordination follows the cover lists and written rules you give us. Anything outside them is escalated, never decided by us.",
-  },
-  {
-    tag: "Yours",
-    body: "Every hiring decision is yours, and deciding whether a worker suits a particular participant stays with you.",
-  },
-  {
-    tag: "Boundary",
-    body: "We work alongside your team, not instead of them. We never deliver supports or care, and we never hold the participant relationship.",
-  },
-  {
-    tag: "Standing",
-    body: "Onshore team, Australian owned, and your data stays in your own systems.",
-  },
-];
 
 function Boundaries() {
+  const shared = BOUNDARIES.filter((b) => b.audience === "both");
   return (
-    <Band index="05" label="Scope">
+    <Band index="03" label="What we do not do" tone="tint">
       <AnimatedSection>
-        <h3
-          className={`${DISPLAY} max-w-[820px] text-[32px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
-        >
-          What we don&apos;t do.
-        </h3>
-        <p className="mt-6 max-w-[900px] border-l-2 border-[#003DDB] pl-5 text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
-          {SCOPE_STANDING}
+        <BandHeading>The boundaries are the product.</BandHeading>
+        <p className="mt-8 max-w-prose text-base text-ink-600">
+          Not the fine print. These four hold whoever you are and whatever you
+          buy. They are contractual rather than cultural, and they do not move.
         </p>
       </AnimatedSection>
-
-      <div className="mt-10 border-t border-[#D3D8E2]">
-        {BOUNDARIES.map((b, i) => (
-          <AnimatedSection key={b.body} delay={i * 0.05}>
-            <div className="grid grid-cols-[34px_minmax(0,1fr)] items-start gap-x-4 gap-y-3 border-b border-[#E3E6EC] py-5 sm:grid-cols-[52px_minmax(0,1fr)_148px] sm:items-center sm:px-3">
-              <span className={`${MICRO} ${NUM} pt-1 text-[#9AA3B1] sm:pt-0`}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="text-[15px] leading-[1.6] text-[#0B0E14] md:text-[16px]">
-                {b.body}
-              </p>
-              <span
-                className={`${MICRO_SM} col-start-2 justify-self-start rounded-[4px] border border-[#DCE0E8] bg-[#F7F8FA] px-2 py-[3px] text-[#7B8492] sm:col-start-3 sm:justify-self-end`}
-              >
-                {b.tag}
-              </span>
+      <div className="mt-12 border-t border-ink-200">
+        {shared.map((b, i) => (
+          <AnimatedSection key={b.tag} delay={i * 0.04}>
+            <div className="grid grid-cols-1 items-start gap-x-8 gap-y-3 border-b border-ink-100 py-6 sm:grid-cols-[200px_minmax(0,1fr)]">
+              <span className={`${MICRO} pt-1 text-signal-600`}>{b.tag}</span>
+              <p className="max-w-prose text-base text-ink-950">{b.body}</p>
             </div>
           </AnimatedSection>
         ))}
@@ -1099,293 +321,115 @@ function Boundaries() {
     </Band>
   );
 }
-
-/* ══════════════════════════════════════════════════════════════════
-   9 · ACCESS AND PRIVACY
-   The only NEW band added in the 2026-09-01 pass, and it sits directly
-   after Scope because it is the question both buyers ask second, right
-   after "do you touch the clinical record". Answered as a
-   specification: named logins, least privilege, onshore, a written
-   agreement, and a line in the client's own privacy policy.
-
-   The closing note carries the page's scarce signal colour because it
-   is the one thing on this page most practices and providers do not
-   know: a business that delivers a health service is not covered by the
-   small business exemption from the Privacy Act, whatever its turnover.
-   We state the obligation as THEIRS, and ourselves as working inside
-   it. We never claim a compliance status of our own, and we never claim
-   alignment with a regulator that does not regulate us.
-   ══════════════════════════════════════════════════════════════════ */
-
-const ACCESS_ITEMS = [
-  {
-    key: "Logins",
-    body: "Named coordinators, each with their own login under your own access control. Never a shared account.",
-  },
-  {
-    key: "Permissions",
-    body: "Limited to the parts of your systems the work actually needs.",
-  },
-  {
-    key: "Data",
-    body: "Your information stays in your systems, and stays in Australia.",
-  },
-  {
-    key: "Agreement",
-    body: "Written, and mirrors your obligations under the Australian Privacy Principles.",
-  },
-  {
-    key: "Privacy policy",
-    body: "We can be named in yours as a contracted service provider.",
-  },
-];
-
-function AccessPrivacy() {
-  return (
-    <Band index="06" label="Access and privacy" tone="tint">
-      <AnimatedSection>
-        <h3
-          className={`${DISPLAY} max-w-[820px] text-[32px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
-        >
-          What we can see, and what we cannot.
-        </h3>
-      </AnimatedSection>
-
-      <div className="mt-9 border-t border-[#D3D8E2]">
-        {ACCESS_ITEMS.map((item, i) => (
-          <AnimatedSection key={item.key} delay={i * 0.05}>
-            <div className="grid grid-cols-1 items-start gap-x-6 gap-y-1.5 border-b border-[#E3E6EC] py-5 sm:grid-cols-[168px_minmax(0,1fr)] sm:px-3">
-              <span className={`${MICRO} pt-[3px] text-[#003DDB]`}>
-                {item.key}
-              </span>
-              <p className="text-[15px] leading-[1.62] text-[#0B0E14] md:text-[16px]">
-                {item.body}
-              </p>
-            </div>
-          </AnimatedSection>
-        ))}
-      </div>
-
-      <AnimatedSection delay={0.1}>
-        <div className="mt-10 max-w-[900px] rounded-[12px] border border-[#E3E6EC] bg-white p-6 md:p-7">
-          <h4 className={`${MICRO} text-[#B4501A]`}>
-            The small business exemption
-          </h4>
-          <p className="mt-4 text-[15.5px] leading-[1.62] text-[#0B0E14] md:text-[16.5px]">
-            Providers that deliver a health service do not get the small
-            business exemption from the Privacy Act, whatever their turnover.
-            Your obligations are the ones we work inside.
-          </p>
-        </div>
-      </AnimatedSection>
-    </Band>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   10 · WHY NOW
-   Rendered as a citations table. Every figure prints its source in the
-   same row, which is the whole argument of the section below it.
-   ══════════════════════════════════════════════════════════════════ */
-
-const EVIDENCE = [
-  {
-    figure: "+4.75%",
-    body: "Award wages rose again on 1 July 2026, with superannuation now at 12%. The cost of the next admin hire rises every July.",
-    source: "Fair Work Commission; ATO",
-  },
-  {
-    figure: "46% vs 13%",
-    body: "46% of Australian small businesses grew revenue last year. Only 13% grew headcount.",
-    source: "CPA Australia Asia-Pacific Small Business Survey",
-  },
-];
-
-function WhyNow() {
-  return (
-    <Band index="07" label="Why now">
-      {/* table header */}
-      <div className="hidden grid-cols-[240px_minmax(0,1fr)_220px] gap-6 border-b border-[#D3D8E2] pb-3 lg:grid">
-        <span className={`${MICRO} text-[#9AA3B1]`}>Figure</span>
-        <span className={`${MICRO} text-[#9AA3B1]`}>What it means</span>
-        <span className={`${MICRO} text-[#9AA3B1]`}>Source</span>
-      </div>
-
-      <div className="border-t border-[#D3D8E2] lg:border-t-0">
-        {EVIDENCE.map((e, i) => (
-          <AnimatedSection key={e.figure} delay={i * 0.07}>
-            <div className="grid gap-x-6 gap-y-4 border-b border-[#E3E6EC] py-7 lg:grid-cols-[240px_minmax(0,1fr)_220px] lg:items-start">
-              <p
-                className={`${NUM} text-[28px] font-medium leading-[1.05] text-[#003DDB] md:text-[32px]`}
-              >
-                {e.figure}
-              </p>
-              <p className="text-[15px] leading-[1.62] text-[#0B0E14] md:text-[16px]">
-                {e.body}
-              </p>
-              <div className="lg:text-right">
-                <span className={`${MICRO_SM} block text-[#9AA3B1]`}>
-                  Source
-                </span>
-                <span className="mt-1.5 block text-[13px] leading-snug text-[#5B6472]">
-                  {e.source}
-                </span>
-              </div>
-            </div>
-          </AnimatedSection>
-        ))}
-      </div>
-
-      <AnimatedSection delay={0.15}>
-        <p className="mt-8 max-w-[860px] border-l-2 border-[#003DDB] pl-5 text-[16px] font-medium leading-[1.6] text-[#0B0E14] md:text-[18px]">
-          Before you add the next salary, we&apos;ll benchmark the workload
-          against the actual cost of that hire: your numbers, not industry
-          claims.
-        </p>
-      </AnimatedSection>
-    </Band>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   11 · THE MEASUREMENT PROMISE
-   The schematic beside it is an empty report, not a claim: the four
-   field names are lifted verbatim from the paragraph, values blank.
-   ══════════════════════════════════════════════════════════════════ */
-
-const REPORT_FIELDS = [
-  "Every call and event",
-  "Answered",
-  "Escalated",
-  "Recorded",
-];
-
-function Measurement() {
-  return (
-    <Band index="08" label="Measurement" tone="tint">
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-14">
-        <AnimatedSection>
-          <h3
-            className={`${DISPLAY} max-w-[640px] text-[32px] text-[#0B0E14] sm:text-[40px] md:text-[48px]`}
-          >
-            We won&apos;t quote you an industry statistic.
-          </h3>
-          <p className="mt-6 max-w-[600px] text-[16px] leading-[1.65] text-[#454E5C] md:text-[17px]">
-            We traced this market&apos;s most-quoted numbers to their sources,
-            and most dissolved on contact. So we don&apos;t use them. Instead
-            we measure your desk: every call and event, what was answered,
-            what was escalated and what was recorded, reported monthly.{" "}
-            <span className="font-medium text-[#0B0E14]">
-              Every industry figure on this website carries its source in the same breath.
-            </span>
-          </p>
-        </AnimatedSection>
-
-        <AnimatedSection delay={0.1}>
-          <div className="overflow-hidden rounded-[12px] border border-[#E3E6EC] bg-white">
-            <div className="flex items-center justify-between gap-3 border-b border-[#E3E6EC] bg-[#F7F8FA] px-5 py-3">
-              <span className={`${MICRO} text-[#5B6472]`}>Monthly report</span>
-              <span
-                className={`${MICRO_SM} rounded-[4px] border border-dashed border-[#C3CAD5] px-2 py-[3px] text-[#9AA3B1]`}
-              >
-                Illustrative example
-              </span>
-            </div>
-            {REPORT_FIELDS.map((f) => (
-              <div
-                key={f}
-                className="flex items-center justify-between gap-4 border-b border-[#EDEFF3] px-5 py-4 last:border-b-0"
-              >
-                <span className="text-[14px] text-[#0B0E14]">{f}</span>
-                <span className={`${NUM} text-[14px] text-[#C3CAD5]`}>
-                  ··
-                </span>
-              </div>
-            ))}
-            <div className="border-t border-[#E3E6EC] bg-[#F7F8FA] px-5 py-3">
-              <span className={`${MICRO_SM} text-[#9AA3B1]`}>
-                Measured in your own systems
-              </span>
-            </div>
-          </div>
-        </AnimatedSection>
-      </div>
-    </Band>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   12 · PROOF OF OPERATIONS
-   ══════════════════════════════════════════════════════════════════ */
-
-const PROOF_TAGS = [
-  "Every night of the year",
-  "Inside their systems",
-  "To their escalation protocols",
-  "Structured handover",
-];
 
 function Proof() {
   return (
-    <Band index="09" label="Proof of operations" tone="dark">
+    <Band index="04" label="Proof of operations" tone="dark">
       <AnimatedSection>
-        <p className="max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[20px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
-          This isn&apos;t a proposal. Our desk answers after-hours calls for
-          Australian care providers every night of the year, inside their
-          systems, to their escalation protocols, with a structured handover
-          waiting every morning.
-        </p>
+        <Statement>{OPERATING_PROOF}</Statement>
       </AnimatedSection>
+    </Band>
+  );
+}
 
-      <AnimatedSection delay={0.12}>
-        <div className="mt-10 flex flex-wrap gap-2">
-          {PROOF_TAGS.map((t) => (
-            <span
-              key={t}
-              className={`${MICRO_SM} rounded-[4px] border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-white/55`}
-            >
-              {t}
-            </span>
-          ))}
+function HowItStarts() {
+  return (
+    <Band index="05" label="How it starts" tone="tint">
+      <AnimatedSection>
+        <BandHeading>Inquiring gets you a conversation.</BandHeading>
+      </AnimatedSection>
+      <ol className="mt-12 border-t border-ink-200">
+        {HOW_IT_STARTS.map((s, i) => (
+          <AnimatedSection as="li" key={s.k} delay={i * 0.04}>
+            <div className="grid grid-cols-[44px_minmax(0,1fr)] items-start gap-x-4 border-b border-ink-100 py-6 sm:grid-cols-[44px_180px_minmax(0,1fr)] sm:gap-x-8">
+              <span className={`${MICRO} ${NUM} pt-1 text-ink-400`}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="text-base font-semibold text-ink-950">{s.k}</span>
+              <p className="col-span-2 mt-2 max-w-prose text-base text-ink-600 sm:col-span-1 sm:mt-0">
+                {s.v}
+              </p>
+            </div>
+          </AnimatedSection>
+        ))}
+      </ol>
+      <AnimatedSection delay={0.16}>
+        <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-ink-200 pt-8">
+          <a href="#book" className={BTN_PRIMARY}>
+            {CTA_LABEL}
+            <ArrowRight
+              aria-hidden
+              className="h-4 w-4 transition-transform duration-150 ease-standard group-hover:translate-x-0.5"
+            />
+          </a>
+          <span className="text-sm text-ink-500">
+            Thirty minutes on how your operation runs today.
+          </span>
         </div>
       </AnimatedSection>
     </Band>
   );
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   13 · BOOK A REVIEW
-   ══════════════════════════════════════════════════════════════════ */
+/* Company-level questions only. Anything answerable only in one
+   audience's vocabulary belongs on that audience's offer pages. */
+const FAQ = [
+  {
+    q: "What does Novada actually do?",
+    a: "We run the operational work that sits around the care: the phone, the schedule, the hiring, the records and the payroll. Our own team does it, inside the systems you already run, alongside your people rather than in place of them. We do not deliver care of any kind and we never touch a clinical decision.",
+  },
+  {
+    q: "Is this outsourcing, or is it software?",
+    a: "Neither, and the distinction matters. You are not buying hours and you are not buying a tool you then have to staff. You are handing over a function that somebody answers for, with named coordinators, agreed protocols and a monthly report against a baseline taken before anything changed.",
+  },
+  {
+    q: "Who is actually doing the work?",
+    a: "Named people on our own team, each with their own login under your access control, with permissions limited to the work and revoked the day somebody leaves the role. Never a shared account, never a call centre, and never somebody different every time.",
+  },
+  {
+    q: "What happens on the review call?",
+    a: "Thirty minutes on how your operation actually runs today. You leave with a written assessment of whether this fits, including if it does not. A meaningful proportion conclude that it does not yet, and we say so rather than sell anyway.",
+  },
+];
+
+function Questions() {
+  return (
+    <Band id="faq" index="06" label="Questions">
+      <AnimatedSection>
+        <BandHeading>The questions we get first.</BandHeading>
+      </AnimatedSection>
+      <Faq items={FAQ} openFirst />
+    </Band>
+  );
+}
 
 function FinalCta() {
   return (
-    <section
-      id="book"
-      className="scroll-mt-28 border-t border-white/10 bg-[#0A0D14]"
-    >
-      <div
-        className={`${WRAP} ${PAD} ${BAND} border-x border-white/10`}
-      >
-        <div className="grid gap-8 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
-          <Rail index="10" label="Book" tone="dark" />
+    <section id="book" className="border-t border-white/10 bg-canvas-ink">
+      <div className={`${FRAME} ${GUTTER} ${BAND_Y} border-x border-white/10`}>
+        <div className={RAIL_GRID}>
+          <Rail index="07" label="Book" tone="dark" />
           <div className="min-w-0">
             <AnimatedSection>
-              <h3
-                className={`${DISPLAY} text-[38px] text-white sm:text-[48px] md:text-[58px]`}
-              >
-                Book a review.
+              <h3 className={`${D2} max-w-headline text-white`}>
+                {CTA_LABEL}.
               </h3>
-              <p className="mt-5 max-w-[620px] text-[16px] leading-[1.62] text-white/65 md:text-[17px]">
-                We&apos;ll map your workload and show you exactly what
-                we&apos;d measure in your first 30 days.
+              <p className="mt-6 max-w-prose text-base text-white/70">
+                Thirty minutes on how your operation actually runs. You leave
+                with a written assessment of whether this fits, including if it
+                does not, and a picture of your own numbers before anything
+                changes.
+              </p>
+              <p className="mt-4 max-w-prose text-sm text-white/60">
+                Nothing is signed on the call.
               </p>
             </AnimatedSection>
-
-            <AnimatedSection delay={0.1}>
-              <div className="mt-10 max-w-[940px]">
+            <AnimatedSection delay={0.08}>
+              <div className="mt-12 max-w-[940px]">
                 <BookingEmbed
-                  source="home-page"
-                  title="Book a review with Novada"
+                  source="home-router"
+                  title={`${CTA_LABEL} with Novada`}
+                  tone="dark"
                 />
               </div>
             </AnimatedSection>
@@ -1396,55 +440,25 @@ function FinalCta() {
   );
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   PAGE
-   ══════════════════════════════════════════════════════════════════ */
-
-export default function DesignBHomePage() {
+export default function Page() {
   return (
     <div data-theme="desk" className="min-h-screen bg-white font-sans">
-      <DeskNav />
-      <StatusStrip />
+      {/* No audience prop: on the router the nav lists the two doors. */}
+      <DeskNav tone="dark" />
 
       <main>
         <Hero />
-        <Problem />
-
-        {/* The week, on ink. The thesis line above it, drawn. */}
-        <section className="scroll-mt-28 border-t border-white/10 bg-[#0A0D14]">
-          <div className={`${WRAP} ${PAD} ${BAND} border-x border-white/10`}>
-            <div className="grid gap-8 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
-              <Rail index="02" label="168 / 38" tone="dark" />
-              <div className="min-w-0">
-                <AnimatedSection className="mb-9 max-w-[720px]">
-                  <p className="text-[16px] leading-[1.62] text-white/65 md:text-[17px]">
-                    Every unfilled square is a call that rang out, a
-                    credential that lapsed unnoticed, or a shift that fell
-                    over with nobody on it.
-                  </p>
-                </AnimatedSection>
-                <WeekSurface />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <TwoDesks />
-        <HowItWorks />
+        <Mechanism />
+        <Doors />
         <Boundaries />
-        <AccessPrivacy />
-        <WhyNow />
-        <Measurement />
         <Proof />
-        <HomeFaq />
+        <HowItStarts />
+        <Questions />
         <FinalCta />
       </main>
 
-      <DeskFooter bookHref="#book" />
-      <StickyCta
-        label="Book a Review"
-        tagline="One partner runs your operation. The other builds and backs your workforce."
-      />
+      <DeskFooter />
+      <StickyCta label={CTA_LABEL} tagline={POSITION} />
     </div>
   );
 }

@@ -56,7 +56,18 @@ const SELF_CHROMED_ROUTES = [
 
 // Prefix-matched, for nested dynamic pages.
 // /case-study is the grid; /case-study/[slug] is each individual case.
-const SELF_CHROMED_PREFIXES = ["/case-study"];
+const SELF_CHROMED_PREFIXES = [
+  "/case-study",
+  /* ⚠️ THE TWO DOORS AND EVERYTHING UNDER THEM, added 21 September 2026.
+     These pages carry their own DeskNav and DeskFooter. Without them
+     listed here every one of them shipped with TWO navs and TWO footers,
+     which is the exact failure the comment above warns about and which
+     two legal drafters caught the last time it happened. Prefixes rather
+     than exact routes, so a new page under either door is covered the
+     day it is created. */
+  "/practices",
+  "/care",
+];
 
 export default function ConditionalNav({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

@@ -103,3 +103,79 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 90, 48, 0.5);
 }
+
+:root {
+  /* Ported with the desk system. The reveal transitions below reference it. */
+  --ease-enter: cubic-bezier(0.05, 0.7, 0.1, 1);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   PORTED FROM novadatech.com WITH THE DESK SYSTEM, 21 September 2026.
+
+   ⚠️ These rules are what let a page ship VISIBLE and still animate. The
+   AnimatedSection this replaced was a framer-motion client component
+   driven by useInView, which is false during server rendering, so every
+   wrapped block on this domain server-rendered at opacity:0 and needed
+   hydration to appear. Nothing below hides anything unless <html> has
+   `.anim`, which only the pre-paint script in layout.tsx adds, and only
+   when the reader has not asked for reduced motion.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE REVEAL SYSTEM
+   Content ships VISIBLE in the server HTML. It is hidden only after a
+   pre-paint inline script in <head> has confirmed that motion is wanted
+   and that JavaScript is running, by adding `.anim` to <html>.
+
+   This is not a preference. The previous mechanism was framer-motion
+   with initial={{opacity:0}}, which server-rendered roughly sixty nodes
+   at opacity zero. With JavaScript slow or blocked, which is the normal
+   condition inside an in-app browser on a phone, most of the page was
+   invisible until hydration finished.
+
+   Rules encoded here, all from the brief:
+     · 12px travel, never 40px.
+     · 300ms, decelerating. Nothing a reader waits on.
+     · Reveals once. Never on scroll back up (the observer unobserves).
+     · Nothing above the fold ever carries .reveal.
+     · Reduced motion removes the movement entirely rather than
+       shortening it, and the content stays visible throughout.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.anim .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.anim .reveal.in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 300ms var(--ease-enter) var(--reveal-delay, 0ms),
+    transform 300ms var(--ease-enter) var(--reveal-delay, 0ms);
+}
+
+/* Progressive enhancement only. Where the browser supports scroll-driven
+   animation and JavaScript has not yet reached the element, the reveal
+   still runs off the compositor with no main-thread work at all. The
+   IntersectionObserver path remains the default and the fallback. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .anim .reveal:not(.in) {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 22%;
+    }
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

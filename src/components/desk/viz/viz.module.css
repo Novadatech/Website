@@ -1,0 +1,89 @@
+/*
+ * ══════════════════════════════════════════════════════════════════════
+ * MOTION FOR THE VIZ DEVICES.
+ *
+ * A CSS Module, not globals.css, on purpose: these rules belong to three
+ * components and nothing else on the site should be able to pick them up
+ * by accident, and another agent editing globals.css cannot collide with
+ * them.
+ *
+ * ⚠️ NOTHING IN THIS FILE CAN HIDE CONTENT.
+ *
+ * Every device renders at its FINAL state in the server HTML. There is no
+ * `opacity: 0` outside a keyframe, and every keyframe is gated on BOTH of
+ * these being true:
+ *   1. <html> carries `.anim`, which the pre-paint inline script in
+ *      app/layout.tsx adds only when JavaScript is running and the reader
+ *      has NOT asked for reduced motion; and
+ *   2. the device sits inside a `.reveal` block that RevealRoot's
+ *      observer has already switched to `.in`, i.e. it is on screen.
+ *
+ * So: JavaScript off, reduced motion on, hydration slow, or the device
+ * placed outside a reveal block, and the result is a static, complete,
+ * fully readable diagram. That is the hard constraint in the brief and it
+ * is enforced here structurally rather than by remembering it.
+ *
+ * There is no client JavaScript in any of these components. The observer
+ * that flips `.in` is the one already mounted once in the root layout.
+ * ══════════════════════════════════════════════════════════════════════
+ */
+
+/* ── Device 1, the concurrency grid ───────────────────────────────────
+ * Cells settle in column order, left to right, so the reader watches the
+ * single served cell move down the lanes while the grey ones accumulate.
+ * 12 columns at 34ms is 374ms of stagger plus a 240ms cell, which is
+ * inside the 400ms stagger budget for the object as a whole.
+ *
+ * This is the one place on the site where a per-item stagger past five
+ * siblings is correct: these are not twelve content blocks arriving one
+ * after another, they are one object being drawn, and the drawing is the
+ * argument. ── */
+.cell {
+  transform-origin: center;
+}
+
+:global(.anim) :global(.reveal.in) .cell {
+  animation: cellSettle 240ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+  animation-delay: calc(var(--col, 0) * 34ms);
+}
+
+@keyframes cellSettle {
+  from {
+    opacity: 0.16;
+    transform: scaleY(0.34);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Device 4, the ninety-day window ──────────────────────────────────
+ * One wipe, left to right, 320ms, once. It shows the window being
+ * opened. Nothing else on that device moves. ── */
+.window {
+  clip-path: inset(0 0 0 0);
+}
+
+:global(.anim) :global(.reveal.in) .window {
+  animation: windowWipe 320ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+}
+
+@keyframes windowWipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Belt and braces. `.anim` is never added under reduced motion, and
+   globals.css carries a site-wide guard, but a rule that removes motion
+   should not depend on two other files being correct. */
+@media (prefers-reduced-motion: reduce) {
+  :global(.anim) :global(.reveal.in) .cell,
+  :global(.anim) :global(.reveal.in) .window {
+    animation: none;
+  }
+}

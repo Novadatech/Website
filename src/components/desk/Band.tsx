@@ -1,72 +1,33 @@
 /*
- * Shared Desk layout primitives.
+ * The band: one horizontal section of a Desk page, with the index rail
+ * down its left edge and the continuous hairline frame down both sides.
  *
- * Extracted 2026-09-02, when the four remaining legacy pages (/meetings-3,
- * /assessment-calculator, /case-study and /guarantee-terms) were rebuilt in
- * the Desk visual system. The home page and the two offer pages each carry
- * their own private copy of Band/Rail from the original 2026-08-26 build;
- * those were deliberately NOT touched, because they are the live Desk pages
- * and a refactor there buys nothing but regression risk. New pages import
- * from here instead of forking a fifth copy.
+ * Server components, no state, no motion. Extracted 16 September 2026
+ * from three near-identical private copies in src/app/page.tsx,
+ * src/components/desk/ServicePage.tsx and src/app/why-novada/page.tsx,
+ * which had already drifted apart on padding and on the rail width.
  *
- * No "use client" directive: these are pure presentational components with
- * no hooks or handlers, so they render inside server components too. The
- * case-study detail page depends on that.
- *
- * ── WHAT THIS SYSTEM IS ──────────────────────────────────────────────
- * White canvas. A continuous vertical hairline frame (border-x) that runs
- * unbroken down the whole page, so every band shares one rhythm and the
- * page reads as a single ruled document rather than a stack of cards.
- * A numbered index rail on the left of each band whose micro-caps label IS
- * the section's <h2>. Bold condensed caps for display type. Space Grotesk
- * micro-caps, tabular, for anything instrument-like. Inter for body.
- * #003DDB is the accent. Ink #0A0D14 is reserved for "desk moments", the
- * bands where the product itself is being shown.
- *
- * ⚠️ 12px TYPE FLOOR. Nothing that carries meaning may render below 12px.
- * The rail labels are section headings and are the smallest structural
- * type on any Desk page, so the floor is load-bearing, not cosmetic.
- * The legacy pages these four replaced used 9px, 10px and 11px labels.
+ * ⚠️ THE RAIL LABEL IS THE SECTION'S <h2>. That is the whole heading
+ * structure of a Desk page: h1 in the hero, h2 in each rail, h3 for the
+ * section's display headline, h4 below it. Do not add a competing h2.
  */
 
-import type React from "react";
+import {
+  BAND_Y,
+  BAND_Y_TIGHT,
+  D2,
+  FRAME,
+  GUTTER,
+  /* Aliased: the legacy block at the foot of this file exports MICRO
+     and NUM under their ORIGINAL Space Grotesk definitions, for the six
+     sealed pages that still import them from here. */
+  MICRO as T_MICRO,
+  NUM as T_NUM,
+  RAIL_GRID,
+} from "./tokens";
 
 export type Tone = "light" | "tint" | "dark";
 
-/* Layout. Written as complete class strings so the Tailwind scanner sees
-   the literal arbitrary values. Never interpolate a colour into a class. */
-export const WRAP = "mx-auto w-full max-w-[1240px]";
-export const PAD = "px-5 sm:px-8 lg:px-12";
-export const BAND_Y = "py-16 md:py-24";
-
-/** Micro-caps interface label. Space Grotesk stands in for a technical grotesk. */
-export const MICRO =
-  "font-supply text-[12px] font-medium uppercase tracking-[0.14em]";
-export const MICRO_SM =
-  "font-supply text-[12px] font-medium uppercase tracking-[0.12em]";
-/** Any figure a reader might compare to another figure gets tabular nums. */
-export const NUM = "font-supply tabular-nums";
-
-export const DISPLAY =
-  "font-condensed font-bold uppercase leading-[0.92] tracking-[-0.012em]";
-
-export const BTN_PRIMARY =
-  "group inline-flex items-center justify-center gap-2 rounded-[6px] bg-[#003DDB] px-6 py-3.5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-[#0030AE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
-export const BTN_GHOST =
-  "group inline-flex items-center justify-center gap-2 rounded-[6px] border border-[#D3D8E2] bg-white px-6 py-3.5 text-[14px] font-semibold text-[#0B0E14] transition-colors duration-200 hover:border-[#003DDB] hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
-/** On an ink band the primary button inverts, so it still carries the most weight. */
-export const BTN_ON_INK =
-  "group inline-flex items-center justify-center gap-2 rounded-[6px] bg-white px-6 py-3.5 text-[14px] font-semibold text-[#0A0D14] transition-colors duration-200 hover:bg-[#E8ECF5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0D14]";
-
-export const BODY = "text-[15px] md:text-base leading-relaxed text-[#39424E]";
-export const BODY_ON_INK = "text-[15px] md:text-base leading-relaxed text-white/70";
-
-/**
- * The numbered index rail. Its label is rendered as the section's <h2>,
- * which is why it holds the 12px floor: it is a heading, not a decoration.
- * Sticks alongside the band content on large screens so the reader always
- * knows which section they are in.
- */
 export function Rail({
   index,
   label,
@@ -78,18 +39,20 @@ export function Rail({
 }) {
   const dark = tone === "dark";
   return (
-    <div className="lg:sticky lg:top-24 lg:self-start">
+    <div className="lg:sticky lg:top-28 lg:self-start">
       <div className="flex items-center gap-3 lg:block">
-        <span className={`${MICRO} ${NUM} ${dark ? "text-white/35" : "text-[#9AA3B1]"}`}>
+        <span
+          className={`${T_MICRO} ${T_NUM} ${dark ? "text-white/55" : "text-ink-400"}`}
+        >
           {index}
         </span>
         <span
           aria-hidden
           className={`h-px w-6 lg:my-3 lg:h-6 lg:w-px ${
-            dark ? "bg-white/15" : "bg-[#E3E6EC]"
+            dark ? "bg-white/20" : "bg-ink-200"
           }`}
         />
-        <h2 className={`${MICRO} ${dark ? "text-white/75" : "text-[#0B0E14]"}`}>
+        <h2 className={`${T_MICRO} ${dark ? "text-white/85" : "text-ink-950"}`}>
           {label}
         </h2>
       </div>
@@ -97,39 +60,36 @@ export function Rail({
   );
 }
 
-/**
- * One horizontal band. Carries the continuous vertical hairlines and the
- * rail gutter, which is what makes consecutive bands read as one ruled
- * document instead of a stack of unrelated sections.
- */
 export function Band({
   id,
   index,
   label,
   tone = "light",
+  tight = false,
   children,
 }: {
   id?: string;
   index: string;
   label: string;
   tone?: Tone;
+  tight?: boolean;
   children: React.ReactNode;
 }) {
   const dark = tone === "dark";
   const surface =
     tone === "dark"
-      ? "border-white/10 bg-[#0A0D14]"
+      ? "border-white/10 bg-canvas-ink"
       : tone === "tint"
-        ? "border-[#E3E6EC] bg-[#F7F8FA]"
-        : "border-[#E3E6EC] bg-white";
+        ? "border-ink-100 bg-ink-50"
+        : "border-ink-100 bg-white";
   return (
-    <section id={id} className={`scroll-mt-24 border-t ${surface}`}>
+    <section id={id} className={`border-t ${surface}`}>
       <div
-        className={`${WRAP} ${PAD} ${BAND_Y} border-x ${
-          dark ? "border-white/10" : "border-[#E3E6EC]"
+        className={`${FRAME} ${GUTTER} ${tight ? BAND_Y_TIGHT : BAND_Y} border-x ${
+          dark ? "border-white/10" : "border-ink-100"
         }`}
       >
-        <div className="grid gap-8 lg:grid-cols-[124px_minmax(0,1fr)] lg:gap-12">
+        <div className={RAIL_GRID}>
           <Rail index={index} label={label} tone={tone} />
           <div className="min-w-0">{children}</div>
         </div>
@@ -138,86 +98,70 @@ export function Band({
   );
 }
 
-/**
- * A band with no rail, for full-bleed content that needs the whole
- * measure: a hero, a booking calendar, a closing call to action. Keeps the
- * same vertical hairlines so the frame stays continuous.
- */
-export function PlainBand({
-  id,
-  tone = "light",
-  className = "",
+/** The section's display headline. Always an h3: the rail label is the h2. */
+export function BandHeading({
   children,
+  dark = false,
 }: {
-  id?: string;
-  tone?: Tone;
-  className?: string;
   children: React.ReactNode;
+  dark?: boolean;
 }) {
-  const dark = tone === "dark";
-  const surface =
-    tone === "dark"
-      ? "border-white/10 bg-[#0A0D14]"
-      : tone === "tint"
-        ? "border-[#E3E6EC] bg-[#F7F8FA]"
-        : "border-[#E3E6EC] bg-white";
   return (
-    <section id={id} className={`scroll-mt-24 border-t ${surface}`}>
-      <div
-        className={`${WRAP} ${PAD} ${className || BAND_Y} border-x ${
-          dark ? "border-white/10" : "border-[#E3E6EC]"
-        }`}
-      >
-        {children}
-      </div>
-    </section>
+    <h3 className={`${D2} max-w-headline ${dark ? "text-white" : "text-ink-950"}`}>
+      {children}
+    </h3>
   );
 }
 
 /**
- * Section headline inside a band. Sized to sit under a rail label without
- * competing with the page's single <h1>, so it renders as a <p>: the rail
- * label above it is already the semantic <h2>.
+ * The statement device: a short, heavy sentence on an ink surface with
+ * the brand rule down its left edge. Used for the proof claim and for
+ * the recognisable moment on each service page. Deliberately scarce.
  */
-export function BandTitle({
-  tone = "light",
-  className = "",
-  children,
-}: {
-  tone?: Tone;
-  className?: string;
-  children: React.ReactNode;
-}) {
-  const dark = tone === "dark";
+export function Statement({ children }: { children: React.ReactNode }) {
   return (
-    <p
-      className={`${DISPLAY} text-[30px] sm:text-[38px] md:text-[46px] ${
-        dark ? "text-white" : "text-[#0A0D14]"
-      } ${className}`}
-    >
+    <p className="max-w-statement border-l-2 border-brand-400 pl-6 text-2xl font-medium text-white">
       {children}
     </p>
   );
 }
 
-/** Small sourced/legal note. Never below 12px. */
-export function Note({
-  tone = "light",
-  className = "",
-  children,
-}: {
-  tone?: Tone;
-  className?: string;
-  children: React.ReactNode;
-}) {
-  const dark = tone === "dark";
-  return (
-    <p
-      className={`text-[12px] leading-relaxed ${
-        dark ? "text-white/45" : "text-[#788899]"
-      } ${className}`}
-    >
-      {children}
-    </p>
-  );
-}
+/* ══════════════════════════════════════════════════════════════════════
+   LEGACY TOKENS, AUSTRALIAN DOMAIN ONLY.
+
+   ⚠️ DO NOT USE THESE IN NEW WORK, and do not "tidy" them into the new
+   tokens. They are the ORIGINAL definitions, kept byte for byte, because
+   six pages still import them from this file and must keep rendering
+   exactly as they do today:
+
+     /book                     the shareable booking link
+     /meetings-3               a live paid lander for the Growth
+                               Infrastructure offer (noindex, guarantee
+                               headline). Ads point at it.
+     /confirmed-call           its conversion page
+     /case-study               linked from /confirmed-call
+     /guarantee-terms          the written terms of a live guarantee
+     /assessment-calculator    the after-hours sales-call tool
+
+   Those pages belong to a different business line and are deliberately
+   sealed from the desk architecture rather than rebuilt in it. New desk
+   pages import from @/components/desk/tokens instead.
+
+   ⚠️ MICRO and NUM here are font-supply (Space Grotesk). The desk system
+   uses Inter. That difference is the whole reason these cannot be
+   aliased onto the new tokens.
+   ══════════════════════════════════════════════════════════════════════ */
+
+export const WRAP = "mx-auto w-full max-w-[1240px]";
+export const PAD = "px-5 sm:px-8 lg:px-12";
+export const MICRO =
+  "font-supply text-[12px] font-medium uppercase tracking-[0.14em]";
+export const MICRO_SM =
+  "font-supply text-[12px] font-medium uppercase tracking-[0.12em]";
+export const NUM = "font-supply tabular-nums";
+export const DISPLAY =
+  "font-condensed font-bold uppercase leading-[0.92] tracking-[-0.012em]";
+export const BTN_PRIMARY =
+  "group inline-flex items-center justify-center gap-2 rounded-[6px] bg-[#003DDB] px-6 py-3.5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-[#0030AE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
+export const BTN_GHOST =
+  "group inline-flex items-center justify-center gap-2 rounded-[6px] border border-[#D3D8E2] bg-white px-6 py-3.5 text-[14px] font-semibold text-[#0B0E14] transition-colors duration-200 hover:border-[#003DDB] hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";

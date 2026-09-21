@@ -154,7 +154,7 @@ export function FunnelFooter({
               </span>
             </div>
             {note ? (
-              <p className={`${MICRO_SM} mt-3 text-[#9AA3B1]`}>{note}</p>
+              <p className={`${MICRO_SM} mt-3 text-ink-500`}>{note}</p>
             ) : null}
           </div>
 
@@ -187,10 +187,10 @@ export function FunnelFooter({
         </div>
 
         <div className="mt-8 border-t border-[#E3E6EC] pt-6">
-          <p className={`${MICRO} text-[#9AA3B1]`}>
-            Novada Tech Pty Ltd <span className="text-[#C3CAD5]">·</span> ABN{" "}
+          <p className={`${MICRO} text-ink-500`}>
+            Novada Tech Pty Ltd <span aria-hidden className="text-ink-300">·</span> ABN{" "}
             <span className={NUM}>90 665 134 921</span>{" "}
-            <span className="text-[#C3CAD5]">·</span> ©{" "}
+            <span aria-hidden className="text-ink-300">·</span> ©{" "}
             <span className={NUM}>{year}</span>
           </p>
         </div>

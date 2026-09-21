@@ -51,12 +51,11 @@
  * a second, and a blank bordered box reads as broken.
  * ══════════════════════════════════════════════════════════════════════
  *
- * ⚠️ THE WIDGET'S OWN TITLE AND DESCRIPTION LIVE IN THE BOOKING PLATFORM,
- * NOT HERE, and as of 6 September 2026 they still read "Book An
- * Operations Desk Review" with an operations-only description. That means
- * a Workforce Partner visitor presses "Book a Workforce Review" and is
- * shown the other offer at the moment of commitment. Renaming it is a
- * founder task in the platform; flagged, not fixable from this file.
+ * ⚠️ THIS IS THE CLINIC CALENDAR, and it is a DIFFERENT calendar from the
+ * one the care site uses. Its title in the booking platform reads "Book a
+ * Clinic Desk Review", which matches this site. Do not point this site at
+ * the care calendar or vice versa: they are the only thing separating
+ * clinic bookings from care bookings in the CRM.
  *
  * ⚠️ Snapshot the calendar before any edit there: a partial save silently
  * reverts the duration and the redirect target.
@@ -66,8 +65,19 @@
  */
 
 import { useEffect, useState } from "react";
-import { CARD } from "./tokens";
+import { CARD, MICRO } from "./tokens";
+import { CTA_LABEL } from "@/content/offers";
 
+/* ⚠️ THE AUSTRALIAN CALENDAR, and it is NOT the one .com uses.
+   .com books into 7Jpcos7VK92p2vDDTdvE; this domain books into
+   InaO8Qj92uCQ8BglSMhW.
+
+   ⚠️ OPEN ISSUE: this one calendar is named "Book An Operations
+   Review" and now serves BOTH doors. A practice lead reaching the
+   calendar therefore sees the care offer's name at the exact moment
+   they commit. Renaming it to match CTA_LABEL fixes that and also
+   fixes the pre-existing leak for Workforce leads. Founder decision,
+   not shipped yet. */
 const DESK_CALENDAR_ID = "InaO8Qj92uCQ8BglSMhW";
 const RESIZER_SRC = "https://link.novadatech.com/js/form_embed.js";
 
@@ -89,7 +99,7 @@ function ensureResizer() {
 
 export default function BookingEmbed({
   source,
-  title = "Book a review",
+  title = `${CTA_LABEL} with Novada`,
   tone = "light",
 }: {
   /** CRM attribution: which page produced the booking. */
@@ -115,13 +125,16 @@ export default function BookingEmbed({
 
   const src =
     `https://link.novadatech.com/widget/booking/${DESK_CALENDAR_ID}` +
-    `?utm_source=novadatech.com.au&utm_medium=website&utm_campaign=desk` +
+    `?utm_source=novadatech.com&utm_medium=website&utm_campaign=clinic` +
     `&utm_content=${encodeURIComponent(source)}`;
 
   const dark = tone === "dark";
+  /* Concentric radii: the iframe's own 10px corner sits inside 8px of
+     padding, so the frame is 18px. Mismatched nested corners are the
+     most common reason an interface feels slightly wrong. */
   const frame = dark
-    ? "rounded-xl border border-white/12 bg-white/[0.04] p-2 md:p-3 overflow-hidden"
-    : `${CARD} p-2 md:p-3 overflow-hidden`;
+    ? "overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-2"
+    : `${CARD} overflow-hidden rounded-xl p-2`;
 
   return (
     <div className={frame}>
@@ -130,14 +143,12 @@ export default function BookingEmbed({
         {!loaded ? (
           <div
             aria-hidden
-            className={`absolute inset-0 flex items-center justify-center rounded-lg ${
-              dark ? "bg-white/[0.03]" : "bg-[#F7F8FA]"
+            className={`absolute inset-0 flex items-center justify-center rounded-md ${
+              dark ? "bg-white/[0.03]" : "bg-ink-50"
             }`}
           >
             <span
-              className={`font-supply text-[12px] font-medium uppercase tracking-[0.14em] ${
-                dark ? "text-white/40" : "text-[#9AA3B1]"
-              }`}
+              className={`${MICRO} ${dark ? "text-white/60" : "text-ink-400"}`}
             >
               Loading the calendar
             </span>
@@ -153,6 +164,7 @@ export default function BookingEmbed({
             minHeight: "760px",
             border: "none",
             display: "block",
+            borderRadius: "10px",
           }}
           /* Allows its own scrolling on purpose: if the resizer handshake
              never completes, a scrollable calendar is usable and a clipped
