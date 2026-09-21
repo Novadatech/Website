@@ -47,6 +47,54 @@ function track(event: string) {
   }
 }
 
+/*
+ * ⚠️ THE BOOTSTRAP RUNS HERE, IMMEDIATELY BEFORE THE EVENT, and that is
+ * the whole point of this function.
+ *
+ * The conversion used to live in an inline <Script strategy="afterInteractive">.
+ * When the event gained parameters that depend on the booking source, it
+ * moved into the effect, because the source is only readable from
+ * sessionStorage on the client. That introduced a race nobody could see:
+ * the effect runs BEFORE an afterInteractive script has executed, so
+ * `window.fbq` was still undefined, the optional call no-opped, and NO
+ * BEACON WAS SENT AT ALL. Checking `typeof fbq` a second later showed a
+ * function and made it look fine.
+ *
+ * This is Meta's own snippet. It is idempotent (returns early if fbq
+ * exists) and the stub it installs QUEUES calls until fbevents.js loads,
+ * so the event survives regardless of script ordering.
+ *
+ * ⚠️ Verify this with a network assertion, never by reading the code. The
+ * only proof is a request to facebook.com/tr carrying ev=Schedule.
+ */
+type Fbq = ((...args: unknown[]) => void) & {
+  callMethod?: (...args: unknown[]) => void;
+  queue?: unknown[][];
+  push?: unknown;
+  loaded?: boolean;
+  version?: string;
+};
+
+function ensureFbq(): Fbq | undefined {
+  if (typeof window === "undefined") return undefined;
+  const w = window as unknown as { fbq?: Fbq; _fbq?: Fbq };
+  if (w.fbq) return w.fbq;
+  const n = function (...args: unknown[]) {
+    n.callMethod ? n.callMethod(...args) : n.queue!.push(args);
+  } as Fbq;
+  n.queue = [];
+  n.push = n;
+  n.loaded = true;
+  n.version = "2.0";
+  w.fbq = n;
+  if (!w._fbq) w._fbq = n;
+  const t = document.createElement("script");
+  t.async = true;
+  t.src = "https://connect.facebook.net/en_US/fbevents.js";
+  document.head.appendChild(t);
+  return n;
+}
+
 export default function ReviewConfirmedPage() {
   const [source, setSource] = useState<string | null>(null);
 
@@ -68,13 +116,18 @@ export default function ReviewConfirmedPage() {
           : s?.startsWith("practices")
             ? "practices"
             : "unattributed";
-      const w = window as unknown as { fbq?: (...a: unknown[]) => void };
-      w.fbq?.(
+      const fbq = ensureFbq();
+      fbq?.("init", "3515804598723791");
+      fbq?.(
         "track",
         "Schedule",
         {
           content_name:
-            a === "practices" ? "Practice Desk review" : "Care Desk review",
+            a === "practices"
+              ? "Practice Desk review"
+              : a === "care"
+                ? "Care Desk review"
+                : "Desk review",
           content_category: a,
         },
         {
@@ -165,17 +218,6 @@ gtag('event', 'conversion', {'send_to': 'AW-16650862607/o6ELCPGhgYwcEI-A4IM-'});
 
       {/* Meta Pixel: Schedule. Defensive bootstrap, a no-op if the base pixel
           from layout.tsx already loaded. Repeated init on one ID is deduped. */}
-      <Script id="meta-conversion-review" strategy="afterInteractive">
-        {`!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '3515804598723791');`}
-      </Script>
 
       <DeskNav />
 
