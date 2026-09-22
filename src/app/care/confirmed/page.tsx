@@ -1,28 +1,36 @@
 "use client";
 
 /*
- * /review-confirmed — booking confirmation for the Desk review calendar.
- * Created 2026-08-27, replacing /workforce-confirmed as the redirect target
- * now that the home page and both offer pages all book through the same
- * calendar.
+ * ══════════════════════════════════════════════════════════════════════
+ * /care/confirmed — THE CARE BOOKING CONFIRMATION.
  *
- * ⚠️ CONVERSION TAG OWNERSHIP. Read before touching the Scripts below.
- *   This page fires its OWN Google Ads conversion and Meta Schedule event,
- *   exactly as /workforce-confirmed does. That is deliberate: GTM's
- *   conversion trigger is URL-scoped to /confirmed-call only, so a page
- *   outside that scope must fire its own or the booking goes uncounted.
- *   NEVER add this URL to the GTM conversion trigger, or every booking
- *   double-counts. Label o6ELCPGhgYwcEI-A4IM- is the live conversion
- *   action; the old YmXMCIr3pYocEI-A4IM- label is dead.
- *   Verify presence by grepping the deployed JS chunk, never by loading
- *   this page in a browser: loading it fires a real conversion.
+ * Reached only by the care calendar's redirect (InaO8Qj92uCQ8BglSMhW).
+ * It replaced the shared /review-confirmed, which had to hedge because
+ * it served both offers at once.
  *
- * ⚠️ /workforce-confirmed is intentionally left in place. It still serves
- *   /workforce and /workforce-2, which the founder will either repoint or
- *   retire later. Do not delete it without checking those two pages.
+ * ⚠️ THE OFFER IS FIXED BY THE URL. Every visitor here booked a care
+ * review, so this page never guesses the audience.
  *
- * Serves any booker: the Desk pages set nvt_booking_source, so the next
- * steps adapt. Unknown source falls back to neutral wording.
+ * ⚠️ BUT IT IS STILL MARKET-NEUTRAL, which is a different rule. A
+ * calendar has ONE redirect and the care calendar is embedded on BOTH
+ * domains, so American care bookers land here too. No market spelling,
+ * no roster / schedule, no 000 / 911, and NO PHONE NUMBER: a +61 number
+ * is the strongest "foreign company" signal a US booker can meet. Only
+ * four calendars would lift this.
+ *
+ * ⚠️ THE GOOGLE ADS CONVERSION LIVES HERE, and only here. Label
+ * o6ELCPGhgYwcEI-A4IM-. Loading this page in a browser fires a REAL
+ * conversion. Never add this URL to the GTM conversion trigger, which is
+ * scoped to /confirmed-call, or every booking double-counts.
+ *
+ * ⚠️ It therefore also fires for American care bookers, because they
+ * land here too. That is a known consequence of two calendars, not a
+ * bug to patch on this page.
+ *
+ * `nvt_booking_source` still tailors the DESK within the offer
+ * (operations vs workforce). It is per-origin, so a cross-market booker
+ * arrives without it and gets the offer-level copy.
+ * ══════════════════════════════════════════════════════════════════════
  */
 
 import { useEffect, useState } from "react";
@@ -110,29 +118,18 @@ export default function ReviewConfirmedPage() {
          once this domain gained a practices door it could not be told
          apart by offer either. The URL separates the markets and
          content_category separates the offers. */
-      const a =
-        s === "book-link" || s?.startsWith("care")
-          ? "care"
-          : s?.startsWith("practices")
-            ? "practices"
-            : "unattributed";
       const fbq = ensureFbq();
       fbq?.("init", "3515804598723791");
       fbq?.(
         "track",
         "Schedule",
         {
-          content_name:
-            a === "practices"
-              ? "Practice Desk review"
-              : a === "care"
-                ? "Care Desk review"
-                : "Desk review",
-          content_category: a,
+          content_name: "Care Desk review",
+          content_category: "care",
         },
         {
           eventID:
-            a + "-" + Date.now() + "-" + Math.random().toString(36).slice(2, 10),
+            "care-" + Date.now() + "-" + Math.random().toString(36).slice(2, 10),
         },
       );
     } catch {
@@ -177,34 +174,20 @@ export default function ReviewConfirmedPage() {
    * the part before the first hyphen; "book-link" is the shareable care
    * link, so it counts as care.
    */
-  const audience =
-    source === "book-link" || source?.startsWith("care")
-      ? "care"
-      : source?.startsWith("practices")
-        ? "practices"
-        : null;
 
-  const BACK: Record<string, string> = {
-    "care-operations": "/care/operations",
-    "care-workforce": "/care/workforce",
-    "care-hub": "/care",
-    "book-link": "/care",
-    "practices-patient-access": "/practices/patient-access",
-    "practices-workforce": "/practices/workforce",
-    "practices-hub": "/practices",
-  };
-  const backHref = (source && BACK[source]) || (audience ? `/${audience}` : "/");
+  const desk = source?.includes("workforce")
+    ? "workforce"
+    : source?.includes("operations") || source === "book-link"
+      ? "operations"
+      : null;
+  const backHref = desk ? `/care/${desk}` : "/care";
 
   const numbersLine =
-    source === "care-operations"
-      ? "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your service records currently live. Estimates are fine."
-      : source === "care-workforce" || source === "practices-workforce"
-        ? "Roughly how many people you hire in a year, how long a hire currently takes, and where your screening, onboarding and training records live today. Estimates are fine."
-        : source === "practices-patient-access"
-          ? "Roughly how many calls come in each week, how many of those are new patients, who handles them today, and how much of your recall list actually gets worked. Estimates are fine."
-          : audience === "practices"
-            ? "Roughly how many calls come in each week, how many of those are new patients, who handles them today, and how hiring works at the moment. Estimates are fine."
-            : "Roughly how many after-hours calls and call-offs come in each week, how often you are hiring, and where your records currently live. Estimates are fine.";
+    desk === "workforce"
+      ? "Roughly how many people you hire in a year, how long a hire currently takes, and where your screening, onboarding and training records live today. Estimates are fine."
+      : desk === "operations"
+        ? "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your service records currently live. Estimates are fine."
+        : "Roughly how many after-hours calls and call-offs come in each week, how often you are hiring, and where your records currently live. Estimates are fine.";
 
   return (
     <div data-theme="desk" className="min-h-screen bg-white font-sans">
