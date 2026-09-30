@@ -126,7 +126,11 @@ export default function BookPage() {
             <AnimatedSection>
               <div className="mx-auto max-w-[940px]">
                 <BookingEmbed
-                  audience="care"
+                  /* ⚠️ The shareable link predates the desk split. It points at the
+                     flagship care desk, so a booking from it lands in the
+                     Workforce Ops pipeline. To share a specific desk, send that
+                     desk's own page instead: each now has its own calendar. */
+                  desk="care-operations"
                   source="book-link"
                   title="Book a review with Novada"
                   tone="dark"

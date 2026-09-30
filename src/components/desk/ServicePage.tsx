@@ -31,6 +31,7 @@ import BookingEmbed from "@/components/desk/BookingEmbed";
 import StickyCta from "@/components/desk/StickyCta";
 import Faq from "@/components/desk/Faq";
 import Calculator, { type CalcConfig } from "@/components/desk/Calculator";
+import type { Desk } from "@/components/desk/BookingEmbed";
 import {
   ComplianceHorizon,
   BaselineReport,
@@ -414,7 +415,7 @@ export default function ServicePage(p: ServicePageProps) {
                 <AnimatedSection delay={0.08}>
                   <div className="mt-12 max-w-[940px]">
                     <BookingEmbed
-                      audience={p.offer.audience}
+                      desk={`${p.offer.audience}-${p.offer.slug}` as Desk}
                       source={`${p.offer.audience}-${p.offer.slug}`}
                       title={`${CTA_LABEL} with Novada`}
                       tone="dark"

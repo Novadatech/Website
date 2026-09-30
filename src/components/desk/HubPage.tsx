@@ -31,7 +31,6 @@ import { ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
-import BookingEmbed from "@/components/desk/BookingEmbed";
 import StickyCta from "@/components/desk/StickyCta";
 import { Band, BandHeading, Rail, Statement } from "@/components/desk/Band";
 import {
@@ -377,14 +376,40 @@ export default function HubPage({
                     Nothing is signed on the call.
                   </p>
                 </AnimatedSection>
+                {/* ── NO CALENDAR ON A HUB, and it is the same rule as the
+                    router. Each desk now has its OWN calendar, its own
+                    pipeline and its own confirmation page, so a calendar
+                    placed here would be named for one desk and wrong for
+                    the other at the exact moment of commitment, and the
+                    booking would enter the wrong pipeline. A hub has not
+                    established which desk the reader wants, so it offers
+                    the choice. The calendar is the first thing on the
+                    desk page. ── */}
                 <AnimatedSection delay={0.08}>
-                  <div className="mt-12 max-w-[940px]">
-                    <BookingEmbed
-                      audience={audience.slug}
-                      source={`${audience.slug}-hub`}
-                      title={`${CTA_LABEL} with Novada`}
-                      tone="dark"
-                    />
+                  <div className="mt-12 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
+                    {offers.map((o) => (
+                      <Link
+                        key={o.href}
+                        href={`${o.href}#book`}
+                        className="group flex h-full flex-col bg-canvas-raised p-6 transition-colors duration-150 ease-standard hover:bg-[#161C29] md:p-8"
+                      >
+                        <span className={`${MICRO} text-brand-200`}>
+                          {o.who}
+                        </span>
+                        <span className="mt-3 flex items-start justify-between gap-3">
+                          <span className="text-lg font-semibold text-white">
+                            {o.name}
+                          </span>
+                          <ArrowRight
+                            aria-hidden
+                            className="mt-1 h-5 w-5 shrink-0 text-white/40 transition-[transform,color] duration-150 ease-standard group-hover:translate-x-1 group-hover:text-brand-200"
+                          />
+                        </span>
+                        <span className="mt-3 block text-sm leading-[1.55] text-white/60">
+                          {o.summary}
+                        </span>
+                      </Link>
+                    ))}
                   </div>
                 </AnimatedSection>
               </div>

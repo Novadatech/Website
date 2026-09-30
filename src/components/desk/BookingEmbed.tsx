@@ -70,31 +70,49 @@ import { CTA_LABEL } from "@/content/offers";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
- * ⚠️ THE CALENDAR IS CHOSEN BY AUDIENCE, NOT BY DOMAIN. Both domains use
- * the SAME two calendars, one per offer, confirmed by the founder on
- * 21 September 2026:
+ * ⚠️ ONE CALENDAR PER DESK. Not per offer, and not per domain.
  *
- *   practices  7Jpcos7VK92p2vDDTdvE   "Book a Clinic Desk Review"
- *   care       InaO8Qj92uCQ8BglSMhW   "Book A Care Desk Review"
+ * Both domains load the same four calendars; which one appears is
+ * decided by the DESK the reader is standing on. Each calendar redirects
+ * to its own confirmation page on novadatech.com.au.
  *
- * Before this the calendar was hardcoded per site, so every page on a
- * domain booked into the same calendar whichever door the reader came
- * through. That put a care provider into a calendar named for clinics,
- * and a practice into one named for care, at the exact moment of
- * commitment.
+ *   practices-patient-access  7Jpcos7VK92p2vDDTdvE   Clinic Desk Review
+ *   practices-workforce       7Jpcos7VK92p2vDDTdvE   ⚠️ PLACEHOLDER
+ *   care-operations           InaO8Qj92uCQ8BglSMhW   Care Desk Review
+ *   care-workforce            8J16HJQJHvwiqzmxaEEm   Care Workforce
  *
- * ⚠️ `audience` IS REQUIRED AND HAS NO DEFAULT. A default is how the
- * wrong calendar gets shipped silently: the page compiles, the widget
- * loads, and nothing looks broken until somebody reads the heading on
- * the booking form. Add the prop at the call site.
+ * 🔴 practices-workforce IS STILL POINTING AT THE PATIENT ACCESS
+ * CALENDAR, because its own calendar does not exist yet. A practice
+ * workforce booking therefore lands in the Patient Access Desk pipeline
+ * and its booker sees "Clinic Desk Review" on the form. Swap the ID the
+ * moment the real one arrives; nothing else needs to change.
+ *
+ * ⚠️ `desk` IS REQUIRED AND HAS NO DEFAULT. A default is how the wrong
+ * calendar ships silently: the page compiles, the widget loads, and
+ * nothing looks wrong until somebody reads the heading on the booking
+ * form or a lead turns up in the wrong pipeline.
+ *
+ * ⚠️ A CALENDAR BELONGS TO A DESK, so any page that has NOT established
+ * which desk the reader wants must offer the choice instead of guessing.
+ * That is why the router homepage and both hubs carry two links rather
+ * than an embed.
  *
  * ⚠️ Snapshot a calendar before any edit in the provider's UI: a partial
- * save silently reverts the duration and the redirect target.
+ * save silently reverts the duration and the redirect. The read field is
+ * formSubmitRedirectUrl, the write field is formSubmitRedirectURL.
  * ══════════════════════════════════════════════════════════════════════
  */
-const CALENDARS: Record<"practices" | "care", string> = {
-  practices: "7Jpcos7VK92p2vDDTdvE",
-  care: "InaO8Qj92uCQ8BglSMhW",
+export type Desk =
+  | "practices-patient-access"
+  | "practices-workforce"
+  | "care-operations"
+  | "care-workforce";
+
+const CALENDARS: Record<Desk, string> = {
+  "practices-patient-access": "7Jpcos7VK92p2vDDTdvE",
+  "practices-workforce": "7Jpcos7VK92p2vDDTdvE",
+  "care-operations": "InaO8Qj92uCQ8BglSMhW",
+  "care-workforce": "8J16HJQJHvwiqzmxaEEm",
 };
 const RESIZER_SRC = "https://link.novadatech.com/js/form_embed.js";
 
@@ -115,13 +133,13 @@ function ensureResizer() {
 }
 
 export default function BookingEmbed({
-  audience,
+  desk,
   source,
   title = `${CTA_LABEL} with Novada`,
   tone = "light",
 }: {
-  /** Which offer's calendar to load. Required: see the note above. */
-  audience: "practices" | "care";
+  /** Which desk's calendar to load. Required: see the note above. */
+  desk: Desk;
   /** CRM attribution: which page produced the booking. */
   source: string;
   title?: string;
@@ -144,8 +162,8 @@ export default function BookingEmbed({
   }, [source]);
 
   const src =
-    `https://link.novadatech.com/widget/booking/${CALENDARS[audience]}` +
-    `?utm_source=novadatech.com.au&utm_medium=website&utm_campaign=${audience}` +
+    `https://link.novadatech.com/widget/booking/${CALENDARS[desk]}` +
+    `?utm_source=novadatech.com.au&utm_medium=website&utm_campaign=${desk}` +
     `&utm_content=${encodeURIComponent(source)}`;
 
   const dark = tone === "dark";
@@ -190,7 +208,7 @@ export default function BookingEmbed({
              never completes, a scrollable calendar is usable and a clipped
              one is not. */
           scrolling="auto"
-          id={`${CALENDARS[audience]}_${source}`}
+          id={`${CALENDARS[desk]}_${source}`}
           title={title}
         />
       </div>
