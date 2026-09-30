@@ -2,45 +2,47 @@
 
 /*
  * ══════════════════════════════════════════════════════════════════════
- * THE BOOKING CONFIRMATION. One scaffold, four pages.
+ * THE BOOKING CONFIRMATION. One scaffold, one page per DESK.
  *
- *   novadatech.com/practices/confirmed      US practices
- *   novadatech.com/care/confirmed           US care
- *   novadatech.com.au/practices/confirmed   AU practices
- *   novadatech.com.au/care/confirmed        AU care
+ *   novadatech.com.au/practices/patient-access/confirmed
+ *   novadatech.com.au/practices/workforce/confirmed
+ *   novadatech.com.au/care/operations/confirmed
+ *   novadatech.com.au/care/workforce/confirmed
  *
- * ⚠️ WITH FOUR CALENDARS, EACH PAGE SERVES EXACTLY ONE OFFER AND ONE
- * MARKET. That is what this scaffold is for, and it is what lifts the
- * market-neutral rule these pages used to live under.
+ * ⚠️ THE CALENDARS ARE SPLIT BY DESK, NOT BY MARKET, and all four pages
+ * live on the Australian domain. Read that sentence twice before editing
+ * any copy here, because it is the opposite of what the previous version
+ * of this file assumed.
  *
- * The history matters, because reverting to it would be easy and wrong.
- * With two calendars, one calendar redirect served both domains, so the
- * .com page received Australian bookers and the .com.au page received
- * American ones. Neither could use its own market's words, and both had
- * to carry a neutral fallback for bookers whose sessionStorage did not
- * survive the cross-domain hop.
+ * The consequence: every page serves BOTH markets. An American booker
+ * lands here too, and sessionStorage is per-origin so a .com booker
+ * arrives carrying nothing. THE COPY IS THEREFORE MARKET-NEUTRAL AGAIN.
+ * No market spelling (inquiry / enquiry), no market-specific nouns
+ * (roster / schedule, licence / license, caregiver / support worker),
+ * no 911 / 000, and no phone number. Say the thing both markets say.
  *
- * That is over. Each page now names its own market's regulators, spells
- * in its own market's English, and can carry its own market's contact
- * details. If anyone ever collapses four calendars back to two, the
- * neutrality rule comes back with it.
+ * ⚠️ THE DESK IS FIXED BY THE URL. Each page serves exactly one desk, so
+ * nothing here guesses it from the booking source and there is no
+ * fallback copy to get wrong. That is the whole gain of splitting by
+ * desk rather than by offer.
  *
- * ⚠️ `nvt_booking_source` STILL ONLY TAILORS THE DESK, never the offer.
- * The offer is fixed by the URL. The source is per-origin and now always
- * survives, because the booker never leaves their own domain, but the
- * page must still read correctly without it.
+ * ⚠️ `market` IS PROGRESSIVE ENHANCEMENT AND MAY NEVER ARRIVE. If the
+ * booking widget happens to forward utm_source to the redirect, the page
+ * can quietly use that market's wording. It is UNVERIFIED whether the
+ * provider does forward it, so every page must read correctly on the
+ * neutral copy alone, and the neutral copy is what ships. Never make a
+ * market variant carry information the neutral one lacks.
  *
- * ⚠️ THE CONVERSION FIRES FROM THE EFFECT, and the pixel is bootstrapped
- * there too, immediately before the event. It is NOT in an inline
- * <Script>: the parameters depend on the booking source, which is only
- * readable on the client, and an afterInteractive script has not
- * necessarily run by the time the effect does.
+ * ⚠️ content_category STAYS THE OFFER ("practices" / "care"), because the
+ * Meta custom conversions are defined on it. The DESK goes in
+ * content_name. Do not move the desk into content_category or the
+ * conversions stop matching.
  *
- * ⚠️ HOW TO VERIFY THIS FIRES. Not by grepping the HTML, where it does
- * not appear, and not with request interception, which reports a false
- * negative because fbevents.js uses a transport Playwright's page.route
- * cannot see. Block connect.facebook.net so fbq stays a queueing stub,
- * then read window.fbq.queue.
+ * ⚠️ HOW TO VERIFY THE PIXEL FIRES. Not by grepping the HTML, where it
+ * does not appear, and not with request interception, which reports a
+ * false negative because fbevents.js uses a transport Playwright's
+ * page.route cannot see. Block connect.facebook.net so fbq stays a
+ * queueing stub, then read window.fbq.queue.
  * ══════════════════════════════════════════════════════════════════════
  */
 
@@ -96,17 +98,16 @@ function track(event: string) {
   }
 }
 
+/** Neutral copy is required; the market variants are optional polish. */
+export type Copy = { neutral: string; us?: string; au?: string };
+
 export type ConfirmedPageProps = {
-  /** Fixed by the URL. Never inferred from the booking source. */
+  /** The offer, for content_category. Fixed by the URL. */
   offer: "practices" | "care";
-  /** Meta content_name, e.g. "Practice Desk review". */
+  /** Meta content_name. Names the DESK, e.g. "Operations Desk review". */
   eventName: string;
-  /**
-   * Desk-level tailoring within the offer. Receives the raw booking
-   * source and returns the "have your numbers handy" line. Must return
-   * finished copy when the source is null.
-   */
-  numbersFor: (source: string | null) => string;
+  /** The "have your numbers handy" line. `neutral` must stand alone. */
+  numbers: Copy;
   /** Where "back" goes, and what it is called. */
   backHref: string;
   backLabel: string;
@@ -125,23 +126,28 @@ export type ConfirmedPageProps = {
 export default function ConfirmedPage({
   offer,
   eventName,
-  numbersFor,
+  numbers,
   backHref,
   backLabel,
   contactEmail,
   googleAdsSendTo,
 }: ConfirmedPageProps) {
-  const [source, setSource] = useState<string | null>(null);
+  const [market, setMarket] = useState<"us" | "au" | null>(null);
 
   useEffect(() => {
     track("desk_review_confirmed");
-    let s: string | null = null;
+
+    /* Progressive enhancement only. If the widget forwarded a market
+       hint to the redirect we use that market's wording; if it did not,
+       and it may well not, the neutral copy already reads correctly. */
     try {
-      s = sessionStorage.getItem("nvt_booking_source");
+      const q = new URLSearchParams(window.location.search);
+      const hint = (q.get("market") || q.get("utm_source") || "").toLowerCase();
+      if (hint.includes("com.au") || hint === "au") setMarket("au");
+      else if (hint.includes("novadatech.com") || hint === "us") setMarket("us");
     } catch {
-      /* private browsing: the copy reads correctly without it */
+      /* neutral copy is the correct fallback */
     }
-    setSource(s);
 
     try {
       const fbq = ensureFbq();
@@ -177,7 +183,7 @@ export default function ConfirmedPage({
     {
       icon: ClipboardList,
       title: "Have your numbers handy",
-      body: numbersFor(source),
+      body: (market && numbers[market]) || numbers.neutral,
     },
     {
       icon: FileText,

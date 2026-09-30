@@ -22,16 +22,15 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
-      /* ⚠️ /review-confirmed IS RETIRED, 22 September 2026. Each offer now
-         has its own confirmation page, because the shared one had to hedge
-         its copy between two offers. The calendar redirect has been
-         repointed, but this stays: confirmation links live in sent emails
-         and browser history, and a 404 at the end of a booking is the
-         worst possible place for one.
-
-         ⚠️ Re-opening a confirmation link fires the conversion again. That
-         was already true of the old page; the redirect does not change it. */
-      { source: "/review-confirmed", destination: "/care/confirmed", permanent: true },
+      /* ⚠️ CONFIRMATION PAGES MOVED TO ONE PER DESK, 30 September 2026.
+         Four calendars, split by desk rather than by market, all landing
+         here. The offer-level and shared pages are gone, but old
+         confirmation links live in sent email and browser history, and a
+         404 at the end of a booking is the worst place for one. Each
+         retired URL goes to its offer's flagship desk. */
+      { source: "/review-confirmed", destination: "/care/operations/confirmed", permanent: true },
+      { source: "/care/confirmed", destination: "/care/operations/confirmed", permanent: true },
+      { source: "/practices/confirmed", destination: "/practices/patient-access/confirmed", permanent: true },
       /* ── The Two Partners, 6 September 2026 ──────────────────────
          The company repositioned onto two care-sector offers and the
          clinic offer was separated out entirely. Both old offer URLs

@@ -12,6 +12,10 @@ export default function robots(): MetadataRoute.Robots {
         "/review-confirmed",
         "/practices/confirmed",
         "/care/confirmed",
+        "/practices/patient-access/confirmed",
+        "/practices/workforce/confirmed",
+        "/care/operations/confirmed",
+        "/care/workforce/confirmed",
       ] }],
     sitemap: "https://novadatech.com.au/sitemap.xml",
   };
