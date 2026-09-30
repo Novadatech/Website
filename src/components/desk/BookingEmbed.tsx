@@ -76,16 +76,15 @@ import { CTA_LABEL } from "@/content/offers";
  * decided by the DESK the reader is standing on. Each calendar redirects
  * to its own confirmation page on novadatech.com.au.
  *
- *   practices-patient-access  7Jpcos7VK92p2vDDTdvE   Clinic Desk Review
- *   practices-workforce       7Jpcos7VK92p2vDDTdvE   ⚠️ PLACEHOLDER
- *   care-operations           InaO8Qj92uCQ8BglSMhW   Care Desk Review
- *   care-workforce            8J16HJQJHvwiqzmxaEEm   Care Workforce
+ *   practices-patient-access  7Jpcos7VK92p2vDDTdvE   Patient Access Desk
+ *   practices-workforce       dkDB0IYyu8LRjFdUfsYb   Workforce Practice Desk
+ *   care-operations           InaO8Qj92uCQ8BglSMhW   Operations Desk
+ *   care-workforce            8J16HJQJHvwiqzmxaEEm   Workforce Care Desk
  *
- * 🔴 practices-workforce IS STILL POINTING AT THE PATIENT ACCESS
- * CALENDAR, because its own calendar does not exist yet. A practice
- * workforce booking therefore lands in the Patient Access Desk pipeline
- * and its booker sees "Clinic Desk Review" on the form. Swap the ID the
- * moment the real one arrives; nothing else needs to change.
+ * All four are live and each redirects to its own confirmation page on
+ * novadatech.com.au. Four calendars, four pipelines, four confirmations:
+ * the desk a booking belongs to is now decided once, here, and carried
+ * all the way through.
  *
  * ⚠️ `desk` IS REQUIRED AND HAS NO DEFAULT. A default is how the wrong
  * calendar ships silently: the page compiles, the widget loads, and
@@ -110,7 +109,7 @@ export type Desk =
 
 const CALENDARS: Record<Desk, string> = {
   "practices-patient-access": "7Jpcos7VK92p2vDDTdvE",
-  "practices-workforce": "7Jpcos7VK92p2vDDTdvE",
+  "practices-workforce": "dkDB0IYyu8LRjFdUfsYb",
   "care-operations": "InaO8Qj92uCQ8BglSMhW",
   "care-workforce": "8J16HJQJHvwiqzmxaEEm",
 };
