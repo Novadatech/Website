@@ -106,7 +106,7 @@ const BODY = "text-[15px] leading-[1.75] text-[#454E5C] md:text-[16px]";
 const LINK =
   "text-[#003DDB] underline decoration-[#003DDB]/30 underline-offset-[3px] transition-colors hover:decoration-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
 
-const LAST_UPDATED = "27 August 2026";
+const LAST_UPDATED = "1 October 2026";
 
 /* ══════════════════════════════════════════════════════════════════
    CLAUSE NUMBERING
@@ -306,13 +306,15 @@ const CLAUSES: Clause[] = [
         and aged care. This website describes two service lines.
       </>,
       <>
-        The Operations Partner runs the operation. It covers the after-hours
-        line, roster and call-off coordination, intake administration, and the
-        maintenance of statutory records, worked inside the provider&apos;s own
-        systems, with a structured handover each morning and a monthly report.
+        The Operations Desk runs the operation across the hours a provider
+        operates, which includes but is not limited to after hours. It covers
+        the operations line, roster coordination, call-offs, shift changes and
+        cover, intake and service change administration, and the maintenance of
+        statutory records, worked inside the provider&apos;s own systems, with a
+        structured handover each morning and a monthly report.
       </>,
       <>
-        The Workforce Partner builds and backs the workforce. It covers
+        The Workforce Desk builds and backs the workforce. It covers
         recruitment run as a continuous function for the provider&apos;s own
         team, onboarding administration, induction and training administration,
         and access to a pool of independent workers a provider may engage
@@ -320,7 +322,7 @@ const CLAUSES: Clause[] = [
       </>,
       <>
         Records we maintain on your behalf are kept for the retention period
-        recorded in your services agreement. For the Operations Partner that
+        recorded in your services agreement. For the Operations Desk that
         period is set to a seven year standard, so that it sits with the record
         keeping periods our care sector clients work to. The period that binds
         us is the one written into your services agreement.
@@ -401,7 +403,7 @@ const CLAUSES: Clause[] = [
     subs: [
       <>
         We do not employ, supply, direct or pay the workers who deliver your
-        supports or care. We never have. Where the Workforce Partner performs
+        supports or care. We never have. Where the Workforce Desk performs
         recruitment, we source and screen candidates against criteria you set,
         for your own workforce, and every hiring decision is yours. A worker
         you hire joins your organisation, not ours.
@@ -675,8 +677,10 @@ const CLAUSES: Clause[] = [
         granted.
       </>,
       <>
-        &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;The
-        Operations Partner&rdquo; and &ldquo;The Workforce Partner&rdquo; are used by
+        &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;The Patient
+        Access Desk&rdquo;, &ldquo;The Workforce Desk&rdquo; and &ldquo;The
+        Operations Desk&rdquo;, together with the former names &ldquo;The
+        Operations Partner&rdquo; and &ldquo;The Workforce Partner&rdquo;, are used by
         us as trade marks. You must not use them without our written
         permission, except to refer to us fairly and accurately.
       </>,

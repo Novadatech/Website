@@ -402,4 +402,4 @@ export const HOW_IT_STARTS: { k: string; v: string }[] = [
    boundary refuses that on the same page.
    ══════════════════════════════════════════════════════════════════════ */
 export const OPERATING_PROOF =
-  "Novada already runs a managed desk for care providers, answering calls overnight, every night of the year, inside those providers' own systems and to their own escalation protocols.";
+  "Novada already runs a managed desk for care providers: the phone answered, the roster worked and the record written, through the day and through the night, inside those providers own systems and to their own escalation protocols.";

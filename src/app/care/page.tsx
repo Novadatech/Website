@@ -52,7 +52,7 @@ export default function Page() {
          figures, add them to EVIDENCE in offers.ts, and pass them here. */
       /* The care side is the half of this business that actually operates
          today, so it can say so plainly and in the present tense. */
-      proof="This is the desk Novada already runs, and the overnight is the hardest shift of it. Calls answered every night of the year, inside providers' own systems and to their own escalation protocols, with the night's events written up and waiting in the morning handover. A standard that holds at four in the morning holds at two in the afternoon."
+      proof="This is the desk Novada already runs for providers today. The phone answered, the roster worked and the record written, through the day and through the night, inside those providers' own systems and to their own escalation protocols. The overnight is the hardest shift of it, not the whole of it: a standard that holds at four in the morning holds at two in the afternoon."
     />
   );
 }

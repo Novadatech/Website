@@ -87,7 +87,7 @@ const LINK =
   "text-[#003DDB] underline decoration-[#B9CBFF] underline-offset-[3px] transition-colors hover:decoration-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
 
 /** Effective date. Update this and the version line together. */
-const LAST_UPDATED = "27 August 2026";
+const LAST_UPDATED = "1 October 2026";
 
 /* ══════════════════════════════════════════════════════════════════
    SECTION REGISTER
@@ -246,8 +246,9 @@ function Hero() {
         <p className={`${LEAD} mt-6 max-w-[68ch]`}>
           Novada Tech runs the desk for Australian healthcare businesses. We
           answer calls and enquiries, make and change bookings, coordinate
-          rosters and maintain records, and we do that work inside the systems
-          our clients already run. That means we come into contact with{" "}
+          rosters, administer intake and service changes and maintain records,
+          across the hours our clients operate rather than only after hours, and
+          we do that work inside the systems our clients already run. That means we come into contact with{" "}
           <Key>health information</Key> about their participants, clients and
           residents,
           which Australian privacy law treats as sensitive information and
@@ -630,17 +631,18 @@ export default function PrivacyPolicyPage() {
                     client&apos;s systems
                   </H3>
                   <P>
-                    For the <Key>Operations Partner</Key>, working inside a
+                    For the <Key>Operations Desk</Key>, working inside a
                     provider&apos;s care management platform, this can include:
                     participant, client and resident names and contact details;
-                    service, shift and rostering details; call-off and
-                    availability records; notes and escalations recorded during
-                    after-hours calls; intake administration records; and the
-                    statutory records we maintain on the client&apos;s behalf.
-                    Some of this is health information.
+                    service, shift and rostering details; call-off, shift change
+                    and availability records; notes and escalations recorded
+                    during calls we take at any hour of the day or night; intake
+                    and service change administration records; and the statutory
+                    records we maintain on the client&apos;s behalf. Some of this
+                    is health information.
                   </P>
                   <P>
-                    For the <Key>Workforce Partner</Key>, this can include
+                    For the <Key>Workforce Desk</Key>, this can include
                     candidate and worker names and contact details; work
                     history, qualifications and referee details; onboarding,
                     induction and training records; and screening and
@@ -798,7 +800,7 @@ export default function PrivacyPolicyPage() {
                   <List
                     items={[
                       "answer calls, messages and enquiries for our clients and for ourselves;",
-                      "administer rosters, coordinate call-offs and after-hours cover, process intake administration and maintain the statutory records a client is required to keep;",
+                      "administer rosters, coordinate call-offs, shift changes and cover across the hours a client operates, process intake and service change administration, and maintain the statutory records a client is required to keep;",
                       "source and screen candidates against a client's criteria for the client's own workforce, administer onboarding, and maintain induction, training, screening and credential records;",
                       "verify screening and credentials for workers in the pool, make availability visible to a client, and record the evidence of an engagement a client enters into directly with a worker;",
                       "produce the monthly report we give each client, covering what came in, what we did, what was escalated and what was recorded, measured against the baseline taken at onboarding;",
@@ -829,7 +831,7 @@ export default function PrivacyPolicyPage() {
                         platform, and the analytics and advertising tools in
                         sections {numberOf("tracking")} and{" "}
                         {numberOf("embeds")}.{" "}
-                        Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their after-hours line to, so that calls reach our coordinators. If an engagement ever requires an additional tool, we tell the client before it is introduced.
+                        Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their operations line to, so that calls reach our coordinators. If an engagement ever requires an additional tool, we tell the client before it is introduced.
                       </>,
                       <>
                         <Key>Professional advisers</Key>, such as our
