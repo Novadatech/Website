@@ -41,7 +41,7 @@
 export { default as SingleThreadedDesk } from "./SingleThreadedDesk";
 export { default as ComplianceHorizon } from "./ComplianceHorizon";
 export { default as BaselineReport } from "./BaselineReport";
-export { default as OvernightEvent } from "./OvernightEvent";
+export { default as OperationalEvent } from "./OperationalEvent";
 
 export {
   VizCard,

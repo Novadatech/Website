@@ -21,13 +21,13 @@ import { CARE } from "@/content/offers";
 export const metadata: Metadata = {
   title: "For care providers | Novada",
   description:
-    "Two desks for disability, home care and aged care providers. The Operations Desk answers the after-hours line, arranges cover and writes the record. The Workforce Desk hires, clears and pays the people who do the work.",
+    "Two desks for disability, home care and aged care providers. The Operations Desk runs the phone, the roster, the intake and the records across every hour you operate. The Workforce Desk hires, clears and pays the people who do the work.",
   openGraph: {
     locale: "en_AU",
     siteName: "Novada",
     title: "For care providers | Novada",
     description:
-      "Your overnight covered, your records audit-ready, your people paid. Back office only, nothing clinical.",
+      "Your operation run, your records audit-ready, your people paid. Back office only, nothing clinical.",
     type: "website",
   },
 };
@@ -36,11 +36,11 @@ export default function Page() {
   return (
     <HubPage
       audience={CARE}
-      device="overnight"
+      device="event"
       mechanism={{
-        heading: "The night has no roster.",
+        heading: "The operation runs longer than the office does.",
         body: [
-          "The day is organised. There are coordinators, there is a roster, and there is somebody whose actual job is to answer the phone. None of that is true at four in the morning, and the work does not stop arriving because the office is shut.",
+          "A roster runs across every hour you deliver support. The office that administers it runs from nine to five, on the days it is fully staffed. The work does not stop arriving in the gap, it simply arrives at somebody who already has a job.",
           "So the on-call phone becomes a second job, handed to somebody who already has a first one. They answer it from bed, they find coverage from memory, and they write it up later if the day allows. Nobody is doing anything wrong. The arrangement simply has no capacity in it.",
           "The same thing happens to the workforce queues. Screening, induction records and payroll are continuous work that is almost never anybody's actual role, so an expiry is discovered on the day it removes somebody from a shift.",
           "Turnover is what turns all of this from an irritation into a constraint. Every departure restarts recruitment, screening and induction, and while those queues are full the work you are offered is work you cannot roster.",
@@ -52,7 +52,7 @@ export default function Page() {
          figures, add them to EVIDENCE in offers.ts, and pass them here. */
       /* The care side is the half of this business that actually operates
          today, so it can say so plainly and in the present tense. */
-      proof="This is the desk Novada already runs. Calls answered overnight, every night of the year, inside providers' own systems and to their own escalation protocols, with the night's events waiting in the morning handover."
+      proof="This is the desk Novada already runs, and the overnight is the hardest shift of it. Calls answered every night of the year, inside providers' own systems and to their own escalation protocols, with the night's events written up and waiting in the morning handover. A standard that holds at four in the morning holds at two in the afternoon."
     />
   );
 }

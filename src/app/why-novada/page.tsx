@@ -246,7 +246,7 @@ const DESK_DEFINITION = [
   {
     index: "01",
     key: "The operation",
-    body: "the after-hours line, the roster and the records that have to survive an audit.",
+    body: "the phone, the roster, the intake and the records that have to survive an audit, across every hour you operate.",
   },
   {
     index: "02",
@@ -635,7 +635,7 @@ function Proof() {
     <Band index="03" label="Proof of operations" tone="dark">
       <AnimatedSection>
         <p className="max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[19px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
-          This isn&apos;t a proposal. Our desk answers after-hours calls for
+          This isn&apos;t a proposal. Our desk answers calls for
           Australian care providers every night of the year, inside their
           systems, to their escalation protocols, with a structured handover
           waiting every morning.

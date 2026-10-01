@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     "Two offers for Australian NDIS, home care and aged care providers. One partner runs your operation, the other builds and backs your workforce. Onshore people, our own platforms, and a named Australian company accountable for the outcome.",
   keywords: [
     "managed operations for NDIS providers",
-    "after-hours coordination for care providers",
+    "managed operations for care providers",
     "roster and call-off coordination",
     "care worker onboarding administration",
     "induction and training records for care providers",

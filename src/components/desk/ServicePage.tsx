@@ -35,7 +35,7 @@ import type { Desk } from "@/components/desk/BookingEmbed";
 import {
   ComplianceHorizon,
   BaselineReport,
-  OvernightEvent,
+  OperationalEvent,
 } from "@/components/desk/viz";
 import { Band, BandHeading, Rail, Statement } from "@/components/desk/Band";
 import {
@@ -83,7 +83,7 @@ export type ServicePageProps = {
   /** Which boundary tags this page surfaces, in order. */
   boundaryTags: string[];
   /** Optional device for the mechanism band, by slug. */
-  device?: "compliance" | "overnight" | null;
+  device?: "compliance" | "event" | null;
   /**
    * The assessment calculator for THIS offer.
    *
@@ -250,7 +250,7 @@ export default function ServicePage(p: ServicePageProps) {
                 {p.device === "compliance" ? (
                   <ComplianceHorizon reveal={false} />
                 ) : (
-                  <OvernightEvent reveal={false} />
+                  <OperationalEvent reveal={false} />
                 )}
               </div>
             </AnimatedSection>

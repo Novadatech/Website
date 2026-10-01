@@ -28,9 +28,9 @@ export default function Page() {
       googleAdsSendTo="AW-16650862607/o6ELCPGhgYwcEI-A4IM-"
       numbers={{
         neutral:
-          "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your service records currently live. Estimates are fine.",
-        us: "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your visit records live. Estimates are fine.",
-        au: "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your service records currently live. Estimates are fine.",
+          "Roughly how much comes into your operations line in a typical week and when, who handles it today, and where your records currently live. Estimates are fine.",
+        us: "Roughly how much comes into your operations line in a typical week and when, who handles it today, and where your visit records live. Estimates are fine.",
+        au: "Roughly how much comes into your operations line in a typical week and when, who handles it today, and where your records currently live. Estimates are fine.",
       }}
     />
   );

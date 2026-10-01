@@ -81,7 +81,7 @@ const REASSURANCE = [
   },
   {
     k: "What to bring",
-    v: "Roughly how many after-hours calls and call-offs come in each week, who carries the phone today, and where your worker and service records currently live. Estimates are fine.",
+    v: "Roughly how much comes into your operations line in a typical week, who handles it today, and where your worker and service records currently live. Estimates are fine.",
   },
   {
     k: "What you leave with",

@@ -1,14 +1,14 @@
 /*
  * ══════════════════════════════════════════════════════════════════════
- * DEVICE 4 · ONE OVERNIGHT EVENT, TRACED TO THE MORNING
+ * DEVICE 4 · ONE OPERATIONAL EVENT, TRACED TO THE MORNING
  *
  * The care side's equivalent of the single-threaded desk, and the thing
  * the Operations Desk page has to make a reader believe:
  *
  *     AN ANSWERING SERVICE TAKES A MESSAGE. THE DESK FINISHES THE CALL.
  *
- * THE ARGUMENT, drawn rather than described: one call-off at four in the
- * morning passes through five stages. The on-call phone arrangement
+ * THE ARGUMENT, drawn rather than described: any operational event, at
+ * any hour, passes through the same five stages. The on-call phone arrangement
  * completes the first three, because a woken manager does solve the
  * immediate problem. It is the last two that fall over, and those are
  * the two that exist the next morning. So the difference between the two
@@ -22,7 +22,8 @@
  *
  * ⚠️ THE COMPARISON IS NOT A SLUR ON THE MANAGER. The on-call row is not
  * drawn as failure, it is drawn as a person doing three jobs correctly
- * at four in the morning and then, reasonably, not doing paperwork. The
+ * while already doing another one, and then, reasonably, not doing the
+ * paperwork. The
  * copy must keep saying that. A device that makes the reader's current
  * arrangement look stupid makes the reader defensive, and the reader IS
  * the person holding that phone.
@@ -42,7 +43,8 @@ import { MICRO, MICRO_TIGHT } from "../tokens";
 import { Legend, TableTwin, VizCard, VizNote, SW } from "./Primitives";
 import styles from "./viz.module.css";
 
-/* The five stages one overnight event passes through, in order. Named as
+/* The five stages any operational event passes through, in order, at
+   any hour of the day. Named as
    the work, not as a process diagram's nouns. */
 const STAGES = [
   "Answered",
@@ -79,7 +81,7 @@ const TRACKS: Track[] = [
   },
 ];
 
-export default function OvernightEvent({
+export default function OperationalEvent({
   reveal = true,
   className = "",
 }: {
@@ -90,7 +92,7 @@ export default function OvernightEvent({
     <VizCard
       reveal={reveal}
       className={className}
-      eyebrow="One overnight event, traced"
+      eyebrow="One operational event, traced"
       title="An answering service takes a message. The desk finishes the call."
       tag="A sequence, not a response time"
       footer={
@@ -103,10 +105,12 @@ export default function OvernightEvent({
           />
           <VizNote>
             Five stages in the order they happen, not five minutes and not a
-            record of anything. No timings appear in this diagram because this
+            record of anything. They are the same five whether the event
+            arrives at two in the afternoon or two in the morning. No timings appear in this diagram because this
             site makes no claim about response times. The on-call row is not a
-            failure: it is somebody solving the urgent part correctly at four in
-            the morning and then, reasonably, not writing it up.
+            failure: it is somebody solving the urgent part correctly while
+            already holding another job, and then, reasonably, not writing
+            it up.
           </VizNote>
         </div>
       }
@@ -192,7 +196,7 @@ export default function OvernightEvent({
       </div>
 
       <TableTwin
-        caption="One overnight call-off traced through five stages, comparing the Operations Desk with an on-call phone. Each cell states whether the stage completes."
+        caption="One operational event traced through five stages, comparing the Operations Desk with an on-call phone. Each cell states whether the stage completes."
         head={["Stage", "The Operations Desk", "An on-call phone"]}
         rows={STAGES.map((st, i) => [
           st,

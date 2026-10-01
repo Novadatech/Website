@@ -146,10 +146,10 @@ export const CARE: Audience = {
   href: "/care",
   who: "NDIS, home care and aged care providers running extended or around-the-clock rosters.",
   moment:
-    "A support worker calls off a 6am shift at four in the morning, and somebody senior is awake finding cover.",
-  headline: "Your overnight covered, your records audit-ready, your people paid.",
+    "The operation does not keep office hours. A call-off at four in the morning and a service change at four in the afternoon both need somebody, and neither waits for the person who already has a job.",
+  headline: "Your operation run, your records audit-ready, your people paid.",
   standfirst:
-    "Two desks for care providers, run by our own team inside the systems you already use. The call is answered, the coverage is arranged, the visit record is written, and it is waiting in your morning handover. Back office only, nothing clinical.",
+    "Two desks for care providers, run by our own team inside the systems you already use. The phone answered, the roster worked, the intake handled and every event recorded as it happens, across the hours you actually operate. Back office only, nothing clinical.",
 };
 
 export const AUDIENCES: Audience[] = [PRACTICES, CARE];
@@ -190,6 +190,33 @@ export const PATIENT_ACCESS: Offer = {
   ],
 };
 
+/*
+ * ⚠️ THE OPERATIONS DESK IS A 24/7 OPERATIONS PARTNER, NOT AN
+ * AFTER-HOURS SERVICE. Corrected 1 October 2026.
+ *
+ * The canon has always had TWO modules: After-Hours Continuity and
+ * Managed Workforce Operations, the daytime back office. The site built
+ * only the first and then let it name the whole offer. After hours is
+ * ONE SHIFT of the operation, not the offer.
+ *
+ * WHY IT MATTERS COMMERCIALLY: an after-hours service is bought as
+ * insurance and priced like a phone line. An operations partner is
+ * bought as capacity and judged on whether the operation runs. The
+ * second is the business; the first is a feature of it.
+ *
+ * WHY IT MATTERS NOW: from 1 July 2026 a registered provider must notify
+ * the Commission of certain events and changes by the EARLIER of
+ * becoming aware the change will occur, or it occurring. It used to be
+ * "as soon as practicable" afterwards. An obligation that attaches to
+ * the moment you become aware cannot be served by a desk that is only
+ * awake after five. Source: NDIS (Provider Registration and Practice
+ * Standards) Amendment (Mandatory Registration and Other Matters) Rules
+ * 2026, via ndiscommission.gov.au.
+ *
+ * ⚠️ WE MAINTAIN THE RECORD, WE DO NOT NOTIFY OR REPORT. The obligation
+ * stays with the provider; see the "Not your obligation" boundary. Never
+ * write a line that could be read as us discharging a regulatory duty.
+ */
 export const OPERATIONS: Offer = {
   name: "The Operations Desk",
   slug: "operations",
@@ -197,13 +224,13 @@ export const OPERATIONS: Offer = {
   audience: "care",
   who: "For care providers",
   summary:
-    "The after-hours line, the coverage, the coordination and the visit records that decide whether tonight becomes tomorrow's problem.",
+    "The phone, the roster, the intake and the records that keep your operation running, across every hour you operate rather than only the ones after five.",
   scope: [
-    "The after-hours line answered by a coordinator, not an answering service, in your own name.",
-    "Coverage arranged from your own approved workers and entered straight into your own roster.",
-    "Intake and service-change administration handled inside the systems you already run.",
+    "Your operations line answered by a coordinator in your own name, through the day and through the night. Not a message bank, and never an announcement that the caller has reached an outside service.",
+    "Rostering worked continuously: call-offs, replacements, shift changes and cover arranged from your own approved workers and written straight into your own roster.",
+    "Intake, service agreements and service-change administration handled inside the systems you already run.",
     "Anything needing authority or clinical judgement escalated to your nominated contact, under a matrix agreed in writing before we take a single call.",
-    "Every event logged with timestamps as it happens, so the visit record is written the same night and waiting in your morning handover.",
+    "Every event logged with timestamps as it happens, so your record exists at the moment you become aware rather than being reconstructed afterwards.",
   ],
 };
 

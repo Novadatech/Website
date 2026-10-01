@@ -35,7 +35,7 @@ import StickyCta from "@/components/desk/StickyCta";
 import { Band, BandHeading, Rail, Statement } from "@/components/desk/Band";
 import {
   SingleThreadedDesk,
-  OvernightEvent,
+  OperationalEvent,
 } from "@/components/desk/viz";
 import {
   BAND_Y,
@@ -72,7 +72,7 @@ export type HubPageProps = {
   /** Why the problem exists, and why nobody is at fault. */
   mechanism: { heading: string; body: string[] };
   /** Which device carries the mechanism for this audience. */
-  device: "single-threaded" | "overnight";
+  device: "single-threaded" | "event";
   /** The audience's own proof sentence. */
   proof: string;
   /**
@@ -233,7 +233,7 @@ export default function HubPage({
               {device === "single-threaded" ? (
                 <SingleThreadedDesk reveal={false} />
               ) : (
-                <OvernightEvent reveal={false} />
+                <OperationalEvent reveal={false} />
               )}
             </div>
           </AnimatedSection>
