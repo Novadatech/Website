@@ -91,7 +91,7 @@ export const POSITION = "We run everything except the care.";
 
 /** The sub-line under the position on the router homepage. */
 export const POSITION_SUB =
-  "Two kinds of business, one problem. The work that keeps the place running is not the work you are registrationd to do, and it never stops arriving. We run it, with our own team, inside the systems you already use.";
+  "Two kinds of business, one problem. The work that keeps the place running is not the work you are registered to do, and it never stops arriving. We run it, with our own team, inside the systems you already use.";
 
 /* ══════════════════════════════════════════════════════════════════════
    EVIDENCE
@@ -302,7 +302,7 @@ export const BOUNDARIES: Boundary[] = [
   {
     tag: "Nothing clinical",
     audience: "both",
-    body: "No triage, no assessment of urgency, no advice of any kind. Anything clinical stops with us and goes to your team, under a protocol agreed in writing before we take a single call. All clinical and professional judgement stays with your own registrationd people.",
+    body: "No triage, no assessment of urgency, no advice of any kind. Anything clinical stops with us and goes to your team, under a protocol agreed in writing before we take a single call. All clinical and professional judgement stays with your own registered people.",
   },
   {
     tag: "Alongside, never instead",
