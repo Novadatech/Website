@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import HubPage from "@/components/desk/HubPage";
-import { CARE } from "@/content/offers";
+import { CARE, EVIDENCE } from "@/content/offers";
 
 /*
  * /care — the care provider audience hub.
@@ -46,10 +46,11 @@ export default function Page() {
           "Turnover is what turns all of this from an irritation into a constraint. Every departure restarts recruitment, screening and induction, and while those queues are full the work you are offered is work you cannot roster.",
         ],
       }}
-      /* ⚠️ NO `figures` ON THIS DOMAIN YET. The .com care hub prints two
-         sourced American turnover benchmarks. They describe the American
-         market and may not be re-pointed at this one. Source Australian
-         figures, add them to EVIDENCE in offers.ts, and pass them here. */
+      /* ⚠️ AUSTRALIAN FIGURES, AUSTRALIAN SOURCE. Both come from the NDS
+         Workforce Census Report 2025 and were read out of the primary
+         PDF. The .com care hub prints American benchmarks from a
+         different dataset; the two sets are never interchangeable. */
+      figures={[EVIDENCE.turnover, EVIDENCE.fullTime]}
       /* The care side is the half of this business that actually operates
          today, so it can say so plainly and in the present tense. */
       proof="This is the desk Novada already runs for providers today. The phone answered, the roster worked and the record written, through the day and through the night, inside those providers' own systems and to their own escalation protocols. The overnight is the hardest shift of it, not the whole of it: a standard that holds at four in the morning holds at two in the afternoon."

@@ -31,11 +31,10 @@
  * deliberately the SAME product on both domains: recruit, onboard,
  * induct, keep current, pay. Do not widen it on this domain alone.
  *
- * ⚠️ NO EVIDENCE FIGURES YET ON THIS DOMAIN. The US care argument runs
- * on the Activated Insights turnover benchmark, which is an American
- * dataset and does not describe this market. Australian figures have to
- * be sourced before anything is printed here, so `EVIDENCE` is
- * deliberately empty rather than filled with a borrowed number.
+ * ⚠️ THE EVIDENCE FIGURES HERE ARE AUSTRALIAN AND STAY AUSTRALIAN. The
+ * .com file carries American benchmarks from a different dataset.
+ * Neither set may ever be re-pointed at the other market, however
+ * convenient the number looks.
  * ══════════════════════════════════════════════════════════════════════
  *
  * THE SENTENCE THE WHOLE ESTATE IS BUILT AROUND
@@ -106,10 +105,29 @@ export const POSITION_SUB =
 export type Figure = { value: string; label: string; source: string };
 
 export const EVIDENCE: Record<string, Figure> = {
-  /* ⚠️ DELIBERATELY EMPTY. See the header. The American figures describe
-     the American market and may not be re-pointed at this one. When
-     Australian benchmarks are sourced, add them here and pass them to
-     the care hub's `figures` prop, never inline on a page. */
+  /*
+   * ⚠️ BOTH FIGURES COME FROM ONE REPORT AND WERE READ OUT OF THE PDF,
+   * not from a search result or a software vendor's blog. If either is
+   * ever updated, update both and move the year in the source string.
+   *
+   * ⚠️ THEY DESCRIBE THE DISABILITY WORKFORCE SPECIFICALLY. The care
+   * audience here also includes home care and aged care, so the labels
+   * say "disability support" and must not be widened to imply the
+   * figures cover the whole audience.
+   *
+   * ⚠️ DO NOT RE-POINT THE AMERICAN FIGURES AT THIS MARKET, or these at
+   * that one. The .com file carries its own, from a different dataset.
+   */
+  turnover: {
+    value: "26%",
+    label: "Turnover among casual disability support staff",
+    source: "NDS Workforce Census Report 2025, reporting 2024 data",
+  },
+  fullTime: {
+    value: "11%",
+    label: "Disability support workers in permanent full-time roles",
+    source: "NDS Workforce Census Report 2025, reporting 2024 data",
+  },
 };
 
 /* ══════════════════════════════════════════════════════════════════════
