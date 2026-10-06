@@ -92,7 +92,7 @@ export default function Page() {
         },
         {
           k: "Screening",
-          v: "Background check, registration and exclusion screening currency maintained as events occur rather than assembled under pressure, with expiries tracked ninety days ahead so a renewal is actioned while it is still only admin.",
+          v: "Worker screening, registration and credential currency maintained as events occur rather than assembled under pressure, with expiries tracked ninety days ahead so a renewal is actioned while it is still only admin.",
         },
         {
           k: "Payroll",

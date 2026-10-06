@@ -335,7 +335,7 @@ function HowItStarts() {
   return (
     <Band index="05" label="How it starts" tone="tint">
       <AnimatedSection>
-        <BandHeading>Inquiring gets you a conversation.</BandHeading>
+        <BandHeading>Enquiring gets you a conversation.</BandHeading>
       </AnimatedSection>
       <ol className="mt-12 border-t border-ink-200">
         {HOW_IT_STARTS.map((s, i) => (

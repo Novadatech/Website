@@ -53,14 +53,14 @@ export default function Page() {
       calculator={WORKFORCE_PRACTICES_CALC}
       sibling={PATIENT_ACCESS}
       device="compliance"
-      /* ⚠️ The previous headline, "Hired, onboarded, compliant and paid.",
+      /* ⚠️ The previous headline, "Hired, inducted, compliant and paid.",
          was four past participles with no subject, so the reader's first
          parse was "hired by whom". Worse, "compliant" has no referent on a
          site that may not name a regulator, so the word was doing nothing.
          This one gives the participles a subject and puts the largest
          objection, which is whether this is a staffing agency, into the headline
          where it belongs. */
-      headline="Your people hired, onboarded and paid. You stay the employer."
+      headline="Your people hired, inducted and paid. You stay the employer."
       standfirst="Recruitment, onboarding, onboarding records, credential
         expiries and payroll, run by our team on your own cycle. You choose
         every hire. We own the queues in between, which is where the weeks go."

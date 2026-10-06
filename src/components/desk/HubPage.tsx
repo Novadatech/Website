@@ -321,7 +321,7 @@ export default function HubPage({
         {/* ── HOW IT STARTS ── */}
         <Band index="06" label="How it starts">
           <AnimatedSection>
-            <BandHeading>Inquiring gets you a conversation.</BandHeading>
+            <BandHeading>Enquiring gets you a conversation.</BandHeading>
           </AnimatedSection>
           <ol className="mt-12 border-t border-ink-200">
             {HOW_IT_STARTS.map((s, i) => (
