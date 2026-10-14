@@ -118,7 +118,7 @@ export default function ServicePage(p: ServicePageProps) {
 
   return (
     <div data-theme="desk" className="min-h-screen bg-white font-sans">
-      <DeskNav tone="dark" audience={p.offer.audience} />
+      <DeskNav tone="dark" audience={p.offer.audience} bookHref="#book" />
 
       <main>
         {/* ── HERO. The same graphite fold as the homepage, and for the
@@ -428,7 +428,7 @@ export default function ServicePage(p: ServicePageProps) {
         </section>
       </main>
 
-      <DeskFooter />
+      <DeskFooter bookHref="#book" />
       <StickyCta label={CTA_LABEL} tagline={p.offer.summary} />
     </div>
   );

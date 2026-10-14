@@ -98,7 +98,7 @@ export default function HubPage({
 
   return (
     <div data-theme="desk" className="min-h-screen bg-white font-sans">
-      <DeskNav tone="dark" audience={audience.slug} />
+      <DeskNav tone="dark" audience={audience.slug} bookHref="#book" />
 
       <main>
         {/* ── THE FOLD. Graphite, same as every other entry point on the
@@ -418,7 +418,7 @@ export default function HubPage({
         </section>
       </main>
 
-      <DeskFooter />
+      <DeskFooter bookHref="#book" />
       <StickyCta label={CTA_LABEL} tagline={audience.who} />
     </div>
   );
