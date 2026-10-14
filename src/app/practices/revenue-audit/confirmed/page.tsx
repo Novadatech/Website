@@ -21,9 +21,9 @@ export default function Page() {
   return (
     <ConfirmedPage
       offer="practices"
-      eventName="Practice Workforce Desk review"
-      backHref="/practices/workforce"
-      backLabel="Back to The Workforce Desk"
+      eventName="Revenue audit review"
+      backHref="/practices/revenue-audit"
+      backLabel="Back to the Patient Revenue Leakage Audit"
       contactEmail="support@novadatech.com.au"
       numbers={{
         neutral:

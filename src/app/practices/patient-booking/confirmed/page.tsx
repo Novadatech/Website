@@ -21,9 +21,9 @@ export default function Page() {
   return (
     <ConfirmedPage
       offer="practices"
-      eventName="Patient Access Desk review"
-      backHref="/practices/patient-access"
-      backLabel="Back to The Patient Access Desk"
+      eventName="Patient booking review"
+      backHref="/practices/patient-booking"
+      backLabel="Back to Patient Booking &amp; Retention Continuity"
       contactEmail="support@novadatech.com.au"
       numbers={{
         neutral:

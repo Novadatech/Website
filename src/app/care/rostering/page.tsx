@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import PillarPage from "@/components/care/PillarPage";
+import PillarPage from "@/components/offer/PillarPage";
 import { ROSTERING_CALC } from "@/content/calculators";
 import { CONTINUITY, ROSTERING } from "@/content/offers";
 
@@ -51,6 +51,7 @@ export default function Page() {
       offer={ROSTERING}
       sibling={CONTINUITY}
       desk="care-rostering"
+      audienceLine="For NDIS, home care and aged care providers"
       source="care-rostering"
       headline="Find out where your roster is costing you more than it has to."
       standfirst="We look at your rosters, overtime, agency shifts, travel and worker availability, and show you where avoidable cost is sitting. One piece of work, with findings inside two weeks of getting access."
@@ -124,7 +125,9 @@ export default function Page() {
       }}
       calculator={ROSTERING_CALC}
       calcIntro="We will not invent a figure for you. Here is the sum."
-      calcNote="Both figures ask for the premium, not the whole cost. The shift still has to be covered and the worker still paid. The only avoidable part is the extra you pay to cover it the expensive way."
+      calcNotes={[
+        "Both figures ask for the premium, not the whole cost. The shift still has to be covered and the worker still paid. The only avoidable part is the extra you pay to cover it the expensive way.",
+      ]}
       boundaries={[
         {
           h: "We never recommend less care.",

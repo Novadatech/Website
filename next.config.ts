@@ -45,6 +45,19 @@ const nextConfig: NextConfig = {
          should have. */
       { source: "/patient-access-desk", destination: "/practices/patient-access", permanent: true },
 
+      /* ── The practices offer became two pillars, 14 Oct 2026 ────
+         The Patient Access Desk and the Practice Workforce Desk are
+         retired. The mapping is the founder's: the Revenue Leakage Audit
+         replaced the Workforce Desk and Patient Booking replaced the
+         Patient Access Desk.
+
+         ⚠️ Each source matches ONE path, so the /confirmed children
+         below stay reachable until the calendars are repointed. */
+      { source: "/practices/workforce", destination: "/practices/revenue-audit", permanent: true },
+      { source: "/practices/patient-access", destination: "/practices/patient-booking", permanent: true },
+      { source: "/practices/workforce/confirmed", destination: "/practices/revenue-audit/confirmed", permanent: true },
+      { source: "/practices/patient-access/confirmed", destination: "/practices/patient-booking/confirmed", permanent: true },
+
       /* ── The care offer became two pillars, 14 October 2026 ─────
          The Operations Desk and the Workforce Desk are retired. Rostering
          Audit & Efficiency takes the Operations Desk's traffic, because

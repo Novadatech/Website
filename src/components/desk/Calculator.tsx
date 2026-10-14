@@ -72,7 +72,9 @@ export type CalcKind =
   | "patient-access"
   | "operations"
   | "workforce"
-  | "rostering";
+  | "rostering"
+  | "leakage"
+  | "recall";
 
 export type CalcConfig = {
   kind: CalcKind;
@@ -84,8 +86,28 @@ export type CalcConfig = {
   recovery: CalcField;
   /** What the headline figure counts. */
   resultLabel: string;
-  /** What the recovered figure counts. */
-  recoveredLabel: string;
+  /**
+   * What the recovered figure counts. Optional: where the slider drives
+   * the headline figure itself, a separate recovered line would apply
+   * the percentage twice.
+   */
+  recoveredLabel?: string;
+  /**
+   * ⚠️ THE MARGIN FIELD. When set, a net figure is printed under every
+   * gross figure, using a percentage the READER supplies.
+   *
+   * This exists because the practices brief requires potential gross
+   * appointment revenue to be distinguished from actual profit, and a
+   * disclaimer cannot do that: gross is the number a reader repeats, so
+   * the correction has to sit in the arithmetic beside it.
+   */
+  marginKey?: string;
+  netLabel?: string;
+  recoveredNetLabel?: string;
+  /** A count shown above the money. People, not dollars. */
+  leadLabel?: string;
+  /** Replaces the default honesty label. */
+  footnote?: string;
 };
 
 type V = Record<string, number>;
@@ -93,7 +115,12 @@ type Fmt = { m: (n: number) => string; n: (n: number) => string };
 
 const MATH: Record<
   CalcKind,
-  { annual: (v: V) => number; workings: (v: V, f: Fmt) => string[] }
+  {
+    annual: (v: V) => number;
+    workings: (v: V, f: Fmt) => string[];
+    /** A headcount shown before the money, where one is the point. */
+    lead?: (v: V) => number;
+  }
 > = {
   "patient-access": {
     annual: (v) => v.missed * v.weeks * (v.share / 100) * v.value,
@@ -141,6 +168,47 @@ const MATH: Record<
       ];
     },
   },
+  /*
+   * PATIENT REVENUE LEAKAGE. Unused bookable hours, because that is the
+   * one quantity on the brief's list a practice can count straight off
+   * its own appointment book.
+   */
+  leakage: {
+    annual: (v) => v.hours * v.fee * v.weeks,
+    workings: (v, f) => {
+      const week = v.hours * v.fee;
+      const year = week * v.weeks;
+      return [
+        `${v.hours} hours \u00d7 ${f.m(v.fee)} = ${f.m(week)} of unused appointment time a week`,
+        `${f.m(week)} \u00d7 ${v.weeks} weeks = ${f.m(year)} a year, gross`,
+        `${v.margin}% of ${f.m(year)} = ${f.m(year * (v.margin / 100))} left after the cost of delivering it`,
+      ];
+    },
+  },
+  /*
+   * THE OVERDUE RECALL LIST. A stock of people rather than hours, which
+   * is why it opens with a subtraction instead of a multiplication.
+   *
+   * ⚠️ The slider drives the headline figure here, so this reads the
+   * recovery key straight out of `v`. `vals` carries it, because the
+   * component seeds state from fields AND recovery. Do not also set
+   * `recoveredLabel` on this config or the percentage applies twice.
+   */
+  recall: {
+    lead: (v) => Math.max(0, v.overdue - v.rung),
+    annual: (v) =>
+      Math.max(0, v.overdue - v.rung) * (v.booked / 100) * v.fee,
+    workings: (v, f) => {
+      const left = Math.max(0, v.overdue - v.rung);
+      const appts = left * (v.booked / 100);
+      const gross = appts * v.fee;
+      return [
+        `${v.overdue} overdue, less the ${v.rung} who were rung = ${f.n(left)} nobody has rung`,
+        `${v.booked}% of ${f.n(left)} = ${f.n(Math.round(appts))} appointments \u00d7 ${f.m(v.fee)} = ${f.m(gross)} gross`,
+        `${v.margin}% of ${f.m(gross)} = ${f.m(gross * (v.margin / 100))} left after the cost of delivering them`,
+      ];
+    },
+  },
   workforce: {
     annual: (v) => v.hires * v.open * v.cost,
     workings: (v, f) => {
@@ -181,7 +249,7 @@ export default function Calculator({
   const set = (k: string, n: number) =>
     setVals((v) => ({ ...v, [k]: Number.isFinite(n) ? n : 0 }));
 
-  const { annual, recovered, workings } = useMemo(() => {
+  const { annual, recovered, lead, net, recoveredNet, workings } = useMemo(() => {
     const fmt: Fmt = {
       m: (n: number) => money(n, locale, currency),
       n: (n: number) =>
@@ -190,9 +258,17 @@ export default function Calculator({
     const math = MATH[config.kind];
     const a = math.annual(vals);
     const pct = Math.min(100, Math.max(0, vals[config.recovery.key] ?? 0));
+    /* The reader's own margin. Gross is not money, and the brief requires
+       the page to say so in the arithmetic rather than in a note. */
+    const margin = config.marginKey
+      ? Math.min(100, Math.max(0, vals[config.marginKey] ?? 0)) / 100
+      : null;
     return {
       annual: a,
       recovered: a * (pct / 100),
+      lead: math.lead ? math.lead(vals) : null,
+      net: margin === null ? null : a * margin,
+      recoveredNet: margin === null ? null : a * (pct / 100) * margin,
       workings: math.workings(vals, fmt),
     };
   }, [vals, config, locale, currency]);
@@ -253,10 +329,31 @@ export default function Calculator({
 
         {/* ── THE RESULT, and the arithmetic that produced it. ── */}
         <div className="bg-ink-50 p-5 md:p-7">
+          {/* A count, where people are the point and dollars come second. */}
+          {config.leadLabel && lead !== null ? (
+            <div className="mb-7 border-b border-ink-200 pb-6">
+              <p className={`${MICRO} text-ink-500`}>{config.leadLabel}</p>
+              <p className={`${D1} mt-4 text-ink-950`}>
+                {new Intl.NumberFormat(locale).format(Math.round(lead))}
+              </p>
+            </div>
+          ) : null}
+
           <p className={`${MICRO} text-ink-500`}>{config.resultLabel}</p>
           <p className={`${D1} mt-4 text-ink-950`}>
             {money(annual, locale, currency)}
           </p>
+          {/* ⚠️ THE NET FIGURE IS NOT OPTIONAL WHERE A MARGIN EXISTS. The
+              gross number is the one a reader repeats, so the correction
+              has to sit beside it rather than in the footnote. */}
+          {net !== null && config.netLabel ? (
+            <p className="mt-3 text-sm text-ink-600">
+              {config.netLabel}{" "}
+              <span className="tabular font-semibold text-ink-950">
+                {money(net, locale, currency)}
+              </span>
+            </p>
+          ) : null}
 
           {/* The sum, in full. A reader who does not believe the number
               can check it, which is the point. */}
@@ -295,13 +392,24 @@ export default function Calculator({
                 className="mt-3 h-2 w-full cursor-pointer appearance-none rounded-full bg-ink-200 accent-brand-500"
               />
             </label>
-            <p className="mt-5 text-sm text-ink-600">
-              {config.recoveredLabel}{" "}
-              <span className="tabular font-semibold text-ink-950">
-                {money(recovered, locale, currency)}
-              </span>{" "}
-              a year.
-            </p>
+            {config.recoveredLabel ? (
+              <p className="mt-5 text-sm text-ink-600">
+                {config.recoveredLabel}{" "}
+                <span className="tabular font-semibold text-ink-950">
+                  {money(recovered, locale, currency)}
+                </span>{" "}
+                a year.
+              </p>
+            ) : null}
+            {config.recoveredLabel && recoveredNet !== null
+            && config.recoveredNetLabel ? (
+              <p className="mt-2 text-sm text-ink-600">
+                {config.recoveredNetLabel}{" "}
+                <span className="tabular font-semibold text-ink-950">
+                  {money(recoveredNet, locale, currency)}
+                </span>
+              </p>
+            ) : null}
           </div>
 
           <a
@@ -322,12 +430,8 @@ export default function Calculator({
           statement of what this is and what it is not. ── */}
       <div className="border-t border-ink-100 bg-ink-50 px-5 py-5 md:px-7">
         <p className="max-w-prose text-xs leading-[1.6] text-ink-500">
-          This is your own arithmetic, worked on the figures you just entered.
-          It contains no industry averages and no assumptions of ours, the
-          starting values are placeholders to be overwritten rather than
-          benchmarks, and the second figure is the hypothesis you set, not a
-          result we are promising. Nothing here is a projection of what
-          engaging us would produce.
+          {config.footnote ??
+            "This is your own arithmetic, worked on the figures you just entered. It contains no industry averages and no assumptions of ours, the starting values are placeholders to be overwritten rather than benchmarks, and the second figure is the hypothesis you set, not a result we are promising. Nothing here is a projection of what engaging us would produce."}
         </p>
       </div>
     </figure>

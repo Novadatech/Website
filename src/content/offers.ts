@@ -106,6 +106,29 @@ export type Figure = { value: string; label: string; source: string };
 
 export const EVIDENCE: Record<string, Figure> = {
   /*
+   * PRACTICES. Both figures are about AVAILABILITY and explicitly exclude
+   * cost, which is the one thing this offer does not touch, and that is
+   * exactly why they are the right two.
+   *
+   * ⚠️ These are the ONLY statistics permitted on the practices pages.
+   * There is NO credible Australian missed-call statistic in existence:
+   * every "$X per missed call", "80% will not leave a voicemail" and
+   * "35% of dental calls go to voicemail" in circulation is invented.
+   * Saying so on the page is a claim no dishonest competitor can copy.
+   */
+  gpAccess: {
+    value: "20.2%",
+    label:
+      "of people delayed seeing or did not see a GP in 2024-25 for reasons other than cost, up from 17.4%",
+    source: "ABS, Patient Experiences in Australia, 2024-25",
+  },
+  gpWait: {
+    value: "26%",
+    label: "waited longer than they felt was acceptable for a GP appointment",
+    source: "ABS, Patient Experiences in Australia, 2024-25",
+  },
+
+  /*
    * ⚠️ BOTH FIGURES COME FROM ONE REPORT AND WERE READ OUT OF THE PDF,
    * not from a search result or a software vendor's blog. If either is
    * ever updated, update both and move the year in the source string.
@@ -208,20 +231,30 @@ export type Offer = {
   scope: string[];
 };
 
-export const PATIENT_ACCESS: Offer = {
-  name: "The Patient Access Desk",
-  slug: "patient-access",
-  href: "/practices/patient-access",
+/*
+ * 🔴 THE TWO PILLARS ARE SEQUENTIAL, NOT PARALLEL, and this is the
+ * difference from the care offer. There the two halves solve different
+ * problems and a buyer might need only one. Here the audit finds what is
+ * being lost and the continuity service stops it being lost, in that
+ * order. The spine phrases encode it: "it" in the second has no referent
+ * except the first, so the pair cannot be read out of order.
+ */
+export const LEAKAGE: Offer = {
+  name: "Patient Revenue Leakage Audit",
+  navLabel: "Revenue audit",
+  spine: "Find out what you are losing",
+  slug: "revenue-audit",
+  href: "/practices/revenue-audit",
   audience: "practices",
   who: "For practices",
   summary:
-    "The calls, the bookings and the follow-up that decide how much of your available work actually gets done.",
+    "Your booking enquiries, how many became appointments, your unused appointment time, your short-notice cancellations and your overdue recalls, read against your own records. You get a written report, a number with its assumptions shown, and a plan in priority order.",
   scope: [
-    "Calls, web enquiries and messages answered in your practice name, on your own number, during your own operating hours.",
-    "Bookings, rescheduling and new patient intake handled inside your own practice software, under your own booking rules.",
-    "Recall and reactivation worked by phone, to the interval the practitioner set.",
-    "Cancellations and failures to attend chased the same day, while rebooking is still likely.",
-    "A monthly report covering every enquiry, how fast it was answered, whether it booked, and where it did not, the reason.",
+    "Enquiries nobody got back to: calls missed while reception was occupied, voicemails, and online requests never completed.",
+    "Enquiries that never became appointments, and the reason each one stalled.",
+    "Appointment time that went unused, and whether FTAs and no-shows were followed up.",
+    "Recalls your practitioners set and nobody completed.",
+    "Where the hours at the front desk actually go.",
   ],
 };
 
@@ -272,20 +305,31 @@ export const ROSTERING: Offer = {
 };
 
 /** ⚠️ Same product as WORKFORCE_CARE. Written for a practice reader. */
-export const WORKFORCE_PRACTICES: Offer = {
-  name: "The Workforce Desk",
-  slug: "workforce",
-  href: "/practices/workforce",
+/*
+ * 🔴 MONTH TO MONTH, where the audit is a one-off. The two pillars are
+ * bought differently and the pages say so.
+ *
+ * ⚠️ "Retention" is defined on the page in one sentence, deliberately
+ * early. On its own the word can be read as persuading patients into
+ * treatment, which is the line this offer must never cross.
+ */
+export const BOOKING: Offer = {
+  name: "Patient Booking & Retention Continuity",
+  navLabel: "Patient booking",
+  spine: "Stop losing it every week",
+  slug: "patient-booking",
+  href: "/practices/patient-booking",
   audience: "practices",
   who: "For practices",
   summary:
-    "The hiring, the onboarding, the credentialing and the payroll that decide whether you have the people to do the work.",
+    "Booking enquiries answered and followed up, and bookings completed. Short-notice cancellations offered to patients waiting for an earlier time. The recall list your practitioners set, worked by phone, inside your own practice software.",
   scope: [
-    "Recruiting: role definition, posting, screening and the first contact with applicants.",
-    "Onboarding owned end to end, rather than spread across several inboxes.",
-    "Induction and training, evidenced with dates and completion records.",
-    "Registration and credential currency maintained, with expiries tracked ninety days ahead.",
-    "Payroll processed on your own cycle, with your practice remaining the employer throughout.",
+    "Booking enquiries answered in your practice name, through the channels you approve.",
+    "Bookings completed, with no clinical suitability decisions and no pressure.",
+    "Enquiries that did not book, followed up until there is an answer either way.",
+    "Short-notice cancellations offered to patients on your own waiting list.",
+    "Recalls administered at the interval your practitioners set, never originated.",
+    "A monthly report on what came in, what booked, and what did not.",
   ],
 };
 
@@ -319,8 +363,8 @@ export const CONTINUITY: Offer = {
 };
 
 export const OFFERS: Offer[] = [
-  PATIENT_ACCESS,
-  WORKFORCE_PRACTICES,
+  LEAKAGE,
+  BOOKING,
   ROSTERING,
   CONTINUITY,
 ];

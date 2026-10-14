@@ -1,11 +1,17 @@
 /*
  * ══════════════════════════════════════════════════════════════════════
- * THE CARE PILLAR PAGE. One scaffold, two pages.
+ * THE PILLAR PAGE. One scaffold, four pages: both care pillars and
+ * both practices pillars.
  *
- * `/care/rostering` and `/care/workforce` are the two halves of one
- * offer, and they must stay structurally identical so a reader moving
+ * Each audience has two pillars that are halves of one offer, and the
+ * two halves must stay structurally identical so a reader moving
  * between them never re-learns the furniture. Same nine sections, same
  * order, same CTA, same boundary shape, same calculator shape.
+ *
+ * ⚠️ The two audiences differ in one way that matters: the CARE
+ * pillars are parallel (two different problems, you might need one),
+ * the PRACTICES pillars are sequential (find it, then stop it). The
+ * spine phrases carry that difference; the furniture does not.
  *
  * ⚠️ THIS IS A SHARED SCAFFOLD ON PURPOSE, and the purpose is not reuse.
  * The retired Workforce Desk ran as two near-identical pages maintained
@@ -59,6 +65,8 @@ export type PillarProps = {
   offer: Offer;
   /** The other half. Section 07 links to it. */
   sibling: Offer;
+  /** Who the page is for, in the eyebrow. Differs by audience. */
+  audienceLine: string;
   /**
    * This pillar's own calendar. Each half has one, and each feeds its own
    * pipeline, so this is required rather than defaulted: a wrong default
@@ -95,8 +103,12 @@ export type PillarProps = {
 
   calculator: CalcConfig;
   calcIntro: string;
-  /** The line that stops the arithmetic being misread. Required. */
-  calcNote: string;
+  /**
+   * The lines that stop the arithmetic being misread. At least one, and
+   * they sit under the calculator where the reader is still looking at
+   * the number rather than in a footnote nobody reaches.
+   */
+  calcNotes: string[];
 
   boundaries: Pair[];
   other: { heading: string; body: string };
@@ -148,9 +160,7 @@ export default function PillarPage(p: PillarProps) {
               </div>
 
               <div className="min-w-0">
-                <p className={`${MICRO} text-brand-200`}>
-                  For NDIS, home care and aged care providers
-                </p>
+                <p className={`${MICRO} text-brand-200`}>{p.audienceLine}</p>
                 <p className={`${MICRO_TIGHT} mt-2 text-white/55`}>
                   {p.offer.name}
                 </p>
@@ -302,9 +312,15 @@ export default function PillarPage(p: PillarProps) {
               bookHref="#book"
             />
           </div>
-          {/* The corrective sits next to where the concern is felt, not
+          {/* The correctives sit next to where the concern is felt, not
               in a footnote block at the bottom of the page. */}
-          <p className={`${SMALL} mt-6 max-w-prose`}>{p.calcNote}</p>
+          <div className="mt-6 flex flex-col gap-3">
+            {p.calcNotes.map((n) => (
+              <p key={n.slice(0, 32)} className={`${SMALL} max-w-prose`}>
+                {n}
+              </p>
+            ))}
+          </div>
         </Band>
 
         {/* ── 06 THE BOUNDARIES ──────────────────────────────────── */}

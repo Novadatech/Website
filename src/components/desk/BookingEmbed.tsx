@@ -76,8 +76,15 @@ import { CTA_LABEL } from "@/content/offers";
  * decided by the DESK the reader is standing on. Each calendar redirects
  * to its own confirmation page on novadatech.com.au.
  *
- *   practices-patient-access  7Jpcos7VK92p2vDDTdvE   Patient Access Desk
- *   practices-workforce       dkDB0IYyu8LRjFdUfsYb   Workforce Practice Desk
+ *   practices-revenue-audit   dkDB0IYyu8LRjFdUfsYb   Workforce Practice Desk
+ *   practices-patient-booking 7Jpcos7VK92p2vDDTdvE   Patient Access Desk
+
+ * 🔴 THE PRACTICES CALENDAR NAMES ARE STALE TOO, and the mapping
+ * follows the founder's replacement decision rather than the names:
+ * the Revenue Leakage Audit took over from the Workforce Desk, and
+ * Patient Booking took over from the Patient Access Desk. So
+ * "Workforce Practice Desk" is the AUDIT calendar. Do not reassign
+ * these by name.
  *   care-rostering            InaO8Qj92uCQ8BglSMhW   Operations Desk Review
  *   care-continuity           8J16HJQJHvwiqzmxaEEm   Workforce Care Desk Review
 
@@ -115,14 +122,14 @@ import { CTA_LABEL } from "@/content/offers";
  * ══════════════════════════════════════════════════════════════════════
  */
 export type Desk =
-  | "practices-patient-access"
-  | "practices-workforce"
+  | "practices-revenue-audit"
+  | "practices-patient-booking"
   | "care-rostering"
   | "care-continuity";
 
 const CALENDARS: Record<Desk, string> = {
-  "practices-patient-access": "7Jpcos7VK92p2vDDTdvE",
-  "practices-workforce": "dkDB0IYyu8LRjFdUfsYb",
+  "practices-revenue-audit": "dkDB0IYyu8LRjFdUfsYb",
+  "practices-patient-booking": "7Jpcos7VK92p2vDDTdvE",
   "care-rostering": "InaO8Qj92uCQ8BglSMhW",
   "care-continuity": "8J16HJQJHvwiqzmxaEEm",
 };

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import PillarPage from "@/components/care/PillarPage";
+import PillarPage from "@/components/offer/PillarPage";
 import { CONTINUITY_CALC } from "@/content/calculators";
 import { CONTINUITY, ROSTERING } from "@/content/offers";
 import { EVIDENCE } from "@/content/offers";
@@ -50,6 +50,7 @@ export default function Page() {
       offer={CONTINUITY}
       sibling={ROSTERING}
       desk="care-continuity"
+      audienceLine="For NDIS, home care and aged care providers"
       source="care-workforce"
       headline="Build your workforce before you need it, not after the shift is already vacant."
       standfirst="We help you recruit, screen and induct the support workers you are short of, and build your own relief pool. Then an absence does not automatically become an agency booking. We process the payroll on your own cycle. You stay the employer. You choose every hire."
@@ -135,7 +136,9 @@ export default function Page() {
       calcIntro="We will not invent a figure for you. Here is the sum."
       /* A reader who has used both calculators and suspects double
          counting discounts both numbers. Say it before they wonder. */
-      calcNote="This is the cover you buy while a role is open. The rostering page costs the cover you buy for an absence. Different weeks, do not add them."
+      calcNotes={[
+        "This is the cover you buy while a role is open. The rostering page costs the cover you buy for an absence. Different weeks, do not add them.",
+      ]}
       boundaries={[
         {
           h: "You stay the employer.",

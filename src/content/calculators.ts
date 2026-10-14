@@ -35,42 +35,43 @@ const RECOVERY: CalcField = {
   pct: true,
 };
 
-/* ══════════════════════════════════════════════════════════════════════
-   THE PATIENT ACCESS DESK
-   What the calls nobody could pick up are worth over a year.
-   ══════════════════════════════════════════════════════════════════════ */
-export const PATIENT_ACCESS_CALC: CalcConfig = {
-  kind: "patient-access",
-  eyebrow: "The unanswered call",
+/* ======================================================================
+   PATIENT REVENUE LEAKAGE AUDIT
+   What unused appointment time is worth over a year.
+
+   🔴 TWO FIGURES, GROSS AND NET, AND THAT IS THE WHOLE DESIGN. The
+   brief requires potential gross appointment revenue to be distinguished
+   from actual profit. A disclaimer cannot do that, because gross is the
+   number a reader repeats. So the margin is an input the reader supplies
+   and the net figure prints directly beneath every gross one.
+
+   ⚠️ THERE IS NO MISSED-CALL FIGURE IN THIS SUM, and the page says so.
+   No honest Australian one exists; every cost-per-missed-call number in
+   circulation is invented. Never add one.
+   ====================================================================== */
+export const LEAKAGE_CALC: CalcConfig = {
+  kind: "leakage",
+  eyebrow: "What unused appointment time is worth over a year",
   title:
-    "What is a year of calls nobody could pick up actually worth to your practice?",
+    "What is a year of appointment time nobody booked actually worth to your practice?",
   fields: [
     {
-      key: "missed",
-      label: "Calls you miss in a typical week",
-      hint: "Rung out, voicemail, or answered too late to be useful.",
+      key: "hours",
+      label: "Unused bookable hours in a typical week",
+      hint: "Across all practitioners. Open time nobody booked, plus cancellations nobody refilled.",
       min: 0,
-      max: 80,
+      max: 200,
       step: 1,
-      value: 12,
+      value: 20,
     },
     {
-      key: "share",
-      label: "Share of those that were a new patient",
+      key: "fee",
+      label: "Your average fee for an hour of appointment time",
+      hint: "From your own fee guide. A 30-minute appointment at $90 makes an hour $180.",
       min: 0,
-      max: 100,
-      step: 5,
-      value: 30,
-      pct: true,
-    },
-    {
-      key: "value",
-      label: "What a new patient is worth in their first year",
-      hint: "Your figure, not an average. Treatment plan, not first visit.",
-      min: 100,
-      max: 6000,
-      step: 50,
-      value: 450,
+      max: 1000,
+      step: 10,
+      value: 180,
       money: true,
     },
     {
@@ -81,10 +82,34 @@ export const PATIENT_ACCESS_CALC: CalcConfig = {
       step: 1,
       value: 48,
     },
+    {
+      key: "margin",
+      label: "What is left after the practitioner and the cost of seeing the patient",
+      hint: "Your own figure. Practitioner pay, materials, consumables, card fees.",
+      min: 5,
+      max: 90,
+      step: 1,
+      value: 35,
+      pct: true,
+    },
   ],
-  recovery: RECOVERY,
-  resultLabel: "On your figures, a year of them is worth",
-  recoveredLabel: "At that rate, the part you would get back is worth",
+  marginKey: "margin",
+  netLabel: "What would be left after the cost of delivering it:",
+  recovery: {
+    key: "recovery",
+    label: "If this much of it turned out to be recoverable",
+    hint: "Your hypothesis, not our promise. Move it to whatever you think is realistic.",
+    min: 0,
+    max: 100,
+    step: 5,
+    value: 20,
+    pct: true,
+  },
+  resultLabel: "Unused appointment time, at your fees, gross",
+  recoveredLabel: "At that rate, the part worth looking at is",
+  recoveredNetLabel: "After the cost of delivering it:",
+  footnote:
+    "Your own arithmetic, on the figures you entered. The starting values are placeholders, not benchmarks. Not every unused hour can be filled, and the percentage is yours rather than a result we promise. There is no missed-call figure in this sum: no honest Australian one exists.",
 };
 
 /* ======================================================================
@@ -214,18 +239,86 @@ function workforceCalc(a: {
   };
 }
 
-export const WORKFORCE_PRACTICES_CALC = workforceCalc({
-  eyebrow: "The role sitting open",
+/*
+ * PATIENT BOOKING & RETENTION CONTINUITY.
+ *
+ * A stock of PEOPLE rather than hours, which is why it opens with a
+ * subtraction. Input 2 asks how many of the overdue list a person
+ * actually rang last month, with the helper "Calls, not texts." Most
+ * readers type a very small number, and having typed it themselves they
+ * have proved the proposition without being told it.
+ *
+ * 🔴 LAWYER ITEM. This values contacting patients the practice has
+ * already determined are due. It is addressed to the owner about their
+ * own clinically set list, never to a patient, and it carries three
+ * counterweights. If it is ever judged uncomfortable, the fix is to keep
+ * the subtraction and drop the money: show the headcount and stop.
+ *
+ * ⚠️ The slider drives the headline figure, so there is deliberately no
+ * `recoveredLabel`. Adding one applies the percentage twice.
+ */
+export const RECALL_CALC: CalcConfig = {
+  kind: "recall",
+  eyebrow: "What is sitting in your overdue recall list",
   title:
-    "What does the gap between deciding to hire and somebody being useful actually cost you?",
-  roleLabel: "Roles you hire in a year",
-  roleHint: "Replacements included, not just new positions.",
-  hires: 5,
-  weeks: 7,
-  cost: 1600,
-  costHint:
-    "Overtime, agency cover, and the appointments you could not take. Your figure.",
-});
+    "How many patients your practitioners said should come back has a person actually rung?",
+  fields: [
+    {
+      key: "overdue",
+      label: "Patients overdue on your recall list right now",
+      hint: "Overdue against the interval your practitioners set, not due soon. Your software will give you this.",
+      min: 0,
+      max: 5000,
+      step: 10,
+      value: 400,
+    },
+    {
+      key: "rung",
+      label: "How many of them a person rang last month",
+      hint: "Calls, not texts. The texts are already going out.",
+      min: 0,
+      max: 1000,
+      step: 5,
+      value: 20,
+    },
+    {
+      key: "fee",
+      label: "Your average fee for the appointment a recall leads to",
+      hint: "From your own fee guide.",
+      min: 0,
+      max: 1000,
+      step: 10,
+      value: 160,
+      money: true,
+    },
+    {
+      key: "margin",
+      label: "What is left after the practitioner and the cost of seeing the patient",
+      hint: "Your own figure. Practitioner pay, materials, consumables, card fees.",
+      min: 5,
+      max: 90,
+      step: 1,
+      value: 35,
+      pct: true,
+    },
+  ],
+  marginKey: "margin",
+  leadLabel: "Overdue patients nobody has rung",
+  netLabel: "What would be left after the cost of delivering them:",
+  recovery: {
+    key: "booked",
+    label: "If this many of them booked once somebody rang",
+    hint: "Your hypothesis, not our promise. Plenty of them have moved, see somebody else, or do not need an appointment.",
+    min: 0,
+    max: 50,
+    step: 1,
+    value: 10,
+    pct: true,
+  },
+  resultLabel: "Appointments, at your fees, gross",
+  footnote:
+    "Your own arithmetic, on the figures you entered. The starting values are placeholders, not benchmarks. Not every overdue patient should be booked. These are your recalls, set by your practitioners at the interval they chose, and we add nobody to the list.",
+};
 
 /*
  * WORKFORCE CONTINUITY.
