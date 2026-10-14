@@ -318,7 +318,7 @@ export default function Page() {
 
         {/* ── 04 ONE CONVERSATION ────────────────────────────────── */}
         <Band index="04" label="How it starts" tone="tint">
-          <BandHeading>One conversation, not two</BandHeading>
+          <BandHeading>Both halves start the same way</BandHeading>
           <p className={`${BODY} mt-7`}>
             Both halves start the same way, with a look at how your workforce is
             being used and where it is short. You book the review for the half
