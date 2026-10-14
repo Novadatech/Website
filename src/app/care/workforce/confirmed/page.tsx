@@ -21,19 +21,18 @@ export default function Page() {
   return (
     <ConfirmedPage
       offer="care"
-      /* ⚠️ NOT CURRENTLY REACHED. The care side runs one calendar and
-         it redirects to /care/operations/confirmed. This is kept, and
-         kept accurate, so that splitting the calendars again later does
-         not resurrect a page naming a retired Desk. */
-      eventName="care review"
+      /* The redirect target of the GHL calendar still named "Workforce
+         Care Desk Review" (`8J16HJQJHvwiqzmxaEEm`). ⚠️ That name is
+         stale: it is the WORKFORCE CONTINUITY calendar. */
+      eventName="Workforce Continuity review"
       backHref="/care/workforce"
       backLabel="Back to Workforce Continuity"
       contactEmail="support@novadatech.com.au"
       numbers={{
         neutral:
-          "Roughly how many people you hire in a year, how long a hire currently takes, and where your screening, onboarding and training records live today. Estimates are fine.",
-        us: "Roughly how many caregivers you hire in a year, how long a hire currently takes, and where your background check and exclusion screening records live today. Estimates are fine.",
-        au: "Roughly how many support workers you hire in a year, how long a hire currently takes, and where your worker screening, induction and training records live today. Estimates are fine.",
+          "Roughly how many people you need to bring on in a year, how many weeks it takes one of them to go from accepting to taking a shift, and what covers those shifts in the meantime. Estimates are fine.",
+        us: "Roughly how many people you need to bring on in a year, how many weeks it takes one of them to go from accepting to working, and what covers those shifts in the meantime. Estimates are fine.",
+        au: "Roughly how many support workers you need to bring on in a year, how many weeks it takes one of them to go from accepting to taking a shift, and what covers those shifts in the meantime. Estimates are fine.",
       }}
     />
   );

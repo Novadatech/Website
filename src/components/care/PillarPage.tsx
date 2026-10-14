@@ -31,6 +31,7 @@ import Link from "next/link";
 
 import { Band, BandHeading } from "@/components/desk/Band";
 import BookingEmbed from "@/components/desk/BookingEmbed";
+import type { Desk } from "@/components/desk/BookingEmbed";
 import Calculator, { type CalcConfig } from "@/components/desk/Calculator";
 import DeskFooter from "@/components/desk/DeskFooter";
 import DeskNav from "@/components/desk/DeskNav";
@@ -58,7 +59,13 @@ export type PillarProps = {
   offer: Offer;
   /** The other half. Section 07 links to it. */
   sibling: Offer;
-  /** Page-level attribution. One calendar serves three pages. */
+  /**
+   * This pillar's own calendar. Each half has one, and each feeds its own
+   * pipeline, so this is required rather than defaulted: a wrong default
+   * files a booking against the other half's offer.
+   */
+  desk: Desk;
+  /** Page-level attribution, into utm_content. */
   source: string;
 
   headline: string;
@@ -376,14 +383,10 @@ export default function PillarPage(p: PillarProps) {
                   <li>Nothing is signed on the call.</li>
                   <li>{p.commitment}</li>
                 </ul>
-                <p className="mt-5 max-w-prose text-sm text-white/55">
-                  One review covers both halves, so you do not need to know
-                  which you need.
-                </p>
 
                 <div className="mt-10">
                   <BookingEmbed
-                    desk="care-review"
+                    desk={p.desk}
                     source={p.source}
                     tone="dark"
                     title={`${CTA_LABEL} with Novada`}

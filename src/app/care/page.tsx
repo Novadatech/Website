@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { Band, BandHeading } from "@/components/desk/Band";
-import BookingEmbed from "@/components/desk/BookingEmbed";
 import DeskFooter from "@/components/desk/DeskFooter";
 import DeskNav from "@/components/desk/DeskNav";
 import StickyCta from "@/components/desk/StickyCta";
@@ -31,13 +30,18 @@ import { CONTINUITY, CTA_LABEL, EVIDENCE, ROSTERING } from "@/content/offers";
  * is to make a provider able to say out loud what the two halves are,
  * and that they probably need both. Detail belongs on the pillar pages.
  *
- * 🔴 ONE REVIEW, NOT TWO, AND THE PAGE SAYS SO IN WORDS. The retired
- * hub made the reader pick a Desk before it would take a booking, which
- * is a product quiz at the moment of peak intent and was the most
- * expensive problem on the old site. Both pillars begin with the same
- * assessment, so the calendar is embedded HERE and the reader chooses
- * nothing. If anyone ever reinstates a desk chooser in the booking
- * band, section 04 becomes a lie.
+ * 🔴 NO CALENDAR ON THIS PAGE, and that is not an oversight. Each
+ * pillar has its own calendar feeding its own pipeline, so a calendar
+ * here would be named for one half, wrong for the other at the moment of
+ * commitment, and would file the booking against the wrong offer.
+ *
+ * ⚠️ SO THE ASK IS A PRESCRIPTION, NOT A CHOOSER. The retired hub
+ * handed the reader two product cards under a booking heading and made
+ * them diagnose themselves at peak intent, which was the most expensive
+ * problem on the old site. This one recommends a half, gives the reason,
+ * and demotes the other route to a text link. Never flatten those two
+ * routes into equal buttons: a ranked pair is a recommendation, an equal
+ * pair is the quiz again.
  *
  * ⚠️ THE FIXED PAIR OF PHRASES is the comprehension spine of the whole
  * care side: "the workers you already have" / "the workers you do not
@@ -317,10 +321,9 @@ export default function Page() {
           <BandHeading>One conversation, not two</BandHeading>
           <p className={`${BODY} mt-7`}>
             Both halves start the same way, with a look at how your workforce is
-            being used and where it is short. So there is one review, not two,
-            and you do not have to diagnose yourself before we will talk to you.
-            Which half you need is the output of the conversation, not the price
-            of entry.
+            being used and where it is short. You book the review for the half
+            you think you need, and if it turns out to be the other one, that is
+            a useful thing to find out in thirty minutes.
           </p>
           <p className={`${BODY} mt-5`}>
             You leave with an honest view of whether this fits. A meaningful
@@ -363,7 +366,9 @@ export default function Page() {
         </Band>
 
         {/* ── 06 THE ASK ─────────────────────────────────────────────
-            The calendar lives here. No chooser, no second hop. ── */}
+            No calendar here, by design: see the note at the top of this
+            file. A recommendation with a reason, and the other route
+            visibly subordinate. ── */}
         <section id="book" className="border-t border-white/10 bg-canvas-ink">
           <div
             className={`${FRAME} ${GUTTER} border-x border-white/10 py-16 md:py-24 lg:py-32`}
@@ -389,14 +394,48 @@ export default function Page() {
                 <p className="mt-7 text-base text-white">
                   Nothing is signed on the call.
                 </p>
-                <div className="mt-10">
-                  <BookingEmbed
-                    desk="care-review"
-                    source="care-hub"
-                    tone="dark"
-                    title={`${CTA_LABEL} with Novada`}
-                  />
+
+                <p className="mt-11 text-lg font-semibold text-white">
+                  Not sure which? Start with the rostering review.
+                </p>
+                <p className="mt-3 max-w-prose text-base text-white/70">
+                  The expensive problem is usually the cover you are already
+                  paying for, and that review reads your own numbers. If you
+                  already know the harder problem is that there is nobody to
+                  ring, start with workforce continuity instead. Each review is
+                  booked on its own page.
+                </p>
+
+                <div className="mt-9">
+                  <p className={`${MICRO} text-brand-200`}>
+                    {ROSTERING.name}
+                  </p>
+                  <div className="mt-3">
+                    <Link href={`${ROSTERING.href}#book`} className={BTN_ON_INK}>
+                      {CTA_LABEL}
+                      <ArrowRight
+                        aria-hidden
+                        className="h-4 w-4 transition-transform duration-150 ease-standard group-hover:translate-x-0.5"
+                      />
+                    </Link>
+                  </div>
                 </div>
+
+                {/* ⚠️ A TEXT LINK, NOT A SECOND BUTTON. Two equal actions
+                    split intent; a ranked pair catches the reader who
+                    already knows the answer is the other half. */}
+                <p className="mt-7">
+                  <Link
+                    href={`${CONTINUITY.href}#book`}
+                    className="group inline-flex items-center gap-2 border-b border-white/25 pb-0.5 text-sm font-semibold text-white transition-colors duration-150 ease-standard hover:border-brand-200 hover:text-brand-200"
+                  >
+                    Staffing is the bigger problem? Book the workforce review
+                    <ArrowRight
+                      aria-hidden
+                      className="h-3.5 w-3.5 transition-transform duration-150 ease-standard group-hover:translate-x-0.5"
+                    />
+                  </Link>
+                </p>
               </div>
             </div>
           </div>

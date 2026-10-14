@@ -87,7 +87,7 @@ const LINK =
   "text-[#003DDB] underline decoration-[#B9CBFF] underline-offset-[3px] transition-colors hover:decoration-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
 
 /** Effective date. Update this and the version line together. */
-const LAST_UPDATED = "1 October 2026";
+const LAST_UPDATED = "14 October 2026";
 
 /* ══════════════════════════════════════════════════════════════════
    SECTION REGISTER
@@ -631,32 +631,57 @@ export default function PrivacyPolicyPage() {
                     client&apos;s systems
                   </H3>
                   <P>
-                    For the <Key>Operations Desk</Key>, working inside a
-                    provider&apos;s care management platform, this can include:
-                    participant, client and resident names and contact details;
-                    service, shift and rostering details; call-off, shift change
-                    and availability records; notes and escalations recorded
-                    during calls we take at any hour of the day or night; intake
-                    and service change administration records; and the statutory
-                    records we maintain on the client&apos;s behalf. Some of this
-                    is health information.
+                    For <Key>Rostering Audit &amp; Efficiency</Key>, working
+                    from a provider&apos;s rostering and payroll systems or
+                    from exports those systems produce, this can include:
+                    worker names, locations, availability, qualifications and
+                    contracted hours; shift, roster and travel records;
+                    call-off, replacement and cancellation records; overtime and
+                    agency booking records; and the pay data needed to identify
+                    where cover is costing more than it has to. Rostering and
+                    service records can identify a participant, client or
+                    resident, and some of that is health information.
                   </P>
                   <P>
-                    For the <Key>Workforce Desk</Key>, this can include
+                    For <Key>Workforce Continuity</Key>, this can include
                     candidate and worker names and contact details; work
-                    history, qualifications and referee details; onboarding,
-                    induction and training records; and screening and
-                    credential records. Screening records can include criminal
+                    history, qualifications and referee details; induction and
+                    training records; screening and credential records; and,
+                    where we provide payroll administration, the pay records
+                    described below. Screening records can include criminal
                     record information, which is also sensitive information
                     under the Privacy Act.
+                  </P>
+                  <P>
+                    For the <Key>Patient Access Desk</Key> and the practice{" "}
+                    <Key>Workforce Desk</Key>, working inside a practice&apos;s
+                    own software, this can include: patient names, contact
+                    details and appointment details; enquiry, recall and
+                    cancellation records; and, for the workforce side,
+                    candidate and staff records, registration and credential
+                    records, and pay records. Appointment and recall records
+                    can be health information.
+                  </P>
+                  <P>
+                    <Key>Pay records.</Key> Where we provide payroll
+                    administration for a client, we handle the information a
+                    payroll run needs: names and contact details, employment or
+                    engagement details, hours worked, leave and entitlement
+                    balances, rates, tax and superannuation identifiers, and
+                    bank account details. We process that information on the
+                    client&apos;s instructions, inside the client&apos;s own
+                    systems, and the client remains the employer and the payer.
+                    We do not use it for any purpose of our own.
                   </P>
                   <P>
                     Where a client engages a worker from the pool, we hold the
                     worker&apos;s screening and credential verification and the
                     record of the engagement itself. The service agreement for
                     that engagement is between the client and the worker; we do
-                    not employ those workers and we do not run their payroll, so
-                    we do not hold their pay records.
+                    not employ those workers, and we do not run payroll for
+                    them, so we do not hold their pay records. That is
+                    different from the payroll administration we provide for a
+                    client&apos;s own employees, described above.
                   </P>
                   <P>
                     The employee records exemption in section 7B(3) of the{" "}

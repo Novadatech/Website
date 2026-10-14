@@ -462,7 +462,7 @@ function FAQ_FOR(p: ServicePageProps): { q: string; a: string }[] {
     },
     {
       q: "Are we locked in?",
-      a: "The engagement runs quarter to quarter, with no commitment beyond the current quarter. Commercial terms are covered on the review call and set out in writing in the proposal, so nothing is a surprise and nothing is signed on the call.",
+      a: "The engagement runs month to month, with no commitment beyond the current month. Commercial terms are covered on the review call and set out in writing in the proposal, so nothing is a surprise and nothing is signed on the call.",
     },
   ];
 
@@ -481,7 +481,7 @@ function FAQ_FOR(p: ServicePageProps): { q: string; a: string }[] {
     },
     {
       q: "Are we locked in?",
-      a: "The engagement runs quarter to quarter, with no commitment beyond the current quarter. Commercial terms are covered on the review call and set out in writing in the proposal, so nothing is a surprise and nothing is signed on the call.",
+      a: "The engagement runs month to month, with no commitment beyond the current month. Commercial terms are covered on the review call and set out in writing in the proposal, so nothing is a surprise and nothing is signed on the call.",
     },
   ];
 

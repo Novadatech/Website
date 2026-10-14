@@ -49,6 +49,7 @@ export default function Page() {
     <PillarPage
       offer={CONTINUITY}
       sibling={ROSTERING}
+      desk="care-continuity"
       source="care-workforce"
       headline="Build your workforce before you need it, not after the shift is already vacant."
       standfirst="We help you recruit, screen and induct the support workers you are short of, and build your own relief pool. Then an absence does not automatically become an agency booking. We process the payroll on your own cycle. You stay the employer. You choose every hire."

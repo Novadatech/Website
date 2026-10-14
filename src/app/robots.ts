@@ -14,7 +14,7 @@ export default function robots(): MetadataRoute.Robots {
         "/care/confirmed",
         "/practices/patient-access/confirmed",
         "/practices/workforce/confirmed",
-        "/care/operations/confirmed",
+        "/care/rostering/confirmed",
         "/care/workforce/confirmed",
       ] }],
     sitemap: "https://novadatech.com.au/sitemap.xml",

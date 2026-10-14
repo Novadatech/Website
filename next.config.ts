@@ -55,6 +55,12 @@ const nextConfig: NextConfig = {
          /care/operations/confirmed stays reachable. That is deliberate:
          the live care calendar still redirects there. */
       { source: "/care/operations", destination: "/care/rostering", permanent: true },
+      /* ⚠️ THE CONFIRMATION REDIRECT IS LOAD-BEARING UNTIL THE CRM IS
+         REPOINTED. The rostering calendar still sends bookers to
+         /care/operations/confirmed, so this keeps a completed booking
+         off a 404. Repoint the calendar to /care/rostering/confirmed and
+         this becomes housekeeping. */
+      { source: "/care/operations/confirmed", destination: "/care/rostering/confirmed", permanent: true },
 
       /* ── The two-door restructure, 21 September 2026 ──────────────
          The Partner nouns are retired and both offer pages moved under

@@ -50,6 +50,7 @@ export default function Page() {
     <PillarPage
       offer={ROSTERING}
       sibling={CONTINUITY}
+      desk="care-rostering"
       source="care-rostering"
       headline="Find out where your roster is costing you more than it has to."
       standfirst="We look at your rosters, overtime, agency shifts, travel and worker availability, and show you where avoidable cost is sitting. One piece of work, with findings inside two weeks of getting access."
