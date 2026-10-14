@@ -189,40 +189,33 @@ const MATH: Record<
    * THE OVERDUE RECALL LIST. A stock of people rather than hours, which
    * is why it opens with a subtraction instead of a multiplication.
    *
-   * ⚠️ The slider drives the headline figure here, so this reads the
-   * recovery key straight out of `v`. `vals` carries it, because the
-   * component seeds state from fields AND recovery. Do not also set
-   * `recoveredLabel` on this config or the percentage applies twice.
+   * 🔴 `annual` IS THE WHOLE PROBLEM, NOT THE RECOVERY, and it must
+   * stay that way. Until 16 October 2026 this multiplied by `booked`
+   * here, so the headline was the already-discounted recovery while the
+   * sibling leakage calculator's headline, in identical type on a
+   * sibling page, was the undiscounted problem. One read $25,600 and
+   * the other $172,800, and the recall page looked trivial because the
+   * two figures were not the same kind of number.
+   *
+   * ⚠️ THE OLD COMMENT HERE SAID "do not set recoveredLabel or the
+   * percentage applies twice". That was true of the old design and is
+   * now exactly wrong: with `booked` out of `annual`, the component's
+   * own recovery row applies it once, which is where it belongs.
    */
   recall: {
-    /* \u26a0\ufe0f ANNUAL, like every other calculator here, and it was not
-       until 15 October 2026. It used to subtract `rung`, a MONTHLY
-       rate, from `overdue`, a STOCK, and price the remainder once. Two
-       consequences: a practice ringing 20 a month was credited with 20
-       calls a year rather than 240, and the headline came out around
-       $6,000 beside a sibling page showing $172,800 in the same type,
-       which argued the problem was not worth solving.
-
-       A recall list REFILLS, which is the whole reason this is a
-       continuity service. So the backlog is worked down once and the
-       monthly shortfall is carried across twelve months. `newly` and
-       `rung` are both monthly, so the subtraction is now sound. */
     lead: (v) =>
       Math.max(0, v.overdue) + 12 * Math.max(0, v.newly - v.rung),
     annual: (v) =>
-      (Math.max(0, v.overdue) + 12 * Math.max(0, v.newly - v.rung)) *
-      (v.booked / 100) *
-      v.fee,
+      (Math.max(0, v.overdue) + 12 * Math.max(0, v.newly - v.rung)) * v.fee,
     workings: (v, f) => {
       const shortfall = 12 * Math.max(0, v.newly - v.rung);
       const left = Math.max(0, v.overdue) + shortfall;
-      const appts = left * (v.booked / 100);
-      const gross = appts * v.fee;
+      const year = left * v.fee;
       return [
         `${v.newly} fall overdue a month, less the ${v.rung} who get rung = ${f.n(Math.max(0, v.newly - v.rung))} a month, or ${f.n(shortfall)} a year`,
         `plus the ${f.n(v.overdue)} already waiting = ${f.n(left)} a year nobody rings`,
-        `${v.booked}% of ${f.n(left)} = ${f.n(Math.round(appts))} appointments \u00d7 ${f.m(v.fee)} = ${f.m(gross)} gross`,
-        `${v.margin}% of ${f.m(gross)} = ${f.m(gross * (v.margin / 100))} left after the cost of delivering them`,
+        `${f.n(left)} \u00d7 ${f.m(v.fee)} = ${f.m(year)} a year, gross`,
+        `${v.margin}% of ${f.m(year)} = ${f.m(year * (v.margin / 100))} left after the cost of delivering them`,
       ];
     },
   },

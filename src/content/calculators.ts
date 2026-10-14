@@ -329,7 +329,12 @@ export const RECALL_CALC: CalcConfig = {
     value: 10,
     pct: true,
   },
-  resultLabel: "A year of those appointments, at your fees, gross",
+  resultLabel: "A year of overdue recalls, at your fees, gross",
+  /* \u26a0\ufe0f REQUIRED since 16 October 2026, and the opposite of what the
+     old comment said. `annual` no longer contains `booked`, so without
+     these two the reader never sees the discounted figure at all. */
+  recoveredLabel: "At that rate, the part worth looking at is",
+  recoveredNetLabel: "After the cost of delivering them:",
   footnote:
     "Your own arithmetic, on the figures you entered. The starting values are placeholders, not benchmarks. Not every overdue patient should be booked. These are your recalls, set by your practitioners at the interval they chose, and we add nobody to the list.",
 };
