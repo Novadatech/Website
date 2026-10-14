@@ -1,7 +1,14 @@
 "use client";
 
 /*
- * /assessment-calculator : standalone after-hours leakage calculator.
+ * /assessment-calculator : standalone shift cover leakage calculator.
+ *
+ * \u26a0\ufe0f REFRAMED 15 October 2026, MODEL UNTOUCHED. The Operations Desk
+ * is retired, so every "after-hours" label on this page described a
+ * service that does not exist. Not one number moved: the H1 has always
+ * read "What are unfilled shifts and cancellations costing you?", which
+ * is the Workforce Continuity problem, so the framing moved to where
+ * the arithmetic already pointed.
  * Exists so the tool can be screen-shared on a review call or sent to a
  * prospect afterwards. Deliberately minimal: no pitch, no pricing, no
  * booking embed. noindex, set in layout.tsx.
@@ -184,7 +191,7 @@ function LeakageCalculator() {
       <div className="bg-white p-6 md:p-8">
         <div className="mb-6 flex items-center justify-between gap-3">
           <p className={`${MICRO} text-[#0B0E14]`}>
-            Your after-hours numbers
+            Your shift numbers
           </p>
           <button
             type="button"
@@ -221,7 +228,7 @@ function LeakageCalculator() {
               step={0.5}
             />
             <NumberField
-              label="After-hours booking requests"
+              label="Shift requests received"
               suffix="/ month"
               value={requests}
               onChange={set("requests")}
@@ -229,7 +236,7 @@ function LeakageCalculator() {
           </div>
           <PercentSlider label="Currently filled" value={fillRate} onChange={set("fillRate")} />
           <NumberField
-            label="After-hours cancellations"
+            label="Shift cancellations"
             suffix="/ month"
             value={cancellations}
             onChange={set("cancellations")}
@@ -246,7 +253,7 @@ function LeakageCalculator() {
       <div className="flex flex-col gap-px bg-[#E3E6EC]">
         <div className="flex-1 bg-[#0A0D14] p-6 md:p-8">
           <p className={`${MICRO} text-[#E08A4C]`}>
-            Current after-hours revenue leakage
+            Current revenue leakage
           </p>
           <p className={`${NUM} ${DISPLAY} mt-4 text-[44px] leading-none text-white md:text-[56px]`}>
             {fmt(revenueLeakage)}
@@ -299,7 +306,7 @@ function LeakageCalculator() {
 export default function AssessmentCalculatorPage() {
   return (
     <div data-theme="desk" className="flex min-h-screen flex-col bg-white font-sans">
-      {/* This tool belongs to the after-hours offer, which is part of the
+      {/* This tool belongs to the care offer, which is part of the
           main brand site, so its wordmark still links home. The meetings
           funnel pages deliberately do not. */}
       <FunnelHeader
@@ -325,7 +332,7 @@ export default function AssessmentCalculatorPage() {
               transition={{ duration: 0.5 }}
             >
               <p className={`${MICRO} text-[#003DDB]`}>
-                After-hours assessment
+                Shift cover assessment
               </p>
               <h1
                 className={`${DISPLAY} mt-5 max-w-[20ch] text-[38px] text-[#0A0D14] sm:text-[50px] md:text-[62px]`}
@@ -333,7 +340,7 @@ export default function AssessmentCalculatorPage() {
                 What are unfilled shifts and cancellations costing you?
               </h1>
               <p className={`${BODY} mt-6 max-w-[640px]`}>
-                Enter your own after-hours numbers. The model shows the revenue
+                Enter your own numbers. The model shows the revenue
                 currently leaking through unfilled bookings and unrecovered
                 cancellations, and what a better fill rate would be worth.
                 Nothing is sent anywhere. The numbers stay in this browser.
@@ -415,8 +422,8 @@ export default function AssessmentCalculatorPage() {
 
       {/* No guarantee link: that page is about a minimum of fifteen sales
           meetings a month, which is a different offer entirely and not a
-          promise we make about after-hours coordination. */}
-      <FunnelFooter note="After-hours coordination, run onshore" showGuarantee={false} />
+          promise we make about workforce continuity. */}
+      <FunnelFooter note="Workforce continuity, run onshore" showGuarantee={false} />
     </div>
   );
 }

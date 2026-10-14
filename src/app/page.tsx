@@ -244,7 +244,9 @@ function Doors() {
   return (
     <Band index="02" label="Which half you are">
       <AnimatedSection>
-        <BandHeading>Two audiences. Four desks. One boundary.</BandHeading>
+        {/* ⚠️ FOUR SERVICES, not four desks. The Desks were retired on
+            14 October 2026 and this heading outlived them by a day. */}
+        <BandHeading>Two audiences. Four services. One boundary.</BandHeading>
         <p className="mt-8 max-w-prose text-base text-ink-600">
           The work that keeps a practice running and the work that keeps a care
           service running are not the same work, so they do not get the same

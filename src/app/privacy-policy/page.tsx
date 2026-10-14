@@ -244,13 +244,15 @@ function Hero() {
         </h1>
 
         <p className={`${LEAD} mt-6 max-w-[68ch]`}>
-          Novada Tech runs the desk for Australian healthcare businesses. We
-          answer calls and enquiries, make and change bookings, coordinate
-          rosters, administer intake and service changes and maintain records,
-          across the hours our clients operate rather than only after hours, and
-          we do that work inside the systems our clients already run. That means we come into contact with{" "}
-          <Key>health information</Key> about their participants, clients and
-          residents,
+          Novada Tech runs back office functions for Australian healthcare
+          businesses. For practices we answer enquiries, make and change
+          bookings, work the recall lists their practitioners set and
+          administer billing. For care providers we read rosters, recruit and
+          screen workers, keep training and credential records current and run
+          payroll. We do that work inside the systems our clients already run.
+          That means we come into contact with{" "}
+          <Key>health information</Key> about their patients, participants,
+          clients and residents,
           which Australian privacy law treats as sensitive information and
           protects more strictly than ordinary personal information.
         </p>

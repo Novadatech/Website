@@ -93,11 +93,11 @@ export async function POST(request: Request) {
 
     if (contactId) {
       const note = [
-        "Novada Workforce — After-Hours Operations Assessment request",
+        "Novada Workforce — Shift Cover Assessment request",
         `Company: ${lead.company.trim()}`,
         `Agency type: ${lead.agencyType}`,
         `Approximate active workforce: ${lead.workforceSize}`,
-        `Current after-hours handling: ${lead.currentHandling}`,
+        `Current shift cover handling: ${lead.currentHandling}`,
       ].join("\n");
       const noteRes = await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
         method: "POST",

@@ -50,25 +50,32 @@ export const metadata: Metadata = {
   // Australian care-sector company only: no clinic vocabulary anywhere,
   // including keywords and structured data. No pricing, by the founder's
   // direct decision of the same day.
-  title:
-    "Novada | Managed Operations and Workforce for Australian Care Providers",
+  /* \u26a0\ufe0f THIS IS THE SITE-WIDE DEFAULT, so it has to read correctly
+     to BOTH audiences. Until 15 October 2026 the title, description,
+     keywords and share card here all sold the Two Partners, retired on
+     24 September, and described only care providers although the site
+     has had a practices door since 21 September. The keyword list was
+     buying traffic for "roster and call-off coordination" and "managed
+     operations for care providers", which is the Operations Desk, and
+     the founder confirmed on 15 October that it does not run. */
+  title: "Novada | We streamline the work behind the care",
   description:
-    "Two offers for Australian NDIS, home care and aged care providers. One partner runs your operation, the other builds and backs your workforce. Onshore people, our own platforms, and a named Australian company accountable for the outcome.",
+    "Back office services for Australian healthcare practices and care providers. An audit that finds what you are losing, and the ongoing work that stops you losing it. Run by our own team, inside the systems you already use, alongside your people and never instead of them. Nothing clinical, ever.",
   keywords: [
-    "managed operations for NDIS providers",
-    "managed operations for care providers",
-    "roster and call-off coordination",
-    "care worker onboarding administration",
-    "induction and training records for care providers",
-    "onshore back office for care providers",
+    "patient revenue leakage audit",
+    "patient booking and recall services for practices",
+    "practice billing administration Australia",
+    "rostering audit for NDIS providers",
+    "workforce continuity for care providers",
+    "care worker recruitment and screening",
+    "onshore back office for practices and care providers",
     "aged care and home care administration",
     "Australia",
   ],
   openGraph: {
-    title:
-      "Novada | Managed Operations and Workforce for Australian Care Providers",
+    title: "Novada | We streamline the work behind the care",
     description:
-      "One partner runs your operation. The other builds and backs your workforce. Managed operations for Australian NDIS, home care and aged care providers, alongside your team, not instead of them.",
+      "Two services for practices, two for care providers. Alongside your team, never instead of it, and never anything clinical.",
     type: "website",
     locale: "en_AU",
   },

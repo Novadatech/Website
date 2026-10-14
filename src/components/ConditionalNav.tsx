@@ -50,7 +50,7 @@ const SELF_CHROMED_ROUTES = [
   "/meetings-3",
   "/guarantee-terms",
   "/confirmed-call",
-  // After-hours tool
+  // The shift cover sales-call tool
   "/assessment-calculator",
 ];
 
