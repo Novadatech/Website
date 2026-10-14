@@ -195,15 +195,32 @@ const MATH: Record<
    * `recoveredLabel` on this config or the percentage applies twice.
    */
   recall: {
-    lead: (v) => Math.max(0, v.overdue - v.rung),
+    /* \u26a0\ufe0f ANNUAL, like every other calculator here, and it was not
+       until 15 October 2026. It used to subtract `rung`, a MONTHLY
+       rate, from `overdue`, a STOCK, and price the remainder once. Two
+       consequences: a practice ringing 20 a month was credited with 20
+       calls a year rather than 240, and the headline came out around
+       $6,000 beside a sibling page showing $172,800 in the same type,
+       which argued the problem was not worth solving.
+
+       A recall list REFILLS, which is the whole reason this is a
+       continuity service. So the backlog is worked down once and the
+       monthly shortfall is carried across twelve months. `newly` and
+       `rung` are both monthly, so the subtraction is now sound. */
+    lead: (v) =>
+      Math.max(0, v.overdue) + 12 * Math.max(0, v.newly - v.rung),
     annual: (v) =>
-      Math.max(0, v.overdue - v.rung) * (v.booked / 100) * v.fee,
+      (Math.max(0, v.overdue) + 12 * Math.max(0, v.newly - v.rung)) *
+      (v.booked / 100) *
+      v.fee,
     workings: (v, f) => {
-      const left = Math.max(0, v.overdue - v.rung);
+      const shortfall = 12 * Math.max(0, v.newly - v.rung);
+      const left = Math.max(0, v.overdue) + shortfall;
       const appts = left * (v.booked / 100);
       const gross = appts * v.fee;
       return [
-        `${v.overdue} overdue, less the ${v.rung} who were rung = ${f.n(left)} nobody has rung`,
+        `${v.newly} fall overdue a month, less the ${v.rung} who get rung = ${f.n(Math.max(0, v.newly - v.rung))} a month, or ${f.n(shortfall)} a year`,
+        `plus the ${f.n(v.overdue)} already waiting = ${f.n(left)} a year nobody rings`,
         `${v.booked}% of ${f.n(left)} = ${f.n(Math.round(appts))} appointments \u00d7 ${f.m(v.fee)} = ${f.m(gross)} gross`,
         `${v.margin}% of ${f.m(gross)} = ${f.m(gross * (v.margin / 100))} left after the cost of delivering them`,
       ];

@@ -259,7 +259,7 @@ function workforceCalc(a: {
  */
 export const RECALL_CALC: CalcConfig = {
   kind: "recall",
-  eyebrow: "What is sitting in your overdue recall list",
+  eyebrow: "What a year of unworked recalls is worth",
   title:
     "How many patients your practitioners said should come back has a person actually rung?",
   fields: [
@@ -273,8 +273,22 @@ export const RECALL_CALC: CalcConfig = {
       value: 400,
     },
     {
+      /* \u26a0\ufe0f NEW ON 15 OCTOBER 2026, and it is what makes the result
+         true. Without it the model priced the standing backlog once
+         and ignored that the list refills every month, which is the
+         entire reason this is a continuity service rather than a job.
+         A practice reads this straight off its own recall report. */
+      key: "newly",
+      label: "Patients who fall overdue in a typical month",
+      hint: "From your own recall report. Patients who passed the interval your practitioners set and did not book.",
+      min: 0,
+      max: 1000,
+      step: 5,
+      value: 120,
+    },
+    {
       key: "rung",
-      label: "How many of them a person rang last month",
+      label: "How many of them a person rings in a typical month",
       hint: "Calls, not texts. The texts are already going out.",
       min: 0,
       max: 1000,
@@ -303,7 +317,7 @@ export const RECALL_CALC: CalcConfig = {
     },
   ],
   marginKey: "margin",
-  leadLabel: "Overdue patients nobody has rung",
+  leadLabel: "Overdue patients a year nobody rings",
   netLabel: "What would be left after the cost of delivering them:",
   recovery: {
     key: "booked",
@@ -315,7 +329,7 @@ export const RECALL_CALC: CalcConfig = {
     value: 10,
     pct: true,
   },
-  resultLabel: "Appointments, at your fees, gross",
+  resultLabel: "A year of those appointments, at your fees, gross",
   footnote:
     "Your own arithmetic, on the figures you entered. The starting values are placeholders, not benchmarks. Not every overdue patient should be booked. These are your recalls, set by your practitioners at the interval they chose, and we add nobody to the list.",
 };

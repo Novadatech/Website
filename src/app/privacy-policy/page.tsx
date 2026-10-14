@@ -658,9 +658,24 @@ export default function PrivacyPolicyPage() {
                     working inside a practice&apos;s own software, this can
                     include: patient names, contact details and appointment
                     details; enquiry, booking, cancellation and waiting list
-                    records; and the recall records the practice&apos;s own
-                    practitioners maintain. Appointment and recall records can
-                    be health information.
+                    records; the recall records the practice&apos;s own
+                    practitioners maintain; and, where we administer billing,
+                    account and claim records. Appointment and recall records
+                    can be health information.
+                  </P>
+                  <P>
+                    <Key>Practice billing records.</Key> Where we administer
+                    billing for a practice, we handle the information an
+                    invoice or a claim needs: the patient&apos;s name and
+                    contact details, the service recorded by the practitioner,
+                    the amount, the claim or fund reference, and whether the
+                    account has been settled. A billing record names a service
+                    a patient received, so it is health information. We work
+                    inside the practice&apos;s own systems, on the
+                    practice&apos;s instructions. We do not store card numbers
+                    and we do not take payment in our own right. Payment taken
+                    in person at the practice is the practice&apos;s own and
+                    does not reach us.
                   </P>
                   <P>
                     We no longer provide recruitment, induction, registration

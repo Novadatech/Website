@@ -355,13 +355,14 @@ export const BOOKING: Offer = {
   audience: "practices",
   who: "For practices",
   summary:
-    "Booking enquiries answered and followed up, and bookings completed. Short-notice cancellations offered to patients waiting for an earlier time. The recall list your practitioners set, worked by phone, inside your own practice software.",
+    "Booking enquiries answered and followed up, and bookings completed. Short-notice cancellations offered to patients waiting for an earlier time. The recall list your practitioners set, worked by phone, and the billing behind it administered, inside your own practice software.",
   scope: [
     "Booking enquiries answered in your practice name, through the channels you approve.",
     "Bookings completed, with no clinical suitability decisions and no pressure.",
     "Enquiries that did not book, followed up until there is an answer either way.",
     "Short-notice cancellations offered to patients on your own waiting list.",
     "Recalls administered at the interval your practitioners set, never originated.",
+    "Billing administered against what your practitioners determined, never determined by us.",
     "A monthly report on what came in, what booked, and what did not.",
   ],
 };
@@ -526,5 +527,20 @@ export const HOW_IT_STARTS: { k: string; v: string }[] = [
    into an after-hours promise for practices: the "Not after hours"
    boundary refuses that on the same page.
    ══════════════════════════════════════════════════════════════════════ */
+/*
+ * 🔴 REWRITTEN 15 October 2026, and the founder should check it.
+ *
+ * This read "Novada already runs a managed desk for care providers: the
+ * phone answered, the roster worked and the record written, through the
+ * day and through the night". That is the retired Operations Desk, and
+ * it renders on the homepage and on /why-novada, so a claim about a
+ * 24/7 phone service was the credibility base for two offers that do
+ * not include one.
+ *
+ * What is here now claims only what Rostering Audit & Efficiency and
+ * Workforce Continuity support. If the nightly operation genuinely
+ * still runs for existing clients, the old sentence is the stronger
+ * claim and should come back.
+ */
 export const OPERATING_PROOF =
-  "Novada already runs a managed desk for care providers: the phone answered, the roster worked and the record written, through the day and through the night, inside those providers own systems and to their own escalation protocols.";
+  "Novada already runs back office functions for Australian care providers: rosters read, workers recruited and screened, records kept current and payroll run, inside those providers own systems and to their own protocols.";

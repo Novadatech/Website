@@ -5,15 +5,15 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Why Novada | Measured, Onshore, Alongside Your Team",
   description:
-    "We measure the desk. Every enquiry, response time, booking outcome and reason lost, reported monthly. Onshore, Australian owned, working inside your own systems, and never clinical.",
+    "We measure the work, against your own numbers. For Australian healthcare practices and care providers. Onshore, Australian owned, working inside your own systems, and never clinical.",
   keywords: [
-    "measured desk operations",
-    "onshore care administration Australia",
+    "measured back office operations",
+    "onshore practice and care administration Australia",
   ],
   openGraph: {
     title: "Why Novada | Measured, Onshore, Alongside Your Team",
     description:
-      "We won't quote you an industry statistic. We measure your desk and report it monthly.",
+      "We will not quote you an industry statistic. We measure your own work and report it monthly.",
     type: "website",
     locale: "en_AU",
   },

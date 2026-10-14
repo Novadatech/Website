@@ -59,7 +59,12 @@ import AnimatedSection from "@/components/AnimatedSection";
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
-import { AUDIENCES, offersFor } from "@/content/offers";
+import {
+  AUDIENCES,
+  CTA_LABEL,
+  OPERATING_PROOF,
+  offersFor,
+} from "@/content/offers";
 
 /* ══════════════════════════════════════════════════════════════════
    DESIGN TOKENS
@@ -243,16 +248,21 @@ function StatusStrip() {
    the reviewed copy is added, cut or reordered.
    ══════════════════════════════════════════════════════════════════ */
 
-const DESK_DEFINITION = [
+/* \u26a0\ufe0f THE TWO AUDIENCES, not the two retired Desks. Until 15 October
+   2026 this read "The operation: the phone, the roster, the intake" and
+   "The workforce", which described the Operations Desk and told a
+   practice reader nothing. The route cards at the foot of this page
+   list the same pair, so the page opens and closes on it. */
+const WHAT_WE_RUN = [
   {
     index: "01",
-    key: "The operation",
-    body: "the phone, the roster, the intake and the records that have to survive an audit, across every hour you operate.",
+    key: "For practices",
+    body: "the enquiries nobody got back to, the bookings, the recall list and the billing behind them, inside your own practice software.",
   },
   {
     index: "02",
-    key: "The workforce",
-    body: "the hiring, the onboarding, the training records and the cover behind the roster.",
+    key: "For care providers",
+    body: "the rosters and what they cost, the hiring, the screening, the training records and the payroll, inside your own systems.",
   },
 ];
 
@@ -266,7 +276,7 @@ function DeskDefinition() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#3A6CFF] opacity-60" />
             <span className="relative inline-flex h-[6px] w-[6px] rounded-full bg-[#3A6CFF]" />
           </span>
-          The desk
+          What we run
         </span>
         <span
           className={`${MICRO_TIGHT} rounded-[4px] border border-white/15 px-2 py-[3px] text-white/45`}
@@ -275,7 +285,7 @@ function DeskDefinition() {
         </span>
       </div>
 
-      {DESK_DEFINITION.map((d, i) => (
+      {WHAT_WE_RUN.map((d, i) => (
         <div
           key={d.key}
           className={`px-4 py-5 sm:px-5 ${
@@ -328,8 +338,8 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.08 }}
               className={`${DISPLAY} mt-5 text-[42px] text-[#0B0E14] sm:text-[56px] lg:text-[70px]`}
             >
-              We measure the desk.{" "}
-              <span className="text-[#003DDB]">Nobody else does.</span>
+              We measure the work.{" "}
+              <span className="text-[#003DDB]">Against your own numbers.</span>
             </motion.h1>
 
             <motion.p
@@ -338,22 +348,21 @@ function Hero() {
               transition={{ duration: 0.55, delay: 0.2 }}
               className="mt-6 max-w-[560px] text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]"
             >
-              Every care provider has two halves that aren&apos;t the care itself.
-              Whether they hold together is decided there, and it is a role staffed{" "}
-              <span className={`${NUM} font-medium text-[#003DDB]`}>38</span> of
-              the <span className={`${NUM} font-medium text-[#0B0E14]`}>168</span>{" "}
-              hours the work actually arrives in.
+              Every practice and every care provider has work that is not the
+              care itself: the phone, the bookings, the rosters, the hiring and
+              the records. Whether the place holds together is decided there.
+              It is also the part almost nobody measures.
             </motion.p>
 
-            {/* Where a source would sit on any other number. */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.42 }}
-              className={`${MICRO_TIGHT} mt-5 max-w-[452px] border-t border-[#E3E6EC] pt-3 text-ink-500`}
-            >
-              Arithmetic, not a statistic
-            </motion.p>
+            {/* \u26a0\ufe0f THE 38 AND 168 FIGURES WERE REMOVED HERE ON 15 OCTOBER
+                2026, a month after they were removed from the .com twin,
+                and the caption went with them. It read "Arithmetic, not a
+                statistic", which is a disclaimer standing in for a source.
+                Worse, the sentence claimed the work arrives across 168
+                hours, which is the after-hours argument this offer
+                abandoned: what is sold now is a rostering audit and a
+                continuity service, neither of which is about the night.
+                Do not reinstate them. */}
           </div>
 
           <motion.div
@@ -531,7 +540,7 @@ const PRINCIPLES = [
     title: "Alongside, not instead",
     tag: "Boundary",
     signal: false,
-    body: "We never replace your coordinators or your managers. We take the function, not the people: the after-hours line, the coordination workload, the hiring and the records. What stays with your team is the care itself and every decision that turns on a participant.",
+    body: "We never replace your reception, your coordinators or your managers. We take the function, not the people: the enquiries nobody got back to, the recalls and the billing, the rosters and what they cost, the hiring and the records. What stays with your team is the care itself and every decision that turns on the person receiving it.",
   },
   {
     index: "02",
@@ -552,7 +561,7 @@ const PRINCIPLES = [
     title: "Your systems, not ours",
     tag: "Standing",
     signal: false,
-    body: "We work in the care platforms you already run. Nothing migrates, nothing is replaced, and you keep the system of record.",
+    body: "We work in the software you already run, whether that is your practice software or your care platform. Nothing migrates, nothing is replaced, and you keep the system of record.",
   },
 ];
 
@@ -651,10 +660,7 @@ function Proof() {
     <Band index="03" label="Proof of operations" tone="dark">
       <AnimatedSection>
         <p className="max-w-[900px] border-l-2 border-[#3A6CFF] pl-6 text-[19px] font-medium leading-[1.42] text-white sm:text-[24px] md:text-[30px]">
-          This isn&apos;t a proposal. Our desk answers calls for
-          Australian care providers every night of the year, inside their
-          systems, to their escalation protocols, with a structured handover
-          waiting every morning.
+          This isn&apos;t a proposal. {OPERATING_PROOF}
         </p>
         <p className="mt-6 max-w-[720px] pl-6 text-[15px] leading-[1.62] text-white/65 md:text-[16px]">
           That operating capability is the credibility base for all four
@@ -712,15 +718,21 @@ function FinalCta() {
           See it against your own numbers.
         </h3>
         <p className="mt-5 max-w-[620px] text-[16px] leading-[1.62] text-[#454E5C] md:text-[17px]">
-          We&apos;ll map your workload and show you exactly what we&apos;d
-          measure in your first 30 days.
+          Thirty minutes on where the work is going now. You leave with an
+          honest view of whether there is anything here worth doing, and a
+          meaningful proportion conclude there is not yet.
         </p>
       </AnimatedSection>
 
       <AnimatedSection delay={0.08}>
         <div className="mt-9">
+          {/* \u26a0\ufe0f CTA_LABEL, not a local string. This read "Book a
+              Review" while the sticky bar an inch away read "Book a
+              30-minute review". Naming the cost of the call is what
+              lowers the commitment, so the shorter label was the weaker
+              one and it was the one on the button. */}
           <a href="/#book" className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-            Book a Review
+            {CTA_LABEL}
             <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
         </div>
@@ -762,8 +774,11 @@ export default function WhyNovadaPage() {
           from the care page that day and missed here. The href is explicit
           because this page has no #book section: its closing band is
           id="review" and the calendar lives on the home page. */}
+      {/* \u26a0\ufe0f CTA_LABEL. This read "Book a Review" until 15 October
+          2026, so the sticky bar and the button in the closing band
+          disagreed on the same screen. */}
       <StickyCta
-        label="Book a Review"
+        label={CTA_LABEL}
         tagline="We run it, and we answer for it."
         href="/#book"
       />

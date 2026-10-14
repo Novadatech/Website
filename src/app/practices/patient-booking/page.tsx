@@ -56,7 +56,7 @@ export default function Page() {
          cheapest signal that this was written by somebody who has been
          in a practice. */
       headline="Your phone answered, your book worked, your recalls run."
-      standfirst="Our own team answers your booking enquiries, follows up the ones that did not book, and offers short-notice cancellations to patients waiting. We work the recall list your practitioners set, inside your practice software, during your own opening hours."
+      standfirst="Our own team answers your booking enquiries, follows up the ones that did not book, and offers short-notice cancellations to patients waiting. We work the recall list your practitioners set and administer the billing behind it, inside your practice software, during your own opening hours."
       moment={{
         label: "The list that never gets worked",
         body: "Somewhere in your software is a list of patients your practitioners said should come back. Texts went out. Some of them booked. The rest are still on the list, and ringing them is nobody's job this week, or next week either.",
@@ -102,8 +102,17 @@ export default function Page() {
             b: "We work the recall list your practitioners set, at the interval they chose, and record the result. We add nobody to the list.",
           },
           {
+            /* \u26a0\ufe0f THE BOUNDARY IS IN THE HEADING, as it is for recalls,
+               because billing is the one item on this page where
+               getting it wrong is a regulatory problem for the practice
+               rather than an embarrassment for us. We never decide what
+               was done or what it is worth. */
+            h: "Billing administered, never determined",
+            b: "Invoices raised, claims lodged and unpaid accounts followed up inside your own software, against what your practitioners have already determined. We do not choose an item number, set a fee, decide what is billed, or give a patient financial advice.",
+          },
+          {
             h: "A monthly report on what happened",
-            b: "Enquiries received, how fast they were answered, how many booked, cancellations recovered, recalls completed, and where it did not work.",
+            b: "Enquiries received, how fast they were answered, how many booked, cancellations recovered, recalls completed, accounts raised and settled, and where it did not work.",
           },
         ],
       }}
@@ -116,7 +125,7 @@ export default function Page() {
           },
           {
             h: "The access",
-            b: "Named logins under your own access control, limited to the booking work, agreed in writing before anything is opened.",
+            b: "Named logins under your own access control, limited to the booking and billing work, agreed in writing before anything is opened.",
           },
           {
             h: "Live",
@@ -150,7 +159,7 @@ export default function Page() {
         },
         {
           h: "Nothing at the counter.",
-          b: "The greeting, the payments and the care of the person in the room stay with your team permanently. A remote team cannot do that work and we will not pretend otherwise.",
+          b: "The greeting, the card taken at the counter and the care of the person in the room stay with your team permanently. A remote team cannot do that work and we will not pretend otherwise. What we run is the billing that happens after the patient has left: the invoice, the claim, the account nobody chased.",
         },
       ]}
       other={{
@@ -168,7 +177,7 @@ export default function Page() {
         },
         {
           q: "Do you replace our front desk?",
-          a: "No, and we will not describe it that way. Your team keeps the counter, the greeting, the payments and the person in the room. What we take is the work that never reaches the top of their list.",
+          a: "No, and we will not describe it that way. Your team keeps the counter, the greeting, the payment taken in the room and the person in front of them. What we take is the work that never reaches the top of their list, including the billing that follows a visit rather than happens during it.",
         },
         {
           q: "Whose name do patients hear?",

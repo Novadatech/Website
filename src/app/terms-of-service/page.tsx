@@ -323,12 +323,24 @@ const CLAUSES: Clause[] = [
         practice&apos;s name during its operating hours, bookings made and
         changed inside the practice&apos;s own software, follow-up of enquiries
         that did not book, short-notice cancellations offered to patients on
-        the practice&apos;s own waiting list, and the practice&apos;s own
-        recall list worked at the intervals its practitioners set.
+        the practice&apos;s own waiting list, the practice&apos;s own recall
+        list worked at the intervals its practitioners set, and billing
+        administration.
       </>,
       <>
-        Recalls are administered and never originated. We do not decide that a
-        patient needs treatment, we do not add anybody to a recall list, we do
+        Billing administration means we raise invoices, lodge claims and
+        follow up unpaid accounts inside the practice&apos;s own systems,
+        against what the practice&apos;s own practitioners have already
+        determined. We do not select an item number or billing code, set or
+        advise on a fee, decide what is billed or whether a service is
+        claimable, or give any person financial advice. The practice remains
+        responsible for the accuracy of what is billed and for every claim
+        made in its name. Payment taken in person at the practice is the
+        practice&apos;s own and does not reach us.
+      </>,
+      <>
+        Recalls and billing are both administered, never originated or
+        determined. We do not decide that a patient needs treatment, we do not add anybody to a recall list, we do
         not change a recall interval, and no offer, discount or other
         inducement is placed in a recall message. We make no clinical
         suitability decision of any kind. Where we write or speak in a

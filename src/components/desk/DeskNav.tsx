@@ -88,6 +88,18 @@ export default function DeskNav({
     >
       <div className={`${FRAME} ${GUTTER}`}>
         <div className="flex h-16 items-center justify-between gap-4 md:h-20">
+          {/* ⚠️ THE WORDMARK AND THE NAV ARE ONE GROUP, and that is what
+              keeps the header still. This row is justify-between, so
+              before 15 October 2026 the nav was the middle child of
+              three and its left edge was decided by the widths of the
+              other two. Two audiences with different label lengths, and
+              a switcher reading "Practices" on one side and "Care
+              providers" on the other, meant the primary links sat at
+              x=506 on /care and x=452 on /practices and visibly jumped
+              when a reader crossed between them. Grouped, the nav
+              starts at a fixed distance from the wordmark and cannot
+              move. Do not unwrap this. */}
+          <div className="flex min-w-0 items-center gap-10 xl:gap-14">
           {/* aria-label rather than the wordmark, because the wordmark
               is display:none under 380px and a display:none element is
               not in the accessibility tree. The link needs a name at
@@ -126,7 +138,7 @@ export default function DeskNav({
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
-                      className={`inline-flex min-h-11 items-center border-b-2 pt-0.5 text-sm font-medium transition-colors duration-150 ease-standard ${
+                      className={`inline-flex min-h-11 items-center whitespace-nowrap border-b-2 pt-0.5 text-sm font-medium transition-colors duration-150 ease-standard ${
                         active
                           ? dark
                             ? "border-brand-200 text-white"
@@ -143,14 +155,15 @@ export default function DeskNav({
               })}
             </ul>
           </nav>
+          </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-shrink-0 items-center gap-3">
             {/* The way out for somebody who came through the wrong door.
                 Quiet on purpose: it is an escape hatch, not a second CTA. */}
             {audience && other ? (
               <Link
                 href={other.href}
-                className={`hidden text-sm font-medium transition-colors duration-150 ease-standard lg:inline ${
+                className={`hidden whitespace-nowrap text-sm font-medium transition-colors duration-150 ease-standard lg:inline ${
                   dark
                     ? "text-white/55 hover:text-white"
                     : "text-ink-500 hover:text-brand-500"
@@ -164,7 +177,7 @@ export default function DeskNav({
                 with no call to action anywhere on the first screen. */}
             <a
               href={bookHref}
-              className={`${dark ? BTN_ON_INK_SM : BTN_PRIMARY_SM} px-3 sm:px-4`}
+              className={`${dark ? BTN_ON_INK_SM : BTN_PRIMARY_SM} whitespace-nowrap px-3 sm:px-4`}
             >
               {/* One label, everywhere. The mobile variant used to read
                   "Book a review" while the hero read something else, an inch
