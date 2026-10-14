@@ -21,9 +21,13 @@ export default function Page() {
   return (
     <ConfirmedPage
       offer="care"
-      eventName="Care Workforce Desk review"
+      /* ⚠️ NOT CURRENTLY REACHED. The care side runs one calendar and
+         it redirects to /care/operations/confirmed. This is kept, and
+         kept accurate, so that splitting the calendars again later does
+         not resurrect a page naming a retired Desk. */
+      eventName="care review"
       backHref="/care/workforce"
-      backLabel="Back to The Workforce Desk"
+      backLabel="Back to Workforce Continuity"
       contactEmail="support@novadatech.com.au"
       numbers={{
         neutral:

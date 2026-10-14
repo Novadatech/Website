@@ -45,6 +45,17 @@ const nextConfig: NextConfig = {
          should have. */
       { source: "/patient-access-desk", destination: "/practices/patient-access", permanent: true },
 
+      /* ── The care offer became two pillars, 14 October 2026 ─────
+         The Operations Desk and the Workforce Desk are retired. Rostering
+         Audit & Efficiency takes the Operations Desk's traffic, because
+         its reader is the same person with the same problem; Workforce
+         Continuity keeps /care/workforce and needs no redirect.
+
+         ⚠️ This matches /care/operations ONLY, not its children, so
+         /care/operations/confirmed stays reachable. That is deliberate:
+         the live care calendar still redirects there. */
+      { source: "/care/operations", destination: "/care/rostering", permanent: true },
+
       /* ── The two-door restructure, 21 September 2026 ──────────────
          The Partner nouns are retired and both offer pages moved under
          /care. All four of these carried real search equity. */

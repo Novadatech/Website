@@ -78,8 +78,23 @@ import { CTA_LABEL } from "@/content/offers";
  *
  *   practices-patient-access  7Jpcos7VK92p2vDDTdvE   Patient Access Desk
  *   practices-workforce       dkDB0IYyu8LRjFdUfsYb   Workforce Practice Desk
- *   care-operations           InaO8Qj92uCQ8BglSMhW   Operations Desk
- *   care-workforce            8J16HJQJHvwiqzmxaEEm   Workforce Care Desk
+ *   care-review               InaO8Qj92uCQ8BglSMhW   (see below)
+
+ * 🔴 THE CARE SIDE NOW HAS ONE CALENDAR, NOT TWO, and the pages say so
+ * in words: "there is one review, not two". Both care pillars begin with
+ * the same assessment, so forcing a reader to pick a product before the
+ * site will take a booking was the most expensive problem on the old
+ * pages.
+ *
+ * ⚠️ INTERIM. `InaO8Qj92uCQ8BglSMhW` is the former Operations Desk
+ * calendar, reused because it is the closest thing to a general care
+ * review that exists today. A purpose-named calendar is to be created,
+ * and when it is, THIS ONE LINE IS THE ONLY CHANGE NEEDED. Its workflows
+ * and its confirmation redirect still carry Operations Desk wording.
+ *
+ * ⚠️ Page-level attribution now comes from `source`, not from the
+ * desk key, because one calendar serves three pages. `source` lands in
+ * utm_content. Do not collapse it.
  *
  * All four are live and each redirects to its own confirmation page on
  * novadatech.com.au. Four calendars, four pipelines, four confirmations:
@@ -104,14 +119,12 @@ import { CTA_LABEL } from "@/content/offers";
 export type Desk =
   | "practices-patient-access"
   | "practices-workforce"
-  | "care-operations"
-  | "care-workforce";
+  | "care-review";
 
 const CALENDARS: Record<Desk, string> = {
   "practices-patient-access": "7Jpcos7VK92p2vDDTdvE",
   "practices-workforce": "dkDB0IYyu8LRjFdUfsYb",
-  "care-operations": "InaO8Qj92uCQ8BglSMhW",
-  "care-workforce": "8J16HJQJHvwiqzmxaEEm",
+  "care-review": "InaO8Qj92uCQ8BglSMhW",
 };
 const RESIZER_SRC = "https://link.novadatech.com/js/form_embed.js";
 

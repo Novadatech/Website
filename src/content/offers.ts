@@ -183,6 +183,23 @@ export const AUDIENCES: Audience[] = [PRACTICES, CARE];
 
 export type Offer = {
   name: string;
+  /**
+   * The nav slot's label, when the service name is too long for it.
+   * The care pillars carry full service names ("Rostering Audit &
+   * Efficiency"), which a nav cannot hold, so they set this to the one
+   * word a provider already uses for the problem. Falls back to `name`.
+   */
+  navLabel?: string;
+  /**
+   * The care pillars' comprehension spine: "the workers you already
+   * have" against "the workers you do not have yet".
+   *
+   * ⚠️ ONE DEFINITION, because this pair is the only thing holding the
+   * two halves apart in a reader's head, and it appears in five places
+   * across three pages. A synonym in any one of them breaks it. Not set
+   * for the practices desks, which are genuinely separate products.
+   */
+  spine?: string;
   slug: string;
   href: string;
   audience: Audience["slug"];
@@ -235,20 +252,22 @@ export const PATIENT_ACCESS: Offer = {
  * stays with the provider; see the "Not your obligation" boundary. Never
  * write a line that could be read as us discharging a regulatory duty.
  */
-export const OPERATIONS: Offer = {
-  name: "The Operations Desk",
-  slug: "operations",
-  href: "/care/operations",
+export const ROSTERING: Offer = {
+  name: "Rostering Audit & Efficiency",
+  navLabel: "Rostering",
+  spine: "The workers you already have",
+  slug: "rostering",
+  href: "/care/rostering",
   audience: "care",
   who: "For care providers",
   summary:
-    "The phone, the roster, the intake and the records that keep your operation running, across every hour you operate rather than only the ones after five.",
+    "Your overtime, your agency shifts, your travel and your worker availability, read against your own rosters and payroll. We show you where you are paying more than you need to for cover you are already getting.",
   scope: [
-    "Your operations line answered by a coordinator in your own name, through the day and through the night. Not a message bank, and never an announcement that the caller has reached an outside service.",
-    "Rostering worked continuously: call-offs, replacements, shift changes and cover arranged from your own approved workers and written straight into your own roster.",
-    "Intake, service agreements and service-change administration handled inside the systems you already run.",
-    "Anything needing authority or clinical judgement escalated to your nominated contact, under a matrix agreed in writing before we take a single call.",
-    "Every event logged with timestamps as it happens, so your record exists at the moment you become aware rather than being reconstructed afterwards.",
+    "Overtime added to workers already on shift, while other cleared workers have hours they want and are not getting.",
+    "Agency cover bought for leave, sick days and recurring gaps that were visible in advance.",
+    "How shifts are allocated against location, availability, qualifications, contracted hours and the relationships participants already have.",
+    "Where your rostering process is creating avoidable administrative work for coordinators.",
+    "Potential award and enterprise agreement exceptions, identified for your qualified people to resolve.",
   ],
 };
 
@@ -270,29 +289,40 @@ export const WORKFORCE_PRACTICES: Offer = {
   ],
 };
 
-/** ⚠️ Same product as WORKFORCE_PRACTICES. Written for a care reader. */
-export const WORKFORCE_CARE: Offer = {
-  name: "The Workforce Desk",
+/*
+ * ⚠️ NO LONGER THE TWIN OF WORKFORCE_PRACTICES. Until 14 October 2026
+ * the care side ran the same Workforce Desk as the practices side, in a
+ * different vocabulary, and the two pages were kept in lockstep. That is
+ * over: this is a different product with a different commercial shape,
+ * and only the practices page is still a Desk.
+ *
+ * 🔴 MONTH TO MONTH. Rostering is a ONE-OFF engagement; this one is
+ * monthly. The two pillars are bought differently and the pages say so.
+ */
+export const CONTINUITY: Offer = {
+  name: "Workforce Continuity",
+  navLabel: "Workforce",
+  spine: "The workers you do not have yet",
   slug: "workforce",
   href: "/care/workforce",
   audience: "care",
   who: "For care providers",
   summary:
-    "The hiring, the onboarding, the screening and the payroll that decide whether the cases you are offered can actually be staffed.",
+    "Recruiting, screening and induction run ahead of demand rather than after a shift goes vacant, plus payroll on your own cycle. So you have enough cleared and available people to cover leave, absences and new participants.",
   scope: [
-    "Recruiting: role definition, posting, screening and the first contact with applicants, at the speed this labour market actually moves.",
-    "Onboarding owned end to end, so somebody who accepts on the third is working a shift in days rather than weeks.",
-    "Induction, competency and in-service training, evidenced with dates and completion records.",
-    "Background checks, registration and worker screening maintained, with expiries tracked ninety days ahead.",
-    "Payroll processed on your own cycle, with your agency remaining the employer throughout.",
+    "Recruiting: role definition, advertising, screening and first contact with applicants, run against the gaps rather than the emergency.",
+    "NDIS Worker Screening clearance, police certificates and the other checks your sector requires, plus credential verification, induction and system access.",
+    "Your own relief pool of cleared, available workers, with a clear process for keeping them current.",
+    "Payroll processed on your own cycle, with your organisation remaining the employer throughout.",
+    "Visibility over who is available, what they are cleared for, and what is coming up short.",
   ],
 };
 
 export const OFFERS: Offer[] = [
   PATIENT_ACCESS,
   WORKFORCE_PRACTICES,
-  OPERATIONS,
-  WORKFORCE_CARE,
+  ROSTERING,
+  CONTINUITY,
 ];
 
 /** The offers belonging to one audience, in page order. */

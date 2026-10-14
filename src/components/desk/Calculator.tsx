@@ -68,7 +68,11 @@ export type CalcField = {
  * are looked up here. Adding a calculator means adding a kind here and
  * a config there, in that order.
  */
-export type CalcKind = "patient-access" | "operations" | "workforce";
+export type CalcKind =
+  | "patient-access"
+  | "operations"
+  | "workforce"
+  | "rostering";
 
 export type CalcConfig = {
   kind: CalcKind;
@@ -112,6 +116,28 @@ const MATH: Record<
         `${v.unfilled} uncovered shifts a week × ${v.hours} hours = ${f.n(hrs)} hours`,
         `${f.n(hrs)} hours × ${f.m(v.rate)} billed = ${f.m(wk)} a week`,
         `${f.m(wk)} × ${v.weeks} weeks = ${f.m(wk * v.weeks)}`,
+      ];
+    },
+  },
+  /*
+   * ⚠️ THE PREMIUM, NOT THE COST. Both inputs here ask for the EXTRA
+   * paid to cover a shift the expensive way, never the whole cost of the
+   * shift. The shift still has to be covered and the worker still has to
+   * be paid, so the whole cost is not avoidable and we must never imply
+   * it is. Asking for the premium is what makes this arithmetic
+   * structurally incapable of reading as "cut your staffing costs".
+   */
+  rostering: {
+    annual: (v) => v.otHours * v.otPremium * 52 + v.agencyShifts * v.agencyPremium * 12,
+    workings: (v, f) => {
+      const otWeek = v.otHours * v.otPremium;
+      const otYear = otWeek * 52;
+      const agMonth = v.agencyShifts * v.agencyPremium;
+      const agYear = agMonth * 12;
+      return [
+        `${v.otHours} hours \u00d7 ${f.m(v.otPremium)} = ${f.m(otWeek)} a week, or ${f.m(otYear)} a year`,
+        `${v.agencyShifts} shifts \u00d7 ${f.m(v.agencyPremium)} = ${f.m(agMonth)} a month, or ${f.m(agYear)} a year`,
+        `${f.m(otYear)} plus ${f.m(agYear)} = ${f.m(otYear + agYear)} a year`,
       ];
     },
   },

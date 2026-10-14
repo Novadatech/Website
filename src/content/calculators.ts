@@ -22,9 +22,9 @@
  * carries its own copy of this file with its own labels and values.
  */
 
-import type { CalcConfig } from "@/components/desk/Calculator";
+import type { CalcConfig, CalcField } from "@/components/desk/Calculator";
 
-const RECOVERY = {
+const RECOVERY: CalcField = {
   key: "recovery",
   label: "If you closed this much of the gap",
   hint: "Your hypothesis, not our promise. Move it to whatever you think is realistic.",
@@ -87,55 +87,76 @@ export const PATIENT_ACCESS_CALC: CalcConfig = {
   recoveredLabel: "At that rate, the part you would get back is worth",
 };
 
-/* ══════════════════════════════════════════════════════════════════════
-   THE OPERATIONS DESK
-   What the shifts that never got covered are worth over a year.
-   ══════════════════════════════════════════════════════════════════════ */
-export const OPERATIONS_CALC: CalcConfig = {
-  kind: "operations",
-  eyebrow: "The shift nobody covered",
+/* ======================================================================
+   ROSTERING AUDIT & EFFICIENCY
+   What the premium on avoidable cover is worth over a year.
+
+   🔴 THE PREMIUM, NOT THE COST, AND THIS IS A SAFETY LINE RATHER THAN
+   A COPY PREFERENCE. The retired Operations calculator multiplied
+   uncovered shifts by a billing rate, which measured the wrong thing and
+   implied the goal was to stop paying for the shift. Both inputs here
+   ask only for the EXTRA paid to cover a shift the expensive way. The
+   shift still has to be covered and the worker still has to be paid.
+   Asking for the premium is what makes this arithmetic structurally
+   incapable of reading as "cut your staffing costs", which the offer
+   brief forbids outright.
+
+   ⚠️ The recovery slider starts at 25, not 50. A modest default from a
+   firm with no case studies is more credible than an ambitious one, and
+   a reader who raises it themselves has persuaded themselves.
+   ====================================================================== */
+export const ROSTERING_CALC: CalcConfig = {
+  kind: "rostering",
+  eyebrow: "What the avoidable cover is costing you",
   title:
-    "What is a year of shifts that never got filled actually worth to your service?",
+    "How much are you paying in overtime and agency rates to cover absences you could see coming?",
   fields: [
     {
-      key: "unfilled",
-      label: "Shifts that go uncovered in a typical week",
-      hint: "Called off and never filled, or handed back to the client.",
+      key: "otHours",
+      label: "Overtime hours you pay in a typical week",
+      hint: "Across your whole workforce, from your payroll report.",
       min: 0,
-      max: 60,
-      step: 1,
-      value: 6,
+      max: 400,
+      step: 5,
+      value: 40,
     },
     {
-      key: "hours",
-      label: "Hours in a typical shift",
-      min: 2,
-      max: 12,
+      key: "otPremium",
+      label: "What an overtime hour costs above the ordinary rate",
+      hint: "The premium only, not the whole hourly cost.",
+      min: 0,
+      max: 100,
       step: 1,
-      value: 8,
-    },
-    {
-      key: "rate",
-      label: "What you bill per hour",
-      hint: "Your rate, not a market figure.",
-      min: 15,
-      max: 150,
-      step: 1,
-      value: 72,
+      value: 18,
       money: true,
     },
     {
-      key: "weeks",
-      label: "Weeks a year you operate",
-      min: 40,
-      max: 52,
+      key: "agencyShifts",
+      label: "Agency shifts you book in a typical month",
+      hint: "Only the ones booked because nobody internal was available.",
+      min: 0,
+      max: 200,
       step: 1,
-      value: 52,
+      value: 12,
+    },
+    {
+      key: "agencyPremium",
+      label: "What an agency shift costs above running it yourself",
+      hint: "The invoice, less what that shift costs with your own worker.",
+      min: 0,
+      max: 1000,
+      step: 10,
+      value: 180,
+      money: true,
     },
   ],
-  recovery: RECOVERY,
-  resultLabel: "On your figures, a year of them is worth",
-  recoveredLabel: "At that rate, the part you would get back is worth",
+  recovery: {
+    ...RECOVERY,
+    label: "If this much of it turned out to be avoidable",
+    value: 25,
+  },
+  resultLabel: "On your figures, the premium you pay for cover is worth",
+  recoveredLabel: "At that rate, the part worth looking at is",
 };
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -206,15 +227,56 @@ export const WORKFORCE_PRACTICES_CALC = workforceCalc({
     "Overtime, agency cover, and the appointments you could not take. Your figure.",
 });
 
-export const WORKFORCE_CARE_CALC = workforceCalc({
-  eyebrow: "The role sitting open",
+/*
+ * WORKFORCE CONTINUITY.
+ *
+ * ⚠️ NOT the practices Workforce Desk calculator with different words.
+ * It shares the arithmetic (roles x weeks open x weekly cost) and
+ * nothing else: this one costs the premium paid to cover a VACANCY,
+ * where the rostering calculator costs the premium paid to cover an
+ * ABSENCE. Different weeks. The page says so, because a reader who has
+ * used both and suspects double counting discounts both numbers.
+ */
+export const CONTINUITY_CALC: CalcConfig = {
+  kind: "workforce",
+  eyebrow: "What the wait between hiring and rostering is costing you",
   title:
-    "What does the gap between deciding to hire and somebody working a shift actually cost you?",
-  roleLabel: "Support workers you hire in a year",
-  roleHint: "Replacements included. With turnover where it is, this is usually the larger number.",
-  hires: 25,
-  weeks: 5,
-  cost: 1100,
-  costHint:
-    "Overtime, agency cover, and the cases you had to turn down. Your figure.",
-});
+    "From the day you decide you need somebody, how long until they can take a shift, and what covers the shifts in between?",
+  fields: [
+    {
+      key: "hires",
+      label: "Support workers you need to bring on in a year",
+      hint: "Replacements included. With turnover where it is, this is usually the larger number.",
+      min: 1,
+      max: 150,
+      step: 1,
+      value: 25,
+    },
+    {
+      key: "open",
+      label: "Weeks from deciding to hire to that person taking a shift",
+      hint: "Advertising, screening, checks, induction and system access, end to end.",
+      min: 1,
+      max: 26,
+      step: 1,
+      value: 6,
+    },
+    {
+      key: "cost",
+      label: "What a week of that wait costs you to cover",
+      hint: "The overtime and agency premium on the shifts that person would have taken.",
+      min: 100,
+      max: 10000,
+      step: 100,
+      value: 900,
+      money: true,
+    },
+  ],
+  recovery: {
+    ...RECOVERY,
+    label: "If you took this much out of the wait",
+    value: 30,
+  },
+  resultLabel: "On your figures, a year of waiting is worth",
+  recoveredLabel: "At that rate, the part worth looking at is",
+};

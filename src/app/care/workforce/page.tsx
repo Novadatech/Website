@@ -1,125 +1,184 @@
 import type { Metadata } from "next";
-import ServicePage from "@/components/desk/ServicePage";
-import { WORKFORCE_CARE_CALC } from "@/content/calculators";
-import { WORKFORCE_CARE, OPERATIONS } from "@/content/offers";
+
+import PillarPage from "@/components/care/PillarPage";
+import { CONTINUITY_CALC } from "@/content/calculators";
+import { CONTINUITY, ROSTERING } from "@/content/offers";
+import { EVIDENCE } from "@/content/offers";
 
 /*
- * /care/workforce
+ * /care/workforce — pillar two of the care offer.
  *
- * ⚠️ THIS IS THE SAME PRODUCT AS /practices/workforce, written for a
- * different reader. It is not a second product and it must never
- * acquire scope the practice page does not have, or lose scope the
- * practice page keeps. If the offer changes, both pages change.
+ * Same URL as the retired Workforce Desk, entirely new content. The
+ * ninety-day expiry calendar, the filing-cabinet diagram and the
+ * "working a shift in days rather than weeks" timeframe are all gone,
+ * because none of them is in the new offer brief.
  *
- * That is the whole reason the Workforce Desk sits under both doors:
- * recruit, onboard, induct, keep current and pay is the same job in a
- * dental practice and a home care provider. The site said so from the
- * start, in the line "for healthcare now, other industries later".
+ * ⚠️ THIS IS NO LONGER THE TWIN OF /practices/workforce. The two ran as
+ * one product in two vocabularies and were kept in lockstep by hand,
+ * which is how one of them ended up with a duplicated heading and a
+ * diagram written about the wrong audience. Only the practices page is
+ * still a Desk. Do not sync them again.
  *
- * ⚠️ THE LINE THIS PAGE IS BUILT AROUND, same as its sibling:
+ * ⚠️ THE POOL IS THEIRS. The brief describes helping the provider build
+ * their own relief pool, so that is what this page says: their workers,
+ * their access control, their hires. Novada's own worker pool is not
+ * mentioned, and is not denied either. Do not add "we do not supply
+ * labour" or any other legal characterisation of the arrangement, in
+ * either direction.
  *
- *     WORKER COMPLIANCE IS A CALENDAR, NOT A FILING CABINET.
- *
- * In a care setting it bites harder than in a practice, because an
- * expired clearance does not just create a paperwork problem, it removes
- * a person from the schedule on the day you needed them.
- *
- * ⚠️ THE EMPLOYMENT BOUNDARY IS LOAD-BEARING. The provider employs its
- * own people and chooses every hire. We are not an employer of record,
- * we do not supply labour, and we never place our own people into a
- * provider's roles. Do not paraphrase that into something friendlier,
- * and do not describe any part of it as a staffing agency or a promised fill.
- *
- * ⚠️ AUSTRALIA. Background checks, state registration currency and OIG
- * exclusion screening by name. Support worker, never "support worker".
- * Schedule, never "roster". No NDIS, no award, no ABN: those belong to
- * the Australian domain and must never appear here.
+ * ⚠️ NEVER PROMISE A FILL. We sell the sequence that runs when a shift
+ * goes vacant, never the outcome. Boundary card 2 states it outright.
  */
 
 export const metadata: Metadata = {
-  title: "The Workforce Desk | Novada",
+  title: "Recruiting, screening, induction and payroll | Novada",
   description:
-    "Recruitment, onboarding, induction, background check and registration currency and payroll for care providers, run by our team on your own cycle. Expiries tracked ninety days ahead, and you stay the employer throughout.",
+    "Build your workforce before you need it, not after the shift is already vacant. Recruiting, screening and induction run ahead of demand, your own relief pool, and payroll on your own cycle.",
   openGraph: {
     locale: "en_AU",
     siteName: "Novada",
-    title: "The Workforce Desk | Novada",
+    title: "Recruiting, screening, induction and payroll | Novada",
     description:
-      "The hiring, the induction, the records and the payroll that decide whether tonight's roster can actually be filled.",
+      "You stay the employer. You choose every hire. For Australian NDIS, home care and aged care providers.",
     type: "website",
   },
 };
 
 export default function Page() {
   return (
-    <ServicePage
-      offer={WORKFORCE_CARE}
-      calculator={WORKFORCE_CARE_CALC}
-      sibling={OPERATIONS}
-      device="compliance"
-      /* Same construction as the practice page's headline: give the
-         participles a subject, and put the largest objection, which is
-         whether this is a staffing agency, into the headline where it belongs. */
-      headline="Your people hired, cleared and paid. You stay the employer."
-      standfirst="Recruitment, onboarding, induction records, background check and registration
-        expiries and payroll, run by our team on your own cycle. You choose every
-        hire. We own the queues in between, which is where the weeks go."
+    <PillarPage
+      offer={CONTINUITY}
+      sibling={ROSTERING}
+      source="care-workforce"
+      headline="Build your workforce before you need it, not after the shift is already vacant."
+      standfirst="We help you recruit, screen and induct the support workers you are short of, and build your own relief pool. Then an absence does not automatically become an agency booking. We process the payroll on your own cycle. You stay the employer. You choose every hire."
       moment={{
-        label: "The calendar nobody watches",
-        body:
-          "Worker compliance is a calendar, not a filing cabinet. Something expires on a date nobody is watching, and you find out at the moment you needed that person on a shift.",
+        label: "The call you make when there is nobody to ring",
+        body: "Six on a Saturday, a support worker calls in sick, and the coordinator goes down the list. The first three are already on. The next two are not cleared for that house. So the agency gets the call, at agency rates, for a shift somebody always had to cover. Recruiting starts on Monday.",
       }}
-      mechanism={{
-        heading: "It is a second job, given to somebody who already has one.",
-        body: [
-          "Recruitment, onboarding, induction, training records, background check currency and payroll are not occasional tasks. In a service with any turnover at all they are continuous. They are almost never anybody's actual role.",
-          "So they are distributed. A manager signs off the hire and then chases the paperwork between rosters. Somebody screens applicants on a Thursday, if Thursday is quiet. A bookkeeper runs payroll from an arrangement only they fully understand. Nobody watches the expiry dates, because watching them is not on anybody's list.",
-          "The consequences are predictable, and in a rostered service they are immediate. Good applicants accept the offer from whoever replied first. New support workers take weeks longer than necessary to become available, because each step of their induction sits in a different queue. And an expiry is discovered on the day it removes somebody from a shift, rather than ninety days ahead when it was still only admin.",
+      why={{
+        heading: "Recruiting starts when it is already too late",
+        paras: [
+          "Most providers recruit when they have a shortage. By the time advertising, screening, checks and induction are finished, the shifts have already been covered with overtime and agency hours. That money is already spent.",
+          "The shortage was not a surprise. Leave, sick days and turnover are all predictable in aggregate. What is missing is a pipeline that keeps running when nothing is wrong.",
+        ],
+        quote:
+          "Stop treating every staffing shortage as a new emergency. Build workforce capacity before you need it.",
+      }}
+      /* ⚠️ AUSTRALIAN, AND DISABILITY-SPECIFIC. Both figures come from one
+         report, read out of the primary PDF. The labels say "disability
+         support" and must not be widened, because this audience also
+         includes home care and aged care. */
+      stats={{
+        figures: [EVIDENCE.turnover, EVIDENCE.fullTime],
+        caption:
+          "At that rate, recruiting is not a project. It runs all the time.",
+      }}
+      what={{
+        label: "What we run",
+        heading: "The workers you do not have yet: what we run",
+        intro:
+          "Against the gaps your own numbers show, not whichever shift fell over last week.",
+        cards: [
+          {
+            h: "Recruiting ahead of demand",
+            b: "Role definition, advertising, screening and first contact with applicants, run against the gaps rather than the emergency. Applicants usually approach several employers in the same week, and whoever replies first wins.",
+          },
+          {
+            /* ⚠️ Names what is actually in force in each sector today and
+               asserts nothing about any new regime. Aged care currently
+               runs on a police certificate or an NDIS check; a dedicated
+               aged care screening check is legislated but its start was
+               not confirmable. Never name it either way. */
+            h: "Screening and readiness",
+            b: "NDIS Worker Screening clearance, police certificates and the other checks your sector requires, plus credential verification, induction, role-specific training and system access. All in one place, to shorten the wait between accepting and taking a shift.",
+          },
+          {
+            h: "Your own relief pool",
+            b: "A group of your own cleared, available workers who can take extra cover. With a process for keeping them current, and for who gets called first.",
+          },
+          {
+            h: "Visibility, ahead of the roster",
+            b: "Who is available, what they are cleared for, where they are, what hours they want. And what is coming up short, so you can act before it reaches a participant.",
+          },
+          {
+            h: "Payroll",
+            b: "Processed on your own cycle, against the hours and entitlements that apply to your people. We process payroll. We do not advise on it.",
+          },
         ],
       }}
-      work={[
+      how={{
+        heading: "Four steps, and you can stop after the second",
+        steps: [
+          {
+            h: "Look",
+            b: "We go through your workforce numbers, available hours, recurring vacancies, absence patterns and planned growth.",
+          },
+          {
+            h: "Find",
+            b: "We name where you are short: how many, which qualifications, which locations, which hours.",
+          },
+          {
+            h: "Build it",
+            b: "Recruiting, screening, induction and relief pool development against that list, running continuously rather than when a shift falls over.",
+          },
+          {
+            h: "Stay ahead of it",
+            b: "Upcoming shortages, worker availability and agency reliance tracked, so you can act before a gap reaches the roster.",
+          },
+        ],
+        closing:
+          "You decide every hire at every step. We do the work in between.",
+      }}
+      calculator={CONTINUITY_CALC}
+      calcIntro="We will not invent a figure for you. Here is the sum."
+      /* A reader who has used both calculators and suspects double
+         counting discounts both numbers. Say it before they wonder. */
+      calcNote="This is the cover you buy while a role is open. The rostering page costs the cover you buy for an absence. Different weeks, do not add them."
+      boundaries={[
         {
-          k: "Recruitment",
-          v: "Role definition, advertising, screening and the first contact with applicants. Speed is the whole game here: an applicant has usually approached several employers in the same week, and whoever speaks to them first usually wins.",
+          h: "You stay the employer.",
+          b: "You employ your own people and choose every hire. We run the work in between: the advertising, the screening, the records, the induction. Final suitability, safeguarding and employment decisions are yours.",
         },
         {
-          k: "Onboarding",
-          v: "Owned end to end rather than spread across several inboxes, so somebody who accepts on the third is available to be rostered in days rather than weeks.",
+          h: "We do not promise a fill.",
+          b: "We build the pipeline and the pool so there are more cleared, available people to call. We never promise a particular shift will be covered, and nobody honest would.",
         },
         {
-          k: "Induction",
-          v: "Role induction, system access, policy acknowledgements and role-specific training, evidenced with dates and completion records as they happen.",
+          h: "We will not end your agency use.",
+          b: "Agencies stay necessary for emergencies, specialist needs and genuine shortfalls. What we work on is the avoidable use: the leave, the sick days and the gaps you can see coming.",
         },
         {
-          k: "Screening",
-          v: "Worker screening, registration and credential currency maintained as events occur rather than assembled under pressure, with expiries tracked ninety days ahead so a renewal is actioned while it is still only admin.",
-        },
-        {
-          k: "Payroll",
-          v: "Processed on your own cycle, against the hours and entitlements that apply to your people, with your organisation remaining the employer throughout.",
-        },
-        {
-          k: "The boundary",
-          v: "We process payroll, we do not advise on it. Tax treatment, worker classification, employment disputes and regulatory interpretation go to your accountant or lawyer, and we say so rather than be drawn.",
+          h: "Retention is not ours to promise.",
+          b: "We can improve recruiting, induction and capacity planning. Whether your people stay also depends on your management and employment practices, which is outside what we run.",
         },
       ]}
-      measured={[
-        "Time from offer accepted to available for roster",
-        "Background check and registration currency across your workforce, with what falls due next",
-        "Induction and training completions, with dates",
-        "Payroll accuracy, and anything that had to be corrected",
+      other={{
+        heading: "When you have the people and still pay too much for them",
+        body: "A bigger pool does not fix a roster that was never going to use it well. If you pay overtime while workers who want hours are not getting them, that is the other half of this.",
+      }}
+      faq={[
+        {
+          q: "Do you give payroll, employment or tax advice?",
+          a: "No. We process payroll and coordinate the recruiting, the records, the checks and the induction. Tax treatment, worker classification, employment disputes and regulatory interpretation go to your accountant or lawyer.",
+        },
+        {
+          q: "What systems do you work in?",
+          a: "Yours. We work inside the systems you already run, and we go deep on a small number rather than claiming all. Tell us what you use on the call.",
+        },
+        {
+          q: "Who sees our worker information?",
+          a: "Named people, each with their own login under your own access control. Permissions are limited to the work, and revoked the day somebody leaves. Never a shared account.",
+        },
+        {
+          q: "Are we locked in?",
+          a: "Month to month, with no commitment beyond the current month. Commercial terms are covered on the call and set out in the proposal.",
+        },
       ]}
-      boundaryTags={[
-        "You stay the employer",
-        "Alongside, never instead",
-        "Not your obligation",
-        "We never deliver the care",
-        "Nothing clinical",
-      ]}
-      siblingWhy="A service that hires and clears people efficiently still has a
-        phone that rings at four in the morning. The roster is full and the call
-        still has to be answered, actioned and recorded by somebody. That is the
-        other desk, and the two problems regenerate each other."
+      ask={{
+        body: "Thirty minutes on where your workforce is short today. You leave with an honest view of whether this fits, or does not.",
+      }}
+      commitment="Month to month after that, with no commitment beyond the current month."
     />
   );
 }

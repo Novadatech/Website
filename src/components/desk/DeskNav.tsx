@@ -41,7 +41,10 @@ import { AUDIENCES, CTA_LABEL, offersFor, type Audience } from "@/content/offers
 
 function navItems(audience?: Audience["slug"]) {
   const items = audience
-    ? offersFor(audience).map((o) => ({ href: o.href, label: o.name }))
+    ? offersFor(audience).map((o) => ({
+        href: o.href,
+        label: o.navLabel ?? o.name,
+      }))
     : AUDIENCES.map((a) => ({ href: a.href, label: a.name }));
   return [...items, { href: "/why-novada", label: "Why Novada" }];
 }
@@ -49,10 +52,23 @@ function navItems(audience?: Audience["slug"]) {
 export default function DeskNav({
   tone = "light",
   audience,
+  bookHref: bookHrefProp,
 }: {
   tone?: "light" | "dark";
   /** When set, the nav lists this audience's desks instead of the doors. */
   audience?: Audience["slug"];
+  /**
+   * Where the header action goes. A page that owns a `#book` section
+   * passes "#book" so the reader stays on it.
+   *
+   * ⚠️ The default below sends every page except the homepage to
+   * `/#book`, which is the opposite of what the comment under it has
+   * always claimed, and it means an offer page with its own embedded
+   * calendar throws the visitor to the home page instead. The care pages
+   * pass this explicitly. The practices pages still run on the old
+   * default and should be corrected separately.
+   */
+  bookHref?: string;
 }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -61,7 +77,7 @@ export default function DeskNav({
   // Book on the page the visitor is already on when it owns a calendar.
   // Sending a paid visitor from an offer page to the home calendar loses the
   // single-offer context and attributes the booking to the home page.
-  const bookHref = pathname === "/" ? "#book" : "/#book";
+  const bookHref = bookHrefProp ?? (pathname === "/" ? "#book" : "/#book");
   const dark = tone === "dark";
 
   return (

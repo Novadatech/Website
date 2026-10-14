@@ -21,16 +21,22 @@ export default function Page() {
   return (
     <ConfirmedPage
       offer="care"
-      eventName="Operations Desk review"
-      backHref="/care/operations"
-      backLabel="Back to The Operations Desk"
+      /* ⚠️ THE CARE SIDE HAS ONE REVIEW AND ONE CONFIRMATION PAGE.
+         This route survives because `InaO8Qj92uCQ8BglSMhW` still
+         redirects here, not because /care/operations still exists: that
+         page is retired and 308s to /care/rostering. The wording is
+         deliberately neutral between the two pillars, because the
+         booker has not chosen one and is not expected to. */
+      eventName="care review"
+      backHref="/care"
+      backLabel="Back to Novada for care providers"
       contactEmail="support@novadatech.com.au"
       googleAdsSendTo="AW-16650862607/o6ELCPGhgYwcEI-A4IM-"
       numbers={{
         neutral:
-          "Roughly how much comes into your operations line in a typical week and when, who handles it today, and where your records currently live. Estimates are fine.",
-        us: "Roughly how much comes into your operations line in a typical week and when, who handles it today, and where your visit records live. Estimates are fine.",
-        au: "Roughly how much comes into your operations line in a typical week and when, who handles it today, and where your records currently live. Estimates are fine.",
+          "Roughly what you pay in overtime and agency cover in a typical month, how many people you bring on in a year, and how long it takes one of them to go from accepting to taking a shift. Estimates are fine.",
+        us: "Roughly what you pay in overtime and agency cover in a typical month, how many people you bring on in a year, and how long it takes one of them to go from accepting to working. Estimates are fine.",
+        au: "Roughly what you pay in overtime and agency cover in a typical month, how many support workers you bring on in a year, and how long it takes one of them to go from accepting to taking a shift. Estimates are fine.",
       }}
     />
   );
