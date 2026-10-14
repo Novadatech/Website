@@ -28,9 +28,9 @@ const nextConfig: NextConfig = {
          confirmation links live in sent email and browser history, and a
          404 at the end of a booking is the worst place for one. Each
          retired URL goes to its offer's flagship desk. */
-      { source: "/review-confirmed", destination: "/care/operations/confirmed", permanent: true },
-      { source: "/care/confirmed", destination: "/care/operations/confirmed", permanent: true },
-      { source: "/practices/confirmed", destination: "/practices/patient-access/confirmed", permanent: true },
+      { source: "/review-confirmed", destination: "/care/rostering/confirmed", permanent: true },
+      { source: "/care/confirmed", destination: "/care/rostering/confirmed", permanent: true },
+      { source: "/practices/confirmed", destination: "/practices/patient-booking/confirmed", permanent: true },
       /* ── The Two Partners, 6 September 2026 ──────────────────────
          The company repositioned onto two care-sector offers and the
          clinic offer was separated out entirely. Both old offer URLs
@@ -43,7 +43,7 @@ const nextConfig: NextConfig = {
          restructure gives this domain a practices door again, so that
          compromise is over: the URL now lands on the page it always
          should have. */
-      { source: "/patient-access-desk", destination: "/practices/patient-access", permanent: true },
+      { source: "/patient-access-desk", destination: "/practices/patient-booking", permanent: true },
 
       /* ── The practices offer became two pillars, 14 Oct 2026 ────
          The Patient Access Desk and the Practice Workforce Desk are
@@ -78,21 +78,21 @@ const nextConfig: NextConfig = {
       /* ── The two-door restructure, 21 September 2026 ──────────────
          The Partner nouns are retired and both offer pages moved under
          /care. All four of these carried real search equity. */
-      { source: "/operations-partner", destination: "/care/operations", permanent: true },
+      { source: "/operations-partner", destination: "/care/rostering", permanent: true },
       { source: "/workforce-partner", destination: "/care/workforce", permanent: true },
-      { source: "/workforce-ops-desk", destination: "/care/operations", permanent: true },
+      { source: "/workforce-ops-desk", destination: "/care/rostering", permanent: true },
 
       /* ── Novada Workforce, superseded by the Desk positioning ── */
-      { source: "/workforce", destination: "/care/operations", permanent: true },
-      { source: "/workforce-2", destination: "/care/operations", permanent: true },
-      { source: "/workforce-confirmed", destination: "/review-confirmed", permanent: true },
+      { source: "/workforce", destination: "/care/rostering", permanent: true },
+      { source: "/workforce-2", destination: "/care/rostering", permanent: true },
+      { source: "/workforce-confirmed", destination: "/care/rostering/confirmed", permanent: true },
 
       /* Comparison copy of the repositioned care page, created and deleted
          on 5 Sep 2026 after the founder compared the two versions side by
          side and kept the original. TEMPORARY (307), not permanent: this
          is a scratch URL likely to be reused for the next comparison, and
          browsers cache a 308 hard enough to poison it for that reuse. */
-      { source: "/workforce-ops-desk-2", destination: "/care/operations", permanent: false },
+      { source: "/workforce-ops-desk-2", destination: "/care/rostering", permanent: false },
 
       /* ── Legacy meetings service funnel ── */
 

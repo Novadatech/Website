@@ -39,11 +39,26 @@
  *
  * THE SENTENCE THE WHOLE ESTATE IS BUILT AROUND
  *
- *     "We run everything except the care."
+ *     "We streamline the work behind the care."
  *
- * Every headline and section traces back to it. It is also the boundary
- * both audiences lead with, which is the strongest thing about it: the
- * promise and the limit are the same sentence.
+ * This is the brand promise both offer briefs state, and it replaced
+ * "We run everything except the care." on 15 October 2026.
+ *
+ * ⚠️ WHY THE OLD LINE WENT. Three reasons, in order of weight. It
+ * defined the business by subtraction, so a reader five seconds in knew
+ * only what we do not do. It promised "everything", which stopped being
+ * true the moment recruitment, induction, registration and practice
+ * payroll were withdrawn: the estate now sells two audits and two
+ * continuity services, not everything. And "run" is the wrong verb for
+ * an audit, which recommends rather than operates.
+ *
+ * The boundary the old line carried has not been dropped. It is carried
+ * by the sentence that follows POSITION in the footer, "Alongside your
+ * team, never instead of them", and by the explicit boundary sections on
+ * every page. Keeping the limit and the promise in one sentence was the
+ * best thing about the old line, and splitting them is the cost of this
+ * change. It is worth paying, because a promise that is not true costs
+ * more.
  *
  * ⚠️ TWO AUDIENCES, AND THEIR VOCABULARIES MUST NEVER CROSS.
  *
@@ -86,7 +101,16 @@
 export const CTA_LABEL = "Book a 30-minute review";
 export const CTA_HREF = "/#book";
 
-export const POSITION = "We run everything except the care.";
+/*
+ * The brand promise, which is what both offer briefs state.
+ *
+ * Replaced "We run everything except the care." on 15 October 2026. That
+ * line was written for the retired Desks, it defined the business by
+ * subtraction, and it was still rendering in the footer of every page on
+ * both domains, in the metadata titles and on the share image,
+ * underneath four offers it no longer described.
+ */
+export const POSITION = "We streamline the work behind the care.";
 
 /** The sub-line under the position on the router homepage. */
 export const POSITION_SUB =
@@ -176,9 +200,13 @@ export const PRACTICES: Audience = {
   who: "Owner-led medical, dental and allied health practices across Australia.",
   moment:
     "The phone rings out at eleven on a Tuesday, in a practice that is open, fully staffed and running normally.",
-  headline: "Your phone answered, your book worked, your people paid.",
+  /* ⚠️ "your people paid" WAS THE THIRD CLAUSE HERE until 15 October
+     2026. Practice recruitment, induction, registration currency and
+     payroll are withdrawn service lines, so the clause advertised
+     something that cannot be bought. */
+  headline: "Your phone answered, your book worked, your recalls run.",
   standfirst:
-    "Two desks for practices, run by our own team inside your own practice software, during your own operating hours. Your reception keeps the counter. We take the work that never reaches the top of their list, under the Privacy Act and your own access controls.",
+    "An audit that finds the bookings you are losing, and the ongoing work that stops you losing them. Run by our own team inside your own practice software, during your own operating hours. Your reception keeps the counter. We take the work that never reaches the top of their list, under the Privacy Act and your own access controls.",
 };
 
 export const CARE: Audience = {
@@ -186,11 +214,16 @@ export const CARE: Audience = {
   name: "Care providers",
   href: "/care",
   who: "NDIS, home care and aged care providers running extended or around-the-clock rosters.",
+  /* ⚠️ ALL THREE OF THESE DESCRIBED THE RETIRED OPERATIONS DESK, a
+     24/7 phone and roster service, until 15 October 2026. The moment
+     now echoes the one on the /care hub, because the homepage card and
+     the hub a reader lands on should not describe two different
+     businesses. */
   moment:
-    "The operation does not keep office hours. A call-off at four in the morning and a service change at four in the afternoon both need somebody, and neither waits for the person who already has a job.",
-  headline: "Your operation run, your records audit-ready, your people paid.",
+    "A support worker calls in sick at six on a Saturday evening, in a roster that was signed off and fully covered on Friday. You extend the worker already on shift at overtime, or you ring an agency.",
+  headline: "The workers you already have, and the ones you do not have yet.",
   standfirst:
-    "Two desks for care providers, run by our own team inside the systems you already use. The phone answered, the roster worked, the intake handled and every event recorded as it happens, across the hours you actually operate. Back office only, nothing clinical.",
+    "A one-off audit of how your rosters allocate the workforce you already pay for, and an ongoing service that builds the workforce you do not have yet. Run by our own team inside the systems you already use. Back office only, nothing clinical.",
 };
 
 export const AUDIENCES: Audience[] = [PRACTICES, CARE];

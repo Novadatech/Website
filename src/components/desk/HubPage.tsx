@@ -1,4 +1,17 @@
 /*
+ * ⚠⚠ DEAD CODE AS OF 15 OCTOBER 2026. NOTHING IMPORTS THIS FILE.
+ *
+ * Every hub and offer page was rebuilt on the practices and care offer
+ * briefs and now renders its own layout, or renders through
+ * src/components/offer/PillarPage.tsx. This scaffold still describes
+ * four Desks and reads Audience.headline and Audience.standfirst, which
+ * are no longer checked against the live pages because nothing renders
+ * them.
+ *
+ * Do not wire this back up to build a new page. Copy PillarPage.tsx
+ * instead, or delete this file.
+ */
+/*
  * THE AUDIENCE HUB. One scaffold, two pages: /practices and /care.
  *
  * ══════════════════════════════════════════════════════════════════════

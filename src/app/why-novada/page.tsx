@@ -59,6 +59,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
+import { AUDIENCES, offersFor } from "@/content/offers";
 
 /* ══════════════════════════════════════════════════════════════════
    DESIGN TOKENS
@@ -617,18 +618,33 @@ function Principles() {
    go, and this page serves both audiences, so both go.
    ══════════════════════════════════════════════════════════════════ */
 
-const OFFERS = [
-  {
-    who: "Runs your operation",
-    name: "The Operations Partner",
-    href: "/operations-partner",
-  },
-  {
-    who: "Builds and backs your workforce",
-    name: "The Workforce Partner",
-    href: "/workforce-partner",
-  },
-];
+/* ⚠️ THIS LISTS THE TWO DOORS, NOT THE FOUR SERVICES, and it is
+   DERIVED rather than written out. Until 15 October 2026 it was a
+   hardcoded array reading "The Operations Partner" and "The Workforce
+   Partner", names retired on 15 September, pointing at
+   /operations-partner, which by then chained through two 308s to reach
+   /care/rostering. A hardcoded list on a page nobody edits is how that
+   happens, so the list now follows the content file and cannot go stale
+   on its own.
+
+   It must stay the two DOORS and never map over all four offers.
+   /why-novada is the one shared page on the site: it renders for a
+   dentist and for a care provider, so it is the single place where the
+   two vocabularies could meet. Mapping over the offers here would put
+   "Rostering Audit & Efficiency" in front of a practice reader. Route
+   to the audience and let the hub speak that audience's language.
+
+   The third line was the route string, which worked when it read
+   "/patient-access-desk" and told a reader where they were going.
+   "/practices" says nothing, so it carries the services instead. */
+const DOORS = AUDIENCES.map((a) => ({
+  who: a.name,
+  name: a.who,
+  meta: offersFor(a.slug)
+    .map((o) => o.name)
+    .join("  ·  "),
+  href: a.href,
+}));
 
 function Proof() {
   return (
@@ -641,14 +657,14 @@ function Proof() {
           waiting every morning.
         </p>
         <p className="mt-6 max-w-[720px] pl-6 text-[15px] leading-[1.62] text-white/65 md:text-[16px]">
-          That operating capability is the credibility base for both
-          Partners. It is the same team and the same discipline.
+          That operating capability is the credibility base for all four
+          services. It is the same team and the same discipline.
         </p>
       </AnimatedSection>
 
       <AnimatedSection delay={0.12}>
         <div className="mt-10 grid gap-3 sm:grid-cols-2">
-          {OFFERS.map((o) => (
+          {DOORS.map((o) => (
             <a
               key={o.href}
               href={o.href}
@@ -659,11 +675,11 @@ function Proof() {
                 <span className="mt-2 block text-[16px] font-semibold text-white">
                   {o.name}
                 </span>
-                {/* A route reads as a route, so it stays lower case. */}
+                {/* The services behind this door, not the route. */}
                 <span
                   className={`${MICRO_TIGHT} mt-1.5 block normal-case text-white/55`}
                 >
-                  {o.href}
+                  {o.meta}
                 </span>
               </span>
               <ArrowUpRight

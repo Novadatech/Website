@@ -33,7 +33,7 @@ import { BOOKING, LEAKAGE } from "@/content/offers";
 export const metadata: Metadata = {
   title: "Find the bookings your practice is losing | Novada",
   description:
-    "We read eight to twelve weeks of your own enquiry, booking, cancellation and recall records, and show you where bookings are going missing. One piece of work, with the opportunities in priority order.",
+    "We read eight to twelve weeks of your own enquiry, booking, cancellation and recall records, and show you where bookings are going missing. One piece of work, findings inside two weeks, with the opportunities in priority order.",
   openGraph: {
     locale: "en_AU",
     siteName: "Novada",
@@ -53,7 +53,7 @@ export default function Page() {
       desk="practices-revenue-audit"
       source="practices-revenue-audit"
       headline="Find out how many bookings your practice is losing, and what they were worth."
-      standfirst="We read eight to twelve weeks of your own enquiry, booking, cancellation and recall records. You get a written report with the opportunities in priority order. One piece of work."
+      standfirst="We read eight to twelve weeks of your own enquiry, booking, cancellation and recall records. You get a written report with the opportunities in priority order, inside two weeks of getting access. One piece of work."
       moment={{
         label: "The number nobody at the practice can tell you",
         body: "Ask how many people made a booking enquiry last month, and how many ended up with an appointment. Almost no practice can answer. The book records what was booked. Nothing records what was asked for and did not happen.",
@@ -106,7 +106,7 @@ export default function Page() {
         steps: [
           {
             h: "Assess",
-            b: "We agree the period, usually eight to twelve weeks, and which records we need. Read-only where your systems allow it.",
+            b: "We agree the period, usually eight to twelve weeks, and which records we need. Read-only where your systems allow it. From the day that access works, the report is with you inside two weeks.",
           },
           {
             h: "Identify",
@@ -177,7 +177,7 @@ export default function Page() {
       ask={{
         body: "Thirty minutes on how booking enquiries reach your practice and what happens to them. You leave with an honest view of whether an audit would find anything, or would not.",
       }}
-      commitment="The audit is one piece of work, scoped in writing, not a subscription."
+      commitment="One piece of work, scoped in writing, not a subscription. Findings inside two weeks."
     />
   );
 }

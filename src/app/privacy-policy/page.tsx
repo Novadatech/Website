@@ -87,7 +87,7 @@ const LINK =
   "text-[#003DDB] underline decoration-[#B9CBFF] underline-offset-[3px] transition-colors hover:decoration-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
 
 /** Effective date. Update this and the version line together. */
-const LAST_UPDATED = "14 October 2026";
+const LAST_UPDATED = "15 October 2026";
 
 /* ══════════════════════════════════════════════════════════════════
    SECTION REGISTER
@@ -653,18 +653,25 @@ export default function PrivacyPolicyPage() {
                     under the Privacy Act.
                   </P>
                   <P>
-                    For the <Key>Patient Access Desk</Key> and the practice{" "}
-                    <Key>Workforce Desk</Key>, working inside a practice&apos;s
-                    own software, this can include: patient names, contact
-                    details and appointment details; enquiry, recall and
-                    cancellation records; and, for the workforce side,
-                    candidate and staff records, registration and credential
-                    records, and pay records. Appointment and recall records
-                    can be health information.
+                    For the <Key>Patient Revenue Leakage Audit</Key> and{" "}
+                    <Key>Patient Booking &amp; Retention Continuity</Key>,
+                    working inside a practice&apos;s own software, this can
+                    include: patient names, contact details and appointment
+                    details; enquiry, booking, cancellation and waiting list
+                    records; and the recall records the practice&apos;s own
+                    practitioners maintain. Appointment and recall records can
+                    be health information.
+                  </P>
+                  <P>
+                    We no longer provide recruitment, induction, registration
+                    or payroll services to healthcare practices, so we no
+                    longer handle candidate, staff, credential or pay records
+                    for a practice. The staff, screening and pay records
+                    described in this clause relate to care providers only.
                   </P>
                   <P>
                     <Key>Pay records.</Key> Where we provide payroll
-                    administration for a client, we handle the information a
+                    administration for a care provider client, we handle the information a
                     payroll run needs: names and contact details, employment or
                     engagement details, hours worked, leave and entitlement
                     balances, rates, tax and superannuation identifiers, and

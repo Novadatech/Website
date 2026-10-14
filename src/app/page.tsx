@@ -19,10 +19,13 @@
  * this page starts receiving paid traffic, the ads are misconfigured,
  * not the page.
  *
- * ⚠️ THE POSITION LINE CHANGED with this rebuild, and the reason is
- * structural. "We run your front desk, and everything behind it" is
- * clinic-shaped: a care provider has no front desk. See the header of
- * src/content/offers.ts for the full reasoning.
+ * ⚠️ THE POSITION LINE HAS CHANGED TWICE. "We run your front desk,
+ * and everything behind it" went first, because it is clinic-shaped and
+ * a care provider has no front desk. "We run everything except the
+ * care" went on 15 October 2026, because it defined the business by
+ * subtraction and because "everything" stopped being true when the
+ * practice workforce line was withdrawn. The H1 here renders POSITION,
+ * so it follows the constant. See the header of src/content/offers.ts.
  * ══════════════════════════════════════════════════════════════════════
  */
 
@@ -61,15 +64,15 @@ import {
 } from "@/content/offers";
 
 export const metadata: Metadata = {
-  title: "Novada | We run everything except the care",
+  title: "Novada | We streamline the work behind the care",
   description:
     "Managed operations for healthcare practices and care providers. Run by our own team, inside the systems you already use, alongside your people and never instead of them. Nothing clinical, ever.",
   openGraph: {
     locale: "en_AU",
     siteName: "Novada",
-    title: "We run everything except the care | Novada",
+    title: "We streamline the work behind the care | Novada",
     description:
-      "Two desks for practices, two for care providers. Alongside your team, never instead of it, and never anything clinical.",
+      "Two services for practices, two for care providers. Alongside your team, never instead of it, and never anything clinical.",
     type: "website",
   },
 };

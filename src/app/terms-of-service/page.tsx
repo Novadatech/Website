@@ -106,7 +106,7 @@ const BODY = "text-[15px] leading-[1.75] text-[#454E5C] md:text-[16px]";
 const LINK =
   "text-[#003DDB] underline decoration-[#003DDB]/30 underline-offset-[3px] transition-colors hover:decoration-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
 
-const LAST_UPDATED = "14 October 2026";
+const LAST_UPDATED = "15 October 2026";
 
 /* ══════════════════════════════════════════════════════════════════
    CLAUSE NUMBERING
@@ -307,12 +307,42 @@ const CLAUSES: Clause[] = [
         aged care. This website describes four service lines, two for each.
       </>,
       <>
-        For practices, the Patient Access Desk answers calls, web enquiries and
-        messages in the practice&apos;s name during its operating hours, makes
-        and changes bookings inside the practice&apos;s own software, and works
-        recall and cancellation lists. The Workforce Desk covers recruitment,
-        induction and training administration, registration and credential
-        currency, and payroll administration.
+        For practices, the Patient Revenue Leakage Audit examines how a
+        practice receives and converts patient enquiries and how much of its
+        appointment capacity is used. It is a defined piece of work rather than
+        a continuing service. We review the enquiry, booking, cancellation and
+        recall information the practice already produces, identify where
+        bookings are being lost, estimate the value where the information
+        supports an estimate, and recommend changes. Any ongoing work
+        afterwards is a separate engagement and applies only where your
+        services agreement says so.
+      </>,
+      <>
+        For practices, Patient Booking &amp; Retention Continuity is that
+        ongoing work. It covers booking enquiries answered in the
+        practice&apos;s name during its operating hours, bookings made and
+        changed inside the practice&apos;s own software, follow-up of enquiries
+        that did not book, short-notice cancellations offered to patients on
+        the practice&apos;s own waiting list, and the practice&apos;s own
+        recall list worked at the intervals its practitioners set.
+      </>,
+      <>
+        Recalls are administered and never originated. We do not decide that a
+        patient needs treatment, we do not add anybody to a recall list, we do
+        not change a recall interval, and no offer, discount or other
+        inducement is placed in a recall message. We make no clinical
+        suitability decision of any kind. Where we write or speak in a
+        practice&apos;s name we are bound by the same advertising restrictions
+        that bind the practice, and the practice remains responsible for the
+        content it approves.
+      </>,
+      <>
+        We no longer provide recruitment, induction or training
+        administration, registration or credential currency, or payroll
+        administration to healthcare practices. Those service lines are
+        withdrawn and this agreement does not offer them. Payroll
+        administration remains available to care providers only, on the terms
+        set out below.
       </>,
       <>
         For care providers, Rostering Audit &amp; Efficiency examines how a
@@ -334,17 +364,19 @@ const CLAUSES: Clause[] = [
         mean.
       </>,
       <>
-        Payroll administration means we process a payroll run on your cycle,
+        Payroll administration, which is available to care providers and not
+        to practices, means we process a payroll run on your cycle,
         against the hours, rates and entitlements you set, using your own
         systems and your own funds. We are not the employer, we do not pay any
         worker as principal, and we do not advise on payroll, tax or employment
         questions. Clause {NO.workers} applies.
       </>,
       <>
-        A rostering review is an operational review. It is not an audit under
-        any statutory or accreditation scheme, it produces nothing that is
-        lodged with any regulator, and it is not a substitute for legal,
-        payroll, clinical or regulatory advice.
+        A rostering review and a patient revenue leakage audit are both
+        operational reviews. Neither is an audit under any statutory or
+        accreditation scheme, neither produces anything that is lodged with any
+        regulator, and neither is a substitute for legal, payroll, clinical or
+        regulatory advice.
       </>,
       <>
         Records we maintain on your behalf are kept for the retention period
@@ -712,12 +744,14 @@ const CLAUSES: Clause[] = [
         granted.
       </>,
       <>
-        &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;The Patient
-        Access Desk&rdquo;, &ldquo;The Workforce Desk&rdquo;, &ldquo;Rostering
-        Audit &amp; Efficiency&rdquo; and &ldquo;Workforce Continuity&rdquo;,
-        together with the former names &ldquo;The Operations Desk&rdquo;,
-        &ldquo;The Operations Partner&rdquo; and &ldquo;The Workforce
-        Partner&rdquo;, are used by us as trade marks. You must not use them without our written
+        &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;Patient
+        Revenue Leakage Audit&rdquo;, &ldquo;Patient Booking &amp; Retention
+        Continuity&rdquo;, &ldquo;Rostering Audit &amp; Efficiency&rdquo; and
+        &ldquo;Workforce Continuity&rdquo;, together with the former names
+        &ldquo;The Patient Access Desk&rdquo;, &ldquo;The Workforce
+        Desk&rdquo;, &ldquo;The Operations Desk&rdquo;, &ldquo;The Operations
+        Partner&rdquo; and &ldquo;The Workforce Partner&rdquo;, are used by us
+        as trade marks. You must not use them without our written
         permission, except to refer to us fairly and accurately.
       </>,
       <>

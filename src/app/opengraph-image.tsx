@@ -17,15 +17,17 @@ import { ImageResponse } from "next/og";
  * face and carries the brand in the surface, the colour and the layout.
  * If a real .ttf is ever committed to /public, load it here.
  *
- * ⚠️ THIS CARD IS UNITED STATES. It governs the same rules as the
- * pages: nothing clinical, no pricing, and no figure without a source.
- * The Australian domain renders its own card from its own content.
+ * ⚠️ THIS CARD IS AUSTRALIAN. The comment here read "UNITED STATES"
+ * until 15 October 2026, copied in from the .com file, while the alt
+ * text below correctly said Australian. It governs the same rules as
+ * the pages: nothing clinical, no pricing, and no figure without a
+ * source. The .com domain renders its own card from its own content.
  */
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt =
-  "Novada. We run everything except the care. Managed operations for Australian practices and care providers.";
+  "Novada. We streamline the work behind the care. Managed operations for Australian practices and care providers.";
 
 export default function Image() {
   return new ImageResponse(
@@ -71,11 +73,11 @@ export default function Image() {
               maxWidth: 940,
             }}
           >
-            We run everything except the care.
+            We streamline the work behind the care.
           </div>
         </div>
 
-        {/* The two desks, and the boundary that answers the first
+        {/* The two audiences, and the boundary that answers the first
             objection this business meets. */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div

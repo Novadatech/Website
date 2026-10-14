@@ -304,8 +304,15 @@ export default function AssessmentCalculatorPage() {
           funnel pages deliberately do not. */}
       <FunnelHeader
         logoHref="/"
-        backLabel="Back to the Operations Partner"
-        backHref="/operations-partner"
+        /* ⚠️ POINTS AT THE HUB, NOT A PILLAR. This read "Back to the
+           Operations Partner" / "/operations-partner" until 15 October
+           2026, a name retired on 15 September and a route that by then
+           took two hops to land anywhere. This tool is screen-shared on
+           review calls, so that label was the one piece of chrome a
+           prospect saw. The hub covers both halves of the care offer and
+           survives a pillar being renamed. */
+        backLabel="Back to care providers"
+        backHref="/care"
       />
 
       <main className="flex-1">
