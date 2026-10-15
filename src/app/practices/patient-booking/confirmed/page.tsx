@@ -1,7 +1,9 @@
 "use client";
 
 /*
- * /practices/patient-access/confirmed - THE PATIENT ACCESS DESK.
+ * /practices/patient-booking/confirmed - PATIENT BOOKING & RETENTION
+ * CONTINUITY. Renamed from /practices/patient-access/confirmed, which
+ * served the retired Patient Access Desk and now 308s here.
  *
  * ⚠️ ONE DESK, BOTH MARKETS. This page is the redirect target of a single
  * calendar, and that calendar is embedded on BOTH domains, so American
@@ -25,11 +27,11 @@ export default function Page() {
       backHref="/practices/patient-booking"
       backLabel="Back to Patient Booking &amp; Retention Continuity"
       contactEmail="support@novadatech.com.au"
+      /* \u26a0\ufe0f BILLING JOINED THIS OFFER ON 15 OCTOBER 2026, so the last
+         clause asks who raises and chases accounts today. */
       numbers={{
         neutral:
-          "Roughly how many calls come in each week, how many of those are new patients, who handles them today, and how much of your recall list actually gets worked. Estimates are fine.",
-        us: "Roughly how many calls come in each week, how many of those are new patients, who handles them today, and how much of your recall list actually gets worked. Estimates are fine.",
-        au: "Roughly how many calls and new patient enquiries come in each week, who handles them today, and how much of your recall list actually gets worked. Estimates are fine.",
+          "Roughly how many patients are overdue on your recall list, how many fall overdue in a typical month, how many of those a person actually rings, and who raises and chases your accounts today. Estimates are fine.",
       }}
     />
   );
