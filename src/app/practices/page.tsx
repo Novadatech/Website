@@ -19,6 +19,7 @@ import {
   RAIL_GRID,
   SMALL,
 } from "@/components/desk/tokens";
+import Pathway from "@/components/offer/Pathway";
 import { BOOKING, CTA_LABEL, EVIDENCE, LEAKAGE } from "@/content/offers";
 
 /*
@@ -224,6 +225,13 @@ export default function Page() {
             the front desk cannot keep up can start with the second. That is a
             fair call.
           </p>
+
+          {/* \u26a0\ufe0f THE SAME DIAGRAM AS THE HOMEPAGE, one audience. It is
+              rendered from PATHWAYS, never written out here, so this
+              page cannot disagree with the homepage about what we do. */}
+          <div className="mt-14 border-t border-ink-100 pt-12">
+            <Pathway audience="practices" showHeading={false} note="They run in that order, because you cannot fix what nobody has counted. The audit can also be the whole engagement: if it finds little worth recovering, the report says so." />
+          </div>
         </Band>
 
         {/* ── 02 THE MOMENT ──────────────────────────────────────── */}

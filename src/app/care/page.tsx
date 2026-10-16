@@ -20,6 +20,7 @@ import {
   RAIL_GRID,
   SMALL,
 } from "@/components/desk/tokens";
+import Pathway from "@/components/offer/Pathway";
 import { CONTINUITY, CTA_LABEL, EVIDENCE, ROSTERING } from "@/content/offers";
 
 /*
@@ -225,6 +226,13 @@ export default function Page() {
             Most providers have both. You do not need to work out which, and
             finding out is what the call is for.
           </p>
+
+          {/* \u26a0\ufe0f THE SAME DIAGRAM AS THE HOMEPAGE, one audience. It is
+              rendered from PATHWAYS, never written out here, so this
+              page cannot disagree with the homepage about what we do. */}
+          <div className="mt-14 border-t border-ink-100 pt-12">
+            <Pathway audience="care" showHeading={false} note="The two halves are bought separately. Most providers need both, but the audit is not a gate you have to pass through: if you already know you are short of workers, start there." />
+          </div>
         </Band>
 
         {/* ── 02 THE MOMENT ──────────────────────────────────────── */}

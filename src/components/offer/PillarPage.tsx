@@ -41,6 +41,7 @@ import type { Desk } from "@/components/desk/BookingEmbed";
 import Calculator, { type CalcConfig } from "@/components/desk/Calculator";
 import DeskFooter from "@/components/desk/DeskFooter";
 import DeskNav from "@/components/desk/DeskNav";
+import Pathway from "@/components/offer/Pathway";
 import StickyCta from "@/components/desk/StickyCta";
 import {
   BODY,
@@ -331,7 +332,23 @@ export default function PillarPage(p: PillarProps) {
         </Band>
 
         {/* ── 07 THE OTHER HALF ──────────────────────────────────── */}
-        <Band index="07" label="The other half">
+        {/* ⚠️ RETITLED from "The other half" on 16 October 2026,
+            because it now carries the whole pathway and not only the
+            sibling offer. The pathway marks THIS page with "You are
+            here", which is the one thing the homepage version cannot
+            do and the reason it is worth repeating on a pillar. */}
+        <Band index="07" label="Where this fits">
+          <Pathway
+            audience={p.offer.audience}
+            currentHref={p.offer.href}
+            showHeading={false}
+            note={
+              p.offer.audience === "practices"
+                ? "They run in that order, because you cannot fix what nobody has counted. The audit can also be the whole engagement: if it finds little worth recovering, the report says so."
+                : "The two halves are bought separately. Most providers need both, but the audit is not a gate you have to pass through: if you already know you are short of workers, start there."
+            }
+          />
+          <div className="mt-14 border-t border-ink-100 pt-12">
           <BandHeading>{p.other.heading}</BandHeading>
           <p className={`${BODY} mt-6`}>{p.other.body}</p>
 
@@ -356,6 +373,7 @@ export default function PillarPage(p: PillarProps) {
               />
             </span>
           </Link>
+          </div>
         </Band>
 
         {/* ── 08 QUESTIONS ───────────────────────────────────────── */}

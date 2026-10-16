@@ -38,6 +38,7 @@ import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
 import Faq from "@/components/desk/Faq";
 import { Band, BandHeading, Rail, Statement } from "@/components/desk/Band";
+import Pathway from "@/components/offer/Pathway";
 import {
   BAND_Y,
   BTN_ON_INK,
@@ -290,6 +291,29 @@ function Doors() {
             </span>
           </Link>
         ))}
+      </div>
+
+      {/* \u26a0\ufe0f THE PATHWAYS SIT HERE, under the two doors, because this
+          is the band where the visitor is choosing one and the only
+          question that matters is what happens after they do. Both
+          audiences are shown because this page has not routed yet;
+          every other placement shows one. */}
+      <div className="mt-14 border-t border-ink-100 pt-12 md:mt-20 md:pt-16">
+        <p className={`${MICRO} text-ink-500`}>How each one works</p>
+        <h3 className={`${D4} mt-4 max-w-headline text-ink-950`}>
+          Find out what it is costing you, then stop it costing you.
+        </h3>
+        {/* ⚠️ STACKED, NOT SIDE BY SIDE. Two of these in a 2-column
+            grid leaves each flow about 470px, which wraps every label
+            to four or five lines and breaks "Patient Revenue Leakage
+            Audit" over four. Full width each is the only way three
+            steps and two arrows fit without shredding the words. */}
+        <div className="mt-10 flex flex-col gap-12">
+          <Pathway audience="practices" />
+          <div className="border-t border-ink-100 pt-12">
+            <Pathway audience="care" />
+          </div>
+        </div>
       </div>
     </Band>
   );

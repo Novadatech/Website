@@ -404,6 +404,64 @@ export const OFFERS: Offer[] = [
 ];
 
 /** The offers belonging to one audience, in page order. */
+/* ══════════════════════════════════════════════════════════════════════
+   THE PATHWAY
+   The founder's three-step diagram: audit, what changes, the ongoing
+   service. Rendered on the homepage, both hubs and all four pillar
+   pages, from here and only from here.
+   ══════════════════════════════════════════════════════════════════════ */
+
+export type PathwayStep = {
+  /** The offer this step IS. Absent on the middle step, which is an
+      outcome rather than something that can be bought. */
+  href?: string;
+  /** The commercial shape, which is the question this answers fastest. */
+  kind: string;
+  label: string;
+};
+
+export type Pathway = {
+  audience: Audience["slug"];
+  /** Short enough to sit above three columns without wrapping twice. */
+  heading: string;
+  steps: [PathwayStep, PathwayStep, PathwayStep];
+};
+
+export const PATHWAYS: Pathway[] = [
+  {
+    audience: "practices",
+    heading: "Healthcare practices",
+    steps: [
+      { href: LEAKAGE.href, kind: "One piece of work", label: LEAKAGE.name },
+      { kind: "What changes", label: "Improve booking and revenue processes" },
+      {
+        href: BOOKING.href,
+        kind: "Month to month",
+        label: "Manage patient access, bookings, billing and claims",
+      },
+    ],
+  },
+  {
+    audience: "care",
+    heading: "NDIS, home care and aged care",
+    steps: [
+      { href: ROSTERING.href, kind: "One piece of work", label: ROSTERING.name },
+      { kind: "What changes", label: "Improve workforce efficiency" },
+      {
+        href: CONTINUITY.href,
+        kind: "Month to month",
+        label: "Manage workforce continuity, recruitment and administration",
+      },
+    ],
+  },
+];
+
+export function pathwayFor(a: Audience["slug"]): Pathway {
+  const p = PATHWAYS.find((x) => x.audience === a);
+  if (!p) throw new Error("No pathway for audience " + a);
+  return p;
+}
+
 export function offersFor(a: Audience["slug"]): Offer[] {
   return OFFERS.filter((o) => o.audience === a);
 }
