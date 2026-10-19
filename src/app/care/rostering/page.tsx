@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import PillarPage from "@/components/offer/PillarPage";
 import { ROSTERING_CALC } from "@/content/calculators";
-import { CONTINUITY, ROSTERING } from "@/content/offers";
+import { CONTINUITY, EVIDENCE, ROSTERING } from "@/content/offers";
 
 /*
  * /care/rostering — pillar one of the care offer.
@@ -35,11 +35,26 @@ import { CONTINUITY, ROSTERING } from "@/content/offers";
  * claimed or collected. The founder's brief forbids the audit reading
  * as a scheduling review, so both render through `what.groups`.
  *
- * 🔴 THE BRIEF'S OWN HEADLINE SAYS "IDENTIFY BILLING GAPS" AND THAT
- * PHRASE CANNOT SHIP HERE. The gap is the out-of-pocket a client pays
- * after a subsidy or rebate, and this page now discusses participant
- * contributions and resident fees, which is precisely where it would be
- * misread. Exception, discrepancy, or revenue never claimed.
+ * ⚠️ ON "BILLING GAPS", WHICH THE BRIEF'S HEADLINE USES. The founder
+ * confirmed on 19 October that they meant a deficiency in how billing
+ * is done, which is correct and is what this page describes. The word
+ * is still not printed here, for a smaller reason than the one that
+ * applies on the practices pages: "exception", "discrepancy" and
+ * "revenue never claimed" each say which deficiency is meant, and
+ * "gap" does not. Precision, not a vocabulary ban.
+ *
+ * 🔴 THE SCHEME RULES ARE THE STRONGEST THING ON THIS PAGE. Verified
+ * from primary sources on 19 October 2026:
+ *   · From 1 December 2026 the claiming window drops from two years to
+ *     90 days (health.gov.au, NDIS legislation changes).
+ *   · Since 15 October 2026 claims submitted more than 90 days after
+ *     delivery get extra checks, may be held up to 28 days, and
+ *     evidence may be requested before payment. The NDIA "checks
+ *     claims both before and after they are paid" (ndis.gov.au,
+ *     5 October 2026).
+ * They are scheme rules, not our estimates, and a provider can check
+ * both in a minute. ⚠️ NDIS ONLY: this page also serves Support at
+ * Home and residential aged care.
  *
  * 🔴 THE BILLING HALF DOES NOT SOFTEN THE SAFETY LINE, IT ADDS ONE.
  * We never recommend reducing staffing, and we never treat a rostered
@@ -93,6 +108,14 @@ export default function Page() {
         quote:
           "Money leaves in two directions, and only one of them shows up in the payroll report.",
       }}
+      /* \u26a0\ufe0f SCHEME RULES, NOT OUR ESTIMATES, and the only two figures on
+         this page. NDIS only: the caption scopes them, because this
+         page also serves Support at Home and residential aged care. */
+      stats={{
+        figures: [EVIDENCE.claimWindow, EVIDENCE.claimHold],
+        caption:
+          "Both are NDIS rules, published by the scheme, not estimates of ours. Support at Home and residential aged care run under different arrangements. Together they change what an unclaimed support is worth: after the window closes it is not late, it is gone, and a claim that cannot be evidenced does not get paid in the first place.",
+      }}
       what={{
         label: "What we look at",
         heading: "The workers you already have: what we look for",
@@ -131,9 +154,9 @@ export default function Page() {
           },
           {
             eyebrow: "Component two",
-            heading: "What you delivered and never claimed",
+            heading: "What you claim, and whether it holds up",
             intro:
-              "Are you accurately claiming and collecting what the provider is entitled to? We read service delivery records, invoices, claims, remittances and payment reconciliation for the same period, against the funding arrangement you actually operate under.",
+              "Two questions, not one. Are you claiming and collecting everything the provider is entitled to? And would what you have already claimed survive a check? We read service delivery records, invoices, claims, remittances and payment reconciliation for the same period, against the funding arrangement you actually operate under.",
             cards: [
               {
                 h: "Supports delivered and never claimed",
@@ -158,6 +181,10 @@ export default function Page() {
               {
                 h: "Payments nobody reconciled",
                 b: "What was claimed against what was actually received, including adjustments and amendments. Unreconciled funding is the single most common place we expect to find an exception.",
+              },
+              {
+                h: "Whether you could evidence a claim if asked",
+                b: "The NDIA may ask for evidence before an older claim is paid, and it checks claims after payment as well as before. We look at whether the delivery record behind a claim could be produced, by whom, and how long it would take.",
               },
               {
                 h: "Whether a claiming error would be caught at all",
@@ -293,7 +320,7 @@ export default function Page() {
         },
       ]}
       ask={{
-        body: "Thirty minutes on how your roster is worked today, and on how what you deliver gets recorded, claimed and reconciled. Find out whether inefficient rosters, avoidable staffing costs, billing errors or unresolved claims are affecting your financial performance. You leave with an honest view of whether this fits, or does not.",
+        body: "Thirty minutes on how your roster is worked today, and on how what you deliver gets recorded, claimed and reconciled. Find out whether inefficient rosters, avoidable staffing costs, billing errors or unresolved claims are affecting your financial performance. If you are an NDIS provider with older unclaimed supports, the 1 December window is worth raising on that call. You leave with an honest view of whether this fits, or does not.",
       }}
       commitment="The review is one piece of work, not a subscription, with findings inside two weeks of getting access."
     />

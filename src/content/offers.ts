@@ -130,6 +130,41 @@ export type Figure = { value: string; label: string; source: string };
 
 export const EVIDENCE: Record<string, Figure> = {
   /*
+   * \U0001F534 NDIS CLAIMING RULES. These are the only two figures on this site
+   * that are SCHEME RULES rather than survey findings, which is why
+   * they are the strongest things on the care audit page: they are not
+   * our estimate of anything, they are what the regulator has
+   * published, and a provider can check both in a minute.
+   *
+   * Read off the primary sources on 19 October 2026:
+   *   claimWindow  health.gov.au, NDIS legislation changes
+   *   claimHold    ndis.gov.au, "Increasing integrity checks on older
+   *                claims", 5 October 2026
+   *
+   * \u26a0\ufe0f NDIS ONLY. The care pages also serve Support at Home and
+   * residential aged care, which operate under different funding
+   * arrangements entirely. The caption beside these says so. Never
+   * widen the labels, and never put either on .com, where the NDIS
+   * does not exist.
+   *
+   * \u26a0\ufe0f WORDED TO SURVIVE 1 DECEMBER 2026. "From 1 December the
+   * window is 90 days" is still true afterwards. Anything phrased as
+   * "soon" or "from next month" would not be.
+   */
+  claimWindow: {
+    value: "90 days",
+    label:
+      "to claim for a support after it is delivered, down from two years, from 1 December 2026",
+    source: "Australian Government Department of Health, NDIS legislation changes",
+  },
+  claimHold: {
+    value: "28 days",
+    label:
+      "a claim submitted more than 90 days after delivery may be held while extra checks run and evidence is requested, since 15 October 2026",
+    source: "NDIA, Increasing integrity checks on older claims, 5 October 2026",
+  },
+
+  /*
    * PRACTICES. Both figures are about AVAILABILITY and explicitly exclude
    * cost, which is the one thing this offer does not touch, and that is
    * exactly why they are the right two.
