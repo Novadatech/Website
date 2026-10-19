@@ -107,6 +107,16 @@ export type PillarProps = {
       heading: string;
       intro: string;
       cards: Pair[];
+      /**
+       * Sector-specific detail under ONE group.
+       *
+       * ⚠️ The care brief requires the billing component to be shown
+       * through distinct funding arrangements and forbids presenting
+       * them as the same thing. These are deliberately subordinate to
+       * the cards: equal weight is owed to the two COMPONENTS, not to
+       * every block on the page.
+       */
+      splits?: { lead: string; label: string; body: string }[];
     }[];
     /**
      * ⚠️ THE ONLY INVENTED CONTENT ON EITHER PAGE. Its safety rests on
@@ -150,6 +160,20 @@ function Cards({ items, cols = 2 }: { items: Pair[]; cols?: 2 | 3 }) {
           <h4 className="text-base font-semibold text-ink-950">{c.h}</h4>
           <p className="mt-2.5 text-sm leading-relaxed text-ink-600">{c.b}</p>
         </div>
+      ))}
+
+      {/* ⚠️ THE GRID PAINTS ITS HAIRLINES WITH gap-px OVER bg-ink-100,
+          so any cell the items do not fill shows up as a grey block
+          rather than as nothing. An odd count in a two-column grid, or
+          a count that is not a multiple of three, left exactly that:
+          the care audit's second component has seven cards and ended
+          on a grey rectangle. These fillers are white cells that
+          complete the final row. They carry no content and are hidden
+          from assistive technology. */}
+      {Array.from({
+        length: (cols - (items.length % cols)) % cols,
+      }).map((_, i) => (
+        <div key={`filler-${i}`} aria-hidden className="hidden bg-white md:block" />
       ))}
     </div>
   );
@@ -288,6 +312,26 @@ export default function PillarPage(p: PillarProps) {
                   </h3>
                   <p className={`${BODY} mt-5`}>{g.intro}</p>
                   <Cards items={g.cards} />
+
+                  {g.splits ? (
+                    <div className="mt-10">
+                      <p className={`${MICRO} text-ink-500`}>
+                        {g.splits[0].lead}
+                      </p>
+                      <dl className="mt-5 grid gap-px overflow-hidden rounded-lg bg-ink-100 md:grid-cols-3">
+                        {g.splits.map((sp) => (
+                          <div key={sp.label} className="bg-white p-5 md:p-6">
+                            <dt className="text-sm font-semibold text-ink-950">
+                              {sp.label}
+                            </dt>
+                            <dd className="mt-2.5 text-sm leading-relaxed text-ink-600">
+                              {sp.body}
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  ) : null}
                 </div>
               ))
             : null}

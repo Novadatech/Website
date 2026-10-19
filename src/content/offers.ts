@@ -333,8 +333,12 @@ export const ROSTERING: Offer = {
   href: "/care/rostering",
   audience: "care",
   who: "For care providers",
+  /* \u26a0\ufe0f TWO HALVES SINCE 19 OCTOBER 2026. This string renders on the
+     homepage card, the hub card and the sibling block, so it has to
+     carry both or the audit reads as a scheduling review, which the
+     founder's brief explicitly forbids. */
   summary:
-    "Your overtime, your agency shifts, your travel and your worker availability, read against your own rosters and payroll. We show you where you are paying more than you need to for cover you are already getting.",
+    "Two halves. What the roster costs to run: overtime, agency shifts, travel and workers who were available and never asked. And what you delivered and never properly claimed or collected: supports never invoiced, items and rates applied wrongly, claims rejected and never resolved, contributions and payments nobody reconciled. Read against your own records.",
   scope: [
     "Overtime added to workers already on shift, while other cleared workers have hours they want and are not getting.",
     "Agency cover bought for leave, sick days and recurring gaps that were visible in advance.",
@@ -453,7 +457,7 @@ export const PATHWAYS: Pathway[] = [
     heading: "NDIS, home care and aged care",
     steps: [
       { href: ROSTERING.href, kind: "One piece of work", label: ROSTERING.name },
-      { kind: "What changes", label: "Improve workforce efficiency" },
+      { kind: "What changes", label: "Improve workforce efficiency and billing accuracy" },
       {
         href: CONTINUITY.href,
         kind: "Month to month",

@@ -104,8 +104,23 @@ export default function Page() {
             b: "Who is available, what they are cleared for, where they are, what hours they want. And what is coming up short, so you can act before it reaches a participant.",
           },
           {
+            h: "Compliance tracking and workforce readiness",
+            b: "Clearances, checks, qualifications and training records tracked against expiry, with notice before something lapses rather than after. Capacity reported against the cover you actually need.",
+          },
+          {
             h: "Payroll",
             b: "Processed on your own cycle, against the hours and entitlements that apply to your people. We process payroll. We do not advise on it.",
+          },
+          {
+            /* 🔴 THE CARE BRIEF DIFFERS FROM THE PRACTICES ONE HERE.
+               Billing and claims administration IS part of the ongoing
+               practices service. For care it is NOT included unless the
+               managed-service agreement expressly says so. A reader
+               arriving from an audit page that just spent half its
+               length on claims will otherwise assume we run them
+               afterwards. */
+            h: "Claims administration is not part of this",
+            b: "The audit looks at your claiming. Running it afterwards is not included here as standard. Where you want us doing it, it is scoped, agreed and quoted separately.",
           },
         ],
       }}

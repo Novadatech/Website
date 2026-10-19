@@ -374,14 +374,45 @@ const CLAUSES: Clause[] = [
         set out below.
       </>,
       <>
-        For care providers, Rostering Audit &amp; Efficiency examines how a
-        provider schedules and allocates its workforce. It is a defined piece of
-        work rather than a continuing service. We review rostering, payroll,
-        overtime, agency, travel and cancellation information the provider
-        already produces, identify where avoidable cost and operational risk
-        sit, estimate the impact where the information supports an estimate,
-        and recommend changes. Any ongoing monitoring afterwards is a separate
+        For care providers, Rostering Audit &amp; Efficiency has two
+        components. It is a defined piece of work rather than a continuing
+        service. The first examines how a provider schedules and allocates its
+        workforce: we review rostering, payroll, overtime, agency, travel and
+        cancellation information the provider already produces, and identify
+        where avoidable cost and operational risk sit. The second examines
+        whether services delivered have been accurately recorded, invoiced,
+        claimed, reconciled and collected: we review service delivery records,
+        invoices, claims, remittances and payment reconciliation and identify
+        supports or services not claimed, items, service types, units or rates
+        applied incorrectly, claims rejected or unresolved, contributions and
+        invoices outstanding, and unreconciled payments. The second component
+        is scoped to the funding arrangement the provider actually operates
+        under, which are not the same as one another. We estimate impact where
+        the information supports an estimate, and recommend changes. Any
+        ongoing monitoring or claims administration afterwards is a separate
         engagement and applies only where your services agreement says so.
+      </>,
+      <>
+        The audit identifies potential overbilling as well as potential
+        underclaiming, and is a review of accuracy and of the controls around
+        claiming rather than an exercise in maximising claims. We do not treat
+        a rostered or scheduled hour as automatically claimable: a claim
+        requires actual delivery, or another circumstance the applicable rules
+        expressly permit, with supporting evidence. We do not recommend
+        claiming for a service that was not delivered, and we do not recommend
+        reducing staffing below what a person&apos;s needs or a mandated level
+        require.
+      </>,
+      <>
+        We do not determine support eligibility, we do not determine or change
+        a classification or funding entitlement, and we do not interpret a
+        claiming rule on your behalf. Those remain with the provider and its
+        own qualified advisers, every correction and resubmission is verified
+        and authorised by the provider, and an amount we identify is not a
+        confirmed recoverable amount. We do not guarantee that any cost will be
+        saved or any revenue recovered, we do not represent that an audit will
+        identify every error, and we provide no statutory or financial audit
+        certification.
       </>,
       <>
         For care providers, Workforce Continuity builds and maintains the

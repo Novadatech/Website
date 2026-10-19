@@ -147,11 +147,11 @@ export default function Page() {
                     a two-clause H1 will otherwise try to read the clauses
                     as one idea restated. */}
                 <p className="mt-7 max-w-prose text-base text-white/70">
-                  Two things. We look at your rosters, overtime and agency
-                  spend, and show you the avoidable cost sitting in them. And we
-                  help you recruit, screen and induct the workers you are short
-                  of. Most providers need both, and one conversation covers
-                  both.
+                  Two things. We look at what the roster costs to run and at
+                  what you delivered and never properly claimed, and show you
+                  both. And we help you recruit, screen and induct the workers
+                  you are short of. Most providers need both, and one
+                  conversation covers both.
                 </p>
                 <div className="mt-9">
                   <a href="#book" className={BTN_ON_INK}>
