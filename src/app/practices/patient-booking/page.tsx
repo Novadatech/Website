@@ -80,7 +80,7 @@ export default function Page() {
         cards: [
           {
             h: "Booking enquiries answered",
-            b: "Calls, online requests and messages handled in your practice name, through the channels you approve. Callbacks coordinated. Every outcome written down.",
+            b: "Calls, online requests and messages handled in your practice name, through the channels you approve, with no per-call charge and no cap on volume inside the hours you agree. Callbacks coordinated. Every outcome written down.",
           },
           {
             h: "Bookings completed",
@@ -108,11 +108,11 @@ export default function Page() {
                rather than an embarrassment for us. We never decide what
                was done or what it is worth. */
             h: "Billing administered, never determined",
-            b: "Invoices raised, claims lodged and unpaid accounts followed up inside your own software, against what your practitioners have already determined. We do not choose an item number, set a fee, decide what is billed, or give a patient financial advice.",
+            b: "Invoices raised, claims lodged and unpaid accounts followed up inside your own software, against what your practitioners have already determined. Rejected claims are worked rather than left sitting, and payments are reconciled against what was invoiced so an exception surfaces the same month rather than next year. We do not choose an item number, set a fee, decide what is billed, or give a patient financial advice.",
           },
           {
             h: "A monthly report on what happened",
-            b: "Enquiries received, how fast they were answered, how many booked, cancellations recovered, recalls completed, accounts raised and settled, and where it did not work.",
+            b: "Enquiries received, how fast they were answered, how many booked, cancellations recovered, recalls completed, accounts raised and settled, claims resubmitted, exceptions still open, and where it did not work.",
           },
         ],
       }}

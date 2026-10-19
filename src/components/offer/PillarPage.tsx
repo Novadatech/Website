@@ -49,6 +49,7 @@ import {
   BTN_PRIMARY,
   CARD,
   D1,
+  D4,
   FRAME,
   GUTTER,
   HERO_Y,
@@ -89,7 +90,24 @@ export type PillarProps = {
     label: string;
     heading: string;
     intro: string;
-    cards: Pair[];
+    /** Used when the section is one list. Care pages all use this. */
+    cards?: Pair[];
+    /**
+     * Two or more equally weighted blocks instead of one list.
+     *
+     * ⚠️ ADDED 19 OCTOBER 2026 for the revenue audit, which became two
+     * components: what is lost BEFORE the appointment and what is lost
+     * AFTER it. The founder's brief is explicit that neither may read as
+     * an add-on to the other, so these render identically: same eyebrow
+     * treatment, same heading size, same card grid. Do not give one a
+     * tint, a border or a larger heading to "lead" with it.
+     */
+    groups?: {
+      eyebrow: string;
+      heading: string;
+      intro: string;
+      cards: Pair[];
+    }[];
     /**
      * ⚠️ THE ONLY INVENTED CONTENT ON EITHER PAGE. Its safety rests on
      * the scenario belonging to THE READER ("one of your houses"), so
@@ -246,7 +264,33 @@ export default function PillarPage(p: PillarProps) {
         <Band index="03" label={p.what.label}>
           <BandHeading>{p.what.heading}</BandHeading>
           <p className={`${BODY} mt-6`}>{p.what.intro}</p>
-          <Cards items={p.what.cards} />
+
+          {p.what.cards ? <Cards items={p.what.cards} /> : null}
+
+          {/* \u26a0\ufe0f EQUAL WEIGHT, DELIBERATELY. Same eyebrow, same heading
+              size, same grid, separated only by a hairline. The brief
+              forbids billing and claims reading as a minor add-on to the
+              booking half, and visual hierarchy is how that would happen
+              without a word of copy changing. */}
+          {p.what.groups
+            ? p.what.groups.map((g, i) => (
+                <div
+                  key={g.heading}
+                  className={
+                    i === 0
+                      ? "mt-12"
+                      : "mt-12 border-t border-ink-100 pt-12"
+                  }
+                >
+                  <p className={`${MICRO} text-brand-500`}>{g.eyebrow}</p>
+                  <h3 className={`${D4} mt-4 max-w-headline text-ink-950`}>
+                    {g.heading}
+                  </h3>
+                  <p className={`${BODY} mt-5`}>{g.intro}</p>
+                  <Cards items={g.cards} />
+                </div>
+              ))
+            : null}
 
           {p.what.example ? (
             /* ⚠️ The one invented block on either page. Labelled before
@@ -433,7 +477,12 @@ export default function PillarPage(p: PillarProps) {
       </main>
 
       <DeskFooter bookHref="#book" />
-      <StickyCta label={CTA_LABEL} tagline={p.offer.summary} />
+      {/* ⚠️ THE NAME, NOT THE SUMMARY. A summary is a paragraph
+          written for a card: passing it here put three lines of body
+          copy in a one-line bar and squeezed the button to four lines
+          the moment the revenue audit summary grew to cover its second
+          component. The hubs already pass a short explicit string. */}
+      <StickyCta label={CTA_LABEL} tagline={p.offer.name} />
     </div>
   );
 }

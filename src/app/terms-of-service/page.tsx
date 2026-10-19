@@ -307,15 +307,32 @@ const CLAUSES: Clause[] = [
         aged care. This website describes four service lines, two for each.
       </>,
       <>
-        For practices, the Patient Revenue Leakage Audit examines how a
-        practice receives and converts patient enquiries and how much of its
-        appointment capacity is used. It is a defined piece of work rather than
-        a continuing service. We review the enquiry, booking, cancellation and
-        recall information the practice already produces, identify where
-        bookings are being lost, estimate the value where the information
+        For practices, the Patient Revenue Leakage Audit has two components
+        and examines revenue lost both before and after an appointment. It is a
+        defined piece of work rather than a continuing service. Before the
+        appointment, we review the enquiry, booking, cancellation and recall
+        information the practice already produces and identify where bookings
+        are being lost. After it, we review billing, claims, payment and
+        reconciliation records and identify services that were not invoiced,
+        fees applied incorrectly, claims rejected and not resubmitted, amounts
+        outstanding, and discrepancies between what was delivered, what was
+        invoiced and what was received. We estimate value where the information
         supports an estimate, and recommend changes. Any ongoing work
         afterwards is a separate engagement and applies only where your
         services agreement says so.
+      </>,
+      <>
+        The audit identifies potential overbilling as well as potential
+        underbilling. It is a review of accuracy and of the controls around
+        billing, not an exercise in maximising claims, and we do not recommend
+        billing for a service that was not delivered. We do not select an item
+        number or billing code, decide whether a claim is eligible or payable,
+        or make any decision that turns on clinical judgement. Those remain
+        with the practice and its own qualified advisers, every correction is
+        authorised by the practice, and an amount we identify is not a
+        confirmed recoverable amount. We do not guarantee that any revenue will
+        be recovered, and we do not represent that an audit will find every
+        billing error.
       </>,
       <>
         For practices, Patient Booking &amp; Retention Continuity is that

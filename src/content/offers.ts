@@ -280,14 +280,21 @@ export const LEAKAGE: Offer = {
   href: "/practices/revenue-audit",
   audience: "practices",
   who: "For practices",
+  /* \u26a0\ufe0f TWO HALVES SINCE 19 OCTOBER 2026, and the summary has to
+     carry both, because this string is what a reader sees on the
+     homepage card, on the hub card and in the sibling block. Describing
+     the audit as a missed-bookings review is the thing the founder's
+     brief explicitly forbids. */
   summary:
-    "Your booking enquiries, how many became appointments, your unused appointment time, your short-notice cancellations and your overdue recalls, read against your own records. You get a written report, a number with its assumptions shown, and a plan in priority order.",
+    "Two halves. Before the appointment: your enquiries, how many became appointments, your unused appointment time, cancellations and overdue recalls. After it: what was delivered and never invoiced, fees applied wrongly, claims rejected and never resent, and invoices nobody chased. Read against your own records, with a written report and a plan in priority order.",
   scope: [
-    "Enquiries nobody got back to: calls missed while reception was occupied, voicemails, and online requests never completed.",
-    "Enquiries that never became appointments, and the reason each one stalled.",
+    "Enquiries nobody got back to, and enquiries that never became appointments.",
     "Appointment time that went unused, and whether FTAs and no-shows were followed up.",
     "Recalls your practitioners set and nobody completed.",
-    "Where the hours at the front desk actually go.",
+    "Work that was delivered and never invoiced, and fees applied incorrectly.",
+    "Medicare, DVA and health fund claims that were rejected and never resent.",
+    "Invoices nobody chased, and where the delivered, invoiced and banked records disagree.",
+    "Whether a billing error would be caught at all, and by whom.",
   ],
 };
 

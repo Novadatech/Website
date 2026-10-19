@@ -107,7 +107,7 @@ export default function StickyCta({
             phones the single strongest line on the site never
             rendered at all. */}
         <p
-          className={`text-sm font-medium ${
+          className={`min-w-0 text-sm font-medium ${
             dark ? "text-white/85" : "text-ink-950"
           }`}
         >
@@ -116,7 +116,12 @@ export default function StickyCta({
         <a
           href={href}
           tabIndex={show ? undefined : -1}
-          className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-sm bg-brand-500 px-5 text-sm font-semibold text-white shadow-cta transition-colors duration-150 ease-standard hover:bg-brand-600 sm:w-auto"
+          /* ⚠️ shrink-0 AND whitespace-nowrap. Without them a long
+             tagline steals this button's width and the label breaks
+             across four lines. Same defect as the nav before
+             15 October 2026: a flex row with no floor under the
+             action. Do not remove either class. */
+          className="inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-sm bg-brand-500 px-5 text-sm font-semibold text-white shadow-cta transition-colors duration-150 ease-standard hover:bg-brand-600 sm:w-auto"
         >
           {label}
           <ArrowRight aria-hidden className="h-4 w-4" />

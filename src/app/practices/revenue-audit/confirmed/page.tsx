@@ -42,7 +42,7 @@ export default function Page() {
          who used it on the way in arrives with the answers in hand. */
       numbers={{
         neutral:
-          "Roughly how many bookable hours go unused in a typical week across all your practitioners, your average fee for an hour of appointment time, and how many weeks a year you are open. Estimates are fine.",
+          "Roughly how many bookable hours go unused in a typical week, your average fee for an hour of appointment time, and how many weeks a year you are open. For the billing half: who raises your invoices and chases unpaid accounts today, and whether anybody works rejected claims. Estimates are fine.",
       }}
     />
   );

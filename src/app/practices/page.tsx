@@ -66,7 +66,7 @@ export const metadata: Metadata = {
 const STEPS = [
   {
     offer: LEAKAGE,
-    question: "“How many people contacted us last month and never got an appointment?”",
+    question: "“How many people contacted us last month and never got an appointment, and how much of last quarter did we never get paid for?”",
     commercial: "One-off piece of work",
     link: "See what we look at",
   },
@@ -178,9 +178,11 @@ export default function Page() {
         <Band index="01" label="The two steps">
           <BandHeading>Find it, then stop losing it</BandHeading>
           <p className={`${BODY} mt-6`}>
-            One is a one-off look at your own numbers. The other is the ongoing
-            work that keeps those bookings from going missing again. They run
-            in that order, because you cannot fix what nobody has counted.
+            One is a one-off look at your own numbers, on both sides of the
+            appointment: what never got booked, and what got delivered and
+            never properly billed or collected. The other is the ongoing work
+            that keeps it from going missing again. They run in that order,
+            because you cannot fix what nobody has counted.
           </p>
 
           <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-ink-100 md:grid-cols-2">
