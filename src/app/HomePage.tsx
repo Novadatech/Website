@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Check, ChevronDown } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Star } from "lucide-react";
 
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
@@ -77,13 +77,14 @@ import {
  * ⚠️ THE DISCOVERY CALL IS 30 MINUTES. The copy said 20 twice and 30
  * twice.
  *
- * ⚠️ NO 5.0 / 77 / 205 PROOF STRIP HERE, unlike the four offer pages
- * and the practices hub. The 205 is labelled by audience on every page
- * that carries it, and this page has two audiences: "healthcare
- * practices" would be wrong for a care reader and "NDIS and aged care
- * providers" wrong for a practice one. Rather than invent a combined
- * label, it is left off. Flagged to the founder, who can give the
- * number a dual-audience wording if they want it here.
+ * ⚠️ THE PROOF STRIP CARRIES A THIRD SET OF LABELS, and that is the
+ * point rather than an inconsistency. The 205 is labelled by audience
+ * on every page: "NDIS and aged care providers across Australia" on
+ * the care pages, "Healthcare practices across Australia" on the
+ * practices pages. Either would be wrong on a router with two
+ * audiences, so the founder gave the dual-audience wording on 29
+ * October: "Practices and care providers across Australia". Use that
+ * here and ONLY here. Do not copy any of the three between pages.
  *
  * ⚠️ THE THREE CLIENTS ARE NAMED, NOT QUOTED. The founder's copy lists
  * Maxicare Plus, Morning Star and Support Link as organisations worked
@@ -396,6 +397,16 @@ const FAQ = [
 
 const WIDE = "max-w-[90ch]";
 
+function Stars({ className = "h-4 w-4 fill-[#0CC481] text-[#0CC481]" }) {
+  return (
+    <span aria-hidden className="flex items-center gap-0.5">
+      {[0, 1, 2, 3, 4].map((i) => (
+        <Star key={i} className={className} strokeWidth={0} />
+      ))}
+    </span>
+  );
+}
+
 function BoxCards({
   items,
   cols = 2,
@@ -691,6 +702,45 @@ export default function HomePage() {
               <span className="text-sm text-white/60">
                 Complimentary 30-minute conversation. No obligation to proceed.
               </span>
+            </div>
+          </div>
+        </section>
+
+        {/* ── PROOF STRIP ──────────────────────────────────────────────
+             ⚠️ THE DUAL-AUDIENCE LABELS, on the founder's instruction.
+             See the file header: the 205 is worded differently on the
+             care pages and the practices pages, and neither of those
+             would be true on a router. No rating bar in the hero,
+             matching both hubs; the four offer pages carry one. */}
+        <section className="border-b border-ink-100 bg-ink-50">
+          <div
+            className={`${FRAME} ${GUTTER} border-x border-ink-100 py-10 md:py-12`}
+          >
+            <div className="grid gap-5 md:grid-cols-3 md:gap-6">
+              {[
+                { v: "5.0", l: "Average client rating", stars: true },
+                { v: "77", l: "Client reviews", stars: false },
+                {
+                  v: "205",
+                  l: "Practices and care providers across Australia",
+                  stars: false,
+                },
+              ].map((x, i) => (
+                <div
+                  key={x.l}
+                  className="reveal rounded-xl border border-ink-100 bg-white p-6 text-center shadow-raise md:p-7"
+                  style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
+                >
+                  <p className={`${D2} text-brand-500`}>{x.v}</p>
+                  {/* Stars in the same colour as the 5.0 beside them. */}
+                  {x.stars ? (
+                    <div className="mt-3 flex justify-center">
+                      <Stars className="h-4 w-4 fill-brand-500 text-brand-500" />
+                    </div>
+                  ) : null}
+                  <p className="mt-3 text-sm font-medium text-ink-600">{x.l}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
