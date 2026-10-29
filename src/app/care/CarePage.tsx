@@ -96,9 +96,9 @@ import { CONTINUITY, ROSTERING } from "@/content/offers";
  */
 
 /* 🔴 VERBATIM, FOUNDER-SUPPLIED. Do not reword.
-   ⚠️ "Emmanuella" here and on /care/workforce, "Emmanuela" on
-   /care/rostering. One spelling is wrong and it is a real person's
-   name. Flagged to the founder 29 October; align all three at once. */
+   ⚠️ THE NAME IS EMMANUELLA, two Ls. Founder-confirmed 29 October
+   after /care/rostering was found carrying one L. All three care
+   pages now agree. Do not "correct" it back. */
 const TESTIMONIALS = [
   {
     org: "Maxicare Plus",
@@ -118,13 +118,6 @@ const TESTIMONIALS = [
       "What impressed us about Novada Tech was their attention to detail and their commitment to understanding our business before recommending solutions. Their communication, professionalism and structured approach gave us confidence that we were working with a team that genuinely cared about delivering value.",
     name: "Founder, Peter",
   },
-];
-
-/* The three outcomes, as the home page's proof strip. */
-const PROOF_STRIP = [
-  "Better workforce efficiency",
-  "Stronger staffing capacity",
-  "More reliable care delivery",
 ];
 
 /* ⚠️ THE TWO DOORS. Hrefs come from offers.ts so they cannot drift from
@@ -322,7 +315,7 @@ const FAQ = [
   },
   {
     q: "How do we get started?",
-    a: "Book a complimentary discovery call. We will learn about your organisation, explain our services and help establish whether there is a suitable fit.",
+    a: "Book a complimentary 30-minute discovery call. We will learn about your organisation, explain our services and help establish whether there is a suitable fit.",
   },
 ];
 
@@ -591,23 +584,8 @@ export default function CarePage() {
                   you can rely on.
                 </h1>
 
-                <ul className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2">
-                  {PROOF_STRIP.map((t) => (
-                    <li
-                      key={t}
-                      className={`${MICRO} flex items-center gap-2 text-brand-200`}
-                    >
-                      <span
-                        aria-hidden
-                        className="h-1 w-1 rounded-full bg-brand-200"
-                      />
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-
                 <div
-                  className={`mt-8 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
+                  className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
                 >
                   <p>
                     Running a care organisation should not mean constantly
@@ -646,11 +624,6 @@ export default function CarePage() {
                   ))}
                 </div>
 
-                <p className="mt-8 text-sm text-white/55">
-                  Whether you are looking to understand where money may be
-                  slipping through the cracks or strengthen your workforce for
-                  future demand, we help you take a more structured approach.
-                </p>
               </div>
             </div>
           </div>
@@ -940,7 +913,7 @@ export default function CarePage() {
             the operations behind care.
           </p>
           <div className="mt-10">
-            <GoTo href="#book">Book a discovery conversation</GoTo>
+            <GoTo href="#book">Book a 30-minute discovery conversation</GoTo>
           </div>
         </Band>
 
@@ -1076,7 +1049,7 @@ export default function CarePage() {
 
                 <div className="mt-8">
                   <GoTo href={`${ROSTERING.href}#book`} tone="ink">
-                    Book a free discovery call
+                    Book a free 30-minute discovery call
                   </GoTo>
                 </div>
 

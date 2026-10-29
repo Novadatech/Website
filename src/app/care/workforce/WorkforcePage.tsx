@@ -90,9 +90,9 @@ import {
  */
 
 /* 🔴 VERBATIM, FOUNDER-SUPPLIED. Do not reword.
-   ⚠️ "Emmanuella" here, "Emmanuela" on /care/rostering. One of the two
-   is wrong and it is a real person's name. Flagged to the founder on
-   29 October; align both the moment there is an answer. */
+   ⚠️ THE NAME IS EMMANUELLA, two Ls. Founder-confirmed 29 October
+   after /care/rostering was found carrying one L. All three care
+   pages now agree. Do not "correct" it back. */
 const TESTIMONIALS = [
   {
     org: "Maxicare Plus",

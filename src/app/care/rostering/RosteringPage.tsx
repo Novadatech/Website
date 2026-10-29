@@ -122,7 +122,7 @@ const TESTIMONIALS = [
     org: "Morning Star Community Services",
     quote:
       "What we value about Novada Tech is their focus on meaningful business outcomes. They bring a structured, proactive approach and understand the importance of getting the operational details right. Their focus on accountability and practical solutions makes them a valuable business partner.",
-    name: "Founder, Emmanuela",
+    name: "Founder, Emmanuella",
   },
   {
     org: "Support Link",
@@ -259,7 +259,7 @@ const STEPS = [
   {
     n: "Step 1",
     h: "Initial discovery conversation",
-    b: "We begin with a complimentary 20-minute discussion to understand your service model, workforce arrangements, systems and current challenges. We will explain how the audit works and determine whether it is a suitable fit.",
+    b: "We begin with a complimentary 30-minute discussion to understand your service model, workforce arrangements, systems and current challenges. We will explain how the audit works and determine whether it is a suitable fit.",
   },
   {
     n: "Step 2",
@@ -1048,7 +1048,7 @@ export default function RosteringPage() {
                 </BandHeading>
 
                 <p className={`${WIDE} mt-7 text-base text-white/75`}>
-                  Book your free 20-minute rostering and revenue discovery
+                  Book your free 30-minute rostering and revenue discovery
                   call. During this conversation, we will:
                 </p>
                 <Bullets
@@ -1087,7 +1087,7 @@ export default function RosteringPage() {
           has to travel with the reader. Do not remove while it does. */}
       <StickyCta
         label="Book your rostering and revenue review"
-        tagline="Complimentary 20-minute discovery call."
+        tagline="Complimentary 30-minute discovery call."
         href="#book"
       />
     </div>
