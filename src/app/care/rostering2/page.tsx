@@ -1,14 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Star } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  ChevronDown,
+  Quote,
+  Star,
+} from "lucide-react";
 
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
 import BookingEmbed from "@/components/desk/BookingEmbed";
 import StickyCta from "@/components/desk/StickyCta";
 import Calculator from "@/components/desk/Calculator";
-import { Band } from "@/components/desk/Band";
+import { Band, BandHeading } from "@/components/desk/Band";
 import { ROSTERING_CALC } from "@/content/calculators";
 import {
   BODY,
@@ -21,6 +29,7 @@ import {
   GUTTER,
   MICRO,
   MICRO_TIGHT,
+  RAIL_GRID,
   SMALL,
 } from "@/components/desk/tokens";
 
@@ -28,69 +37,70 @@ import {
  * ══════════════════════════════════════════════════════════════════════
  * /care/rostering2 — THE COPYWRITER'S PAGE, ON THE COMPETITOR'S SHAPE.
  *
- * For review. noindex, not linked from anywhere. 29 October 2026.
+ * For review. noindex, not linked. Revised 29 October 2026 against the
+ * founder's mark-up of the first build.
  *
- * Copy supplied by the founder's copywriter and used as written, with
- * three mechanical house-style passes applied and nothing else:
- *   · em dashes removed (standing founder preference)
- *   · long prose broken into card grids, which the founder asked for
- *     so thirteen sections do not become an endless page
- *   · section order kept exactly as supplied
+ * ⚠️ MEASURE IS DELIBERATELY WIDE HERE. The rest of the estate sets body
+ * copy at 68ch, which is the right measure for reading. The founder
+ * asked for the right-hand space filled, so the hero and the section
+ * intros run to roughly 90ch. That is a trade: it fills the frame and it
+ * is a longer line than the house standard. Do not propagate it to the
+ * pages that are built for reading rather than for a paid click.
  *
- * ⚠️ TWO THINGS DEPART FROM THE BRIEF AND BOTH ARE DELIBERATE.
+ * ⚠️ THE CARDS ARE ELEVATED AND SEPARATED, not the hairline `gap-px`
+ * grid the rest of the estate uses, because the founder asked for the
+ * competitor's box style. Reveal animation is the site's own `.reveal`
+ * class: server-rendered visible, 12px of travel, stagger capped, and
+ * it respects reduced motion. Never framer-motion with opacity 0, which
+ * once shipped this site's pages blank until hydration.
  *
- * 1. 🔴 THE TESTIMONIALS ARE EMPTY PLACEHOLDERS, NOT WRITTEN QUOTES.
- *    The brief says "please create customer testimonials related to the
- *    offer". Invented quotes attributed to named providers are fake
- *    reviews: they would be shown to real buyers as though real people
- *    said them, which is misleading conduct under the Australian
- *    Consumer Law and something the ACCC actively pursues. The card
- *    layout is built and ready. The quotes have to come from actual
- *    clients who approve them. Anything in these cards that is not a
- *    real, approved quote must be deleted before this page is indexed
- *    or linked.
+ * 🔴 THE TESTIMONIALS ARE REAL AND FOUNDER-SUPPLIED. Three named
+ * organisations with named people. They are quoted verbatim. Nothing
+ * here may be edited for punch, because an altered quote attributed to
+ * a named person is no longer their words.
  *
- * 2. ⚠️ THE RATING IS RENDERED UNBRANDED, with no review-platform name
- *    and no link to one. Trustpilot has sent TWO brand-compliance
- *    notices about this site, the second because an unbranded lockup
- *    still LINKED to their profile, which is their detection signal and
- *    is itself treated as displaying their score outside an official
- *    widget. C&D was threatened as the next step. So: no name, no
- *    wordmark, no green #00B67A, no tile-stars, no link. The rating
- *    links to /case-study, which is ours. Do not "improve" this by
- *    adding the platform name back.
+ * ⚠️ MORNING STAR COMMUNITY SERVICES is recorded in project memory as a
+ * separate business that merely shares the CRM agency, explicitly "not a
+ * Novada Tech client", with an instruction to confirm before assuming
+ * otherwise. The founder has now supplied a testimonial from them, which
+ * answers that. Flagged, not blocked.
  *
- * ⚠️ PRICING IS ON THIS PAGE (A$5,000 + GST, in the FAQ) because the
- * supplied copy puts it there. That reverses the standing "no pricing
- * anywhere, investment is discussed on the call" rule which the rest of
- * the estate still follows. Flagged to the founder rather than silently
- * applied to other pages.
+ * ⚠️ THE CALCULATOR'S DEFAULT FOOTNOTE IS SUPPRESSED on this page at the
+ * founder's instruction, via an additive `showFootnote` prop so the live
+ * /care/rostering page keeps it. That footnote was the disclaimer saying
+ * the figures contain no industry averages and are not a projection of
+ * what engaging us would produce. The FAQ still answers "Can Novada
+ * guarantee cost savings or recovered revenue? No."
  *
- * ⚠️ "Billing gaps" is used as the copywriter wrote it. The founder
- * confirmed on 19 October they mean a deficiency in how billing is
- * done, not a patient out-of-pocket, and has now supplied copy using
- * the word. Their call, made twice.
+ * ⚠️ THE RATING IS UNBRANDED. No platform name, no wordmark, no link to
+ * a review site. Two compliance notices; C&D named as the next step.
  *
- * RULES THAT STILL BIND: never recommend less care; a rostered hour is
- * not automatically claimable; we do not guarantee savings or recovered
- * revenue; this is not a registration, statutory or accreditation
- * audit. All four are in the copy and all four stay.
+ * ⚠️ PRICING (A$5,000 + GST) is in the FAQ because the supplied copy put
+ * it there. The rest of the estate still says investment is discussed on
+ * the call.
  * ══════════════════════════════════════════════════════════════════════
  */
 
-/* 🔴 PLACEHOLDERS. Replace `quote`, `name` and `org` with real approved
-   client quotes, or delete the section. Never publish invented ones. */
+/* 🔴 VERBATIM, FOUNDER-SUPPLIED. Do not reword. */
 const TESTIMONIALS = [
-  { quote: null, name: null, org: null, service: "NDIS provider" },
-  { quote: null, name: null, org: null, service: "Support at Home provider" },
-  { quote: null, name: null, org: null, service: "Residential aged care" },
-];
-
-const HERO_POINTS = [
-  "Both sides reviewed: what you spend, and what you bill and collect",
-  "Built on your own rosters, timesheets, service records and claims",
-  "Evidence-based findings, with assumptions and limitations stated",
-  "A prioritised improvement roadmap your team can act on",
+  {
+    org: "Maxicare Plus",
+    quote:
+      "Novada Tech took the time to understand our NDIS business, our challenges and what we were trying to achieve. What stood out was their practical approach, attention to detail and genuine commitment to our business outcomes. They felt like a partner who understood our sector, not just another service provider.",
+    name: "Founder, Josh",
+  },
+  {
+    org: "Morning Star Community Services",
+    quote:
+      "What we value about Novada Tech is their focus on meaningful business outcomes. They bring a structured, proactive approach and understand the importance of getting the operational details right. Their focus on accountability and practical solutions makes them a valuable business partner.",
+    name: "Founder, Emmanuela",
+  },
+  {
+    org: "Support Link",
+    quote:
+      "Novada Tech stands out for their professionalism, preparation and commitment to quality. They take time to understand our requirements rather than offering generic solutions, and their structured approach makes working with them straightforward and productive.",
+    name: "Founder, Peter",
+  },
 ];
 
 const APPROACH = [
@@ -322,7 +332,9 @@ const FAQ = [
   },
 ];
 
-/* ── small building blocks ──────────────────────────────────────── */
+/* ── building blocks ────────────────────────────────────────────── */
+
+const WIDE = "max-w-[90ch]";
 
 function Cta({
   children,
@@ -347,41 +359,47 @@ function Cta({
   );
 }
 
-function CardGrid({
+/* ⚠️ ELEVATED AND SEPARATED, the competitor's box style, with the
+   site's own reveal class rather than a new animation system. */
+function BoxCards({
   items,
   cols = 2,
 }: {
   items: { h: string; b: string; n?: string }[];
   cols?: 2 | 3;
 }) {
-  const filler = (cols - (items.length % cols)) % cols;
   return (
     <div
-      className={`mt-10 grid gap-px overflow-hidden rounded-lg bg-ink-100 ${
+      className={`mt-10 grid gap-5 md:gap-6 ${
         cols === 3 ? "md:grid-cols-3" : "md:grid-cols-2"
       }`}
     >
-      {items.map((c) => (
-        <div key={c.h} className="bg-white p-6 md:p-7">
+      {items.map((c, i) => (
+        <div
+          key={c.h}
+          className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise transition-[transform,box-shadow] duration-200 ease-standard hover:-translate-y-0.5 hover:shadow-lift md:p-7"
+          style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 70}ms` }}
+        >
           {c.n ? (
-            <span className={`${MICRO} tabular text-brand-500`}>{c.n}</span>
+            <span className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-sm font-bold text-white">
+              {c.n.replace(/^Step\s*/i, "")}
+            </span>
           ) : null}
-          <h3
-            className={`text-base font-semibold text-ink-950 ${c.n ? "mt-3" : ""}`}
-          >
-            {c.h}
-          </h3>
+          <h3 className="text-base font-semibold text-ink-950">{c.h}</h3>
           <p className="mt-2.5 text-sm leading-relaxed text-ink-600">{c.b}</p>
         </div>
-      ))}
-      {Array.from({ length: filler }).map((_, i) => (
-        <div key={`f${i}`} aria-hidden className="hidden bg-white md:block" />
       ))}
     </div>
   );
 }
 
-function Bullets({ items }: { items: string[] }) {
+function Bullets({
+  items,
+  tone = "light",
+}: {
+  items: string[];
+  tone?: "light" | "dark";
+}) {
   return (
     <ul className="mt-5 flex flex-col gap-2.5">
       {items.map((t) => (
@@ -389,38 +407,133 @@ function Bullets({ items }: { items: string[] }) {
           <Check
             aria-hidden
             strokeWidth={2.4}
-            className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-brand-500"
+            className={`mt-1 h-3.5 w-3.5 flex-shrink-0 ${
+              tone === "dark" ? "text-brand-200" : "text-brand-500"
+            }`}
           />
-          <span className="text-sm leading-relaxed text-ink-600">{t}</span>
+          <span
+            className={`text-sm leading-relaxed ${
+              tone === "dark" ? "text-white/80" : "text-ink-600"
+            }`}
+          >
+            {t}
+          </span>
         </li>
       ))}
     </ul>
   );
 }
 
-/* ⚠️ UNBRANDED BY NECESSITY. No platform name, no wordmark, no link to
-   a review site, no #00B67A. Two compliance notices; C&D threatened.
-   The rating links to our own /case-study page. */
+function Stars({ className = "h-4 w-4 fill-[#0CC481] text-[#0CC481]" }) {
+  return (
+    <span aria-hidden className="flex items-center gap-0.5">
+      {[0, 1, 2, 3, 4].map((i) => (
+        <Star key={i} className={className} strokeWidth={0} />
+      ))}
+    </span>
+  );
+}
+
+/* ⚠️ UNBRANDED BY NECESSITY. No platform name, no link to a review site,
+   no #00B67A. Links to our own /case-study. */
 function RatingBar() {
   return (
     <Link
       href="/case-study"
       className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 transition-colors duration-150 hover:border-white/30"
     >
-      <span aria-hidden className="flex items-center gap-0.5">
-        {[0, 1, 2, 3, 4].map((i) => (
-          <Star
-            key={i}
-            className="h-3.5 w-3.5 fill-[#0CC481] text-[#0CC481]"
-            strokeWidth={0}
-          />
-        ))}
-      </span>
+      <Stars />
       <span className="text-sm font-semibold text-white">5.0</span>
-      <span className="text-sm text-white/70">
-        from 77 provider reviews
-      </span>
+      <span className="text-sm text-white/70">from 77 provider reviews</span>
     </Link>
+  );
+}
+
+function TestimonialSlider() {
+  const [i, setI] = useState(0);
+  const t = TESTIMONIALS[i];
+  const go = (d: number) =>
+    setI((v) => (v + d + TESTIMONIALS.length) % TESTIMONIALS.length);
+
+  return (
+    <div className="relative mt-10">
+      <div className="overflow-hidden rounded-xl bg-brand-500 p-7 shadow-raise md:p-12 lg:p-16">
+        <Quote
+          aria-hidden
+          className="h-9 w-9 fill-white/90 text-white/90"
+          strokeWidth={0}
+        />
+        <blockquote className="mt-6 max-w-[46ch] text-xl font-medium leading-snug text-white md:text-2xl lg:max-w-[52ch] lg:text-[32px] lg:leading-[1.3]">
+          {t.quote}
+        </blockquote>
+        <figcaption className="mt-8">
+          <p className="text-base font-semibold text-white">{t.name}</p>
+          <p className={`${MICRO_TIGHT} mt-1.5 text-white/75`}>{t.org}</p>
+        </figcaption>
+      </div>
+
+      <div className="mt-5 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          {TESTIMONIALS.map((x, n) => (
+            <button
+              key={x.org}
+              type="button"
+              aria-label={`Show the quote from ${x.org}`}
+              aria-current={n === i ? "true" : undefined}
+              onClick={() => setI(n)}
+              className={`h-2 rounded-full transition-all duration-200 ${
+                n === i ? "w-7 bg-brand-500" : "w-2 bg-ink-200 hover:bg-ink-300"
+              }`}
+            />
+          ))}
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            aria-label="Previous quote"
+            onClick={() => go(-1)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-ink-200 bg-white text-ink-700 transition-colors duration-150 hover:border-brand-500 hover:text-brand-500"
+          >
+            <ArrowLeft aria-hidden className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next quote"
+            onClick={() => go(1)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-ink-200 bg-white text-ink-700 transition-colors duration-150 hover:border-brand-500 hover:text-brand-500"
+          >
+            <ArrowRight aria-hidden className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ⚠️ NATIVE <details>. No JS, keyboard and screen reader support for
+   free, and it still works if hydration never finishes. */
+function Faq() {
+  return (
+    <div className="mt-10 flex flex-col gap-3">
+      {FAQ.map((f, i) => (
+        <details
+          key={f.q}
+          className="reveal group rounded-xl border border-ink-100 bg-white shadow-raise [&_summary::-webkit-details-marker]:hidden"
+          style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 50}ms` }}
+        >
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 p-6 text-base font-semibold text-ink-950 md:p-7">
+            <span>{f.q}</span>
+            <ChevronDown
+              aria-hidden
+              className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-400 transition-transform duration-200 ease-standard group-open:rotate-180"
+            />
+          </summary>
+          <p className="px-6 pb-6 text-sm leading-relaxed text-ink-600 md:px-7 md:pb-7">
+            {f.a}
+          </p>
+        </details>
+      ))}
+    </div>
   );
 }
 
@@ -441,19 +554,24 @@ export default function Page() {
           </div>
 
           <div
-            className={`${FRAME} ${GUTTER} relative border-x border-white/10 pb-16 pt-10 md:pb-24 md:pt-14`}
+            className={`${FRAME} ${GUTTER} relative border-x border-white/10 pb-16 pt-10 md:pb-20 md:pt-14`}
           >
             <RatingBar />
 
             <p className={`${MICRO} mt-7 text-brand-200`}>
               For NDIS &amp; aged care providers
             </p>
-            <h1 className={`${D1} mt-5 max-w-headline text-white`}>
+
+            {/* ⚠️ No max-width. The founder asked for the right-hand space
+                filled, and this headline is the whole point of the page. */}
+            <h1 className={`${D1} mt-5 text-white`}>
               Are rostering costs eating into your margins while billing gaps
               go unnoticed?
             </h1>
 
-            <div className="mt-7 flex max-w-prose flex-col gap-5 text-base text-white/75">
+            <div
+              className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
+            >
               <p>
                 Avoidable overtime, expensive agency cover and inefficient
                 rostering can quietly increase the cost of delivering care. At
@@ -473,27 +591,16 @@ export default function Page() {
                 inefficiencies, revenue discrepancies and practical
                 opportunities for improvement.
               </p>
-            </div>
-
-            <div className="mt-8 grid max-w-3xl gap-x-8 gap-y-3 sm:grid-cols-2">
-              {HERO_POINTS.map((t) => (
-                <div key={t} className="flex items-start gap-3">
-                  <Check
-                    aria-hidden
-                    strokeWidth={2.4}
-                    className="mt-1 h-4 w-4 flex-shrink-0 text-brand-200"
-                  />
-                  <span className="text-sm text-white/85">{t}</span>
-                </div>
-              ))}
+              <p>
+                The result is clear, evidence-based findings and an actionable
+                improvement plan to help you control avoidable costs,
+                strengthen billing accuracy and maintain reliable care
+                delivery.
+              </p>
             </div>
 
             <div className="mt-10">
               <Cta tone="dark">Book your rostering &amp; revenue review</Cta>
-              <p className="mt-4 text-sm text-white/60">
-                Start with a complimentary, no-obligation 20-minute discovery
-                conversation.
-              </p>
             </div>
           </div>
         </section>
@@ -503,18 +610,31 @@ export default function Page() {
           <div
             className={`${FRAME} ${GUTTER} border-x border-ink-100 py-10 md:py-12`}
           >
-            <div className="grid gap-px overflow-hidden rounded-lg bg-ink-200 md:grid-cols-3">
+            <div className="grid gap-5 md:grid-cols-3 md:gap-6">
               {[
-                { v: "5.0", l: "Average client rating" },
-                { v: "77", l: "Provider reviews" },
+                { v: "5.0", l: "Average client rating", stars: true },
+                { v: "77", l: "Provider reviews", stars: false },
                 {
                   v: "205",
                   l: "NDIS and aged care providers across Australia",
+                  stars: false,
                 },
-              ].map((s) => (
-                <div key={s.l} className="bg-white p-6 text-center md:p-7">
+              ].map((s, i) => (
+                <div
+                  key={s.l}
+                  className="reveal rounded-xl border border-ink-100 bg-white p-6 text-center shadow-raise md:p-7"
+                  style={{
+                    ["--reveal-delay" as string]: `${i * 70}ms`,
+                  }}
+                >
                   <p className={`${D2} text-brand-500`}>{s.v}</p>
-                  <p className="mt-2 text-sm font-medium text-ink-600">
+                  {/* Stars in the same colour as the 5.0 beside them. */}
+                  {s.stars ? (
+                    <div className="mt-3 flex justify-center">
+                      <Stars className="h-4 w-4 fill-brand-500 text-brand-500" />
+                    </div>
+                  ) : null}
+                  <p className="mt-3 text-sm font-medium text-ink-600">
                     {s.l}
                   </p>
                 </div>
@@ -525,17 +645,17 @@ export default function Page() {
 
         {/* ── 2 WHY NOVADA TECH ────────────────────────────────────── */}
         <Band index="01" label="Why Novada Tech">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             An independent look at the financial and operational performance
             behind your care services
           </h2>
-          <div className="mt-6 flex max-w-prose flex-col gap-4">
-            <p className={BODY}>
+          <div className={`mt-6 flex ${WIDE} flex-col gap-4`}>
+            <p className={`${BODY} ${WIDE}`}>
               Good care depends on more than filling shifts. It depends on
               running an efficient operation and accurately capturing the
               revenue your organisation is entitled to.
             </p>
-            <p className={BODY}>
+            <p className={`${BODY} ${WIDE}`}>
               At Novada Tech, we help NDIS and aged care providers examine the
               relationship between workforce expenditure, service delivery,
               billing and payments. Rather than relying on assumptions, we use
@@ -548,9 +668,9 @@ export default function Page() {
           <p className={`${MICRO} mt-10 text-brand-500`}>
             Our approach focuses on three things
           </p>
-          <CardGrid items={APPROACH} cols={3} />
+          <BoxCards items={APPROACH} cols={3} />
 
-          <p className="mt-8 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
+          <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
             We do not simply look at what your organisation spends. We also
             examine whether the care you deliver is being recorded, billed and
             paid for correctly.
@@ -559,60 +679,29 @@ export default function Page() {
 
         {/* ── 3 CUSTOMER PROOF ─────────────────────────────────────── */}
         <Band index="02" label="Customer proof" tone="tint">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             Supporting care organisations across Australia
           </h2>
-
-          {/* 🔴 PLACEHOLDERS, NOT COPY. See the file header. Replace with
-              real approved client quotes or delete this band. */}
-          <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-ink-200 md:grid-cols-3">
-            {TESTIMONIALS.map((t, i) => (
-              <div key={i} className="flex flex-col bg-white p-6 md:p-7">
-                <span aria-hidden className="flex items-center gap-0.5">
-                  {[0, 1, 2, 3, 4].map((s) => (
-                    <Star
-                      key={s}
-                      className="h-3.5 w-3.5 fill-ink-200 text-ink-200"
-                      strokeWidth={0}
-                    />
-                  ))}
-                </span>
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-400">
-                  {t.quote ?? "Awaiting an approved client quote."}
-                </p>
-                <div className="mt-5 border-t border-ink-100 pt-4">
-                  <p className="text-sm font-semibold text-ink-400">
-                    {t.name ?? "Name, role"}
-                  </p>
-                  <p className={`${MICRO_TIGHT} mt-1 text-ink-300`}>
-                    {t.org ?? t.service}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <p className={`${SMALL} mt-5 max-w-prose`}>
-            Placeholder cards. Real, client-approved quotes go here before this
-            page is linked or indexed.
-          </p>
+          <TestimonialSlider />
         </Band>
 
         {/* ── 4 THE PROBLEM ────────────────────────────────────────── */}
         <Band index="03" label="The problem">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             One provider. Two ways to lose money.
           </h2>
-          <p className={`${BODY} mt-6`}>
+          <p className={`${BODY} ${WIDE} mt-6`}>
             Your organisation could be paying more than necessary to deliver
             care while also missing legitimate revenue from services already
             delivered. These two financial risks can occur at the same time.
           </p>
 
-          <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-ink-100 md:grid-cols-2">
-            <div className="bg-white p-6 md:p-8">
-              <span className={`${MICRO} tabular text-brand-500`}>1</span>
-              <h3 className={`${D4} mt-3 text-ink-950`}>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
+            <div className="reveal rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-sm font-bold text-white">
+                1
+              </span>
+              <h3 className={`${D4} mt-4 text-ink-950`}>
                 Avoidable workforce costs
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-ink-600">
@@ -627,9 +716,14 @@ export default function Page() {
               <Bullets items={WORKFORCE_RISKS} />
             </div>
 
-            <div className="bg-white p-6 md:p-8">
-              <span className={`${MICRO} tabular text-brand-500`}>2</span>
-              <h3 className={`${D4} mt-3 text-ink-950`}>
+            <div
+              className="reveal rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8"
+              style={{ ["--reveal-delay" as string]: "70ms" }}
+            >
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-sm font-bold text-white">
+                2
+              </span>
+              <h3 className={`${D4} mt-4 text-ink-950`}>
                 Billing &amp; revenue leakage
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-ink-600">
@@ -644,7 +738,7 @@ export default function Page() {
             </div>
           </div>
 
-          <p className={`${BODY} mt-9`}>
+          <p className={`${BODY} ${WIDE} mt-9`}>
             The real challenge is that these problems often sit in different
             systems, reports and teams. Your roster shows scheduled work. Your
             service records show what was delivered. Your billing system shows
@@ -662,17 +756,17 @@ export default function Page() {
 
         {/* ── 5 WHAT OUR AUDIT COVERS ──────────────────────────────── */}
         <Band index="04" label="What our audit covers" tone="tint">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             A comprehensive review of rostering efficiency, billing and revenue
             assurance
           </h2>
-          <p className={`${BODY} mt-6`}>
+          <p className={`${BODY} ${WIDE} mt-6`}>
             Our Rostering Audit &amp; Efficiency service examines two critical
             areas of your organisation.
           </p>
 
-          <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-ink-100 md:grid-cols-2">
-            <div className="bg-white p-6 md:p-8">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
+            <div className="reveal rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
               <p className={`${MICRO} text-brand-500`}>
                 Workforce cost &amp; rostering efficiency
               </p>
@@ -692,7 +786,10 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="bg-white p-6 md:p-8">
+            <div
+              className="reveal rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8"
+              style={{ ["--reveal-delay" as string]: "70ms" }}
+            >
               <p className={`${MICRO} text-brand-500`}>
                 Billing, claims &amp; revenue assurance
               </p>
@@ -715,26 +812,20 @@ export default function Page() {
           <p className={`${MICRO} mt-12 text-brand-500`}>
             Tailored to your funding arrangements
           </p>
-          <CardGrid items={FUNDING} cols={3} />
-
-          <p className={`${SMALL} mt-5 max-w-prose`}>
-            All potential billing corrections and claim entitlements must be
-            verified against the applicable rules and supporting evidence by
-            appropriately qualified personnel.
-          </p>
+          <BoxCards items={FUNDING} cols={3} />
         </Band>
 
         {/* ── 6 THE OPPORTUNITY ────────────────────────────────────── */}
         <Band index="05" label="The opportunity">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             Small operational inefficiencies can create significant financial
             pressure
           </h2>
-          <p className={`${BODY} mt-6`}>
+          <p className={`${BODY} ${WIDE} mt-6`}>
             Consider what can happen inside a busy care organisation.
           </p>
-          <CardGrid items={OPPORTUNITY} />
-          <p className={`${BODY} mt-9`}>
+          <BoxCards items={OPPORTUNITY} />
+          <p className={`${BODY} ${WIDE} mt-9`}>
             Novada&apos;s audit helps bring these records together, identify
             supported discrepancies and prioritise meaningful improvements. We
             do not assign speculative dollar values to every empty shift or
@@ -743,48 +834,38 @@ export default function Page() {
           </p>
         </Band>
 
-        {/* ── THE ARITHMETIC, back where it was. ───────────────────── */}
+        {/* ── THE ARITHMETIC ───────────────────────────────────────── */}
         <Band id="calculator" index="06" label="Your own numbers" tone="tint">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             Do the arithmetic before you talk to us
           </h2>
-          <p className={`${BODY} mt-6`}>
+          <p className={`${BODY} ${WIDE} mt-6`}>
             We will not invent a figure for you. Here is the sum, on your own
             numbers.
           </p>
           <div className="mt-10">
+            {/* ⚠️ showFootnote={false} at the founder's instruction. The
+                live /care/rostering page still shows it. */}
             <Calculator
               config={ROSTERING_CALC}
               locale="en-AU"
               currency="AUD"
               bookHref="#book"
+              showFootnote={false}
             />
-          </div>
-          <div className="mt-6 flex flex-col gap-3">
-            <p className={`${SMALL} max-w-prose`}>
-              Both figures ask for the premium, not the whole cost. The shift
-              still has to be covered and the worker still paid. The only
-              avoidable part is the extra you pay to cover it the expensive
-              way.
-            </p>
-            <p className={`${SMALL} max-w-prose`}>
-              This sum covers the workforce half only. What was delivered and
-              never claimed is counted from your own service and claim records
-              during the review.
-            </p>
           </div>
         </Band>
 
-        {/* ── 7 WHAT MAKES OUR APPROACH DIFFERENT ──────────────────── */}
+        {/* ── 7 OUR APPROACH ───────────────────────────────────────── */}
         <Band index="07" label="Our approach">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             Not just another report. Clear findings you can act on.
           </h2>
-          <p className={`${BODY} mt-6`}>
+          <p className={`${BODY} ${WIDE} mt-6`}>
             Our approach is built around four principles.
           </p>
-          <CardGrid items={DIFFERENT} />
-          <p className="mt-9 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
+          <BoxCards items={DIFFERENT} />
+          <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
             Our goal is not to recommend unnecessary changes. It is to identify
             what is working, what requires attention and where improvements
             could provide meaningful value.
@@ -793,12 +874,12 @@ export default function Page() {
 
         {/* ── 8 WHO WE HELP ────────────────────────────────────────── */}
         <Band index="08" label="Who we help" tone="tint">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             Designed for NDIS and aged care providers managing complex
             workforce operations
           </h2>
-          <CardGrid items={WHO} cols={3} />
-          <p className={`${BODY} mt-9`}>
+          <BoxCards items={WHO} cols={3} />
+          <p className={`${BODY} ${WIDE} mt-9`}>
             Whether you operate one service location or manage several teams,
             the review is scoped to your organisation&apos;s needs and
             operational complexity.
@@ -810,11 +891,11 @@ export default function Page() {
 
         {/* ── 9 HOW THE AUDIT WORKS ────────────────────────────────── */}
         <Band index="09" label="How it works">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             Four simple steps to greater operational and financial clarity
           </h2>
-          <CardGrid items={STEPS} />
-          <p className="mt-9 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
+          <BoxCards items={STEPS} />
+          <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
             No guesswork. No invented savings figures. Just a structured
             assessment using your organisation&apos;s records.
           </p>
@@ -822,45 +903,43 @@ export default function Page() {
 
         {/* ── 10 WHAT YOU RECEIVE ──────────────────────────────────── */}
         <Band index="10" label="What you receive" tone="tint">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             Walk away with a clearer picture of your operations
           </h2>
-          <p className={`${BODY} mt-6`}>
+          <p className={`${BODY} ${WIDE} mt-6`}>
             Your comprehensive audit provides agreed deliverables tailored to
             your organisation.
           </p>
-          <CardGrid items={RECEIVE} cols={3} />
-          <p className={`${BODY} mt-9`}>
+          <BoxCards items={RECEIVE} cols={3} />
+          <p className={`${BODY} ${WIDE} mt-9`}>
             The objective is to give you information you can act on, not
             another document that sits on a shelf.
           </p>
         </Band>
 
-        {/* ── 11 FROM AUDIT TO ONGOING IMPROVEMENT ─────────────────── */}
+        {/* ── 11 AFTER THE AUDIT ───────────────────────────────────── */}
         <Band index="11" label="After the audit">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
+          <h2 className={`${D2} text-ink-950`}>
             Finding the problem is the first step. Keeping operations strong is
             the next.
           </h2>
-          <div className="mt-6 flex max-w-prose flex-col gap-4">
-            <p className={BODY}>
-              Once improvement opportunities have been identified, providers
-              can choose how they want to implement the recommendations. Some
-              organisations may prefer to manage improvements internally.
-              Others may benefit from additional operational support.
-            </p>
-          </div>
+          <p className={`${BODY} ${WIDE} mt-6`}>
+            Once improvement opportunities have been identified, providers can
+            choose how they want to implement the recommendations. Some
+            organisations may prefer to manage improvements internally. Others
+            may benefit from additional operational support.
+          </p>
 
-          <div className="mt-10 rounded-lg border border-ink-200 bg-ink-50 p-6 md:p-8">
+          <div className="reveal mt-10 rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
             <p className={`${MICRO} text-brand-500`}>
               Introducing Novada&apos;s Workforce Continuity service
             </p>
-            <p className="mt-4 max-w-prose text-base text-ink-950">
+            <p className={`${WIDE} mt-4 text-base text-ink-950`}>
               We also help NDIS and aged care providers build and maintain
               dependable internal workforce capacity through:
             </p>
             <Bullets items={CONTINUITY} />
-            <p className={`${SMALL} mt-6 max-w-prose`}>
+            <p className={`${SMALL} ${WIDE} mt-6`}>
               Our objective is to help providers build a more reliable
               workforce and reduce avoidable dependence on expensive external
               agency coverage. Workforce Continuity is a separate service, and
@@ -868,7 +947,10 @@ export default function Page() {
               the audit.
             </p>
             <div className="mt-7">
-              <Link href="/care/workforce" className={`${BTN_PRIMARY} w-full text-base sm:w-auto`}>
+              <Link
+                href="/care/workforce"
+                className={`${BTN_PRIMARY} w-full text-base sm:w-auto`}
+              >
                 Explore Workforce Continuity
                 <ArrowRight
                   aria-hidden
@@ -881,98 +963,57 @@ export default function Page() {
 
         {/* ── 12 FAQ ───────────────────────────────────────────────── */}
         <Band index="12" label="Questions" tone="tint">
-          <h2 className={`${D2} max-w-headline text-ink-950`}>
-            Frequently asked questions
-          </h2>
-          <dl className="mt-10 flex flex-col gap-px overflow-hidden rounded-lg bg-ink-100">
-            {FAQ.map((f) => (
-              <div
-                key={f.q}
-                className="grid gap-2 bg-white p-6 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] md:gap-8 md:p-7"
-              >
-                <dt className="text-base font-semibold text-ink-950">{f.q}</dt>
-                <dd className="text-sm leading-relaxed text-ink-600">{f.a}</dd>
-              </div>
-            ))}
-          </dl>
+          <h2 className={`${D2} text-ink-950`}>Frequently asked questions</h2>
+          <Faq />
         </Band>
 
-        {/* ── 13 FINAL CTA, with the calendar back at the bottom. ──── */}
-        <section className="border-t border-white/10 bg-canvas-ink">
+        {/* ── 13 BOOK. Laid out like /care/workforce#book: rail label,
+             full-width embed in the main column. ──────────────────── */}
+        <section id="book" className="border-t border-white/10 bg-canvas-ink">
           <div
-            className={`${FRAME} ${GUTTER} border-x border-white/10 py-16 md:py-24`}
+            className={`${FRAME} ${GUTTER} border-x border-white/10 py-16 md:py-24 lg:py-32`}
           >
-            <h2 className={`${D2} max-w-headline text-white`}>
-              Your organisation already has the records. Let us find out what
-              they are telling you.
-            </h2>
-
-            <div className="mt-8 grid max-w-4xl gap-x-10 gap-y-3 sm:grid-cols-2">
-              {[
-                "Your rosters show who was scheduled.",
-                "Your timesheets and service records show what was worked and delivered.",
-                "Your billing and claims records show what was submitted.",
-                "Your financial reports show what was received.",
-              ].map((t) => (
-                <div key={t} className="flex items-start gap-3">
-                  <Check
+            <div className={RAIL_GRID}>
+              <div className="lg:sticky lg:top-28 lg:self-start">
+                <div className="flex items-center gap-3 lg:block">
+                  <span className={`${MICRO} tabular text-white/55`}>13</span>
+                  <span
                     aria-hidden
-                    strokeWidth={2.4}
-                    className="mt-1 h-4 w-4 flex-shrink-0 text-brand-200"
+                    className="h-px w-6 bg-white/20 lg:my-3 lg:h-6 lg:w-px"
                   />
-                  <span className="text-sm text-white/85">{t}</span>
+                  <h2 className={`${MICRO} text-white/85`}>Book</h2>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            <p className="mt-8 max-w-statement border-l-2 border-brand-400 pl-6 text-lg font-medium text-white">
-              But are these records telling a consistent financial story?
-            </p>
-
-            <div
-              id="book"
-              className="mt-12 grid scroll-mt-24 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:gap-14"
-            >
               <div className="min-w-0">
-                <p className={`${MICRO} text-brand-200`}>
-                  Book your free 20-minute rostering &amp; revenue discovery
-                  call
+                <BandHeading dark>
+                  Your organisation already has the records. Let us find out
+                  what they are telling you.
+                </BandHeading>
+
+                <p className={`${WIDE} mt-7 text-base text-white/75`}>
+                  Book your free 20-minute rostering and revenue discovery
+                  call. During this conversation, we will:
                 </p>
-                <p className="mt-5 max-w-prose text-base text-white/75">
-                  During this conversation, we will:
-                </p>
-                <ul className="mt-5 flex flex-col gap-2.5">
-                  {[
+                <Bullets
+                  tone="dark"
+                  items={[
                     "Learn about your service delivery and workforce arrangements.",
                     "Discuss relevant rostering, staffing cost and billing concerns.",
                     "Explain the audit process and the information reviewed.",
                     "Determine whether a comprehensive audit would be appropriate.",
                     "Outline the next steps and indicative pricing.",
-                  ].map((t) => (
-                    <li key={t} className="flex items-start gap-3">
-                      <Check
-                        aria-hidden
-                        strokeWidth={2.4}
-                        className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-brand-200"
-                      />
-                      <span className="text-sm text-white/80">{t}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className={`${MICRO_TIGHT} mt-8 text-white/55`}>
-                  Complimentary initial consultation &nbsp;·&nbsp; No
-                  obligation to proceed &nbsp;·&nbsp; The comprehensive audit is
-                  a separately scoped paid engagement
-                </p>
-              </div>
-
-              <div className="min-w-0">
-                <BookingEmbed
-                  desk="care-rostering"
-                  source="care-rostering2"
-                  tone="dark"
-                  title="Book your rostering & revenue review"
+                  ]}
                 />
+
+                <div className="mt-10">
+                  <BookingEmbed
+                    desk="care-rostering"
+                    source="care-rostering2"
+                    tone="dark"
+                    title="Book your rostering and revenue review"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -981,15 +1022,8 @@ export default function Page() {
 
       <DeskFooter />
 
-      {/* 🔴 THIS IS DOING THE WORK THE HERO FORM DOES ON THE COMPETITOR'S
-          PAGE. The founder asked for the calendar back at the bottom,
-          which is where it is. With the full thirteen-section copy that
-          puts it 93% down a 24,500px mobile page, so without a CTA that
-          travels with the reader this page would repeat the exact fault
-          that produced 75 clicks and no bookings. The sticky bar keeps a
-          bold, always-visible action on screen the whole way down, and
-          three in-page buttons jump to the same anchor. Do not remove
-          it while the calendar sits at the foot of the page. */}
+      {/* 🔴 The calendar sits at the foot of a long page, so a bold action
+          has to travel with the reader. Do not remove while it does. */}
       <StickyCta
         label="Book your rostering and revenue review"
         tagline="Complimentary 20-minute discovery call."

@@ -244,11 +244,23 @@ export default function Calculator({
   locale = "en-US",
   currency = "USD",
   bookHref = "#book",
+  showFootnote = true,
 }: {
   config: CalcConfig;
   locale?: string;
   currency?: string;
   bookHref?: string;
+  /**
+   * ⚠️ THE HONESTY LABEL IS ON BY DEFAULT AND SHOULD STAY ON.
+   *
+   * Added 29 October 2026 so /care/rostering2 could suppress it at the
+   * founder's instruction. Every other page keeps it. Before turning it
+   * off anywhere else, check that page carries the no-guarantee answer
+   * somewhere a reader will actually meet it: this label is the only
+   * thing next to the figures saying they are not a projection of what
+   * engaging us would produce.
+   */
+  showFootnote?: boolean;
 }) {
   const [vals, setVals] = useState<Record<string, number>>(() =>
     Object.fromEntries(
@@ -438,12 +450,14 @@ export default function Calculator({
       {/* ── THE HONESTY LABEL. Not "illustrative", which invites the
           reader to assume there are real numbers somewhere. A flat
           statement of what this is and what it is not. ── */}
+      {showFootnote ? (
       <div className="border-t border-ink-100 bg-ink-50 px-5 py-5 md:px-7">
         <p className="max-w-prose text-xs leading-[1.6] text-ink-500">
           {config.footnote ??
             "This is your own arithmetic, worked on the figures you just entered. It contains no industry averages and no assumptions of ours, the starting values are placeholders to be overwritten rather than benchmarks, and the second figure is the hypothesis you set, not a result we are promising. Nothing here is a projection of what engaging us would produce."}
         </p>
       </div>
+      ) : null}
     </figure>
   );
 }
