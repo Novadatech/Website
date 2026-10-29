@@ -23,7 +23,6 @@ import {
   DISPLAY,
   FRAME,
   GUTTER,
-  HERO_Y,
   MICRO,
   MICRO_TIGHT,
   RAIL_GRID,
@@ -543,89 +542,94 @@ export default function CarePage() {
             <div className="absolute -bottom-72 -right-40 h-[560px] w-[560px] rounded-full bg-signal-600/10 blur-[140px]" />
           </div>
 
+          {/* ⚠️ NO RAIL ON THIS HERO, and no max-width on the
+              headline. Both were inherited from the home page format and
+              both narrowed the text: the rail grid cut the column from
+              1240px to 970px, and max-w-display (17ch) then cut the
+              headline itself to 585px, which left half the frame empty
+              on a desktop. The founder asked for it to fill the width
+              the way /care/rostering and /care/workforce do, and those
+              two run the headline edge to edge at 1142px with no cap.
+              Measured on all three before and after.
+
+              ⚠️ The BANDS below still have their rails. It is only
+              the hero that runs full width, which is exactly how the two
+              pillar pages are built. */}
           <div
-            className={`${FRAME} ${GUTTER} ${HERO_Y} relative border-x border-white/10`}
+            className={`${FRAME} ${GUTTER} relative border-x border-white/10 pb-16 pt-10 md:pb-20 md:pt-14`}
           >
-            <div className={RAIL_GRID}>
-              <div aria-hidden className="lg:sticky lg:top-28 lg:self-start">
-                <span className="block h-px w-10 bg-brand-200 lg:mt-3 lg:h-10 lg:w-0.5" />
-              </div>
+            {/* ⚠️ NO RATING BAR IN THIS HERO, unlike the two
+                pillar pages. Two reasons that agree: the HOME PAGE
+                FORMAT the founder asked for does not have one, its
+                hero trust signal IS the proof strip below; and it
+                cost 73px at the top of the fold, which was enough
+                to push THE DOORS off the screen at 360px. The 5.0
+                and the 77 reviews are still the first thing under
+                the hero, in the proof strip section. */}
+            <p className={`${MICRO} text-brand-200`}>
+              For Australian NDIS &amp; aged care providers
+            </p>
 
-              <div className="min-w-0">
-                {/* ⚠️ NO RATING BAR IN THIS HERO, unlike the two
-                    pillar pages. Two reasons that agree: the HOME PAGE
-                    FORMAT the founder asked for does not have one, its
-                    hero trust signal IS the proof strip below; and it
-                    cost 73px at the top of the fold, which was enough
-                    to push THE DOORS off the screen at 360px. The 5.0
-                    and the 77 reviews are still the first thing under
-                    the hero, in the proof strip section. */}
-                <p className={`${MICRO} text-brand-200`}>
-                  For Australian NDIS &amp; aged care providers
-                </p>
+            {/* ⚠️ THE HOME PAGE'S FORMAT, BUT NOT ITS d1 TOKEN.
+                d1's clamp floor is 42px, which is right for the home
+                page's seven-word position line and wrong for this
+                twelve-word headline: measured at 42px it ran to five
+                or six lines and pushed THE DOORS off the first
+                screen entirely at 320 and 360px. The doors are the
+                main event of a hub, so they have to be in the fold.
 
-                {/* ⚠️ THE HOME PAGE'S FORMAT, BUT NOT ITS d1 TOKEN.
-                    d1's clamp floor is 42px, which is right for the home
-                    page's seven-word position line and wrong for this
-                    twelve-word headline: measured at 42px it ran to five
-                    or six lines and pushed THE DOORS off the first
-                    screen entirely at 320 and 360px. The doors are the
-                    main event of a hub, so they have to be in the fold.
+                This is the same clamp both pillar pages use: a 32px
+                floor, a steeper slope, and the identical 76px cap by
+                1280px, so the desktop hero still matches the home
+                page exactly and only phones change. Measured, not
+                assumed. */}
+            <h1
+              className={`${DISPLAY} mt-5 text-[clamp(2rem,0.89rem+4.83vw,4.75rem)] leading-[0.93] tracking-[-0.015em] text-white`}
+            >
+              Control workforce costs. Protect revenue. Build a workforce
+              you can rely on.
+            </h1>
 
-                    This is the same clamp both pillar pages use: a 32px
-                    floor, a steeper slope, and the identical 76px cap by
-                    1280px, so the desktop hero still matches the home
-                    page exactly and only phones change. Measured, not
-                    assumed. */}
-                <h1
-                  className={`${DISPLAY} mt-5 max-w-display text-[clamp(2rem,0.89rem+4.83vw,4.75rem)] leading-[0.93] tracking-[-0.015em] text-white`}
-                >
-                  Control workforce costs. Protect revenue. Build a workforce
-                  you can rely on.
-                </h1>
-
-                <div
-                  className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
-                >
-                  <p>
-                    Running a care organisation should not mean constantly
-                    managing roster disruptions, escalating staffing costs,
-                    recruitment challenges and billing discrepancies. At Novada
-                    Tech, we help NDIS and aged care providers strengthen the
-                    operations behind care through two specialised services.
-                  </p>
-                </div>
-
-                {/* ── THE TWO DOORS. Each is a whole link, so on a phone a
-                    text target becomes a card target. ── */}
-                <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
-                  {DOORS.map((d) => (
-                    <Link
-                      key={d.href}
-                      href={d.href}
-                      className="group flex h-full flex-col bg-canvas-raised p-6 transition-colors duration-150 ease-standard hover:bg-[#161C29] md:p-8"
-                    >
-                      <span className="flex items-start justify-between gap-3">
-                        <span className={`${D2} text-white`}>{d.name}</span>
-                        <ArrowRight
-                          aria-hidden
-                          className="mt-1.5 h-5 w-5 shrink-0 text-white/40 transition-[transform,color] duration-150 ease-standard group-hover:translate-x-1 group-hover:text-brand-200"
-                        />
-                      </span>
-                      <span className="mt-4 block text-sm leading-relaxed text-white/65">
-                        {d.body}
-                      </span>
-                      <span
-                        className={`${MICRO_TIGHT} mt-6 block border-t border-white/10 pt-5 text-white/55`}
-                      >
-                        {d.foot}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-
-              </div>
+            <div
+              className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
+            >
+              <p>
+                Running a care organisation should not mean constantly
+                managing roster disruptions, escalating staffing costs,
+                recruitment challenges and billing discrepancies. At Novada
+                Tech, we help NDIS and aged care providers strengthen the
+                operations behind care through two specialised services.
+              </p>
             </div>
+
+            {/* ── THE TWO DOORS. Each is a whole link, so on a phone a
+                text target becomes a card target. ── */}
+            <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
+              {DOORS.map((d) => (
+                <Link
+                  key={d.href}
+                  href={d.href}
+                  className="group flex h-full flex-col bg-canvas-raised p-6 transition-colors duration-150 ease-standard hover:bg-[#161C29] md:p-8"
+                >
+                  <span className="flex items-start justify-between gap-3">
+                    <span className={`${D2} text-white`}>{d.name}</span>
+                    <ArrowRight
+                      aria-hidden
+                      className="mt-1.5 h-5 w-5 shrink-0 text-white/40 transition-[transform,color] duration-150 ease-standard group-hover:translate-x-1 group-hover:text-brand-200"
+                    />
+                  </span>
+                  <span className="mt-4 block text-sm leading-relaxed text-white/65">
+                    {d.body}
+                  </span>
+                  <span
+                    className={`${MICRO_TIGHT} mt-6 block border-t border-white/10 pt-5 text-white/55`}
+                  >
+                    {d.foot}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
           </div>
         </section>
 
