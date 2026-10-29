@@ -76,6 +76,32 @@ import {
  * ⚠️ THE RATING IS UNBRANDED. No platform name, no wordmark, no link to
  * a review site. Two compliance notices; C&D named as the next step.
  *
+ * 🔴 THIS IS THE LIVE /care/rostering PAGE. It was built at
+ * /care/rostering2 as a conversion rebuild and promoted here on
+ * 29 October 2026 on the founder's instruction, replacing the
+ * PillarPage build ENTIRELY. /care/rostering2 is gone and 308s here.
+ *
+ * ⚠️ IT IS A CLIENT COMPONENT, so its metadata CANNOT live in this
+ * file. It is exported from page.tsx, which wraps this. Do not add a
+ * layout.tsx to this folder: /care/rostering/confirmed has no metadata
+ * of its own and would inherit whatever a layout declared.
+ *
+ * 🔴 WHAT THE PROMOTION DELETED, recorded so nobody rediscovers it as
+ * a bug. The founder asked for an exact replacement, so these came off
+ * the page and did NOT move here:
+ *   · "If the only saving means less care, it is not a saving."
+ *   · "A rostered hour is not a billable hour."
+ *   · We do not determine NDIS eligibility, AN-ACC classification or
+ *     funding entitlement; the provider's own qualified people decide.
+ *   · Read-only access, nothing changed in a live system.
+ *   · The NDIS claiming rules (90-day window from 1 December 2026;
+ *     28-day hold on older claims since 15 October 2026), with their
+ *     primary sources. Still in EVIDENCE in offers.ts, unused here.
+ *   · "One piece of work, not a subscription", and findings inside
+ *     two weeks.
+ *   · The PATHWAY diagram, which every other offer page still shows.
+ * Raise any of these with the founder before re-adding one.
+ *
  * 🔴 NO PRICE ON THIS PAGE. The supplied copy carried "from A$5,000
  * plus GST" in the FAQ; the founder had it removed on 29 October. This
  * page now matches the rest of the estate, where the investment is
@@ -565,7 +591,7 @@ function Faq() {
   );
 }
 
-export default function Page() {
+export default function RosteringPage() {
   return (
     <div data-theme="desk" className="min-h-screen bg-white font-sans">
       <DeskNav tone="dark" audience="care" bookHref="#book" />

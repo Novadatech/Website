@@ -67,6 +67,11 @@ const nextConfig: NextConfig = {
          ⚠️ This matches /care/operations ONLY, not its children, so
          /care/operations/confirmed stays reachable. That is deliberate:
          the live care calendar still redirects there. */
+      /* ⚠️ /care/rostering2 was the conversion rebuild. It was
+         promoted to /care/rostering on 29 October 2026 and deleted. The
+         redirect is here because the URL was shared for review while it
+         was live, so it must not 404. */
+      { source: "/care/rostering2", destination: "/care/rostering", permanent: true },
       { source: "/care/operations", destination: "/care/rostering", permanent: true },
       /* ⚠️ THE CONFIRMATION REDIRECT IS LOAD-BEARING UNTIL THE CRM IS
          REPOINTED. The rostering calendar still sends bookers to
