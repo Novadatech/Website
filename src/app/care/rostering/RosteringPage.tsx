@@ -1065,7 +1065,7 @@ export default function RosteringPage() {
                 <div className="mt-10">
                   <BookingEmbed
                     desk="care-rostering"
-                    source="care-rostering2"
+                    source="care-rostering"
                     tone="dark"
                     title="Book your rostering and revenue review"
                   />

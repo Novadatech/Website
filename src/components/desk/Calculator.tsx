@@ -261,7 +261,7 @@ export default function Calculator({
   /**
    * ⚠️ THE HONESTY LABEL IS ON BY DEFAULT AND SHOULD STAY ON.
    *
-   * Added 29 October 2026 so /care/rostering2 could suppress it at the
+   * Added 29 October 2026 so /care/rostering could suppress it at the
    * founder's instruction. Every other page keeps it. Before turning it
    * off anywhere else, check that page carries the no-guarantee answer
    * somewhere a reader will actually meet it: this label is the only
