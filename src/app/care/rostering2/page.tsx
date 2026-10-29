@@ -76,9 +76,11 @@ import {
  * ⚠️ THE RATING IS UNBRANDED. No platform name, no wordmark, no link to
  * a review site. Two compliance notices; C&D named as the next step.
  *
- * ⚠️ PRICING (A$5,000 + GST) is in the FAQ because the supplied copy put
- * it there. The rest of the estate still says investment is discussed on
- * the call.
+ * 🔴 NO PRICE ON THIS PAGE. The supplied copy carried "from A$5,000
+ * plus GST" in the FAQ; the founder had it removed on 29 October. This
+ * page now matches the rest of the estate, where the investment is
+ * discussed on the call and never printed. Do not reintroduce a figure
+ * here, in the FAQ or anywhere else, without the founder saying so.
  * ══════════════════════════════════════════════════════════════════════
  */
 
@@ -309,7 +311,7 @@ const FAQ = [
   },
   {
     q: "How much does the audit cost?",
-    a: "Comprehensive Rostering Audit & Efficiency engagements start from A$5,000 plus GST. Final fees depend on your organisation's size, operational complexity and the agreed scope. The initial 20-minute discovery conversation is complimentary.",
+    a: "Final fees depend on your organisation's size, operational complexity and the agreed scope, so we confirm the investment with you before any work begins. The initial discovery conversation is complimentary.",
   },
   {
     q: "How long does the audit take?",
@@ -343,13 +345,27 @@ function Cta({
   href = "#book",
 }: {
   children: React.ReactNode;
-  tone?: "light" | "dark";
+  tone?: "light" | "dark" | "brand";
   href?: string;
 }) {
+  /* 🔴 "brand" IS BTN_PRIMARY ON AN INK SURFACE, which tokens.ts
+     explicitly warns against: brand-500 #003DDB on canvas-ink #0A0D14 is
+     about 2:1, so the button's own edge all but disappears. The founder
+     asked for the same blue as the other two CTAs (29 October), so the
+     FILL is exactly brand-500 and a light ring carries the boundary
+     instead. White on brand-500 is 7.81:1, so the label was never the
+     problem. ⚠️ Remove the ring and the button stops reading as a
+     button on this background. */
+  const cls =
+    tone === "dark"
+      ? BTN_ON_INK
+      : tone === "brand"
+        ? `${BTN_PRIMARY} min-h-12 px-6 shadow-cta ring-1 ring-white/25 hover:ring-white/40`
+        : BTN_PRIMARY;
   return (
     <a
       href={href}
-      className={`${tone === "dark" ? BTN_ON_INK : BTN_PRIMARY} w-full text-base sm:w-auto`}
+      className={`${cls} w-full text-base sm:w-auto`}
     >
       {children}
       <ArrowRight
@@ -439,14 +455,14 @@ function Stars({ className = "h-4 w-4 fill-[#0CC481] text-[#0CC481]" }) {
    no #00B67A. Links to our own /case-study. */
 function RatingBar() {
   return (
-    <Link
-      href="/case-study"
-      className="inline-flex min-h-11 flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5 transition-colors duration-150 hover:border-white/30"
-    >
+    /* 🔴 NOT A LINK, on the founder's instruction (29 October). It
+       used to point at /case-study. It must not link anywhere, so this
+       is a plain <div>: no href, no hover state, nothing to click. */
+    <div className="inline-flex min-h-11 flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5">
       <Stars />
       <span className="text-sm font-semibold text-white">5.0</span>
       <span className="text-sm text-white/70">from 77 provider reviews</span>
-    </Link>
+    </div>
   );
 }
 
@@ -597,35 +613,24 @@ export default function Page() {
             <div
               className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
             >
+              {/* ⚠️ ONE BLOCK, on the founder's instruction (29 October).
+                  The two paragraphs that followed were removed in the same
+                  pass. Keeping the hero short is the point: it is what
+                  brings the first CTA up the screen on a phone. */}
               <p>
                 Avoidable overtime, expensive agency cover and inefficient
                 rostering can quietly increase the cost of delivering care. At
                 the same time, unbilled services, rejected claims and
                 reconciliation gaps may mean legitimate revenue is being left
-                uncollected.
-              </p>
-              <p>
-                Novada Tech&apos;s Rostering Audit &amp; Efficiency examines
-                both sides of your operations: what you are spending to deliver
-                care, and whether you are accurately billing and collecting
-                what you are entitled to.
-              </p>
-              <p>
-                Using your existing rosters, timesheets, service delivery
-                records, billing and claims data, we identify potential cost
-                inefficiencies, revenue discrepancies and practical
-                opportunities for improvement.
-              </p>
-              <p>
-                The result is clear, evidence-based findings and an actionable
-                improvement plan to help you control avoidable costs,
-                strengthen billing accuracy and maintain reliable care
-                delivery.
+                uncollected. Novada Tech&apos;s Rostering Audit &amp;
+                Efficiency examines both sides of your operations: what you
+                are spending to deliver care, and whether you are accurately
+                billing and collecting what you are entitled to.
               </p>
             </div>
 
             <div className="mt-10">
-              <Cta tone="dark">Book your rostering &amp; revenue review</Cta>
+              <Cta tone="brand">Book your rostering &amp; revenue review</Cta>
             </div>
           </div>
         </section>
