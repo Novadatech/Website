@@ -107,7 +107,7 @@ export default function DeskNav({
           <Link
             href="/"
             aria-label="Novada Tech, home"
-            className="flex flex-shrink-0 items-center gap-2.5 rounded-xs py-2"
+            className="-mx-1.5 flex flex-shrink-0 items-center gap-2.5 rounded-xs px-1.5 py-2"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img

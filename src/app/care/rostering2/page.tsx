@@ -23,6 +23,7 @@ import {
   BTN_ON_INK,
   BTN_PRIMARY,
   D1,
+  DISPLAY,
   D2,
   D4,
   FRAME,
@@ -440,7 +441,7 @@ function RatingBar() {
   return (
     <Link
       href="/case-study"
-      className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 transition-colors duration-150 hover:border-white/30"
+      className="inline-flex min-h-11 flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5 transition-colors duration-150 hover:border-white/30"
     >
       <Stars />
       <span className="text-sm font-semibold text-white">5.0</span>
@@ -473,7 +474,9 @@ function TestimonialSlider() {
       </div>
 
       <div className="mt-5 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        {/* ⚠️ -ml cancels the first dot button's own padding so the
+            row still lines up with the quote above it. */}
+        <div className="-ml-[13px] flex items-center">
           {TESTIMONIALS.map((x, n) => (
             <button
               key={x.org}
@@ -481,10 +484,19 @@ function TestimonialSlider() {
               aria-label={`Show the quote from ${x.org}`}
               aria-current={n === i ? "true" : undefined}
               onClick={() => setI(n)}
-              className={`h-2 rounded-full transition-all duration-200 ${
-                n === i ? "w-7 bg-brand-500" : "w-2 bg-ink-200 hover:bg-ink-300"
-              }`}
-            />
+              /* ⚠️ The HIT AREA is 36x44 and the dot inside it is 10px.
+                 An 8px button is not tappable on a phone. */
+              className="group/dot flex h-11 w-9 items-center justify-center"
+            >
+              <span
+                aria-hidden
+                className={`block h-2.5 rounded-full transition-all duration-200 ${
+                  n === i
+                    ? "w-7 bg-brand-500"
+                    : "w-2.5 bg-ink-200 group-hover/dot:bg-ink-300"
+                }`}
+              />
+            </button>
           ))}
         </div>
         <div className="flex items-center gap-2">
@@ -564,7 +576,13 @@ export default function Page() {
 
             {/* ⚠️ No max-width. The founder asked for the right-hand space
                 filled, and this headline is the whole point of the page. */}
-            <h1 className={`${D1} mt-5 text-white`}>
+            {/* ⚠️ NOT the d1 token. Its clamp floor is 42px, which put
+                this eleven-word headline over five lines at 390px and
+                pushed everything else off the first screen. This floor
+                is 32px and it reaches the same size on desktop. */}
+            <h1
+              className={`${DISPLAY} mt-5 text-[clamp(2rem,1.1rem+3.9vw,4.75rem)] leading-[0.93] tracking-[-0.015em] text-white`}
+            >
               Are rostering costs eating into your margins while billing gaps
               go unnoticed?
             </h1>
@@ -1021,6 +1039,11 @@ export default function Page() {
       </main>
 
       <DeskFooter />
+
+      {/* ⚠️ CLEARANCE FOR THE STICKY BAR. Without it the bar covers
+          the last line of the footer on a phone, where it is tallest
+          because the tagline wraps above a full-width button. */}
+      <div aria-hidden className="h-28 sm:h-20" />
 
       {/* 🔴 The calendar sits at the foot of a long page, so a bold action
           has to travel with the reader. Do not remove while it does. */}

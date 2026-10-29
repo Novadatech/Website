@@ -239,6 +239,14 @@ function money(n: number, locale: string, currency: string) {
   }).format(Math.max(0, Math.round(n)));
 }
 
+/* How far along the track the thumb sits, as a percentage. Feeds
+   --range-fill so the bar is blue behind the thumb. See .range-input
+   in globals.css. */
+function pct(v: number, min: number, max: number) {
+  if (max === min) return 0;
+  return Math.min(100, Math.max(0, ((v - min) / (max - min)) * 100));
+}
+
 export default function Calculator({
   config,
   locale = "en-US",
@@ -342,7 +350,15 @@ export default function Calculator({
                   step={f.step}
                   value={vals[f.key]}
                   onChange={(e) => set(f.key, Number(e.target.value))}
-                  className="mt-3 h-2 w-full cursor-pointer appearance-none rounded-full bg-ink-100 accent-brand-500"
+                  /* ⚠️ 44px TAP TARGET, 8px bar. See .range-input in
+                     globals.css: the height is the input, the bar is the
+                     track pseudo-element, and the margin is tightened
+                     because the input now carries its own padding. */
+                  className="range-input mt-1"
+                  style={{
+                    ["--range-track" as string]: "#E3E6EC",
+                    ["--range-fill" as string]: `${pct(vals[f.key], f.min, f.max)}%`,
+                  }}
                 />
               </label>
             ))}
@@ -411,7 +427,17 @@ export default function Calculator({
                 onChange={(e) =>
                   set(config.recovery.key, Number(e.target.value))
                 }
-                className="mt-3 h-2 w-full cursor-pointer appearance-none rounded-full bg-ink-200 accent-brand-500"
+                /* Same control, on the ink-50 result panel, so the bar
+                   is a step darker to hold its edge. */
+                className="range-input mt-1"
+                style={{
+                  ["--range-track" as string]: "#D3D8E2",
+                  ["--range-fill" as string]: `${pct(
+                    vals[config.recovery.key],
+                    config.recovery.min,
+                    config.recovery.max,
+                  )}%`,
+                }}
               />
             </label>
             {config.recoveredLabel ? (

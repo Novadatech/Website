@@ -179,3 +179,103 @@
     transform: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE CALCULATOR SLIDERS
+   ═══════════════════════════════════════════════════════════════════════
+
+   🔴 WHY THIS EXISTS. The sliders were an 8px-tall input with
+   `accent-color`, which paints a thumb but leaves the ELEMENT 8px tall.
+   On a phone that is a 306x8 target, and the calculator is the one
+   interactive thing on a paid-traffic page: if it cannot be dragged,
+   the page has no proof in it. WCAG 2.5.5 wants 44px.
+
+   ⚠️ THE TRICK: the input is 44px tall and TRANSPARENT, and the 8px
+   bar you see is the ::track pseudo-element centred inside it. So the
+   look does not change at all; only the grabbable area does. The
+   transparent area above and below the bar is still part of the input,
+   which is why the surrounding margins are tightened at the call site
+   rather than here.
+
+   ⚠️ --range-fill CARRIES THE VALUE. A custom ::track overrides
+   accent-color, which is what used to paint the bar blue to the left
+   of the thumb. The gradient below restores it, so the call site has
+   to keep --range-fill in step with the input's value.
+
+   ⚠️ WEBKIT NEEDS THE THUMB CENTRED BY HAND. It has no box model on
+   the track, so margin-top must be -(thumb - track) / 2. Firefox
+   centres it itself, so its rule must NOT repeat the offset.
+
+   This is a SHARED component. It renders on every live calculator
+   page, so changes here are site-wide. */
+.range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2.75rem;          /* 44px: the tap target */
+  width: 100%;
+  background: transparent;  /* the track draws the bar, not the input */
+  cursor: pointer;
+}
+
+.range-input::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    #003DDB 0 var(--range-fill, 0%),
+    var(--range-track, #E3E6EC) var(--range-fill, 0%) 100%
+  );
+}
+.range-input::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    #003DDB 0 var(--range-fill, 0%),
+    var(--range-track, #E3E6EC) var(--range-fill, 0%) 100%
+  );
+}
+
+/* 24px thumb. Big enough to grab under a thumb tip, small enough that
+   the control still reads as a fine instrument rather than a toy. */
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 24px;
+  width: 24px;
+  margin-top: -8px;         /* -(24 - 8) / 2 */
+  border-radius: 9999px;
+  background: #003DDB;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 1px 3px rgba(11, 14, 20, 0.28);
+  transition: transform 150ms var(--ease-enter);
+}
+.range-input::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border: 3px solid #FFFFFF;
+  border-radius: 9999px;
+  background: #003DDB;
+  box-shadow: 0 1px 3px rgba(11, 14, 20, 0.28);
+  transition: transform 150ms var(--ease-enter);
+}
+
+.range-input:active::-webkit-slider-thumb { transform: scale(1.12); }
+.range-input:active::-moz-range-thumb { transform: scale(1.12); }
+
+/* Keyboard focus has to stay visible: this control is draggable, so
+   the ring is the only thing telling a keyboard user where they are. */
+.range-input:focus-visible {
+  outline: none;
+}
+.range-input:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(0, 61, 219, 0.28);
+}
+.range-input:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgba(0, 61, 219, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .range-input::-webkit-slider-thumb,
+  .range-input::-moz-range-thumb { transition: none; }
+}
