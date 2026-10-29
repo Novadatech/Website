@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Check, ChevronDown } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Star } from "lucide-react";
 
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
@@ -10,7 +10,7 @@ import StickyCta from "@/components/desk/StickyCta";
 import Calculator from "@/components/desk/Calculator";
 import { Band, BandHeading } from "@/components/desk/Band";
 import { LEAKAGE_CALC } from "@/content/calculators";
-import { BOOKING, EVIDENCE } from "@/content/offers";
+import { BOOKING } from "@/content/offers";
 import {
   BODY,
   BTN_PRIMARY,
@@ -70,15 +70,29 @@ import {
  * the copy: "Do not reuse NDIS or aged care customer testimonials as if
  * they demonstrate results from the Patient Revenue Leakage Audit."
  * This page therefore has NO testimonial slider, unlike its three care
- * twins, and NO 5.0 / 77 reviews / 205 providers proof strip either,
- * because that proof is care proof and would imply practice results.
- * AHPRA also narrows what a practice quote may ever say: operational
- * and commercial only, never about clinical quality or outcomes.
+ * twins. AHPRA also narrows what a practice quote may ever say:
+ * operational and commercial only, never about clinical quality or
+ * patient outcomes. That instruction still stands.
  *
- * ⚠️ THE PROOF STRIP USES THE TWO ABS FIGURES INSTEAD. They are the
- * ONLY statistics permitted on the practices pages, they are already in
- * EVIDENCE, and they are about ACCESS rather than cost, which is
- * exactly what this page is about. Do not add a third.
+ * ⚠️ THE RATING AND REVIEW COUNT DO APPEAR, on the founder's explicit
+ * instruction of 29 October, overriding my own call. I had left them
+ * off on the reasoning that they were care proof and would imply
+ * practice results; the founder treats them as firm-wide proof. Their
+ * decision, and it is recorded here so it is not quietly reversed.
+ *
+ * ⚠️ BUT THE LABELS ARE NOT THE CARE LABELS, and must not be copied
+ * from there. The care pages read "Provider reviews" and "NDIS and
+ * aged care providers across Australia". On a practices page
+ * "provider" means a CLINICIAN, which is a foreign-sounding usage that
+ * marks the writer as not Australian, and the care audience line would
+ * simply be false here. So: "Client reviews" and "Healthcare practices
+ * across Australia".
+ *
+ * ⚠️ THE TWO ABS FIGURES WERE REMOVED to make room, also on the
+ * founder's instruction. They remain the only STATISTICS permitted on
+ * a practices page if one is ever wanted again: EVIDENCE.gpAccess and
+ * EVIDENCE.gpWait. There is still no credible Australian missed-call
+ * statistic, and inventing one is not an option.
  *
  * 🔴 PRICE REMOVED FROM THE FAQ. The supplied copy carried "from
  * A$5,000 plus GST". The founder removed the identical figure from the
@@ -539,6 +553,30 @@ function Cta({
   );
 }
 
+function Stars({ className = "h-4 w-4 fill-[#0CC481] text-[#0CC481]" }) {
+  return (
+    <span aria-hidden className="flex items-center gap-0.5">
+      {[0, 1, 2, 3, 4].map((i) => (
+        <Star key={i} className={className} strokeWidth={0} />
+      ))}
+    </span>
+  );
+}
+
+/* ⚠️ UNBRANDED BY NECESSITY, and 🔴 NOT A LINK. No platform name, no
+   wordmark, no #00B67A, nothing clickable. Same as the care twins,
+   except that it says CLIENT reviews rather than provider reviews:
+   on a practices page "provider" reads as a clinician. */
+function RatingBar() {
+  return (
+    <div className="inline-flex min-h-11 flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5">
+      <Stars />
+      <span className="text-sm font-semibold text-white">5.0</span>
+      <span className="text-sm text-white/70">from 77 client reviews</span>
+    </div>
+  );
+}
+
 function BoxCards({
   items,
   cols = 2,
@@ -658,7 +696,9 @@ export default function RevenueAuditPage() {
           <div
             className={`${FRAME} ${GUTTER} relative border-x border-white/10 pb-16 pt-10 md:pb-20 md:pt-14`}
           >
-            <p className={`${MICRO} text-brand-200`}>
+            <RatingBar />
+
+            <p className={`${MICRO} mt-7 text-brand-200`}>
               For Australian GP, specialist &amp; allied health practices
             </p>
 
@@ -703,28 +743,39 @@ export default function RevenueAuditPage() {
         </section>
 
         {/* ── PROOF STRIP ──────────────────────────────────────────────
-             🔴 THE TWO ABS FIGURES, NOT THE CARE PROOF. The 5.0 / 77
-             reviews / 205 providers strip on the care pages is care
-             proof; using it here would imply practice results, which
-             the founder's own copy forbids. These two are the only
-             statistics permitted on a practices page, they are about
-             ACCESS rather than cost, and they are sourced. */}
+             ⚠️ THE SAME THREE FIGURES AS THE CARE PAGES, on the
+             founder's instruction, but NOT the same labels. "Provider
+             reviews" and "NDIS and aged care providers" belong to the
+             care audience; here "provider" would read as a clinician
+             and the audience line would be false. See the file header
+             for the decision and who made it. */}
         <section className="border-b border-ink-100 bg-ink-50">
           <div
             className={`${FRAME} ${GUTTER} border-x border-ink-100 py-10 md:py-12`}
           >
-            <div className="grid gap-5 md:grid-cols-2 md:gap-6">
-              {[EVIDENCE.gpAccess, EVIDENCE.gpWait].map((f, i) => (
+            <div className="grid gap-5 md:grid-cols-3 md:gap-6">
+              {[
+                { v: "5.0", l: "Average client rating", stars: true },
+                { v: "77", l: "Client reviews", stars: false },
+                {
+                  v: "205",
+                  l: "Healthcare practices across Australia",
+                  stars: false,
+                },
+              ].map((x, i) => (
                 <div
-                  key={f.value}
-                  className="reveal rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-7"
+                  key={x.l}
+                  className="reveal rounded-xl border border-ink-100 bg-white p-6 text-center shadow-raise md:p-7"
                   style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
                 >
-                  <p className={`${D2} text-brand-500`}>{f.value}</p>
-                  <p className="mt-3 text-sm font-medium text-ink-600">
-                    {f.label}
-                  </p>
-                  <p className={`${MICRO} mt-4 text-ink-400`}>{f.source}</p>
+                  <p className={`${D2} text-brand-500`}>{x.v}</p>
+                  {/* Stars in the same colour as the 5.0 beside them. */}
+                  {x.stars ? (
+                    <div className="mt-3 flex justify-center">
+                      <Stars className="h-4 w-4 fill-brand-500 text-brand-500" />
+                    </div>
+                  ) : null}
+                  <p className="mt-3 text-sm font-medium text-ink-600">{x.l}</p>
                 </div>
               ))}
             </div>
