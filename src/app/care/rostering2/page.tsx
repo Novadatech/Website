@@ -578,10 +578,17 @@ export default function Page() {
                 filled, and this headline is the whole point of the page. */}
             {/* ⚠️ NOT the d1 token. Its clamp floor is 42px, which put
                 this eleven-word headline over five lines at 390px and
-                pushed everything else off the first screen. This floor
-                is 32px and it reaches the same size on desktop. */}
+                pushed everything else off the first screen.
+
+                The floor is 32px, and the SLOPE IS STEEPER THAN d1'S on
+                purpose: it has to climb from a lower floor and still
+                reach the same 76px cap by 1280px, so desktop is
+                untouched and only phones get the shorter headline. A
+                gentler slope left the desktop h1 8px short of every
+                other page on the site. It never exceeds d1 at any
+                width. Measured, not assumed. */}
             <h1
-              className={`${DISPLAY} mt-5 text-[clamp(2rem,1.1rem+3.9vw,4.75rem)] leading-[0.93] tracking-[-0.015em] text-white`}
+              className={`${DISPLAY} mt-5 text-[clamp(2rem,0.89rem+4.83vw,4.75rem)] leading-[0.93] tracking-[-0.015em] text-white`}
             >
               Are rostering costs eating into your margins while billing gaps
               go unnoticed?
