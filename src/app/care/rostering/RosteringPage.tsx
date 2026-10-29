@@ -467,7 +467,22 @@ function Bullets({
   );
 }
 
-function Stars({ className = "h-4 w-4 fill-[#0CC481] text-[#0CC481]" }) {
+/* 🔴 BLUE, NOT GREEN, on the founder's instruction (29 October
+   2026): a five-star row in Trustpilot's green invites a brand
+   complaint we have already had two notices about, whatever the exact
+   hex. Trustpilot green is #00B67A and this was #0CC481, close enough
+   to be the problem.
+
+   ⚠️ BUT NOT brand-500. The raw brand blue #003DDB on canvas-ink
+   #0A0D14 is about 2:1 and the stars all but vanish, the same trap
+   tokens.ts flags for buttons. brand-200 #A6BEFF is 10.58:1 on that
+   ground and is the brand's own on-ink blue, already used by the
+   eyebrow directly above this bar.
+
+   ⚠️ The PROOF STRIP passes brand-500 explicitly, because those
+   cards sit on white. Light surface gets the deep blue, ink surface
+   gets the light one. Do not unify them. */
+function Stars({ className = "h-4 w-4 fill-brand-200 text-brand-200" }) {
   return (
     <span aria-hidden className="flex items-center gap-0.5">
       {[0, 1, 2, 3, 4].map((i) => (
@@ -478,7 +493,7 @@ function Stars({ className = "h-4 w-4 fill-[#0CC481] text-[#0CC481]" }) {
 }
 
 /* ⚠️ UNBRANDED BY NECESSITY. No platform name, no link to a review site,
-   no #00B67A. Links to our own /case-study. */
+   no Trustpilot green. Links to our own /case-study. */
 function RatingBar() {
   return (
     /* 🔴 NOT A LINK, on the founder's instruction (29 October). It

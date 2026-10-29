@@ -55,7 +55,12 @@ export default function HeroTrustBar({
     : "bg-white border-[#E3E6EC]";
   const strong = dark ? "text-white" : "text-[#0B0E14]";
   const soft = dark ? "text-white/70" : "text-[#5B6472]";
-  const star = dark ? "#0CC481" : "#003DDB";
+  /* 🔴 BLUE ON BOTH GROUNDS since 29 October 2026, on the
+     founder's instruction: a green five-star row invites the
+     Trustpilot brand complaint we have already had two notices about.
+     ⚠️ The dark value is brand-200 #A6BEFF, not the raw brand blue:
+     #003DDB on an ink ground is about 2:1 and the stars vanish. */
+  const star = dark ? "#A6BEFF" : "#003DDB";
   const divider = dark ? "bg-white/15" : "bg-[#E3E6EC]";
 
   return (
