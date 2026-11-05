@@ -5,6 +5,7 @@ import "./globals.css";
 import ConditionalNav from "@/components/ConditionalNav";
 import RevealRoot from "@/components/RevealRoot";
 import LeadFormProvider from "@/components/LeadFormProvider";
+import ConditionalChatWidget from "@/components/ConditionalChatWidget";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -165,12 +166,14 @@ fbq('init', '3515804598723791');
 fbq('track', 'PageView');`}
         </Script>
 
-        {/* Chat widget REMOVED site-wide on founder instruction, 2026-09-02.
-            The component is retained at src/components/ConditionalChatWidget.tsx
-            with both widget IDs and the route logic intact. To restore it,
-            re-import it and mount it here. Do not re-add it to the Desk pages
-            without an approved script: the Website Rebuild Brief bans a
-            live-chat bot there on claims risk. */}
+        {/* Chat widget. Removed site-wide 2026-09-02; re-mounted 2026-11-05
+            for the two Care offer landing pages only, after the founder
+            approved the rewritten Conversation AI script for those pages.
+            The component itself holds the allow-list — it renders nothing on
+            every other route. Do not widen that list without an approved
+            script for the page: the Website Rebuild Brief bans a live-chat
+            bot on claims risk. */}
+        <ConditionalChatWidget />
       </body>
     </html>
   );
