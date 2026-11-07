@@ -511,9 +511,67 @@ export const AI_WORKFORCE: Offer = {
   ],
 };
 
+/*
+ * ══════════════════════════════════════════════════════════════════════
+ * NOVADA AI WORKFORCE FOR PRACTICES — the practices audience's THIRD
+ * offer. Added 8 November 2026, the day after the care equivalent.
+ *
+ * 🔴 THERE ARE NOW TWO "NOVADA AI WORKFORCE" OFFERS ON THIS DOMAIN AND
+ * THEY ARE NOT THE SAME PRODUCT PAGE. AI_WORKFORCE above sells FIVE AI
+ * employees to NDIS and aged care providers. This one sells SIX to
+ * healthcare practices, and the six are different roles answering a
+ * different operational day: reception, appointment recovery, referrals,
+ * recalls, billing, practice operations. They share a product name and
+ * nothing else.
+ *
+ * ⚠️ THE TWO PAGES MUST NEVER BE SYNCED OR DIFFED. The care page says
+ * roster, support worker and participant. This one says appointment,
+ * clinician, patient, Medicare and MBS. Moving a sentence between them
+ * breaks both markets at once.
+ *
+ * 🔴 PRACTICES IS THREE OFFERS NOW. Anything that still says "our two
+ * core services" or "two specialist solutions" in practices-facing copy
+ * is wrong. The /practices hub was corrected in the same commit.
+ *
+ * 🔴 THIS IS THE ONLY OFFER ON THE ESTATE WHERE AN AI SPEAKS DIRECTLY TO
+ * PATIENTS. Two sentences on the page carry that risk and neither is
+ * decoration: the AI identifies itself as AI, and anything urgent or
+ * potentially clinical is escalated to a person. Read the header of
+ * src/app/practices/ai-workforce/AiWorkforcePage.tsx before editing
+ * anything in that role.
+ *
+ * ⚠️ NO `spine`, and deliberately absent from `PATHWAYS`. The spine pair
+ * belongs to the two practices pillars and the pathway is the founder's
+ * three-step shape; this offer is neither.
+ *
+ * 🔴 `indexed: false` UNTIL THE DEMO CALENDAR ARRIVES.
+ * ══════════════════════════════════════════════════════════════════════
+ */
+export const AI_WORKFORCE_PRACTICES: Offer = {
+  name: "Novada AI Workforce",
+  navLabel: "AI Workforce",
+  slug: "ai-workforce",
+  href: "/practices/ai-workforce",
+  audience: "practices",
+  who: "For practices",
+  indexed: false,
+  summary:
+    "Specialised AI employees that connect to your existing practice systems and complete authorised administrative work: answering patient enquiries, recovering cancelled appointments, chasing referral paperwork, running clinician-approved recalls and resolving billing exceptions. Every clinical and billing decision stays with an authorised professional.",
+  scope: [
+    "AI Reception & Patient Access Coordinator: answers patient calls, identifies itself as AI, books eligible appointments and escalates anything clinical.",
+    "AI Appointment & Cancellation Recovery Coordinator: monitors cancellations, offers the time to eligible patients and updates the schedule after approval.",
+    "AI Referrals & Intake Coordinator: registers referrals, checks for missing administrative information and chases it, then prepares the file for clinical review.",
+    "AI Recalls & Follow-Up Coordinator: executes clinician-authorised recall workflows, records responses and follows the approved escalation rules.",
+    "AI Billing & Claims Coordinator: tracks claim statuses, prepares rejected-claim exceptions for review and chases outstanding invoices.",
+    "AI Practice Operations Coordinator: cross-system task tracking, daily operations summaries and the matters needing management approval.",
+    "The Novada AI Control Centre: approvals, exceptions, completed actions and an audit record of every AI action.",
+  ],
+};
+
 export const OFFERS: Offer[] = [
   LEAKAGE,
   BOOKING,
+  AI_WORKFORCE_PRACTICES,
   ROSTERING,
   CONTINUITY,
   AI_WORKFORCE,

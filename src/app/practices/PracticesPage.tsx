@@ -7,7 +7,7 @@ import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
 import { Band, BandHeading } from "@/components/desk/Band";
-import { BOOKING, LEAKAGE } from "@/content/offers";
+import { AI_WORKFORCE_PRACTICES, BOOKING, LEAKAGE } from "@/content/offers";
 import {
   BODY,
   BTN_ON_INK,
@@ -95,9 +95,15 @@ import {
  * ══════════════════════════════════════════════════════════════════════
  */
 
-/* ⚠️ THE TWO DOORS. Hrefs come from offers.ts so they cannot drift from
-   the nav, the homepage and the sitemap; the wording is the founder's,
-   with "revenue gaps" replaced. */
+/* ⚠️ THE THREE DOORS, since 8 November 2026. Hrefs come from offers.ts
+   so they cannot drift from the nav, the homepage and the sitemap; the
+   wording is the founder's, with "revenue gaps" replaced.
+
+   🔴 A DOOR IS A LINK TO A PAGE, NEVER TO A CALENDAR, and that is why a
+   third one could be added safely. This hub has no calendar of its own,
+   so each door hands the reader to the page that owns the right one. The
+   AI Workforce page has no calendar yet at all, which is a second reason
+   it is linked and not booked from here. */
 const DOORS = [
   {
     href: LEAKAGE.href,
@@ -110,6 +116,12 @@ const DOORS = [
     name: "Patient Booking & Retention Continuity",
     body: "Get ongoing support with telephone answering, appointments, cancellation recovery, clinician-approved recalls, patient follow-ups and billing administration.",
     foot: "Ongoing managed administrative support",
+  },
+  {
+    href: AI_WORKFORCE_PRACTICES.href,
+    name: "Novada AI Workforce",
+    body: "Specialised AI employees connect to your existing practice systems and complete authorised administrative work, from patient enquiries and cancellation recovery to referrals, recalls and billing exceptions.",
+    foot: "AI employees, with clinical decisions kept human",
   },
 ];
 
@@ -208,6 +220,31 @@ const ASK_AUDIT = [
   "Are completed eligible services being invoiced correctly?",
   "Are Medicare, insurer or other claims remaining unresolved?",
   "Do our service delivery, billing and payment records reconcile accurately?",
+];
+
+/* ⚠️ THE QUESTIONS, NOT THE FEATURES. Each of these three lists is a
+   sentence a practice owner says to themselves, which is what makes the
+   chooser a chooser.
+
+   🔴 AND NONE OF THEM MAY USE THE WORD "GAP". In Australian healthcare
+   the gap is the patient's out-of-pocket after the rebate. */
+const ASK_AI = [
+  "Why is reception still doing this by hand when we have the software?",
+  "Who answers the phone when the front desk is already with a patient?",
+  "Can cancelled appointments be offered to someone else automatically?",
+  "Can referral paperwork chase itself?",
+  "Do we have to hire again every time administration grows?",
+  "Can I see what is happening across the practice in one place?",
+];
+
+/* The six roles, as the offer page names them and in its order. */
+const AI_ROLES = [
+  "AI Reception & Patient Access Coordinator: answers patient calls, identifies itself as AI, books eligible appointments and escalates anything clinical.",
+  "AI Appointment & Cancellation Recovery Coordinator: monitors cancellations, offers the time to eligible patients and updates the schedule after approval.",
+  "AI Referrals & Intake Coordinator: registers referrals, chases missing administrative information and prepares the file for clinical review.",
+  "AI Recalls & Follow-Up Coordinator: executes clinician-authorised recall workflows, records responses and follows the approved escalation rules.",
+  "AI Billing & Claims Coordinator: tracks claim statuses, prepares rejected-claim exceptions for review and chases outstanding invoices.",
+  "AI Practice Operations Coordinator: cross-system task tracking, daily summaries and the matters needing management approval.",
 ];
 
 const ASK_CONTINUITY = [
@@ -331,11 +368,11 @@ const STEPS = [
 const FAQ = [
   {
     q: "What does Novada Tech do for healthcare practices?",
-    a: "Novada Tech helps Australian GP, specialist and allied health practices improve patient access administration, identify potential revenue discrepancies and manage ongoing appointment and billing processes. We offer a one-off Patient Revenue Leakage Audit and an ongoing Patient Booking & Retention Continuity service.",
+    a: "Novada Tech helps Australian GP, specialist and allied health practices improve patient access administration, identify potential revenue discrepancies and manage ongoing appointment and billing processes. We offer a one-off Patient Revenue Leakage Audit, an ongoing Patient Booking & Retention Continuity service, and Novada AI Workforce: specialised AI employees that carry out authorised administrative work inside the practice systems you already run.",
   },
   {
-    q: "What is the difference between the two offers?",
-    a: "The Patient Revenue Leakage Audit is a structured review designed to identify where revenue may be leaking across patient enquiry handling, appointment administration, billing, claims and payment reconciliation. Patient Booking & Retention Continuity provides ongoing administrative support with telephone answering, bookings, cancellation recovery, approved follow-ups, recalls and billing processes.",
+    q: "What is the difference between the three offers?",
+    a: "The Patient Revenue Leakage Audit is a structured review designed to identify where revenue may be leaking across patient enquiry handling, appointment administration, billing, claims and payment reconciliation. Patient Booking & Retention Continuity provides ongoing administrative support with telephone answering, bookings, cancellation recovery, approved follow-ups, recalls and billing processes, delivered by our team. Novada AI Workforce is a platform your practice operates: specialised AI employees that complete authorised administrative tasks across your connected systems under the permissions and approval rules you set, with clinical and billing decisions remaining with authorised professionals.",
   },
   {
     q: "Does the audit cover both patient bookings and billing?",
@@ -542,10 +579,13 @@ export default function PracticesPage() {
         {/* ══ 1 HERO ══════════════════════════════════════════════════
             ⚠️ THE SAME SHAPE AS /care's HERO, which is the home page
             format with its rail and its max-width removed: no rail, no
-            cap on the headline, and THE TWO DOORS as the largest object
-            in the fold. A visitor decides in about three seconds, and on
-            a hub the answer they need is not "what is this" but "which
-            half am I".
+            cap on the headline, and THE DOORS as the largest object in
+            the fold. A visitor decides in about three seconds, and on a
+            hub the answer they need is not "what is this" but "which one
+            am I".
+            ⚠️ That last question used to read "which half am I", exact
+            while there were two doors and wrong the day a third arrived
+            (8 November 2026).
 
             ⚠️ NOTHING AFTER THE DOORS. The founder removed the
             equivalent trailing line from /care on 29 October, so the
@@ -592,13 +632,16 @@ export default function PracticesPage() {
                 remain unresolved and valuable staff time gets consumed by
                 repetitive administrative work. Novada Tech helps healthcare
                 practices strengthen the operations behind patient care through
-                two specialised services.
+                three specialised services.
               </p>
             </div>
 
-            {/* ── THE TWO DOORS. Each is a whole link, so on a phone a
-                text target becomes a card target. ── */}
-            <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
+            {/* ── THE THREE DOORS. Each is a whole link, so on a phone
+                a text target becomes a card target.
+                ⚠️ md:grid-cols-3, not 2: at two columns the third door
+                sits alone on its own row at double width and stops
+                reading as a peer of the other two. ── */}
+            <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-3">
               {DOORS.map((d) => (
                 <Link
                   key={d.href}
@@ -696,18 +739,24 @@ export default function PracticesPage() {
           </p>
         </Band>
 
-        {/* ── 3 THE TWO SERVICES ───────────────────────────────────── */}
-        <Band index="02" label="Our two core services">
+        {/* ── 3 THE THREE SERVICES ─────────────────────────────────── */}
+        {/* ⚠️ THE RAIL LABEL NO LONGER COUNTS. It read "Our two core
+            services" and went stale the day a third was added. A label
+            carrying a numeral has to be edited every time the offer set
+            changes. */}
+        <Band index="02" label="Our core services">
           <h2 className={`${D2} text-ink-950`}>
-            Two specialist solutions. One goal: a more efficient healthcare
+            Three specialist solutions. One goal: a more efficient healthcare
             practice.
           </h2>
           <p className={`${BODY} ${WIDE} mt-6`}>
             Every practice faces different challenges. Some need to understand
-            where legitimate revenue may be going uncollected. Others need
+            where legitimate revenue may be going uncollected. Some need
             ongoing administrative support to manage patient enquiries,
             appointment schedules and billing workflows more consistently.
-            Novada offers two solutions designed to address these needs.
+            Others want AI employees to carry out that administrative work
+            inside the systems they already run. Novada offers three solutions
+            designed to address these needs.
           </p>
 
           {/* SERVICE 1 */}
@@ -834,6 +883,64 @@ export default function PracticesPage() {
               Ongoing managed patient administration and billing support.
             </p>
           </div>
+
+          {/* SERVICE 3
+              🔴 NO "What you receive" / "The goal" PAIR HERE, unlike the
+              two above. Those services are delivered BY NOVADA and have a
+              deliverable to name. This one is a platform the practice
+              operates, so what it produces depends on which roles are
+              engaged and which systems are connected. Writing a
+              deliverable line would be inventing one. The scope and the
+              clinical boundary are named instead. */}
+          <div
+            className="reveal mt-6 rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8"
+            style={{ ["--reveal-delay" as string]: "140ms" }}
+          >
+            <p className={`${MICRO} text-brand-500`}>Service three</p>
+            <h3 className="mt-3 text-xl font-semibold text-ink-950 md:text-2xl">
+              Hire AI employees that actually run your practice administration.
+            </h3>
+            <p className={`${BODY} ${WIDE} mt-5`}>
+              Your practice has invested in systems that manage information,
+              but your team still spends hours doing the administrative work
+              required to keep those systems running. Novada AI Workforce puts
+              specialised AI employees inside the applications you already use
+              to complete authorised administrative tasks, while your
+              clinicians stay responsible for care.
+            </p>
+
+            <p className={`${MICRO} mt-8 text-brand-500`}>
+              Six specialised roles
+            </p>
+            <Bullets items={AI_ROLES} />
+
+            {/* 🔴 LOAD-BEARING, AND THE SHORT FORM OF THE WHOLE HUMAN
+                CONTROL & PATIENT SAFETY BAND ON THE OFFER PAGE. This is
+                the only offer on the estate where an AI speaks directly
+                to patients. Never let this card imply the AI decides
+                anything clinical. */}
+            <p className={`${SMALL} mt-8 border-t border-ink-100 pt-5`}>
+              <span className="font-semibold text-ink-950">
+                What stays with your people:
+              </span>{" "}
+              clinical urgency and triage, diagnosis and medical advice,
+              referral prioritisation, review of test results and clinically
+              significant recalls, MBS eligibility and final billing-code
+              decisions. Patients are told they are speaking with an AI
+              assistant, and anything urgent or clinical is escalated to a
+              person.
+            </p>
+
+            <div className="mt-8">
+              <GoTo href={AI_WORKFORCE_PRACTICES.href}>
+                Explore Novada AI Workforce
+              </GoTo>
+            </div>
+            <p className={`${SMALL} mt-4`}>
+              AI employees working through one Control Centre, alongside your
+              existing practice systems.
+            </p>
+          </div>
         </Band>
 
         {/* ── 4 WHICH SOLUTION ─────────────────────────────────────── */}
@@ -845,11 +952,12 @@ export default function PracticesPage() {
             Not every practice needs the same service.
           </p>
 
-          {/* ⚠️ AN EQUAL PAIR, exactly as /care does it. Section 4 of the
-              founder's copy is a chooser by design. The ranked pair
+          {/* ⚠️ EQUALS, exactly as /care does it. Section 4 of the
+              founder's copy is a chooser by design. The RANKED form
               survives only in the final ask, where a calendar has to be
-              chosen. */}
-          <div className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
+              chosen and an undecided reader must not be sent to one at
+              random. */}
+          <div className="mt-10 grid gap-5 md:grid-cols-3 md:gap-6">
             <div className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
               <p className={`${MICRO} text-brand-500`}>
                 Choose the audit if you are asking
@@ -859,7 +967,10 @@ export default function PracticesPage() {
                 The audit helps you understand what is happening and what needs
                 improvement.
               </p>
-              <div className="mt-7">
+              {/* ⚠️ mt-auto, not mt-7. These cards are flex-col and the
+                  three question lists differ in length, so a fixed top
+                  margin lands the three buttons at three heights. */}
+              <div className="mt-auto pt-7">
                 <GoTo href={LEAKAGE.href}>Explore the Revenue Leakage Audit</GoTo>
               </div>
             </div>
@@ -874,9 +985,27 @@ export default function PracticesPage() {
               <p className={`${SMALL} mt-6 border-t border-ink-100 pt-4`}>
                 Continuity helps you manage the work on an ongoing basis.
               </p>
-              <div className="mt-7">
+              <div className="mt-auto pt-7">
                 <GoTo href={BOOKING.href}>
                   Explore Booking &amp; Retention Continuity
+                </GoTo>
+              </div>
+            </div>
+            <div
+              className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8"
+              style={{ ["--reveal-delay" as string]: "140ms" }}
+            >
+              <p className={`${MICRO} text-brand-500`}>
+                Choose the AI workforce if you are asking
+              </p>
+              <Bullets items={ASK_AI} />
+              <p className={`${SMALL} mt-6 border-t border-ink-100 pt-4`}>
+                The AI workforce carries out the administrative work inside the
+                systems you already run.
+              </p>
+              <div className="mt-auto pt-7">
+                <GoTo href={AI_WORKFORCE_PRACTICES.href}>
+                  Explore Novada AI Workforce
                 </GoTo>
               </div>
             </div>
@@ -884,17 +1013,18 @@ export default function PracticesPage() {
 
           <div className="reveal mt-6 rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
             <h3 className="text-base font-semibold text-ink-950">
-              What if your practice needs both?
+              What if your practice needs more than one?
             </h3>
-            {/* ⚠️ NOT A GATE. Saying so plainly is what stops the two
-                pillars reading as a funnel. */}
+            {/* ⚠️ NOT A GATE. Saying so plainly is what stops the three
+                offers reading as a funnel. */}
             <p className={`${BODY} ${WIDE} mt-3`}>
               Some practices benefit from identifying existing revenue and
               workflow weaknesses before improving their ongoing administrative
-              processes. Our services can complement each other, but each is
-              available independently. You do not need to purchase a Patient
-              Revenue Leakage Audit before engaging Patient Booking &amp;
-              Retention Continuity.
+              processes, and from putting AI employees behind both. Our services
+              complement each other, but each is available independently. You do
+              not need to purchase a Patient Revenue Leakage Audit before
+              engaging Patient Booking &amp; Retention Continuity or Novada AI
+              Workforce, and none of the three is a prerequisite for another.
             </p>
           </div>
         </Band>
