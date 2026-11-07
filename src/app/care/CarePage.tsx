@@ -28,7 +28,7 @@ import {
   RAIL_GRID,
   SMALL,
 } from "@/components/desk/tokens";
-import { CONTINUITY, ROSTERING } from "@/content/offers";
+import { AI_WORKFORCE, CONTINUITY, ROSTERING } from "@/content/offers";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
@@ -37,8 +37,16 @@ import { CONTINUITY, ROSTERING } from "@/content/offers";
  * 🔴 REBUILT 29 OCTOBER 2026 as the third of three, after /care/rostering
  * and /care/workforce. The founder's copy, the two pillar pages' shape,
  * and THE HOME PAGE'S HERO FORMAT, which they asked for by name: proof
- * strip, display headline, then the two doors as the largest object in
- * the fold. The previous hub build is gone.
+ * strip, display headline, then the doors as the largest object in the
+ * fold. The previous hub build is gone.
+ *
+ * 🔴 THREE DOORS SINCE 7 NOVEMBER 2026, NOT TWO. The founder added
+ * Novada AI Workforce to the nav and to this hub. "CARE = TWO PILLARS"
+ * is retired. Everything on this page that counted to two was rewritten
+ * in the same change: the rail label, the band headline, the hero
+ * sentence, the chooser, "Need both?", the process step, and two FAQ
+ * answers. If you add a fourth, search this file for a numeral before
+ * you ship, because prose that counts goes stale silently.
  *
  * ⚠️ IT IS A CLIENT COMPONENT, so its metadata CANNOT live in this file.
  * It is exported from page.tsx, which wraps this. Same arrangement as
@@ -119,8 +127,16 @@ const TESTIMONIALS = [
   },
 ];
 
-/* ⚠️ THE TWO DOORS. Hrefs come from offers.ts so they cannot drift from
-   the rest of the estate; the wording is the founder's. */
+/* ⚠️ THE THREE DOORS, since 7 November 2026. Hrefs come from offers.ts
+   so they cannot drift from the rest of the estate; the wording is the
+   founder's.
+
+   🔴 A DOOR IS A LINK TO A PAGE, NEVER TO A CALENDAR, and that is why a
+   third one could be added safely. This hub has no calendar of its own
+   on purpose (see the header note), so each door hands the reader to the
+   page that owns the right calendar. The AI Workforce page has no
+   calendar yet at all, which is a second reason it is linked and not
+   booked from here. */
 const DOORS = [
   {
     href: ROSTERING.href,
@@ -133,6 +149,12 @@ const DOORS = [
     name: "Workforce Continuity",
     body: "We help you build and maintain a dependable internal workforce through proactive recruitment, onboarding, induction, training administration and ongoing compliance support.",
     foot: "Ongoing managed workforce support",
+  },
+  {
+    href: AI_WORKFORCE.href,
+    name: "Novada AI Workforce",
+    body: "Specialised AI employees coordinate routine operational work across your existing rostering, HR and compliance systems, take the actions you have permitted and escalate what needs a person.",
+    foot: "AI employees, with human oversight",
   },
 ];
 
@@ -216,6 +238,27 @@ const ASK_CONTINUITY = [
   "How do we keep training and compliance administration under control?",
 ];
 
+/* ⚠️ THE QUESTIONS, NOT THE FEATURES. Each of these three lists is a
+   sentence a provider says to themselves, which is what makes the
+   chooser a chooser. Do not turn this one into a list of what the AI
+   can do: that is further down the page and on the offer page itself. */
+const ASK_AI = [
+  "Why is our team still moving information between systems by hand?",
+  "How much of the day goes on chasing updates and following people up?",
+  "Can routine coordination happen without someone remembering to do it?",
+  "Do we have to add administrative headcount every time we grow?",
+  "Can I see what is actually happening across operations in one place?",
+];
+
+/* The five roles, as the offer page names them. */
+const AI_ROLES = [
+  "AI Rostering Coordinator: roster gaps, worker availability, authorised shift offers and roster updates after approval.",
+  "AI Compliance Coordinator: credential and clearance expiry monitoring, approved reminders and outstanding-action follow-up.",
+  "AI HR Coordinator: applications, interview coordination, onboarding documents and worker-readiness reporting.",
+  "AI After-Hours Coordinator: approved after-hours workflows, staffing notifications, escalation and a structured morning handover.",
+  "AI Operations Coordinator: cross-system task tracking, follow-ups, exceptions and a consolidated daily operational summary.",
+];
+
 const PRINCIPLES = [
   {
     n: "1",
@@ -263,7 +306,7 @@ const STEPS = [
   {
     n: "2",
     h: "Identify the right solution",
-    b: "We will discuss whether your organisation would benefit from an independent Rostering Audit & Efficiency review, ongoing Workforce Continuity support, or a combination of the two. We will explain the differences and help you understand which approach is most appropriate.",
+    b: "We will discuss whether your organisation would benefit from an independent Rostering Audit & Efficiency review, ongoing Workforce Continuity support, Novada AI Workforce, or a combination of them. We will explain the differences and help you understand which approach is most appropriate.",
   },
   {
     n: "3",
@@ -280,11 +323,11 @@ const STEPS = [
 const FAQ = [
   {
     q: "What does Novada Tech do?",
-    a: "Novada Tech helps NDIS and aged care providers improve workforce efficiency, examine billing and claims processes, and build more dependable internal workforce capacity. Our two core care-sector services are Rostering Audit & Efficiency and Workforce Continuity.",
+    a: "Novada Tech helps NDIS and aged care providers improve workforce efficiency, examine billing and claims processes, build more dependable internal workforce capacity and reduce the administration around all three. Our core care-sector services are Rostering Audit & Efficiency, Workforce Continuity and Novada AI Workforce.",
   },
   {
-    q: "What is the difference between the two services?",
-    a: "Rostering Audit & Efficiency is a one-off operational and financial review designed to identify potential workforce cost inefficiencies, billing discrepancies and improvement opportunities. Workforce Continuity is an ongoing managed support service focused on recruitment, screening coordination, onboarding, induction, training administration and workforce compliance tracking.",
+    q: "What is the difference between the three services?",
+    a: "Rostering Audit & Efficiency is a one-off operational and financial review designed to identify potential workforce cost inefficiencies, billing discrepancies and improvement opportunities. Workforce Continuity is an ongoing managed support service focused on recruitment, screening coordination, onboarding, induction, training administration and workforce compliance tracking. Novada AI Workforce is a platform your organisation operates: specialised AI employees that coordinate routine administrative work across your connected systems under permissions and approval rules you set.",
   },
   {
     q: "Does the Rostering Audit include billing and claims?",
@@ -543,10 +586,13 @@ export default function CarePage() {
       <main>
         {/* ══ 1 HERO ══════════════════════════════════════════════════
             🔴 THE HOME PAGE'S FORMAT, on the founder's instruction:
-            rail, proof strip, display headline, then THE TWO DOORS as
-            the largest object in the fold. A visitor decides in about
-            three seconds, and on a hub the answer they need is not
-            "what is this" but "which half am I".
+            rail, proof strip, display headline, then THE DOORS as the
+            largest object in the fold. A visitor decides in about three
+            seconds, and on a hub the answer they need is not "what is
+            this" but "which one am I".
+            ⚠️ That last question used to read "which half am I", which
+            was exact while there were two doors and became wrong the day
+            a third arrived.
             ═════════════════════════════════════════════════════════ */}
         <section className="relative overflow-hidden border-b border-white/10 bg-canvas-ink">
           <div
@@ -613,13 +659,16 @@ export default function CarePage() {
                 managing roster disruptions, escalating staffing costs,
                 recruitment challenges and billing discrepancies. At Novada
                 Tech, we help NDIS and aged care providers strengthen the
-                operations behind care through two specialised services.
+                operations behind care through three specialised services.
               </p>
             </div>
 
-            {/* ── THE TWO DOORS. Each is a whole link, so on a phone a
-                text target becomes a card target. ── */}
-            <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
+            {/* ── THE THREE DOORS. Each is a whole link, so on a phone
+                a text target becomes a card target.
+                ⚠️ md:grid-cols-3, not 2: at two columns the third door
+                sits alone on its own row at double width and stops
+                reading as a peer of the other two. ── */}
+            <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-3">
               {DOORS.map((d) => (
                 <Link
                   key={d.href}
@@ -627,7 +676,12 @@ export default function CarePage() {
                   className="group flex h-full flex-col bg-canvas-raised p-6 transition-colors duration-150 ease-standard hover:bg-[#161C29] md:p-8"
                 >
                   <span className="flex items-start justify-between gap-3">
-                    <span className={`${D2} text-white`}>{d.name}</span>
+                    {/* ⚠️ text-2xl, not the D2 token. D2 is sized for a
+                        half-width door; at a third of the frame it put
+                        "Rostering Audit & Efficiency" over four lines. */}
+                    <span className="font-condensed text-2xl font-bold uppercase leading-[0.95] text-white">
+                      {d.name}
+                    </span>
                     <ArrowRight
                       aria-hidden
                       className="mt-1.5 h-5 w-5 shrink-0 text-white/40 transition-[transform,color] duration-150 ease-standard group-hover:translate-x-1 group-hover:text-brand-200"
@@ -706,16 +760,21 @@ export default function CarePage() {
           </p>
         </Band>
 
-        {/* ── 3 THE TWO SERVICES ───────────────────────────────────── */}
-        <Band index="02" label="Our two core services">
+        {/* ── 3 THE THREE SERVICES ─────────────────────────────────── */}
+        {/* ⚠️ THE RAIL LABEL NO LONGER COUNTS. It read "Our two core
+            services" and went stale the day a third was added. A label
+            that carries a numeral has to be edited every time the offer
+            set changes, and this is the second time it has. */}
+        <Band index="02" label="Our core services">
           <h2 className={`${D2} text-ink-950`}>
-            Two specialist solutions. One goal: stronger care operations.
+            Three specialist solutions. One goal: stronger care operations.
           </h2>
           <p className={`${BODY} ${WIDE} mt-6`}>
             Every care provider faces different challenges. Some need better
-            financial and operational visibility. Others need dependable
-            workforce capacity. Novada offers two distinct solutions designed
-            to address these needs.
+            financial and operational visibility. Some need dependable
+            workforce capacity. Others need the administration around that
+            workforce to stop consuming their team. Novada offers three
+            distinct solutions designed to address these needs.
           </p>
 
           {/* SERVICE 1 */}
@@ -831,6 +890,61 @@ export default function CarePage() {
               Ongoing managed workforce support tailored to your organisation.
             </p>
           </div>
+
+          {/* SERVICE 3
+              🔴 NO "What you receive" / "The goal" PAIR HERE, unlike the
+              two above. Those two services are delivered BY NOVADA and
+              have a deliverable to name. This one is a platform the
+              provider operates, so what it produces depends entirely on
+              which roles they engage and which systems they connect.
+              Writing a deliverable line here would be inventing one.
+              The scope and the boundary are named instead. */}
+          <div
+            className="reveal mt-6 rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8"
+            style={{ ["--reveal-delay" as string]: "140ms" }}
+          >
+            <p className={`${MICRO} text-brand-500`}>Service three</p>
+            <h3 className="mt-3 text-xl font-semibold text-ink-950 md:text-2xl">
+              Hire AI employees that do the work. Not just tell you what needs
+              doing.
+            </h3>
+            <p className={`${BODY} ${WIDE} mt-5`}>
+              Your team already has the software. It is the people who are
+              still moving information between it. Novada AI Workforce puts
+              specialised AI employees alongside them to coordinate routine
+              tasks, follow up outstanding actions, execute approved workflows
+              and update connected systems, with appropriate human oversight.
+            </p>
+
+            <p className={`${MICRO} mt-8 text-brand-500`}>
+              Five specialised roles
+            </p>
+            <Bullets items={AI_ROLES} />
+
+            {/* 🔴 LOAD-BEARING, AND THE SHORT FORM OF THE WHOLE
+                HUMAN-OVERSIGHT BAND ON THE OFFER PAGE. Clinical and care
+                decisions, worker suitability, hiring and discipline,
+                regulatory determinations and safety-critical incidents
+                stay with people. Never let this card imply otherwise. */}
+            <p className={`${SMALL} mt-8 border-t border-ink-100 pt-5`}>
+              <span className="font-semibold text-ink-950">
+                What stays with your people:
+              </span>{" "}
+              clinical and care decisions, worker suitability and competency
+              approval, hiring and disciplinary decisions, regulatory
+              determinations, and safety-critical incidents. You set what the
+              AI may do on its own, what needs approval and what must always
+              be escalated.
+            </p>
+
+            <div className="mt-8">
+              <GoTo href={AI_WORKFORCE.href}>Explore Novada AI Workforce</GoTo>
+            </div>
+            <p className={`${SMALL} mt-4`}>
+              AI employees working through one Control Centre, alongside your
+              existing systems.
+            </p>
+          </div>
         </Band>
 
         {/* ── 4 WHICH SOLUTION ─────────────────────────────────────── */}
@@ -842,18 +956,19 @@ export default function CarePage() {
             Not every provider needs the same solution.
           </p>
 
-          {/* ⚠️ AN EQUAL PAIR, on the founder's instruction. The build
-              this replaced ranked them deliberately. Section 4 of the new
-              copy is a chooser by design, so here the two are equals. The
-              ranked pair survives only in the final ask, where a calendar
-              has to be chosen. */}
-          <div className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
+          {/* ⚠️ EQUALS, on the founder's instruction. The build this
+              replaced ranked them deliberately. Section 4 of the new copy
+              is a chooser by design, so here the three are equals. The
+              RANKED form survives only in the final ask, where a calendar
+              has to be chosen and an undecided reader must not be sent to
+              one at random. */}
+          <div className="mt-10 grid gap-5 md:grid-cols-3 md:gap-6">
             <div className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
               <p className={`${MICRO} text-brand-500`}>
                 Choose Rostering Audit &amp; Efficiency if you are asking
               </p>
               <Bullets items={ASK_AUDIT} />
-              <div className="mt-7">
+              <div className="mt-auto pt-7">
                 <GoTo href={ROSTERING.href}>Explore the audit</GoTo>
               </div>
             </div>
@@ -865,20 +980,36 @@ export default function CarePage() {
                 Choose Workforce Continuity if you are asking
               </p>
               <Bullets items={ASK_CONTINUITY} />
-              <div className="mt-7">
+              <div className="mt-auto pt-7">
                 <GoTo href={CONTINUITY.href}>Explore Workforce Continuity</GoTo>
+              </div>
+            </div>
+            <div
+              className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8"
+              style={{ ["--reveal-delay" as string]: "140ms" }}
+            >
+              <p className={`${MICRO} text-brand-500`}>
+                Choose Novada AI Workforce if you are asking
+              </p>
+              <Bullets items={ASK_AI} />
+              <div className="mt-auto pt-7">
+                <GoTo href={AI_WORKFORCE.href}>Explore Novada AI Workforce</GoTo>
               </div>
             </div>
           </div>
 
           <div className="reveal mt-6 rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
-            <h3 className="text-base font-semibold text-ink-950">Need both?</h3>
+            <h3 className="text-base font-semibold text-ink-950">
+              Need more than one?
+            </h3>
             <p className={`${BODY} ${WIDE} mt-3`}>
               Some providers benefit from understanding existing workforce and
               financial inefficiencies while also strengthening their future
-              workforce capacity. Our services can complement each other, but
-              they are available independently. You do not need to purchase an
-              audit before engaging Workforce Continuity.
+              workforce capacity and reducing the administration around both.
+              Our services complement each other, but they are available
+              independently. You do not need to purchase an audit before
+              engaging Workforce Continuity or Novada AI Workforce, and none of
+              the three is a prerequisite for another.
             </p>
           </div>
         </Band>
@@ -1001,13 +1132,14 @@ export default function CarePage() {
 
                 <p className={`${WIDE} mt-7 text-base text-white/75`}>
                   Whether your organisation needs greater visibility over
-                  rostering costs and billing performance or ongoing help
-                  building a reliable internal workforce, Novada Tech offers
-                  practical solutions designed for the care sector. Find the
-                  right support for your organisation.
+                  rostering costs and billing performance, ongoing help
+                  building a reliable internal workforce, or AI employees to
+                  carry the routine administration around both, Novada Tech
+                  offers practical solutions designed for the care sector.
+                  Find the right support for your organisation.
                 </p>
 
-                <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
+                <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-3">
                   {[
                     {
                       href: ROSTERING.href,
@@ -1020,6 +1152,12 @@ export default function CarePage() {
                       name: "Workforce Continuity",
                       body: "Build and maintain dependable workforce capacity through proactive recruitment and ongoing worker-readiness support.",
                       cta: "Explore Workforce Continuity",
+                    },
+                    {
+                      href: AI_WORKFORCE.href,
+                      name: "Novada AI Workforce",
+                      body: "Specialised AI employees coordinate routine work across your connected systems, with every action visible and the decisions that matter kept with your people.",
+                      cta: "Explore Novada AI Workforce",
                     },
                   ].map((s) => (
                     <Link
@@ -1054,7 +1192,14 @@ export default function CarePage() {
                     calendar at random and file them against the wrong
                     offer. So: recommend one, say why, and keep the other
                     route one click away for the reader who already
-                    knows. */}
+                    knows.
+
+                    🔴 STILL A PAIR AFTER A THIRD SERVICE WAS ADDED, ON
+                    PURPOSE. These are the two routes that HAVE a
+                    calendar. /care/ai-workforce has none yet, so a third
+                    booking link here would be a button with nowhere to
+                    land. Add it when the calendar does, and not
+                    before. */}
                 <p className="mt-12 text-lg font-semibold text-white">
                   Not sure where to start?
                 </p>

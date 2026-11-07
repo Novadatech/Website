@@ -24,7 +24,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.9,
     })),
-    ...OFFERS.map((o) => ({
+    /*
+     * ⚠️ `indexed === false` IS FILTERED OUT, not listed and ignored.
+     * An offer can be live in the nav while its page is still noindex,
+     * which is true of /care/ai-workforce until its booking calendar
+     * exists. Listing a noindex URL here tells Google to index a page
+     * that tells Google not to, and Search Console reports the conflict
+     * against the whole property. See the `indexed` field in offers.ts.
+     */
+    ...OFFERS.filter((o) => o.indexed !== false).map((o) => ({
       url: `${base}${o.href}`,
       lastModified: now,
       changeFrequency: "monthly" as const,

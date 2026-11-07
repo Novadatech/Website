@@ -160,23 +160,17 @@ import {
 /* 🔴 VERBATIM, FOUNDER-SUPPLIED, AND THE SAME THREE QUOTES AS
    /care/rostering AND /care/workforce. Do not reword.
 
-   🔴 ALL THREE ARE AI EMPLOYEE CUSTOMERS. FOUNDER RULING, 7 NOVEMBER
-   2026: "They currently use the AI employee." I had assumed otherwise
-   and added a line under the heading saying these providers were
-   speaking about working with Novada Tech generally. That line
-   understated the truth and has been removed, which returns this
-   section to exactly the shape the two twins use: heading, then the
-   slider, nothing between.
+   🔴 ALL THREE ARE AI EMPLOYEE CUSTOMERS. FOUNDER, 7 NOVEMBER 2026:
+   "They currently use the AI employee", then "yes the providers run AI
+   Employees". The page now says so, in a line above the slider.
 
-   ⚠️ BUT THE QUOTES STILL DO NOT MENTION AI, AND THEY ARE NOT TO BE
-   EDITED TO. Three named organisations said these words about Novada
-   Tech, and no sentence is ever put into a client's mouth, in either
-   direction: not a hedge that shrinks what they said, and not a
-   product claim they did not make. If the page is to state outright
-   that these providers run AI employees, that sentence comes from the
-   founder in the founder's words and sits OUTSIDE the quotation marks.
-   Asked for on 7 November. Until it arrives, the heading stays generic
-   and nothing is implied.
+   ⚠️ THAT LINE IS OUTSIDE THE QUOTATION MARKS AND IT STAYS THERE. The
+   three quotations are about working with Novada Tech and none of them
+   mentions AI. No sentence is ever put into a client's mouth in either
+   direction: not a hedge that shrinks what they said, and not a product
+   claim they did not make. Novada asserts the usage in Novada's own
+   voice; the providers say what they said. Both are true, and they are
+   true separately. Do not merge them.
 
    ⚠️ THE NAME IS EMMANUELLA, two Ls. Founder-confirmed 29 October. All
    care pages agree. Do not "correct" it back. */
@@ -1279,6 +1273,18 @@ export default function AiWorkforcePage() {
           <h2 className={`${D2} text-ink-950`}>
             Supporting organisations across the care sector
           </h2>
+          {/* 🔴 FOUNDER STATEMENT, 7 NOVEMBER 2026: "yes the providers
+              run AI Employees". It sits OUTSIDE the quotation marks and
+              it is phrased as Novada's own claim, because that is
+              exactly what it is. The three quotations below are about
+              working with Novada Tech and do not mention AI; they are
+              not edited to, in either direction. Keeping the claim and
+              the quotes in separate sentences is what lets both be
+              true. */}
+          <p className={`${BODY} ${WIDE} mt-6`}>
+            All three of the providers below run Novada AI employees in their
+            own operations.
+          </p>
           <TestimonialSlider />
         </Band>
 

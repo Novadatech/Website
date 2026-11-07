@@ -297,6 +297,25 @@ export type Offer = {
   who: string;
   summary: string;
   scope: string[];
+  /**
+   * Whether the page belongs in the generated sitemap. Defaults to true
+   * and should stay that way for every finished offer.
+   *
+   * 🔴 IT EXISTS FOR ONE CASE: an offer that is LIVE IN THE NAV but whose
+   * page is still `noindex`, because its booking calendar has not been
+   * supplied yet. /care/ai-workforce is that case. Listing a noindex URL
+   * in the sitemap is a direct contradiction: the sitemap tells Google to
+   * index it and the page tells Google not to, and Search Console reports
+   * it as an error against the whole property.
+   *
+   * ⚠️ FLIPPING THIS IS NOT A STANDALONE EDIT. It is one step of the
+   * five-step calendar handover written at the top of
+   * src/app/care/ai-workforce/page.tsx, and the step that removes the
+   * page's own `robots` block has to happen in the same change. One
+   * without the other leaves the page either unfindable or
+   * self-contradicting.
+   */
+  indexed?: boolean;
 };
 
 /*
@@ -442,11 +461,62 @@ export const CONTINUITY: Offer = {
   ],
 };
 
+/*
+ * ══════════════════════════════════════════════════════════════════════
+ * NOVADA AI WORKFORCE — the care audience's THIRD offer, added to the
+ * nav and the /care hub on the founder's instruction, 7 November 2026.
+ *
+ * 🔴 THIS MAKES THE CARE AUDIENCE THREE OFFERS, NOT TWO. "CARE = TWO
+ * PILLARS" is retired as of this change. Anything that still says "our
+ * two core services", "two specialist solutions" or "both halves" in
+ * care-facing copy is now wrong and has to be found and corrected. The
+ * /care hub was corrected in the same commit.
+ *
+ * ⚠️ IT IS NOT A PILLAR AND IT HAS NO `spine`. The spine pair ("the
+ * workers you already have" / "the workers you do not have yet") splits
+ * the two WORKFORCE pillars between them, and there is no third half of
+ * that idea for this to be. It is a different kind of product sold to
+ * the same audience: the first two are people, this one is the
+ * administration around them.
+ *
+ * ⚠️ IT IS DELIBERATELY ABSENT FROM `PATHWAYS`. The pathway diagram is
+ * the founder's three-step shape (audit, what changes, the ongoing
+ * service) and it appears in fourteen places. This offer is not a step
+ * in that sequence, and forcing it in would change every one of those
+ * fourteen placements. Raised with the founder; not done without them.
+ *
+ * 🔴 `indexed: false` UNTIL THE CALENDAR ARRIVES. See the field's note
+ * above, and the five-step handover at the top of the page file.
+ * ══════════════════════════════════════════════════════════════════════
+ */
+export const AI_WORKFORCE: Offer = {
+  name: "Novada AI Workforce",
+  /* The full name does not fit a nav slot beside two other care
+     services, and "AI Workforce" is what a provider will say out loud. */
+  navLabel: "AI Workforce",
+  slug: "ai-workforce",
+  href: "/care/ai-workforce",
+  audience: "care",
+  who: "For care providers",
+  indexed: false,
+  summary:
+    "Specialised AI employees that coordinate routine operational work across your existing rostering, HR and compliance systems, take the actions you have permitted and escalate what needs a person. Every action is visible in one Control Centre, and the decisions that matter stay with your team.",
+  scope: [
+    "AI Rostering Coordinator: roster gaps, worker availability, authorised shift offers, roster updates after approval and timesheet discrepancies.",
+    "AI Compliance Coordinator: credential and clearance expiry monitoring, approved reminders, evidence checklists and outstanding-action follow-up.",
+    "AI HR Coordinator: applications, interview coordination, onboarding documents, induction tracking and worker-readiness reporting.",
+    "AI After-Hours Coordinator: approved after-hours workflows, staffing notifications, escalation to your on-call people and a structured morning handover.",
+    "AI Operations Coordinator: cross-system task tracking, follow-ups, unresolved exceptions and a consolidated daily operational summary.",
+    "The Novada AI Control Centre: approvals, exceptions, completed actions and an audit record of everything an AI employee did and when.",
+  ],
+};
+
 export const OFFERS: Offer[] = [
   LEAKAGE,
   BOOKING,
   ROSTERING,
   CONTINUITY,
+  AI_WORKFORCE,
 ];
 
 /** The offers belonging to one audience, in page order. */
