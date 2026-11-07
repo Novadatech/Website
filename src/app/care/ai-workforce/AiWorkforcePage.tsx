@@ -76,33 +76,56 @@ import {
  *    a standalone landing page reached by its URL, which is what a page
  *    for ads and outbound is anyway.
  *
- * 4. 🔴 THE COPY CONTRADICTS ITSELF ABOUT WHETHER THE PRODUCT EXISTS,
- *    and that contradiction is shipped exactly as supplied, because
- *    removing either half would be worse. The hero sells a platform in
- *    the present tense ("Hire AI employees that do the work", "REAL
- *    OPERATIONAL WORK"). The FAQ calls it "a PROPOSED AI-powered
- *    operational platform", says role availability will be confirmed
- *    "when the relevant capabilities are offered", and says the
- *    security architecture "must be verified before production use".
- *    Those FAQ hedges are the honest half and they are LOAD-BEARING:
- *    they are the only thing on the page that stops the hero reading as
- *    a representation that a working product is available for purchase
- *    today, which is the Australian Consumer Law exposure. DO NOT
- *    "tidy" them, soften them, or move them further down the page.
- *    Flagged to the founder on 7 November 2026 with the recommendation
- *    that the HERO be brought into line with the FAQ rather than the
- *    other way round.
+ * 4. 🔴 THE PRODUCT EXISTS AND THE PAGE SAYS SO IN THE PRESENT TENSE.
+ *    FOUNDER RULING, 7 NOVEMBER 2026, IN THOSE WORDS: "The product
+ *    already exists. The hero is correct."
+ *
+ *    The copy as supplied contradicted itself. The hero sold a platform
+ *    in the present tense while the FAQ called it "a PROPOSED
+ *    AI-powered operational platform", deferred role availability to
+ *    "when the relevant capabilities are offered", and said the
+ *    security architecture "must be verified before production use". I
+ *    flagged the gap and recommended the hero be softened. The founder
+ *    ruled the other way, so the twenty-one sentences saying the
+ *    product was unfinished were removed instead and the page now
+ *    speaks with one voice. DO NOT REINTRODUCE THEM.
  * ══════════════════════════════════════════════════════════════════════
  *
- * 🔴 EVERY HEDGE IN THIS COPY IS DELIBERATE. "designed to", "intended
- * to", "may", "where supported", "subject to the available platform
- * capabilities", "potential applications". The copy reads cautiously
- * because the product is being described before it is finished. Do not
- * convert a single one of them into a promise, however flat the
- * sentence sounds. The same goes for the four explicit refusals: no
- * guaranteed cost savings, no delegated employment decisions, no
- * substitute for a staffed emergency response, no replacement of the
- * provider's own regulatory responsibility.
+ * 🔴 THE HEDGES THAT REMAIN ARE A DIFFERENT KIND AND THEY ARE THE
+ * PAGE'S LEGAL FLOOR. The ruling above removed EXISTENCE hedges, which
+ * said the product was not finished. It did NOT touch the SCOPE,
+ * OUTCOME and OVERSIGHT hedges, which are true whatever the product's
+ * maturity and which carry the Australian Consumer Law exposure on
+ * their own:
+ *
+ *   · "Actual capabilities depend on the available integrations,
+ *      configured workflows, system permissions and required approvals."
+ *   · "Does Novada guarantee cost savings?  No."
+ *   · "Will the AI make employment decisions?  No."
+ *   · "It does not replace the provider's legal responsibilities,
+ *      regulatory judgement or professional oversight."
+ *   · "not a substitute for a staffed emergency response function,
+ *      clinical triage or human decision-making..."
+ *   · "Final hiring, employment, worker suitability, competency and
+ *      disciplinary decisions remain with authorised humans."
+ *   · "Regulatory determinations, worker suitability approvals and
+ *      statutory responsibilities remain with authorised personnel."
+ *   · "Actual execution depends on supported integrations, configured
+ *      rules, worker availability and authorisations."
+ *   · "The actual value delivered will depend on your systems,
+ *      workflows, task volumes..."
+ *   · the whole human-oversight band, and its third column especially
+ *
+ * ⚠️ A FUTURE EDITOR WILL READ THE RULING ABOVE AND REACH FOR THESE
+ * NEXT. They are not the same thing. "The product exists" does not mean
+ * "the product guarantees an outcome", and every sentence in that list
+ * is about outcome, scope or who stays accountable. Removing one is a
+ * misreading of the ruling, not an extension of it.
+ *
+ * ⚠️ "Designed to" SURVIVES WHERE IT DESCRIBES PURPOSE rather than
+ * readiness, for example "What it is designed to do" above each role's
+ * capability list. That is ordinary product language and the founder
+ * wrote it. It is not an existence hedge.
  *
  * 🔴 THE INDUCEMENT WALL IS CRIMINAL-LAW BACKED (2026 NDIS changes).
  * No referral arrangements, incentives, gifts or growth promises in any
@@ -137,13 +160,23 @@ import {
 /* 🔴 VERBATIM, FOUNDER-SUPPLIED, AND THE SAME THREE QUOTES AS
    /care/rostering AND /care/workforce. Do not reword.
 
-   ⚠️ READ THE HEADING ABOVE THEM BEFORE TOUCHING THIS. These three
-   providers are speaking about working with Novada Tech. None of them
-   is speaking about an AI platform, and none of them is a user of one.
-   The section is therefore headed and introduced as what it is. Do not
-   retitle it to anything that implies these organisations use the
-   product on this page, and do not go looking for AI-specific quotes
-   to put here instead.
+   🔴 ALL THREE ARE AI EMPLOYEE CUSTOMERS. FOUNDER RULING, 7 NOVEMBER
+   2026: "They currently use the AI employee." I had assumed otherwise
+   and added a line under the heading saying these providers were
+   speaking about working with Novada Tech generally. That line
+   understated the truth and has been removed, which returns this
+   section to exactly the shape the two twins use: heading, then the
+   slider, nothing between.
+
+   ⚠️ BUT THE QUOTES STILL DO NOT MENTION AI, AND THEY ARE NOT TO BE
+   EDITED TO. Three named organisations said these words about Novada
+   Tech, and no sentence is ever put into a client's mouth, in either
+   direction: not a hedge that shrinks what they said, and not a
+   product claim they did not make. If the page is to state outright
+   that these providers run AI employees, that sentence comes from the
+   founder in the founder's words and sits OUTSIDE the quotation marks.
+   Asked for on 7 November. Until it arrives, the heading stays generic
+   and nothing is implied.
 
    ⚠️ THE NAME IS EMMANUELLA, two Ls. Founder-confirmed 29 October. All
    care pages agree. Do not "correct" it back. */
@@ -224,7 +257,7 @@ const DIFFERENCE = [
   },
   {
     h: "Novada AI Workforce",
-    b: "Is designed to coordinate multi-step operational workflows, use connected systems, take permitted actions, request approvals, verify results and escalate exceptions.",
+    b: "Coordinates multi-step operational workflows, uses connected systems, takes permitted actions, requests approvals, verifies results and escalates exceptions.",
   },
 ];
 
@@ -613,7 +646,7 @@ const WHO = [
   },
   {
     h: "Multi-site care organisations",
-    b: "For providers managing multiple locations, teams and systems. Novada's centralised approach is intended to improve visibility over work being carried out across authorised operational environments.",
+    b: "For providers managing multiple locations, teams and systems. Novada's centralised approach is built to improve visibility over work being carried out across authorised operational environments.",
   },
 ];
 
@@ -684,11 +717,11 @@ const IMPLEMENTATION = [
 const FAQ = [
   {
     q: "What is Novada AI Workforce?",
-    a: "Novada AI Workforce is a proposed AI-powered operational platform for Australian care providers. It is designed to allow organisations to engage specialised AI employees that coordinate and execute approved administrative workflows across supported business systems.",
+    a: "Novada AI Workforce is an AI-powered operational platform for Australian care providers. It lets organisations engage specialised AI employees that coordinate and execute approved administrative workflows across supported business systems.",
   },
   {
     q: "How is it different from ChatGPT or a conventional AI chatbot?",
-    a: "A conventional chatbot generally responds to questions or generates information. Novada AI Workforce is intended to perform authorised operational actions through connected systems, follow defined workflows, request approvals, verify outcomes and maintain activity records.",
+    a: "A conventional chatbot generally responds to questions or generates information. Novada AI Workforce performs authorised operational actions through connected systems, follows defined workflows, requests approvals, verifies outcomes and maintains activity records.",
   },
   {
     q: "Can AI employees actually complete tasks?",
@@ -696,27 +729,27 @@ const FAQ = [
   },
   {
     q: "Can the AI update our existing rostering or HR systems?",
-    a: "Where suitable integrations and permissions are available, the platform may support authorised system updates. We assess each system and workflow before confirming what can be automated.",
+    a: "Where suitable integrations and permissions are available, the platform supports authorised system updates. We assess each system and workflow before confirming what can be automated.",
   },
   {
     q: "Do we need to replace our current software?",
-    a: "Not necessarily. The platform is intended to work alongside supported existing applications rather than requiring a wholesale system replacement.",
+    a: "Not necessarily. The platform works alongside supported existing applications rather than requiring a wholesale system replacement.",
   },
   {
     q: "Is the Novada AI Control Centre another rostering or HR platform?",
-    a: "No. The Control Centre is intended to manage AI employee activity, workflow coordination, approvals, exception handling and execution records. Existing systems remain authoritative for their respective business records unless explicitly agreed otherwise.",
+    a: "No. The Control Centre manages AI employee activity, workflow coordination, approvals, exception handling and execution records. Existing systems remain authoritative for their respective business records unless explicitly agreed otherwise.",
   },
   {
     q: "Can we hire just one AI employee?",
-    a: "Yes, the intended commercial model supports selecting specialised AI employee roles based on your organisation's needs. Actual role availability and subscription terms will be confirmed when the relevant capabilities are offered.",
+    a: "Yes. You can engage a single specialised AI employee and add others later. The roles, service scope and subscription terms are confirmed in your proposal.",
   },
   {
     q: "Can we use multiple AI employees?",
-    a: "Yes. The platform is designed around individually selectable roles that may work together within one operational environment as integration and orchestration capabilities are made available.",
+    a: "Yes. The platform is designed around individually selectable roles that work together within one operational environment.",
   },
   {
     q: "Can AI employees operate outside business hours?",
-    a: "Selected workflows may be configured for after-hours operation, depending on platform availability, supported integrations and agreed service arrangements. Safety-critical situations require escalation to appropriately authorised people.",
+    a: "Selected workflows may be configured for after-hours operation, depending on the supported integrations and your agreed service arrangements. Safety-critical situations require escalation to appropriately authorised people.",
   },
   {
     q: "Will AI employees replace our operations staff?",
@@ -728,7 +761,7 @@ const FAQ = [
   },
   {
     q: "How is sensitive information protected?",
-    a: "The platform's design must incorporate appropriate controls for privacy, authorised access, secure integrations, data retention, auditing and incident response. Actual security architecture and contractual protections must be verified before production use.",
+    a: "The platform connects to your systems through authorised, permission-scoped access, and every action an AI employee takes is recorded in the Control Centre's audit and activity records. Access controls, data retention, auditing and incident response are set out in your service agreement, and we confirm the specific permissions and contractual protections with you before any system is connected.",
   },
   {
     q: "Can the AI manage NDIS and aged care compliance?",
@@ -740,7 +773,7 @@ const FAQ = [
   },
   {
     q: "How much does it cost to hire an AI employee?",
-    a: "Pricing is intended to be based on the selected AI employee, the required workflows, supported integrations, usage and implementation requirements. An individual proposal can outline the applicable platform, implementation and ongoing subscription costs once the scope is understood.",
+    a: "Pricing is based on the selected AI employee, the required workflows, supported integrations, usage and implementation requirements. An individual proposal can outline the applicable platform, implementation and ongoing subscription costs once the scope is understood.",
   },
   {
     q: "How do we know which AI employee to start with?",
@@ -748,7 +781,7 @@ const FAQ = [
   },
   {
     q: "How do we get started?",
-    a: "Book an AI Workforce discovery conversation. We will discuss your operational challenges, systems and potential AI employee roles, then explain the next steps appropriate to current product availability.",
+    a: "Book an AI Workforce discovery conversation. We will discuss your operational challenges, systems and potential AI employee roles, then agree the next steps.",
   },
 ];
 
@@ -1246,13 +1279,6 @@ export default function AiWorkforcePage() {
           <h2 className={`${D2} text-ink-950`}>
             Supporting organisations across the care sector
           </h2>
-          {/* ⚠️ THIS LINE IS NOT FILLER. See the note above TESTIMONIALS:
-              these three providers are speaking about working with Novada
-              Tech, not about an AI platform, and the sentence says so
-              before the reader draws their own conclusion. */}
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            What providers say about working with Novada Tech.
-          </p>
           <TestimonialSlider />
         </Band>
 
@@ -1295,7 +1321,7 @@ export default function AiWorkforcePage() {
           <BoxCards items={DIFFERENCE} cols={3} />
 
           <p className={`${MICRO} mt-10 text-brand-500`}>
-            The result we are working towards
+            The result
           </p>
           <Bullets items={WORKING_TOWARDS} />
 
@@ -1363,9 +1389,8 @@ export default function AiWorkforcePage() {
           <BoxCards items={CONTROL_SHOWS} cols={2} />
 
           <Statement>
-            The Novada AI Control Centre is intended to become the central
-            record of AI-generated operational activities, workflow decisions
-            and approvals.
+            The Novada AI Control Centre is the central record of AI-generated
+            operational activities, workflow decisions and approvals.
           </Statement>
           {/* ⚠️ LOAD-BEARING. This is the sentence that stops the Control
               Centre reading as a replacement system of record, which is a
@@ -1437,7 +1462,7 @@ export default function AiWorkforcePage() {
               sentence that says they are an intended workflow. Do not
               move it away from them. */}
           <p className={`${SMALL} ${WIDE} mt-8`}>
-            This is an illustrative intended workflow. Actual execution depends
+            This is an illustrative workflow. Actual execution depends
             on supported integrations, configured rules, worker availability and
             authorisations.
           </p>
@@ -1481,7 +1506,7 @@ export default function AiWorkforcePage() {
               appropriate boundaries.
             </p>
             <p className={`${BODY} ${WIDE}`}>
-              That is why the Novada AI Workforce concept is designed around
+              That is why Novada AI Workforce is built around
               controlled execution rather than unrestricted autonomy.
             </p>
           </div>
@@ -1518,8 +1543,8 @@ export default function AiWorkforcePage() {
           </p>
           <Bullets items={EXISTING_SYSTEMS} />
           <p className={`${BODY} ${WIDE} mt-8`}>
-            Novada AI Workforce is intended to integrate with supported systems
-            and execute workflows through approved interfaces.
+            Novada AI Workforce integrates with supported systems and
+            executes workflows through approved interfaces.
           </p>
           <BoxCards items={INTEGRATION} cols={2} />
           <Statement>
@@ -1565,8 +1590,7 @@ export default function AiWorkforcePage() {
           </p>
           <p className={`${BODY} ${WIDE} mt-4`}>
             As your requirements grow, additional specialised AI employees can
-            be introduced into the same Control Centre, subject to the available
-            platform capabilities.
+            be introduced into the same Control Centre.
           </p>
 
           <div className="mt-10">
@@ -1662,7 +1686,7 @@ export default function AiWorkforcePage() {
                     "Identify your highest-volume repetitive administrative tasks.",
                     "Assess which of those tasks could be safely and reliably automated.",
                     "Explain the five AI employee roles and how the Control Centre works.",
-                    "Explain the next steps appropriate to current product availability.",
+                    "Agree the next steps, the service scope and the timeline.",
                   ]}
                 />
 
