@@ -18,30 +18,21 @@ import AiWorkforcePage from "./AiWorkforcePage";
  * page.
  *
  * ══════════════════════════════════════════════════════════════════════
- * 🔴 THE `robots` BLOCK BELOW IS TEMPORARY AND DELIBERATE, and it is
- * the OPPOSITE of both twins, which are indexed.
+ * ✅ INDEXED, like both twins, since 8 November 2026. There is NO
+ * `robots` block here any more and there should not be one.
  *
- * The founder is supplying this offer's booking calendar separately, so
- * #book currently carries a placeholder rather than an embed. A page
- * whose only action cannot be taken should not be collecting search
- * traffic, so it is noindex and it is absent from sitemap.ts.
+ * This page shipped noindex because its calendar did not exist yet and a
+ * page whose only action cannot be taken should not collect search
+ * traffic. The calendar arrived, #book carries a real embed, and
+ * `indexed: true` in offers.ts returns the route to the sitemap.
  *
- * CLEARING IT IS NOT A SEPARATE DECISION. It is step two of the handover
- * written at the top of AiWorkforcePage.tsx:
- *   1. add a `care-ai-workforce` key to Desk and CALENDARS in
- *      src/components/desk/BookingEmbed.tsx with the supplied id
- *   2. swap the placeholder in #book for <BookingEmbed
- *      desk="care-ai-workforce" source="care-ai-workforce" tone="dark" />
- *   3. delete the `robots` block below
- *   4. add the route to src/app/sitemap.ts
- *   5. point the calendar's redirect at /care/ai-workforce/confirmed,
- *      which is already built and already noindex
- * All five, or none. A half-done handover is a live page that either
- * cannot be booked or cannot be found.
+ * ⚠️ IF A FUTURE OFFER PAGE NEEDS THE SAME TREATMENT, noindex and
+ * `indexed: false` travel together. Setting one without the other
+ * produces a page that is in the sitemap and refuses to be indexed,
+ * which Search Console reports against the whole property.
  * ══════════════════════════════════════════════════════════════════════
  */
 export const metadata: Metadata = {
-  robots: { index: false, follow: false },
   title: "Novada AI Workforce for NDIS and aged care | Novada Tech",
   description:
     "AI employees for Australian NDIS, aged care and home care providers. Coordinate routine tasks, follow up outstanding actions and execute approved workflows across your existing systems, with human oversight and one Control Centre.",

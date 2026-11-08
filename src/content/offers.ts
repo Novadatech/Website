@@ -485,8 +485,11 @@ export const CONTINUITY: Offer = {
  * in that sequence, and forcing it in would change every one of those
  * fourteen placements. Raised with the founder; not done without them.
  *
- * 🔴 `indexed: false` UNTIL THE CALENDAR ARRIVES. See the field's note
- * above, and the five-step handover at the top of the page file.
+ * ✅ INDEXED SINCE 8 NOVEMBER 2026. The calendar arrived
+ * (WP6oumjuphxHD9rJBNKX, "Book an AI Workforce Review"), #book now
+ * carries a real embed, and the page's temporary noindex was removed
+ * in the same commit. The five-step handover is complete, so there is
+ * no longer a reason to hold this out of the sitemap.
  * ══════════════════════════════════════════════════════════════════════
  */
 export const AI_WORKFORCE: Offer = {
@@ -498,7 +501,7 @@ export const AI_WORKFORCE: Offer = {
   href: "/care/ai-workforce",
   audience: "care",
   who: "For care providers",
-  indexed: false,
+  indexed: true,
   summary:
     "Specialised AI employees that coordinate routine operational work across your existing rostering, HR and compliance systems, take the actions you have permitted and escalate what needs a person. Every action is visible in one Control Centre, and the decisions that matter stay with your team.",
   scope: [

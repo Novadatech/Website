@@ -72,9 +72,13 @@ import { CTA_LABEL } from "@/content/offers";
  * ══════════════════════════════════════════════════════════════════════
  * ⚠️ ONE CALENDAR PER DESK. Not per offer, and not per domain.
  *
- * Both domains load the same four calendars; which one appears is
- * decided by the DESK the reader is standing on. Each calendar redirects
- * to its own confirmation page on novadatech.com.au.
+ * This domain loads FIVE calendars; which one appears is decided by the
+ * DESK the reader is standing on. Each redirects to its own confirmation
+ * page on novadatech.com.au.
+ *
+ * ⚠️ novadatech.com NO LONGER SHARES THESE. It owns US calendars of
+ * its own. The line here used to say "both domains load the same four",
+ * which stopped being true when the US calendars were created.
  *
  *   practices-revenue-audit   dkDB0IYyu8LRjFdUfsYb   Workforce Practice Desk
  *   practices-patient-booking 7Jpcos7VK92p2vDDTdvE   Patient Access Desk
@@ -101,10 +105,10 @@ import { CTA_LABEL } from "@/content/offers";
  * wrong pipeline. The hub recommends a starting half instead. If anyone
  * adds a calendar there, read the comment at the top of /care first.
  *
- * All four are live and each redirects to its own confirmation page on
- * novadatech.com.au. Four calendars, four pipelines, four confirmations:
- * the desk a booking belongs to is now decided once, here, and carried
- * all the way through.
+ * All five are live and each redirects to its own confirmation page on
+ * novadatech.com.au. Five calendars, five confirmations: the desk a
+ * booking belongs to is decided once, here, and carried all the way
+ * through.
  *
  * ⚠️ `desk` IS REQUIRED AND HAS NO DEFAULT. A default is how the wrong
  * calendar ships silently: the page compiles, the widget loads, and
@@ -125,13 +129,29 @@ export type Desk =
   | "practices-revenue-audit"
   | "practices-patient-booking"
   | "care-rostering"
-  | "care-continuity";
+  | "care-continuity"
+  | "care-ai-workforce";
 
 const CALENDARS: Record<Desk, string> = {
   "practices-revenue-audit": "dkDB0IYyu8LRjFdUfsYb",
   "practices-patient-booking": "7Jpcos7VK92p2vDDTdvE",
   "care-rostering": "InaO8Qj92uCQ8BglSMhW",
   "care-continuity": "8J16HJQJHvwiqzmxaEEm",
+
+  /* ✅ CARE AI WORKFORCE, supplied and wired 8 November 2026.
+     VERIFIED BY NAME against the API before wiring, never by a label:
+     it returns "Book an AI Workforce Review", slug
+     novada-ai-workforce-review, 30 minutes, Mon-Fri 08:00-16:30
+     Sydney, active. Checking the name matters more here than anywhere
+     else on the estate: the two care calendars above carry stale names
+     that were once recorded the wrong way round, and that cost a real
+     booking error on 3 November 2026.
+
+     ✅ ITS REDIRECT WAS ALREADY CORRECT when this was wired:
+     https://novadatech.com.au/care/ai-workforce/confirmed. Nothing in
+     this code sets that, so do not assume the next calendar arrives
+     the same way. Read it back from the API. */
+  "care-ai-workforce": "WP6oumjuphxHD9rJBNKX",
 };
 const RESIZER_SRC = "https://link.novadatech.com/js/form_embed.js";
 

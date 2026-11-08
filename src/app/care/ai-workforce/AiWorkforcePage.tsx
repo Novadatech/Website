@@ -13,6 +13,7 @@ import {
 import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
+import BookingEmbed from "@/components/desk/BookingEmbed";
 import { Band, BandHeading } from "@/components/desk/Band";
 import {
   BODY,
@@ -45,26 +46,22 @@ import {
  * is how a confirmation page ends up titled like a sales page.
  *
  * ══════════════════════════════════════════════════════════════════════
- * 🔴 FOUR THINGS ON THIS PAGE ARE NOT LIKE THE OTHER TWO CARE PAGES.
- * Read all four before editing anything.
+ * 🔴 TWO THINGS ON THIS PAGE ARE NOT LIKE THE OTHER TWO CARE PAGES.
+ * Read both before editing anything.
  *
- * 1. THERE IS NO CALENDAR YET. The founder said they would supply it
- *    after the build. So #book carries the full closing copy and a
- *    PLACEHOLDER where the embed goes, and the placeholder cannot take
- *    a booking. It is NOT pointed at care-rostering or care-continuity
- *    in the meantime: those two calendars feed their own pipelines, and
- *    a booking filed against the wrong offer is worse than a booking
- *    that cannot be made. When the id arrives: add a `care-ai-workforce`
- *    key to Desk and CALENDARS in BookingEmbed.tsx, swap the
- *    placeholder for <BookingEmbed desk="care-ai-workforce"
- *    source="care-ai-workforce" tone="dark" />, then clear the noindex
- *    in page.tsx and add the route to sitemap.ts.
+ * 1. ✅ THE CALENDAR IS LIVE AND THE PAGE IS INDEXED, both since
+ *    8 November 2026. #book carries a real BookingEmbed on
+ *    `care-ai-workforce` (WP6oumjuphxHD9rJBNKX, "Book an AI Workforce
+ *    Review"), the temporary noindex is gone from page.tsx and
+ *    `indexed: true` in offers.ts puts the route back in the sitemap.
+ *    This note used to describe a five-step handover; it is done, and
+ *    the steps were removed so nobody performs them twice.
  *
- * 2. IT IS noindex UNTIL THE CALENDAR LANDS, and absent from the
- *    sitemap, for the same reason: a page whose only action cannot be
- *    taken should not be collecting search traffic. The noindex lives
- *    in page.tsx. Removing it is step two of the handover above, not a
- *    separate decision.
+ *    🔴 WHAT SURVIVES THE HANDOVER: this offer has its OWN calendar
+ *    and its OWN pipeline. Never repoint #book at care-rostering or
+ *    care-continuity. A booking filed against the wrong offer reaches
+ *    the wrong coordinator through the wrong confirmation page, and
+ *    unlike a booking that cannot be made, it cannot be recovered.
  *
  * 3. IT IS NOT IN THE NAV OR ON THE /care HUB. Both are generated from
  *    offersFor("care") in src/content/offers.ts, which returns the two
@@ -1697,38 +1694,22 @@ export default function AiWorkforcePage() {
                 />
 
                 <div className="mt-10">
-                  {/*
-                   * 🔴 PLACEHOLDER, NOT A CALENDAR. See note 1 in the
-                   * file header. The founder is supplying the calendar
-                   * for this offer separately, and until the id exists
-                   * this page has NO embed rather than a borrowed one:
-                   * care-rostering and care-continuity each feed their
-                   * own pipeline, so pointing this page at either would
-                   * file an AI Workforce enquiry against a different
-                   * offer, in a different pipeline, with a different
-                   * confirmation page and a different coordinator. A
-                   * booking that cannot be made is recoverable. A
-                   * booking filed against the wrong offer is not.
-                   *
-                   * ⚠️ IT IS NOT A BUTTON AND MUST NOT BECOME ONE. There
-                   * is nothing for it to open.
-                   */}
-                  <div className="rounded-xl border border-dashed border-white/20 bg-white/[0.04] p-7 md:p-10">
-                    <p className={`${MICRO} text-brand-200`}>
-                      Booking opens shortly
-                    </p>
-                    <p className="mt-4 max-w-[60ch] text-base text-white/75">
-                      The AI Workforce discovery calendar is being set up. Until
-                      it is live, email{" "}
-                      <a
-                        href="mailto:support@novadatech.com.au?subject=Novada%20AI%20Workforce%20discovery%20call"
-                        className="font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
-                      >
-                        support@novadatech.com.au
-                      </a>{" "}
-                      and we will arrange a time.
-                    </p>
-                  </div>
+                  {/* ✅ LIVE CALENDAR since 8 November 2026. This replaced
+                      the "booking opens shortly" placeholder the page
+                      shipped with, and the page came out of noindex in
+                      the same commit.
+
+                      🔴 care-ai-workforce IS ITS OWN CALENDAR and must
+                      never be repointed at care-rostering or
+                      care-continuity. Those feed their own pipelines, so
+                      borrowing one would file an AI Workforce enquiry
+                      against a different offer, with a different
+                      confirmation page and a different coordinator. */}
+                  <BookingEmbed
+                    desk="care-ai-workforce"
+                    source="care-ai-workforce"
+                    tone="dark"
+                  />
                 </div>
 
                 <p className="mt-6 text-sm text-white/55">
