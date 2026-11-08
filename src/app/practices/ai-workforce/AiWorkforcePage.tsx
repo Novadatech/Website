@@ -1111,6 +1111,17 @@ export default function AiWorkforcePage() {
               administration.
             </h1>
 
+            {/* 🔴 THE CONTROL CENTRE CLAUSE WAS CUT FROM THE PARAGRAPH
+                BELOW AND MUST NOT BE PUT BACK. The supplied copy closed it
+                with "And with the Novada AI Control Centre, you can see
+                exactly what work is being done, monitor outstanding tasks,
+                approve sensitive actions and track operational performance,
+                all from one centralised platform." All four capabilities are
+                their own cards in CONTROL_SHOWS under band 04, which is an
+                entire section about the Control Centre, and the strap line
+                directly below still carries "One centralised platform". So
+                the reader loses nothing and the first CTA comes back above
+                the fold at 390x844, which is what this cut bought. */}
             <div
               className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
             >
@@ -1121,10 +1132,7 @@ export default function AiWorkforcePage() {
                 enquiries and coordinating appointments to managing referral
                 administration, clinician-approved recalls and billing
                 follow-ups, your AI employees help run the everyday operations
-                behind your practice. And with the Novada AI Control Centre,
-                you can see exactly what work is being done, monitor
-                outstanding tasks, approve sensitive actions and track
-                operational performance, all from one centralised platform.
+                behind your practice.
               </p>
             </div>
 
@@ -1133,14 +1141,15 @@ export default function AiWorkforcePage() {
                 second is the benefit line and it is the one a practice
                 owner scans for.
 
-                ⚠️ THIS HERO IS THE LONGEST ON THE ESTATE: 144 words
-                against 102 on /practices/revenue-audit and 124 on
-                /practices/patient-booking. Measured at 390x844 the first
-                CTA lands below the fold, which neither twin does. The
-                spacing here is already as tight as it goes without
-                cutting founder copy; the remaining fix is a shorter hero
-                paragraph, which is the founder's call. Do not open this
-                spacing back up. */}
+                🔴 THE FOLD HERE IS ALREADY SPENT. This hero was the
+                longest on the estate at 144 words and put the first CTA
+                below the fold at 390x844, which neither twin did. The
+                founder approved cutting the duplicated Control Centre
+                clause and that is the whole margin: the spacing is as
+                tight as it goes and the paragraph is as short as the copy
+                allows. Do not open this spacing back up and do not add a
+                sentence to the paragraph without re-measuring ctaTop at
+                390x844 — the next clause pushes the CTA under again. */}
             <div
               className={`mt-7 flex flex-col gap-1.5 border-t border-white/10 pt-6`}
             >
