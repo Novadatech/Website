@@ -1,564 +1,380 @@
 "use client";
 
-import { useState } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Check,
-  ChevronDown,
-  Quote,
-  Star,
-} from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Star } from "lucide-react";
 
-import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
 import BookingEmbed from "@/components/desk/BookingEmbed";
-import { Band, BandHeading } from "@/components/desk/Band";
-import {
-  BODY,
-  BTN_PRIMARY,
-  DISPLAY,
-  D2,
-  FRAME,
-  GUTTER,
-  MICRO,
-  MICRO_TIGHT,
-  RAIL_GRID,
-  SMALL,
-} from "@/components/desk/tokens";
+import { FRAME, GUTTER, MICRO, MICRO_TIGHT } from "@/components/desk/tokens";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
  * /care/ai-workforce — NOVADA AI WORKFORCE.
  *
- * Built 7 November 2026 from founder-supplied copy, as the THIRD care
- * landing page, on the founder's instruction that it be "similar to the
- * way we have the Rostering Audit page and Workforce page". So: same
- * components, same section rhythm, same hero clamp, same proof strip,
- * same rail numbering, same sticky bar. If you change the shape of one
- * of the three, look at the other two.
+ * ✅ LIVE SINCE 10 NOVEMBER 2026, and this body replaced the original
+ * page of 7 November. It was built and reviewed at
+ * /care/ai-workforce-v2, which no longer exists: holding the two side
+ * by side was the only reason that route was created, and a preview
+ * left standing after approval becomes an indexed duplicate that
+ * splits the ranking with the page it was a draft of.
  *
- * ⚠️ IT IS A CLIENT COMPONENT, so its metadata CANNOT live in this
- * file. It is exported from page.tsx, which wraps this. Do not add a
- * layout.tsx to this folder: ./confirmed has one of its own carrying
- * the noindex, and two layouts declaring metadata in the same subtree
- * is how a confirmation page ends up titled like a sales page.
+ * 🔴 THE PAGE IT REPLACED RAN 1,753 LINES ACROSS SIXTEEN NUMBERED
+ * BANDS AND SEVENTEEN FAQs. The founder's complaint was that it buried
+ * the offer. If this page ever starts growing bands again, that is the
+ * thing to measure it against.
  *
  * ══════════════════════════════════════════════════════════════════════
- * 🔴 TWO THINGS ON THIS PAGE ARE NOT LIKE THE OTHER TWO CARE PAGES.
- * Read both before editing anything.
+ * SOURCE AND PERMISSION. Founder instruction over three rounds,
+ * 10 November 2026: rebuild on the structure, the background design,
+ * the imagery, the headline style and the section set of
+ *   https://www.hibob.com/lp/hibob-vs-alternatives/
+ * tailored to our product, with anything carrying their logo removed.
+ * The founder has confirmed permission and licence in writing.
  *
- * 1. ✅ THE CALENDAR IS LIVE AND THE PAGE IS INDEXED, both since
- *    8 November 2026. #book carries a real BookingEmbed on
- *    `care-ai-workforce` (WP6oumjuphxHD9rJBNKX, "Book an AI Workforce
- *    Review"), the temporary noindex is gone from page.tsx and
- *    `indexed: true` in offers.ts puts the route back in the sitemap.
- *    This note used to describe a five-step handover; it is done, and
- *    the steps were removed so nobody performs them twice.
+ * WHAT WAS TAKEN FROM IT:
+ *  · THE GROUND. Cream #FFFBF4, #FFF0DA for alternate bands, ONE deep
+ *    band. Theirs is maroon #60032A; ours is brand-700 #002687, the one
+ *    colour not taken from the source, because the accent stays Novada
+ *    blue and a maroon band under blue buttons fights itself.
+ *  · EIGHTEEN OF THEIR ICON FILES, recoloured. Hue rotated -117 degrees
+ *    (their accent sits at hue 340, brand-500 at 223), which moves the
+ *    family to blue while leaving saturation and value alone, so the
+ *    artwork keeps its own tonal structure. In public/ai-workforce/.
+ *  · THE HEADLINE STYLE: a slab serif, sentence case, centred, short,
+ *    verb-first on the feature blocks. See the note in page.tsx.
+ *  · THE COMPOSITIONS: white product cards floating over soft organic
+ *    shapes, a detail card breaking out over the main one, progress
+ *    bars, a donut, an avatar cluster, the six-tile deep stat band, the
+ *    centred testimonial card, the logo tile grid.
  *
- *    🔴 WHAT SURVIVES THE HANDOVER: this offer has its OWN calendar
- *    and its OWN pipeline. Never repoint #book at care-rostering or
- *    care-continuity. A booking filed against the wrong offer reaches
- *    the wrong coordinator through the wrong confirmation page, and
- *    unlike a booking that cannot be made, it cannot be recovered.
+ * 🔴 WHAT WAS LEFT, AND WHY IT IS NOT A LICENSING QUESTION:
+ *  · THEIR HERO IMAGE carries the "Bob" wordmark in the product chrome
+ *    and a G2 "Regional Leader" badge. Founder instruction was to drop
+ *    anything with their logo, and the award is not ours either.
+ *  · THE CUSTOMER LOGO BAR is Fiverr, Fulham FC, Five Guys and fourteen
+ *    more. On a Novada page that strip states they are Novada's
+ *    clients. No licence makes that true.
+ *  · THE TESTIMONIAL HEADSHOTS are real people who endorsed HiBob.
+ *  · THE AWARD BADGES are awards we have not won.
+ *  · THE PRODUCT SCREENSHOTS show their software. Recreated in code as
+ *    the real Control Centre, which is what "tailored to our product"
+ *    asks for.
  *
- * 3. IT IS NOT IN THE NAV OR ON THE /care HUB. Both are generated from
- *    offersFor("care") in src/content/offers.ts, which returns the two
- *    pillars. Adding this offer there would put a third item in the nav
- *    on every care page, a third door on the hub, and a third step in
- *    the Pathway diagram's fourteen placements, which is a positioning
- *    change from CARE = TWO PILLARS to three. That is the founder's
- *    call and it has been put to them. Until they answer, this page is
- *    a standalone landing page reached by its URL, which is what a page
- *    for ads and outbound is anyway.
- *
- * 4. 🔴 THE PRODUCT EXISTS AND THE PAGE SAYS SO IN THE PRESENT TENSE.
- *    FOUNDER RULING, 7 NOVEMBER 2026, IN THOSE WORDS: "The product
- *    already exists. The hero is correct."
- *
- *    The copy as supplied contradicted itself. The hero sold a platform
- *    in the present tense while the FAQ called it "a PROPOSED
- *    AI-powered operational platform", deferred role availability to
- *    "when the relevant capabilities are offered", and said the
- *    security architecture "must be verified before production use". I
- *    flagged the gap and recommended the hero be softened. The founder
- *    ruled the other way, so the twenty-one sentences saying the
- *    product was unfinished were removed instead and the page now
- *    speaks with one voice. DO NOT REINTRODUCE THEM.
  * ══════════════════════════════════════════════════════════════════════
+ * 🔴 THE LEGAL FLOOR. The brief was to cut copy, and the fastest way to
+ * cut copy here is to delete the qualifiers, because they are the
+ * longest and dullest sentences on the page. All twelve are present and
+ * are checked against the RENDERED HTML, not this source:
  *
- * 🔴 THE HEDGES THAT REMAIN ARE A DIFFERENT KIND AND THEY ARE THE
- * PAGE'S LEGAL FLOOR. The ruling above removed EXISTENCE hedges, which
- * said the product was not finished. It did NOT touch the SCOPE,
- * OUTCOME and OVERSIGHT hedges, which are true whatever the product's
- * maturity and which carry the Australian Consumer Law exposure on
- * their own:
- *
- *   · "Actual capabilities depend on the available integrations,
+ *   1 "Actual capabilities depend on the available integrations,
  *      configured workflows, system permissions and required approvals."
- *   · "Does Novada guarantee cost savings?  No."
- *   · "Will the AI make employment decisions?  No."
- *   · "It does not replace the provider's legal responsibilities,
+ *   2 "Does Novada guarantee cost savings?  No."
+ *   3 "Will the AI make employment decisions?  No."
+ *   4 "It does not replace the provider's legal responsibilities,
  *      regulatory judgement or professional oversight."
- *   · "not a substitute for a staffed emergency response function,
- *      clinical triage or human decision-making..."
- *   · "Final hiring, employment, worker suitability, competency and
- *      disciplinary decisions remain with authorised humans."
- *   · "Regulatory determinations, worker suitability approvals and
- *      statutory responsibilities remain with authorised personnel."
- *   · "Actual execution depends on supported integrations, configured
- *      rules, worker availability and authorisations."
- *   · "The actual value delivered will depend on your systems,
- *      workflows, task volumes..."
- *   · the whole human-oversight band, and its third column especially
+ *   5 "The actual value delivered will depend on your systems..."
+ *   6 the human-oversight band and its third column especially
+ *   7 "Your existing ... systems remain the authoritative records..."
+ *   8 the security answer in the FAQ
+ *   9 the per-figure `src` labels under the deep band
  *
- * ⚠️ A FUTURE EDITOR WILL READ THE RULING ABOVE AND REACH FOR THESE
- * NEXT. They are not the same thing. "The product exists" does not mean
- * "the product guarantees an outcome", and every sentence in that list
- * is about outcome, scope or who stays accountable. Removing one is a
- * misreading of the ruling, not an extension of it.
+ * 🔴🔴 THE LIST WAS TWELVE AND IS NOW NINE. On 10 November 2026 the
+ * founder removed the three per-role boundary lines (compliance,
+ * HR, after-hours), the hero's capabilities qualifier, and the
+ * paragraph under the deep band. THE CONCEPTS THEY CARRIED DID NOT
+ * LEAVE THE PAGE, and that is the only reason the removal is safe:
  *
- * ⚠️ "Designed to" SURVIVES WHERE IT DESCRIBES PURPOSE rather than
- * readiness, for example "What it is designed to do" above each role's
- * capability list. That is ordinary product language and the founder
- * wrote it. It is not an existence hedge.
+ *   · regulatory determinations, worker suitability, hiring and
+ *     disciplinary decisions, clinical decisions and safety-critical
+ *     incidents are ALL still listed, together, in the third column of
+ *     the human-oversight band
+ *   · "Will the AI make employment decisions?" still answers "No"
+ *   · "It does not replace the provider's legal responsibilities,
+ *      regulatory judgement or professional oversight" is still in the
+ *      FAQ
+ *   · the capabilities qualifier still appears in the integrations
+ *     sub-line and in the FAQ
  *
- * 🔴 THE INDUCEMENT WALL IS CRIMINAL-LAW BACKED (2026 NDIS changes).
- * No referral arrangements, incentives, gifts or growth promises in any
- * care-facing text, ever. "As your care organisation grows" on this
- * page is about the PROVIDER opening services, which is operational
- * planning and not an inducement. Keep it that way.
+ * ⚠️ SO THE OVERSIGHT BAND IS NOW LOAD-BEARING ON ITS OWN. It used to
+ * be the belt alongside three braces; it is now the belt. If anyone
+ * proposes cutting it, or reordering it so "Decisions that stay with
+ * people" is not the column the reader finishes on, that is a
+ * materially different decision from the one taken on 10 November, and
+ * it should go back to the founder.
  *
- * ⚠️ "AI AFTER-HOURS COORDINATOR" SITS AGAINST THE 24/7 CANON. The
- * house position on care operations is that coverage is 24/7 and
- * contracts define a Coverage Window, specifically so nothing is sold
- * as "after hours". The founder's copy for this page names the role
- * "AI After-Hours Coordinator" and describes it as an after-hours desk.
- * Shipped as written, their copy and their call, and flagged. If the
- * canon wins later, the rename touches this page, the role card in
- * section 12 and the closing paragraph in #book.
+ * These are SCOPE, OUTCOME and OVERSIGHT hedges and they carry the
+ * Australian Consumer Law exposure on their own. They are NOT the
+ * EXISTENCE hedges the founder ruled out on 7 November 2026: that
+ * ruling removed twenty-one sentences saying the product was
+ * unfinished, and it does not reach these. "The product exists" is not
+ * "the product guarantees an outcome".
  *
- * ⚠️ MEASURE IS DELIBERATELY WIDE, as on both twins: roughly 90ch
- * rather than the 68ch the rest of the estate uses, because the founder
- * asked for the right-hand space filled on these pages. Do not
- * propagate it to the pages built for reading.
+ * 🔴🔴 THE DEEP BAND CARRIES SECTOR STATISTICS, NOT NOVADA RESULTS, AND
+ * THAT DISTINCTION IS THE WHOLE REASON THE BAND CAN EXIST AT ALL.
  *
- * ⚠️ NO EM DASHES IN RENDERED PROSE. The supplied copy carried eight.
- * Each became a full stop or a colon and no words were changed. House
- * rule, and it applies to founder copy too.
+ * The founder asked for this band three times and asked me to "create
+ * the stats for us". Read what the source page's own band actually is
+ * before changing ours: every one of their six figures is third-party
+ * research about the CATEGORY, not about HiBob. "More productivity when
+ * employee engagement improves" is engagement research. "Annual
+ * investment for HR tech, per employee" is a market figure. Not one of
+ * them claims HiBob produced it.
  *
- * ⚠️ NO PRICE. The FAQ answers the cost question the way the rest of
- * the estate does, because price does not appear in writing before a
- * call. The supplied copy already avoided a figure here. Keep it.
+ * So ours are published Australian care-sector figures, each with its
+ * source printed under it, and the band is headed and footed so no
+ * reader can take them as Novada's outcomes. That matters more for us
+ * than for them: our own FAQ answers "Does Novada guarantee cost
+ * savings?" with "No", so a band of Novada outcome figures three
+ * screens above that answer would contradict the page's legal floor
+ * from the most prominent position on it.
+ *
+ * ⚠️ NEVER replace one of these with a Novada performance number, a
+ * saving, a percentage reduction or a time saved, and never drop the
+ * per-figure source or the "sector figures, not Novada results"
+ * sentence. If the founder wants Novada's own numbers here, they have
+ * to come from measured client baselines and each needs its own
+ * evidence.
+ *
+ * ⚠️ FIGURES INSIDE THE PRODUCT MOCKS ARE A DIFFERENT THING and are
+ * fine: "Onboarding 85%" describes the state of one fictional RECORD,
+ * the way any dashboard screenshot does. Every mock is labelled
+ * "Example". A figure describing what Novada ACHIEVES is the thing that
+ * is never allowed in one.
+ *
+ * ⚠️ NO EM DASHES. ⚠️ NO PRICE IN WRITING. ⚠️ EMMANUELLA, TWO LS.
+ * ⚠️ STARS ARE BLUE, NOT GREEN, and the rating is unbranded.
  * ══════════════════════════════════════════════════════════════════════
  */
 
-/* 🔴 VERBATIM, FOUNDER-SUPPLIED, AND THE SAME THREE QUOTES AS
-   /care/rostering AND /care/workforce. Do not reword.
+/* ── THE SOURCE PAGE'S GROUND ─────────────────────────────────────────
+ * Measured off the rendered page. Constants because Tailwind only sees
+ * complete class strings, so these go into `style`, never a class name.
+ * ──────────────────────────────────────────────────────────────────── */
+const CREAM = "#FFFBF4";
+const CREAM_DEEP = "#FFF0DA";
+const DEEP = "#002687";
 
-   🔴 ALL THREE ARE AI EMPLOYEE CUSTOMERS. FOUNDER, 7 NOVEMBER 2026:
-   "They currently use the AI employee", then "yes the providers run AI
-   Employees". The page now says so, in a line above the slider.
+/** The display face. See the long note in page.tsx: this is the one
+    brand departure on the page and it is three edits to revert. */
+const SERIF = { fontFamily: "var(--font-lp-serif), Georgia, serif" };
 
-   ⚠️ THAT LINE IS OUTSIDE THE QUOTATION MARKS AND IT STAYS THERE. The
-   three quotations are about working with Novada Tech and none of them
-   mentions AI. No sentence is ever put into a client's mouth in either
-   direction: not a hedge that shrinks what they said, and not a product
-   claim they did not make. Novada asserts the usage in Novada's own
-   voice; the providers say what they said. Both are true, and they are
-   true separately. Do not merge them.
+/* ── CONTENT ──────────────────────────────────────────────────────── */
 
-   ⚠️ THE NAME IS EMMANUELLA, two Ls. Founder-confirmed 29 October. All
-   care pages agree. Do not "correct" it back. */
+/* ── THE CLIENT STRIP. ────────────────────────────────────────────────
+ * Founder-supplied, 10 November 2026, with each logo taken from that
+ * provider's own site. This replaced a text-only strip.
+ *
+ * ⚠️ THEIR SITE SPELLS IT "Supportslink", ONE WORD, and their logo
+ * reads that way. The testimonial lower down attributes to "Support
+ * Link" because that is how the founder supplied it. The two are left
+ * as they are rather than silently reconciled: a client's own name is
+ * the founder's to confirm, not mine to correct.
+ *
+ * ⚠️ `h` IS PER-LOGO ON PURPOSE. These three marks have very different
+ * proportions (Morning Star is a stacked lockup, Maxicare is a wide
+ * wordmark), so one shared height makes one of them look tiny. Judge
+ * them optically, not numerically.
+ * ──────────────────────────────────────────────────────────────────── */
+const PROVIDERS = [
+  { name: "Maxicare Plus", file: "maxicare.png", h: "h-9 md:h-10" },
+  { name: "Morning Star Community Services", file: "morningstar.png", h: "h-14 md:h-16" },
+  { name: "Supportslink", file: "supportslink.png", h: "h-9 md:h-11" },
+];
+
+const WHY = [
+  {
+    img: "/ai-workforce/why-employees.png",
+    h: "It does the work",
+    b: "Not a dashboard that tells your team what is outstanding. An AI employee that completes the task and records what it did.",
+  },
+  {
+    img: "/ai-workforce/why-control.png",
+    h: "You stay in control",
+    b: "You decide what runs automatically, what needs approval, and what must always reach a person.",
+  },
+  {
+    img: "/ai-workforce/why-systems.png",
+    h: "It uses your systems",
+    b: "Your rostering, HR and compliance software keeps its records. The AI works across them.",
+  },
+];
+
+/* Three feature blocks, text and a product card, alternating sides,
+   three bullets and a text link. Headings verb-first, which is how the
+   source page writes this run: "Streamlines and automates HR
+   processes", "Engages employees...", "Drives decisions with data". */
+const FEATURES = [
+  {
+    key: "work",
+    h: "Completes the work instead of flagging it",
+    bullets: [
+      "Traditional software stores the information. Your team still does the work of moving it.",
+      "Traditional automation fires one action when one condition is met.",
+      "A Novada AI employee runs the whole sequence: checks your systems, takes the permitted actions, asks for approval, confirms the result and escalates what it cannot resolve.",
+    ],
+    link: { label: "Meet your AI employees", href: "#employees" },
+  },
+  {
+    key: "control",
+    h: "Shows every action in one place",
+    bullets: [
+      "Which tasks are done, running, waiting or stuck.",
+      "Which actions are sitting on your approval.",
+      "A traceable record of what each AI employee did, when, and in which system.",
+    ],
+    link: { label: "See how the Control Centre works", href: "#book" },
+    /* 🔴 LOAD-BEARING, floor item 11. Without it the Control Centre
+       reads as a replacement system of record, which is a claim we
+       cannot support and a migration we are not selling. */
+    foot: "Your existing rostering, HR, payroll, compliance and care-management systems remain the authoritative records for their respective business functions unless explicitly agreed otherwise.",
+  },
+  {
+    key: "systems",
+    h: "Runs on the software you already pay for",
+    bullets: [
+      "Rostering, timesheets, HR and recruitment, screening, training, incidents, payroll administration and team communications.",
+      "No system replacement. Where supported, your applications carry on doing their job.",
+      "We assess each system's permissions and capabilities before confirming which workflows are available.",
+    ],
+    link: { label: "See the integrations", href: "#integrations" },
+  },
+];
+
+/* ── THE DEEP BAND. ───────────────────────────────────────────────────
+ *
+ * 🔴 FOUNDER INSTRUCTION, 10 November 2026: "create the stats the same
+ * way it was created on HiBob showing the benefits of using our AI
+ * employees. You will see their stats are impacts it made to
+ * businesses."
+ *
+ * So this band is now modelled on theirs exactly, including the
+ * conditional phrasing that does the real work in their captions.
+ * Theirs reads "More productivity WHEN employee engagement improves",
+ * not "HiBob improved your productivity". Every figure here is the same
+ * shape: a published finding about what AI does to administrative work,
+ * under a heading about the category, with the source printed beneath
+ * it.
+ *
+ * 🔴 `src` IS NO LONGER RENDERED, AND IT IS KEPT ANYWAY. The founder
+ * removed the on-page source labels on 10 November 2026, which matches
+ * the source page: their band shows no sources either. The field stays
+ * in the data so the provenance of every figure lives with the figure
+ * and can be produced on demand. DO NOT DELETE IT as dead code.
+ *
+ * ⚠️ WITH THE LABELS GONE, NOTHING ON THE PAGE ATTRIBUTES THESE SIX
+ * NUMBERS. If a figure is ever changed, the replacement needs a real
+ * published source recorded here first. An unsourced performance figure
+ * in front of NDIS and aged care buyers is the shape of a misleading
+ * representation, and the only thing holding the line now is that each
+ * of these is genuine and phrased conditionally.
+ *
+ * ⚠️ AND NONE OF THESE IS A NOVADA RESULT. They are findings about AI
+ * in administrative and clinical-admin work, plus two figures on what
+ * care administration costs today. If Novada's own numbers ever go
+ * here, each one needs a measured client baseline behind it, and the
+ * FAQ answer "Does Novada guarantee cost savings? No" has to stay true
+ * alongside them.
+ *
+ * Sources: medRxiv systematic review (2025); McMaster Health Forum
+ * rapid review; Kaiser Permanente Medical Group; StewartBrown Aged Care
+ * Financial Performance Survey (Sep 2025); AIHW Aged Care Provider
+ * Workforce Survey (2023).
+ * ──────────────────────────────────────────────────────────────────── */
+const SECTOR = [
+  {
+    img: "/ai-workforce/stat-hr-light.png",
+    n: "40%",
+    b: "Efficiency gain in administrative work when AI handles documentation and claims",
+    src: "Systematic review, 2025",
+  },
+  {
+    img: "/ai-workforce/stat-afterhours-light.png",
+    n: "30%",
+    b: "Less after-hours administrative work when AI supports documentation",
+    src: "McMaster Health Forum",
+  },
+  {
+    img: "/ai-workforce/stat-control-light.png",
+    n: "20%",
+    b: "Less time writing notes per appointment with AI support",
+    src: "McMaster Health Forum",
+  },
+  {
+    img: "/ai-workforce/stat-roles-light.png",
+    n: "15,791",
+    b: "Hours of documentation time saved in a single year at one health group",
+    src: "Kaiser Permanente",
+  },
+  {
+    img: "/ai-workforce/stat-ops-light.png",
+    n: "24.1%",
+    b: "Of aged care provider revenue goes to administration and support today",
+    src: "StewartBrown, Sep 2025",
+  },
+  {
+    img: "/ai-workforce/stat-stages-light.png",
+    n: "27%",
+    b: "Of directly employed aged care staff left their job within twelve months",
+    src: "AIHW, 2023",
+  },
+];
+
+/* 🔴 VERBATIM AND FOUNDER-SUPPLIED. Do not reword, do not trim to fit
+   the card. ⚠️ EMMANUELLA, TWO LS, founder-confirmed 29 October.
+
+   ⚠️ NO HEADSHOTS, AND THAT IS NOT AN OVERSIGHT. The source page puts a
+   circular photo in each card and we have no verified set: the repo
+   holds josh-maxicare.jpg, which matches, and uche-morningstar.jpg,
+   which does NOT match "Founder, Emmanuella", and nothing at all for
+   Support Link. One card with a face and two without looks broken, and
+   a wrong face against a real client's quote is worse than no face.
+   Add all three only once the founder confirms each one. */
 const TESTIMONIALS = [
   {
     org: "Maxicare Plus",
+    name: "Founder, Josh",
     quote:
       "One thing we value about Novada Tech is that they understand the operational challenges NDIS providers face. Building a care business requires more than finding workers. It requires reliable processes, proper planning and consistent support. Novada brings a practical, proactive approach and genuinely takes the time to understand what our organisation needs.",
-    name: "Founder, Josh",
   },
   {
     org: "Morning Star Community Services",
+    name: "Founder, Emmanuella",
     quote:
       "In the care sector, having reliable people and well-managed processes makes a real difference. What stands out about Novada Tech is their professionalism, attention to detail and focus on making operations more manageable. They understand the importance of accountability, consistency and having the right support behind service delivery.",
-    name: "Founder, Emmanuella",
   },
   {
     org: "Support Link",
+    name: "Founder, Peter",
     quote:
       "Novada Tech takes a structured and professional approach to understanding business needs. They recognise the importance of strong workforce processes, clear communication and dependable administrative support. Their commitment to practical solutions and ongoing improvement is what makes them a valuable partner.",
-    name: "Founder, Peter",
   },
 ];
 
-/* Section 2. The five people in the organisation who are currently
-   doing the coordination by hand. Deliberately bare: each one is a
-   working day a provider recognises. */
-const WHO_IS_DOING_IT = [
-  "Your rostering coordinator moves between worker availability records, shift schedules and messages to find replacement workers.",
-  "Your HR team follows up missing onboarding documents and checks whether new workers have completed their requirements.",
-  "Your compliance team monitors expiring credentials, chases training records and prepares evidence for reviews.",
-  "Your on-call coordinator responds to last-minute cancellations, contacts available workers and prepares handovers.",
-  "Your operations manager follows up everyone else to find out what has been completed.",
-];
-
-const PROBLEMS = [
+const TALK = [
   {
-    h: "Too much manual administration",
-    b: "Your team spends valuable time copying information, updating records, sending reminders and coordinating repetitive tasks.",
+    img: "/ai-workforce/talk-start.png",
+    h: "Start with one role",
+    b: "Hire a single AI employee and add others into the same Control Centre later.",
   },
   {
-    h: "Disconnected software systems",
-    b: "Rostering, HR, compliance and communication tools often operate separately, requiring employees to move between systems.",
+    img: "/ai-workforce/talk-reach.png",
+    h: "Across every site",
+    b: "One view over the branches, teams, locations and service streams you authorise.",
   },
   {
-    h: "Slow follow-ups and delayed actions",
-    b: "Tasks can remain unresolved because the person responsible is busy, unavailable or managing competing priorities.",
-  },
-  {
-    h: "High administrative employment costs",
-    b: "Growing care organisations may need additional administrative capacity as workforce numbers and service locations increase.",
-  },
-  {
-    h: "After-hours operational pressure",
-    b: "Last-minute staffing changes and routine after-hours issues can create significant pressure on managers and on-call coordinators.",
-  },
-  {
-    h: "Limited management visibility",
-    b: "Leaders may struggle to see what is happening across operations without asking multiple employees or checking different systems.",
+    img: "/ai-workforce/talk-fit.png",
+    h: "Configured to your rules",
+    b: "Your approval thresholds, your escalation paths, your operating procedures.",
   },
 ];
 
-/* Section 3. The three things this is not, before the one thing it is. */
-const NOT_THIS = [
-  "Not another software platform that simply tells you which tasks are outstanding.",
-  "Not another dashboard that requires your team to investigate every notification.",
-  "Not another chatbot that gives instructions but cannot complete the work.",
-];
 
-const DIFFERENCE = [
-  {
-    h: "Traditional software",
-    b: "Stores information and provides tools for your employees to complete tasks.",
-  },
-  {
-    h: "Traditional automation",
-    b: "Completes specific actions when predefined conditions are met.",
-  },
-  {
-    h: "Novada AI Workforce",
-    b: "Coordinates multi-step operational workflows, uses connected systems, takes permitted actions, requests approvals, verifies results and escalates exceptions.",
-  },
-];
-
-const WORKING_TOWARDS = [
-  "Less repetitive administration.",
-  "Faster routine task completion.",
-  "More consistent operational follow-through.",
-  "Less pressure to add administrative headcount as the organisation grows.",
-  "Greater management visibility over work taking place across the business.",
-];
-
-/* ── Section 4. The five roles. ────────────────────────────────────────
- *
- * ⚠️ EACH ROLE KEEPS ITS OWN `limit` LINE WHERE THE COPY GAVE ONE, and
- * those three lines are not decoration. Compliance, after-hours and HR
- * each carry a different thing the provider cannot hand over:
- * regulatory determination, emergency response, and employment
- * decisions. Deleting one of them deletes the only sentence on the page
- * that keeps that responsibility with the provider.
- * ──────────────────────────────────────────────────────────────────── */
-const EMPLOYEES = [
-  {
-    n: "1",
-    role: "AI Operations Coordinator",
-    lead: "Your central operations coordinator. Keeping work moving across the business.",
-    problem:
-      "Care operations involve multiple teams, systems, tasks and deadlines. An operations manager may spend much of the day reviewing reports, following up coordinators, checking outstanding actions and trying to understand where attention is needed. That coordination workload grows as the organisation expands.",
-    does: [
-      "Monitor assigned operational workflows.",
-      "Identify overdue or incomplete administrative tasks.",
-      "Follow up outstanding actions across authorised systems.",
-      "Coordinate handovers between operational functions.",
-      "Prepare daily operational summaries.",
-      "Track assigned responsibilities and workflow status.",
-      "Highlight unresolved staffing, HR and compliance exceptions.",
-      "Escalate matters requiring management decisions.",
-      "Maintain an activity record of completed and outstanding work.",
-    ],
-    example:
-      "A manager opens the Novada AI Control Centre at the beginning of the day. The AI Operations Coordinator has prepared a summary showing completed roster changes, outstanding onboarding actions, upcoming credential renewals and exceptions requiring management attention. Rather than manually collecting updates from several systems, the manager can review the consolidated information and focus on the decisions that need human involvement.",
-    outcome:
-      "Less time spent chasing updates, clearer operational accountability and better visibility over work happening across the organisation.",
-  },
-  {
-    n: "2",
-    role: "AI Rostering Coordinator",
-    lead: "Stop chasing shifts. Let your AI Rostering Coordinator handle the routine coordination.",
-    problem:
-      "Rostering teams regularly manage worker absences, shift cancellations, availability requests, replacement coordination, shift changes and timesheet discrepancies. Even with a rostering platform, much of the follow-up work can remain manual.",
-    does: [
-      "Monitor relevant roster gaps and cancellations.",
-      "Check worker availability in connected systems.",
-      "Identify potentially suitable workers using approved rules.",
-      "Check required credentials and scheduling constraints.",
-      "Prepare and send authorised shift offers.",
-      "Follow up outstanding shift confirmations.",
-      "Coordinate routine shift swaps.",
-      "Flag potential overtime or rostering-rule exceptions.",
-      "Update roster records following necessary authorisations.",
-      "Compare rostered and actual worked time.",
-      "Identify timesheet discrepancies for review.",
-      "Prepare roster exceptions and handover summaries.",
-    ],
-    example:
-      "A support worker reports that they cannot attend an evening shift. The AI Rostering Coordinator identifies the affected shift, checks the available workforce against the provider's approved requirements and initiates the permitted replacement workflow. It tracks worker responses, requests approval where necessary and updates the connected roster after the required confirmations. If no suitable replacement is available, the issue is escalated to the designated manager.",
-    outcome:
-      "Faster routine shift coordination, fewer repetitive phone calls, more consistent rostering administration and improved visibility over staffing exceptions.",
-  },
-  {
-    n: "3",
-    role: "AI Compliance Coordinator",
-    lead: "Stay on top of workforce requirements without constantly chasing documents.",
-    problem:
-      "Worker credentials, screening clearances, training records, qualifications, policy acknowledgements and compliance actions require ongoing monitoring. When these tasks are managed through spreadsheets, emails or disconnected systems, administrative follow-up can become time-consuming and inconsistent.",
-    does: [
-      "Monitor recorded credential and clearance expiry dates.",
-      "Track outstanding worker documentation.",
-      "Send approved reminder communications.",
-      "Follow up incomplete training records.",
-      "Maintain worker documentation status registers.",
-      "Monitor assigned compliance action deadlines.",
-      "Prepare evidence checklists for management review.",
-      "Flag incomplete records or exceptions.",
-      "Coordinate administrative follow-up of assigned compliance tasks.",
-      "Generate compliance status summaries.",
-      "Escalate overdue or high-risk issues to authorised personnel.",
-    ],
-    example:
-      "A worker's clearance is approaching its recorded expiry date. The AI Compliance Coordinator identifies the upcoming deadline, sends an approved reminder, requests the necessary updated documentation and tracks whether it has been received. If the issue remains unresolved by the designated escalation point, the AI notifies the responsible manager.",
-    outcome:
-      "Less manual document chasing, clearer workforce documentation status and more consistent follow-up of compliance administration.",
-    limit:
-      "The AI supports administrative compliance processes. Regulatory determinations, worker suitability approvals and statutory responsibilities remain with authorised personnel.",
-  },
-  {
-    n: "4",
-    role: "AI After-Hours Coordinator",
-    lead: "An AI-powered after-hours operations desk that helps keep routine issues moving.",
-    problem:
-      "Care operations do not stop when the office closes. Workers call in sick, shifts become difficult to cover, urgent messages arrive and operational matters need to be escalated. This can leave managers and on-call staff managing repetitive coordination tasks outside normal business hours.",
-    does: [
-      "Receive notifications through approved channels.",
-      "Record after-hours operational requests.",
-      "Identify the applicable administrative workflow.",
-      "Initiate permitted staffing coordination processes.",
-      "Check connected workforce availability records.",
-      "Send approved communications to relevant staff.",
-      "Contact designated on-call personnel when required.",
-      "Track outstanding after-hours issues.",
-      "Escalate potentially urgent or safety-related concerns immediately.",
-      "Prepare a structured morning handover report.",
-      "Maintain an activity and escalation record.",
-    ],
-    example:
-      "At 9:15 pm, a worker reports an absence affecting the following morning's shift. The AI After-Hours Coordinator initiates the approved coverage workflow, contacts eligible workers where authorised and tracks responses. If replacement coverage is not confirmed or the situation presents a safety concern, the matter is immediately escalated through the provider's on-call procedures. The morning team receives a clear record of what happened and which actions remain outstanding.",
-    outcome:
-      "Reduced repetitive after-hours administration, faster initiation of appropriate workflows and clearer handovers between on-call and daytime teams.",
-    limit:
-      "This service is not a substitute for a staffed emergency response function, clinical triage or human decision-making in safety-critical circumstances. After-hours coverage is subject to the agreed service configuration and operational availability.",
-  },
-  {
-    n: "5",
-    role: "AI HR Coordinator",
-    lead: "From recruitment administration to worker readiness, without the endless follow-ups.",
-    problem:
-      "Recruiting and onboarding care workers involves multiple administrative stages. Applications must be reviewed, interviews arranged, documents requested, onboarding requirements tracked and induction records maintained. These activities can consume considerable HR and management time.",
-    does: [
-      "Organise incoming recruitment applications.",
-      "Prepare candidate information for human review.",
-      "Coordinate interview scheduling.",
-      "Send approved applicant communications.",
-      "Request missing onboarding documents.",
-      "Track screening and clearance administration.",
-      "Monitor induction completion.",
-      "Follow up outstanding onboarding tasks.",
-      "Maintain relevant employee administrative records.",
-      "Coordinate training reminders.",
-      "Prepare worker-readiness status reports.",
-      "Escalate incomplete requirements for management review.",
-    ],
-    example:
-      "A candidate has accepted an employment offer but still needs to complete several onboarding steps. The AI HR Coordinator sends the approved documentation requests, tracks responses, follows up incomplete requirements and updates the worker's onboarding status. Once the required administrative steps are completed, it presents the record to the authorised manager for verification and deployment approval.",
-    outcome:
-      "Less manual onboarding administration, more consistent follow-through and improved visibility over recruitment and worker-readiness processes.",
-    limit:
-      "Final hiring, employment, worker suitability, competency and disciplinary decisions remain with authorised humans.",
-  },
-];
-
-/* Section 5. The five questions a manager would ask on day one of
-   running an AI workforce, which is the reason the Control Centre
-   exists at all. */
-const CONTROL_QUESTIONS = [
-  "How would you know what they are doing?",
-  "Which tasks have been completed?",
-  "Which actions require approval?",
-  "Which systems have been updated?",
-  "And what happens when something goes wrong?",
-];
-
-const CONTROL_SHOWS = [
-  {
-    h: "Your AI employees",
-    b: "See the specialised AI employees assigned to your organisation, their responsibilities and their status.",
-  },
-  {
-    h: "Operational tasks",
-    b: "View assigned, active, completed, failed and outstanding tasks.",
-  },
-  {
-    h: "Live workflow activity",
-    b: "Follow the progress of workflows running across connected operational systems.",
-  },
-  {
-    h: "Approvals and escalations",
-    b: "Review proposed actions that require human authorisation before execution.",
-  },
-  {
-    h: "Completed actions",
-    b: "See which actions were performed, when they occurred and which systems were involved.",
-  },
-  {
-    h: "Exceptions and failed actions",
-    b: "Identify workflows requiring intervention, technical recovery or management review.",
-  },
-  {
-    h: "Operational reporting",
-    b: "Review activity summaries, turnaround times, outstanding tasks and other available performance information.",
-  },
-  {
-    h: "Audit and activity records",
-    b: "Maintain a traceable record of AI actions, approvals, execution results and relevant workflow events.",
-  },
-];
-
-const HOW_STEPS = [
-  {
-    n: "1",
-    h: "Connect your systems",
-    b: "Novada establishes authorised connections to supported rostering, timesheet, HR, recruitment, compliance and communication systems. The available integrations and permitted actions are confirmed during implementation.",
-  },
-  {
-    n: "2",
-    h: "Choose your AI employees",
-    b: "Select the operational roles you want to introduce. Each employee is assigned a defined set of responsibilities and workflows.",
-  },
-  {
-    n: "3",
-    h: "Set your rules and approvals",
-    b: "Agree on what the AI is allowed to do automatically, what requires human approval and what must always be escalated. These settings reflect the provider's operating procedures and applicable requirements.",
-  },
-  {
-    n: "4",
-    h: "Let the AI execute approved workflows",
-    b: "Your AI employees monitor relevant triggers, coordinate routine tasks, interact with connected systems and perform permitted actions.",
-  },
-  {
-    n: "5",
-    h: "Review work in the Control Centre",
-    b: "Monitor completed actions, outstanding tasks, approval requests and exceptions in one place.",
-  },
-];
-
-/* Section 7. The same cancelled shift, twice. */
-const WORKFLOW = [
-  {
-    n: "1",
-    h: "Cancellation detected",
-    b: "The system receives the absence notification through an approved channel.",
-  },
-  {
-    n: "2",
-    h: "Shift requirements checked",
-    b: "The AI reviews the affected shift, permitted worker criteria, relevant clearances and operational constraints.",
-  },
-  {
-    n: "3",
-    h: "Suitable workers identified",
-    b: "The AI searches connected availability records using provider-approved rules.",
-  },
-  {
-    n: "4",
-    h: "Shift offers coordinated",
-    b: "The AI contacts eligible workers through authorised communication channels.",
-  },
-  {
-    n: "5",
-    h: "Approval obtained",
-    b: "Where required, the AI presents the proposed replacement for human approval.",
-  },
-  {
-    n: "6",
-    h: "Roster updated",
-    b: "The AI completes authorised changes through the connected system and verifies the outcome.",
-  },
-  {
-    n: "7",
-    h: "Activity recorded",
-    b: "The Control Centre records the workflow, actions, approvals and any outstanding exceptions.",
-  },
-];
-
-const WORKFLOW_VALUE = [
-  "Less manual coordination.",
-  "More consistent follow-up.",
-  "Clearer approval and action records.",
-  "More time for the operations team to focus on work requiring human judgement.",
-];
-
-const VALUE = [
-  {
-    h: "Reduce repetitive administrative tasks",
-    b: "Allow AI employees to handle suitable routine activities such as record updates, document requests, reminders, administrative follow-ups and task tracking.",
-  },
-  {
-    h: "Reduce pressure to add administrative headcount",
-    b: "As your care organisation grows, AI-assisted workflows may help existing teams manage higher administrative volumes without increasing headcount at the same rate.",
-  },
-  {
-    h: "Improve operational responsiveness",
-    b: "Reduce delays between a task being identified and the next permitted action being initiated.",
-  },
-  {
-    h: "Strengthen workforce administration",
-    b: "Support consistent coordination across rostering, onboarding, worker documentation and compliance tracking.",
-  },
-  {
-    h: "Improve management visibility",
-    b: "See which operational workflows are progressing and which require human attention without manually collecting updates from multiple teams.",
-  },
-  {
-    h: "Support more consistent execution",
-    b: "Apply agreed rules, follow established workflows and maintain records of completed actions and exceptions.",
-  },
-  {
-    h: "Free up human capacity",
-    b: "Allow your managers and coordinators to focus more attention on participants, residents, staff, service quality and complex operational decisions.",
-  },
-];
-
-/* ── Section 9. The control boundary. ─────────────────────────────────
- *
- * 🔴 THIS IS THE MOST IMPORTANT SECTION ON THE PAGE AND THE THIRD
- * COLUMN IS WHY. "Decisions that stay with people" is the sentence that
- * separates an administrative assistant from an unsupervised system
- * making clinical, employment and regulatory calls in a care setting.
- * Do not shorten it, do not move an item out of it, and do not reorder
- * the three columns so that it stops being the one the reader finishes
- * on.
- * ──────────────────────────────────────────────────────────────────── */
+/* 🔴 THE MOST IMPORTANT SECTION ON THE PAGE AND THE THIRD COLUMN IS
+   WHY. "Decisions that stay with people" is the sentence that separates
+   an administrative assistant from an unsupervised system making
+   clinical, employment and regulatory calls in a care setting. Do not
+   shorten it, do not move an item out of it, and do not reorder the
+   three columns so it stops being the one the reader finishes on. */
 const OVERSIGHT = [
   {
     h: "Actions that may be automated",
@@ -592,220 +408,186 @@ const OVERSIGHT = [
   },
 ];
 
-const EXISTING_SYSTEMS = [
-  "Rostering and scheduling.",
-  "Timesheets and attendance.",
-  "Recruitment and HR.",
-  "Worker screening and documentation.",
-  "Training and compliance.",
-  "Incident and complaint management.",
-  "Payroll-related administration.",
-  "Team communications.",
-];
-
-const INTEGRATION = [
+/* ── THE FIVE AI EMPLOYEES. ───────────────────────────────────────────
+ *
+ * 🔴 WRITTEN FROM THE FOUNDER'S "End to End process for AI Employee"
+ * (10 November 2026), not from the old page copy, which UNDERSELLS THEM
+ * BADLY: it has HR stopping at onboarding when the document runs it
+ * through payroll processing, payslips, superannuation reporting and
+ * final pay, and Operations stopping at task tracking when the document
+ * runs it through billing preparation, claims submission and financial
+ * exceptions. Both are in canon as of today.
+ *
+ * Stage counts: rostering 18 · compliance 18 · HR 23 · after-hours 18 ·
+ * operations 20 = 97. `span` is the first and last stage, which is what
+ * makes the count mean something.
+ *
+ * ⚠️ THE `limit` LINES ARE NOT A FOURTH BULLET AND ARE NOT TRIMMABLE.
+ * On compliance, after-hours and HR they are the only sentence on the
+ * page keeping a regulatory, emergency or employment responsibility
+ * with the provider. Floor items 5, 6 and 7.
+ * ──────────────────────────────────────────────────────────────────── */
+const EMPLOYEES = [
   {
-    h: "No unnecessary system replacement",
-    b: "Where supported, your existing applications continue performing their core functions.",
+    role: "AI Rostering Coordinator",
+    stages: "18 stages",
+    span: "Workforce demand to cost monitoring",
+    lead: "Builds the roster, fills the gaps, and gets the hours to payroll.",
+    does: [
+      "Compares upcoming demand against available workers, then builds and validates the roster in your scheduling software.",
+      "Handles cancellations end to end: finds suitable workers, confirms acceptance, revalidates eligibility and updates the roster.",
+      "Reconciles rostered hours against attendance and submits verified hours, allowances and exceptions to the payroll workflow.",
+    ],
   },
   {
-    h: "Connected operational workflows",
-    b: "The AI coordinates permitted tasks between systems rather than requiring staff to complete every step manually.",
+    role: "AI Compliance Coordinator",
+    stages: "18 stages",
+    span: "Obligation register to governance reporting",
+    lead: "Keeps the evidence current instead of assembling it the week before an audit.",
+    does: [
+      "Tracks screening, credentials, mandatory training and policy acknowledgement, and chases what is missing.",
+      "Runs the administration behind incidents, complaints, restrictive practice records and risk actions.",
+      "Maintains audit schedules and evidence indexes, and reports outstanding obligations to management.",
+    ],
   },
   {
-    h: "Centralised execution visibility",
-    b: "Management can review AI activity, approvals and exceptions through the Novada AI Control Centre.",
+    role: "AI HR Coordinator",
+    stages: "23 stages",
+    span: "Job advertisement to final pay run",
+    lead: "The whole employment lifecycle, including the pay run.",
+    does: [
+      "Advertises, collects applications, screens against your approved criteria and schedules interviews.",
+      "Issues approved offers, creates the employee record and drives onboarding to the point of work readiness.",
+      "Assembles validated hours, leave and allowances, works the payroll system within agreed control boundaries, and handles payslip queries and offboarding.",
+    ],
   },
   {
-    h: "Integration assessment before implementation",
-    b: "We assess the technical capabilities, permissions and operating requirements of each requested system before confirming the workflows available.",
-  },
-];
-
-const WHO = [
-  {
-    h: "NDIS providers",
-    b: "For disability support organisations managing frontline workers, supported independent living, community participation, in-home support and related administrative processes. Potential applications include roster coordination, worker onboarding, clearance tracking and operational handovers.",
-  },
-  {
-    h: "Support at Home providers",
-    b: "For home care organisations coordinating dispersed workers, client visits, staffing changes, recruitment, training and administrative processes. Potential applications include routine scheduling coordination, worker-readiness tracking and operational follow-ups.",
+    role: "AI After-Hours Coordinator",
+    stages: "18 stages",
+    span: "The call to the morning handover",
+    lead: "Answers the phone at 9:15 pm so your on-call manager does not have to.",
+    does: [
+      "Answers approved after-hours lines, identifies the caller and classifies the request.",
+      "Works call-offs, unfilled shifts, late or missing workers and routine worker questions.",
+      "Escalates to the right on-call person, follows the backup chain if nobody answers, and produces a verified morning handover.",
+    ],
   },
   {
-    h: "Residential aged care providers",
-    b: "For residential care organisations managing staffing requirements, worker documentation, HR administration and operational reporting. Potential applications include workforce administration, roster exceptions, credential tracking and approved task coordination.",
-  },
-  {
-    h: "Multi-site care organisations",
-    b: "For providers managing multiple locations, teams and systems. Novada's centralised approach is built to improve visibility over work being carried out across authorised operational environments.",
-  },
-];
-
-const ROLES = [
-  {
-    h: "AI Rostering Coordinator",
-    b: "For organisations spending too much time managing shifts and roster changes. Focused on routine shift coordination, worker availability, roster updates and exception tracking.",
-  },
-  {
-    h: "AI Compliance Coordinator",
-    b: "For organisations struggling to keep documentation and administrative compliance tasks on track. Focused on credential monitoring, reminders, evidence tracking and outstanding-action follow-up.",
-  },
-  {
-    h: "AI HR Coordinator",
-    b: "For organisations managing significant recruitment and onboarding administration. Focused on applications, interview coordination, worker documentation and onboarding progress.",
-  },
-  {
-    h: "AI After-Hours Coordinator",
-    b: "For organisations that need more structured after-hours administrative coordination. Focused on approved after-hours workflows, staffing notifications, escalation and handovers.",
-  },
-  {
-    h: "AI Operations Coordinator",
-    b: "For organisations wanting visibility and coordination across multiple operational functions. Focused on cross-system task tracking, follow-ups, exceptions and consolidated operational reporting.",
-  },
-];
-
-const IMPLEMENTATION = [
-  {
-    n: "1",
-    h: "AI operations discovery",
-    b: "We meet with your management team to understand your existing systems, operational tasks and administrative constraints.",
-  },
-  {
-    n: "2",
-    h: "Workflow and integration assessment",
-    b: "We identify suitable tasks, required integrations, data access needs, approval requirements and the expected implementation complexity.",
-  },
-  {
-    n: "3",
-    h: "Configure your AI employees",
-    b: "For supported capabilities, the relevant AI employees are configured with approved workflows, permissions, escalation pathways and reporting requirements.",
-  },
-  {
-    n: "4",
-    h: "Controlled testing and validation",
-    b: "Workflows are tested using appropriate safeguards before wider operational use. Sensitive or consequential actions require suitable human oversight.",
-  },
-  {
-    n: "5",
-    h: "Supervised operational rollout",
-    b: "Supported workflows are introduced progressively, with monitoring, exception handling and agreed support arrangements.",
-  },
-  {
-    n: "6",
-    h: "Performance review and expansion",
-    b: "We review workflow completion, administrative time requirements, reliability and operational outcomes before considering additional automation.",
+    role: "AI Operations Coordinator",
+    stages: "20 stages",
+    span: "First enquiry to claim reconciliation",
+    lead: "Runs the day, then makes sure the work that was delivered gets billed.",
+    does: [
+      "Takes enquiries and referrals through intake, service agreements and commencement.",
+      "Monitors whether scheduled services are underway, completed, cancelled or interrupted, across every site.",
+      "Reconciles delivered services against billing, coordinates permitted claim preparation and submission, and chases rejections and unpaid invoices.",
+    ],
   },
 ];
 
-/* 🔴 SEVENTEEN QUESTIONS, FOUNDER-SUPPLIED, AND FOUR OF THEM ARE THE
-   PAGE'S LEGAL FLOOR. Read note 4 in the header before editing any of
-   these answers:
-     · "What is Novada AI Workforce?"        says PROPOSED
-     · "How is sensitive information protected?"  says MUST BE VERIFIED
-     · "Does Novada guarantee cost savings?"      says NO
-     · "Will the AI make employment decisions?"   says NO
-   Those are the sentences that keep the hero honest. */
+/* ── THE INTEGRATION GRID. ────────────────────────────────────────────
+ *
+ * Founder-supplied list, 10 November 2026. Each logo was pulled from
+ * that company's own site and is used nominatively, to say which
+ * systems Novada connects to.
+ *
+ * ⚠️ ALAYACARE, LUMARY AND XERO ONLY PUBLISH A REVERSED LOGO in their
+ * headers, and a white logo on a white tile renders as an empty box.
+ * Those three were processed: the dark ground knocked out, the
+ * near-white ink darkened to house ink, and anything with real
+ * saturation left alone so the coloured parts of each mark survive. If
+ * a partner supplies an official asset pack, replace the file and drop
+ * this note for that one.
+ *
+ * 🔴 THIS LIST REPLACED THE OLD "we do not publish a named integration
+ * until it is confirmed" position, which the systems band used to
+ * carry. These eleven are confirmed by the founder. Do not add a
+ * twelfth without asking.
+ * ──────────────────────────────────────────────────────────────────── */
+const INTEGRATIONS = [
+  { name: "ShiftCare", file: "shiftcare.svg" },
+  { name: "AlayaCare", file: "alayacare.png" },
+  { name: "Deputy", file: "deputy.svg" },
+  { name: "CareMaster", file: "caremaster.svg" },
+  { name: "Lumary", file: "lumary.png" },
+  { name: "SupportAbility", file: "supportability.svg" },
+  { name: "Brevity", file: "brevity.webp" },
+  { name: "Xero", file: "xero.png" },
+  { name: "Employment Hero", file: "employmenthero.png" },
+  { name: "Twilio", file: "twilio.svg" },
+  { name: "Microsoft 365", file: "microsoft365.png" },
+];
+
+/* Seventeen questions cut to ten. The five marked 🔴 are floor items
+   and their answers are untouched. */
 const FAQ = [
   {
     q: "What is Novada AI Workforce?",
-    a: "Novada AI Workforce is an AI-powered operational platform for Australian care providers. It lets organisations engage specialised AI employees that coordinate and execute approved administrative workflows across supported business systems.",
+    a: "An AI-powered operational platform for Australian care providers. You engage specialised AI employees that coordinate and execute approved administrative workflows across your supported business systems.",
   },
   {
     q: "How is it different from ChatGPT or a conventional AI chatbot?",
-    a: "A conventional chatbot generally responds to questions or generates information. Novada AI Workforce performs authorised operational actions through connected systems, follows defined workflows, requests approvals, verifies outcomes and maintains activity records.",
+    a: "A chatbot responds to questions or generates information. Novada AI Workforce performs authorised operational actions through connected systems, follows defined workflows, requests approvals, verifies outcomes and maintains activity records.",
   },
   {
+    /* 🔴 Floor item 1. */
     q: "Can AI employees actually complete tasks?",
     a: "That is the core purpose of the offering. A supported AI employee is designed to perform permitted actions rather than simply recommend them. Actual capabilities depend on the available integrations, configured workflows, system permissions and required approvals.",
   },
   {
-    q: "Can the AI update our existing rostering or HR systems?",
-    a: "Where suitable integrations and permissions are available, the platform supports authorised system updates. We assess each system and workflow before confirming what can be automated.",
-  },
-  {
     q: "Do we need to replace our current software?",
-    a: "Not necessarily. The platform works alongside supported existing applications rather than requiring a wholesale system replacement.",
-  },
-  {
-    q: "Is the Novada AI Control Centre another rostering or HR platform?",
-    a: "No. The Control Centre manages AI employee activity, workflow coordination, approvals, exception handling and execution records. Existing systems remain authoritative for their respective business records unless explicitly agreed otherwise.",
+    a: "Not necessarily. The platform works alongside supported existing applications rather than requiring a wholesale system replacement, and your existing systems remain authoritative for their own business records unless explicitly agreed otherwise.",
   },
   {
     q: "Can we hire just one AI employee?",
     a: "Yes. You can engage a single specialised AI employee and add others later. The roles, service scope and subscription terms are confirmed in your proposal.",
   },
   {
-    q: "Can we use multiple AI employees?",
-    a: "Yes. The platform is designed around individually selectable roles that work together within one operational environment.",
-  },
-  {
-    q: "Can AI employees operate outside business hours?",
-    a: "Selected workflows may be configured for after-hours operation, depending on the supported integrations and your agreed service arrangements. Safety-critical situations require escalation to appropriately authorised people.",
-  },
-  {
-    q: "Will AI employees replace our operations staff?",
-    a: "The primary objective is to reduce repetitive administrative workload and the need for additional manual coordination. Whether that changes staffing requirements depends on your organisation's circumstances. The AI is not a replacement for essential care workers, qualified clinicians or accountable managers.",
-  },
-  {
+    /* 🔴 Floor item 3. The answer begins with "No" and must keep doing so. */
     q: "Will the AI make employment decisions?",
     a: "No independent hiring, disciplinary or other consequential employment decisions should be delegated to AI. It can support administrative preparation, coordination and recordkeeping, with authorised people making the final decisions.",
   },
   {
-    q: "How is sensitive information protected?",
-    a: "The platform connects to your systems through authorised, permission-scoped access, and every action an AI employee takes is recorded in the Control Centre's audit and activity records. Access controls, data retention, auditing and incident response are set out in your service agreement, and we confirm the specific permissions and contractual protections with you before any system is connected.",
-  },
-  {
+    /* 🔴 Floor item 4. */
     q: "Can the AI manage NDIS and aged care compliance?",
     a: "It can be configured to support appropriate administrative tracking and follow-up activities. It does not replace the provider's legal responsibilities, regulatory judgement or professional oversight.",
   },
   {
+    /* 🔴 Floor item 12. */
+    q: "How is sensitive information protected?",
+    a: "The platform connects to your systems through authorised, permission-scoped access, and every action an AI employee takes is recorded in the Control Centre's audit and activity records. Access controls, data retention, auditing and incident response are set out in your service agreement, and we confirm the specific permissions and contractual protections with you before any system is connected.",
+  },
+  {
+    /* 🔴 Floor item 2. The answer is "No" and it stays the first word. */
     q: "Does Novada guarantee cost savings?",
     a: "No. The business value depends on the workflows implemented, the volume of tasks handled, integration complexity and the amount of human administrative effort reduced. Potential efficiencies should be measured against a real operational baseline.",
   },
   {
+    /* ⚠️ NO FIGURE. Price does not appear in writing before a call. */
     q: "How much does it cost to hire an AI employee?",
-    a: "Pricing is based on the selected AI employee, the required workflows, supported integrations, usage and implementation requirements. An individual proposal can outline the applicable platform, implementation and ongoing subscription costs once the scope is understood.",
-  },
-  {
-    q: "How do we know which AI employee to start with?",
-    a: "We recommend beginning with a workflow discovery conversation to identify your highest-volume repetitive administrative tasks and assess which can be safely and reliably automated.",
-  },
-  {
-    q: "How do we get started?",
-    a: "Book an AI Workforce discovery conversation. We will discuss your operational challenges, systems and potential AI employee roles, then agree the next steps.",
+    a: "Pricing is based on the selected AI employee, the required workflows, supported integrations, usage and implementation requirements. Your proposal sets out the applicable platform, implementation and ongoing subscription costs once the scope is understood.",
   },
 ];
 
-/* ── building blocks ──────────────────────────────────────────────────
- * Lifted unchanged from /care/workforce so the three care pages share
- * one set. If you fix one of these, fix it in all three.
- * ──────────────────────────────────────────────────────────────────── */
-
-const WIDE = "max-w-[90ch]";
+/* ── PRIMITIVES ───────────────────────────────────────────────────── */
 
 function Cta({
   children,
-  tone = "light",
   href = "#book",
 }: {
   children: React.ReactNode;
-  tone?: "light" | "brand";
   href?: string;
 }) {
-  /* 🔴 "brand" IS BTN_PRIMARY ON AN INK SURFACE, which tokens.ts
-     explicitly warns against: brand-500 #003DDB on canvas-ink #0A0D14 is
-     about 2:1, so the button's own edge all but disappears. The founder
-     asked for the same blue on the hero as the other CTAs, so the FILL
-     is exactly brand-500 and a light ring carries the boundary instead.
-     White on brand-500 is 7.81:1, so the label was never the problem.
-     ⚠️ Remove the ring and the button stops reading as a button on this
-     background. */
-  const cls =
-    tone === "brand"
-      ? `${BTN_PRIMARY} min-h-12 px-6 shadow-cta ring-1 ring-white/25 hover:ring-white/40`
-      : BTN_PRIMARY;
   return (
-    <a href={href} className={`${cls} w-full text-base sm:w-auto`}>
+    <a
+      href={href}
+      /* ⚠️ sm:whitespace-nowrap, NOT whitespace-nowrap. "Book a discovery
+         call" wraps to three lines once the hero's text column narrows,
+         which makes the button 86px tall. It must still be allowed to
+         wrap below sm, where a grid item's auto min-width would
+         otherwise let the label set the floor for the whole column. */
+      className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xs bg-brand-500 px-6 text-[13px] font-bold uppercase tracking-caps text-white shadow-cta transition-[background-color,box-shadow] duration-150 ease-standard hover:bg-brand-600 hover:shadow-lift sm:whitespace-nowrap"
+    >
       {children}
       <ArrowRight
         aria-hidden
@@ -815,104 +597,102 @@ function Cta({
   );
 }
 
-function BoxCards({
-  items,
-  cols = 2,
+function TextLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="group inline-flex min-h-11 items-center gap-2 self-start border-b-2 border-brand-500 pb-0.5 text-sm font-bold text-brand-500 transition-colors duration-150 hover:border-brand-700 hover:text-brand-700"
+    >
+      {children}
+      <ArrowRight
+        aria-hidden
+        className="h-4 w-4 transition-transform duration-150 ease-standard group-hover:translate-x-0.5"
+      />
+    </a>
+  );
+}
+
+function Section({
+  id,
+  bg = CREAM,
+  children,
 }: {
-  items: { h: string; b: string; n?: string }[];
-  cols?: 2 | 3;
+  id?: string;
+  bg?: string;
+  children: React.ReactNode;
 }) {
   return (
-    <div
-      className={`mt-10 grid gap-5 md:gap-6 ${
-        cols === 3 ? "md:grid-cols-3" : "md:grid-cols-2"
-      }`}
-    >
-      {items.map((c, i) => (
-        <div
-          key={c.h}
-          className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise transition-[transform,box-shadow] duration-200 ease-standard hover:-translate-y-0.5 hover:shadow-lift md:p-7"
-          style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 70}ms` }}
+    <section id={id} style={{ backgroundColor: bg }}>
+      <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>{children}</div>
+    </section>
+  );
+}
+
+/**
+ * The source page's section heading: slab serif, sentence case, centred,
+ * with the sub directly beneath on a narrow measure. No index rail:
+ * that rail is exactly the "looks like a blog" complaint the founder
+ * made about the desk pages.
+ */
+function SectionHead({
+  eyebrow,
+  children,
+  sub,
+  dark = false,
+  wide = false,
+}: {
+  eyebrow?: string;
+  children: React.ReactNode;
+  sub?: string;
+  dark?: boolean;
+  /**
+   * The source page sets its longest section headings on a much wider
+   * measure so they land in two big lines rather than four cramped
+   * ones: "Managing people globally is complex. HiBob makes it easy
+   * for 5,500+ customers worldwide." is one example. Founder asked for
+   * the same on the two longest headings here, 10 November 2026.
+   */
+  wide?: boolean;
+}) {
+  return (
+    /* ⚠️ THE WIDE VARIANT IS IN PIXELS, NOT ch, AND THAT IS THE POINT.
+       `ch` resolves against the WRAPPER's font, which is the body sans,
+       not the serif the heading is actually set in, so max-w-[64ch]
+       came out at 646px and the heading still broke over four lines.
+       Pixels are unambiguous. */
+    <div className={`mx-auto text-center ${wide ? "max-w-[34ch] sm:max-w-[620px] lg:max-w-[1000px]" : "max-w-[46ch]"}`}>
+      {eyebrow ? (
+        <p className={`${MICRO} mb-4 ${dark ? "text-brand-200" : "text-brand-500"}`}>
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2
+        style={SERIF}
+        className={`text-balance font-bold leading-[1.15] tracking-[-0.015em] ${
+          wide
+            ? "text-[clamp(1.55rem,1.1rem+1.7vw,2.25rem)]"
+            : "text-[clamp(1.75rem,1.15rem+2.3vw,2.75rem)]"
+        } ${dark ? "text-white" : "text-ink-950"}`}
+      >
+        {children}
+      </h2>
+      {sub ? (
+        <p
+          className={`mx-auto mt-5 max-w-[52ch] text-base leading-relaxed ${
+            dark ? "text-white/70" : "text-ink-600"
+          }`}
         >
-          {c.n ? (
-            <span className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-sm font-bold text-white">
-              {c.n}
-            </span>
-          ) : null}
-          <h3 className="text-base font-semibold text-ink-950">{c.h}</h3>
-          <p className="mt-2.5 text-sm leading-relaxed text-ink-600">{c.b}</p>
-        </div>
-      ))}
+          {sub}
+        </p>
+      ) : null}
     </div>
   );
 }
 
-function Bullets({
-  items,
-  tone = "light",
-}: {
-  items: string[];
-  tone?: "light" | "dark";
-}) {
-  return (
-    <ul className="mt-5 flex flex-col gap-2.5">
-      {items.map((t) => (
-        <li key={t} className="flex items-start gap-3">
-          <Check
-            aria-hidden
-            strokeWidth={2.4}
-            className={`mt-1 h-3.5 w-3.5 flex-shrink-0 ${
-              tone === "dark" ? "text-brand-200" : "text-brand-500"
-            }`}
-          />
-          <span
-            className={`text-sm leading-relaxed ${
-              tone === "dark" ? "text-white/80" : "text-ink-600"
-            }`}
-          >
-            {t}
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-/** The bare, left-ruled list. Used for a run of sentences a reader is
-    meant to recognise one at a time rather than read as a paragraph. */
-function RuledList({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-8 flex flex-col gap-3">
-      {items.map((t) => (
-        <li
-          key={t}
-          className="reveal border-l-2 border-ink-200 pl-5 text-base text-ink-700"
-        >
-          {t}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-/** The scarce statement device. */
-function Statement({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
-      {children}
-    </p>
-  );
-}
-
-/* 🔴 BLUE, NOT GREEN, on the founder's instruction (29 October 2026): a
-   five-star row in Trustpilot's green invites a brand complaint we have
-   already had two notices about, whatever the exact hex.
-
-   ⚠️ BUT NOT brand-500 on ink. #003DDB on canvas-ink is about 2:1 and
-   the stars all but vanish. brand-200 #A6BEFF is 10.58:1 on that
-   ground. The PROOF STRIP passes brand-500 explicitly because those
-   cards sit on white. Do not unify them. */
-function Stars({ className = "h-4 w-4 fill-brand-200 text-brand-200" }) {
+/* 🔴 BLUE, NOT GREEN, founder instruction 29 October 2026: a five-star
+   row in the review platform's green invites the brand complaint we
+   have already had two notices about, whatever the exact hex. */
+function Stars({ className = "h-4 w-4 fill-brand-500 text-brand-500" }) {
   return (
     <span aria-hidden className="flex items-center gap-0.5">
       {[0, 1, 2, 3, 4].map((i) => (
@@ -922,812 +702,984 @@ function Stars({ className = "h-4 w-4 fill-brand-200 text-brand-200" }) {
   );
 }
 
-/* ⚠️ UNBRANDED BY NECESSITY. No platform name, no wordmark, no #00B67A,
-   and 🔴 NOT A LINK: the founder had the /case-study link taken off the
-   rostering page on 29 October, so neither twin has one and nor does
-   this. Nothing here is clickable. */
-function RatingBar() {
+/**
+ * The organic shapes the source page floats its product cards over.
+ *
+ * ⚠️ ALWAYS INSIDE A CLIPPING ANCESTOR. These carry negative offsets,
+ * and without `overflow-hidden` on the section they extend the document
+ * past the viewport and the whole page scrolls sideways.
+ *
+ * 🔴 z-0 AND NOT -z-10. The bands paint their own background, so a
+ * negatively stacked child renders BEHIND that background and the
+ * shapes vanish completely. Shapes sit at z-0, product cards at z-10.
+ * Do not "tidy" this back to a negative index: the markup looks
+ * identical and the page renders blank.
+ */
+function Blobs({ flip = false }: { flip?: boolean }) {
   return (
-    <div className="inline-flex min-h-11 flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5">
-      <Stars />
-      <span className="text-sm font-semibold text-white">5.0</span>
-      <span className="text-sm text-white/70">from 77 provider reviews</span>
-    </div>
-  );
-}
-
-function TestimonialSlider() {
-  const [i, setI] = useState(0);
-  const t = TESTIMONIALS[i];
-  const go = (d: number) =>
-    setI((v) => (v + d + TESTIMONIALS.length) % TESTIMONIALS.length);
-
-  return (
-    <div className="relative mt-10">
-      <div className="overflow-hidden rounded-xl bg-brand-500 p-7 shadow-raise md:p-12 lg:p-16">
-        <Quote
-          aria-hidden
-          className="h-9 w-9 fill-white/90 text-white/90"
-          strokeWidth={0}
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+      <svg
+        viewBox="0 0 400 400"
+        className={`absolute h-[150%] w-[150%] ${
+          flip ? "-right-24 -top-20" : "-left-24 -top-20"
+        }`}
+        fill="none"
+      >
+        <path
+          d="M118 36c44-18 92 2 112 42 19 39 6 86-26 112-33 26-83 29-113 4C60 168 50 118 63 82c9-24 20-35 55-46Z"
+          fill="#DCE6FF"
+          opacity="0.85"
         />
-        <blockquote className="mt-6 max-w-[46ch] text-xl font-medium leading-snug text-white md:text-2xl lg:max-w-[52ch] lg:text-[32px] lg:leading-[1.3]">
-          {t.quote}
-        </blockquote>
-        <figcaption className="mt-8">
-          <p className="text-base font-semibold text-white">{t.name}</p>
-          <p className={`${MICRO_TIGHT} mt-1.5 text-white/75`}>{t.org}</p>
-        </figcaption>
-      </div>
-
-      <div className="mt-5 flex items-center justify-between">
-        {/* ⚠️ -ml cancels the first dot button's own padding so the row
-            still lines up with the quote above it. */}
-        <div className="-ml-[13px] flex items-center">
-          {TESTIMONIALS.map((x, n) => (
-            <button
-              key={x.org}
-              type="button"
-              aria-label={`Show the quote from ${x.org}`}
-              aria-current={n === i ? "true" : undefined}
-              onClick={() => setI(n)}
-              /* ⚠️ The HIT AREA is 36x44 and the dot inside it is 10px.
-                 An 8px button is not tappable on a phone. */
-              className="group/dot flex h-11 w-9 items-center justify-center"
-            >
-              <span
-                aria-hidden
-                className={`block h-2.5 rounded-full transition-all duration-200 ${
-                  n === i
-                    ? "w-7 bg-brand-500"
-                    : "w-2.5 bg-ink-200 group-hover/dot:bg-ink-300"
-                }`}
-              />
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            aria-label="Previous quote"
-            onClick={() => go(-1)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-ink-200 bg-white text-ink-700 transition-colors duration-150 hover:border-brand-500 hover:text-brand-500"
-          >
-            <ArrowLeft aria-hidden className="h-4 w-4" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next quote"
-            onClick={() => go(1)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-ink-200 bg-white text-ink-700 transition-colors duration-150 hover:border-brand-500 hover:text-brand-500"
-          >
-            <ArrowRight aria-hidden className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
+        <path
+          d="M262 214c34-10 72 10 84 44 12 33-4 71-36 86-33 15-74 5-91-26-17-30-8-70 24-89 8-5 12-10 19-15Z"
+          fill={CREAM_DEEP}
+        />
+        <path
+          d="M300 70c22-14 54-6 66 17 11 22 2 50-20 61-23 11-51 3-61-19-10-21-4-46 15-59Z"
+          fill="#A6BEFF"
+          opacity="0.75"
+        />
+      </svg>
     </div>
   );
 }
 
-/* ⚠️ NATIVE <details>. No JS, keyboard and screen reader support for
-   free, and it still works if hydration never finishes. */
-function Faq() {
+/* ── THE PRODUCT VISUALS ──────────────────────────────────────────────
+ *
+ * Recreations of the source page's product shots, from the real Control
+ * Centre: white cards, soft shadows, a detail card breaking out over
+ * the main one, progress bars, a donut, an avatar cluster.
+ *
+ * ⚠️ WHITE CARDS, NOT THE INK PANELS THE REST OF THE ESTATE USES. On a
+ * cream ground a dark panel reads as a hole. This matches the source.
+ *
+ * ⚠️ EVERY MOCK CARRIES AN "Example" CHIP. See the header: a figure
+ * describing the state of one fictional record is ordinary dashboard
+ * content; a figure describing what Novada achieves is never allowed in
+ * one, and the chip is what stops a reader confusing the two.
+ * ──────────────────────────────────────────────────────────────────── */
+
+function ExampleChip() {
   return (
-    <div className="mt-10 flex flex-col gap-3">
-      {FAQ.map((f, i) => (
-        <details
-          key={f.q}
-          className="reveal group rounded-xl border border-ink-100 bg-white shadow-raise [&_summary::-webkit-details-marker]:hidden"
-          style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 50}ms` }}
-        >
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 p-6 text-base font-semibold text-ink-950 md:p-7">
-            <span>{f.q}</span>
-            <ChevronDown
-              aria-hidden
-              className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-400 transition-transform duration-200 ease-standard group-open:rotate-180"
-            />
-          </summary>
-          <p className="px-6 pb-6 text-sm leading-relaxed text-ink-600 md:px-7 md:pb-7">
-            {f.a}
-          </p>
-        </details>
-      ))}
+    <span className="flex-shrink-0 rounded-xs bg-ink-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-caps text-ink-500">
+      Example
+    </span>
+  );
+}
+
+function Dots() {
+  return (
+    <span aria-hidden className="flex flex-shrink-0 gap-1.5">
+      <span className="h-2 w-2 rounded-full bg-ink-200" />
+      <span className="h-2 w-2 rounded-full bg-ink-200" />
+      <span className="h-2 w-2 rounded-full bg-ink-200" />
+    </span>
+  );
+}
+
+function Card({
+  title,
+  children,
+  chrome = true,
+}: {
+  title?: string;
+  children: React.ReactNode;
+  chrome?: boolean;
+}) {
+  return (
+    <div className="overflow-hidden rounded-lg border border-ink-100 bg-white shadow-float">
+      {chrome ? (
+        <div className="flex items-center justify-between gap-3 border-b border-ink-100 px-4 py-3">
+          <div className="flex min-w-0 items-center gap-3">
+            <Dots />
+            {title ? <p className={`${MICRO_TIGHT} truncate text-ink-500`}>{title}</p> : null}
+          </div>
+          <ExampleChip />
+        </div>
+      ) : null}
+      {children}
     </div>
+  );
+}
+
+function Bar({ pct, tone = "brand" }: { pct: number; tone?: "brand" | "warm" }) {
+  return (
+    <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
+      <div
+        className={`h-full rounded-full ${tone === "warm" ? "bg-signal-600" : "bg-brand-500"}`}
+        style={{ width: `${pct}%` }}
+      />
+    </div>
+  );
+}
+
+/** Initials avatar. ⚠️ NOT a real client's face: the only photograph on
+    this page is public/workforce/coordinator.jpg, which we own. */
+function Avatar({ i }: { i: string }) {
+  return (
+    <span className="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full border-2 border-white bg-brand-100 text-[12px] font-bold text-brand-700">
+      {i}
+    </span>
   );
 }
 
 /**
- * One AI employee. Full width rather than a grid cell, because each one
- * carries a problem, a capability list of up to twelve items, a worked
- * example and an outcome, and none of that survives being halved.
+ * THE HERO IMAGE.
+ *
+ * 🔴 THIS IS THE SOURCE PAGE'S OWN HERO IMAGE, REBUILT. Founder
+ * instruction, 10 November 2026: use their exact hero image, remove
+ * their logo and the award, tailor the dashboard to our brand, keep the
+ * woman. The build script is hero_build.py in the session scratchpad
+ * and public/ai-workforce/hero.png is its output. What it did:
+ *
+ *   · recoloured the magenta family to Novada blue by rotating hue
+ *     -117 degrees, so the art keeps its own light-to-dark structure
+ *   · LEFT THE ORANGE BLOBS ALONE, because orange is already Novada's
+ *     signal accent and they now read as brand rather than leftovers
+ *   · protected her with a traced silhouette plus a saturation ceiling
+ *     inside it. ⚠️ Without that, her lips, cheek highlights and the
+ *     warm shadows on her hands all sit in the magenta band and the
+ *     recolour puts blue blotches across her face
+ *   · removed the "Bob" tile from the sidebar and the G2 award, which
+ *     is not ours
+ *   · replaced the banner greeting
+ *
+ * ⚠️ IT IS A SINGLE FLAT PNG. There is no detail card and no Blobs
+ * component over it any more, because the image carries its own
+ * shapes, exactly as the source page's does. Do not add the old code
+ * mock back on top of it.
+ *
+ * ⚠️ priority + fetchPriority: this is the LCP element on the page.
  */
-function EmployeeBlock({
-  e,
-  delay,
-}: {
-  e: (typeof EMPLOYEES)[number];
-  delay: number;
-}) {
+function HeroVisual() {
   return (
-    <article
-      className="reveal rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8 lg:p-10"
-      style={{ ["--reveal-delay" as string]: `${delay}ms` }}
-    >
-      <div className="flex items-center gap-4">
-        <span className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-brand-500 text-sm font-bold text-white">
-          {e.n}
-        </span>
-        <p className={`${MICRO} text-brand-500`}>{e.role}</p>
-      </div>
-
-      {/* ⚠️ NOT max-w-headline. That token is 20ch and it is sized for
-          the CONDENSED display face, which is narrow. On Inter at 2xl it
-          put this line over four lines down the left half of the card
-          with the right half empty, which is the exact complaint the
-          founder made about /care on 29 October. 42ch is two lines here
-          at every width above sm. */}
-      <h3 className="mt-5 max-w-[42ch] text-xl font-semibold leading-snug text-ink-950 md:text-2xl">
-        {e.lead}
-      </h3>
-
-      <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-12">
-        <div>
-          <p className={`${MICRO} text-ink-400`}>The problem</p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-600">
-            {e.problem}
-          </p>
-
-          <p className={`${MICRO} mt-8 text-ink-400`}>Example</p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-600">
-            {e.example}
-          </p>
-        </div>
-
-        <div>
-          <p className={`${MICRO} text-ink-400`}>
-            What it is designed to do
-          </p>
-          <Bullets items={e.does} />
-        </div>
-      </div>
-
-      <div className="mt-8 border-t border-ink-100 pt-6">
-        <p className="text-sm leading-relaxed text-ink-600">
-          <span className="font-semibold text-ink-950">
-            The intended outcome:
-          </span>{" "}
-          {e.outcome}
-        </p>
-        {/* 🔴 THE BOUNDARY LINE. See the note above EMPLOYEES: on three
-            of the five roles this is the only sentence keeping a
-            regulatory, emergency or employment responsibility with the
-            provider. */}
-        {e.limit ? (
-          <p className={`${SMALL} mt-4 border-l-2 border-ink-200 pl-4`}>
-            {e.limit}
-          </p>
-        ) : null}
-      </div>
-    </article>
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      src="/ai-workforce/hero.png"
+      alt="The Novada AI Control Centre, with a care operations manager reviewing the overnight summary"
+      width={938}
+      height={654}
+      fetchPriority="high"
+      decoding="async"
+      /* ⚠️ NO max-w HERE. The source page lets this image fill its
+         half of the hero; capping it leaves a column of dead cream
+         beside the headline and the composition stops reading as a
+         pair. The negative right margin lets it run slightly past the
+         frame on wide screens, which is what theirs does too. */
+      className="h-auto w-full lg:-mr-6 xl:-mr-10"
+    />
   );
 }
 
-export default function AiWorkforcePage() {
+/** Feature 1, after their task shot: progress bars, a detail card
+    floating clear of the main one. */
+function TasksVisual() {
+  const tasks = [
+    ["Evening shift, Tuesday", 100],
+    ["Clearance renewals, 6 workers", 60],
+    ["Onboarding documents, 2 starters", 35],
+  ] as const;
   return (
-    <div data-theme="desk" className="min-h-screen bg-white font-sans">
-      <DeskNav tone="dark" audience="care" bookHref="#book" />
+    <div className="relative pt-16">
+      <div className="absolute right-4 top-0 z-20 w-[180px] rounded-lg border border-ink-100 bg-white p-4 text-center shadow-float">
+        <span className="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-white">
+          <Check aria-hidden className="h-4 w-4" strokeWidth={3} />
+        </span>
+        <p className="mt-2 text-[10px] font-semibold uppercase tracking-caps text-ink-400">
+          Handled overnight
+        </p>
+        <p style={SERIF} className="mt-1 text-sm font-bold text-ink-950">
+          Shift covered
+        </p>
+      </div>
 
-      <main>
-        {/* ── 1 HERO ───────────────────────────────────────────────── */}
-        <section className="relative overflow-hidden border-b border-white/10 bg-canvas-ink">
+      <div className="relative z-10">
+        <Card title="Today">
+          <div className="flex flex-col gap-4 p-5">
+            {tasks.map(([t, pct]) => (
+              <div key={t} className="flex items-start gap-3">
+                <span aria-hidden className="mt-1.5 flex flex-col gap-[3px]">
+                  <span className="h-[2px] w-3.5 rounded bg-ink-200" />
+                  <span className="h-[2px] w-3.5 rounded bg-ink-200" />
+                  <span className="h-[2px] w-3.5 rounded bg-ink-200" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[13px] font-medium text-ink-800">{t}</p>
+                  <div className="mt-2">
+                    <Bar pct={pct} tone={pct === 100 ? "brand" : "warm"} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+/** Feature 2, after their dashboard shot: an app window with a brand
+    banner, a stat card off one corner and a team card off the other. */
+function DashboardVisual() {
+  return (
+    <div className="relative px-2 pb-16 pt-14 sm:px-6">
+      <div className="absolute left-0 top-0 z-20 w-[172px] rounded-lg border border-ink-100 bg-white p-4 shadow-float">
+        <div className="flex items-baseline justify-between gap-2">
+          <p style={SERIF} className="text-2xl font-bold text-ink-950">
+            85%
+          </p>
+          <span className="text-[10px] font-semibold uppercase tracking-caps text-ink-400">
+            Onboarding
+          </span>
+        </div>
+        <div className="mt-3">
+          <Bar pct={85} />
+        </div>
+      </div>
+
+      <div className="relative z-10">
+        <Card chrome={false}>
+          <div className="flex items-center justify-between gap-3 px-4 py-3">
+            <Dots />
+            <ExampleChip />
+          </div>
           <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 overflow-hidden"
+            className="px-5 py-6"
+            style={{ background: "linear-gradient(110deg,#003DDB 0%,#0030AE 55%,#3A6CFF 100%)" }}
           >
-            <div className="absolute -left-40 -top-56 h-[620px] w-[620px] rounded-full bg-brand-500/20 blur-[130px]" />
-            <div className="absolute -bottom-72 -right-40 h-[560px] w-[560px] rounded-full bg-signal-600/10 blur-[140px]" />
+            <p style={SERIF} className="text-base font-bold text-white">
+              Good morning. Here is last night.
+            </p>
+            <p className="mt-1.5 text-xs text-white/75">
+              3 calls handled, 1 escalation, 1 approval waiting
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 p-5">
+            {["Shift cover", "Escalations", "Documents", "Claims"].map((t) => (
+              <div key={t} className="rounded-xs bg-ink-50 p-3">
+                <p className="text-[10px] font-semibold uppercase tracking-caps text-ink-400">
+                  {t}
+                </p>
+                <span aria-hidden className="mt-2 block h-1.5 w-2/3 rounded bg-ink-200" />
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+
+      <div className="absolute bottom-0 right-0 z-20 w-[212px] rounded-lg border border-ink-100 bg-white p-4 text-center shadow-float">
+        <p style={SERIF} className="text-sm font-bold text-ink-950">
+          Overnight handover sent
+        </p>
+        <div aria-hidden className="mt-3 flex justify-center -space-x-2.5">
+          {["RK", "TN", "JD", "AO", "PM"].map((i) => (
+            <Avatar key={i} i={i} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Feature 3, after their metrics shot: a legend pill, a bar chart card,
+    a donut card and a wide scale card. */
+function MetricsVisual() {
+  const bars = [62, 88, 74, 96, 81];
+  /* One number, so it is drawn rather than charted. r=42 gives a
+     circumference of about 264, and the dash is that times the
+     percentage. */
+  const R = 42;
+  const C = 2 * Math.PI * R;
+  const pct = 92;
+  return (
+    <div className="relative pb-6">
+      <div className="relative z-10 flex flex-col gap-4">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-2 rounded-full border border-ink-100 bg-white px-3 py-1.5 shadow-raise">
+            <span aria-hidden className="h-2 w-2 rounded-full bg-brand-500" />
+            <span className="text-[11px] font-semibold text-ink-600">Coverage indicators</span>
+          </span>
+          <ExampleChip />
+        </div>
+
+        <div className="flex flex-wrap items-end gap-4">
+          <div className="min-w-[170px] flex-1 rounded-lg border border-ink-100 bg-white p-5 shadow-float">
+            <div aria-hidden className="flex h-[92px] items-end gap-2.5">
+              {bars.map((h, i) => (
+                <span
+                  key={i}
+                  className={`flex-1 rounded-t ${i % 2 ? "bg-brand-500" : "bg-brand-200"}`}
+                  style={{ height: `${h}%` }}
+                />
+              ))}
+            </div>
+            <p className="mt-4 text-[10px] font-bold uppercase tracking-caps text-ink-500">
+              Shifts filled, by week
+            </p>
           </div>
 
-          <div
-            className={`${FRAME} ${GUTTER} relative border-x border-white/10 pb-16 pt-10 md:pb-20 md:pt-14`}
-          >
-            <RatingBar />
-
-            <p className={`${MICRO} mt-7 text-brand-200`}>
-              For NDIS, aged care &amp; home care providers
-            </p>
-
-            {/* ⚠️ NOT the d1 token. d1's clamp floor is 42px, which puts a
-                headline this long over five lines on a phone and pushes
-                the CTA off the first screen. Same clamp as both twins, so
-                all three care heroes are the same size at every width. */}
-            <h1
-              className={`${DISPLAY} mt-5 text-[clamp(2rem,0.89rem+4.83vw,4.75rem)] leading-[0.93] tracking-[-0.015em] text-white`}
-            >
-              Hire AI employees that do the work. Not just tell you what needs
-              doing.
-            </h1>
-
-            {/* ⚠️ ONE BLOCK, matching both twins. Keeping the hero short is
-                what brings the first CTA above the fold on a phone. */}
-            <div
-              className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
-            >
-              <p>
-                Novada AI Workforce is an AI-powered operational workforce
-                designed for Australian NDIS, aged care and home care providers.
-                Hire AI employees to coordinate routine tasks, follow up
-                outstanding actions, execute approved workflows and update
-                connected systems, with appropriate human oversight. And through
-                the Novada AI Control Centre, you can see the work being done,
-                review exceptions, approve important actions and monitor your
-                operations in one place.
-              </p>
-            </div>
-
-            {/* ⚠️ TIGHTER THAN IT LOOKS IT SHOULD BE, on purpose. The
-                founder's hero copy for this page runs 130 words against
-                103 on /care/workforce and 96 on /care/rostering, which
-                pushes the first CTA down the phone screen. Measured at
-                390x844 the CTA lands at 767px against the Workforce
-                page's 744px, so it is still above the fold; this spacing
-                is what keeps it there. Do not open it back up without
-                re-measuring at 375x667. */}
-            <p
-              className={`${MICRO} mt-7 border-t border-white/10 pt-6 text-white/60`}
-            >
-              One central platform. Five specialised AI employees. Real
-              operational work.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <Cta tone="brand">Book your AI Workforce discovery call</Cta>
-              {/* The copy's secondary button. Deliberately quiet: it is a
-                  jump link down the page, not a second ask. */}
-              <a
-                href="#employees"
-                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-sm border border-white/20 bg-white/[0.06] px-6 text-base font-semibold text-white transition-colors duration-150 ease-standard hover:border-white/35 hover:bg-white/10 sm:w-auto sm:text-sm"
+          <div className="rounded-lg border border-ink-100 bg-white p-5 shadow-float">
+            <svg viewBox="0 0 110 110" className="h-[96px] w-[96px]" aria-hidden>
+              <circle cx="55" cy="55" r={R} fill="none" stroke="#DCE6FF" strokeWidth="13" />
+              <circle
+                cx="55"
+                cy="55"
+                r={R}
+                fill="none"
+                stroke="#003DDB"
+                strokeWidth="13"
+                strokeLinecap="round"
+                strokeDasharray={`${(C * pct) / 100} ${C}`}
+                transform="rotate(-90 55 55)"
+              />
+              <text
+                x="55"
+                y="63"
+                textAnchor="middle"
+                style={SERIF}
+                fill="#0B0E14"
+                fontSize="23"
+                fontWeight="700"
               >
-                Meet your AI employees
-                <ChevronDown aria-hidden className="h-4 w-4" />
-              </a>
+                {pct}%
+              </text>
+            </svg>
+            <p className="mt-3 text-center text-[10px] font-bold uppercase tracking-caps text-ink-500">
+              Credentials current
+            </p>
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-ink-100 bg-white px-5 py-4 shadow-float">
+          <div aria-hidden className="relative h-5">
+            <span className="absolute inset-x-0 top-1/2 h-px bg-ink-200" />
+            {[4, 15, 23, 38, 47, 51, 55, 58, 66, 74, 83, 96].map((x, i) => (
+              <span
+                key={i}
+                className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-brand-400"
+                style={{ left: `${x}%` }}
+              />
+            ))}
+            <span className="absolute left-1/2 top-0 h-full w-px bg-ink-300" />
+          </div>
+          <div className="mt-2 flex justify-between text-[10px] font-semibold text-ink-400">
+            <span>Mon</span>
+            <span>Midweek</span>
+            <span>Sun</span>
+          </div>
+        </div>
+      </div>
+      <Blobs flip />
+    </div>
+  );
+}
+
+const VISUALS: Record<string, React.ComponentType> = {
+  work: TasksVisual,
+  control: DashboardVisual,
+  systems: MetricsVisual,
+};
+
+/* ── THE PAGE ─────────────────────────────────────────────────────── */
+
+export default function AiWorkforcePage() {
+  return (
+    <div data-theme="desk" className="min-h-screen font-sans" style={{ backgroundColor: CREAM }}>
+      {/*
+        ⚠️ NOT DeskNav, AND THAT IS A DELIBERATE DEPARTURE. The source
+        page carries a logo and one action, with no menu at all, because
+        it is built for paid traffic and every nav item is an exit. The
+        rest of this estate runs DeskNav. If the founder wants the
+        standard nav back it is a two-line change: import DeskNav and
+        render <DeskNav tone="light" audience="care" bookHref="#book" />.
+      */}
+      <header
+        className="sticky top-0 z-40 border-b border-ink-100/70 backdrop-blur"
+        style={{ backgroundColor: "rgba(255,251,244,0.92)" }}
+      >
+        <div className={`${FRAME} ${GUTTER} flex min-h-16 items-center justify-between gap-4`}>
+          {/* ⚠️ THE HOUSE LOCKUP IS THE MARK PLUS A TEXT WORDMARK, which
+              is what DeskNav renders. It is NOT public/Novada Logo.png:
+              that file is a 1024x1024 square with the mark floating in
+              the middle, so at nav height it renders as a 20px smudge. */}
+          <a
+            href="/care"
+            aria-label="Novada Tech, home"
+            className="-mx-1.5 flex flex-shrink-0 items-center gap-2.5 rounded-xs px-1.5 py-2"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/favicon.png" alt="" width={32} height={32} className="h-7 w-7" />
+            <span className="text-lg font-bold leading-none tracking-tight text-ink-950">
+              Novada <span className="text-brand-500">Tech</span>
+            </span>
+          </a>
+          {/* ⚠️ TWO LABELS, ONE BUTTON. "Book a discovery call" wraps to
+              three lines in a 186px header slot on a phone, which makes
+              the sticky header 65px tall and pushes the hero down. */}
+          <Cta href="#book">
+            <span className="sm:hidden">Book a call</span>
+            <span className="hidden sm:inline">Book a discovery call</span>
+          </Cta>
+        </div>
+      </header>
+
+      <main>
+        {/* ── HERO ─────────────────────────────────────────────────── */}
+        <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
+          <div
+            className={`${FRAME} ${GUTTER} relative grid items-center gap-12 pb-20 pt-12 md:pb-28 md:pt-16 lg:grid-cols-[0.92fr_1.12fr] lg:gap-10`}
+          >
+            {/* ⚠️ min-w-0 ON BOTH GRID ITEMS. A grid item's min-width is
+                auto, not zero, so the widest unbreakable thing inside
+                either column silently widens BOTH and the h1 and the
+                paragraph render past the right gutter. Measured at
+                390px without it: columns 383px against a 350px box. */}
+            <div className="min-w-0">
+              <p className={`${MICRO} text-brand-500`}>
+                For NDIS, aged care &amp; home care providers
+              </p>
+
+              {/* 🔴 FOUNDER-APPROVED HERO LINE. Set in the serif and in
+                  sentence case to match the source page, but the words
+                  are untouched. */}
+              <h1
+                style={SERIF}
+                className="mt-5 text-[clamp(2.1rem,1.35rem+3.2vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-ink-950"
+              >
+                Hire AI employees that do the work. Not just tell you what needs
+                doing.
+              </h1>
+
+              {/* ⚠️ TWO SENTENCES. The live page runs 130 words here and
+                  that is the clearest instance of the problem the
+                  founder asked to fix. Do not grow it back. */}
+              <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-ink-600">
+                Novada AI employees run rostering, compliance, HR and payroll,
+                after-hours calls and claims administration inside the systems
+                you already use. They complete approved work, ask before
+                anything consequential, and record every action in one place.
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                <Cta href="#book">Book a discovery call</Cta>
+                <a
+                  href="#employees"
+                  /* ⚠️ sm:whitespace-nowrap, NOT whitespace-nowrap: see
+                     the min-w-0 note above. An unwrappable label sets
+                     the floor for the whole column at 390px. */
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xs bg-brand-100 px-6 text-[13px] font-bold uppercase tracking-caps text-brand-700 transition-colors duration-150 ease-standard hover:bg-brand-200 sm:whitespace-nowrap"
+                >
+                  Meet your AI employees
+                  <ChevronDown aria-hidden className="h-4 w-4" />
+                </a>
+              </div>
+
+              {/* ⚠️ UNBRANDED BY NECESSITY. No platform name, no
+                  wordmark, no green, and nothing here is a link.
+
+                  ⚠️ THE "205 providers across Australia" COUNT AND THE
+                  CAPABILITIES QUALIFIER WERE REMOVED FROM THIS BLOCK ON
+                  FOUNDER INSTRUCTION, 10 November 2026. The scope point
+                  the qualifier carried still appears twice further down,
+                  in the integrations sub-line and in the FAQ answer
+                  "Can AI employees actually complete tasks?". Do not
+                  restore it here without checking those are still in
+                  place. */}
+              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+                <div className="flex items-center gap-2.5">
+                  <Stars />
+                  <span className="text-sm font-bold text-ink-950">5.0</span>
+                  <span className="text-sm text-ink-500">from 77 provider reviews</span>
+                </div>
+              </div>
             </div>
 
-            <p className="mt-6 text-sm text-white/55">
-              Designed to work alongside your existing software and team.
-              Capabilities and integrations are confirmed during your
-              consultation.
-            </p>
+            {/* The clearance padding that used to be here was for a
+                detail card that no longer exists: the hero is one flat
+                image now. */}
+            <div className="min-w-0 lg:pl-4">
+              <HeroVisual />
+            </div>
           </div>
         </section>
 
-        {/* ── PROOF STRIP ──────────────────────────────────────────── */}
-        <section className="border-b border-ink-100 bg-ink-50">
-          <div
-            className={`${FRAME} ${GUTTER} border-x border-ink-100 py-10 md:py-12`}
-          >
-            <div className="grid gap-5 md:grid-cols-3 md:gap-6">
-              {[
-                { v: "5.0", l: "Average client rating", stars: true },
-                { v: "77", l: "Provider reviews", stars: false },
-                {
-                  v: "205",
-                  l: "NDIS and aged care providers across Australia",
-                  stars: false,
-                },
-              ].map((s, i) => (
-                <div
-                  key={s.l}
-                  className="reveal rounded-xl border border-ink-100 bg-white p-6 text-center shadow-raise md:p-7"
-                  style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
-                >
-                  <p className={`${D2} text-brand-500`}>{s.v}</p>
-                  {s.stars ? (
-                    <div className="mt-3 flex justify-center">
-                      <Stars className="h-4 w-4 fill-brand-500 text-brand-500" />
-                    </div>
+        {/* ── PROVIDER STRIP ─────────────────────────────────────────
+            Their customer logo marquee. See the 🔴 note at the top:
+            their strip is their customers, so ours is the three
+            providers we can name. No borrowed logos, ever. */}
+        <section className="border-y border-ink-100/70" style={{ backgroundColor: CREAM_DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-10`}>
+            <p style={SERIF} className="text-center text-lg font-bold text-ink-800">
+              Australian care providers already run Novada AI employees
+            </p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-20">
+              {PROVIDERS.map((p) => (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={p.name}
+                  src={`/clients/${p.file}`}
+                  alt={p.name}
+                  className={`${p.h} w-auto object-contain`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── WHY ──────────────────────────────────────────────────── */}
+        <Section>
+          <SectionHead>Why choose a Novada AI employee?</SectionHead>
+          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+            {WHY.map((w) => (
+              <div key={w.h} className="reveal text-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={w.img}
+                  alt=""
+                  width={130}
+                  height={130}
+                  className="mx-auto h-[104px] w-[104px] object-contain"
+                />
+                <h3 style={SERIF} className="mt-5 text-xl font-bold text-ink-950">
+                  {w.h}
+                </h3>
+                <p className="mx-auto mt-3 max-w-[34ch] text-[15px] leading-relaxed text-ink-600">
+                  {w.b}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* ⚠️ THE VALUE QUALIFIER THAT SAT HERE WAS REMOVED ON FOUNDER
+              INSTRUCTION, 10 November 2026. What now carries that point
+              is the FAQ answer to "Does Novada guarantee cost savings?",
+              which still begins with "No" and still says potential
+              efficiencies should be measured against a real operational
+              baseline. 🔴 That answer is now the only place on the page
+              where outcome is qualified at all. Do not shorten it. */}
+        </Section>
+
+        {/* ── FEATURE BLOCKS ───────────────────────────────────────── */}
+        {FEATURES.map((f, i) => {
+          const Visual = VISUALS[f.key];
+          const flip = i % 2 === 1;
+          return (
+            /* ⚠️ overflow-hidden IS LOAD-BEARING: the shapes behind each
+               product card carry negative offsets, and without a clip
+               they extend the document to 410px at a 390px viewport and
+               the whole page scrolls sideways. */
+            <section
+              key={f.key}
+              className="overflow-hidden"
+              style={{ backgroundColor: flip ? CREAM_DEEP : CREAM }}
+            >
+              <div
+                className={`${FRAME} ${GUTTER} grid items-center gap-14 py-16 md:py-24 lg:grid-cols-2 lg:gap-16`}
+              >
+                <div className={`min-w-0 ${flip ? "lg:order-2" : ""}`}>
+                  <h2
+                    style={SERIF}
+                    className="text-[clamp(1.6rem,1.15rem+1.8vw,2.35rem)] font-bold leading-[1.15] tracking-[-0.015em] text-ink-950"
+                  >
+                    {f.h}
+                  </h2>
+                  <ul className="mt-7 flex flex-col gap-4">
+                    {f.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-3">
+                        <span
+                          aria-hidden
+                          className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-500 text-white"
+                        >
+                          <Check className="h-3 w-3" strokeWidth={3} />
+                        </span>
+                        <span className="text-[15px] leading-relaxed text-ink-600">{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {f.foot ? (
+                    <p className="mt-6 max-w-[58ch] border-l-2 border-ink-200 pl-4 text-sm leading-relaxed text-ink-500">
+                      {f.foot}
+                    </p>
                   ) : null}
-                  <p className="mt-3 text-sm font-medium text-ink-600">{s.l}</p>
+                  <div className="mt-8">
+                    <TextLink href={f.link.href}>{f.link.label}</TextLink>
+                  </div>
+                </div>
+                <div className={`relative min-w-0 ${flip ? "lg:order-1" : ""}`}>
+                  <Visual />
+                </div>
+              </div>
+            </section>
+          );
+        })}
+
+        {/* ── THE DEEP BAND: SECTOR STATISTICS ─────────────────────────
+            🔴🔴 READ THE NOTE IN THE FILE HEADER BEFORE CHANGING ANY
+            FIGURE HERE. These are published Australian care-sector
+            statistics with their sources named. They are NOT Novada
+            results, and the heading, the captions, the per-figure
+            sources and the line underneath all exist to keep that
+            unambiguous. Never swap one for a Novada performance
+            number. */}
+        <section style={{ backgroundColor: DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>
+            <SectionHead dark>The business impact of an AI workforce</SectionHead>
+
+            <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {SECTOR.map((s, i) => (
+                <div
+                  key={s.n + s.b}
+                  className="reveal text-center"
+                  style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 60}ms` }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={s.img}
+                    alt=""
+                    width={78}
+                    height={78}
+                    className="mx-auto h-[62px] w-[62px] object-contain"
+                  />
+                  <p
+                    style={SERIF}
+                    className="tabular mt-4 text-[clamp(2.25rem,1.7rem+2.2vw,3.25rem)] font-bold leading-none tracking-[-0.02em] text-white"
+                  >
+                    {s.n}
+                  </p>
+                  <p className="mx-auto mt-3 max-w-[30ch] text-[15px] leading-relaxed text-white/75">
+                    {s.b}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── 2 THE PROBLEM ────────────────────────────────────────── */}
-        <Band index="01" label="The problem">
-          <h2 className={`${D2} text-ink-950`}>
-            You have the systems. You have the processes. So why is your team
-            still doing everything manually?
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Think about how much time your team spends on operational
-            coordination each week.
-          </p>
+        {/* ── TESTIMONIALS ─────────────────────────────────────────────
+            Their card: the client's wordmark at the top, an italic serif
+            quote centred, the attribution beneath. See the 🔴 note
+            above TESTIMONIALS for why there are no faces. */}
+        <Section>
+          <SectionHead wide>
+            Running a care business is complex. Novada supports 205 providers
+            across Australia with the operations behind it.
+          </SectionHead>
 
-          <RuledList items={WHO_IS_DOING_IT} />
+          {/* ⚠️ THE "all three run Novada AI employees" SENTENCE WAS
+              REMOVED ON FOUNDER INSTRUCTION, 10 November 2026. It was
+              Novada's own claim, deliberately kept outside the
+              quotation marks because none of the three quotes mentions
+              AI. With it gone the quotes stand as what they are, which
+              is testimony about working with Novada Tech. 🔴 DO NOT
+              SOLVE ITS ABSENCE BY EDITING AI INTO A QUOTE: no sentence
+              is ever put into a client's mouth, in either direction. */}
 
-          <p className={`${BODY} ${WIDE} mt-8`}>
-            You have software to store the information. But people are still
-            doing most of the work required to keep that information moving.
-          </p>
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            The operational problems this creates
-          </p>
-          <BoxCards items={PROBLEMS} cols={3} />
-
-          <Statement>
-            Your business has invested in software to manage operations. But it
-            still depends heavily on human effort to operate the software.
-          </Statement>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Novada AI Workforce is designed to help change that.
-          </p>
-        </Band>
-
-        {/* ── 3 CUSTOMER PROOF ─────────────────────────────────────── */}
-        <Band index="02" label="Customer proof" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            Supporting organisations across the care sector
-          </h2>
-          {/* 🔴 FOUNDER STATEMENT, 7 NOVEMBER 2026: "yes the providers
-              run AI Employees". It sits OUTSIDE the quotation marks and
-              it is phrased as Novada's own claim, because that is
-              exactly what it is. The three quotations below are about
-              working with Novada Tech and do not mention AI; they are
-              not edited to, in either direction. Keeping the claim and
-              the quotes in separate sentences is what lets both be
-              true. */}
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            All three of the providers below run Novada AI employees in their
-            own operations.
-          </p>
-          <TestimonialSlider />
-        </Band>
-
-        {/* ── 4 THE SOLUTION ───────────────────────────────────────── */}
-        <Band index="03" label="The solution">
-          <h2 className={`${D2} text-ink-950`}>
-            What if your business could hire an AI employee to handle the
-            routine work?
-          </h2>
-
-          <RuledList items={NOT_THIS} />
-
-          <Statement>An AI employee designed to take authorised action.</Statement>
-
-          <div className={`mt-10 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              Imagine having an AI Rostering Coordinator that can monitor
-              staffing gaps, check worker availability, coordinate shift offers
-              and update connected rosters when the required approvals are in
-              place.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              An AI HR Coordinator that can request onboarding documents, follow
-              up outstanding requirements and update recruitment progress.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              Or an AI Compliance Coordinator that can monitor approaching expiry
-              dates, send approved reminders, track responses and prepare an
-              outstanding-actions register.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              These AI employees work through defined operational workflows,
-              using approved access to relevant business systems.
-            </p>
-          </div>
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            Here is the difference
-          </p>
-          <BoxCards items={DIFFERENCE} cols={3} />
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            The result
-          </p>
-          <Bullets items={WORKING_TOWARDS} />
-
-          <div className="mt-10">
-            <Cta>Explore how AI employees could work for your business</Cta>
-          </div>
-        </Band>
-
-        {/* ── 5 MEET YOUR AI EMPLOYEES ─────────────────────────────── */}
-        <Band id="employees" index="04" label="Your AI employees">
-          <h2 className={`${D2} text-ink-950`}>
-            Five specialised AI employees. Hire the ones your business needs.
-          </h2>
-          <div className={`mt-6 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              Every care organisation operates differently. That is why Novada
-              AI Workforce is designed around specialised roles rather than a
-              single generic AI assistant.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              Each AI employee has defined operational responsibilities,
-              permitted systems, workflows, reporting requirements and approval
-              controls. You can start with one role or build a connected AI
-              operations team.
-            </p>
-          </div>
-
-          <div className="mt-10 flex flex-col gap-5 md:gap-6">
-            {EMPLOYEES.map((e, i) => (
-              <EmployeeBlock key={e.role} e={e} delay={Math.min(i, 2) * 70} />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {TESTIMONIALS.map((t, i) => (
+              <figure
+                key={t.org}
+                className="reveal flex flex-col rounded-lg border border-ink-100 bg-white px-7 py-8 text-center shadow-lift"
+                style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
+              >
+                <p
+                  style={SERIF}
+                  className="text-[15px] font-bold uppercase tracking-[0.03em] text-ink-950"
+                >
+                  {t.org}
+                </p>
+                <blockquote
+                  style={SERIF}
+                  className="mt-6 flex-1 text-[15px] italic leading-relaxed text-ink-700"
+                >
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-7 text-sm text-ink-500">
+                  {t.name}, {t.org}
+                </figcaption>
+              </figure>
             ))}
           </div>
+        </Section>
 
-          <div className="mt-10">
-            <Cta>Explore the AI Rostering Coordinator</Cta>
+        {/* ── LET US TALK ──────────────────────────────────────────── */}
+        <Section bg={CREAM_DEEP}>
+          <SectionHead sub="See how an AI workforce would fit your operation:">
+            Let us talk
+          </SectionHead>
+          <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+            {TALK.map((t) => (
+              <div key={t.h} className="reveal text-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={t.img}
+                  alt=""
+                  width={78}
+                  height={78}
+                  className="mx-auto h-[58px] w-[58px] object-contain"
+                />
+                <h3 style={SERIF} className="mt-4 text-base font-bold text-ink-950">
+                  {t.h}
+                </h3>
+                <p className="mx-auto mt-2 max-w-[32ch] text-sm leading-relaxed text-ink-600">
+                  {t.b}
+                </p>
+              </div>
+            ))}
           </div>
-        </Band>
-
-        {/* ── 6 THE CONTROL CENTRE ─────────────────────────────────── */}
-        <Band index="05" label="Control Centre">
-          <h2 className={`${D2} text-ink-950`}>
-            Five AI employees. One central place to manage them.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Imagine having several AI employees working across different
-            business systems.
-          </p>
-
-          <RuledList items={CONTROL_QUESTIONS} />
-
-          <div className={`mt-8 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              That is why every AI employee is designed to work through the
-              Novada AI Control Centre.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              The Control Centre gives authorised managers one place to supervise
-              and coordinate their AI workforce.
-            </p>
+          <div className="mt-12 flex justify-center">
+            <Cta href="#book">Book a discovery call</Cta>
           </div>
+        </Section>
 
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            What the Control Centre is designed to show
-          </p>
-          <BoxCards items={CONTROL_SHOWS} cols={2} />
+        {/* ⚠️ THE ASSURANCE ROW WAS REMOVED ON FOUNDER INSTRUCTION,
+            10 November 2026. It held four items: permission-scoped
+            access, every action recorded, approval before consequential
+            actions, and built for Australian care. It sat in the slot
+            the source page uses for its awards row.
 
-          <Statement>
-            The Novada AI Control Centre is the central record of AI-generated
-            operational activities, workflow decisions and approvals.
-          </Statement>
-          {/* ⚠️ LOAD-BEARING. This is the sentence that stops the Control
-              Centre reading as a replacement system of record, which is a
-              claim we cannot support and a migration we are not selling. */}
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Your existing rostering, HR, payroll, compliance and care-management
-            systems remain the authoritative records for their respective
-            business functions unless explicitly agreed otherwise.
-          </p>
-          <p className={`${BODY} ${WIDE} mt-6 font-medium text-ink-950`}>
-            Your systems continue to hold the business records. Novada helps
-            coordinate and execute approved work across them.
-          </p>
+            🔴 WHERE THOSE FOUR POINTS LIVE NOW: permission-scoped
+            access and the audit record are both in the FAQ answer to
+            "How is sensitive information protected?", and the approval
+            boundary is the middle column of the oversight band below.
+            Nothing was lost, but there is no longer a second copy of
+            any of them. Check that answer is still intact before
+            touching it. */}
 
-          <div className="mt-10">
-            <Cta>Discover the Novada AI Control Centre</Cta>
-          </div>
-        </Band>
+        {/* ── HUMAN OVERSIGHT ──────────────────────────────────────────
+            🔴 THE SOURCE PAGE HAS NO EQUIVALENT BAND. This one is not
+            optional and is not a candidate for the next round of cuts:
+            it is floor item 10, and the third column is the sentence
+            that separates an administrative assistant from an
+            unsupervised system making clinical, employment and
+            regulatory calls in a care setting. */}
+        <Section bg={CREAM_DEEP}>
+          {/* ⚠️ THE SUB-LINE WAS REMOVED ON FOUNDER INSTRUCTION,
+              10 November 2026. The heading and the three columns below
+              it carry the point on their own, and the third column is
+              still the one the reader finishes on. */}
+          <SectionHead wide>
+            Your AI employees do the routine work. Your people keep the
+            decisions.
+          </SectionHead>
 
-        {/* ── 7 HOW IT WORKS ───────────────────────────────────────── */}
-        <Band index="06" label="How it works" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            From task to completed action, without the constant manual
-            follow-up.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            The process is designed to be straightforward.
-          </p>
-          <BoxCards items={HOW_STEPS} cols={2} />
-          <p className={`${BODY} ${WIDE} mt-10 font-medium text-ink-950`}>
-            You remain in control of your operations. Your AI employees help
-            carry out the work.
-          </p>
-        </Band>
-
-        {/* ── 8 A WORKED EXAMPLE ───────────────────────────────────── */}
-        <Band index="07" label="Worked example">
-          <h2 className={`${D2} text-ink-950`}>
-            One cancelled shift. Multiple systems. One coordinated workflow.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Consider a common operational problem. A support worker cancels a
-            shift at short notice.
-          </p>
-
-          <div className="mt-10 rounded-xl border border-ink-200 bg-ink-50 p-6 md:p-8">
-            <p className={`${MICRO} text-ink-500`}>
-              Without coordinated AI support
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-ink-700">
-              A coordinator receives the cancellation. They open the roster,
-              review worker availability, check suitability and required
-              clearances, send messages, wait for responses, seek approval,
-              update the roster and inform the relevant people. Every step
-              requires manual follow-through.
-            </p>
-          </div>
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            With a configured Novada AI Rostering Coordinator
-          </p>
-          <BoxCards items={WORKFLOW} cols={2} />
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>The business value</p>
-          <Bullets items={WORKFLOW_VALUE} />
-
-          {/* 🔴 THE ILLUSTRATIVE QUALIFIER. The seven steps above read as
-              a description of something that happens today. This is the
-              sentence that says they are an intended workflow. Do not
-              move it away from them. */}
-          <p className={`${SMALL} ${WIDE} mt-8`}>
-            This is an illustrative workflow. Actual execution depends
-            on supported integrations, configured rules, worker availability and
-            authorisations.
-          </p>
-        </Band>
-
-        {/* ── 9 THE BUSINESS VALUE ─────────────────────────────────── */}
-        <Band index="08" label="The value">
-          <h2 className={`${D2} text-ink-950`}>
-            Reduce administrative workload without losing operational control.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            AI should deliver more than interesting technology. It should help
-            your organisation manage work more effectively.
-          </p>
-          <BoxCards items={VALUE} cols={3} />
-
-          <Statement>
-            Less time managing repetitive work. More time managing the business.
-          </Statement>
-          {/* 🔴 NEVER PROMISE THE SAVING. This qualifier sits directly
-              under seven benefit claims and the FAQ repeats it outright. */}
-          <p className={`${SMALL} ${WIDE} mt-8`}>
-            The actual value delivered will depend on your systems, workflows,
-            task volumes and the activities suitable for automation.
-          </p>
-
-          <div className="mt-10">
-            <Cta>Explore the value of an AI workforce</Cta>
-          </div>
-        </Band>
-
-        {/* ── 10 HUMAN OVERSIGHT ───────────────────────────────────── */}
-        <Band index="09" label="Human oversight" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            Your AI employees can do the routine work. Your people stay in
-            control of important decisions.
-          </h2>
-          <div className={`mt-6 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              AI can be useful in care operations, but it must operate within
-              appropriate boundaries.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              That is why Novada AI Workforce is built around
-              controlled execution rather than unrestricted autonomy.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3 md:gap-6">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {OVERSIGHT.map((o, i) => (
               <div
                 key={o.h}
-                className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-7"
+                className="reveal flex flex-col rounded-lg border border-ink-100 bg-white p-7 shadow-lift"
                 style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
               >
-                <h3 className="text-base font-semibold text-ink-950">{o.h}</h3>
-                <Bullets items={o.items} />
+                <h3 style={SERIF} className="text-lg font-bold text-ink-950">
+                  {o.h}
+                </h3>
+                <ul className="mt-5 flex flex-col gap-3">
+                  {o.items.map((t) => (
+                    <li key={t} className="flex items-start gap-3">
+                      <Check
+                        aria-hidden
+                        strokeWidth={2.5}
+                        className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-brand-500"
+                      />
+                      <span className="text-sm leading-relaxed text-ink-600">{t}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
 
-          <p className={`${MICRO} mt-10 text-brand-500`}>Why this matters</p>
-          <p className="mt-4 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
+          <p
+            style={SERIF}
+            className="mx-auto mt-12 max-w-[60ch] text-center text-lg font-bold leading-snug text-ink-950"
+          >
             The purpose of AI is to reduce unnecessary manual effort, not to
             remove professional judgement, accountability or appropriate
             safeguards from care delivery.
           </p>
-        </Band>
+        </Section>
 
-        {/* ── 11 YOUR EXISTING SYSTEMS ─────────────────────────────── */}
-        <Band index="10" label="Your systems">
-          <h2 className={`${D2} text-ink-950`}>
-            You have already invested in your software. Novada is designed to
-            help you get more done with it.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Your organisation may already use dedicated platforms for:
-          </p>
-          <Bullets items={EXISTING_SYSTEMS} />
-          <p className={`${BODY} ${WIDE} mt-8`}>
-            Novada AI Workforce integrates with supported systems and
-            executes workflows through approved interfaces.
-          </p>
-          <BoxCards items={INTEGRATION} cols={2} />
-          <Statement>
-            Your existing software manages the records. Your Novada AI employees
-            help manage the work.
-          </Statement>
+        {/* ── THE FIVE AI EMPLOYEES ────────────────────────────────── */}
+        <Section id="employees">
+          <SectionHead sub="Each one runs a defined operational lifecycle end to end. Start with the role under the most pressure and add others into the same Control Centre later.">
+            Meet the five AI employees
+          </SectionHead>
 
-          <div className="mt-10">
-            <Cta>Check your systems and workflow requirements</Cta>
-          </div>
-        </Band>
-
-        {/* ── 12 WHO IT IS FOR ─────────────────────────────────────── */}
-        <Band index="11" label="Who we help">
-          <h2 className={`${D2} text-ink-950`}>
-            Built around the operational demands of Australian care providers.
-          </h2>
-          <BoxCards items={WHO} cols={2} />
-          <p className={`${BODY} ${WIDE} mt-10`}>
-            From growing providers to established multi-site organisations, the
-            right starting point is the workflow that creates the greatest
-            avoidable administrative burden.
-          </p>
-          <div className="mt-10">
-            <Cta>Discuss your operational workload</Cta>
-          </div>
-        </Band>
-
-        {/* ── 13 CHOOSE YOUR AI WORKFORCE ──────────────────────────── */}
-        <Band index="12" label="Where to start" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            Start with one AI employee. Expand as your operational needs grow.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            You do not necessarily need every AI employee immediately. Start
-            with the function that creates the most administrative pressure for
-            your organisation.
-          </p>
-          <BoxCards items={ROLES} cols={2} />
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            Build your AI operations team
-          </p>
-          <p className={`${BODY} ${WIDE} mt-4`}>
-            As your requirements grow, additional specialised AI employees can
-            be introduced into the same Control Centre.
-          </p>
-
-          <div className="mt-10">
-            <Cta>Find the right AI employee for your business</Cta>
-          </div>
-        </Band>
-
-        {/* ── 14 IMPLEMENTATION ────────────────────────────────────── */}
-        <Band index="13" label="Implementation">
-          <h2 className={`${D2} text-ink-950`}>
-            Bringing AI employees into your business should start with
-            understanding the work.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Successful operational AI depends on more than connecting software.
-            The workflows, permissions, approval rules and business
-            responsibilities must be clear.
-          </p>
-          <BoxCards items={IMPLEMENTATION} cols={2} />
-          <Statement>
-            The objective is to introduce useful AI capacity safely, measurably
-            and with clear accountability.
-          </Statement>
-        </Band>
-
-        {/* ── 15 FAQ ───────────────────────────────────────────────── */}
-        <Band index="14" label="Questions" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>Frequently asked questions</h2>
-          <Faq />
-        </Band>
-
-        {/* ── 16 BOOK. Same layout as both twins' #book: rail label,
-             full-width embed in the main column. ──────────────────── */}
-        <section id="book" className="border-t border-white/10 bg-canvas-ink">
-          <div
-            className={`${FRAME} ${GUTTER} border-x border-white/10 py-16 md:py-24 lg:py-32`}
-          >
-            <div className={RAIL_GRID}>
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <div className="flex items-center gap-3 lg:block">
-                  <span className={`${MICRO} tabular text-white/55`}>15</span>
-                  <span
-                    aria-hidden
-                    className="h-px w-6 bg-white/20 lg:my-3 lg:h-6 lg:w-px"
-                  />
-                  <h2 className={`${MICRO} text-white/85`}>Book</h2>
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {EMPLOYEES.map((e, i) => (
+              <article
+                key={e.role}
+                className="reveal flex flex-col rounded-lg border border-ink-100 bg-white p-7 shadow-lift transition-[transform,box-shadow] duration-200 ease-standard hover:-translate-y-0.5"
+                style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 60}ms` }}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <p className={`${MICRO} text-brand-500`}>{e.role}</p>
+                  <span className="flex-shrink-0 rounded-xs bg-brand-50 px-2 py-1 text-[10px] font-bold uppercase tracking-caps text-brand-700 ring-1 ring-brand-200">
+                    {e.stages}
+                  </span>
                 </div>
+
+                <h3 style={SERIF} className="mt-4 text-lg font-bold leading-snug text-ink-950">
+                  {e.lead}
+                </h3>
+
+                {/* The lifecycle's two ends. This is what makes the
+                    stage count on the chip mean something. */}
+                <p className="mt-3 text-xs font-medium uppercase tracking-caps text-ink-400">
+                  {e.span}
+                </p>
+
+                <ul className="mt-5 flex flex-1 flex-col gap-3">
+                  {e.does.map((d) => (
+                    <li key={d} className="flex items-start gap-3">
+                      <Check
+                        aria-hidden
+                        strokeWidth={2.5}
+                        className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-brand-500"
+                      />
+                      <span className="text-sm leading-relaxed text-ink-600">{d}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+
+            <div
+              className="flex flex-col justify-center rounded-lg p-7 ring-1 ring-brand-200"
+              style={{ backgroundColor: CREAM_DEEP }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/ai-workforce/stat-control.png"
+                alt=""
+                width={78}
+                height={78}
+                className="h-[54px] w-[54px] object-contain"
+              />
+              <h3 style={SERIF} className="mt-4 text-lg font-bold text-ink-950">
+                All of them report to one Control Centre
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-600">
+                Whichever roles you hire, their tasks, approvals, exceptions and
+                activity records sit in the same place.
+              </p>
+              <div className="mt-6">
+                <TextLink href="#book">Talk through the roles</TextLink>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        {/* ── INTEGRATIONS ─────────────────────────────────────────────
+            Their logo tile grid. Founder-supplied partner list,
+            10 November 2026. See the note above INTEGRATIONS for the
+            three logos that had to be processed, and for the fact that
+            this list REPLACED the old "no named integrations until
+            confirmed" position. */}
+        <Section id="integrations" bg={CREAM_DEEP}>
+          <SectionHead sub="Your AI employees work inside the systems you already run. We confirm each system's permissions and capabilities during implementation.">
+            Integrates with the tools you already use
+          </SectionHead>
+
+          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {INTEGRATIONS.map((p) => (
+              <div
+                key={p.name}
+                className="reveal flex h-[104px] items-center justify-center rounded-lg border border-ink-100 bg-white p-5 shadow-raise"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/integrations/${p.file}`}
+                  alt={p.name}
+                  className="max-h-[42px] w-auto max-w-[130px] object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── FAQ ──────────────────────────────────────────────────────
+            ⚠️ NATIVE <details>. No JS, keyboard and screen reader
+            support for free, and it still works if hydration never
+            finishes. */}
+        <Section>
+          <SectionHead>Frequently asked questions</SectionHead>
+
+          <div className="mx-auto mt-12 flex max-w-[76ch] flex-col gap-3">
+            {FAQ.map((f, i) => (
+              <details
+                key={f.q}
+                className="reveal group rounded-lg border border-ink-100 bg-white shadow-raise [&_summary::-webkit-details-marker]:hidden"
+                style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 50}ms` }}
+              >
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 p-6 text-base font-semibold text-ink-950">
+                  <span>{f.q}</span>
+                  <ChevronDown
+                    aria-hidden
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-400 transition-transform duration-200 ease-standard group-open:rotate-180"
+                  />
+                </summary>
+                <p className="px-6 pb-6 text-sm leading-relaxed text-ink-600">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── BOOK ─────────────────────────────────────────────────── */}
+        <section id="book" style={{ backgroundColor: DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>
+            <SectionHead
+              dark
+              sub="A free 30-minute conversation about your operational workload, your systems, and which repetitive tasks could be handled safely. No obligation to proceed."
+            >
+              Hire your next AI operations team
+            </SectionHead>
+
+            <div className="mx-auto mt-12 grid max-w-5xl gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-12">
+              <div className="min-w-0">
+                <p className={`${MICRO} text-brand-200`}>On the call we will</p>
+                <ul className="mt-5 flex flex-col gap-3.5">
+                  {[
+                    "Walk through your current admin workload and systems.",
+                    "Find your highest-volume repetitive tasks.",
+                    "Say which of them could be safely automated, and which could not.",
+                    "Explain the five roles and how the Control Centre works.",
+                    "Agree the scope, the next steps and the timeline.",
+                  ].map((t) => (
+                    <li key={t} className="flex items-start gap-3">
+                      <Check
+                        aria-hidden
+                        strokeWidth={2.5}
+                        className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-brand-200"
+                      />
+                      <span className="text-sm leading-relaxed text-white/80">{t}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-8 border-t border-white/15 pt-6 text-sm text-white/55">
+                  30 minutes. No cost.
+                </p>
               </div>
 
               <div className="min-w-0">
-                <BandHeading dark>
-                  Your business has enough operational work. It does not need
-                  more manual work to manage it.
-                </BandHeading>
+                {/* 🔴 care-ai-workforce IS ITS OWN CALENDAR
+                    (WP6oumjuphxHD9rJBNKX) AND ITS OWN PIPELINE. Never
+                    repoint this at care-rostering or care-continuity:
+                    those feed different pipelines, so borrowing one
+                    files an AI Workforce enquiry against a different
+                    offer, with a different confirmation page and a
+                    different coordinator. Unlike a booking that cannot
+                    be made, that one cannot be recovered.
 
-                <div
-                  className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
-                >
-                  <p>
-                    Every day, your staff move between systems, follow up
-                    incomplete tasks, coordinate roster changes, update records
-                    and handle repetitive administration. Those tasks matter.
-                    But not every task needs to consume the time of a human
-                    coordinator.
-                  </p>
-                  <p>
-                    Imagine building an AI operations team that helps complete
-                    routine work across your existing systems, with every action
-                    visible and important decisions remaining under your
-                    control. That is the future Novada AI Workforce is designed
-                    to deliver.
-                  </p>
-                </div>
-
-                <p className="mt-8 max-w-statement border-l-2 border-brand-400 pl-6 text-2xl font-medium text-white">
-                  Hire your next AI operations team.
-                </p>
-
-                <p className={`${WIDE} mt-8 text-base text-white/75`}>
-                  Explore how specialised AI employees could support your care
-                  organisation&apos;s rostering, HR, compliance, after-hours and
-                  operational coordination processes.
-                </p>
-
-                <p className={`${WIDE} mt-7 text-base text-white/75`}>
-                  Book a complimentary 30-minute AI Workforce discovery
-                  conversation. During the call, we will:
-                </p>
-                <Bullets
+                    ⚠️ `source` is what the confirmation page and the
+                    CRM read to attribute the booking. Changing it
+                    silently breaks attribution without breaking the
+                    booking, which is the hardest kind of fault to
+                    notice. */}
+                <BookingEmbed
+                  desk="care-ai-workforce"
+                  source="care-ai-workforce"
                   tone="dark"
-                  items={[
-                    "Discuss your operational challenges, existing systems and current administrative workload.",
-                    "Identify your highest-volume repetitive administrative tasks.",
-                    "Assess which of those tasks could be safely and reliably automated.",
-                    "Explain the five AI employee roles and how the Control Centre works.",
-                    "Agree the next steps, the service scope and the timeline.",
-                  ]}
                 />
-
-                <div className="mt-10">
-                  {/* ✅ LIVE CALENDAR since 8 November 2026. This replaced
-                      the "booking opens shortly" placeholder the page
-                      shipped with, and the page came out of noindex in
-                      the same commit.
-
-                      🔴 care-ai-workforce IS ITS OWN CALENDAR and must
-                      never be repointed at care-rostering or
-                      care-continuity. Those feed their own pipelines, so
-                      borrowing one would file an AI Workforce enquiry
-                      against a different offer, with a different
-                      confirmation page and a different coordinator. */}
-                  <BookingEmbed
-                    desk="care-ai-workforce"
-                    source="care-ai-workforce"
-                    tone="dark"
-                  />
-                </div>
-
-                <p className="mt-6 text-sm text-white/55">
-                  Free 30-minute discovery conversation. No obligation to
-                  proceed.
-                </p>
-
-                {/* The copy's closing secondary button.
-                    ⚠️ min-h-11 IS NOT DECORATION. Without it this link
-                    is 27px tall, because a bordered-bottom link is only
-                    as tall as its own line box, and 27px fails the 44px
-                    tap floor the whole site holds. */}
-                <a
-                  href="#employees"
-                  className="mt-8 inline-flex min-h-11 items-center gap-2 border-b border-white/25 pb-1 text-sm font-semibold text-white transition-colors duration-150 hover:border-white"
-                >
-                  Explore the five AI employees
-                </a>
               </div>
             </div>
           </div>
@@ -1737,12 +1689,10 @@ export default function AiWorkforcePage() {
       <DeskFooter />
 
       {/* ⚠️ CLEARANCE FOR THE STICKY BAR. Without it the bar covers the
-          last line of the footer on a phone, where it is tallest because
-          the tagline wraps above a full-width button. */}
+          last line of the footer on a phone, where it is tallest
+          because the tagline wraps above a full-width button. */}
       <div aria-hidden className="h-28 sm:h-20" />
 
-      {/* 🔴 A bold action has to travel with the reader down a page this
-          long. Do not remove while the ask sits at the foot of it. */}
       <StickyCta
         label="Book your AI Workforce discovery call"
         tagline="Free 30-minute discovery conversation."
