@@ -189,8 +189,35 @@ export function SectionHead({
   );
 }
 
-/** The landing-page header: a logo and one action, no menu, because
-    every nav item on a page built for paid traffic is an exit. */
+/* The three places the header goes. 🔴 THIS IS THE WHOLE SITE now,
+   besides the two legal pages in the footer. "About" is /why-novada:
+   the founder asked for that word in the nav, and renaming the route
+   would break every inbound link to it. */
+const NAV = [
+  { href: "/care/ai-workforce", label: "Care AI Workforce" },
+  { href: "/practices/ai-workforce", label: "Practice AI Workforce" },
+  { href: "/why-novada", label: "About" },
+];
+
+/**
+ * The landing-page header.
+ *
+ * ⚠️ TWO ROWS BELOW lg, ONE FROM lg UP. Three nav labels, a wordmark
+ * and a button do not fit across 375px, and the alternative is a
+ * hamburger that hides the only three destinations the site has. The
+ * second row costs 44px of the first screen, which is why the hero's
+ * top padding drops on mobile to pay for it: measured without that,
+ * the first CTA landed at 666px against a 667px fold.
+ *
+ * 🔴 THE BREAKPOINT IS lg, NOT md, AND THAT IS NOT A STYLE CHOICE. At
+ * md the inline row is logo + three labels + the button, which
+ * measures about 800px and does not fit a 768px tablet: every one of
+ * the four rebuilt pages scrolled sideways at exactly that width.
+ * Moving it down to md again reintroduces that.
+ *
+ * ⚠️ min-h-11 ON EVERY NAV LINK. A bare inline link is about 20px tall
+ * and the site holds a 44px tap floor.
+ */
 export function LpHeader({ cta = "Book a discovery call" }: { cta?: string }) {
   return (
     <header
@@ -213,6 +240,22 @@ export function LpHeader({ cta = "Book a discovery call" }: { cta?: string }) {
             Novada <span className="text-brand-500">Tech</span>
           </span>
         </a>
+        {/* The nav, inline from md up. */}
+        <nav aria-label="Primary" className="hidden lg:block">
+          <ul className="flex items-center gap-7 lg:gap-9">
+            {NAV.map((n) => (
+              <li key={n.href}>
+                <a
+                  href={n.href}
+                  className="inline-flex min-h-11 items-center whitespace-nowrap text-sm font-semibold text-ink-700 transition-colors duration-150 hover:text-brand-500"
+                >
+                  {n.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         {/* ⚠️ TWO LABELS, ONE BUTTON. The long one wraps to three lines
             in a phone's 186px header slot, which makes the sticky
             header 65px tall and pushes the hero down the screen. */}
@@ -221,6 +264,30 @@ export function LpHeader({ cta = "Book a discovery call" }: { cta?: string }) {
           <span className="hidden sm:inline">{cta}</span>
         </Cta>
       </div>
+
+      {/* The nav's own row, below md. ⚠️ overflow-x-auto is the
+          safety net, not the design: at 320px the three labels are
+          wider than the screen and without it they would widen the
+          whole document. */}
+      <nav
+        aria-label="Primary"
+        className="border-t border-ink-100/70 lg:hidden"
+      >
+        <ul
+          className={`${FRAME} ${GUTTER} flex items-center gap-6 overflow-x-auto`}
+        >
+          {NAV.map((n) => (
+            <li key={n.href}>
+              <a
+                href={n.href}
+                className="inline-flex min-h-11 items-center whitespace-nowrap text-[13px] font-semibold text-ink-700 transition-colors duration-150 hover:text-brand-500"
+              >
+                {n.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }

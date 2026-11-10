@@ -5,6 +5,7 @@ import { ArrowRight, Check, ChevronDown, Star } from "lucide-react";
 import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
 import { FRAME, GUTTER, MICRO, MICRO_TIGHT } from "@/components/desk/tokens";
+import { LpHeader } from "@/components/lp/kit";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
@@ -327,8 +328,6 @@ const EMPLOYEES = [
       "Explains hours, locations and published policies, checks permitted availability and books, moves or cancels within your rules.",
       "Takes messages, records the enquiry and routes anything it cannot handle to the right person.",
     ],
-    limit:
-      "The AI identifies itself as an AI assistant on every patient call, and urgent or potentially clinical matters are escalated through the practice's approved procedures rather than handled by the AI. A patient can always be put through to a person.",
   },
   {
     role: "AI Appointment & Cancellation Recovery",
@@ -339,8 +338,6 @@ const EMPLOYEES = [
       "Identifies eligible patients under your configured rules and sends authorised offers.",
       "Tracks responses, confirms acceptances and updates the appointment book.",
     ],
-    limit:
-      "Appointment offers remain subject to clinical suitability, patient choice and approved scheduling requirements.",
   },
   {
     role: "AI Referrals & Intake",
@@ -351,8 +348,6 @@ const EMPLOYEES = [
       "Requests missing information through approved channels and tracks incomplete files.",
       "Keeps referrers and patients updated on administrative progress.",
     ],
-    limit:
-      "The AI does not independently assess clinical urgency, accept or reject referrals on clinical grounds, or determine whether specialist care is medically appropriate.",
   },
   {
     role: "AI Recalls & Follow-Up",
@@ -363,8 +358,6 @@ const EMPLOYEES = [
       "Sends clinician-authorised communications through permitted channels and records responses.",
       "Offers eligible follow-up appointments and reports what is still outstanding.",
     ],
-    limit:
-      "Clinical recalls and appointment reminders are not the same thing. Clinically significant results, urgent follow-ups and patient safety concerns remain under the practice's clinical governance and escalation procedures. The AI does not interpret test results, decide who needs clinical review or independently close safety-critical recalls.",
   },
   {
     role: "AI Billing & Claims",
@@ -375,8 +368,6 @@ const EMPLOYEES = [
       "Checks permitted administrative fields and flags what is missing or inconsistent.",
       "Tracks claim statuses, identifies rejections and coordinates permitted follow-up.",
     ],
-    limit:
-      "The AI does not invent billable services, determine Medicare eligibility, select clinical billing codes independently or guarantee claim approval or revenue recovery.",
   },
   {
     role: "AI Practice Operations",
@@ -390,11 +381,38 @@ const EMPLOYEES = [
   },
 ];
 
-/* 🔴 FOUR TILES, NOT ELEVEN. See note 4 in the file header: the rest of
-   the founder's list is NDIS and aged care software. The practice
-   management systems have been asked for and are not here yet. Do not
-   fill the gap by guessing at names. */
+/* ── THE INTEGRATION GRID. ────────────────────────────────────────────
+ *
+ * 🔴 THE PRACTICE MANAGEMENT SYSTEMS ARE RESEARCHED, NOT CONFIRMED.
+ * Founder instruction, 10 November 2026, was to research the systems
+ * Australian practices actually use and add them. These seven are the
+ * ones the market consistently names: Best Practice and MedicalDirector
+ * in general practice, Genie in specialist practice, Cliniko, Halaxy
+ * and Nookal in allied health, Zedmed across both.
+ *
+ * ⚠️ THAT IS A STATEMENT ABOUT THE MARKET, NOT ABOUT OUR INTEGRATIONS.
+ * The care page's eleven partners were supplied by the founder and are
+ * confirmed. These seven were chosen by research, and a logo on this
+ * grid reads to a practice manager as "Novada connects to my system".
+ * 🔴 THE FOUNDER MUST CONFIRM WHICH ARE REAL BEFORE THIS PAGE COMES
+ * OUT OF noindex. Nothing is public while it is noindex, which is the
+ * only reason this can sit here now.
+ *
+ * ⚠️ BEST PRACTICE, NOOKAL AND CLINIKO ONLY PUBLISH A REVERSED LOGO in
+ * their headers, and a white logo on a white tile renders as an empty
+ * box. Those three were processed: dark ground knocked out, near-white
+ * ink darkened, saturated parts of each mark left alone.
+ *
+ * The last four are cross-sector and carry over from the care page.
+ * ──────────────────────────────────────────────────────────────────── */
 const INTEGRATIONS = [
+  { name: "Best Practice", file: "bestpractice.png" },
+  { name: "MedicalDirector", file: "medicaldirector.svg" },
+  { name: "Genie", file: "genie.svg" },
+  { name: "Zedmed", file: "zedmed.png" },
+  { name: "Cliniko", file: "cliniko.png" },
+  { name: "Halaxy", file: "halaxy.svg" },
+  { name: "Nookal", file: "nookal.png" },
   { name: "Xero", file: "xero.png" },
   { name: "Employment Hero", file: "employmenthero.png" },
   { name: "Twilio", file: "twilio.svg" },
@@ -849,38 +867,13 @@ const VISUALS: Record<string, React.ComponentType> = {
 export default function AiWorkforcePage() {
   return (
     <div data-theme="desk" className="min-h-screen font-sans" style={{ backgroundColor: CREAM }}>
-      {/* ⚠️ NOT DeskNav. A paid-traffic page carries a logo and one
-          action; every nav item is an exit. Same as the care page. */}
-      <header
-        className="sticky top-0 z-40 border-b border-ink-100/70 backdrop-blur"
-        style={{ backgroundColor: "rgba(255,251,244,0.92)" }}
-      >
-        <div className={`${FRAME} ${GUTTER} flex min-h-16 items-center justify-between gap-4`}>
-          <a
-            href="/"
-            aria-label="Novada Tech, home"
-            className="-mx-1.5 flex flex-shrink-0 items-center gap-2.5 rounded-xs px-1.5 py-2"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/favicon.png" alt="" width={32} height={32} className="h-7 w-7" />
-            <span className="text-lg font-bold leading-none tracking-tight text-ink-950">
-              Novada <span className="text-brand-500">Tech</span>
-            </span>
-          </a>
-          {/* ⚠️ TWO LABELS, ONE BUTTON. The long one wraps to three
-              lines in a phone's header slot and makes it 65px tall. */}
-          <Cta href="#book">
-            <span className="sm:hidden">Book a call</span>
-            <span className="hidden sm:inline">Book a discovery call</span>
-          </Cta>
-        </div>
-      </header>
+            <LpHeader />
 
       <main>
         {/* ── HERO ─────────────────────────────────────────────────── */}
         <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
           <div
-            className={`${FRAME} ${GUTTER} relative grid items-center gap-12 pb-20 pt-12 md:pb-28 md:pt-16 lg:grid-cols-[0.92fr_1.12fr] lg:gap-10`}
+            className={`${FRAME} ${GUTTER} relative grid items-center gap-12 pb-20 pt-6 md:pb-28 md:pt-16 lg:grid-cols-[0.92fr_1.12fr] lg:gap-10`}
           >
             {/* ⚠️ min-w-0 ON BOTH GRID ITEMS. A grid item's min-width is
                 auto, so the widest unbreakable thing inside either
@@ -1232,15 +1225,30 @@ export default function AiWorkforcePage() {
                   ))}
                 </ul>
 
-                {/* 🔴 THE BOUNDARY LINE, AND IT STAYS. Read note 1 in
-                    the file header. Three of these are legal,
-                    clinical-safety or Medicare-compliance statements,
-                    not marketing hedges. */}
-                {e.limit ? (
-                  <p className="mt-6 border-t border-ink-100 pt-5 text-xs leading-relaxed text-ink-500">
-                    {e.limit}
-                  </p>
-                ) : null}
+                {/* ⚠️ THE PER-ROLE BOUNDARY LINES WERE REMOVED ON
+                    FOUNDER INSTRUCTION, 10 November 2026, after the
+                    oversight band below was added.
+
+                    🔴 EVERY ONE OF THE FIVE CONCEPTS THEY CARRIED IS
+                    STILL ON THIS PAGE, TWICE, and that is the only
+                    reason the removal is safe:
+
+                      AI identification on calls  -> the oversight
+                        band's first column, and the FAQ answer "Will
+                        patients know they are speaking to an AI?"
+                      clinical urgency and triage -> third column, and
+                        the FAQ answer "Does the AI make clinical
+                        decisions?"
+                      referral acceptance         -> third column, same
+                        FAQ answer
+                      test results and recalls    -> third column, same
+                        FAQ answer
+                      Medicare codes and claims   -> third column, and
+                        the FAQ answer "Can the AI handle our billing
+                        and Medicare claims?"
+
+                    ⚠️ SO THOSE TWO BANDS ARE NOW LOAD-BEARING. Check
+                    both before shortening either. */}
               </article>
             ))}
           </div>
@@ -1255,7 +1263,7 @@ export default function AiWorkforcePage() {
             Integrates with the tools you already use
           </SectionHead>
 
-          <div className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {INTEGRATIONS.map((p) => (
               <div
                 key={p.name}

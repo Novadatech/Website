@@ -6,6 +6,7 @@ import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
 import BookingEmbed from "@/components/desk/BookingEmbed";
 import { FRAME, GUTTER, MICRO, MICRO_TIGHT } from "@/components/desk/tokens";
+import { LpHeader } from "@/components/lp/kit";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
@@ -1085,49 +1086,13 @@ const VISUALS: Record<string, React.ComponentType> = {
 export default function AiWorkforcePage() {
   return (
     <div data-theme="desk" className="min-h-screen font-sans" style={{ backgroundColor: CREAM }}>
-      {/*
-        ⚠️ NOT DeskNav, AND THAT IS A DELIBERATE DEPARTURE. The source
-        page carries a logo and one action, with no menu at all, because
-        it is built for paid traffic and every nav item is an exit. The
-        rest of this estate runs DeskNav. If the founder wants the
-        standard nav back it is a two-line change: import DeskNav and
-        render <DeskNav tone="light" audience="care" bookHref="#book" />.
-      */}
-      <header
-        className="sticky top-0 z-40 border-b border-ink-100/70 backdrop-blur"
-        style={{ backgroundColor: "rgba(255,251,244,0.92)" }}
-      >
-        <div className={`${FRAME} ${GUTTER} flex min-h-16 items-center justify-between gap-4`}>
-          {/* ⚠️ THE HOUSE LOCKUP IS THE MARK PLUS A TEXT WORDMARK, which
-              is what DeskNav renders. It is NOT public/Novada Logo.png:
-              that file is a 1024x1024 square with the mark floating in
-              the middle, so at nav height it renders as a 20px smudge. */}
-          <a
-            href="/care"
-            aria-label="Novada Tech, home"
-            className="-mx-1.5 flex flex-shrink-0 items-center gap-2.5 rounded-xs px-1.5 py-2"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/favicon.png" alt="" width={32} height={32} className="h-7 w-7" />
-            <span className="text-lg font-bold leading-none tracking-tight text-ink-950">
-              Novada <span className="text-brand-500">Tech</span>
-            </span>
-          </a>
-          {/* ⚠️ TWO LABELS, ONE BUTTON. "Book a discovery call" wraps to
-              three lines in a 186px header slot on a phone, which makes
-              the sticky header 65px tall and pushes the hero down. */}
-          <Cta href="#book">
-            <span className="sm:hidden">Book a call</span>
-            <span className="hidden sm:inline">Book a discovery call</span>
-          </Cta>
-        </div>
-      </header>
+            <LpHeader />
 
       <main>
         {/* ── HERO ─────────────────────────────────────────────────── */}
         <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
           <div
-            className={`${FRAME} ${GUTTER} relative grid items-center gap-12 pb-20 pt-12 md:pb-28 md:pt-16 lg:grid-cols-[0.92fr_1.12fr] lg:gap-10`}
+            className={`${FRAME} ${GUTTER} relative grid items-center gap-12 pb-20 pt-6 md:pb-28 md:pt-16 lg:grid-cols-[0.92fr_1.12fr] lg:gap-10`}
           >
             {/* ⚠️ min-w-0 ON BOTH GRID ITEMS. A grid item's min-width is
                 auto, not zero, so the widest unbreakable thing inside
@@ -1146,8 +1111,7 @@ export default function AiWorkforcePage() {
                 style={SERIF}
                 className="mt-5 text-[clamp(2.1rem,1.35rem+3.2vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-ink-950"
               >
-                Hire AI employees that do the work. Not just tell you what needs
-                doing.
+                Hire AI employees that actually run your care operations.
               </h1>
 
               {/* ⚠️ TWO SENTENCES. The live page runs 130 words here and

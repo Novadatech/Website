@@ -210,7 +210,7 @@ export default function WhyNovadaPage() {
         {/* ── HERO ─────────────────────────────────────────────────── */}
         <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
           <div
-            className={`${FRAME} ${GUTTER} relative grid items-center gap-12 pb-20 pt-12 md:pb-28 md:pt-16 lg:grid-cols-[0.92fr_1.12fr] lg:gap-10`}
+            className={`${FRAME} ${GUTTER} relative grid items-center gap-12 pb-20 pt-6 md:pb-28 md:pt-16 lg:grid-cols-[0.92fr_1.12fr] lg:gap-10`}
           >
             {/* ⚠️ min-w-0 ON BOTH GRID ITEMS: a grid item's min-width is
                 auto, so the widest unbreakable thing inside either one

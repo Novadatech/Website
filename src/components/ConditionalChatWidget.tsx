@@ -39,22 +39,26 @@ const WIDGETS = {
 // The only routes that load a widget. Add a route here ONLY with founder
 // approval for that page's bot script.
 /*
- * 🔴 EMPTY SINCE 10 NOVEMBER 2026, SO THE WIDGET LOADS NOWHERE.
+ * EVERY PAGE ON THE SITE, on founder instruction, 10 November 2026.
+ * That is six routes, because the site is six pages.
  *
- * It used to load on /care/rostering and /care/workforce. Both routes
- * were archived in the reduction to four pages, and a route list
- * pointing at pages that no longer exist is dead config that reads
- * like working config.
+ * 🔴 THE BOT HAS NOT BEEN BRIEFED ON THE AI WORKFORCE OFFER YET. The
+ * founder is updating it separately and knows this. Until then the
+ * PRIMARY Conversation AI answers every one of these, and it still
+ * knows the retired Care offers: a visitor who asks it to book may be
+ * sent a link to a calendar that is now disabled.
  *
- * ⚠️ THE TWO OFFER PAGES WERE NOT ADDED IN THEIR PLACE, DELIBERATELY.
- * The rule above this list is that a route goes in ONLY with founder
- * approval for that page's bot script, and only the PRIMARY
- * Conversation AI agent ever replies, so whichever page mounts it is
- * answered by the same agent. Putting the widget on an offer page
- * whose booking flow the agent has not been briefed on sends visitors
- * a link to the wrong calendar. Raised with the founder.
+ * ⚠️ ONLY THE PRIMARY AGENT EVER REPLIES, whatever widget id is
+ * mounted, so a second widget would not give a page its own bot.
  */
-const CHAT_ROUTES: Record<string, keyof typeof WIDGETS> = {};
+const CHAT_ROUTES: Record<string, keyof typeof WIDGETS> = {
+  "/": "main",
+  "/care/ai-workforce": "main",
+  "/practices/ai-workforce": "main",
+  "/why-novada": "main",
+  "/privacy-policy": "main",
+  "/terms-of-service": "main",
+};
 
 const GATE_STYLE_ID = "chat-widget-route-gate";
 
