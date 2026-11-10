@@ -220,12 +220,20 @@ const NAV = [
  */
 export function LpHeader({
   cta = "Book a discovery call",
+  /** ⚠️ THE PHONE LABEL IS A SEPARATE STRING, NOT A TRUNCATION. The
+      long label wraps to three lines in a phone's 186px header slot,
+      which makes the sticky header 65px tall and pushes the hero down
+      the screen. It defaulted to the literal "Book a call", which is
+      correct on all six marketing pages and wrong on the confirmation
+      page, where the visitor has just booked. */
+  ctaShort = "Book a call",
   /** ⚠️ The legal pages have no #book section, so the button has to be
       able to point somewhere real. A button that scrolls nowhere reads
       as broken. */
   ctaHref = "#book",
 }: {
   cta?: string;
+  ctaShort?: string;
   ctaHref?: string;
 }) {
   return (
@@ -269,7 +277,7 @@ export function LpHeader({
             in a phone's 186px header slot, which makes the sticky
             header 65px tall and pushes the hero down the screen. */}
         <Cta href={ctaHref}>
-          <span className="sm:hidden">Book a call</span>
+          <span className="sm:hidden">{ctaShort}</span>
           <span className="hidden sm:inline">{cta}</span>
         </Cta>
       </div>

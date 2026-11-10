@@ -21,6 +21,25 @@
     @apply bg-white text-[#0E1116];
   }
 
+  /* 🔴 THE LANDING PAGES RENDER ON CREAM, NOT WHITE (rebuilt
+     2026-11-10): the home page, both AI Workforce pages, Why Novada and
+     both booking confirmations. The rule above would leave their
+     overscroll gutter white, which is a visible seam above a cream
+     hero, and the base rule below it would leave the gutter near-black
+     and inherited text white.
+
+     ⚠️ IT MUST SIT AFTER THE DESK RULE. Same specificity, so the later
+     declaration is the one that wins, and these pages carry BOTH
+     attributes: data-theme="desk" for everything else keyed off it,
+     data-lp="cream" for the ground.
+
+     ⚠️ The hex is the kit's CREAM constant. Written out because CSS
+     cannot read a TS export; if one changes, change both. */
+  body:has([data-lp="cream"]) {
+    @apply text-[#0E1116];
+    background-color: #fffbf4;
+  }
+
   ::selection {
     @apply bg-ember-500/30 text-white;
   }

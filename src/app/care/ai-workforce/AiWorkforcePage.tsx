@@ -1085,7 +1085,12 @@ const VISUALS: Record<string, React.ComponentType> = {
 
 export default function AiWorkforcePage() {
   return (
-    <div data-theme="desk" className="min-h-screen font-sans" style={{ backgroundColor: CREAM }}>
+    <div
+      data-theme="desk"
+      data-lp="cream"
+      className="min-h-screen font-sans"
+      style={{ backgroundColor: CREAM }}
+    >
             <LpHeader />
 
       <main>

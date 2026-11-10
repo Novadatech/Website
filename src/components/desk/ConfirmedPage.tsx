@@ -2,40 +2,39 @@
 
 /*
  * ══════════════════════════════════════════════════════════════════════
- * THE BOOKING CONFIRMATION. One scaffold, one page per DESK.
+ * THE BOOKING CONFIRMATION. One scaffold, one page per OFFER.
  *
- *   novadatech.com.au/practices/patient-access/confirmed
- *   novadatech.com.au/practices/workforce/confirmed
- *   novadatech.com.au/care/operations/confirmed
- *   novadatech.com.au/care/workforce/confirmed
+ *   novadatech.com.au/care/ai-workforce/confirmed
+ *   novadatech.com.au/practices/ai-workforce/confirmed
  *
- * ⚠️ THE CALENDARS ARE SPLIT BY DESK, NOT BY MARKET, and all four pages
- * live on the Australian domain. Read that sentence twice before editing
- * any copy here, because it is the opposite of what the previous version
- * of this file assumed.
+ * 🔴 REBUILT IN THE LANDING-PAGE DESIGN ON 10 NOVEMBER 2026. It used to
+ * render DeskNav on a white ground with the condensed uppercase display
+ * face, which is the design the four surviving pages were rebuilt AWAY
+ * from. A booker who clicked a cream, serif page and then landed on a
+ * white, condensed one has every reason to think they left the site, at
+ * the single moment in the funnel where confidence matters most. The
+ * ground, the face, the header and the footer now match the page the
+ * booking came from.
  *
- * The consequence: every page serves BOTH markets. An American booker
- * lands here too, and sessionStorage is per-origin so a .com booker
- * arrives carrying nothing. THE COPY IS THEREFORE MARKET-NEUTRAL AGAIN.
- * No market spelling (inquiry / enquiry), no market-specific nouns
- * (roster / schedule, licence / license, caregiver / support worker),
- * no 911 / 000, and no phone number. Say the thing both markets say.
+ * ⚠️ TWO PAGES NOW, NOT FOUR. The four desk confirmations
+ * (care/rostering, care/workforce, practices/revenue-audit,
+ * practices/patient-booking) were archived with their offers on
+ * 10 November 2026 and their calendars disabled. Their paths 308 here.
  *
- * ⚠️ THE DESK IS FIXED BY THE URL. Each page serves exactly one desk, so
- * nothing here guesses it from the booking source and there is no
- * fallback copy to get wrong. That is the whole gain of splitting by
- * desk rather than by offer.
+ * ⚠️ PER-MARKET WORDING IS ALLOWED AGAIN ON THIS DOMAIN, and that is a
+ * reversal worth reading twice. The old rule was market-neutral copy,
+ * because one calendar per desk served both countries and so one
+ * confirmation page received both. It no longer does: the AI Workforce
+ * calendars are split by market (WP6oumjuphxHD9rJBNKX redirects here,
+ * 2p2Kf8boNRAn4f9dy28a redirects to the .com copy), so this page
+ * receives Australian bookers only and may say roster, support worker
+ * and participant. THE RULE FOLLOWS WHETHER ONE PAGE CAN RECEIVE MORE
+ * THAN ONE MARKET. It has inverted three times; check the calendar
+ * split before trusting either version of it.
  *
- * ⚠️ `market` IS PROGRESSIVE ENHANCEMENT AND MAY NEVER ARRIVE. If the
- * booking widget happens to forward utm_source to the redirect, the page
- * can quietly use that market's wording. It is UNVERIFIED whether the
- * provider does forward it, so every page must read correctly on the
- * neutral copy alone, and the neutral copy is what ships. Never make a
- * market variant carry information the neutral one lacks.
- *
- * ⚠️ content_category STAYS THE OFFER ("practices" / "care"), because the
- * Meta custom conversions are defined on it. The DESK goes in
- * content_name. Do not move the desk into content_category or the
+ * ⚠️ content_category STAYS THE OFFER ("practices" / "care"), because
+ * the Meta custom conversions are defined on it. The DESK goes in
+ * content_name. Do not move the offer into content_name or the
  * conversions stop matching.
  *
  * ⚠️ HOW TO VERIFY THE PIXEL FIRES. Not by grepping the HTML, where it
@@ -43,15 +42,19 @@
  * false negative because fbevents.js uses a transport Playwright's
  * page.route cannot see. Block connect.facebook.net so fbq stays a
  * queueing stub, then read window.fbq.queue.
+ *
+ * ⚠️ THE BASE PIXEL AND PageView COME FROM src/app/layout.tsx. This
+ * file adds the Schedule event only. ensureFbq is idempotent and
+ * returns the existing fbq, so PageView is never fired twice.
  * ══════════════════════════════════════════════════════════════════════
  */
 
 import { useEffect, useState, type ComponentType } from "react";
 import Script from "next/script";
-import { CheckCircle2, Mail, ClipboardList, FileText } from "lucide-react";
-import DeskNav from "@/components/desk/DeskNav";
+import { Check, Mail, ClipboardList, FileText } from "lucide-react";
 import DeskFooter from "@/components/desk/DeskFooter";
-import { D1, FRAME, GUTTER, MICRO } from "@/components/desk/tokens";
+import { FRAME, GUTTER, MICRO } from "@/components/desk/tokens";
+import { CREAM, CREAM_DEEP, LpHeader, SERIF } from "@/components/lp/kit";
 
 const PIXEL_ID = "3515804598723791";
 
@@ -104,14 +107,14 @@ export type Copy = { neutral: string; us?: string; au?: string };
 export type ConfirmedPageProps = {
   /** The offer, for content_category. Fixed by the URL. */
   offer: "practices" | "care";
-  /** Meta content_name. Names the DESK, e.g. "Operations Desk review". */
+  /** Meta content_name. Names the booking, e.g. "AI Workforce demo". */
   eventName: string;
   /** The "have your numbers handy" line. `neutral` must stand alone. */
   numbers: Copy;
   /** Where "back" goes, and what it is called. */
   backHref: string;
   backLabel: string;
-  /** The contact route shown. Market-specific now that it can be. */
+  /** The contact route shown. */
   contactEmail: string;
   /**
    * Google Ads conversion, where this page owns one.
@@ -119,6 +122,12 @@ export type ConfirmedPageProps = {
    * ⚠️ ONLY ONE PAGE SHOULD EVER CARRY A GIVEN LABEL. Putting the care
    * label on a practices page counts practice bookings as care
    * conversions. Loading a page that has one fires a REAL conversion.
+   *
+   * 🔴 NO PAGE ON THIS SITE PASSES IT TODAY. The label
+   * AW-16650862607/o6ELCPGhgYwcEI-A4IM- lived on /care/operations/confirmed
+   * and /confirmed-call, both archived on 10 November 2026, so Google Ads
+   * currently records NO conversion for any booking. Flagged to the
+   * founder; wire it here when a conversion action for this offer exists.
    */
   googleAdsSendTo?: string;
 };
@@ -188,12 +197,25 @@ export default function ConfirmedPage({
     {
       icon: FileText,
       title: "What you'll leave with",
-      body: "An honest assessment of whether this fits, including if it does not, and what we would take over, side by side and in writing.",
+      body: "An honest assessment of whether this fits, including if it does not, and what the AI employees would take over, side by side and in writing.",
     },
   ];
 
+  /*
+   * ⚠️ BOTH GROUND ATTRIBUTES BELOW, AND NEITHER IS DECORATION.
+   * Without data-theme="desk" the body falls back to the site's legacy
+   * dark surface, which flashes near-black in the overscroll gutter and
+   * makes inherited body text white on cream. data-lp="cream" is what
+   * paints that gutter the same cream as the page rather than white.
+   * Both rules live in src/app/globals.css.
+   */
   return (
-    <div data-theme="desk" className="min-h-screen bg-white font-sans">
+    <div
+      data-theme="desk"
+      data-lp="cream"
+      className="min-h-screen font-sans"
+      style={{ backgroundColor: CREAM }}
+    >
       {googleAdsSendTo ? (
         <Script id="gtag-conversion-confirmed" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -201,29 +223,37 @@ gtag('event','conversion',{'send_to':'${googleAdsSendTo}'});`}
         </Script>
       ) : null}
 
-      <DeskNav tone="dark" audience={offer} />
+      {/* ⚠️ THE HEADER CTA POINTS BACK AT THE OFFER, NOT AT #book. This
+          page has no booking section, and inviting somebody who has just
+          booked to book again is how a calendar fills with duplicates. */}
+      <LpHeader cta="See the offer" ctaShort="The offer" ctaHref={backHref} />
 
       <main>
-        <section className="border-t border-ink-100 bg-white">
-          <div
-            className={`${FRAME} ${GUTTER} border-x border-ink-100 py-16 md:py-24`}
-          >
-            <div className="max-w-prose">
+        {/* ── THE CONFIRMATION ─────────────────────────────────────── */}
+        <section
+          className="relative overflow-hidden"
+          style={{ backgroundColor: CREAM }}
+        >
+          <div className={`${FRAME} ${GUTTER} py-14 md:py-20`}>
+            <div className="mx-auto max-w-[760px] text-center">
               <span
                 aria-hidden
-                className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-500"
+                className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-500 shadow-cta"
               >
-                <CheckCircle2
+                <Check
                   aria-hidden
-                  className="h-6 w-6 text-white"
-                  strokeWidth={1.8}
+                  className="h-7 w-7 text-white"
+                  strokeWidth={2.4}
                 />
               </span>
               <p className={`${MICRO} text-brand-500`}>Booking confirmed</p>
-              <h1 className={`${D1} mt-4 max-w-headline text-ink-950`}>
+              <h1
+                style={SERIF}
+                className="mt-4 text-balance text-[clamp(1.9rem,1.2rem+2.5vw,3rem)] font-bold leading-[1.1] tracking-[-0.015em] text-ink-950"
+              >
                 You are booked. Here is what to have ready.
               </h1>
-              <p className="mt-6 max-w-measure text-lg text-ink-600">
+              <p className="mx-auto mt-6 max-w-[58ch] text-lg leading-relaxed text-ink-600">
                 Your calendar invite is on its way. It is thirty minutes and
                 nothing is signed on the call. The three notes below are worth
                 two minutes of preparation, and they are the difference between
@@ -233,47 +263,64 @@ gtag('event','conversion',{'send_to':'${googleAdsSendTo}'});`}
           </div>
         </section>
 
-        {/* Next steps, on the ink surface: this is a desk moment. */}
-        <section className="border-t border-white/10 bg-canvas-ink">
-          <div
-            className={`${FRAME} ${GUTTER} border-x border-white/10 py-16 md:py-20`}
-          >
-            <p className={`${MICRO} text-white/60`}>Before we speak</p>
-            <div className="mt-8 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-3">
+        {/* ── BEFORE WE SPEAK ──────────────────────────────────────── */}
+        <section style={{ backgroundColor: CREAM_DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-16 md:py-20`}>
+            <div className="grid gap-5 md:grid-cols-3">
               {steps.map((s) => (
-                <div key={s.title} className="bg-canvas-ink p-7">
-                  <s.icon
+                <div
+                  key={s.title}
+                  className="rounded-lg border border-ink-100 bg-white p-7 shadow-float"
+                >
+                  <span
                     aria-hidden
-                    className="mb-4 h-4 w-4 text-brand-400"
-                    strokeWidth={1.8}
-                  />
-                  <h2 className="text-base font-semibold text-white">
+                    className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand-100"
+                  >
+                    <s.icon
+                      aria-hidden
+                      className="h-5 w-5 text-brand-600"
+                      strokeWidth={1.9}
+                    />
+                  </span>
+                  <h2
+                    style={SERIF}
+                    className="text-xl font-bold leading-snug text-ink-950"
+                  >
                     {s.title}
                   </h2>
-                  <p className="mt-3 text-sm text-white/70">{s.body}</p>
+                  <p className="mt-3 text-[15px] leading-relaxed text-ink-600">
+                    {s.body}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="border-t border-ink-100 bg-white">
-          <div className={`${FRAME} ${GUTTER} border-x border-ink-100 py-16`}>
-            <p className="text-base text-ink-600">
-              Need to reach us before the call?{" "}
+        {/* ── THE WAY BACK ─────────────────────────────────────────── */}
+        <section style={{ backgroundColor: CREAM }}>
+          <div className={`${FRAME} ${GUTTER} py-14 md:py-16`}>
+            <div className="mx-auto max-w-[760px] text-center">
+              <p className="text-base text-ink-600">
+                Need to reach us before the call?{" "}
+                {/* ⚠️ inline-flex + min-h-11 is not decoration. A bare
+                    inline link is only as tall as its own line box,
+                    about 20px, and this site holds a 44px tap floor.
+                    It was 20px in the design this replaced. */}
+                <a
+                  href={`mailto:${contactEmail}`}
+                  className="inline-flex min-h-11 items-center font-semibold text-brand-500 underline-offset-4 hover:underline"
+                >
+                  {contactEmail}
+                </a>
+              </p>
               <a
-                href={`mailto:${contactEmail}`}
-                className="font-semibold text-brand-500 underline-offset-4 hover:underline"
+                href={backHref}
+                className={`${MICRO} mt-7 inline-flex min-h-11 items-center text-ink-500 transition-colors duration-150 hover:text-brand-500`}
               >
-                {contactEmail}
+                {backLabel}
               </a>
-            </p>
-            <a
-              href={backHref}
-              className={`${MICRO} mt-8 inline-flex min-h-11 items-center text-ink-500 hover:text-brand-500`}
-            >
-              {backLabel}
-            </a>
+            </div>
           </div>
         </section>
       </main>

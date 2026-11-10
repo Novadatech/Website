@@ -203,7 +203,12 @@ function RecordVisual() {
 
 export default function WhyNovadaPage() {
   return (
-    <div data-theme="desk" className="min-h-screen font-sans" style={{ backgroundColor: CREAM }}>
+    <div
+      data-theme="desk"
+      data-lp="cream"
+      className="min-h-screen font-sans"
+      style={{ backgroundColor: CREAM }}
+    >
       <LpHeader cta="See the offers" />
 
       <main>
