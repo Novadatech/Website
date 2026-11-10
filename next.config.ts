@@ -22,6 +22,78 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
+      /* ══════════════════════════════════════════════════════════════
+       * THE 10 NOVEMBER 2026 REDUCTION TO FOUR PAGES.
+       *
+       * The site now has the home page, the two AI Workforce offers
+       * and Why Novada, plus the two legal pages. Everything below was
+       * archived on the founder's instruction and redirects here.
+       *
+       * 🔴 THE FOUR RETIRED OFFERS HAD LIVE BOOKING CALENDARS. Those
+       * calendars are being disabled in the CRM separately. Until that
+       * is done a booking can still be made on one of them, and its
+       * redirect still lands on a confirmation page, which is why the
+       * two surviving /confirmed routes are the targets below rather
+       * than the home page.
+       *
+       * ⚠️ PERMANENT, SO BROWSERS CACHE THEM HARD. If any of these
+       * ever needs reversing, plan on the old URL being unusable for a
+       * while even after the redirect is removed.
+       * ══════════════════════════════════════════════════════════════ */
+
+      /* The two audience hubs. With one offer each they had nothing
+         left to do, so each hub goes to its offer. */
+      { source: "/care", destination: "/care/ai-workforce", permanent: true },
+      { source: "/practices", destination: "/practices/ai-workforce", permanent: true },
+
+      /* The two retired care offers. */
+      { source: "/care/rostering", destination: "/care/ai-workforce", permanent: true },
+      { source: "/care/rostering2", destination: "/care/ai-workforce", permanent: true },
+      { source: "/care/workforce", destination: "/care/ai-workforce", permanent: true },
+      {
+        source: "/care/rostering/confirmed",
+        destination: "/care/ai-workforce/confirmed",
+        permanent: true,
+      },
+      {
+        source: "/care/workforce/confirmed",
+        destination: "/care/ai-workforce/confirmed",
+        permanent: true,
+      },
+
+      /* The two retired practices offers. */
+      {
+        source: "/practices/revenue-audit",
+        destination: "/practices/ai-workforce",
+        permanent: true,
+      },
+      {
+        source: "/practices/patient-booking",
+        destination: "/practices/ai-workforce",
+        permanent: true,
+      },
+      {
+        source: "/practices/revenue-audit/confirmed",
+        destination: "/practices/ai-workforce/confirmed",
+        permanent: true,
+      },
+      {
+        source: "/practices/patient-booking/confirmed",
+        destination: "/practices/ai-workforce/confirmed",
+        permanent: true,
+      },
+
+      /* Everything else archived in the same pass. These have no
+         natural successor, so they go to the home page, which now
+         names both offers. */
+      { source: "/assessment-calculator", destination: "/", permanent: true },
+      { source: "/book", destination: "/", permanent: true },
+      { source: "/case-study", destination: "/", permanent: true },
+      { source: "/case-study/:slug", destination: "/", permanent: true },
+      { source: "/confirmed-call", destination: "/", permanent: true },
+      { source: "/guarantee-terms", destination: "/", permanent: true },
+      { source: "/meetings-3", destination: "/", permanent: true },
+
       /* ⚠️ CONFIRMATION PAGES MOVED TO ONE PER DESK, 30 September 2026.
          Four calendars, split by desk rather than by market, all landing
          here. The offer-level and shared pages are gone, but old

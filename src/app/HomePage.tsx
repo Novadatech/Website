@@ -1,1284 +1,643 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight, Check, ChevronDown, Star } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
-import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
-import StickyCta from "@/components/desk/StickyCta";
-import { Band, BandHeading } from "@/components/desk/Band";
-import { AUDIENCES, BOOKING, CONTINUITY, LEAKAGE, ROSTERING } from "@/content/offers";
+import { MICRO } from "@/components/desk/tokens";
 import {
-  BODY,
-  BTN_ON_INK,
-  BTN_PRIMARY,
-  DISPLAY,
-  D2,
-  FRAME,
-  GUTTER,
-  MICRO,
-  MICRO_TIGHT,
-  RAIL_GRID,
-  SMALL,
-} from "@/components/desk/tokens";
+  Bar,
+  Blobs,
+  Card,
+  CREAM,
+  CREAM_DEEP,
+  Cta,
+  CtaSoft,
+  DEEP,
+  Dots,
+  ExampleChip,
+  LpHeader,
+  Rating,
+  Section,
+  SectionHead,
+  SERIF,
+  TextLink,
+  Tick,
+} from "@/components/lp/kit";
+import { FRAME, GUTTER } from "@/components/desk/tokens";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
- * / — the main home page, and the router between the two audiences.
+ * / — THE HOME PAGE.
  *
- * 🔴 REBUILT 29 OCTOBER 2026, last of seven, on the founder's copy and
- * the shape of the six pages before it. page.tsx is a thin server
- * wrapper around this file.
+ * Rebuilt 10 November 2026 on the same shape as the two offer pages,
+ * on the founder's instruction, as part of reducing the site to four
+ * pages: this one, the two AI Workforce offers, and Why Novada.
  *
- * 🔴 NO CALENDAR ON THE ROUTER, carried over intact and now true of all
- * three hubs. There are FOUR offers and four calendars, so any calendar
- * here would be named for one of them and wrong for the other three at
- * the exact moment of commitment. The router's job is to route. Every
- * booking action is a LINK to an audience hub's #book, which recommends
- * an offer, whose page carries the calendar.
+ * 🔴 IT IS NO LONGER A ROUTER BETWEEN TWO AUDIENCES. The page it
+ * replaced sent a visitor to /care or /practices, each of which was a
+ * hub listing two offers. Both hubs are archived and both pairs of
+ * offers are retired. There are two offers now and this page names
+ * them, so the hub layer has nothing left to do.
  *
- * ══════════════════════════════════════════════════════════════════════
- * 🔴 THE POSITION LINE LEAVES THE H1, AND THAT IS THE BIGGEST SINGLE
- * CHANGE ON THIS PAGE.
+ * ⚠️ THIS PAGE HAS NO CALENDAR AND SHOULD NOT GET ONE. Its job is to
+ * put a visitor in front of the right offer page, where the booking
+ * actually is. #book here is a chooser, not an embed. Putting a
+ * calendar here would mean a booking that cannot be attributed to
+ * either offer, which is how a lead reaches the wrong coordinator.
  *
- * "We streamline the work behind the care." was the homepage H1. The
- * founder's copy replaces it with an offer-led headline. It renders in
- * five places and this was number one; the other four are untouched and
- * must stay that way:
- *   2. DeskFooter on every page, with its load-bearing second sentence
- *      "Alongside your team, never instead of them."
- *   3. StickyCta's default tagline
- *   4. The metadata title here in page.tsx (hardcoded)
- *   5. The share image in opengraph-image.tsx (hardcoded)
- * So the brand promise still signs off every page, including this one,
- * exactly as the founder's copy ends it. ⚠️ The metadata title and the
- * share card were deliberately NOT changed to match the new H1: they
- * carry the position line, they are hardcoded in two separate files,
- * and the copy does not ask for them. Flagged to the founder.
- * ══════════════════════════════════════════════════════════════════════
- *
- * 🔴 "GAP" SURVIVES IN EXACTLY ONE PLACE ON THIS PAGE, and nowhere
- * else. In Australian healthcare "the gap" is the PATIENT'S
- * OUT-OF-POCKET after the rebate, which is why it is banned across the
- * practices estate. The one exception is the Rostering Audit heading,
- * because that is the live H1 of /care/rostering, approved by the
- * founder for the CARE market where the word carries no rebate
- * meaning, and a router that promises a different headline from the
- * page it links to is its own bug. Every other instance in the supplied
- * copy, including the practices audit heading, now says which problem
- * is meant. The practices heading matches ITS live page: "unbilled
- * services".
- *
- * 🔴 NO PRICES. The copy listed all four (A$5,000, A$5,000, A$3,500/mo,
- * A$3,500/mo) and then carried the line "All prices should be confirmed
- * before publication", which is an internal note that must never ship.
- * The founder stripped every figure from the six pages before this one.
- *
- * ⚠️ THE DISCOVERY CALL IS 30 MINUTES. The copy said 20 twice and 30
- * twice.
- *
- * ⚠️ THE PROOF STRIP CARRIES A THIRD SET OF LABELS, and that is the
- * point rather than an inconsistency. The 205 is labelled by audience
- * on every page: "NDIS and aged care providers across Australia" on
- * the care pages, "Healthcare practices across Australia" on the
- * practices pages. Either would be wrong on a router with two
- * audiences, so the founder gave the dual-audience wording on 29
- * October: "Practices and care providers across Australia". Use that
- * here and ONLY here. Do not copy any of the three between pages.
- *
- * ⚠️ THE THREE CLIENTS ARE NAMED, NOT QUOTED. The founder's copy lists
- * Maxicare Plus, Morning Star and Support Link as organisations worked
- * with, which is accurate for both audiences, and carefully does NOT
- * present them as evidence of practice results. The care quotes stay on
- * the care pages. Do not promote this list into testimonials.
- *
- * ⚠️ NO PATHWAY DIAGRAM. The build this replaces carried two. Both
- * audience hubs lost theirs in the same rebuild. Flagged.
+ * ⚠️ THE POSITION LINE IS NOT ON THIS PAGE AND THAT IS NOT AN
+ * OVERSIGHT. "We streamline the work behind the care." lives in the
+ * footer, the page title and the share card, all of which this page
+ * still carries. It was removed from the H1 in October when the
+ * founder asked for an offer-led headline. Changing where it appears
+ * is a brand decision and a three-file change: page.tsx,
+ * opengraph-image.tsx and DeskFooter.
  * ══════════════════════════════════════════════════════════════════════
  */
 
-/* ⚠️ Hrefs from offers.ts so they cannot drift from the nav, the hubs
-   and the sitemap. The wording is the founder's. */
-const DOORS = [
+/* The two offers. 🔴 THIS IS THE WHOLE OFFER SET as of 10 November
+   2026. The Rostering Audit, Workforce Continuity, Revenue Leakage
+   Audit and Patient Booking offers are retired and their pages
+   archived. Do not add a third card here without the founder: the
+   number of offers is a positioning decision, not a layout one. */
+const OFFERS = [
   {
-    href: AUDIENCES.find((a) => a.slug === "care")!.href,
-    eyebrow: "Care providers",
-    name: "NDIS & aged care",
-    body: "Improve rostering efficiency, investigate billing accuracy and build a reliable internal workforce.",
-    cta: "Explore care provider solutions",
+    eyebrow: "For NDIS, aged care & home care providers",
+    name: "Novada AI Workforce for care",
+    lead: "Rostering, compliance, HR and payroll, after-hours calls and claims administration.",
+    points: [
+      "Five specialised AI employees, hired on their own or together.",
+      "They fill the shift, chase the clearance and get the hours to payroll.",
+      "Every action recorded in one Control Centre.",
+    ],
+    href: "/care/ai-workforce",
+    cta: "See the care offer",
+    img: "/ai-workforce/why-employees.png",
   },
   {
-    href: AUDIENCES.find((a) => a.slug === "practices")!.href,
-    eyebrow: "Healthcare practices",
-    name: "GP, specialist & allied health",
-    body: "Identify patient revenue leakage and get ongoing support with calls, bookings, follow-ups and billing.",
-    cta: "Explore healthcare practice solutions",
-  },
-];
-
-const RELIES_ON = [
-  "Workforces need to be planned.",
-  "Staff need to be recruited and prepared.",
-  "Appointments need to be coordinated.",
-  "Service delivery records need to be accurate.",
-  "Billing and claims need to be processed correctly.",
-  "And administrative tasks need consistent follow-through.",
-];
-
-const CHALLENGES = [
-  {
-    h: "Avoidable workforce expenditure",
-    b: "Overtime, agency staffing and inefficient rostering can increase the cost of delivering care.",
-  },
-  {
-    h: "Billing & revenue discrepancies",
-    b: "Eligible services may go unbilled, claims may remain unresolved and payments may not fully reconcile.",
-  },
-  {
-    h: "Recruitment & readiness pressure",
-    b: "Late recruitment, delayed onboarding and inconsistent worker preparation can create ongoing staffing pressure.",
-  },
-  {
-    h: "Missed enquiries & appointment opportunities",
-    b: "Busy front desks, unfilled cancellations and incomplete administrative follow-ups can affect patient access and appointment utilisation.",
-  },
-  {
-    h: "Growing administrative workload",
-    b: "Managers, receptionists and coordinators may spend increasing amounts of time managing repetitive tasks instead of focusing on their primary responsibilities.",
+    eyebrow: "For GP, specialist & allied health practices",
+    name: "Novada AI Workforce for practices",
+    lead: "Patient calls, cancelled appointments, referrals, recalls and billing exceptions.",
+    points: [
+      "Six specialised AI employees, hired on their own or together.",
+      "They answer the call, refill the slot and work the claim.",
+      "Your clinicians keep every clinical and billing decision.",
+    ],
+    href: "/practices/ai-workforce",
+    cta: "See the practices offer",
+    img: "/ai-workforce/why-systems.png",
   },
 ];
 
-const TYPES = [
+const PROVIDERS = [
+  { name: "Maxicare Plus", file: "maxicare.png", h: "h-9 md:h-10" },
+  { name: "Morning Star Community Services", file: "morningstar.png", h: "h-14 md:h-16" },
+  { name: "Supportslink", file: "supportslink.png", h: "h-9 md:h-11" },
+];
+
+const WHY = [
   {
-    n: "1",
-    h: "Audit & efficiency",
-    b: "Understand what is happening inside your operations. Our audit services examine relevant records and workflows to identify potential cost inefficiencies, legitimate revenue discrepancies and opportunities for improvement. We help management understand where issues may exist, their possible financial implications and which actions deserve priority.",
+    img: "/ai-workforce/why-employees.png",
+    h: "It does the work",
+    b: "Not a dashboard that tells your team what is outstanding. An AI employee that completes the task and records what it did.",
   },
   {
-    n: "2",
-    h: "Managed continuity services",
-    b: "Get ongoing support to keep important processes moving. Our managed services help organisations maintain the administrative and workforce processes that need consistent attention, from recruitment and onboarding to patient enquiries, appointment administration and billing support, within an agreed service scope.",
+    img: "/ai-workforce/why-control.png",
+    h: "You stay in control",
+    b: "You decide what runs automatically, what needs approval, and what must always reach a person.",
+  },
+  {
+    img: "/ai-workforce/why-systems.png",
+    h: "It uses your systems",
+    b: "Your existing software keeps its records. The AI works across it rather than replacing it.",
   },
 ];
 
-const ROSTERING_WORKFORCE = [
-  "Avoidable overtime and penalty expenditure.",
-  "Agency staffing costs and utilisation.",
-  "Inefficient shift allocation.",
-  "Workforce availability and utilisation patterns.",
-  "Roster changes and coverage inefficiencies.",
-  "Relevant timesheet and payroll discrepancies.",
-];
+/* 🔴 SECTOR AND RESEARCH FIGURES, NOT NOVADA RESULTS, and phrased
+   conditionally for that reason. The same rule as both offer pages:
+   never replace one of these with a Novada performance number, and if
+   a figure changes, the replacement needs a real published source
+   recorded here first.
 
-const ROSTERING_BILLING = [
-  "Eligible services that may not have been invoiced or claimed.",
-  "Incorrect fees and claim applications.",
-  "Potential underbilling and overbilling.",
-  "Rejected or unresolved claims.",
-  "Service delivery and billing discrepancies.",
-  "Outstanding payments and unreconciled exceptions.",
-];
+   ⚠️ `src` IS NOT RENDERED and is kept so provenance lives with the
+   figure. Do not delete it as dead code.
 
-const WORKFORCE_INCLUDES = [
+   Sources: medRxiv systematic review (2025); McMaster Health Forum
+   rapid review; Kaiser Permanente Medical Group; StewartBrown Aged
+   Care Financial Performance Survey (Sep 2025); AIHW Aged Care
+   Provider Workforce Survey (2023); BJGP systematic review. */
+const SECTOR = [
   {
-    h: "Proactive recruitment",
-    b: "Ongoing candidate sourcing, recruitment coordination and workforce pipeline management for agreed roles.",
+    img: "/ai-workforce/stat-hr-light.png",
+    n: "40%",
+    b: "Efficiency gain in administrative work when AI handles documentation and claims",
+    src: "Systematic review, 2025",
   },
   {
-    h: "Screening & clearance coordination",
-    b: "Administrative support for relevant worker checks, qualifications, credentials and clearance requirements.",
+    img: "/ai-workforce/stat-afterhours-light.png",
+    n: "30%",
+    b: "Less after-hours administrative work when AI supports documentation",
+    src: "McMaster Health Forum",
   },
   {
-    h: "Worker onboarding & induction",
-    b: "Structured onboarding workflows, documentation coordination, induction tracking and worker preparation.",
+    img: "/ai-workforce/stat-roles-light.png",
+    n: "15,791",
+    b: "Hours of documentation time saved in a single year at one health group",
+    src: "Kaiser Permanente",
   },
   {
-    h: "Training administration",
-    b: "Training scheduling, completion tracking, refresher reminders and relevant learning records.",
+    img: "/ai-workforce/stat-ops-light.png",
+    n: "24.1%",
+    b: "Of aged care provider revenue goes to administration and support today",
+    src: "StewartBrown, Sep 2025",
   },
   {
-    h: "Compliance monitoring",
-    b: "Administrative tracking of applicable worker credentials, clearances, training and outstanding documentation.",
+    img: "/ai-workforce/stat-stages-light.png",
+    n: "27%",
+    b: "Of directly employed aged care staff left their job within twelve months",
+    src: "AIHW, 2023",
   },
   {
-    h: "Workforce reporting",
-    b: "Visibility over recruitment progress, onboarding status and outstanding workforce-readiness requirements.",
-  },
-];
-
-const LEAKAGE_ACCESS = [
-  "Missed and unanswered patient enquiries.",
-  "Incomplete appointment requests and follow-ups.",
-  "Booking conversion patterns where measurable.",
-  "Cancelled appointments and unused capacity.",
-  "Incomplete administrative cancellation recovery.",
-  "Clinician-approved recall administration.",
-  "Appointment scheduling inefficiencies.",
-];
-
-const LEAKAGE_BILLING = [
-  "Completed eligible services that may not have been invoiced.",
-  "Incorrect fees and billing discrepancies.",
-  "Potential underbilling and overbilling.",
-  "Rejected Medicare or private health insurance claims.",
-  "Unresolved claims and outstanding payments.",
-  "Differences between service records, invoices and payments.",
-  "Unreconciled financial exceptions.",
-];
-
-const BOOKING_INCLUDES = [
-  {
-    h: "Unlimited telephone answering",
-    b: "Incoming patient call support during agreed operating hours and within the contracted service arrangements.",
-  },
-  {
-    h: "Appointment bookings & scheduling",
-    b: "Routine enquiries, appointment bookings, confirmations and rescheduling.",
-  },
-  {
-    h: "Cancellation recovery",
-    b: "Administrative coordination to offer available appointments to suitable patients through practice-approved processes.",
-  },
-  {
-    h: "Patient follow-ups",
-    b: "Support for approved appointment enquiries, reminders, callbacks and outstanding administrative tasks.",
-  },
-  {
-    h: "Clinician-approved recall administration",
-    b: "Administrative coordination of authorised recall communications, booking and contact tracking.",
-  },
-  {
-    h: "Billing & claims support",
-    b: "Routine invoice preparation, authorised claims processing, rejection follow-up and reconciliation administration.",
+    img: "/ai-workforce/stat-control-light.png",
+    n: "15.2%",
+    b: "Of general practice appointments are missed, on average",
+    src: "BJGP systematic review",
   },
 ];
 
-const PRINCIPLES = [
+/* 🔴 VERBATIM AND FOUNDER-SUPPLIED. Do not reword, do not trim to fit
+   the card. ⚠️ EMMANUELLA, TWO LS, founder-confirmed 29 October.
+   ⚠️ NO HEADSHOTS: the repo holds no verified set, and a wrong face
+   against a real client's quote is worse than no face. */
+const TESTIMONIALS = [
   {
-    n: "1",
-    h: "Industry-focused solutions",
-    b: "We tailor our services to the operating realities of NDIS and aged care providers and of GP, specialist and allied health practices. We recognise that their workforce, billing, patient access and funding arrangements are different.",
+    org: "Maxicare Plus",
+    name: "Founder, Josh",
+    quote:
+      "One thing we value about Novada Tech is that they understand the operational challenges NDIS providers face. Building a care business requires more than finding workers. It requires reliable processes, proper planning and consistent support. Novada brings a practical, proactive approach and genuinely takes the time to understand what our organisation needs.",
   },
   {
-    n: "2",
-    h: "Evidence-based assessments",
-    b: "Our audit services examine available organisational records and distinguish confirmed discrepancies from potential opportunities requiring verification. We do not rely on speculative savings promises.",
+    org: "Morning Star Community Services",
+    name: "Founder, Emmanuella",
+    quote:
+      "In the care sector, having reliable people and well-managed processes makes a real difference. What stands out about Novada Tech is their professionalism, attention to detail and focus on making operations more manageable. They understand the importance of accountability, consistency and having the right support behind service delivery.",
   },
   {
-    n: "3",
-    h: "Practical ongoing support",
-    b: "Our managed services focus on the administrative tasks that need consistent follow-through, from recruitment and onboarding to patient bookings and billing.",
-  },
-  {
-    n: "4",
-    h: "Support for existing teams & systems",
-    b: "We aim to work alongside your current staff and systems where practical, with defined responsibilities and appropriate access arrangements.",
-  },
-  {
-    n: "5",
-    h: "Clear accountability",
-    b: "Agreed workflows, operational reporting, confidentiality procedures and escalation arrangements guide our engagements.",
-  },
-];
-
-const WHO = [
-  {
-    h: "NDIS service providers",
-    b: "Organisations delivering disability support services, including supported independent living, in-home support, community access and related services. Our solutions focus on rostering efficiency, relevant billing assurance, recruitment and workforce administration.",
-  },
-  {
-    h: "Support at Home providers",
-    b: "Organisations coordinating care workers and community-based services. Our solutions focus on workforce allocation, travel-related efficiency, relevant service billing and worker readiness.",
-  },
-  {
-    h: "Residential aged care providers",
-    b: "Organisations managing workforce coverage, relief requirements, rostering expenditure and relevant residential aged care financial processes.",
-  },
-  {
-    h: "General practices",
-    b: "GP clinics managing patient enquiries, appointment schedules, administrative follow-ups, clinician-approved recalls and Medicare billing workflows.",
-  },
-  {
-    h: "Specialist medical practices",
-    b: "Specialist clinics coordinating consultations, referrals, appointment changes, private billing and relevant claim processes.",
-  },
-  {
-    h: "Allied health practices",
-    b: "Physiotherapy, psychology, occupational therapy, speech pathology, podiatry and other allied health practices, with relevant patient administration and billing workflows.",
-  },
-];
-
-const STEPS = [
-  {
-    n: "1",
-    h: "Understand your organisation",
-    b: "We start with a complimentary 30-minute discovery conversation. We will learn about your industry, service model, existing systems and current operational priorities.",
-  },
-  {
-    n: "2",
-    h: "Recommend the appropriate service",
-    b: "We will discuss whether your organisation may benefit from an audit, ongoing managed support or a combination of both. Our goal is to understand the actual problem before recommending an engagement.",
-  },
-  {
-    n: "3",
-    h: "Agree on the scope & responsibilities",
-    b: "If there is a suitable fit, we will outline the proposed deliverables, workflows, information requirements, responsibilities, fees and operating arrangements.",
-  },
-  {
-    n: "4",
-    h: "Begin the engagement",
-    b: "For an audit, we review the agreed records and processes, present findings and provide recommendations. For a managed continuity service, we establish the approved workflows, access arrangements and ongoing administrative support process.",
-  },
-  {
-    n: "5",
-    h: "Review & improve",
-    b: "Where ongoing services are engaged, we provide agreed reporting, escalate issues and review processes as organisational needs change.",
+    org: "Support Link",
+    name: "Founder, Peter",
+    quote:
+      "Novada Tech takes a structured and professional approach to understanding business needs. They recognise the importance of strong workforce processes, clear communication and dependable administrative support. Their commitment to practical solutions and ongoing improvement is what makes them a valuable partner.",
   },
 ];
 
 const FAQ = [
   {
-    q: "What does Novada Tech do?",
-    a: "Novada Tech provides operational audit and managed administrative support services for Australian NDIS and aged care providers and for healthcare practices. We help organisations investigate potential financial and operational inefficiencies, and we support recurring workforce or practice administration tasks.",
+    q: "What is Novada AI Workforce?",
+    a: "An AI-powered operational platform for Australian healthcare organisations. You engage specialised AI employees that coordinate and execute approved administrative workflows across your supported business systems.",
   },
   {
-    q: "What are your four main services?",
-    a: "Rostering Audit & Efficiency, Workforce Continuity, Patient Revenue Leakage Audit, and Patient Booking & Retention Continuity. The two care-provider services focus on workforce operations, rostering costs and relevant billing assurance. The two healthcare-practice services focus on patient access, appointments, billing and administrative continuity.",
+    q: "How is it different from ChatGPT or a conventional AI chatbot?",
+    a: "A chatbot responds to questions or generates information. Novada AI Workforce performs authorised operational actions through connected systems, follows defined workflows, requests approvals, verifies outcomes and maintains activity records.",
   },
   {
-    q: "What is the difference between an audit and a continuity service?",
-    a: "An audit is a separately scoped review designed to identify potential discrepancies, inefficiencies and improvement opportunities. A continuity service provides ongoing support for agreed administrative or workforce processes.",
+    q: "Can AI employees actually complete tasks?",
+    a: "That is the core purpose of the offering. A supported AI employee is designed to perform permitted actions rather than simply recommend them. Actual capabilities depend on the available integrations, configured workflows, system permissions and required approvals.",
   },
   {
-    q: "Do I need an audit before using your managed services?",
-    a: "No. All four services can be engaged independently. We will discuss the most appropriate solution based on your organisation's needs.",
+    q: "Do we need to replace our current software?",
+    a: "Not necessarily. The platform works alongside supported existing applications rather than requiring a wholesale system replacement, and your existing systems remain authoritative for their own records unless explicitly agreed otherwise.",
   },
   {
-    q: "Can Novada help reduce agency staffing costs?",
-    a: "Our Rostering Audit can investigate relevant agency expenditure and workforce inefficiencies, and our Workforce Continuity service can help build a stronger internal recruitment pipeline and improve worker readiness. Any actual reduction in agency expenditure depends on the organisation's circumstances and is not guaranteed.",
+    q: "Does Novada guarantee cost savings?",
+    a: "No. The business value depends on the workflows implemented, the volume of tasks handled, integration complexity and the amount of human administrative effort reduced. Potential efficiencies should be measured against a real operational baseline.",
   },
   {
-    q: "Can you help healthcare practices manage missed calls and appointment cancellations?",
-    a: "Yes. Our Patient Revenue Leakage Audit can review relevant enquiry and appointment data to identify possible administrative weaknesses. Our Patient Booking & Retention Continuity service provides ongoing telephone answering, booking and cancellation recovery support within agreed operating arrangements.",
-  },
-  {
-    q: "Does Novada support Medicare and private health insurance billing?",
-    a: "Our healthcare-practice services can include relevant billing and claims reviews or administration within the agreed scope. Clinical entitlement, Medicare item eligibility, billing-code decisions and other matters requiring professional judgement must be verified by appropriately qualified personnel.",
-  },
-  {
-    q: "Does Novada help with NDIS and aged care billing?",
-    a: "Our Rostering Audit & Efficiency service includes relevant billing, claims and reconciliation assurance within the agreed scope. NDIS, Support at Home and residential aged care arrangements are considered separately according to the applicable requirements.",
-  },
-  {
-    q: "Can you work with our current systems?",
-    a: "Where practical, we aim to work with your existing rostering, HR, appointment, practice management and billing systems. Compatibility, security, user permissions and access requirements are confirmed before implementation.",
-  },
-  {
-    /* 🔴 NO FIGURES. The copy listed all four and then said "All prices
-       should be confirmed before publication", which is an internal
-       note. The founder removed every figure from the six pages before
-       this one. */
-    q: "How much do your services cost?",
-    a: "The two audits are separately scoped, one-off engagements. The two continuity services are ongoing managed services charged monthly. Final pricing depends on the agreed scope, operational complexity, service volumes and delivery requirements, so we confirm it with you during a discovery conversation, before any work begins.",
-  },
-  {
-    /* 🔴 LOAD-BEARING. One answer covering every guarantee we refuse to
-       make, across all four offers. */
-    q: "Can Novada guarantee savings or revenue recovery?",
-    a: "No. Our audits identify evidence-supported findings and potential opportunities. Actual outcomes depend on the circumstances, the applicable rules and the decisions made after the review. Our managed services likewise do not guarantee that every vacancy will be filled, every call answered immediately or every appointment cancellation recovered.",
-  },
-  {
-    q: "How do we get started?",
-    a: "Book a complimentary 30-minute discovery conversation. We will discuss your organisation's challenges, explain our services and determine whether there is a suitable fit.",
+    /* ⚠️ NO FIGURE. Price does not appear in writing before a call. */
+    q: "How much does it cost to hire an AI employee?",
+    a: "Pricing is based on the selected AI employee, the required workflows, supported integrations, usage and implementation requirements. Your proposal sets out the applicable costs once the scope is understood.",
   },
 ];
 
-/* ── building blocks. Same set as the six pages before it. ───────── */
-
-const WIDE = "max-w-[90ch]";
-
-/* 🔴 BLUE, NOT GREEN, on the founder's instruction (29 October
-   2026): a five-star row in Trustpilot's green invites a brand
-   complaint we have already had two notices about, whatever the exact
-   hex. Trustpilot green is #00B67A and this was #0CC481, close enough
-   to be the problem.
-
-   ⚠️ BUT NOT brand-500. The raw brand blue #003DDB on canvas-ink
-   #0A0D14 is about 2:1 and the stars all but vanish, the same trap
-   tokens.ts flags for buttons. brand-200 #A6BEFF is 10.58:1 on that
-   ground and is the brand's own on-ink blue, already used by the
-   eyebrow directly above this bar.
-
-   ⚠️ The PROOF STRIP passes brand-500 explicitly, because those
-   cards sit on white. Light surface gets the deep blue, ink surface
-   gets the light one. Do not unify them. */
-function Stars({ className = "h-4 w-4 fill-brand-200 text-brand-200" }) {
+/** The Control Centre mock. ⚠️ Every row names a real AI employee and a
+    real status. No figure in here may describe a Novada outcome. */
+function ControlVisual() {
   return (
-    <span aria-hidden className="flex items-center gap-0.5">
-      {[0, 1, 2, 3, 4].map((i) => (
-        <Star key={i} className={className} strokeWidth={0} />
-      ))}
-    </span>
-  );
-}
-
-function BoxCards({
-  items,
-  cols = 2,
-}: {
-  items: { h: string; b: string; n?: string }[];
-  cols?: 2 | 3;
-}) {
-  return (
-    <div
-      className={`mt-10 grid gap-5 md:gap-6 ${
-        cols === 3 ? "md:grid-cols-3" : "md:grid-cols-2"
-      }`}
-    >
-      {items.map((c, i) => (
-        <div
-          key={c.h}
-          className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise transition-[transform,box-shadow] duration-200 ease-standard hover:-translate-y-0.5 hover:shadow-lift md:p-7"
-          style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 70}ms` }}
-        >
-          {c.n ? (
-            <span className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-sm font-bold text-white">
-              {c.n}
-            </span>
-          ) : null}
-          <h3 className="text-base font-semibold text-ink-950">{c.h}</h3>
-          <p className="mt-2.5 text-sm leading-relaxed text-ink-600">{c.b}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function Bullets({
-  items,
-  tone = "light",
-}: {
-  items: string[];
-  tone?: "light" | "dark";
-}) {
-  return (
-    <ul className="mt-5 flex flex-col gap-2.5">
-      {items.map((t) => (
-        <li key={t} className="flex items-start gap-3">
-          <Check
-            aria-hidden
-            strokeWidth={2.4}
-            className={`mt-1 h-3.5 w-3.5 flex-shrink-0 ${
-              tone === "dark" ? "text-brand-200" : "text-brand-500"
-            }`}
-          />
-          <span
-            className={`text-sm leading-relaxed ${
-              tone === "dark" ? "text-white/80" : "text-ink-600"
-            }`}
-          >
-            {t}
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-/* ⚠️ NATIVE <details>. No JS, keyboard and screen reader support for
-   free, and it still works if hydration never finishes. */
-function Faq() {
-  return (
-    <div className="mt-10 flex flex-col gap-3">
-      {FAQ.map((f, i) => (
-        <details
-          key={f.q}
-          className="reveal group rounded-xl border border-ink-100 bg-white shadow-raise [&_summary::-webkit-details-marker]:hidden"
-          style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 50}ms` }}
-        >
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 p-6 text-base font-semibold text-ink-950 md:p-7">
-            <span>{f.q}</span>
-            <ChevronDown
-              aria-hidden
-              className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-400 transition-transform duration-200 ease-standard group-open:rotate-180"
-            />
-          </summary>
-          <p className="px-6 pb-6 text-sm leading-relaxed text-ink-600 md:px-7 md:pb-7">
-            {f.a}
+    <div className="relative px-2 pb-16 pt-14 sm:px-6">
+      <div className="absolute left-0 top-0 z-20 w-[172px] rounded-lg border border-ink-100 bg-white p-4 shadow-float">
+        <div className="flex items-baseline justify-between gap-2">
+          <p style={SERIF} className="text-2xl font-bold text-ink-950">
+            85%
           </p>
-        </details>
-      ))}
+          <span className="text-[10px] font-semibold uppercase tracking-caps text-ink-400">
+            Onboarding
+          </span>
+        </div>
+        <div className="mt-3">
+          <Bar pct={85} />
+        </div>
+      </div>
+
+      <div className="relative z-10">
+        <Card chrome={false}>
+          <div className="flex items-center justify-between gap-3 px-4 py-3">
+            <Dots />
+            <ExampleChip />
+          </div>
+          <div
+            className="px-5 py-6"
+            style={{ background: "linear-gradient(110deg,#003DDB 0%,#0030AE 55%,#3A6CFF 100%)" }}
+          >
+            <p style={SERIF} className="text-base font-bold text-white">
+              Good morning. Here is last night.
+            </p>
+            <p className="mt-1.5 text-xs text-white/75">
+              3 calls handled, 1 escalation, 1 approval waiting
+            </p>
+          </div>
+          <div className="flex flex-col">
+            {[
+              ["AI Rostering Coordinator", "Evening shift reassigned", "Done"],
+              ["AI Compliance Coordinator", "Clearance reminder sent", "Done"],
+              ["AI Rostering Coordinator", "Exception to standard rules", "Approve"],
+            ].map(([role, task, label]) => (
+              <div
+                key={task}
+                className="flex items-center gap-3 border-b border-ink-100 px-4 py-3 last:border-b-0"
+              >
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-[11px] font-semibold uppercase tracking-caps text-ink-400">
+                    {role}
+                  </p>
+                  <p className="mt-1 truncate text-[13px] text-ink-800">{task}</p>
+                </div>
+                <span
+                  className={`flex-shrink-0 rounded-xs px-2 py-1 text-[10px] font-bold uppercase tracking-caps ring-1 ${
+                    label === "Approve"
+                      ? "bg-signal-50 text-signal-600 ring-signal-200"
+                      : "bg-brand-50 text-brand-700 ring-brand-200"
+                  }`}
+                >
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
     </div>
   );
 }
 
-function GoTo({
-  href,
-  children,
-  tone = "light",
-}: {
-  href: string;
-  children: React.ReactNode;
-  tone?: "light" | "ink";
-}) {
-  return (
-    <Link
-      href={href}
-      className={`${tone === "ink" ? BTN_ON_INK : BTN_PRIMARY} w-full text-base sm:w-auto`}
-    >
-      {children}
-      <ArrowRight
-        aria-hidden
-        className="h-4 w-4 transition-transform duration-150 ease-standard group-hover:translate-x-0.5"
-      />
-    </Link>
-  );
-}
-
-/** One of the four offers, rendered identically whichever audience. */
-function OfferCard({
-  eyebrow,
-  heading,
-  kind,
-  intro,
-  groups,
-  cards,
-  receive,
-  goal,
-  href,
-  cta,
-  foot,
-  delay = 0,
-}: {
-  eyebrow: string;
-  heading: string;
-  kind: string;
-  intro: string;
-  groups?: { label: string; items: string[] }[];
-  cards?: { h: string; b: string }[];
-  receive: string;
-  goal: string;
-  href: string;
-  cta: string;
-  foot: string;
-  delay?: number;
-}) {
-  return (
-    <div
-      className="reveal mt-6 rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8"
-      style={{ ["--reveal-delay" as string]: `${delay}ms` }}
-    >
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-        <p className={`${MICRO} text-brand-500`}>{eyebrow}</p>
-        <span aria-hidden className="text-ink-300">
-          &middot;
-        </span>
-        <p className={`${MICRO_TIGHT} text-ink-500`}>{kind}</p>
-      </div>
-      <h3 className="mt-3 text-xl font-semibold text-ink-950 md:text-2xl">
-        {heading}
-      </h3>
-      <p className={`${BODY} ${WIDE} mt-5`}>{intro}</p>
-
-      {groups ? (
-        <div className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8">
-          {groups.map((g) => (
-            <div key={g.label}>
-              <p className={`${MICRO} text-brand-500`}>{g.label}</p>
-              <Bullets items={g.items} />
-            </div>
-          ))}
-        </div>
-      ) : null}
-
-      {cards ? (
-        <div className="mt-8 grid gap-5 md:grid-cols-2 md:gap-6">
-          {cards.map((c) => (
-            <div key={c.h} className="border-l-2 border-ink-100 pl-5">
-              <h4 className="text-base font-semibold text-ink-950">{c.h}</h4>
-              <p className="mt-2 text-sm leading-relaxed text-ink-600">{c.b}</p>
-            </div>
-          ))}
-        </div>
-      ) : null}
-
-      <p className={`${SMALL} mt-8 border-t border-ink-100 pt-5`}>
-        <span className="font-semibold text-ink-950">What you receive:</span>{" "}
-        {receive}
-      </p>
-      <p className={`${SMALL} mt-3`}>
-        <span className="font-semibold text-ink-950">The goal:</span> {goal}
-      </p>
-
-      <div className="mt-8">
-        <GoTo href={href}>{cta}</GoTo>
-      </div>
-      <p className={`${SMALL} mt-4`}>{foot}</p>
-    </div>
-  );
-}
+/* ── THE PAGE ─────────────────────────────────────────────────────── */
 
 export default function HomePage() {
-  const care = AUDIENCES.find((a) => a.slug === "care")!;
-  const practices = AUDIENCES.find((a) => a.slug === "practices")!;
-
   return (
-    <div data-theme="desk" className="min-h-screen bg-white font-sans">
-      <DeskNav tone="dark" bookHref="#book" />
+    <div data-theme="desk" className="min-h-screen font-sans" style={{ backgroundColor: CREAM }}>
+      <LpHeader cta="See the offers" />
 
       <main>
-        {/* ══ 1 HERO ══════════════════════════════════════════════════
-            Same shape as /care and /practices: no rail, no cap on the
-            headline, and THE TWO DOORS as the largest object in the
-            fold. On a router the question a visitor needs answered is
-            not "what is this" but "which half am I".
-            ═════════════════════════════════════════════════════════ */}
-        <section className="relative overflow-hidden border-b border-white/10 bg-canvas-ink">
+        {/* ── HERO ─────────────────────────────────────────────────── */}
+        <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
           <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 overflow-hidden"
+            className={`${FRAME} ${GUTTER} relative grid items-center gap-12 pb-20 pt-12 md:pb-28 md:pt-16 lg:grid-cols-[0.92fr_1.12fr] lg:gap-10`}
           >
-            <div className="absolute -left-40 -top-56 h-[620px] w-[620px] rounded-full bg-brand-500/20 blur-[130px]" />
-            <div className="absolute -bottom-72 -right-40 h-[560px] w-[560px] rounded-full bg-signal-600/10 blur-[140px]" />
-          </div>
-
-          <div
-            className={`${FRAME} ${GUTTER} relative border-x border-white/10 pb-16 pt-10 md:pb-20 md:pt-14`}
-          >
-            <p className={`${MICRO} text-brand-200`}>
-              For Australian care providers &amp; healthcare practices
-            </p>
-
-            {/* 🔴 THIS REPLACED THE POSITION LINE AS THE H1. See the file
-                header: the line still signs off every page from the
-                footer, the sticky bar, the metadata title and the share
-                card, which is four of its five homes.
-                ⚠️ Same clamp as all six sibling pages: a 32px floor so
-                the headline does not eat a phone screen, reaching the
-                identical 76px cap by 1280px. */}
-            <h1
-              className={`${DISPLAY} mt-5 text-[clamp(2rem,0.89rem+4.83vw,4.75rem)] leading-[0.93] tracking-[-0.015em] text-white`}
-            >
-              Protect revenue. Build reliable workforces. Keep care operations
-              moving.
-            </h1>
-
-            <div
-              className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
-            >
-              <p>
-                Staffing shortages, rising workforce costs, missed patient
-                enquiries, inefficient appointment processes, billing
-                discrepancies and administrative backlogs can all place
-                pressure on your organisation. At Novada Tech, we help you
-                tackle the work behind care delivery, through specialised
-                audit and managed support services for NDIS and aged care
-                providers and for GP, specialist and allied health practices.
+            {/* ⚠️ min-w-0 ON BOTH GRID ITEMS. A grid item's min-width is
+                auto, so the widest unbreakable thing inside either
+                column silently widens BOTH and the h1 renders past the
+                right gutter at 390px. */}
+            <div className="min-w-0">
+              <p className={`${MICRO} text-brand-500`}>
+                For Australian care providers &amp; medical practices
               </p>
-            </div>
 
-            {/* ── THE TWO DOORS. Each is a whole link, so on a phone a
-                text target becomes a card target. ── */}
-            <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
-              {DOORS.map((d) => (
-                <Link
-                  key={d.href}
-                  href={d.href}
-                  className="group flex h-full flex-col bg-canvas-raised p-6 transition-colors duration-150 ease-standard hover:bg-[#161C29] md:p-8"
-                >
-                  <span className={`${MICRO} text-brand-200`}>{d.eyebrow}</span>
-                  <span className="mt-3 flex items-start justify-between gap-3">
-                    <span className={`${D2} text-white`}>{d.name}</span>
-                    <ArrowRight
-                      aria-hidden
-                      className="mt-1.5 h-5 w-5 shrink-0 text-white/40 transition-[transform,color] duration-150 ease-standard group-hover:translate-x-1 group-hover:text-brand-200"
-                    />
-                  </span>
-                  <span className="mt-4 block text-sm leading-relaxed text-white/65">
-                    {d.body}
-                  </span>
-                  <span
-                    className={`${MICRO_TIGHT} mt-6 block border-t border-white/10 pt-5 text-brand-200`}
-                  >
-                    {d.cta}
-                  </span>
-                </Link>
-              ))}
-            </div>
-
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
-              <a href="#book" className={BTN_ON_INK}>
-                Book a free discovery call
-                <ArrowRight
-                  aria-hidden
-                  className="h-4 w-4 transition-transform duration-150 ease-standard group-hover:translate-x-0.5"
-                />
-              </a>
-              <span className="text-sm text-white/60">
-                Complimentary 30-minute conversation. No obligation to proceed.
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {/* ── PROOF STRIP ──────────────────────────────────────────────
-             ⚠️ THE DUAL-AUDIENCE LABELS, on the founder's instruction.
-             See the file header: the 205 is worded differently on the
-             care pages and the practices pages, and neither of those
-             would be true on a router. No rating bar in the hero,
-             matching both hubs; the four offer pages carry one. */}
-        <section className="border-b border-ink-100 bg-ink-50">
-          <div
-            className={`${FRAME} ${GUTTER} border-x border-ink-100 py-10 md:py-12`}
-          >
-            <div className="grid gap-5 md:grid-cols-3 md:gap-6">
-              {[
-                { v: "5.0", l: "Average client rating", stars: true },
-                { v: "77", l: "Client reviews", stars: false },
-                {
-                  v: "205",
-                  l: "Practices and care providers across Australia",
-                  stars: false,
-                },
-              ].map((x, i) => (
-                <div
-                  key={x.l}
-                  className="reveal rounded-xl border border-ink-100 bg-white p-6 text-center shadow-raise md:p-7"
-                  style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
-                >
-                  <p className={`${D2} text-brand-500`}>{x.v}</p>
-                  {/* Stars in the same colour as the 5.0 beside them. */}
-                  {x.stars ? (
-                    <div className="mt-3 flex justify-center">
-                      <Stars className="h-4 w-4 fill-brand-500 text-brand-500" />
-                    </div>
-                  ) : null}
-                  <p className="mt-3 text-sm font-medium text-ink-600">{x.l}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── 2 THE OPERATIONAL CHALLENGE ──────────────────────────── */}
-        <Band index="01" label="The challenge">
-          <h2 className={`${D2} text-ink-950`}>
-            Great care depends on strong operations behind the scenes
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Every successful care organisation relies on more than the services
-            delivered to its participants, residents or patients. It relies on
-            the operational processes that make those services possible.
-          </p>
-
-          <ul className="mt-8 flex flex-col gap-3">
-            {RELIES_ON.map((t) => (
-              <li
-                key={t}
-                className="reveal border-l-2 border-ink-200 pl-5 text-base text-ink-700"
+              <h1
+                style={SERIF}
+                className="mt-5 text-[clamp(2.1rem,1.35rem+3.2vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-ink-950"
               >
-                {t}
-              </li>
-            ))}
-          </ul>
+                Hire AI employees that do the work. Not just tell you what needs
+                doing.
+              </h1>
 
-          <p className={`${BODY} ${WIDE} mt-8`}>
-            But when these responsibilities become fragmented, important issues
-            can go unnoticed.
-          </p>
-          <BoxCards items={CHALLENGES} cols={3} />
-
-          <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
-            Important operational activities are often managed across different
-            systems, people and workflows, without enough time, visibility or
-            capacity to review and improve them.
-          </p>
-        </Band>
-
-        {/* ── 3 WHAT NOVADA DOES ───────────────────────────────────── */}
-        <Band index="02" label="What we do" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            We help you find what is leaking, and manage the work behind it
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Novada Tech provides two complementary types of support.
-          </p>
-          <BoxCards items={TYPES} cols={2} />
-          <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
-            Find what is leaking. Strengthen the processes. Keep operations
-            moving.
-          </p>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            You can engage either type of service independently, or combine
-            them where appropriate.
-          </p>
-        </Band>
-
-        {/* ── 4 THE FOUR OFFERS ────────────────────────────────────── */}
-        <Band index="03" label="Our four solutions">
-          <h2 className={`${D2} text-ink-950`}>
-            Four specialised services designed around the challenges you face
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            We support two distinct sectors with solutions tailored to their
-            operating models and administrative responsibilities.
-          </p>
-
-          {/* ── CARE ── */}
-          <div className="mt-12 border-t-2 border-brand-500 pt-8">
-            <p className={`${MICRO} text-brand-500`}>
-              For NDIS &amp; aged care providers
-            </p>
-            <h3 className={`${D2} mt-4 text-ink-950`}>
-              Control workforce costs. Strengthen staffing capacity. Support
-              reliable care.
-            </h3>
-            <p className={`${BODY} ${WIDE} mt-5`}>
-              Running an NDIS or aged care organisation means balancing service
-              delivery, workforce requirements, financial performance and
-              ongoing administrative responsibilities. Novada Tech offers two
-              specialised services to help providers strengthen the operations
-              behind care.
-            </p>
-
-            {/* 🔴 THE ONE PLACE "GAP" SURVIVES ON THIS PAGE. It is the
-                live H1 of /care/rostering, approved by the founder for
-                the CARE market where the word carries no rebate
-                meaning, and a router that promises a different headline
-                from the page it links to is its own bug. Do NOT copy
-                this wording into anything practices-facing. */}
-            <OfferCard
-              eyebrow="Offer one"
-              kind="One-off audit"
-              heading="Are rostering costs eating into your margins while billing gaps go unnoticed?"
-              intro="Your organisation could be spending more than necessary to deliver care while also experiencing discrepancies in legitimate billing, claims and payments. Our Rostering Audit & Efficiency examines both sides of your financial and operational performance."
-              groups={[
-                {
-                  label: "Workforce cost & rostering efficiency",
-                  items: ROSTERING_WORKFORCE,
-                },
-                {
-                  label: "Billing, claims & revenue assurance",
-                  items: ROSTERING_BILLING,
-                },
-              ]}
-              receive="an evidence-based operational and financial review, supported by clear findings and a prioritised improvement roadmap."
-              goal="help your organisation identify avoidable workforce expenditure, improve billing accuracy and make more informed operational decisions."
-              href={ROSTERING.href}
-              cta="Explore Rostering Audit & Efficiency"
-              foot="One-off audit, for NDIS and aged care providers."
-            />
-
-            <OfferCard
-              delay={70}
-              eyebrow="Offer two"
-              kind="Ongoing managed service"
-              heading="Stop the roster headaches. Build a workforce you can rely on."
-              intro="Stop constantly reacting to vacancies, chasing onboarding documents and relying on expensive agency staffing to fill preventable shortfalls. Novada Tech's Workforce Continuity service helps providers recruit proactively, prepare suitable workers and maintain administrative visibility over workforce readiness."
-              cards={WORKFORCE_INCLUDES}
-              receive="a managed workforce support function designed to reduce administrative pressure and help your organisation build dependable internal staffing capacity."
-              goal="reduce avoidable agency dependence, strengthen workforce readiness and support more reliable service delivery."
-              href={CONTINUITY.href}
-              cta="Explore Workforce Continuity"
-              foot="Ongoing managed service, for NDIS and aged care providers."
-            />
-          </div>
-
-          {/* ── PRACTICES ── */}
-          <div className="mt-14 border-t-2 border-brand-500 pt-8">
-            <p className={`${MICRO} text-brand-500`}>
-              For GP, specialist &amp; allied health practices
-            </p>
-            <h3 className={`${D2} mt-4 text-ink-950`}>
-              Better patient access. Stronger revenue assurance. Less
-              front-desk pressure.
-            </h3>
-            <p className={`${BODY} ${WIDE} mt-5`}>
-              Healthcare practices face a different set of operational
-              challenges. Missed patient calls, appointment cancellations,
-              incomplete follow-ups, billing discrepancies and administrative
-              backlogs can all affect practice efficiency and financial
-              visibility.
-            </p>
-
-            {/* ⚠️ MATCHES ITS LIVE PAGE: "unbilled services", not the
-                copy's "billing gaps". On a practices page the gap is
-                the patient's out-of-pocket. */}
-            <OfferCard
-              eyebrow="Offer three"
-              kind="One-off audit"
-              heading="Is your practice losing revenue through missed bookings and unbilled services?"
-              intro="Your practice may already have patient demand and completed services, but administrative inefficiencies or billing discrepancies could be affecting revenue performance. Our Patient Revenue Leakage Audit investigates two connected areas."
-              groups={[
-                {
-                  label: "Patient access & appointment revenue leakage",
-                  items: LEAKAGE_ACCESS,
-                },
-                {
-                  label: "Billing, claims & revenue assurance",
-                  items: LEAKAGE_BILLING,
-                },
-              ]}
-              receive="an evidence-based review of relevant patient access, booking, billing and claims processes, supported by findings and a prioritised improvement roadmap."
-              goal="help your practice identify potential revenue leakage, strengthen billing accuracy and improve administrative processes."
-              href={LEAKAGE.href}
-              cta="Explore Patient Revenue Leakage Audit"
-              foot="One-off audit, for GP, specialist and allied health practices."
-            />
-
-            <OfferCard
-              delay={70}
-              eyebrow="Offer four"
-              kind="Ongoing managed service"
-              heading="Busy front desk? Do not let patient enquiries, bookings and billing fall behind."
-              intro="Your reception team should not have to manage every incoming call, appointment change, cancellation, patient follow-up and billing exception without adequate support. Novada Tech's Patient Booking & Retention Continuity provides ongoing administrative assistance to help keep essential practice activities moving."
-              cards={BOOKING_INCLUDES}
-              receive="an ongoing administrative support function that works alongside your existing practice team."
-              goal="reduce front-desk pressure, improve patient administration consistency and strengthen the processes supporting appointment utilisation and billing."
-              href={BOOKING.href}
-              cta="Explore Booking & Retention Continuity"
-              foot="Ongoing managed service, for GP, specialist and allied health practices."
-            />
-          </div>
-        </Band>
-
-        {/* ── 5 WHICH SERVICE ──────────────────────────────────────── */}
-        <Band index="04" label="Which service" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            Start with the challenge you want to solve
-          </h2>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
-            <div className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
-              <p className={`${MICRO} text-brand-500`}>
-                I run an NDIS or aged care organisation
+              <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-ink-600">
+                Novada AI employees run the administration behind Australian
+                healthcare, inside the systems you already use. They complete
+                approved work, ask before anything consequential, and record
+                every action in one place.
               </p>
-              <dl className="mt-5 flex flex-col gap-5">
-                <div>
-                  <dt className="text-sm italic text-ink-700">
-                    &ldquo;Our staffing costs are increasing, and I want to
-                    understand where money may be lost.&rdquo;
-                  </dt>
-                  <dd className="mt-2 text-sm font-semibold text-ink-950">
-                    Start with {ROSTERING.name}.
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-sm italic text-ink-700">
-                    &ldquo;We are struggling with recruitment, onboarding,
-                    workforce readiness or recurring staffing shortages.&rdquo;
-                  </dt>
-                  <dd className="mt-2 text-sm font-semibold text-ink-950">
-                    Explore {CONTINUITY.name}.
-                  </dd>
-                </div>
-              </dl>
-              <div className="mt-7">
-                <GoTo href={care.href}>Explore care provider solutions</GoTo>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                <Cta href="#offers">See the offers</Cta>
+                <CtaSoft href="#how">
+                  How it works
+                  <ChevronDown aria-hidden className="h-4 w-4" />
+                </CtaSoft>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+                <Rating />
               </div>
             </div>
 
-            <div
-              className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8"
-              style={{ ["--reveal-delay" as string]: "70ms" }}
-            >
-              <p className={`${MICRO} text-brand-500`}>
-                I run a GP, specialist or allied health practice
-              </p>
-              <dl className="mt-5 flex flex-col gap-5">
-                <div>
-                  <dt className="text-sm italic text-ink-700">
-                    &ldquo;I want to know whether we are losing revenue through
-                    missed enquiries, empty appointments or billing
-                    discrepancies.&rdquo;
-                  </dt>
-                  <dd className="mt-2 text-sm font-semibold text-ink-950">
-                    Start with {LEAKAGE.name}.
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-sm italic text-ink-700">
-                    &ldquo;Our front desk is overloaded, and we need ongoing
-                    help with calls, appointments, follow-ups and
-                    billing.&rdquo;
-                  </dt>
-                  <dd className="mt-2 text-sm font-semibold text-ink-950">
-                    Explore {BOOKING.name}.
-                  </dd>
-                </div>
-              </dl>
-              <div className="mt-7">
-                <GoTo href={practices.href}>
-                  Explore healthcare practice solutions
-                </GoTo>
-              </div>
-            </div>
-          </div>
-
-          <div className="reveal mt-6 rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
-            <h3 className="text-base font-semibold text-ink-950">
-              What if you need more than one service?
-            </h3>
-            {/* ⚠️ NOT A GATE. True of all four offers, and saying so is
-                what stops the audits reading as a funnel into the
-                managed services. */}
-            <p className={`${BODY} ${WIDE} mt-3`}>
-              Some organisations may benefit from both an audit and ongoing
-              managed support. The services are designed to complement each
-              other, but no audit is required before engaging a continuity
-              service.
-            </p>
-          </div>
-        </Band>
-
-        {/* ── 6 WHY NOVADA ─────────────────────────────────────────── */}
-        <Band index="05" label="Why Novada Tech">
-          <h2 className={`${D2} text-ink-950`}>
-            We are not just looking at one task. We are looking at the
-            operations behind your business.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            At Novada Tech, we believe stronger care organisations are built on
-            reliable operational processes, accurate information and clearly
-            defined responsibilities. Our approach is designed around five
-            principles.
-          </p>
-          <BoxCards items={PRINCIPLES} cols={3} />
-          <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
-            Better operations do not require unnecessary complexity. They
-            require the right processes, consistent follow-through and
-            appropriate oversight.
-          </p>
-        </Band>
-
-        {/* ── 7 EXPERIENCE ─────────────────────────────────────────────
-             ⚠️ NAMED, NOT QUOTED. These are organisations worked with,
-             which is accurate for both audiences. They are NOT presented
-             as evidence of results, and the care quotes stay on the care
-             pages. Do not promote this into testimonials. */}
-        <Band index="06" label="Experience" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            Experience supporting organisations across the care sector
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            We have had the opportunity to work with organisations operating in
-            the care sector, including:
-          </p>
-          <div className="mt-10 grid gap-5 md:grid-cols-3 md:gap-6">
-            {["Maxicare Plus", "Morning Star Community Services", "Support Link"].map(
-              (n, i) => (
-                <div
-                  key={n}
-                  className="reveal rounded-xl border border-ink-100 bg-white p-6 text-center shadow-raise md:p-7"
-                  style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
-                >
-                  <p className="text-base font-semibold text-ink-950">{n}</p>
-                </div>
-              ),
-            )}
-          </div>
-          <p className={`${BODY} ${WIDE} mt-10`}>
-            Our experience with care-sector businesses informs our
-            understanding of administrative pressures, operational
-            coordination, business growth and the importance of reliable
-            support behind service delivery.
-          </p>
-          <p className="mt-8 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
-            We focus on clear expectations, effective communication,
-            documented processes and practical support.
-          </p>
-          <div className="mt-10">
-            <GoTo href="/why-novada">Learn more about Novada Tech</GoTo>
-          </div>
-        </Band>
-
-        {/* ── 8 WHO WE HELP ────────────────────────────────────────── */}
-        <Band index="07" label="Who we help">
-          <h2 className={`${D2} text-ink-950`}>
-            Supporting care providers and healthcare practices across Australia
-          </h2>
-          <BoxCards items={WHO} cols={3} />
-          <p className={`${BODY} ${WIDE} mt-10`}>
-            Whether you are operating a growing care business or managing an
-            established healthcare practice, our services are tailored to your
-            organisation&apos;s operational requirements.
-          </p>
-        </Band>
-
-        {/* ── 9 HOW WE WORK ────────────────────────────────────────── */}
-        <Band index="08" label="How we work" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            A straightforward approach to strengthening your operations
-          </h2>
-          <BoxCards items={STEPS} cols={2} />
-          <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
-            Practical support. Defined responsibilities. Clear next steps.
-          </p>
-        </Band>
-
-        {/* ── 10 AUDIT VS CONTINUITY ───────────────────────────────── */}
-        <Band index="09" label="Find, then maintain">
-          <h2 className={`${D2} text-ink-950`}>
-            Find what is leaking. Strengthen the processes. Keep operations
-            moving.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Operational challenges do not always have the same solution.
-            Sometimes the first step is understanding where inefficiencies or
-            financial discrepancies exist. Other times, the organisation
-            already understands the problem but needs additional capacity to
-            manage recurring tasks. Novada provides both options.
-          </p>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
-            <div className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
-              <p className={`${MICRO} text-brand-500`}>
-                Audit services &middot; find &amp; understand
-              </p>
-              <Bullets
-                items={[
-                  `${ROSTERING.name}: investigate avoidable workforce expenditure and relevant billing and claims discrepancies.`,
-                  `${LEAKAGE.name}: investigate missed patient appointment opportunities and weaknesses in billing, claims and revenue administration.`,
-                ]}
-              />
-            </div>
-            <div
-              className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8"
-              style={{ ["--reveal-delay" as string]: "70ms" }}
-            >
-              <p className={`${MICRO} text-brand-500`}>
-                Managed continuity &middot; support &amp; maintain
-              </p>
-              <Bullets
-                items={[
-                  `${CONTINUITY.name}: coordinate recruitment, onboarding, induction, training administration and workforce readiness.`,
-                  `${BOOKING.name}: support calls, bookings, cancellations, approved follow-ups, recalls and billing administration.`,
-                ]}
+            <div className="min-w-0 lg:pl-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/ai-workforce/hero.png"
+                alt="The Novada AI Control Centre, with an operations manager reviewing the overnight summary"
+                width={938}
+                height={654}
+                fetchPriority="high"
+                decoding="async"
+                className="h-auto w-full lg:-mr-6 xl:-mr-10"
               />
             </div>
           </div>
+        </section>
 
-          <p className={`${BODY} ${WIDE} mt-10`}>
-            You choose the support your organisation needs. An audit does not
-            require a managed-service commitment, and you do not need to
-            complete an audit before engaging one of our continuity services.
-          </p>
-        </Band>
+        {/* ── CLIENT STRIP ─────────────────────────────────────────── */}
+        <section className="border-y border-ink-100/70" style={{ backgroundColor: CREAM_DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-10`}>
+            <p style={SERIF} className="text-center text-lg font-bold text-ink-800">
+              Australian healthcare providers already run Novada AI employees
+            </p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-20">
+              {PROVIDERS.map((p) => (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={p.name}
+                  src={`/clients/${p.file}`}
+                  alt={p.name}
+                  className={`${p.h} w-auto object-contain`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
 
-        {/* ── 11 FAQ ───────────────────────────────────────────────── */}
-        <Band index="10" label="Questions" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>Frequently asked questions</h2>
-          <Faq />
-        </Band>
+        {/* ── THE TWO OFFERS ───────────────────────────────────────────
+            🔴 THIS BAND REPLACED THE TWO-DOOR ROUTER. The visitor used
+            to be sent to /care or /practices and choose an offer there.
+            Both hubs are archived, so the choice happens here. */}
+        <Section id="offers">
+          <SectionHead sub="Two AI workforces, built for the two kinds of organisation we serve. Pick the one that sounds like you.">
+            Which one are you?
+          </SectionHead>
 
-        {/* ══ 12 THE ASK ══════════════════════════════════════════════
-            🔴 NO CALENDAR ON THE ROUTER. Four offers, four calendars.
-            Every action here is a LINK to an audience hub's #book,
-            which recommends an offer, whose page carries the calendar.
-            ═════════════════════════════════════════════════════════ */}
-        <section id="book" className="border-t border-white/10 bg-canvas-ink">
-          <div
-            className={`${FRAME} ${GUTTER} border-x border-white/10 py-16 md:py-24 lg:py-32`}
-          >
-            <div className={RAIL_GRID}>
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <div className="flex items-center gap-3 lg:block">
-                  <span className={`${MICRO} tabular text-white/55`}>11</span>
-                  <span
-                    aria-hidden
-                    className="h-px w-6 bg-white/20 lg:my-3 lg:h-6 lg:w-px"
-                  />
-                  <h2 className={`${MICRO} text-white/85`}>Get started</h2>
-                </div>
-              </div>
-
-              <div className="min-w-0">
-                <BandHeading dark>
-                  Better care operations start with the right support behind
-                  the scenes.
-                </BandHeading>
-
-                <div
-                  className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
-                >
-                  <p>
-                    Whether you are managing a care workforce, running a
-                    healthcare practice or trying to improve financial and
-                    administrative processes, operational pressure can become
-                    expensive and time-consuming. But you do not necessarily
-                    need another software platform, another internal position
-                    or another complex system to begin addressing it. You need
-                    clarity about the problem, and a practical approach to
-                    solving it.
-                  </p>
-                </div>
-
-                <div className="mt-10 grid gap-px overflow-hidden rounded-lg bg-white/10 md:grid-cols-2">
-                  {[
-                    {
-                      href: `${care.href}#book`,
-                      eyebrow: "For NDIS & aged care providers",
-                      body: "Reduce avoidable workforce costs, strengthen billing assurance and build dependable internal workforce capacity.",
-                      cta: "Explore care provider solutions",
-                    },
-                    {
-                      href: `${practices.href}#book`,
-                      eyebrow: "For GP, specialist & allied health practices",
-                      body: "Investigate patient revenue leakage and get ongoing support with enquiries, appointments and billing.",
-                      cta: "Explore healthcare practice solutions",
-                    },
-                  ].map((s) => (
-                    <Link
-                      key={s.href}
-                      href={s.href}
-                      className="group flex h-full flex-col bg-canvas-raised p-6 transition-colors duration-150 ease-standard hover:bg-[#161C29] md:p-8"
-                    >
-                      <span className={`${MICRO} text-brand-200`}>
-                        {s.eyebrow}
-                      </span>
-                      <span className="mt-3 flex items-start justify-between gap-3">
-                        <span className="text-lg font-semibold text-white">
-                          Book a review
-                        </span>
-                        <ArrowRight
-                          aria-hidden
-                          className="mt-1 h-5 w-5 shrink-0 text-white/40 transition-[transform,color] duration-150 ease-standard group-hover:translate-x-1 group-hover:text-brand-200"
-                        />
-                      </span>
-                      <span className="mt-3 block text-sm leading-relaxed text-white/65">
-                        {s.body}
-                      </span>
-                      <span
-                        className={`${MICRO_TIGHT} mt-6 block border-t border-white/10 pt-5 text-brand-200`}
-                      >
-                        {s.cta}
-                      </span>
-                    </Link>
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {OFFERS.map((o) => (
+              <article
+                key={o.name}
+                className="reveal flex flex-col rounded-lg border border-ink-100 bg-white p-8 shadow-lift transition-[transform,box-shadow] duration-200 ease-standard hover:-translate-y-0.5"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={o.img}
+                  alt=""
+                  width={130}
+                  height={130}
+                  className="h-[72px] w-[72px] object-contain"
+                />
+                <p className={`${MICRO} mt-5 text-brand-500`}>{o.eyebrow}</p>
+                <h3 style={SERIF} className="mt-3 text-2xl font-bold leading-snug text-ink-950">
+                  {o.name}
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink-600">{o.lead}</p>
+                <ul className="mt-6 flex flex-1 flex-col gap-3">
+                  {o.points.map((pt) => (
+                    <li key={pt} className="flex items-start gap-3">
+                      <Tick />
+                      <span className="text-sm leading-relaxed text-ink-600">{pt}</span>
+                    </li>
                   ))}
+                </ul>
+                <div className="mt-8">
+                  <Cta href={o.href}>{o.cta}</Cta>
                 </div>
+              </article>
+            ))}
+          </div>
+        </Section>
 
-                <p className="mt-10 text-sm text-white/55">
-                  Complimentary 30-minute conversation. Nothing is signed on
-                  the call, and there is no obligation to proceed.
+        {/* ── WHY ──────────────────────────────────────────────────── */}
+        <Section bg={CREAM_DEEP}>
+          <SectionHead>Why choose a Novada AI employee?</SectionHead>
+          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+            {WHY.map((w) => (
+              <div key={w.h} className="reveal text-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={w.img}
+                  alt=""
+                  width={130}
+                  height={130}
+                  className="mx-auto h-[104px] w-[104px] object-contain"
+                />
+                <h3 style={SERIF} className="mt-5 text-xl font-bold text-ink-950">
+                  {w.h}
+                </h3>
+                <p className="mx-auto mt-3 max-w-[34ch] text-[15px] leading-relaxed text-ink-600">
+                  {w.b}
                 </p>
               </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── HOW IT WORKS ─────────────────────────────────────────────
+            ⚠️ overflow-hidden IS LOAD-BEARING: the shapes behind the
+            card carry negative offsets and without a clip they extend
+            the document past the viewport at 390px. */}
+        <section id="how" className="overflow-hidden" style={{ backgroundColor: CREAM }}>
+          <div
+            className={`${FRAME} ${GUTTER} grid items-center gap-14 py-16 md:py-24 lg:grid-cols-2 lg:gap-16`}
+          >
+            <div className="min-w-0">
+              <h2
+                style={SERIF}
+                className="text-[clamp(1.6rem,1.15rem+1.8vw,2.35rem)] font-bold leading-[1.15] tracking-[-0.015em] text-ink-950"
+              >
+                Every action, visible in one place
+              </h2>
+              <ul className="mt-7 flex flex-col gap-4">
+                {[
+                  "Which tasks are done, running, waiting or stuck.",
+                  "Which actions are sitting on your approval.",
+                  "A traceable record of what each AI employee did, when, and in which system.",
+                ].map((b) => (
+                  <li key={b} className="flex items-start gap-3">
+                    <span
+                      aria-hidden
+                      className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-500 text-white"
+                    >
+                      <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none">
+                        <path
+                          d="M2.5 6.2 4.8 8.5 9.5 3.8"
+                          stroke="currentColor"
+                          strokeWidth="2.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span className="text-[15px] leading-relaxed text-ink-600">{b}</span>
+                  </li>
+                ))}
+              </ul>
+              {/* 🔴 LOAD-BEARING. Without it the Control Centre reads as
+                  a replacement system of record, which is a claim we
+                  cannot support and a migration we are not selling. */}
+              <p className="mt-6 max-w-[58ch] border-l-2 border-ink-200 pl-4 text-sm leading-relaxed text-ink-500">
+                Your existing rostering, practice management, HR, payroll,
+                billing and clinical systems remain the authoritative records
+                for their respective functions unless explicitly agreed
+                otherwise.
+              </p>
+              <div className="mt-8">
+                <TextLink href="#offers">See the two offers</TextLink>
+              </div>
+            </div>
+            <div className="relative min-w-0">
+              <Blobs flip />
+              <div className="relative z-10">
+                <ControlVisual />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── THE DEEP BAND ────────────────────────────────────────── */}
+        <section style={{ backgroundColor: DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>
+            <SectionHead dark>The business impact of an AI workforce</SectionHead>
+            <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {SECTOR.map((s, i) => (
+                <div
+                  key={s.n + s.b}
+                  className="reveal text-center"
+                  style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 60}ms` }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={s.img}
+                    alt=""
+                    width={78}
+                    height={78}
+                    className="mx-auto h-[62px] w-[62px] object-contain"
+                  />
+                  <p
+                    style={SERIF}
+                    className="tabular mt-4 text-[clamp(2.25rem,1.7rem+2.2vw,3.25rem)] font-bold leading-none tracking-[-0.02em] text-white"
+                  >
+                    {s.n}
+                  </p>
+                  <p className="mx-auto mt-3 max-w-[30ch] text-[15px] leading-relaxed text-white/75">
+                    {s.b}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── TESTIMONIALS ─────────────────────────────────────────── */}
+        <Section>
+          <SectionHead wide>
+            Running a healthcare organisation is complex. Novada takes the
+            administration behind it off your team.
+          </SectionHead>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {TESTIMONIALS.map((t, i) => (
+              <figure
+                key={t.org}
+                className="reveal flex flex-col rounded-lg border border-ink-100 bg-white px-7 py-8 text-center shadow-lift"
+                style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
+              >
+                <p
+                  style={SERIF}
+                  className="text-[15px] font-bold uppercase tracking-[0.03em] text-ink-950"
+                >
+                  {t.org}
+                </p>
+                <blockquote
+                  style={SERIF}
+                  className="mt-6 flex-1 text-[15px] italic leading-relaxed text-ink-700"
+                >
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-7 text-sm text-ink-500">
+                  {t.name}, {t.org}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── FAQ ──────────────────────────────────────────────────────
+            ⚠️ NATIVE <details>. No JS, keyboard and screen reader
+            support for free, and it still works if hydration never
+            finishes. */}
+        <Section bg={CREAM_DEEP}>
+          <SectionHead>Frequently asked questions</SectionHead>
+          <div className="mx-auto mt-12 flex max-w-[76ch] flex-col gap-3">
+            {FAQ.map((f, i) => (
+              <details
+                key={f.q}
+                className="reveal group rounded-lg border border-ink-100 bg-white shadow-raise [&_summary::-webkit-details-marker]:hidden"
+                style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 50}ms` }}
+              >
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 p-6 text-base font-semibold text-ink-950">
+                  <span>{f.q}</span>
+                  <ChevronDown
+                    aria-hidden
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-400 transition-transform duration-200 ease-standard group-open:rotate-180"
+                  />
+                </summary>
+                <p className="px-6 pb-6 text-sm leading-relaxed text-ink-600">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── CHOOSE ───────────────────────────────────────────────────
+            🔴 A CHOOSER, NOT A CALENDAR. See the file header: the
+            booking lives on each offer page, where it can be attributed
+            to that offer's pipeline. A calendar here produces a lead
+            nobody can route. */}
+        <section id="book" style={{ backgroundColor: DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>
+            <SectionHead
+              dark
+              sub="Both start with a free 30-minute conversation about your workload, your systems and which work could be handled safely. No obligation to proceed."
+            >
+              Hire your first AI employee
+            </SectionHead>
+
+            <div className="mx-auto mt-12 grid max-w-3xl gap-5 sm:grid-cols-2">
+              {OFFERS.map((o) => (
+                <a
+                  key={o.href}
+                  href={o.href}
+                  className="group flex flex-col rounded-lg border border-white/15 bg-white/[0.06] p-7 transition-colors duration-150 ease-standard hover:border-brand-200/50 hover:bg-white/10"
+                >
+                  <p className={`${MICRO} text-brand-200`}>{o.eyebrow}</p>
+                  <p style={SERIF} className="mt-3 text-xl font-bold text-white">
+                    {o.name}
+                  </p>
+                  <span className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-brand-200">
+                    {o.cta}
+                    <ChevronDown
+                      aria-hidden
+                      className="h-4 w-4 -rotate-90 transition-transform duration-150 group-hover:translate-x-0.5"
+                    />
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </section>
       </main>
 
-      <DeskFooter bookHref="#book" />
-
-      {/* ⚠️ CLEARANCE FOR THE STICKY BAR. Without it the bar covers the
-          last line of the footer on a phone, where it is tallest because
-          the tagline wraps above a full-width button. */}
-      <div aria-hidden className="h-28 sm:h-20" />
-
-      <StickyCta
-        label="Find the right service"
-        tagline="Care providers and healthcare practices."
-        href="#book"
-      />
+      <DeskFooter />
     </div>
   );
 }

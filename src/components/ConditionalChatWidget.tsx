@@ -38,10 +38,23 @@ const WIDGETS = {
 
 // The only routes that load a widget. Add a route here ONLY with founder
 // approval for that page's bot script.
-const CHAT_ROUTES: Record<string, keyof typeof WIDGETS> = {
-  "/care/rostering": "main",
-  "/care/workforce": "main",
-};
+/*
+ * 🔴 EMPTY SINCE 10 NOVEMBER 2026, SO THE WIDGET LOADS NOWHERE.
+ *
+ * It used to load on /care/rostering and /care/workforce. Both routes
+ * were archived in the reduction to four pages, and a route list
+ * pointing at pages that no longer exist is dead config that reads
+ * like working config.
+ *
+ * ⚠️ THE TWO OFFER PAGES WERE NOT ADDED IN THEIR PLACE, DELIBERATELY.
+ * The rule above this list is that a route goes in ONLY with founder
+ * approval for that page's bot script, and only the PRIMARY
+ * Conversation AI agent ever replies, so whichever page mounts it is
+ * answered by the same agent. Putting the widget on an offer page
+ * whose booking flow the agent has not been briefed on sends visitors
+ * a link to the wrong calendar. Raised with the founder.
+ */
+const CHAT_ROUTES: Record<string, keyof typeof WIDGETS> = {};
 
 const GATE_STYLE_ID = "chat-widget-route-gate";
 

@@ -231,7 +231,7 @@ export type Audience = {
 export const PRACTICES: Audience = {
   slug: "practices",
   name: "Practices",
-  href: "/practices",
+  href: "/practices/ai-workforce",
   who: "Owner-led medical, dental and allied health practices across Australia.",
   moment:
     "The phone rings out at eleven on a Tuesday, in a practice that is open, fully staffed and running normally.",
@@ -247,7 +247,7 @@ export const PRACTICES: Audience = {
 export const CARE: Audience = {
   slug: "care",
   name: "Care providers",
-  href: "/care",
+  href: "/care/ai-workforce",
   who: "NDIS, home care and aged care providers running extended or around-the-clock rosters.",
   /* ⚠️ ALL THREE OF THESE DESCRIBED THE RETIRED OPERATIONS DESK, a
      24/7 phone and roster service, until 15 October 2026. The moment
@@ -571,14 +571,23 @@ export const AI_WORKFORCE_PRACTICES: Offer = {
   ],
 };
 
-export const OFFERS: Offer[] = [
-  LEAKAGE,
-  BOOKING,
-  AI_WORKFORCE_PRACTICES,
-  ROSTERING,
-  CONTINUITY,
-  AI_WORKFORCE,
-];
+/*
+ * 🔴 TWO OFFERS. Reduced from six on 10 November 2026: the Patient
+ * Revenue Leakage Audit, Patient Booking & Retention Continuity,
+ * Rostering Audit & Efficiency and Workforce Continuity offers were
+ * retired and their pages archived.
+ *
+ * ⚠️ THEIR CONSTS ARE STILL DECLARED ABOVE and are no longer exported
+ * through this list. They are kept because the archived pages' copy,
+ * pricing and positioning live in them and that is the only record of
+ * what those offers said. Deleting them loses the history; re-adding
+ * one to this array brings back a page that no longer exists.
+ *
+ * 🔴 DO NOT ADD A THIRD ENTRY HERE WITHOUT THE FOUNDER. The number of
+ * offers is a positioning decision, and this array is what the nav,
+ * the footer and the sitemap are generated from.
+ */
+export const OFFERS: Offer[] = [AI_WORKFORCE, AI_WORKFORCE_PRACTICES];
 
 /** The offers belonging to one audience, in page order. */
 /* ══════════════════════════════════════════════════════════════════════
@@ -604,34 +613,21 @@ export type Pathway = {
   steps: [PathwayStep, PathwayStep, PathwayStep];
 };
 
-export const PATHWAYS: Pathway[] = [
-  {
-    audience: "practices",
-    heading: "Healthcare practices",
-    steps: [
-      { href: LEAKAGE.href, kind: "One piece of work", label: LEAKAGE.name },
-      { kind: "What changes", label: "Improve booking and revenue processes" },
-      {
-        href: BOOKING.href,
-        kind: "Month to month",
-        label: "Manage patient access, bookings, billing and claims",
-      },
-    ],
-  },
-  {
-    audience: "care",
-    heading: "NDIS, home care and aged care",
-    steps: [
-      { href: ROSTERING.href, kind: "One piece of work", label: ROSTERING.name },
-      { kind: "What changes", label: "Improve workforce efficiency and billing accuracy" },
-      {
-        href: CONTINUITY.href,
-        kind: "Month to month",
-        label: "Manage workforce continuity, recruitment and administration",
-      },
-    ],
-  },
-];
+/*
+ * 🔴 EMPTY SINCE 10 NOVEMBER 2026, and the type is kept so the two
+ * helpers below still compile.
+ *
+ * The pathway diagram drew an audit -> change -> ongoing-service
+ * sequence out of the four retired offers. Neither surviving offer is
+ * a step in a sequence: each is a standing service you hire. The
+ * diagram had fourteen placements across the estate and every one of
+ * those pages is archived.
+ *
+ * ⚠️ `pathwayFor` now throws for any audience. That is deliberate: a
+ * silent empty diagram is how a blank rectangle ships. If a pathway is
+ * ever wanted again it needs new steps, not these.
+ */
+export const PATHWAYS: Pathway[] = [];
 
 export function pathwayFor(a: Audience["slug"]): Pathway {
   const p = PATHWAYS.find((x) => x.audience === a);

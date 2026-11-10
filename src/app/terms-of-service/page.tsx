@@ -119,6 +119,7 @@ const ORDER = [
   "about",
   "boundary",
   "desk",
+  "ai",
   "alongside",
   "clinical",
   "workers",
@@ -302,157 +303,94 @@ const CLAUSES: Clause[] = [
     title: "What we do",
     subs: [
       <>
-        We run back office functions for two kinds of Australian business:
+        We provide an AI workforce to two kinds of Australian business:
         healthcare practices, and care providers in disability, home care and
-        aged care. This website describes four service lines, two for each.
+        aged care. You engage one or more specialised AI employees, each of
+        which carries out a defined set of administrative tasks inside the
+        business systems you already run.
       </>,
       <>
-        For practices, the Patient Revenue Leakage Audit has two components
-        and examines revenue lost both before and after an appointment. It is a
-        defined piece of work rather than a continuing service. Before the
-        appointment, we review the enquiry, booking, cancellation and recall
-        information the practice already produces and identify where bookings
-        are being lost. After it, we review billing, claims, payment and
-        reconciliation records and identify services that were not invoiced,
-        fees applied incorrectly, claims rejected and not resubmitted, amounts
-        outstanding, and discrepancies between what was delivered, what was
-        invoiced and what was received. We estimate value where the information
-        supports an estimate, and recommend changes. Any ongoing work
-        afterwards is a separate engagement and applies only where your
-        services agreement says so.
+        For care providers, the AI employees cover rostering and shift
+        coordination, compliance and worker documentation, recruitment,
+        onboarding and payroll administration, after-hours operational
+        coordination, and cross-function operations administration. For
+        practices, they cover patient reception and access, appointment and
+        cancellation recovery, referral intake administration, recalls and
+        follow-up administration, billing and claims administration, and
+        practice operations administration.
       </>,
       <>
-        The audit identifies potential overbilling as well as potential
-        underbilling. It is a review of accuracy and of the controls around
-        billing, not an exercise in maximising claims, and we do not recommend
-        billing for a service that was not delivered. We do not select an item
-        number or billing code, decide whether a claim is eligible or payable,
-        or make any decision that turns on clinical judgement. Those remain
-        with the practice and its own qualified advisers, every correction is
-        authorised by the practice, and an amount we identify is not a
-        confirmed recoverable amount. We do not guarantee that any revenue will
-        be recovered, and we do not represent that an audit will find every
-        billing error.
+        What each AI employee is permitted to do in your business is set out
+        in your services agreement. Capability depends on the systems you
+        authorise us to connect to, the permissions those systems grant, the
+        workflows configured for you and the approvals you require. Nothing on
+        this website is a representation that a particular task will be
+        available in your environment.
       </>,
       <>
-        For practices, Patient Booking &amp; Retention Continuity is that
-        ongoing work. It covers booking enquiries answered in the
-        practice&apos;s name during its operating hours, bookings made and
-        changed inside the practice&apos;s own software, follow-up of enquiries
-        that did not book, short-notice cancellations offered to patients on
-        the practice&apos;s own waiting list, the practice&apos;s own recall
-        list worked at the intervals its practitioners set, and billing
-        administration.
-      </>,
-      <>
-        Billing administration means we raise invoices, lodge claims and
-        follow up unpaid accounts inside the practice&apos;s own systems,
-        against what the practice&apos;s own practitioners have already
+        Billing, claims and recalls are administered, never originated or
         determined. We do not select an item number or billing code, set or
         advise on a fee, decide what is billed or whether a service is
-        claimable, or give any person financial advice. The practice remains
-        responsible for the accuracy of what is billed and for every claim
-        made in its name. Payment taken in person at the practice is the
-        practice&apos;s own and does not reach us.
+        claimable or payable, or give any person financial advice. We do not
+        decide that a patient needs treatment, add anybody to a recall list,
+        change a recall interval, or place an offer, discount or other
+        inducement in a recall message. We make no clinical suitability
+        decision of any kind. You remain responsible for the accuracy of what
+        is billed and for every claim made in your name.
       </>,
       <>
-        Recalls and billing are both administered, never originated or
-        determined. We do not decide that a patient needs treatment, we do not add anybody to a recall list, we do
-        not change a recall interval, and no offer, discount or other
-        inducement is placed in a recall message. We make no clinical
-        suitability decision of any kind. Where we write or speak in a
-        practice&apos;s name we are bound by the same advertising restrictions
-        that bind the practice, and the practice remains responsible for the
-        content it approves.
+        For care providers, we do not make or contribute to decisions about
+        worker suitability, competency, hiring or discipline, and we do not
+        make regulatory determinations or carry your statutory reporting
+        accountability. Those remain with your authorised people.
       </>,
       <>
-        We no longer provide recruitment, induction or training
-        administration, registration or credential currency, or payroll
-        administration to healthcare practices. Those service lines are
-        withdrawn and this agreement does not offer them. Payroll
-        administration remains available to care providers only, on the terms
-        set out below.
-      </>,
-      <>
-        For care providers, Rostering Audit &amp; Efficiency has two
-        components. It is a defined piece of work rather than a continuing
-        service. The first examines how a provider schedules and allocates its
-        workforce: we review rostering, payroll, overtime, agency, travel and
-        cancellation information the provider already produces, and identify
-        where avoidable cost and operational risk sit. The second examines
-        whether services delivered have been accurately recorded, invoiced,
-        claimed, reconciled and collected: we review service delivery records,
-        invoices, claims, remittances and payment reconciliation and identify
-        supports or services not claimed, items, service types, units or rates
-        applied incorrectly, claims rejected or unresolved, contributions and
-        invoices outstanding, and unreconciled payments. The second component
-        is scoped to the funding arrangement the provider actually operates
-        under, which are not the same as one another. We estimate impact where
-        the information supports an estimate, and recommend changes. Any
-        ongoing monitoring or claims administration afterwards is a separate
-        engagement and applies only where your services agreement says so.
-      </>,
-      <>
-        The audit identifies potential overbilling as well as potential
-        underclaiming, and is a review of accuracy and of the controls around
-        claiming rather than an exercise in maximising claims. We do not treat
-        a rostered or scheduled hour as automatically claimable: a claim
-        requires actual delivery, or another circumstance the applicable rules
-        expressly permit, with supporting evidence. We do not recommend
-        claiming for a service that was not delivered, and we do not recommend
-        reducing staffing below what a person&apos;s needs or a mandated level
-        require.
-      </>,
-      <>
-        We do not determine support eligibility, we do not determine or change
-        a classification or funding entitlement, and we do not interpret a
-        claiming rule on your behalf. Those remain with the provider and its
-        own qualified advisers, every correction and resubmission is verified
-        and authorised by the provider, and an amount we identify is not a
-        confirmed recoverable amount. We do not guarantee that any cost will be
-        saved or any revenue recovered, we do not represent that an audit will
-        identify every error, and we provide no statutory or financial audit
-        certification.
-      </>,
-      <>
-        For care providers, Workforce Continuity builds and maintains the
-        provider&apos;s own workforce. It covers recruitment run as a
-        continuing function, screening and credential coordination, induction
-        and training administration, relief pool development, workforce
-        visibility and payroll administration. Where a provider engages workers
-        from a pool, clause {NO.workers} sets out what that does and does not
-        mean.
-      </>,
-      <>
-        Payroll administration, which is available to care providers and not
-        to practices, means we process a payroll run on your cycle,
-        against the hours, rates and entitlements you set, using your own
-        systems and your own funds. We are not the employer, we do not pay any
-        worker as principal, and we do not advise on payroll, tax or employment
-        questions. Clause {NO.workers} applies.
-      </>,
-      <>
-        A rostering review and a patient revenue leakage audit are both
-        operational reviews. Neither is an audit under any statutory or
-        accreditation scheme, neither produces anything that is lodged with any
-        regulator, and neither is a substitute for legal, payroll, clinical or
-        regulatory advice.
-      </>,
-      <>
-        Records we maintain on your behalf are kept for the retention period
-        recorded in your services agreement. For care provider services that
-        period is set to a seven year standard, so that it sits with the record
-        keeping periods our care sector clients work to. The period that binds
-        us is the one written into your services agreement.
-      </>,
-      <>
-        The descriptions on this website are a general summary, written for
-        people deciding whether to speak with us. The scope that binds us is
-        the scope written into your services agreement.
+        Where we write or speak in your name we are bound by the same
+        advertising and professional restrictions that bind you, and you
+        remain responsible for the content you approve.
       </>,
     ],
   },
-
+  {
+    id: "ai",
+    title: "How the work is performed",
+    subs: [
+      <>
+        The work described in the previous clause is performed by an automated
+        system. That is the nature of the service and not an implementation
+        detail: an AI employee reads from and writes to the systems you
+        authorise, sends communications you have approved, and completes tasks
+        without a person performing each step.
+      </>,
+      <>
+        Where an AI employee speaks with a patient, a worker or any other
+        person on your behalf, it identifies itself as an AI assistant. A
+        person can ask to be put through to a human at any point, and that
+        request is honoured.
+      </>,
+      <>
+        You decide, before anything is connected, which actions may be taken
+        automatically, which require a person to approve them first, and which
+        must always be escalated to a person rather than actioned. Those
+        settings are recorded in your services agreement and can be changed by
+        you.
+      </>,
+      <>
+        Actions taken, approvals given and exceptions raised are recorded, and
+        that record is available to you. It is a record of what the AI
+        employees did. It does not replace your own systems of record, which
+        remain authoritative for their own business functions unless your
+        services agreement expressly says otherwise.
+      </>,
+      <>
+        Automated systems can fail, misread information, or act on information
+        that is wrong or out of date in a connected system. The approval and
+        escalation settings above exist because of that. We do not represent
+        that an AI employee will be free of error, and nothing in this
+        agreement transfers to us a responsibility the law places on you.
+      </>,
+    ],
+  },
   {
     id: "alongside",
     title: "Alongside your team, not instead of it",
@@ -804,14 +742,15 @@ const CLAUSES: Clause[] = [
         granted.
       </>,
       <>
-        &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;Patient
-        Revenue Leakage Audit&rdquo;, &ldquo;Patient Booking &amp; Retention
-        Continuity&rdquo;, &ldquo;Rostering Audit &amp; Efficiency&rdquo; and
-        &ldquo;Workforce Continuity&rdquo;, together with the former names
-        &ldquo;The Patient Access Desk&rdquo;, &ldquo;The Workforce
-        Desk&rdquo;, &ldquo;The Operations Desk&rdquo;, &ldquo;The Operations
-        Partner&rdquo; and &ldquo;The Workforce Partner&rdquo;, are used by us
-        as trade marks. You must not use them without our written
+        &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;Novada AI
+        Workforce&rdquo; and &ldquo;Novada AI Control Centre&rdquo;, together
+        with the former names &ldquo;Patient Revenue Leakage Audit&rdquo;,
+        &ldquo;Patient Booking &amp; Retention Continuity&rdquo;,
+        &ldquo;Rostering Audit &amp; Efficiency&rdquo;, &ldquo;Workforce
+        Continuity&rdquo;, &ldquo;The Patient Access Desk&rdquo;, &ldquo;The
+        Workforce Desk&rdquo;, &ldquo;The Operations Desk&rdquo;, &ldquo;The
+        Operations Partner&rdquo; and &ldquo;The Workforce Partner&rdquo;, are
+        used by us as trade marks. You must not use them without our written
         permission, except to refer to us fairly and accurately.
       </>,
       <>
@@ -1155,9 +1094,15 @@ function Contents() {
       <ol className="mt-4 space-y-2.5 lg:mt-5">
         {CLAUSES.map((c) => (
           <li key={c.id}>
-            <a
+            /* ⚠️ min-h-11 AND THE VERTICAL PADDING ARE THE TAP TARGET.
+                 A link in a dense contents rail is only as tall as
+                 its own line box, which measured 20-21px and fails
+                 the 44px floor the rest of the site holds. The rail
+                 is the main way a phone reads a document this long,
+                 so it is the one place it matters most. */
+              <a
               href={`#${c.id}`}
-              className="group grid grid-cols-[26px_minmax(0,1fr)] gap-x-2 text-[13px] leading-[1.5] text-[#5B6472] transition-colors hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
+              className="group grid min-h-11 grid-cols-[26px_minmax(0,1fr)] items-center gap-x-2 py-1.5 text-[13px] leading-[1.5] text-[#5B6472] transition-colors hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2 lg:min-h-0 lg:items-start lg:py-0"
             >
               <span className={`${NUM} text-[#9AA3B1] group-hover:text-[#003DDB]`}>
                 {NO[c.id]}.

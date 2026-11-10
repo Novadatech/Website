@@ -108,6 +108,12 @@ const SECTIONS: SectionDef[] = [
   { id: "tracking", title: "Cookies, analytics and advertising tracking" },
   { id: "embeds", title: "Third party tools embedded in this website" },
   { id: "overseas", title: "Sending information overseas" },
+  /* 🔴 ADDED 10 NOVEMBER 2026. The whole service is now delivered by
+     an AI workforce, and APP 1 requires a policy to describe how
+     personal information is actually handled. "An automated system
+     reads your roster and your patient enquiries" is a material fact
+     about that handling, not an implementation detail. */
+  { id: "automated", title: "Automated processing and AI" },
   { id: "marketing", title: "Marketing, email and SMS" },
   { id: "security", title: "How we protect information" },
   { id: "retention", title: "How long we keep information" },
@@ -269,7 +275,7 @@ function Hero() {
         <dl className="mt-9 grid gap-px overflow-hidden border border-[#E3E6EC] bg-[#E3E6EC] sm:grid-cols-3">
           {[
             { k: "Last updated", v: LAST_UPDATED },
-            { k: "Applies to", v: "novadatech.com.au and our desk services" },
+            { k: "Applies to", v: "novadatech.com.au and our AI workforce services" },
             { k: "Governing law", v: "Privacy Act 1988 (Cth)" },
           ].map((row) => (
             <div key={row.k} className="bg-white px-5 py-4">
@@ -301,9 +307,15 @@ function Contents() {
             <span className={`${MICRO_TIGHT} ${NUM} pt-[3px] text-[#C3CAD5]`}>
               {String(i + 1).padStart(2, "0")}
             </span>
-            <a
+            /* ⚠️ min-h-11 AND THE VERTICAL PADDING ARE THE TAP TARGET.
+                 A link in a dense contents rail is only as tall as
+                 its own line box, which measured 20-21px and fails
+                 the 44px floor the rest of the site holds. The rail
+                 is the main way a phone reads a document this long,
+                 so it is the one place it matters most. */
+              <a
               href={`#${s.id}`}
-              className="text-[13.5px] leading-[1.5] text-[#5B6472] transition-colors hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2"
+              className="flex min-h-11 items-center py-1.5 text-[13.5px] leading-[1.5] text-[#5B6472] transition-colors hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2 lg:min-h-0 lg:py-0"
             >
               {s.title}
             </a>
@@ -633,9 +645,9 @@ export default function PrivacyPolicyPage() {
                     client&apos;s systems
                   </H3>
                   <P>
-                    For <Key>Rostering Audit &amp; Efficiency</Key>, working
-                    from a provider&apos;s rostering and payroll systems or
-                    from exports those systems produce, this can include:
+                    For the <Key>care AI workforce</Key>, working inside a
+                    provider&apos;s own rostering, HR, compliance and payroll
+                    systems, this can include:
                     worker names, locations, availability, qualifications and
                     contracted hours; shift, roster and travel records;
                     call-off, replacement and cancellation records; overtime and
@@ -645,8 +657,9 @@ export default function PrivacyPolicyPage() {
                     resident, and some of that is health information.
                   </P>
                   <P>
-                    For <Key>Workforce Continuity</Key>, this can include
-                    candidate and worker names and contact details; work
+                    Still for the <Key>care AI workforce</Key>, and covering
+                    the recruitment, onboarding and payroll roles, this can
+                    include candidate and worker names and contact details; work
                     history, qualifications and referee details; induction and
                     training records; screening and credential records; and,
                     where we provide payroll administration, the pay records
@@ -655,10 +668,8 @@ export default function PrivacyPolicyPage() {
                     under the Privacy Act.
                   </P>
                   <P>
-                    For the <Key>Patient Revenue Leakage Audit</Key> and{" "}
-                    <Key>Patient Booking &amp; Retention Continuity</Key>,
-                    working inside a practice&apos;s own software, this can
-                    include: patient names, contact details and appointment
+                    For the <Key>practices AI workforce</Key>, working inside
+                    a practice&apos;s own software, this can include: patient names, contact details and appointment
                     details; enquiry, booking, cancellation and waiting list
                     records; the recall records the practice&apos;s own
                     practitioners maintain; and, where we administer billing,
@@ -1076,14 +1087,76 @@ export default function PrivacyPolicyPage() {
                   />
                   <P>
                     <Key>
-                      The desk service itself is delivered onshore.
+                      The service itself is delivered from Australia.
                     </Key>{" "}
-                    Our coordinators are in Australia, and participant and
-                    participant records stay in the client&apos;s own system. We
-                    do not export a client&apos;s records overseas as part of
-                    delivering the service, and we do not send health
-                    information to the tracking tools in section{" "}
-                    {numberOf("tracking")}.
+                    Novada is Australian owned and our team is in Australia.
+                    Participant and patient records stay in the client&apos;s
+                    own system: the AI employees described in section{" "}
+                    {numberOf("automated")} work inside those systems rather
+                    than copying records out of them. We do not export a
+                    client&apos;s records overseas as part of delivering the
+                    service, and we do not send health information to the
+                    tracking tools in section {numberOf("tracking")}.
+                  </P>
+                </S>
+
+                {/* ══════════════ AUTOMATED PROCESSING ══════════════
+                    🔴 ADDED 10 NOVEMBER 2026 WITH THE AI WORKFORCE.
+                    Until then this service was delivered by Novada's
+                    own coordinators and this policy described it that
+                    way. It is now delivered by an automated system
+                    reading and writing personal and health information
+                    in the client's own systems, which is a material
+                    fact about how information is handled rather than
+                    an implementation detail. Do not remove it while
+                    the service is delivered this way. */}
+                <S id="automated">
+                  <H3>An automated system does this work</H3>
+                  <P>
+                    <Key>
+                      Our service is delivered by AI employees, not by a person
+                      performing each step.
+                    </Key>{" "}
+                    An AI employee reads from and writes to the systems a client
+                    has authorised us to connect to, and completes administrative
+                    tasks inside them. Where those systems hold personal
+                    information, and in a care or practice setting they usually
+                    hold health information as well, that information is
+                    processed by an automated system in the course of the work.
+                  </P>
+                  <P>
+                    The information is not sent anywhere it was not already
+                    going. It stays in the client&apos;s own systems, and
+                    connections are permission-scoped: each system grants only
+                    the access the agreed workflows need, and those permissions
+                    are confirmed with the client before anything is connected.
+                    We do not send health information to the tracking tools in
+                    section {numberOf("tracking")}.
+                  </P>
+                  <P>
+                    <Key>
+                      We do not use a client&apos;s information, or the personal
+                      information inside it, to train a general-purpose AI model.
+                    </Key>{" "}
+                    It is used to carry out the work that client engaged us to do.
+                  </P>
+                  <P>
+                    Where an AI employee speaks with a patient, a worker or any
+                    other person, it identifies itself as an AI assistant, and
+                    that person can ask to be put through to a human at any
+                    point. Clinical matters, emergencies and anything else the
+                    client has designated are escalated to the client&apos;s own
+                    people rather than handled by the system.
+                  </P>
+                  <P>
+                    Each client decides which actions may be taken
+                    automatically, which require a person to approve them first,
+                    and which must always be escalated. Actions taken, approvals
+                    given and exceptions raised are recorded, and that record is
+                    available to the client. Decisions that carry legal,
+                    clinical, employment or regulatory consequence are not made
+                    by the system: those stay with authorised people, and the
+                    Terms of Service set out where that line sits.
                   </P>
                 </S>
 

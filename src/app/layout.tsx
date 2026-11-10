@@ -61,16 +61,19 @@ export const metadata: Metadata = {
      the founder confirmed on 15 October that it does not run. */
   title: "Novada | We streamline the work behind the care",
   description:
-    "Back office services for Australian healthcare practices and care providers. An audit that finds what you are losing, and the ongoing work that stops you losing it. Run by our own team, inside the systems you already use, alongside your people and never instead of them. Nothing clinical, ever.",
+    "AI employees for Australian healthcare practices and care providers. They run the administration behind your service, inside the systems you already use, alongside your people and never instead of them. Every action is recorded, the decisions stay with you, and nothing clinical, ever.",
+  /* ⚠️ REWRITTEN 10 NOVEMBER 2026 WITH THE REDUCTION TO TWO OFFERS.
+     The previous list bought traffic for four service lines that no
+     longer exist. A keyword naming a retired offer sends a visitor to
+     a page that cannot sell it to them. */
   keywords: [
-    "patient revenue leakage audit",
-    "patient booking and recall services for practices",
-    "practice billing administration Australia",
-    "rostering audit for NDIS providers",
-    "workforce continuity for care providers",
-    "care worker recruitment and screening",
-    "onshore back office for practices and care providers",
-    "aged care and home care administration",
+    "AI employees for NDIS and aged care providers",
+    "AI workforce for Australian medical practices",
+    "AI receptionist for GP and allied health practices",
+    "AI rostering and compliance coordinator",
+    "AI billing and claims administration Australia",
+    "care provider back office automation",
+    "practice administration automation Australia",
     "Australia",
   ],
   openGraph: {

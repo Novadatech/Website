@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { AUDIENCES, OFFERS } from "@/content/offers";
+import { OFFERS } from "@/content/offers";
 
 /*
  * ⚠️ BUILT FROM THE CONTENT MODEL, not a hand-written list. The previous
@@ -16,27 +16,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://novadatech.com.au";
   const now = new Date();
 
+  /*
+   * 🔴 FOUR PAGES PLUS THE TWO LEGAL ONES, since 10 November 2026.
+   *
+   * ⚠️ AUDIENCES IS NO LONGER LISTED SEPARATELY. Both audience hrefs
+   * now point AT the offer pages, because the hubs they used to point
+   * at are archived. Listing both would put each offer URL in the
+   * sitemap twice.
+   *
+   * ⚠️ `indexed === false` IS FILTERED OUT, not listed and ignored.
+   * /practices/ai-workforce is noindex until its booking calendar
+   * exists. Listing a noindex URL tells Google to index a page that
+   * tells Google not to, and Search Console reports the conflict
+   * against the whole property.
+   */
   return [
     { url: `${base}/`, lastModified: now, changeFrequency: "monthly", priority: 1 },
-    ...AUDIENCES.map((a) => ({
-      url: `${base}${a.href}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    })),
-    /*
-     * ⚠️ `indexed === false` IS FILTERED OUT, not listed and ignored.
-     * An offer can be live in the nav while its page is still noindex,
-     * which is true of /care/ai-workforce until its booking calendar
-     * exists. Listing a noindex URL here tells Google to index a page
-     * that tells Google not to, and Search Console reports the conflict
-     * against the whole property. See the `indexed` field in offers.ts.
-     */
     ...OFFERS.filter((o) => o.indexed !== false).map((o) => ({
       url: `${base}${o.href}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
-      priority: 0.8,
+      priority: 0.9,
     })),
     { url: `${base}/why-novada`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/privacy-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },

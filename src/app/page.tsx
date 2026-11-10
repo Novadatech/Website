@@ -1,9 +1,30 @@
 import type { Metadata } from "next";
+import { Bitter } from "next/font/google";
 
 import HomePage from "./HomePage";
 
 /*
- * / — the main home page, and the router between the two audiences.
+ * ⚠️ THE SERIF DISPLAY FACE, FOR THIS ROUTE ONLY, matching the two
+ * offer pages. 🔴 IT IS DECLARED HERE AND NOT IN src/app/layout.tsx:
+ * the root layout is inherited by every page on the site, including
+ * the confirmation pages, and putting it there downloads a fourth font
+ * family everywhere to serve four routes. next/font dedupes the actual
+ * file across the routes that declare it.
+ */
+const bitter = Bitter({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
+  variable: "--font-lp-serif",
+});
+
+/*
+ * / — the main home page.
+ *
+ * 🔴 IT IS NO LONGER A ROUTER. It used to send a visitor to /care or
+ * /practices, each a hub listing two offers. Both hubs are archived
+ * and both pairs of offers retired, so this page names the two
+ * surviving offers directly.
  *
  * 🔴 THIS FILE IS A THIN SERVER WRAPPER AND NOTHING ELSE. The page
  * itself is ./HomePage.tsx, a client component, and Next does not allow
@@ -48,5 +69,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <HomePage />;
+  return (
+    <div className={bitter.variable}>
+      <HomePage />
+    </div>
+  );
 }

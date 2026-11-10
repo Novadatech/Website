@@ -2,844 +2,460 @@
 
 import { ArrowRight, Check, ChevronDown, Star } from "lucide-react";
 
-import DeskNav from "@/components/desk/DeskNav";
 import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
-import { Band, BandHeading } from "@/components/desk/Band";
-import {
-  BODY,
-  BTN_PRIMARY,
-  DISPLAY,
-  D2,
-  FRAME,
-  GUTTER,
-  MICRO,
-  RAIL_GRID,
-  SMALL,
-} from "@/components/desk/tokens";
+import { FRAME, GUTTER, MICRO, MICRO_TIGHT } from "@/components/desk/tokens";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
  * /practices/ai-workforce — NOVADA AI WORKFORCE, AUSTRALIAN PRACTICES.
  *
- * Built 8 November 2026 from founder-supplied copy, fifteen sections, as
- * the third practices landing page. Same components and rhythm as
- * /practices/revenue-audit and /practices/patient-booking.
- *
- * 🔴 THERE ARE NOW TWO "NOVADA AI WORKFORCE" PAGES ON THIS DOMAIN AND
- * THEY ARE NOT THE SAME PRODUCT PAGE. /care/ai-workforce sells FIVE AI
- * employees to NDIS and aged care providers; this one sells SIX to
- * healthcare practices, and the six are different roles answering a
- * different operational day. They share a product name and nothing
- * else. Never sync them, never diff them, and never move copy between
- * them: the care page says roster, support worker and participant, and
- * this one says appointment, clinician and patient.
- *
- * ⚠️ IT IS A CLIENT COMPONENT (the sticky bar and nav need one), so its
- * metadata lives in page.tsx. Do not add a layout.tsx here: ./confirmed
- * has one carrying the noindex.
+ * Rebuilt 10 November 2026 on the same shape as /care/ai-workforce, on
+ * the founder's instruction: "build it exactly the same way you built
+ * the Care AI Workforce page." Same shell, same primitives, same band
+ * order, same serif headings. If you change the shape of one, look at
+ * the other.
  *
  * ══════════════════════════════════════════════════════════════════════
- * 🔴 THE PRODUCT EXISTS AND THIS PAGE SPEAKS IN THE PRESENT TENSE.
- * Founder ruling, 7 November 2026: "The product already exists." The
- * hedges that called the platform "proposed" were stripped from
- * /care/ai-workforce on that ruling and never existed in this copy.
- * Banned here too: "proposed AI-powered", "is intended to", "capabilities
- * are offered", "before production use", "current product availability".
+ * 🔴 FOUR THINGS ARE DELIBERATELY NOT THE SAME AS THE CARE PAGE. Each
+ * one is a fact about this audience, not an oversight.
  *
- * 🔴 THE SCOPE AND ACCOUNTABILITY LIMITS ARE A DIFFERENT KIND OF
- * SENTENCE AND THEY ARE THIS PAGE'S LEGAL FLOOR. In a practice setting
- * they are the sharpest on the whole estate, because this is the only
- * offer where an AI SPEAKS DIRECTLY TO PATIENTS:
+ * 1. 🔴 THE ROLE CARDS KEEP THEIR BOUNDARY LINES. The founder removed
+ *    the equivalent lines from the care page on 10 November, and that
+ *    was safe there because the care page's oversight band repeats
+ *    every one of those concepts in its third column.
  *
- *   · "Clearly identify itself as an AI assistant."
- *   · "Patients interacting directly with an AI assistant are informed
- *      that they are communicating with AI."
- *   · "Can patients speak directly to a real person?  Yes."
- *   · "Escalate urgent or potentially clinical matters through approved
- *      procedures."
- *   · "The AI does not independently assess clinical urgency, accept or
- *      reject referrals on clinical grounds, or determine whether
- *      specialist care is medically appropriate."
- *   · "The AI does not interpret test results, decide who needs clinical
- *      review or independently close safety-critical recalls."
- *   · "The AI does not invent billable services, determine Medicare
- *      eligibility, select clinical billing codes independently or
- *      guarantee claim approval or revenue recovery."
- *   · "It cannot guarantee every available appointment will be filled."
- *   · "Does Novada guarantee additional revenue?  No."
- *   · the whole Human Control & Patient Safety band
+ *    THAT REASONING DOES NOT TRANSFER. The old practices page had NO
+ *    oversight band at all, so its five boundary lines were the only
+ *    place any of this was said. And they are not the same KIND of
+ *    sentence as the care ones:
  *
- * ⚠️ A FUTURE EDITOR WILL READ THE "PRODUCT EXISTS" RULING AND REACH FOR
- * THESE NEXT. They are not the same thing. "The product exists" does not
- * mean "the product may decide clinical urgency".
+ *      · "The AI identifies itself as an AI assistant on every patient
+ *         call" is close to a legal requirement. An AI that lets a
+ *         patient believe they are speaking to a person is misleading
+ *         conduct, and this one answers the phone.
+ *      · "does not independently assess clinical urgency" is patient
+ *         safety. This AI takes calls from sick people.
+ *      · "does not determine Medicare eligibility, select clinical
+ *         billing codes independently" is Medicare compliance. Getting
+ *         that wrong is not a marketing problem.
  *
- * 🔴 AN AI ANSWERING A PATIENT CALL IS THE HIGHEST-RISK SURFACE IN THIS
- * ENTIRE ESTATE, because a routine-sounding booking call can carry a
- * clinical emergency. Two sentences carry that risk and both are in the
- * AI Reception role: it identifies itself as AI, and it escalates
- * urgent or potentially clinical matters. Neither is decoration.
+ *    An oversight band HAS been added below, so the concepts now
+ *    appear twice as they do on care. ⚠️ That is not a licence to
+ *    delete the role-card lines: the three above are specific in a way
+ *    a three-column summary cannot be.
+ *
+ * 2. 🔴 THERE IS NO CALENDAR AND THE PAGE IS noindex. The founder is
+ *    supplying the demo calendar separately. #book carries a
+ *    placeholder. A page whose only action cannot be taken should not
+ *    collect search traffic.
+ *
+ *    FOUR STEPS WHEN THE CALENDAR ARRIVES. All or none:
+ *      1. add a `practices-ai-workforce` key to Desk and CALENDARS in
+ *         src/components/desk/BookingEmbed.tsx with the supplied id
+ *      2. swap the placeholder in #book for <BookingEmbed
+ *         desk="practices-ai-workforce"
+ *         source="practices-ai-workforce" tone="dark" />
+ *      3. delete the `robots` block in ./page.tsx
+ *      4. set `indexed: true` on AI_WORKFORCE_PRACTICES in offers.ts
+ *    ⚠️ Steps 3 and 4 travel together. One without the other puts the
+ *    route in the sitemap and then refuses to index it, which Search
+ *    Console reports against the whole property.
+ *
+ * 3. ⚠️ THE CLIENT LOGOS AND THE QUOTES ARE CARE PROVIDERS, NOT
+ *    PRACTICES, and the copy around them says so. Founder instruction,
+ *    10 November 2026, was to use them here. They are real Novada
+ *    clients, so the strip and the quote band are true as written:
+ *    "Australian healthcare providers already run Novada AI employees"
+ *    and "Care and disability providers already trust Novada with the
+ *    operations behind their service."
+ *    🔴 DO NOT reword either to imply these are medical practices. The
+ *    first quote names NDIS out loud, which is exactly why the framing
+ *    has to stay general.
+ *
+ * 4. ⚠️ ONLY FOUR INTEGRATION TILES. The eleven-partner list the
+ *    founder supplied is a CARE list: ShiftCare, AlayaCare, Lumary,
+ *    SupportAbility, Brevity and CareMaster are NDIS and aged care
+ *    systems and do not belong on a page for GP, specialist and allied
+ *    health practices. Only the four that are genuinely cross-sector
+ *    carry over. 🔴 THE PRACTICE MANAGEMENT SYSTEMS ARE MISSING AND
+ *    HAVE BEEN ASKED FOR. Do not fill the gap by guessing at names.
+ *
  * ══════════════════════════════════════════════════════════════════════
- *
- * 🔴 NO TESTIMONIALS, unlike all three care pages. The founder's written
- * instruction on the practices copy stands: "Do not reuse NDIS or aged
- * care customer testimonials as if they demonstrate results from" a
- * practices offer. No practice quotes exist yet. AHPRA also narrows what
- * a practice quote may ever say: operational and commercial only, never
- * clinical quality or patient outcomes. Do not add a slider here.
- *
- * ⚠️ THE PROOF STRIP USES THE PRACTICES LABELS. "Client reviews" and
- * "Healthcare practices across Australia", NOT the care page's "Provider
- * reviews" and "NDIS and aged care providers". On a practices page
- * "provider" means a CLINICIAN and the care line would be false here.
- *
- * 🔴 THE WORD "GAP" IS BANNED. In Australian healthcare the gap is the
- * PATIENT'S OUT-OF-POCKET after the rebate, so it cannot be used for a
- * hole in a schedule or a reconciliation discrepancy. The supplied copy
- * is already clean of it; keep it that way. Same call as both practices
- * siblings, and NOT the call made on /care/rostering, where the care
- * market gives the word no rebate meaning.
- *
- * 🔴 AHPRA: NO INDUCEMENT EVER GOES INTO A PATIENT MESSAGE, and we never
- * ask a patient for a review. Inducements in recall messaging and
- * soliciting patient reviews are the two most-litigated areas in this
- * market. Nothing on this page may describe the AI offering a discount,
- * a gift or a review request.
- *
- * ⚠️ NO PRICE. The FAQ answers the cost question the way the rest of the
- * estate does: price does not appear in writing before a call.
- *
- * ⚠️ NO EM DASHES IN RENDERED PROSE. The supplied copy carried six. Each
- * became a full stop or a colon and no words were changed.
- *
- * 🔴 NO CALENDAR YET. #book carries the full closing copy and a
- * PLACEHOLDER. It is NOT pointed at practices-revenue-audit or
- * practices-patient-booking: those feed their own pipelines and their
- * own confirmation pages. When the id arrives: add a
- * `practices-ai-workforce` key to Desk and CALENDARS in
- * BookingEmbed.tsx, swap the placeholder, clear the `robots` block in
- * page.tsx, set `indexed` back to true in offers.ts and point the
- * calendar redirect at ./confirmed, which is already built.
+ * ⚠️ NO EM DASHES. ⚠️ NO PRICE IN WRITING. ⚠️ STARS ARE BLUE, NOT
+ * GREEN, and the rating is unbranded: no platform name, no wordmark.
+ * ⚠️ AUSTRALIAN VOCABULARY. Medicare rebate, health fund, item
+ * numbers, enquiries. EHR, clearinghouse, payer, prior authorization
+ * and inquiries are the US page's words and belong on novadatech.com.
  * ══════════════════════════════════════════════════════════════════════
  */
 
-/* Section 2. One ordinary morning at the front desk, one line per
-   interruption. The point is the LENGTH, so do not merge into prose. */
-const A_TYPICAL_DAY = [
-  "The phone rings while reception is checking in a patient.",
-  "Someone wants to reschedule their appointment.",
-  "Another patient cancels at short notice.",
-  "A specialist referral arrives with missing administrative information.",
-  "A clinician-approved recall remains outstanding because nobody has followed it up.",
-  "An invoice needs attention, while several Medicare or private health fund claims remain unresolved.",
-  "And your practice manager is trying to keep track of all of it.",
+const CREAM = "#FFFBF4";
+const CREAM_DEEP = "#FFF0DA";
+const DEEP = "#002687";
+
+/** The display face. Declared in ./page.tsx, for this route only. */
+const SERIF = { fontFamily: "var(--font-lp-serif), Georgia, serif" };
+
+/* ── CONTENT ──────────────────────────────────────────────────────── */
+
+const PROVIDERS = [
+  { name: "Maxicare Plus", file: "maxicare.png", h: "h-9 md:h-10" },
+  { name: "Morning Star Community Services", file: "morningstar.png", h: "h-14 md:h-16" },
+  { name: "Supportslink", file: "supportslink.png", h: "h-9 md:h-11" },
 ];
 
-const CHALLENGES = [
+const WHY = [
   {
-    h: "Missed calls and unconverted enquiries",
-    b: "When reception is busy, incoming patient enquiries can go unanswered or require follow-up that is difficult to complete consistently.",
+    img: "/ai-workforce/why-employees.png",
+    h: "It does the work",
+    b: "Not a reminder list for your practice manager. An AI employee that answers the call, sends the offer and records what it did.",
   },
   {
-    h: "Cancellations and unfilled appointment capacity",
-    b: "A patient cancels. The appointment becomes available. But your team may not have enough time to contact suitable patients and offer the opening.",
+    img: "/ai-workforce/why-control.png",
+    h: "Clinicians keep the clinical calls",
+    b: "Urgency, test results, referrals and billing codes stay with your people. The AI does the administration around them.",
   },
   {
-    h: "Front-desk overload",
-    b: "Reception staff manage calls, bookings, arrivals, payments, patient enquiries, clinician requests and administration simultaneously.",
-  },
-  {
-    h: "Referral and intake backlogs",
-    b: "Referrals require review, missing documents need follow-up and patients may be waiting for an administrative response.",
-  },
-  {
-    h: "Incomplete recalls and follow-ups",
-    b: "Even when clinicians identify patients requiring follow-up, the administrative work of contacting them, tracking responses and escalating unresolved actions takes time.",
-  },
-  {
-    h: "Billing and claims administration",
-    b: "Rejected claims, unpaid invoices, incorrect administrative details and payment reconciliation exceptions require repeated investigation and follow-up.",
-  },
-  {
-    h: "Disconnected systems",
-    b: "Different applications hold information about appointments, patients, billing and communications, yet practice staff must still coordinate the work between them.",
+    img: "/ai-workforce/why-systems.png",
+    h: "It uses your systems",
+    b: "Your practice management, billing and telephony software keeps its records. The AI works across them.",
   },
 ];
 
-const NOT_THIS = [
-  "More than an AI receptionist.",
-  "More than a chatbot.",
-  "More than a dashboard that tells you what needs attention.",
-];
-
-const DIFFERENCE = [
+const FEATURES = [
   {
-    h: "Traditional practice management software",
-    b: "Holds patient, appointment and billing records and provides the tools your staff use to complete administrative work.",
+    key: "work",
+    h: "Answers the phone instead of logging that it rang",
+    bullets: [
+      "A missed call is a missed patient. Reception can only hold so many conversations at once, and the rest go to voicemail or to nobody.",
+      "The AI answers through your supported telephony, identifies itself as an AI assistant, and handles the routine enquiry end to end.",
+      "Anything urgent or clinical goes to a person through your own escalation procedure, and a patient can always ask for one.",
+    ],
+    link: { label: "Meet your AI employees", href: "#employees" },
   },
   {
-    h: "Basic automation",
-    b: "Performs specific actions when predetermined conditions are met, such as sending an appointment reminder.",
+    key: "control",
+    h: "Shows every action in one place",
+    bullets: [
+      "Which tasks are done, running, waiting or stuck.",
+      "Which actions are sitting on your approval.",
+      "A traceable record of what each AI employee did, when, and in which system.",
+    ],
+    link: { label: "See how the Control Centre works", href: "#book" },
+    /* 🔴 LOAD-BEARING. Without it the Control Centre reads as a
+       replacement system of record, which is a claim we cannot support
+       and a migration we are not selling. */
+    foot: "Your existing practice management, clinical, billing and communication systems remain the authoritative records for their respective functions unless explicitly agreed otherwise.",
   },
   {
-    h: "Novada AI Workforce",
-    b: "Coordinates multi-step administrative workflows across connected practice systems, performs permitted actions, verifies completion and keeps your team informed.",
+    key: "systems",
+    h: "Runs on the software you already pay for",
+    bullets: [
+      "Practice management and appointments, clinical records, billing and claims, telephony, and the tools your front desk already uses.",
+      "No system replacement. Where supported, your applications carry on doing their job.",
+      "We assess each system's permissions and capabilities before confirming which workflows are available.",
+    ],
+    link: { label: "See the integrations", href: "#integrations" },
   },
 ];
 
-const IMAGINE = [
-  "Answer a routine patient enquiry and complete an eligible appointment booking.",
-  "Receive a cancellation, check the waitlist and offer the appointment to an appropriate patient.",
-  "Identify incomplete referral paperwork and follow up the missing administrative information.",
-  "Contact a patient under an approved recall workflow and record the response.",
-  "Identify an unresolved claim, check available administrative information and prepare the exception for authorised review.",
-];
-
-/* ── Section 4. The six roles. ────────────────────────────────────────
+/* ── THE DEEP BAND. ───────────────────────────────────────────────────
  *
- * 🔴 FOUR OF THE SIX CARRY A `limit` AND EVERY ONE IS LOAD-BEARING.
- * Reception must identify itself as AI and escalate anything clinical.
- * Referrals must not judge clinical urgency. Recalls must not interpret
- * results or close a safety-critical recall. Billing must not determine
- * Medicare eligibility or select a clinical code. In a practice setting
- * each of those is the sentence that keeps a regulated decision with a
- * qualified person. Deleting one is not an edit, it is a change of
- * liability.
+ * Built the same way as the care page's, and read that file's note
+ * before changing anything here. These are published findings about
+ * what AI does to clinical administration, plus two on how much
+ * appointment time practices lose. Phrased conditionally, the way the
+ * reference page phrases its own ("More productivity WHEN engagement
+ * improves"), because none of them is a Novada result.
+ *
+ * 🔴 THE CARE PAGE'S LAST TWO FIGURES DO NOT BELONG HERE. 24.1% of
+ * aged care revenue going to administration and 27% aged care turnover
+ * are aged care numbers. A GP practice is not an aged care provider
+ * and the sector figures are not interchangeable.
+ *
+ * ⚠️ `src` IS NOT RENDERED, exactly as on care, and is kept so the
+ * provenance of every figure lives with the figure. DO NOT delete it
+ * as dead code. If a figure changes, the replacement needs a real
+ * published source recorded here first.
+ *
+ * Sources: medRxiv systematic review (2025); McMaster Health Forum
+ * rapid review; Kaiser Permanente Medical Group; JAMA (AI scribe
+ * study); British Journal of General Practice systematic review of
+ * missed appointments.
+ * ──────────────────────────────────────────────────────────────────── */
+const SECTOR = [
+  {
+    img: "/ai-workforce/stat-hr-light.png",
+    n: "40%",
+    b: "Efficiency gain in administrative work when AI handles documentation and claims",
+    src: "Systematic review, 2025",
+  },
+  {
+    img: "/ai-workforce/stat-afterhours-light.png",
+    n: "30%",
+    b: "Less after-hours administrative work when AI supports documentation",
+    src: "McMaster Health Forum",
+  },
+  {
+    img: "/ai-workforce/stat-control-light.png",
+    n: "20%",
+    b: "Less time writing notes per appointment with AI support",
+    src: "McMaster Health Forum",
+  },
+  {
+    img: "/ai-workforce/stat-roles-light.png",
+    n: "15,791",
+    b: "Hours of documentation time saved in a single year at one health group",
+    src: "Kaiser Permanente",
+  },
+  {
+    img: "/ai-workforce/stat-ops-light.png",
+    n: "15.2%",
+    b: "Of general practice appointments are missed, on average",
+    src: "BJGP systematic review",
+  },
+  {
+    img: "/ai-workforce/stat-stages-light.png",
+    n: "13.2%",
+    b: "Average no-show rate across Australian and New Zealand practices",
+    src: "Systematic review, regional average",
+  },
+];
+
+/* 🔴 VERBATIM, FOUNDER-SUPPLIED, AND THESE ARE CARE PROVIDERS. See note
+   3 in the header: the band's heading says so, and must keep saying so.
+   ⚠️ EMMANUELLA, TWO LS, founder-confirmed 29 October. */
+const TESTIMONIALS = [
+  {
+    org: "Maxicare Plus",
+    name: "Founder, Josh",
+    quote:
+      "One thing we value about Novada Tech is that they understand the operational challenges NDIS providers face. Building a care business requires more than finding workers. It requires reliable processes, proper planning and consistent support. Novada brings a practical, proactive approach and genuinely takes the time to understand what our organisation needs.",
+  },
+  {
+    org: "Morning Star Community Services",
+    name: "Founder, Emmanuella",
+    quote:
+      "In the care sector, having reliable people and well-managed processes makes a real difference. What stands out about Novada Tech is their professionalism, attention to detail and focus on making operations more manageable. They understand the importance of accountability, consistency and having the right support behind service delivery.",
+  },
+  {
+    org: "Support Link",
+    name: "Founder, Peter",
+    quote:
+      "Novada Tech takes a structured and professional approach to understanding business needs. They recognise the importance of strong workforce processes, clear communication and dependable administrative support. Their commitment to practical solutions and ongoing improvement is what makes them a valuable partner.",
+  },
+];
+
+const TALK = [
+  {
+    img: "/ai-workforce/talk-start.png",
+    h: "Start with one role",
+    b: "Hire a single AI employee and add others into the same Control Centre later.",
+  },
+  {
+    img: "/ai-workforce/talk-reach.png",
+    h: "Across every location",
+    b: "One view over the sites, clinicians and service streams you authorise.",
+  },
+  {
+    img: "/ai-workforce/talk-fit.png",
+    h: "Configured to your rules",
+    b: "Your approval thresholds, your escalation paths, your practice procedures.",
+  },
+];
+
+/* ── THE CONTROL BOUNDARY. ────────────────────────────────────────────
+ *
+ * 🔴 NEW ON THIS PAGE, 10 November 2026, and the third column is why it
+ * was added. The old practices page had no band like this: its only
+ * boundary statements were the five lines on the role cards. On a page
+ * whose AI answers calls from patients and touches Medicare billing,
+ * that is one place too few.
+ *
+ * Every item below is drawn straight out of those five lines. Do not
+ * shorten the third column, do not move an item out of it, and do not
+ * reorder the three so it stops being the one the reader finishes on.
+ * ──────────────────────────────────────────────────────────────────── */
+const OVERSIGHT = [
+  {
+    h: "Actions that may be automated",
+    items: [
+      "Answering routine patient enquiries, as an identified AI assistant.",
+      "Offering available appointment times under your configured rules.",
+      "Sending clinician-authorised reminders and recall communications.",
+      "Chasing missing referral and billing documentation.",
+      "Tracking tasks, exceptions and outstanding administrative work.",
+    ],
+  },
+  {
+    h: "Actions that may require approval",
+    items: [
+      "Certain external communications to patients and referrers.",
+      "Appointment changes outside your standard scheduling rules.",
+      "Claim corrections and resubmissions.",
+      "Changes to recall and reminder worklists.",
+      "Other actions your practice identifies as requiring authorisation.",
+    ],
+  },
+  {
+    h: "Decisions that stay with people",
+    items: [
+      "Clinical urgency, triage and who needs to be seen.",
+      "Interpretation of test results and clinically significant findings.",
+      "Accepting or declining a referral on clinical grounds.",
+      "Medicare eligibility and the selection of clinical billing codes.",
+      "Closing a safety-critical recall.",
+    ],
+  },
+];
+
+/* ── THE SIX AI EMPLOYEES. ────────────────────────────────────────────
+ *
+ * 🔴 EVERY `limit` LINE HERE STAYS. Read note 1 in the file header
+ * before touching one. Three of them are legal, clinical-safety or
+ * Medicare-compliance statements, not marketing hedges, and the
+ * oversight band above summarises them rather than replacing them.
  * ──────────────────────────────────────────────────────────────────── */
 const EMPLOYEES = [
   {
-    n: "01",
-    role: "AI Reception & Patient Access Coordinator",
-    lead: "Answer the calls. Handle the enquiries. Keep your front desk moving.",
-    sub: "An AI receptionist that does more than answer the phone.",
-    problem:
-      "Your reception team is often the first point of contact for patients, but staff can only handle so many conversations at once. When reception is occupied with check-ins, payments or complex enquiries, new calls may go unanswered, routine questions take longer to resolve and appointment requests can be delayed. Adding another receptionist increases capacity, but it also increases fixed employment costs.",
-    doesLead:
-      "Your AI employee handles approved patient-facing administrative conversations and the tasks that follow. It can:",
+    role: "AI Reception & Patient Access",
+    span: "The call to the booked appointment",
+    lead: "Answers the calls your front desk cannot get to.",
     does: [
-      "Answer incoming patient calls through supported telephony channels.",
-      "Clearly identify itself as an AI assistant.",
-      "Respond to routine questions using approved practice information.",
-      "Explain opening hours, locations and published administrative policies.",
-      "Provide approved information about available services and booking procedures.",
-      "Check permitted appointment availability.",
-      "Assist patients with eligible appointment requests.",
-      "Book routine appointments under the practice's configured rules.",
-      "Record relevant administrative enquiries.",
-      "Send approved booking information and confirmations.",
-      "Route complex requests to reception staff.",
-      "Escalate urgent or potentially clinical matters through approved procedures.",
-      "Maintain a record of enquiries, actions and unresolved requests.",
+      "Answers incoming patient calls through supported telephony and responds to routine questions using approved practice information.",
+      "Explains hours, locations and published policies, checks permitted availability and books, moves or cancels within your rules.",
+      "Takes messages, records the enquiry and routes anything it cannot handle to the right person.",
     ],
-    exampleTitle: "Example: a patient calls while reception is busy",
-    example:
-      "A patient calls to book a routine consultation. Instead of waiting for a receptionist to become available, the AI Reception Coordinator answers the call, identifies itself, confirms the relevant administrative booking requirements and checks available appointments. If the requested appointment meets the practice's configured booking rules, it completes the booking in the connected system and sends an approved confirmation. If the patient raises a clinical question or requires an appointment outside the AI's permitted rules, the matter is referred to the appropriate person.",
-    means: [
-      "Fewer routine enquiries requiring manual handling.",
-      "More consistent patient access during agreed service hours.",
-      "Reduced pressure on reception staff.",
-      "Faster administrative response to patients.",
-      "More opportunities to convert legitimate appointment enquiries into completed bookings.",
-    ],
-    /* 🔴 THE HIGHEST-RISK SENTENCE ON THE PAGE. A routine-sounding
-       booking call can carry a clinical emergency. */
     limit:
       "The AI identifies itself as an AI assistant on every patient call, and urgent or potentially clinical matters are escalated through the practice's approved procedures rather than handled by the AI. A patient can always be put through to a person.",
   },
   {
-    n: "02",
-    role: "AI Appointment & Cancellation Recovery Coordinator",
-    lead: "Do not let valuable appointment time go unused.",
-    sub: "An AI employee that helps keep your appointment book moving.",
-    problem:
-      "A patient cancels an appointment at short notice. Your practice now has an available appointment that could be offered to someone else. But your reception team is managing incoming calls, patient arrivals and other administration. Contacting suitable patients, checking their availability and completing the booking takes time, and by the time the team gets to it the appointment may already have passed.",
-    doesLead:
-      "It manages eligible appointment administration and cancellation recovery workflows. It can:",
+    role: "AI Appointment & Cancellation Recovery",
+    span: "The cancellation to the filled slot",
+    lead: "Does not let valuable appointment time go unused.",
     does: [
-      "Monitor cancellations and newly available appointment times.",
-      "Review approved waitlist and appointment-request information.",
-      "Identify patients eligible for an available appointment under configured rules.",
-      "Send authorised appointment offers.",
-      "Track patient responses.",
-      "Confirm accepted appointments.",
-      "Update the connected appointment schedule.",
-      "Coordinate routine rescheduling requests.",
-      "Send approved appointment confirmations and reminders.",
-      "Identify outstanding booking requests.",
-      "Flag scheduling conflicts or exceptions.",
-      "Escalate requests requiring clinical or administrative judgement.",
-      "Track appointment recovery activity and outcomes.",
+      "Monitors cancellations and newly available times against your approved waitlist.",
+      "Identifies eligible patients under your configured rules and sends authorised offers.",
+      "Tracks responses, confirms acceptances and updates the appointment book.",
     ],
-    exampleTitle: "Example: an appointment becomes available tomorrow",
-    example:
-      "A patient cancels an appointment scheduled for 11:00 am. The AI Appointment Coordinator identifies the available time, checks the relevant scheduling requirements and reviews patients who have agreed to be contacted about earlier appointments. It offers the appointment through an approved communication channel. When an eligible patient accepts, the AI verifies the booking conditions, completes the authorised schedule update and sends confirmation. The practice's appointment book is updated without reception having to conduct every step by hand.",
-    means: [
-      "More consistent cancellation recovery.",
-      "Less manual waitlist coordination.",
-      "Better utilisation of available appointment capacity.",
-      "Fewer repetitive booking follow-ups.",
-      "Improved visibility into cancellations and appointment recovery.",
-    ],
-    value:
-      "More efficient use of existing clinician availability, with the potential to protect legitimate appointment revenue without increasing consultation hours.",
     limit:
       "Appointment offers remain subject to clinical suitability, patient choice and approved scheduling requirements.",
   },
   {
-    n: "03",
-    role: "AI Referrals & Intake Coordinator",
-    lead: "Stop letting referrals sit in an administrative queue.",
-    sub: "An AI employee that keeps referral administration moving.",
-    problem:
-      "Referral management can become one of the most time-consuming administrative processes in a practice. A referral arrives. Someone needs to register it, check whether the necessary information is present, identify missing administrative documents, contact the referrer or patient, follow up outstanding information, arrange clinical review where required and communicate the next administrative steps. When referral volumes increase, the backlog grows quickly.",
-    doesLead:
-      "It manages the permitted administrative steps involved in receiving and progressing referrals. It can:",
+    role: "AI Referrals & Intake",
+    span: "The referral arriving to the file being complete",
+    lead: "Stops referrals sitting in an administrative queue.",
     does: [
-      "Register incoming referrals through supported channels.",
-      "Identify and track new referral administration tasks.",
-      "Check documents for required administrative fields.",
-      "Identify missing referral information.",
-      "Request outstanding administrative documentation through approved channels.",
-      "Track the progress of incomplete referral files.",
-      "Prepare referral information for authorised clinical review.",
-      "Route referrals to the correct practice workflow.",
-      "Coordinate eligible appointment offers after required approvals.",
-      "Send approved patient intake forms.",
-      "Follow up incomplete intake paperwork.",
-      "Maintain referral status and outstanding-action registers.",
-      "Escalate clinical questions, urgency indicators and incomplete information to authorised staff.",
-    ],
-    exampleTitle: "Example: a specialist referral arrives with missing information",
-    example:
-      "The AI Referral Coordinator receives a referral through a supported channel and checks it against the practice's administrative intake requirements. It identifies missing information and initiates an approved request to obtain the required documentation. Once the administrative file is complete, it is forwarded for the appropriate clinician's review. Following that review, the AI coordinates the permitted next steps, including appointment administration where authorised.",
-    means: [
-      "Less manual referral chasing.",
-      "More consistent intake administration.",
-      "Clearer visibility into referral backlogs.",
-      "Faster movement through routine administrative steps.",
-      "Fewer incomplete administrative files waiting unnoticed.",
-      "More time for staff to handle complex patient and referrer enquiries.",
+      "Registers incoming referrals through supported channels and checks the documents for required administrative fields.",
+      "Requests missing information through approved channels and tracks incomplete files.",
+      "Keeps referrers and patients updated on administrative progress.",
     ],
     limit:
       "The AI does not independently assess clinical urgency, accept or reject referrals on clinical grounds, or determine whether specialist care is medically appropriate.",
   },
   {
-    n: "04",
-    role: "AI Recalls & Follow-Up Coordinator",
-    lead: "Keep clinician-approved follow-ups moving without endless manual chasing.",
-    sub: "An AI employee that supports your practice's recall and reminder processes.",
-    problem:
-      "Practices rely on consistent follow-up processes. Some patients need routine preventive reminders. Others require a clinician-directed recall or follow-up. But the administrative work of contacting patients, tracking responses, arranging bookings and escalating non-response places additional pressure on practice teams. If follow-up tasks are fragmented across different systems or team members, management may have limited visibility into their status.",
-    doesLead:
-      "It executes approved administrative recall and reminder workflows under the practice's clinical governance arrangements. It can:",
+    role: "AI Recalls & Follow-Up",
+    span: "The approved worklist to the booked follow-up",
+    lead: "Keeps clinician-approved follow-ups moving without endless chasing.",
     does: [
-      "Monitor approved recall and reminder worklists.",
-      "Identify outstanding administrative contact tasks.",
-      "Send clinician-authorised communications.",
-      "Coordinate routine patient contact attempts through permitted channels.",
-      "Record patient responses.",
-      "Offer eligible follow-up appointments.",
-      "Update administrative recall statuses.",
-      "Track unresolved contact attempts.",
-      "Follow approved escalation rules for non-response.",
-      "Refer patient questions to appropriate clinical staff.",
-      "Maintain contact and action histories.",
-      "Generate outstanding recall administration reports.",
+      "Monitors approved recall and reminder worklists and identifies outstanding contact tasks.",
+      "Sends clinician-authorised communications through permitted channels and records responses.",
+      "Offers eligible follow-up appointments and reports what is still outstanding.",
     ],
-    exampleTitle: "Example: a clinician has approved a follow-up appointment",
-    example:
-      "A clinician has determined that a patient requires follow-up and authorised the appropriate recall workflow. The AI Follow-Up Coordinator contacts the patient using the approved message and communication channel. If the patient responds and wishes to book, the AI coordinates the appointment under the practice's scheduling rules. If the patient cannot be reached or raises clinical concerns, the task follows the approved escalation process. All administrative contact attempts and outcomes are recorded in the appropriate systems.",
-    means: [
-      "Less repetitive patient chasing.",
-      "More consistent administrative follow-through.",
-      "Clearer visibility into unresolved recall tasks.",
-      "Reduced pressure on reception and nursing administration.",
-      "Improved coordination of clinician-directed patient follow-up.",
-    ],
-    /* 🔴 THE DISTINCTION IS THE WHOLE POINT OF THIS ROLE. A reminder and
-       a clinically significant recall are not the same object, and
-       conflating them is the failure mode that ends in a coroner's
-       court. Keep both sentences. */
     limit:
       "Clinical recalls and appointment reminders are not the same thing. Clinically significant results, urgent follow-ups and patient safety concerns remain under the practice's clinical governance and escalation procedures. The AI does not interpret test results, decide who needs clinical review or independently close safety-critical recalls.",
   },
   {
-    n: "05",
-    role: "AI Billing & Claims Coordinator",
-    lead: "Stop spending hours chasing billing exceptions and unresolved claims.",
-    sub: "An AI employee that helps keep your billing administration on track.",
-    problem:
-      "Revenue assurance depends on more than completing consultations. Practices also need accurate administrative records, timely invoicing, appropriate claims processing and payment reconciliation. Routine exceptions include missing billing information, unresolved rejected claims, outstanding invoices, unmatched payments, incomplete administrative details and discrepancies requiring practitioner verification. When these sit unresolved, they create additional work for reception, finance and practice management teams.",
-    doesLead:
-      "It manages authorised billing administration and exception workflows. It can:",
+    role: "AI Billing & Claims",
+    span: "The completed service to the reconciled claim",
+    lead: "Stops the hours spent chasing billing exceptions.",
     does: [
-      "Monitor relevant billing and claims worklists.",
-      "Identify completed-service records awaiting billing administration.",
-      "Check permitted administrative billing fields.",
-      "Flag missing or inconsistent information.",
-      "Track submitted claim statuses through supported systems.",
-      "Identify rejected or unresolved claims.",
-      "Prepare exception details for authorised review.",
-      "Coordinate follow-up on administrative claim errors.",
-      "Track outstanding patient invoices.",
-      "Send approved payment reminders where appropriate.",
-      "Assist with payment matching and reconciliation.",
-      "Prepare billing exception and ageing reports.",
-      "Update permitted records following required approvals.",
-      "Escalate coding, eligibility and clinical-entitlement questions to qualified personnel.",
+      "Monitors billing and claims worklists and identifies completed services awaiting administration.",
+      "Checks permitted administrative fields and flags what is missing or inconsistent.",
+      "Tracks claim statuses, identifies rejections and coordinates permitted follow-up.",
     ],
-    exampleTitle: "Example: a Medicare claim is rejected",
-    example:
-      "The AI Billing Coordinator identifies the rejected claim in the connected system. It retrieves the permitted rejection information, checks whether the issue relates to an administrative field and prepares the exception for review. Where an authorised correction is appropriate, the AI follows the approved workflow to update the relevant administrative information and coordinate further action. If the matter involves MBS item selection, medical necessity, clinical entitlement or other professional judgement, it is escalated to the responsible practitioner or appropriately qualified person.",
-    means: [
-      "Less repetitive claims administration.",
-      "Clearer visibility into unresolved billing exceptions.",
-      "More consistent follow-up on outstanding payments.",
-      "Reduced manual reconciliation workload.",
-      "Better management reporting on administrative revenue exceptions.",
-    ],
-    value:
-      "More reliable billing administration and faster resolution of legitimate claim exceptions may support cash flow, reduce avoidable delays and strengthen financial control.",
     limit:
       "The AI does not invent billable services, determine Medicare eligibility, select clinical billing codes independently or guarantee claim approval or revenue recovery.",
   },
   {
-    n: "06",
-    role: "AI Practice Operations Coordinator",
-    lead: "Keep your entire practice administration moving, from one central place.",
-    sub: "Your AI operations coordinator for the work behind patient care.",
-    problem:
-      "Practice managers often become the person everyone turns to when something is incomplete. A referral is waiting for information. A billing issue needs resolving. A patient has not responded to a follow-up. Reception needs help clearing the booking backlog. An appointment has become available. Managers spend considerable time moving between systems, checking statuses and asking employees for updates.",
-    doesLead:
-      "It coordinates assigned operational workflows across the practice. It can:",
+    role: "AI Practice Operations",
+    span: "The whole day, from one place",
+    lead: "Keeps practice administration moving from one central place.",
     does: [
-      "Monitor administrative tasks across supported systems.",
-      "Identify overdue or incomplete workflows.",
-      "Coordinate follow-ups between AI employees.",
-      "Track unresolved appointment and patient administration tasks.",
-      "Review referral and intake progress.",
-      "Monitor billing administration exception queues.",
-      "Prepare daily practice operations summaries.",
-      "Flag matters requiring management approval.",
-      "Track delegated actions and completion status.",
-      "Coordinate routine administrative handovers.",
-      "Generate management activity and performance reports.",
-      "Maintain a consolidated record of AI operational activity.",
-    ],
-    exampleTitle: "Example: the practice manager's morning review",
-    example:
-      "Your practice manager opens the Novada AI Control Centre. Instead of reviewing multiple systems and asking staff for updates, they see a consolidated summary of appointments recovered after cancellations, routine enquiries handled, referrals awaiting clinical review, administrative recall tasks requiring follow-up, billing exceptions awaiting approval and outstanding operational tasks. Every item can be traced to the underlying workflow, action history and connected system.",
-    means: [
-      "Less time chasing updates.",
-      "Greater visibility over practice administration.",
-      "Clearer ownership of outstanding tasks.",
-      "More consistent cross-functional coordination.",
-      "More time for practice managers to focus on staff, patient experience and business performance.",
+      "Monitors administrative tasks across supported systems and identifies overdue or incomplete workflows.",
+      "Coordinates follow-ups between the other AI employees and your team.",
+      "Prepares the daily summary and escalates what needs a management decision.",
     ],
   },
 ];
 
-const CONTROL_SHOWS = [
-  {
-    h: "AI employee activity",
-    b: "See which AI employees are active and the administrative workflows assigned to them.",
-  },
-  {
-    h: "Patient access and enquiries",
-    b: "Review routine enquiry volumes, outcomes, escalations and administrative follow-up.",
-  },
-  {
-    h: "Appointment activity",
-    b: "See booking activity, cancellations, recovered appointment capacity and unresolved scheduling tasks.",
-  },
-  {
-    h: "Referral administration",
-    b: "Track incoming referrals, outstanding paperwork and administrative progress.",
-  },
-  {
-    h: "Recall and follow-up administration",
-    b: "Monitor approved contact attempts, responses, unresolved tasks and escalation statuses.",
-  },
-  {
-    h: "Billing and claims",
-    b: "View billing administration exceptions, unresolved claims and outstanding reconciliation activities.",
-  },
-  {
-    h: "Approvals and escalations",
-    b: "Review actions awaiting human authorisation or specialist intervention.",
-  },
-  {
-    h: "Completed work",
-    b: "See which actions occurred, when they were completed and whether connected system updates succeeded.",
-  },
-  {
-    h: "Operational performance",
-    b: "Track task volumes, administrative turnaround, outstanding actions and other measurable workflow outcomes.",
-  },
+/* 🔴 FOUR TILES, NOT ELEVEN. See note 4 in the file header: the rest of
+   the founder's list is NDIS and aged care software. The practice
+   management systems have been asked for and are not here yet. Do not
+   fill the gap by guessing at names. */
+const INTEGRATIONS = [
+  { name: "Xero", file: "xero.png" },
+  { name: "Employment Hero", file: "employmenthero.png" },
+  { name: "Twilio", file: "twilio.svg" },
+  { name: "Microsoft 365", file: "microsoft365.png" },
 ];
 
-const WORKFLOW = [
-  {
-    n: "1",
-    h: "Cancellation recorded",
-    b: "The AI identifies the available appointment in the connected system.",
-  },
-  {
-    n: "2",
-    h: "Eligibility checked",
-    b: "It reviews the practice's approved booking rules, appointment type and relevant waitlist information.",
-  },
-  {
-    n: "3",
-    h: "Suitable patients identified",
-    b: "It identifies patients who are eligible to receive an earlier appointment offer and have the appropriate contact preferences.",
-  },
-  {
-    n: "4",
-    h: "Appointment offered",
-    b: "The AI contacts eligible patients through permitted channels, following the practice's configured offer process.",
-  },
-  {
-    n: "5",
-    h: "Patient response received",
-    b: "An eligible patient accepts the offer.",
-  },
-  {
-    n: "6",
-    h: "Appointment updated",
-    b: "The AI completes the authorised booking update and sends confirmation.",
-  },
-  {
-    n: "7",
-    h: "Work recorded",
-    b: "The Control Centre logs the actions taken, booking outcome and any unresolved exceptions.",
-  },
-];
-
-const VALUE = [
-  {
-    n: "1",
-    h: "Operational efficiency",
-    b: "Reduce the manual work involved in routine patient communication, appointment administration, referral tracking, recalls and billing follow-up. Expected value: lower repetitive workload, more consistent administration and improved staff capacity.",
-  },
-  {
-    n: "2",
-    h: "Patient access and appointment utilisation",
-    b: "Help patients connect with the practice, complete appropriate bookings and access available appointment times. Expected value: improved administrative responsiveness, fewer missed booking opportunities and more effective use of existing appointment capacity.",
-  },
-  {
-    n: "3",
-    h: "Billing and revenue assurance",
-    b: "Maintain structured follow-up of eligible billing and claims exceptions, outstanding payments and unresolved administrative discrepancies. Expected value: better financial visibility, reduced administrative delays and improved control over legitimate revenue processes.",
-  },
-];
-
-const MEANS_FOR = [
-  {
-    h: "For the practice manager",
-    b: "Less time managing routine task queues and chasing operational updates.",
-  },
-  {
-    h: "For reception",
-    b: "More capacity to help patients who need personal assistance.",
-  },
-  {
-    h: "For clinicians",
-    b: "Fewer interruptions from routine administrative tasks and more attention available for patient care.",
-  },
-  {
-    h: "For practice owners",
-    b: "Greater visibility over operational performance, more efficient use of existing resources and a clearer basis for managing administrative growth.",
-  },
-];
-
-const START_WITH = [
-  {
-    h: "Need help answering calls?",
-    b: "Hire an AI Reception & Patient Access Coordinator.",
-  },
-  {
-    h: "Too many cancellations and booking follow-ups?",
-    b: "Hire an AI Appointment & Cancellation Recovery Coordinator.",
-  },
-  {
-    h: "Referrals creating an administrative backlog?",
-    b: "Hire an AI Referrals & Intake Coordinator.",
-  },
-  {
-    h: "Your team spending too much time on recalls?",
-    b: "Hire an AI Recalls & Follow-Up Coordinator.",
-  },
-  {
-    h: "Billing and claims administration falling behind?",
-    b: "Hire an AI Billing & Claims Coordinator.",
-  },
-  {
-    h: "Need better visibility across practice operations?",
-    b: "Hire an AI Practice Operations Coordinator.",
-  },
-];
-
-const SEGMENTS = [
-  {
-    h: "General practices",
-    b: "For GP clinics balancing incoming patient enquiries, appointments, cancellations, recalls, referrals and billing administration.",
-    uses: "AI reception, booking coordination, clinician-approved recalls, billing exceptions and practice operations.",
-  },
-  {
-    h: "Specialist medical practices",
-    b: "For specialist clinics managing referral administration, consultation scheduling, patient intake and complex administrative follow-up.",
-    uses: "Referral coordination, appointment administration, intake paperwork, approved follow-up and billing workflows.",
-  },
-  {
-    h: "Allied health practices",
-    b: "For physiotherapy, psychology, occupational therapy, speech pathology and other allied health practices.",
-    uses: "Enquiry handling, appointments, cancellations, waitlist management, intake and invoicing administration.",
-  },
-  {
-    h: "Multi-practitioner clinics",
-    b: "For healthcare businesses managing several clinicians, schedules and administrative processes.",
-    uses: "Centralised appointment coordination, billing exception tracking, task management and daily practice reporting.",
-  },
-  {
-    h: "Multi-location healthcare groups",
-    b: "For organisations operating multiple practices or locations.",
-    uses: "Consolidated administrative visibility, standardised workflows and cross-location task coordination.",
-  },
-];
-
-const HOW_STEPS = [
-  {
-    n: "1",
-    h: "Book your AI Workforce demonstration",
-    b: "We show you how the relevant AI employees perform administrative workflows and how those activities appear in the Novada AI Control Centre.",
-  },
-  {
-    n: "2",
-    h: "Review your existing systems",
-    b: "We identify your practice-management, appointment, telephony, messaging and billing platforms and confirm the supported integration requirements.",
-  },
-  {
-    n: "3",
-    h: "Choose your AI employees",
-    b: "Select the roles that match your practice's workload and operational priorities.",
-  },
-  {
-    n: "4",
-    h: "Configure your workflows",
-    b: "We set up your approved operating procedures, patient communication rules, permissions, approval points and escalation pathways.",
-  },
-  {
-    n: "5",
-    h: "Activate your AI workforce",
-    b: "Your AI employees begin handling the agreed administrative workflows across connected systems.",
-  },
-  {
-    n: "6",
-    h: "Monitor and optimise",
-    b: "Your practice monitors completed tasks, exceptions, approvals and performance through the Control Centre.",
-  },
-];
-
-/* ── Section 11. ──────────────────────────────────────────────────────
- * 🔴 THE MOST IMPORTANT BAND ON THIS PAGE. The two columns are not
- * decorative: the right-hand one is the list of things an administrative
- * AI must never decide in a healthcare setting, and a reader has to
- * finish on it. Do not reorder them, do not shorten the right column,
- * and do not move either into a footnote.
- * ──────────────────────────────────────────────────────────────────── */
-const AI_HANDLES = [
-  "Approved patient communications.",
-  "Routine administrative bookings.",
-  "Cancellation and waitlist coordination.",
-  "Referral document follow-up.",
-  "Clinician-authorised reminder and recall administration.",
-  "Billing exception tracking.",
-  "Administrative record updates.",
-  "Routine operational reporting.",
-];
-
-const HUMAN_OVERSIGHT = [
-  "Clinical urgency and triage.",
-  "Diagnosis, treatment and medical advice.",
-  "Clinical referral prioritisation.",
-  "Review of test results and clinically significant recalls.",
-  "Determinations of MBS eligibility or clinical entitlement.",
-  "Final billing-code decisions requiring professional judgement.",
-  "Consequential decisions affecting patient care.",
-];
-
-const EXISTING_SYSTEMS = [
-  "Clinical and patient records.",
-  "Appointments and scheduling.",
-  "Patient communications.",
-  "Referrals and intake.",
-  "Medicare and private billing.",
-  "Claims administration.",
-  "Payment reconciliation.",
-  "Practice reporting.",
-];
-
-const INTEGRATION = [
-  {
-    h: "Keep your existing systems",
-    b: "Continue using your established clinical and practice-management applications.",
-  },
-  {
-    h: "Give your systems an AI workforce",
-    b: "Your AI employees coordinate permitted tasks across the systems you already use.",
-  },
-  {
-    h: "See the results in one place",
-    b: "The Novada AI Control Centre provides central visibility over AI activity, approvals, actions and exceptions.",
-  },
-  {
-    h: "Maintain clear system ownership",
-    b: "Your practice-management systems remain the authoritative sources for clinical records, appointments and financial transactions.",
-  },
-];
-
-const WHY = [
-  {
-    h: "Specialised AI employees",
-    b: "Purpose-built operational roles for the different administrative functions within a healthcare practice.",
-  },
-  {
-    h: "Action-based workflows",
-    b: "AI employees carry out authorised tasks rather than simply provide recommendations.",
-  },
-  {
-    h: "Cross-system coordination",
-    b: "Permitted workflows connect the information and actions across your supported practice applications.",
-  },
-  {
-    h: "Centralised oversight",
-    b: "Monitor tasks, approvals, exceptions and completed work in one Control Centre.",
-  },
-  {
-    h: "Flexible operational capacity",
-    b: "Engage the AI employees your practice needs and expand as your administrative requirements change.",
-  },
-  {
-    h: "Clear human accountability",
-    b: "Important clinical, billing and patient-safety decisions remain with appropriately qualified professionals.",
-  },
-];
-
-/* 🔴 NINETEEN QUESTIONS, FOUNDER-SUPPLIED. SIX ARE THE LEGAL FLOOR AND
-   ARE NOT TO BE SOFTENED, SHORTENED OR REORDERED:
-     · "Can it recover cancelled appointments?"   no guaranteed fill
-     · "Can it manage referrals?"                 clinical review stays
-     · "Can it manage patient recalls?"           governance stays
-     · "Can it handle Medicare billing and claims?"  no MBS eligibility
-     · "Can patients speak directly to a real person?"   YES
-     · "Does Novada guarantee additional revenue?"       NO */
 const FAQ = [
   {
-    q: "What is Novada AI Workforce for healthcare practices?",
-    a: "It is a specialised AI operations service that allows Australian healthcare practices to engage AI employees to carry out authorised administrative workflows across supported practice systems.",
+    q: "What is Novada AI Workforce?",
+    a: "An AI-powered operational platform for Australian practices. You engage specialised AI employees that coordinate and execute approved administrative workflows across your supported practice systems.",
   },
   {
-    q: "Is this just an AI receptionist?",
-    a: "No. AI Reception is one of six specialised roles. Novada also offers AI employees for appointment coordination, referral intake, recall administration, billing and claims, and practice operations.",
+    q: "Will patients know they are speaking to an AI?",
+    a: "Yes. The AI identifies itself as an AI assistant on every call, and a patient can ask to be put through to a person at any point. Urgent or potentially clinical matters are escalated through your approved procedures rather than handled by the AI.",
   },
   {
-    q: "Do the AI employees actually complete tasks?",
-    a: "Yes. Within the agreed workflows and system permissions, the AI employees carry out authorised administrative actions, update supported systems, record outcomes and escalate exceptions.",
+    q: "Can AI employees actually complete tasks?",
+    a: "That is the core purpose of the offering. A supported AI employee is designed to perform permitted actions rather than simply recommend them. Actual capabilities depend on the available integrations, configured workflows, system permissions and required approvals.",
   },
   {
-    q: "Can the AI answer patient phone calls?",
-    a: "The AI Reception Coordinator handles approved patient enquiries through supported telephony arrangements. Call handling, operating hours, escalation arrangements and service capacity are configured for your practice.",
+    q: "Do we need to replace our practice management software?",
+    a: "Not necessarily. The platform works alongside supported existing applications rather than requiring a wholesale system replacement, and your existing systems remain authoritative for their own records unless explicitly agreed otherwise.",
   },
   {
-    q: "Can the AI book and reschedule appointments?",
-    a: "Yes, for appointment types and booking conditions authorised by the practice and supported by its connected scheduling system.",
+    q: "Does the AI make clinical decisions?",
+    a: "No. Clinical urgency and triage, interpretation of results, accepting or declining referrals on clinical grounds, and deciding who needs clinical review all remain with your clinicians. The AI handles the administration around those decisions.",
   },
   {
-    q: "Can the AI recover cancelled appointments?",
-    a: "It can monitor cancellations, check approved waitlist information, contact eligible patients and coordinate bookings under the practice's rules. It cannot guarantee every available appointment will be filled.",
-  },
-  {
-    q: "Can it manage referrals?",
-    a: "The AI Referrals Coordinator handles permitted administrative intake tasks, including document checking, missing-information requests and referral status tracking. Clinical review and prioritisation remain with appropriate practitioners.",
-  },
-  {
-    q: "Can it manage patient recalls?",
-    a: "The AI Recalls Coordinator executes clinician-authorised administrative recall and reminder workflows. Clinical urgency, follow-up decisions and safety-critical escalation remain under the practice's clinical governance.",
-  },
-  {
-    q: "Can it handle Medicare billing and claims?",
-    a: "The AI Billing Coordinator supports authorised administrative processes, including claim status tracking, exception follow-up and payment reconciliation. It does not independently determine MBS item eligibility, clinical coding or entitlement.",
-  },
-  {
-    q: "Can it work with our current practice management software?",
-    a: "Novada connects to supported systems through authorised integrations. We confirm the applicable functionality and system requirements during the integration assessment.",
-  },
-  {
-    q: "Does Novada replace our existing practice-management software?",
-    a: "No. Your existing systems continue to hold their respective patient, appointment, clinical and financial records. Novada provides the centralised AI workflow and operational execution environment.",
-  },
-  {
-    q: "Can it replace our reception staff?",
-    a: "The service is designed to reduce routine administrative workload and improve operational capacity. The extent to which it changes staffing requirements depends on your practice, workload and the tasks appropriate for automation. It does not replace the need for human assistance, clinical judgement or suitable patient escalation.",
-  },
-  {
-    q: "Is patient information protected?",
-    a: "Novada workflows operate under defined access permissions and applicable privacy and security arrangements. Your practice's data handling, integration requirements and relevant agreements are addressed during implementation.",
-  },
-  {
-    q: "Can patients speak directly to a real person?",
-    a: "Yes. Patient-facing workflows provide appropriate referral or escalation to human staff where needed, in accordance with the practice's procedures.",
+    q: "Can the AI handle our billing and Medicare claims?",
+    a: "It can support the administration: identifying completed services awaiting billing, checking permitted administrative fields, flagging inconsistencies, tracking claim statuses and coordinating follow-up on rejections. It does not invent billable services, determine Medicare eligibility, select clinical billing codes independently or guarantee claim approval or revenue recovery.",
   },
   {
     q: "Can we hire just one AI employee?",
-    a: "Yes. Practices can select an individual AI employee or combine multiple roles within the Control Centre.",
+    a: "Yes. You can engage a single specialised AI employee and add others later. The roles, service scope and subscription terms are confirmed in your proposal.",
   },
   {
-    q: "How much does it cost?",
-    a: "Pricing is based on the selected AI employees, integration requirements, administrative workflow scope, service capacity and implementation arrangements. Novada provides a tailored commercial proposal after understanding the practice's needs.",
+    q: "How is patient information protected?",
+    a: "The platform connects to your systems through authorised, permission-scoped access, and every action an AI employee takes is recorded in the Control Centre's audit and activity records. Access controls, data retention, auditing and incident response are set out in your service agreement, and we confirm the specific permissions and contractual protections with you before any system is connected.",
   },
   {
-    q: "Is there a setup fee?",
-    a: "Any applicable onboarding, integration and configuration charges are detailed in your proposal.",
+    q: "Does Novada guarantee more revenue or fewer no-shows?",
+    a: "No. The business value depends on the workflows implemented, the volume of tasks handled, integration complexity and the amount of human administrative effort reduced. Potential improvements should be measured against a real operational baseline.",
   },
   {
-    q: "Does Novada guarantee additional revenue?",
-    a: "No. Revenue-related outcomes depend on the practice's demand, appointment availability, pricing, claiming eligibility and operational circumstances. Novada supports administrative processes designed to improve utilisation and revenue assurance.",
-  },
-  {
-    q: "How do we get started?",
-    a: "Book a live demonstration. We will show you the relevant AI employees, discuss your current workflows and assess how Novada can integrate into your practice's administrative operations.",
+    /* ⚠️ NO FIGURE. Price does not appear in writing before a call. */
+    q: "How much does it cost to hire an AI employee?",
+    a: "Pricing is based on the selected AI employee, the required workflows, supported integrations, usage and implementation requirements. Your proposal sets out the applicable platform, implementation and ongoing subscription costs once the scope is understood.",
   },
 ];
 
-/* ── building blocks ──────────────────────────────────────────────────
- * Lifted from the care AI Workforce page, minus the testimonial slider,
- * which this page must not have. See the header note.
- * ──────────────────────────────────────────────────────────────────── */
+/* ── PRIMITIVES. Identical to /care/ai-workforce. Fix one, fix both. ── */
 
-const WIDE = "max-w-[90ch]";
-
-function Cta({
-  children,
-  tone = "light",
-  href = "#book",
-}: {
-  children: React.ReactNode;
-  tone?: "light" | "brand";
-  href?: string;
-}) {
-  /* 🔴 "brand" IS BTN_PRIMARY ON AN INK SURFACE, which tokens.ts warns
-     against: brand-500 #003DDB on canvas-ink #0A0D14 is about 2:1, so
-     the button's own edge all but disappears. The founder asked for the
-     same blue on the hero as the other CTAs, so the FILL is exactly
-     brand-500 and a light ring carries the boundary instead. */
-  const cls =
-    tone === "brand"
-      ? `${BTN_PRIMARY} min-h-12 px-6 shadow-cta ring-1 ring-white/25 hover:ring-white/40`
-      : BTN_PRIMARY;
+function Cta({ children, href = "#book" }: { children: React.ReactNode; href?: string }) {
   return (
-    <a href={href} className={`${cls} w-full text-base sm:w-auto`}>
+    <a
+      href={href}
+      /* ⚠️ sm:whitespace-nowrap, NOT whitespace-nowrap: below sm a grid
+         item's auto min-width lets an unwrappable label set the floor
+         for the whole column and push the hero past the gutter. */
+      className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xs bg-brand-500 px-6 text-[13px] font-bold uppercase tracking-caps text-white shadow-cta transition-[background-color,box-shadow] duration-150 ease-standard hover:bg-brand-600 hover:shadow-lift sm:whitespace-nowrap"
+    >
       {children}
       <ArrowRight
         aria-hidden
@@ -849,105 +465,82 @@ function Cta({
   );
 }
 
-function BoxCards({
-  items,
-  cols = 2,
+function TextLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="group inline-flex min-h-11 items-center gap-2 self-start border-b-2 border-brand-500 pb-0.5 text-sm font-bold text-brand-500 transition-colors duration-150 hover:border-brand-700 hover:text-brand-700"
+    >
+      {children}
+      <ArrowRight
+        aria-hidden
+        className="h-4 w-4 transition-transform duration-150 ease-standard group-hover:translate-x-0.5"
+      />
+    </a>
+  );
+}
+
+function Section({
+  id,
+  bg = CREAM,
+  children,
 }: {
-  items: { h: string; b: string; n?: string; uses?: string }[];
-  cols?: 2 | 3;
+  id?: string;
+  bg?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section id={id} style={{ backgroundColor: bg }}>
+      <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>{children}</div>
+    </section>
+  );
+}
+
+function SectionHead({
+  children,
+  sub,
+  dark = false,
+  wide = false,
+}: {
+  children: React.ReactNode;
+  sub?: string;
+  dark?: boolean;
+  /** The wide measure, for the two longest headings. ⚠️ It is in
+      PIXELS, not `ch`: `ch` resolves against the wrapper's font, which
+      is the body sans and not the serif the heading is set in. */
+  wide?: boolean;
 }) {
   return (
     <div
-      className={`mt-10 grid gap-5 md:gap-6 ${
-        cols === 3 ? "md:grid-cols-3" : "md:grid-cols-2"
+      className={`mx-auto text-center ${
+        wide ? "max-w-[34ch] sm:max-w-[620px] lg:max-w-[1000px]" : "max-w-[46ch]"
       }`}
     >
-      {items.map((c, i) => (
-        <div
-          key={c.h}
-          className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise transition-[transform,box-shadow] duration-200 ease-standard hover:-translate-y-0.5 hover:shadow-lift md:p-7"
-          style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 70}ms` }}
+      <h2
+        style={SERIF}
+        className={`text-balance font-bold leading-[1.15] tracking-[-0.015em] ${
+          wide
+            ? "text-[clamp(1.55rem,1.1rem+1.7vw,2.25rem)]"
+            : "text-[clamp(1.75rem,1.15rem+2.3vw,2.75rem)]"
+        } ${dark ? "text-white" : "text-ink-950"}`}
+      >
+        {children}
+      </h2>
+      {sub ? (
+        <p
+          className={`mx-auto mt-5 max-w-[52ch] text-base leading-relaxed ${
+            dark ? "text-white/70" : "text-ink-600"
+          }`}
         >
-          {c.n ? (
-            <span className="mb-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-sm font-bold text-white">
-              {c.n}
-            </span>
-          ) : null}
-          <h3 className="text-base font-semibold text-ink-950">{c.h}</h3>
-          <p className="mt-2.5 text-sm leading-relaxed text-ink-600">{c.b}</p>
-          {c.uses ? (
-            <p className={`${SMALL} mt-auto pt-4`}>
-              <span className="font-semibold text-ink-950">
-                Common applications:
-              </span>{" "}
-              {c.uses}
-            </p>
-          ) : null}
-        </div>
-      ))}
+          {sub}
+        </p>
+      ) : null}
     </div>
   );
 }
 
-function Bullets({
-  items,
-  tone = "light",
-}: {
-  items: string[];
-  tone?: "light" | "dark";
-}) {
-  return (
-    <ul className="mt-5 flex flex-col gap-2.5">
-      {items.map((t) => (
-        <li key={t} className="flex items-start gap-3">
-          <Check
-            aria-hidden
-            strokeWidth={2.4}
-            className={`mt-1 h-3.5 w-3.5 flex-shrink-0 ${
-              tone === "dark" ? "text-brand-200" : "text-brand-500"
-            }`}
-          />
-          <span
-            className={`text-sm leading-relaxed ${
-              tone === "dark" ? "text-white/80" : "text-ink-600"
-            }`}
-          >
-            {t}
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function RuledList({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-8 flex flex-col gap-3">
-      {items.map((t) => (
-        <li
-          key={t}
-          className="reveal border-l-2 border-ink-200 pl-5 text-base text-ink-700"
-        >
-          {t}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function Statement({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
-      {children}
-    </p>
-  );
-}
-
-/* 🔴 BLUE, NOT GREEN, on the founder's instruction: a five-star row in
-   Trustpilot's green invites a brand complaint. ⚠️ But not brand-500 on
-   ink, which is about 2:1 there. brand-200 #A6BEFF is 10.58:1. The PROOF
-   STRIP passes brand-500 because those cards sit on white. */
-function Stars({ className = "h-4 w-4 fill-brand-200 text-brand-200" }) {
+/* 🔴 BLUE, NOT GREEN, founder instruction 29 October 2026. */
+function Stars({ className = "h-4 w-4 fill-brand-500 text-brand-500" }) {
   return (
     <span aria-hidden className="flex items-center gap-0.5">
       {[0, 1, 2, 3, 4].map((i) => (
@@ -957,787 +550,822 @@ function Stars({ className = "h-4 w-4 fill-brand-200 text-brand-200" }) {
   );
 }
 
-/* ⚠️ UNBRANDED BY NECESSITY, and ⚠️ "CLIENT reviews", not "provider
-   reviews": on a practices page "provider" means a clinician. */
-function RatingBar() {
+/**
+ * ⚠️ ALWAYS INSIDE A CLIPPING ANCESTOR, and z-0 NOT -z-10. The bands
+ * paint their own background, so a negatively stacked child renders
+ * behind it and the shapes vanish while the markup looks perfect.
+ */
+function Blobs({ flip = false }: { flip?: boolean }) {
   return (
-    <div className="inline-flex min-h-11 flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5">
-      <Stars />
-      <span className="text-sm font-semibold text-white">5.0</span>
-      <span className="text-sm text-white/70">from 77 client reviews</span>
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+      <svg
+        viewBox="0 0 400 400"
+        className={`absolute h-[150%] w-[150%] ${flip ? "-right-24 -top-20" : "-left-24 -top-20"}`}
+        fill="none"
+      >
+        <path
+          d="M118 36c44-18 92 2 112 42 19 39 6 86-26 112-33 26-83 29-113 4C60 168 50 118 63 82c9-24 20-35 55-46Z"
+          fill="#DCE6FF"
+          opacity="0.85"
+        />
+        <path
+          d="M262 214c34-10 72 10 84 44 12 33-4 71-36 86-33 15-74 5-91-26-17-30-8-70 24-89 8-5 12-10 19-15Z"
+          fill={CREAM_DEEP}
+        />
+        <path
+          d="M300 70c22-14 54-6 66 17 11 22 2 50-20 61-23 11-51 3-61-19-10-21-4-46 15-59Z"
+          fill="#A6BEFF"
+          opacity="0.75"
+        />
+      </svg>
     </div>
   );
 }
 
-function Faq() {
+/* ── PRODUCT VISUALS. ─────────────────────────────────────────────────
+ * ⚠️ WHITE CARDS, NOT INK PANELS. On a cream ground a dark panel reads
+ * as a hole.
+ * ⚠️ EVERY MOCK CARRIES AN "Example" CHIP. A figure describing the
+ * state of one fictional record is ordinary dashboard content; a figure
+ * describing what Novada achieves is never allowed in one.
+ * ──────────────────────────────────────────────────────────────────── */
+
+function ExampleChip() {
   return (
-    <div className="mt-10 flex flex-col gap-3">
-      {FAQ.map((f, i) => (
-        <details
-          key={f.q}
-          className="reveal group rounded-xl border border-ink-100 bg-white shadow-raise [&_summary::-webkit-details-marker]:hidden"
-          style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 50}ms` }}
-        >
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 p-6 text-base font-semibold text-ink-950 md:p-7">
-            <span>{f.q}</span>
-            <ChevronDown
-              aria-hidden
-              className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-400 transition-transform duration-200 ease-standard group-open:rotate-180"
-            />
-          </summary>
-          <p className="px-6 pb-6 text-sm leading-relaxed text-ink-600 md:px-7 md:pb-7">
-            {f.a}
-          </p>
-        </details>
-      ))}
-    </div>
+    <span className="flex-shrink-0 rounded-xs bg-ink-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-caps text-ink-500">
+      Example
+    </span>
   );
 }
 
-function EmployeeBlock({
-  e,
-  delay,
+function Dots() {
+  return (
+    <span aria-hidden className="flex flex-shrink-0 gap-1.5">
+      <span className="h-2 w-2 rounded-full bg-ink-200" />
+      <span className="h-2 w-2 rounded-full bg-ink-200" />
+      <span className="h-2 w-2 rounded-full bg-ink-200" />
+    </span>
+  );
+}
+
+function Card({
+  title,
+  children,
+  chrome = true,
 }: {
-  e: (typeof EMPLOYEES)[number];
-  delay: number;
+  title?: string;
+  children: React.ReactNode;
+  chrome?: boolean;
 }) {
   return (
-    <article
-      className="reveal rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8 lg:p-10"
-      style={{ ["--reveal-delay" as string]: `${delay}ms` }}
-    >
-      <div className="flex items-center gap-4">
-        <span className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-brand-500 text-sm font-bold text-white">
-          {e.n}
-        </span>
-        <p className={`${MICRO} text-brand-500`}>{e.role}</p>
-      </div>
-
-      {/* ⚠️ NOT max-w-headline. That token is 20ch and sized for the
-          CONDENSED display face; on Inter at 2xl it strands this line
-          down the left half of the card with the right half empty. */}
-      <h3 className="mt-5 max-w-[42ch] text-xl font-semibold leading-snug text-ink-950 md:text-2xl">
-        {e.lead}
-      </h3>
-      <p className="mt-2 max-w-[52ch] text-base italic text-ink-500">{e.sub}</p>
-
-      <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-12">
-        <div>
-          <p className={`${MICRO} text-ink-400`}>The problem</p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-600">
-            {e.problem}
-          </p>
-
-          <p className={`${MICRO} mt-8 text-ink-400`}>{e.exampleTitle}</p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-600">
-            {e.example}
-          </p>
+    <div className="overflow-hidden rounded-lg border border-ink-100 bg-white shadow-float">
+      {chrome ? (
+        <div className="flex items-center justify-between gap-3 border-b border-ink-100 px-4 py-3">
+          <div className="flex min-w-0 items-center gap-3">
+            <Dots />
+            {title ? <p className={`${MICRO_TIGHT} truncate text-ink-500`}>{title}</p> : null}
+          </div>
+          <ExampleChip />
         </div>
-
-        <div>
-          <p className={`${MICRO} text-ink-400`}>What it does</p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-600">
-            {e.doesLead}
-          </p>
-          <Bullets items={e.does} />
-        </div>
-      </div>
-
-      <div className="mt-8 border-t border-ink-100 pt-6">
-        <p className={`${MICRO} text-brand-500`}>
-          What this means for your practice
-        </p>
-        <div className="grid gap-x-10 md:grid-cols-2">
-          <Bullets items={e.means.slice(0, 3)} />
-          <Bullets items={e.means.slice(3)} />
-        </div>
-
-        {e.value ? (
-          <p className={`${SMALL} mt-7`}>
-            <span className="font-semibold text-ink-950">
-              The business value:
-            </span>{" "}
-            {e.value}
-          </p>
-        ) : null}
-
-        {/* 🔴 THE BOUNDARY. On four of the six roles this is the only
-            sentence keeping a clinical, Medicare or patient-safety
-            decision with a qualified person. See the note above
-            EMPLOYEES. Never delete one to tighten a card. */}
-        {e.limit ? (
-          <p className={`${SMALL} mt-5 border-l-2 border-ink-200 pl-4`}>
-            <span className="font-semibold text-ink-950">Important:</span>{" "}
-            {e.limit}
-          </p>
-        ) : null}
-      </div>
-    </article>
+      ) : null}
+      {children}
+    </div>
   );
 }
+
+function Bar({ pct, tone = "brand" }: { pct: number; tone?: "brand" | "warm" }) {
+  return (
+    <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
+      <div
+        className={`h-full rounded-full ${tone === "warm" ? "bg-signal-600" : "bg-brand-500"}`}
+        style={{ width: `${pct}%` }}
+      />
+    </div>
+  );
+}
+
+function Avatar({ i }: { i: string }) {
+  return (
+    <span className="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full border-2 border-white bg-brand-100 text-[12px] font-bold text-brand-700">
+      {i}
+    </span>
+  );
+}
+
+function CallsVisual() {
+  const tasks = [
+    ["Rebooked, Tuesday 9:40am", 100],
+    ["Referral documents requested", 60],
+    ["Recall list, 14 patients", 35],
+  ] as const;
+  return (
+    <div className="relative pt-16">
+      <div className="absolute right-4 top-0 z-20 w-[180px] rounded-lg border border-ink-100 bg-white p-4 text-center shadow-float">
+        <span className="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-white">
+          <Check aria-hidden className="h-4 w-4" strokeWidth={3} />
+        </span>
+        <p className="mt-2 text-[10px] font-semibold uppercase tracking-caps text-ink-400">
+          Handled on the call
+        </p>
+        <p style={SERIF} className="mt-1 text-sm font-bold text-ink-950">
+          Appointment booked
+        </p>
+      </div>
+      <div className="relative z-10">
+        <Card title="Today">
+          <div className="flex flex-col gap-4 p-5">
+            {tasks.map(([t, pct]) => (
+              <div key={t} className="flex items-start gap-3">
+                <span aria-hidden className="mt-1.5 flex flex-col gap-[3px]">
+                  <span className="h-[2px] w-3.5 rounded bg-ink-200" />
+                  <span className="h-[2px] w-3.5 rounded bg-ink-200" />
+                  <span className="h-[2px] w-3.5 rounded bg-ink-200" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[13px] font-medium text-ink-800">{t}</p>
+                  <div className="mt-2">
+                    <Bar pct={pct} tone={pct === 100 ? "brand" : "warm"} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+function DashboardVisual() {
+  return (
+    <div className="relative px-2 pb-16 pt-14 sm:px-6">
+      <div className="absolute left-0 top-0 z-20 w-[172px] rounded-lg border border-ink-100 bg-white p-4 shadow-float">
+        <div className="flex items-baseline justify-between gap-2">
+          <p style={SERIF} className="text-2xl font-bold text-ink-950">
+            85%
+          </p>
+          <span className="text-[10px] font-semibold uppercase tracking-caps text-ink-400">
+            Referral file
+          </span>
+        </div>
+        <div className="mt-3">
+          <Bar pct={85} />
+        </div>
+      </div>
+      <div className="relative z-10">
+        <Card chrome={false}>
+          <div className="flex items-center justify-between gap-3 px-4 py-3">
+            <Dots />
+            <ExampleChip />
+          </div>
+          <div
+            className="px-5 py-6"
+            style={{ background: "linear-gradient(110deg,#003DDB 0%,#0030AE 55%,#3A6CFF 100%)" }}
+          >
+            <p style={SERIF} className="text-base font-bold text-white">
+              Good morning. Here is your front desk.
+            </p>
+            <p className="mt-1.5 text-xs text-white/75">
+              11 calls handled, 2 escalations, 1 approval waiting
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 p-5">
+            {["Calls", "Cancellations", "Referrals", "Claims"].map((t) => (
+              <div key={t} className="rounded-xs bg-ink-50 p-3">
+                <p className="text-[10px] font-semibold uppercase tracking-caps text-ink-400">{t}</p>
+                <span aria-hidden className="mt-2 block h-1.5 w-2/3 rounded bg-ink-200" />
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+      <div className="absolute bottom-0 right-0 z-20 w-[212px] rounded-lg border border-ink-100 bg-white p-4 text-center shadow-float">
+        <p style={SERIF} className="text-sm font-bold text-ink-950">
+          Escalated to the practice manager
+        </p>
+        <div aria-hidden className="mt-3 flex justify-center -space-x-2.5">
+          {["RK", "TN", "JD", "AO", "PM"].map((i) => (
+            <Avatar key={i} i={i} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MetricsVisual() {
+  const bars = [62, 88, 74, 96, 81];
+  const R = 42;
+  const C = 2 * Math.PI * R;
+  const pct = 92;
+  return (
+    <div className="relative pb-6">
+      <div className="relative z-10 flex flex-col gap-4">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-2 rounded-full border border-ink-100 bg-white px-3 py-1.5 shadow-raise">
+            <span aria-hidden className="h-2 w-2 rounded-full bg-brand-500" />
+            <span className="text-[11px] font-semibold text-ink-600">Front desk indicators</span>
+          </span>
+          <ExampleChip />
+        </div>
+        <div className="flex flex-wrap items-end gap-4">
+          <div className="min-w-[170px] flex-1 rounded-lg border border-ink-100 bg-white p-5 shadow-float">
+            <div aria-hidden className="flex h-[92px] items-end gap-2.5">
+              {bars.map((h, i) => (
+                <span
+                  key={i}
+                  className={`flex-1 rounded-t ${i % 2 ? "bg-brand-500" : "bg-brand-200"}`}
+                  style={{ height: `${h}%` }}
+                />
+              ))}
+            </div>
+            <p className="mt-4 text-[10px] font-bold uppercase tracking-caps text-ink-500">
+              Calls answered, by week
+            </p>
+          </div>
+          <div className="rounded-lg border border-ink-100 bg-white p-5 shadow-float">
+            <svg viewBox="0 0 110 110" className="h-[96px] w-[96px]" aria-hidden>
+              <circle cx="55" cy="55" r={R} fill="none" stroke="#DCE6FF" strokeWidth="13" />
+              <circle
+                cx="55"
+                cy="55"
+                r={R}
+                fill="none"
+                stroke="#003DDB"
+                strokeWidth="13"
+                strokeLinecap="round"
+                strokeDasharray={`${(C * pct) / 100} ${C}`}
+                transform="rotate(-90 55 55)"
+              />
+              <text
+                x="55"
+                y="63"
+                textAnchor="middle"
+                style={SERIF}
+                fill="#0B0E14"
+                fontSize="23"
+                fontWeight="700"
+              >
+                {pct}%
+              </text>
+            </svg>
+            <p className="mt-3 text-center text-[10px] font-bold uppercase tracking-caps text-ink-500">
+              Slots refilled
+            </p>
+          </div>
+        </div>
+        <div className="rounded-lg border border-ink-100 bg-white px-5 py-4 shadow-float">
+          <div aria-hidden className="relative h-5">
+            <span className="absolute inset-x-0 top-1/2 h-px bg-ink-200" />
+            {[4, 15, 23, 38, 47, 51, 55, 58, 66, 74, 83, 96].map((x, i) => (
+              <span
+                key={i}
+                className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-brand-400"
+                style={{ left: `${x}%` }}
+              />
+            ))}
+            <span className="absolute left-1/2 top-0 h-full w-px bg-ink-300" />
+          </div>
+          <div className="mt-2 flex justify-between text-[10px] font-semibold text-ink-400">
+            <span>Mon</span>
+            <span>Midweek</span>
+            <span>Sat</span>
+          </div>
+        </div>
+      </div>
+      <Blobs flip />
+    </div>
+  );
+}
+
+const VISUALS: Record<string, React.ComponentType> = {
+  work: CallsVisual,
+  control: DashboardVisual,
+  systems: MetricsVisual,
+};
+
+/* ── THE PAGE ─────────────────────────────────────────────────────── */
 
 export default function AiWorkforcePage() {
   return (
-    <div data-theme="desk" className="min-h-screen bg-white font-sans">
-      <DeskNav tone="dark" audience="practices" bookHref="#book" />
+    <div data-theme="desk" className="min-h-screen font-sans" style={{ backgroundColor: CREAM }}>
+      {/* ⚠️ NOT DeskNav. A paid-traffic page carries a logo and one
+          action; every nav item is an exit. Same as the care page. */}
+      <header
+        className="sticky top-0 z-40 border-b border-ink-100/70 backdrop-blur"
+        style={{ backgroundColor: "rgba(255,251,244,0.92)" }}
+      >
+        <div className={`${FRAME} ${GUTTER} flex min-h-16 items-center justify-between gap-4`}>
+          <a
+            href="/"
+            aria-label="Novada Tech, home"
+            className="-mx-1.5 flex flex-shrink-0 items-center gap-2.5 rounded-xs px-1.5 py-2"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/favicon.png" alt="" width={32} height={32} className="h-7 w-7" />
+            <span className="text-lg font-bold leading-none tracking-tight text-ink-950">
+              Novada <span className="text-brand-500">Tech</span>
+            </span>
+          </a>
+          {/* ⚠️ TWO LABELS, ONE BUTTON. The long one wraps to three
+              lines in a phone's header slot and makes it 65px tall. */}
+          <Cta href="#book">
+            <span className="sm:hidden">Book a call</span>
+            <span className="hidden sm:inline">Book a discovery call</span>
+          </Cta>
+        </div>
+      </header>
 
       <main>
-        {/* ── 1 HERO ───────────────────────────────────────────────── */}
-        <section className="relative overflow-hidden border-b border-white/10 bg-canvas-ink">
+        {/* ── HERO ─────────────────────────────────────────────────── */}
+        <section className="relative overflow-hidden" style={{ backgroundColor: CREAM }}>
           <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 overflow-hidden"
+            className={`${FRAME} ${GUTTER} relative grid items-center gap-12 pb-20 pt-12 md:pb-28 md:pt-16 lg:grid-cols-[0.92fr_1.12fr] lg:gap-10`}
           >
-            <div className="absolute -left-40 -top-56 h-[620px] w-[620px] rounded-full bg-brand-500/20 blur-[130px]" />
-            <div className="absolute -bottom-72 -right-40 h-[560px] w-[560px] rounded-full bg-signal-600/10 blur-[140px]" />
-          </div>
-
-          <div
-            className={`${FRAME} ${GUTTER} relative border-x border-white/10 pb-16 pt-8 md:pb-20 md:pt-14`}
-          >
-            <RatingBar />
-
-            <p className={`${MICRO} mt-7 text-brand-200`}>
-              For Australian GP, specialist &amp; allied health practices
-            </p>
-
-            {/* ⚠️ NOT the d1 token. d1's clamp floor is 42px, which puts a
-                headline this long over five lines on a phone and pushes
-                the CTA off the first screen. */}
-            <h1
-              className={`${DISPLAY} mt-5 text-[clamp(2rem,0.89rem+4.83vw,4.75rem)] leading-[0.93] tracking-[-0.015em] text-white`}
-            >
-              Hire AI employees that actually run your practice
-              administration.
-            </h1>
-
-            {/* 🔴 THE CONTROL CENTRE CLAUSE WAS CUT FROM THE PARAGRAPH
-                BELOW AND MUST NOT BE PUT BACK. The supplied copy closed it
-                with "And with the Novada AI Control Centre, you can see
-                exactly what work is being done, monitor outstanding tasks,
-                approve sensitive actions and track operational performance,
-                all from one centralised platform." All four capabilities are
-                their own cards in CONTROL_SHOWS under band 04, which is an
-                entire section about the Control Centre, and the strap line
-                directly below still carries "One centralised platform". So
-                the reader loses nothing and the first CTA comes back above
-                the fold at 390x844, which is what this cut bought. */}
-            <div
-              className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
-            >
-              <p>
-                Novada AI Workforce is a team of specialised AI employees that
-                connect to your existing practice systems and complete
-                authorised administrative tasks. From answering patient
-                enquiries and coordinating appointments to managing referral
-                administration, clinician-approved recalls and billing
-                follow-ups, your AI employees help run the everyday operations
-                behind your practice.
+            {/* ⚠️ min-w-0 ON BOTH GRID ITEMS. A grid item's min-width is
+                auto, so the widest unbreakable thing inside either
+                column silently widens BOTH and the h1 renders past the
+                right gutter. */}
+            <div className="min-w-0">
+              <p className={`${MICRO} text-brand-500`}>
+                For Australian GP, specialist &amp; allied health practices
               </p>
-            </div>
 
-            {/* 🔴 BOTH STRAP LINES. The supplied copy carries two and an
-                earlier draft of this page shipped only the first. The
-                second is the benefit line and it is the one a practice
-                owner scans for.
-
-                🔴 THE FOLD HERE IS ALREADY SPENT. This hero was the
-                longest on the estate at 144 words and put the first CTA
-                below the fold at 390x844, which neither twin did. The
-                founder approved cutting the duplicated Control Centre
-                clause and that is the whole margin: the spacing is as
-                tight as it goes and the paragraph is as short as the copy
-                allows. Do not open this spacing back up and do not add a
-                sentence to the paragraph without re-measuring ctaTop at
-                390x844 — the next clause pushes the CTA under again. */}
-            <div
-              className={`mt-7 flex flex-col gap-1.5 border-t border-white/10 pt-6`}
-            >
-              <p className={`${MICRO} text-white/60`}>
-                Six specialised AI employees. One centralised platform. Real
-                administrative work getting done.
-              </p>
-              <p className={`${MICRO} text-brand-200`}>
-                Less front-desk pressure. Better appointment utilisation. More
-                time for patient care.
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <Cta tone="brand">Book your live AI Workforce demo</Cta>
-              {/* The copy's secondary button. Deliberately quiet: it is a
-                  jump link down the page, not a second ask. */}
-              <a
-                href="#employees"
-                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-sm border border-white/20 bg-white/[0.06] px-6 text-base font-semibold text-white transition-colors duration-150 ease-standard hover:border-white/35 hover:bg-white/10 sm:w-auto sm:text-sm"
+              <h1
+                style={SERIF}
+                className="mt-5 text-[clamp(2.1rem,1.35rem+3.2vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-ink-950"
               >
-                Meet your AI employees
-                <ChevronDown aria-hidden className="h-4 w-4" />
-              </a>
+                Hire AI employees that actually run your practice
+                administration.
+              </h1>
+
+              {/* ⚠️ TWO SENTENCES. The page this replaced opened with a
+                  paragraph four times this long. Do not grow it back. */}
+              <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-ink-600">
+                Novada AI employees answer patient calls, refill cancelled
+                appointments, chase referral documents, run recalls and work
+                your billing exceptions, inside the systems you already use.
+                Your clinicians keep every clinical and billing decision.
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                <Cta href="#book">Book a discovery call</Cta>
+                <a
+                  href="#employees"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xs bg-brand-100 px-6 text-[13px] font-bold uppercase tracking-caps text-brand-700 transition-colors duration-150 ease-standard hover:bg-brand-200 sm:whitespace-nowrap"
+                >
+                  Meet your AI employees
+                  <ChevronDown aria-hidden className="h-4 w-4" />
+                </a>
+              </div>
+
+              {/* ⚠️ UNBRANDED BY NECESSITY. No platform name, no
+                  wordmark, no green, and nothing here is a link. */}
+              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+                <div className="flex items-center gap-2.5">
+                  <Stars />
+                  <span className="text-sm font-bold text-ink-950">5.0</span>
+                  <span className="text-sm text-ink-500">from 77 provider reviews</span>
+                </div>
+              </div>
             </div>
 
-            {/* 🔴 THE CLINICAL BOUNDARY IS IN THE HERO ON PURPOSE. This is
-                the only offer on the estate where an AI speaks to
-                patients, and a practice owner should meet that limit
-                before the first CTA, not in a footnote. */}
-            <p className="mt-6 text-sm text-white/55">
-              Built for Australian healthcare practices. Works with supported
-              practice systems. Important clinical and billing decisions remain
-              with appropriately authorised professionals.
-            </p>
+            <div className="min-w-0 lg:pl-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/ai-workforce/hero-practices.png"
+                alt="The Novada AI Control Centre, with a practice manager reviewing the morning's front desk summary"
+                width={938}
+                height={654}
+                fetchPriority="high"
+                decoding="async"
+                /* ⚠️ NO max-w. Capping it leaves a column of dead cream
+                   beside the headline and the pair stops reading as a
+                   composition. */
+                className="h-auto w-full lg:-mr-6 xl:-mr-10"
+              />
+            </div>
           </div>
         </section>
 
-        {/* ── PROOF STRIP ──────────────────────────────────────────── */}
-        {/* ⚠️ THE PRACTICES LABELS, NOT THE CARE ONES. "Client reviews"
-            and "Healthcare practices across Australia". On this audience
-            "provider" means a clinician and the care line is false. */}
-        <section className="border-b border-ink-100 bg-ink-50">
-          <div
-            className={`${FRAME} ${GUTTER} border-x border-ink-100 py-10 md:py-12`}
-          >
-            <div className="grid gap-5 md:grid-cols-3 md:gap-6">
-              {[
-                { v: "5.0", l: "Average client rating", stars: true },
-                { v: "77", l: "Client reviews", stars: false },
-                {
-                  v: "205",
-                  l: "Healthcare practices across Australia",
-                  stars: false,
-                },
-              ].map((s, i) => (
-                <div
-                  key={s.l}
-                  className="reveal rounded-xl border border-ink-100 bg-white p-6 text-center shadow-raise md:p-7"
-                  style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
-                >
-                  <p className={`${D2} text-brand-500`}>{s.v}</p>
-                  {s.stars ? (
-                    <div className="mt-3 flex justify-center">
-                      <Stars className="h-4 w-4 fill-brand-500 text-brand-500" />
-                    </div>
+        {/* ── CLIENT STRIP ───────────────────────────────────────────
+            🔴 THESE ARE CARE PROVIDERS. See note 3 in the file header.
+            The line below says "healthcare providers", not "practices",
+            and it must keep saying something true. */}
+        <section className="border-y border-ink-100/70" style={{ backgroundColor: CREAM_DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-10`}>
+            <p style={SERIF} className="text-center text-lg font-bold text-ink-800">
+              Australian healthcare providers already run Novada AI employees
+            </p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-20">
+              {PROVIDERS.map((p) => (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={p.name}
+                  src={`/clients/${p.file}`}
+                  alt={p.name}
+                  className={`${p.h} w-auto object-contain`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── WHY ──────────────────────────────────────────────────── */}
+        <Section>
+          <SectionHead>Why choose a Novada AI employee?</SectionHead>
+          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+            {WHY.map((w) => (
+              <div key={w.h} className="reveal text-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={w.img}
+                  alt=""
+                  width={130}
+                  height={130}
+                  className="mx-auto h-[104px] w-[104px] object-contain"
+                />
+                <h3 style={SERIF} className="mt-5 text-xl font-bold text-ink-950">
+                  {w.h}
+                </h3>
+                <p className="mx-auto mt-3 max-w-[34ch] text-[15px] leading-relaxed text-ink-600">
+                  {w.b}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── FEATURE BLOCKS ───────────────────────────────────────── */}
+        {FEATURES.map((f, i) => {
+          const Visual = VISUALS[f.key];
+          const flip = i % 2 === 1;
+          return (
+            /* ⚠️ overflow-hidden IS LOAD-BEARING: the shapes behind each
+               card carry negative offsets and without a clip they
+               extend the document past the viewport at 390px. */
+            <section
+              key={f.key}
+              className="overflow-hidden"
+              style={{ backgroundColor: flip ? CREAM_DEEP : CREAM }}
+            >
+              <div
+                className={`${FRAME} ${GUTTER} grid items-center gap-14 py-16 md:py-24 lg:grid-cols-2 lg:gap-16`}
+              >
+                <div className={`min-w-0 ${flip ? "lg:order-2" : ""}`}>
+                  <h2
+                    style={SERIF}
+                    className="text-[clamp(1.6rem,1.15rem+1.8vw,2.35rem)] font-bold leading-[1.15] tracking-[-0.015em] text-ink-950"
+                  >
+                    {f.h}
+                  </h2>
+                  <ul className="mt-7 flex flex-col gap-4">
+                    {f.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-3">
+                        <span
+                          aria-hidden
+                          className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-500 text-white"
+                        >
+                          <Check className="h-3 w-3" strokeWidth={3} />
+                        </span>
+                        <span className="text-[15px] leading-relaxed text-ink-600">{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {f.foot ? (
+                    <p className="mt-6 max-w-[58ch] border-l-2 border-ink-200 pl-4 text-sm leading-relaxed text-ink-500">
+                      {f.foot}
+                    </p>
                   ) : null}
-                  <p className="mt-3 text-sm font-medium text-ink-600">{s.l}</p>
+                  <div className="mt-8">
+                    <TextLink href={f.link.href}>{f.link.label}</TextLink>
+                  </div>
+                </div>
+                <div className={`relative min-w-0 ${flip ? "lg:order-1" : ""}`}>
+                  <Visual />
+                </div>
+              </div>
+            </section>
+          );
+        })}
+
+        {/* ── THE DEEP BAND ────────────────────────────────────────── */}
+        <section style={{ backgroundColor: DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>
+            <SectionHead dark>The business impact of an AI workforce</SectionHead>
+
+            <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {SECTOR.map((s, i) => (
+                <div
+                  key={s.n + s.b}
+                  className="reveal text-center"
+                  style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 60}ms` }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={s.img}
+                    alt=""
+                    width={78}
+                    height={78}
+                    className="mx-auto h-[62px] w-[62px] object-contain"
+                  />
+                  <p
+                    style={SERIF}
+                    className="tabular mt-4 text-[clamp(2.25rem,1.7rem+2.2vw,3.25rem)] font-bold leading-none tracking-[-0.02em] text-white"
+                  >
+                    {s.n}
+                  </p>
+                  <p className="mx-auto mt-3 max-w-[30ch] text-[15px] leading-relaxed text-white/75">
+                    {s.b}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── 2 THE PROBLEM ────────────────────────────────────────── */}
-        <Band index="01" label="The problem">
-          <h2 className={`${D2} text-ink-950`}>
-            Your practice is busy. But how much of that work really needs a
-            human?
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Think about what happens during a typical day at your practice.
-          </p>
+        {/* ── TESTIMONIALS ─────────────────────────────────────────────
+            🔴 CARE PROVIDERS, AND THE HEADING SAYS SO. See note 3. */}
+        <Section>
+          <SectionHead wide>
+            Care and disability providers already trust Novada with the
+            operations behind their service.
+          </SectionHead>
 
-          <RuledList items={A_TYPICAL_DAY} />
-
-          <p className={`${BODY} ${WIDE} mt-8`}>
-            Every task matters. But not every task needs to be performed
-            manually.
-          </p>
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            The operational challenges holding practices back
-          </p>
-          <BoxCards items={CHALLENGES} cols={3} />
-
-          <Statement>
-            Your practice has invested in systems that manage information. But
-            your team still spends hours doing the administrative work required
-            to keep those systems running.
-          </Statement>
-          <div className={`mt-6 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              As patient demand increases, the administrative workload can grow
-              faster than your practice&apos;s available capacity. Hiring more
-              people is not always the most efficient or sustainable answer.
-            </p>
-            <p className={`${BODY} ${WIDE} font-medium text-ink-950`}>
-              There is another way to get the work done.
-            </p>
-          </div>
-        </Band>
-
-        {/* ── 3 THE SOLUTION ───────────────────────────────────────── */}
-        <Band index="02" label="The solution">
-          <h2 className={`${D2} text-ink-950`}>
-            Meet the AI employees that work across your existing practice
-            systems.
-          </h2>
-
-          <RuledList items={NOT_THIS} />
-
-          <Statement>
-            It is a workforce of specialised AI employees designed to take
-            authorised action.
-          </Statement>
-
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Your AI employees can receive routine requests, access permitted
-            information, initiate workflows, communicate through approved
-            channels, update connected records, follow up outstanding actions
-            and escalate exceptions requiring human judgement.
-          </p>
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            Here is the difference
-          </p>
-          <BoxCards items={DIFFERENCE} cols={3} />
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            Imagine having an AI employee that can
-          </p>
-          <Bullets items={IMAGINE} />
-          <p className={`${BODY} ${WIDE} mt-7`}>
-            All without requiring your reception or administration team to
-            manually coordinate every step. That is the work Novada AI
-            Workforce takes off your team&apos;s hands.
-          </p>
-
-          <div className="mt-10">
-            <Cta>See how your AI employees work</Cta>
-          </div>
-        </Band>
-
-        {/* ── 4 MEET YOUR AI EMPLOYEES ─────────────────────────────── */}
-        <Band id="employees" index="03" label="Your AI employees">
-          <h2 className={`${D2} text-ink-950`}>
-            Six specialised AI employees. Hire the ones your practice needs.
-          </h2>
-          <div className={`mt-6 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              Every healthcare practice operates differently. A busy GP clinic
-              may need help answering calls and managing appointment demand. A
-              specialist practice may need additional capacity for referrals,
-              intake and billing administration. An allied health clinic may
-              want better cancellation recovery, patient follow-ups and
-              scheduling coordination.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              Novada AI Workforce gives practices the flexibility to engage
-              specialised AI employees that match their operational priorities.
-            </p>
-          </div>
-
-          <div className="mt-10 flex flex-col gap-5 md:gap-6">
-            {EMPLOYEES.map((e, i) => (
-              <EmployeeBlock key={e.role} e={e} delay={Math.min(i, 2) * 70} />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {TESTIMONIALS.map((t, i) => (
+              <figure
+                key={t.org}
+                className="reveal flex flex-col rounded-lg border border-ink-100 bg-white px-7 py-8 text-center shadow-lift"
+                style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
+              >
+                <p
+                  style={SERIF}
+                  className="text-[15px] font-bold uppercase tracking-[0.03em] text-ink-950"
+                >
+                  {t.org}
+                </p>
+                <blockquote
+                  style={SERIF}
+                  className="mt-6 flex-1 text-[15px] italic leading-relaxed text-ink-700"
+                >
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-7 text-sm text-ink-500">
+                  {t.name}, {t.org}
+                </figcaption>
+              </figure>
             ))}
           </div>
-        </Band>
+        </Section>
 
-        {/* ── 5 THE CONTROL CENTRE ─────────────────────────────────── */}
-        <Band index="04" label="Control Centre">
-          <h2 className={`${D2} text-ink-950`}>
-            Six AI employees. One central place to see the work getting done.
-          </h2>
-          <div className={`mt-6 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              Your AI employees operate across different parts of the practice.
-              But your management team should not need to open six separate
-              systems to understand what they are doing.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              The Control Centre provides a consolidated view of your AI
-              employees, their operational responsibilities, completed
-              activities and outstanding exceptions.
-            </p>
+        {/* ── LET US TALK ──────────────────────────────────────────── */}
+        <Section bg={CREAM_DEEP}>
+          <SectionHead sub="See how an AI workforce would fit your practice:">
+            Let us talk
+          </SectionHead>
+          <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+            {TALK.map((t) => (
+              <div key={t.h} className="reveal text-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={t.img}
+                  alt=""
+                  width={78}
+                  height={78}
+                  className="mx-auto h-[58px] w-[58px] object-contain"
+                />
+                <h3 style={SERIF} className="mt-4 text-base font-bold text-ink-950">
+                  {t.h}
+                </h3>
+                <p className="mx-auto mt-2 max-w-[32ch] text-sm leading-relaxed text-ink-600">
+                  {t.b}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-12 flex justify-center">
+            <Cta href="#book">Book a discovery call</Cta>
+          </div>
+        </Section>
+
+        {/* ── HUMAN OVERSIGHT ──────────────────────────────────────────
+            🔴 NEW ON THIS PAGE. See the note above OVERSIGHT: this AI
+            answers calls from patients and touches Medicare billing,
+            and until today the only boundary statements on the page
+            were the five lines on the role cards. */}
+        <Section bg={CREAM}>
+          <SectionHead wide>
+            Your AI employees do the administration. Your clinicians keep the
+            clinical calls.
+          </SectionHead>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {OVERSIGHT.map((o, i) => (
+              <div
+                key={o.h}
+                className="reveal flex flex-col rounded-lg border border-ink-100 bg-white p-7 shadow-lift"
+                style={{ ["--reveal-delay" as string]: `${i * 70}ms` }}
+              >
+                <h3 style={SERIF} className="text-lg font-bold text-ink-950">
+                  {o.h}
+                </h3>
+                <ul className="mt-5 flex flex-col gap-3">
+                  {o.items.map((t) => (
+                    <li key={t} className="flex items-start gap-3">
+                      <Check
+                        aria-hidden
+                        strokeWidth={2.5}
+                        className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-brand-500"
+                      />
+                      <span className="text-sm leading-relaxed text-ink-600">{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
-          <p className={`${MICRO} mt-10 text-brand-500`}>What you can monitor</p>
-          <BoxCards items={CONTROL_SHOWS} cols={3} />
-
-          <Statement>
-            One centralised view, without replacing your practice management
-            system.
-          </Statement>
-          {/* ⚠️ LOAD-BEARING. This is the sentence that stops the Control
-              Centre reading as a replacement system of record, which is a
-              claim we cannot support and a migration we are not selling. */}
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Your existing clinical and practice-management systems remain
-            authoritative for patient records, appointments, clinical
-            documentation and financial transactions. Novada becomes the central
-            record of AI workflow activities, system interactions, approvals and
-            execution history.
-          </p>
-          <p className={`${BODY} ${WIDE} mt-6 font-medium text-ink-950`}>
-            Your existing software holds the records. Your Novada AI employees
-            help get the work done.
-          </p>
-
-          <div className="mt-10">
-            <Cta>See the Novada AI Control Centre</Cta>
-          </div>
-        </Band>
-
-        {/* ── 6 SEE IT IN ACTION ───────────────────────────────────── */}
-        <Band index="05" label="Worked example" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            One cancelled appointment. A complete workflow. Minimal manual
-            coordination.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            It is 9:15 am. A patient cancels their 2:00 pm appointment. The
-            clinician now has available time, and your reception team is already
-            busy with incoming calls, patient arrivals and payments.
-          </p>
-
-          <div className="mt-10 rounded-xl border border-ink-200 bg-white p-6 md:p-8">
-            <p className={`${MICRO} text-ink-500`}>Without Novada</p>
-            <p className="mt-4 text-sm leading-relaxed text-ink-700">
-              Someone must notice the cancellation, check the waitlist, contact
-              suitable patients, confirm availability, update the appointment
-              book and send confirmation. If nobody has time, the appointment
-              may remain unfilled.
-            </p>
-          </div>
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            With Novada AI Workforce
-          </p>
-          <BoxCards items={WORKFLOW} cols={2} />
-
-          <Statement>
-            Your practice has a repeatable process for responding to
-            cancellations without reception staff manually handling every step.
-          </Statement>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            That is the difference between seeing an available appointment and
-            having an AI employee coordinate the work needed to fill it.
-          </p>
-
-          <div className="mt-10">
-            <Cta>Watch the AI appointment workflow demo</Cta>
-          </div>
-        </Band>
-
-        {/* ── 7 THE BUSINESS VALUE ─────────────────────────────────── */}
-        <Band index="06" label="The value">
-          <h2 className={`${D2} text-ink-950`}>
-            More efficient administration. Better patient access. Stronger
-            practice performance.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Novada AI Workforce delivers value in three areas that matter to
-            practice owners and managers.
-          </p>
-          <BoxCards items={VALUE} cols={3} />
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            What this means for your team
-          </p>
-          <BoxCards items={MEANS_FOR} cols={2} />
-
-          <Statement>
-            Less administration for your team. Better access for patients. More
-            control over practice operations.
-          </Statement>
-          {/* 🔴 NEVER PROMISE THE REVENUE. The FAQ repeats this outright
-              with a one-word answer. */}
-          <p className={`${SMALL} ${WIDE} mt-8`}>
-            Actual improvements depend on the practice&apos;s systems,
-            administrative volumes, workflow configuration and operating
-            conditions.
-          </p>
-
-          <div className="mt-10">
-            <Cta>Explore your practice&apos;s AI workforce opportunity</Cta>
-          </div>
-        </Band>
-
-        {/* ── 8 WHERE TO START ─────────────────────────────────────── */}
-        <Band index="07" label="Where to start">
-          <h2 className={`${D2} text-ink-950`}>
-            Start with one AI employee. Build the team your practice needs.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            You do not need to change how your whole practice operates
-            overnight. You can engage the AI employees that address your most
-            immediate operational constraints.
-          </p>
-          <BoxCards items={START_WITH} cols={3} />
-          <p className={`${BODY} ${WIDE} mt-10`}>
-            Or combine several AI employees into a coordinated operational team.
-          </p>
-
-          <div className="mt-10">
-            <Cta>Find the right AI employee for your practice</Cta>
-          </div>
-        </Band>
-
-        {/* ── 9 WHO WE HELP ────────────────────────────────────────── */}
-        <Band index="08" label="Who we help">
-          <h2 className={`${D2} text-ink-950`}>
-            One AI workforce platform. Different practice environments.
-          </h2>
-          <BoxCards items={SEGMENTS} cols={2} />
-          <Statement>
-            Your clinical model and software environment remain your own. Novada
-            helps execute the administrative work around them.
-          </Statement>
-        </Band>
-
-        {/* ── 10 HOW IT WORKS ──────────────────────────────────────── */}
-        <Band index="09" label="How it works">
-          <h2 className={`${D2} text-ink-950`}>
-            Getting your AI employees working in your practice.
-          </h2>
-          <BoxCards items={HOW_STEPS} cols={2} />
-          <p className={`${BODY} ${WIDE} mt-10 font-medium text-ink-950`}>
-            Your practice keeps its systems. Your AI employees take on the
-            authorised administrative work.
-          </p>
-
-          <div className="mt-10">
-            <Cta>Book your AI Workforce demo</Cta>
-          </div>
-        </Band>
-
-        {/* ── 11 HUMAN CONTROL & PATIENT SAFETY ────────────────────── */}
-        <Band index="10" label="Control &amp; safety" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>
-            AI handles the administration. Your clinicians remain responsible
-            for care.
-          </h2>
-          <div className={`mt-6 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              Healthcare administration is different from ordinary business
-              administration. A patient enquiry may contain a clinical concern.
-              A referral may require urgent professional review. A recall may
-              relate to a clinically significant result. A billing question may
-              require interpretation of Medicare rules and clinical
-              documentation.
-            </p>
-            <p className={`${BODY} ${WIDE} font-medium text-ink-950`}>
-              These are not decisions an administrative AI employee should make
-              independently.
-            </p>
-          </div>
-
-          {/* 🔴 TWO COLUMNS, AND THE READER MUST FINISH ON THE RIGHT ONE.
-              See the note above AI_HANDLES. Do not reorder. */}
-          <div className="mt-10 grid gap-5 md:grid-cols-2 md:gap-6">
-            <div className="reveal flex flex-col rounded-xl border border-ink-100 bg-white p-6 shadow-raise md:p-8">
-              <h3 className="text-base font-semibold text-ink-950">
-                What your AI employees can handle
-              </h3>
-              <Bullets items={AI_HANDLES} />
-            </div>
-            <div
-              className="reveal flex flex-col rounded-xl border-2 border-brand-500 bg-white p-6 shadow-raise md:p-8"
-              style={{ ["--reveal-delay" as string]: "70ms" }}
-            >
-              <h3 className="text-base font-semibold text-ink-950">
-                What requires human oversight
-              </h3>
-              <Bullets items={HUMAN_OVERSIGHT} />
-            </div>
-          </div>
-
-          <p className={`${MICRO} mt-10 text-brand-500`}>
-            Patient privacy and transparency
-          </p>
-          <div className={`mt-4 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              Novada&apos;s operational workflows use authorised access and
-              appropriate controls for handling patient information.
-            </p>
-            {/* 🔴 THE DISCLOSURE SENTENCE. An AI that speaks to patients
-                without saying so is the single fastest way to lose a
-                practice's trust and attract a complaint. */}
-            <p className={`${BODY} ${WIDE} font-medium text-ink-950`}>
-              Patients interacting directly with an AI assistant are informed
-              that they are communicating with AI.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              Sensitive information is handled under the applicable privacy
-              arrangements, with access permissions, approved communication
-              processes and appropriate escalation procedures.
-            </p>
-          </div>
-
-          <p className="mt-10 max-w-statement border-l-2 border-brand-500 pl-6 text-lg font-medium text-ink-950">
-            AI should remove avoidable administrative pressure without removing
-            clinical accountability or compromising patient safety.
-          </p>
-        </Band>
-
-        {/* ── 12 YOUR EXISTING SYSTEMS ─────────────────────────────── */}
-        <Band index="11" label="Your systems">
-          <h2 className={`${D2} text-ink-950`}>
-            Your practice does not need another disconnected software platform.
-          </h2>
-          <p className={`${BODY} ${WIDE} mt-6`}>
-            Your organisation may already use software for:
-          </p>
-          <Bullets items={EXISTING_SYSTEMS} />
-          <p className={`${BODY} ${WIDE} mt-8`}>
-            Novada AI Workforce connects through supported integrations and
-            authorised workflows.
-          </p>
-          <BoxCards items={INTEGRATION} cols={2} />
-          <Statement>
-            Novada is not another practice-management system. It is the
-            operational execution layer that helps your existing systems work
-            together.
-          </Statement>
-
-          <div className="mt-10">
-            <Cta>Check your practice&apos;s integration requirements</Cta>
-          </div>
-        </Band>
-
-        {/* ── 13 WHY NOVADA ────────────────────────────────────────── */}
-        <Band index="12" label="Why Novada">
-          <h2 className={`${D2} text-ink-950`}>
-            Your practice does not need more reminders about work that is not
-            finished. It needs more work getting done.
-          </h2>
-          <div className={`mt-6 flex ${WIDE} flex-col gap-4`}>
-            <p className={`${BODY} ${WIDE}`}>
-              Many practice-management systems already provide appointment
-              lists, notifications, task queues and reporting. But a reminder
-              that a task is outstanding does not complete the task.
-            </p>
-            <p className={`${BODY} ${WIDE}`}>
-              A cancellation notification does not automatically coordinate the
-              work needed to offer the appointment to someone else. A claim
-              rejection does not resolve itself. And a referral marked
-              incomplete still requires follow-up.
-            </p>
-          </div>
-          <BoxCards items={WHY} cols={3} />
-          <Statement>
-            A practice that is less dependent on manual coordination for routine
-            administrative work, without losing visibility or control.
-          </Statement>
-        </Band>
-
-        {/* ── 14 FAQ ───────────────────────────────────────────────── */}
-        <Band index="13" label="Questions" tone="tint">
-          <h2 className={`${D2} text-ink-950`}>Frequently asked questions</h2>
-          <Faq />
-        </Band>
-
-        {/* ── 15 BOOK ──────────────────────────────────────────────── */}
-        <section id="book" className="border-t border-white/10 bg-canvas-ink">
-          <div
-            className={`${FRAME} ${GUTTER} border-x border-white/10 py-16 md:py-24 lg:py-32`}
+          <p
+            style={SERIF}
+            className="mx-auto mt-12 max-w-[60ch] text-center text-lg font-bold leading-snug text-ink-950"
           >
-            <div className={RAIL_GRID}>
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <div className="flex items-center gap-3 lg:block">
-                  <span className={`${MICRO} tabular text-white/55`}>14</span>
-                  <span
+            The purpose of AI here is to reduce unnecessary manual effort, not
+            to move clinical judgement, accountability or patient safety away
+            from the people responsible for them.
+          </p>
+        </Section>
+
+        {/* ── THE SIX AI EMPLOYEES ─────────────────────────────────── */}
+        <Section id="employees" bg={CREAM_DEEP}>
+          <SectionHead sub="Each one runs a defined administrative process end to end. Start with the one under the most pressure and add others into the same Control Centre later.">
+            Meet the six AI employees
+          </SectionHead>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {EMPLOYEES.map((e, i) => (
+              <article
+                key={e.role}
+                className="reveal flex flex-col rounded-lg border border-ink-100 bg-white p-7 shadow-lift transition-[transform,box-shadow] duration-200 ease-standard hover:-translate-y-0.5"
+                style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 60}ms` }}
+              >
+                <p className={`${MICRO} text-brand-500`}>{e.role}</p>
+
+                <h3 style={SERIF} className="mt-4 text-lg font-bold leading-snug text-ink-950">
+                  {e.lead}
+                </h3>
+
+                <p className="mt-3 text-xs font-medium uppercase tracking-caps text-ink-400">
+                  {e.span}
+                </p>
+
+                <ul className="mt-5 flex flex-1 flex-col gap-3">
+                  {e.does.map((d) => (
+                    <li key={d} className="flex items-start gap-3">
+                      <Check
+                        aria-hidden
+                        strokeWidth={2.5}
+                        className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-brand-500"
+                      />
+                      <span className="text-sm leading-relaxed text-ink-600">{d}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* 🔴 THE BOUNDARY LINE, AND IT STAYS. Read note 1 in
+                    the file header. Three of these are legal,
+                    clinical-safety or Medicare-compliance statements,
+                    not marketing hedges. */}
+                {e.limit ? (
+                  <p className="mt-6 border-t border-ink-100 pt-5 text-xs leading-relaxed text-ink-500">
+                    {e.limit}
+                  </p>
+                ) : null}
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── INTEGRATIONS ─────────────────────────────────────────────
+            🔴 FOUR TILES. See note 4: the rest of the supplied list is
+            NDIS and aged care software and does not belong here. The
+            practice management systems have been asked for. */}
+        <Section id="integrations">
+          <SectionHead sub="Your AI employees work inside the systems you already run. We confirm each system's permissions and capabilities during implementation.">
+            Integrates with the tools you already use
+          </SectionHead>
+
+          <div className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
+            {INTEGRATIONS.map((p) => (
+              <div
+                key={p.name}
+                className="reveal flex h-[104px] items-center justify-center rounded-lg border border-ink-100 bg-white p-5 shadow-raise"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/integrations/${p.file}`}
+                  alt={p.name}
+                  className="max-h-[42px] w-auto max-w-[130px] object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── FAQ ──────────────────────────────────────────────────────
+            ⚠️ NATIVE <details>. No JS, keyboard and screen reader
+            support for free, and it still works if hydration never
+            finishes. */}
+        <Section bg={CREAM_DEEP}>
+          <SectionHead>Frequently asked questions</SectionHead>
+
+          <div className="mx-auto mt-12 flex max-w-[76ch] flex-col gap-3">
+            {FAQ.map((f, i) => (
+              <details
+                key={f.q}
+                className="reveal group rounded-lg border border-ink-100 bg-white shadow-raise [&_summary::-webkit-details-marker]:hidden"
+                style={{ ["--reveal-delay" as string]: `${Math.min(i, 4) * 50}ms` }}
+              >
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 p-6 text-base font-semibold text-ink-950">
+                  <span>{f.q}</span>
+                  <ChevronDown
                     aria-hidden
-                    className="h-px w-6 bg-white/20 lg:my-3 lg:h-6 lg:w-px"
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-400 transition-transform duration-200 ease-standard group-open:rotate-180"
                   />
-                  <h2 className={`${MICRO} text-white/85`}>Book</h2>
-                </div>
+                </summary>
+                <p className="px-6 pb-6 text-sm leading-relaxed text-ink-600">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </Section>
+
+        {/* ── BOOK ─────────────────────────────────────────────────── */}
+        <section id="book" style={{ backgroundColor: DEEP }}>
+          <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>
+            <SectionHead
+              dark
+              sub="A free 30-minute conversation about your front desk, your systems, and which administrative work could be handled safely. No obligation to proceed."
+            >
+              Hire your next AI practice team
+            </SectionHead>
+
+            <div className="mx-auto mt-12 grid max-w-5xl gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-12">
+              <div className="min-w-0">
+                <p className={`${MICRO} text-brand-200`}>On the call we will</p>
+                <ul className="mt-5 flex flex-col gap-3.5">
+                  {[
+                    "Walk through your current front desk workload and systems.",
+                    "Find your highest-volume repetitive administrative tasks.",
+                    "Say which of them could be safely automated, and which could not.",
+                    "Explain the six roles and how the Control Centre works.",
+                    "Agree the scope, the next steps and the timeline.",
+                  ].map((t) => (
+                    <li key={t} className="flex items-start gap-3">
+                      <Check
+                        aria-hidden
+                        strokeWidth={2.5}
+                        className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-brand-200"
+                      />
+                      <span className="text-sm leading-relaxed text-white/80">{t}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-8 border-t border-white/15 pt-6 text-sm text-white/55">
+                  30 minutes. No cost.
+                </p>
               </div>
 
               <div className="min-w-0">
-                <BandHeading dark>
-                  You did not open a healthcare practice to spend your day
-                  managing administration.
-                </BandHeading>
+                {/* 🔴 PLACEHOLDER. There is no practices demo calendar
+                    yet; the founder is supplying it separately. The
+                    four steps for wiring it are in the file header.
 
-                <div
-                  className={`mt-7 flex ${WIDE} flex-col gap-5 text-base text-white/75`}
-                >
-                  <p>
-                    You built your practice to provide care. But running a
-                    successful practice also means managing patient access,
-                    appointment schedules, referrals, recalls, invoices, claims
-                    and everything else that keeps the business moving. Your
-                    software helps organise that work. Novada AI Workforce helps
-                    get it done.
+                    ⚠️ DO NOT POINT THIS AT ANOTHER OFFER'S CALENDAR to
+                    make the page "work". Every calendar feeds its own
+                    pipeline and its own confirmation page, so borrowing
+                    one files a practices enquiry against a different
+                    offer and sends the booker a confirmation for
+                    something they did not ask for. Unlike a booking
+                    that cannot be made, that one cannot be recovered. */}
+                <div className="flex min-h-[320px] flex-col items-center justify-center rounded-lg border border-dashed border-white/25 bg-white/[0.04] p-8 text-center">
+                  <p style={SERIF} className="text-xl font-bold text-white">
+                    Demo booking opens shortly
                   </p>
-                  <p>
-                    Hire specialised AI employees to handle routine
-                    administrative processes across your existing practice
-                    systems. Let your team focus on the patients and decisions
-                    that need them. See the work, approvals and outcomes through
-                    one centralised Control Centre.
+                  <p className="mt-3 max-w-[42ch] text-sm leading-relaxed text-white/65">
+                    In the meantime, email us and we will arrange a time.
                   </p>
+                  {/* ⚠️ min-h-11 IS NOT DECORATION. A link inside a
+                      paragraph is only as tall as its own line box,
+                      which measured 17px here and fails the 44px tap
+                      floor the whole site holds. It has to come out of
+                      the paragraph to get a height of its own. */}
+                  <a
+                    href="mailto:admin@novadatech.com.au"
+                    className="mt-4 inline-flex min-h-11 items-center font-semibold text-brand-200 underline underline-offset-4 hover:text-white"
+                  >
+                    admin@novadatech.com.au
+                  </a>
                 </div>
-
-                <p className="mt-8 max-w-statement border-l-2 border-brand-400 pl-6 text-2xl font-medium text-white">
-                  Less administration. Better patient access. More time for
-                  care.
-                </p>
-
-                <p className={`${WIDE} mt-8 text-base text-white/75`}>
-                  Book a live demonstration. On the call we will:
-                </p>
-                <Bullets
-                  tone="dark"
-                  items={[
-                    "Show you the relevant AI employees performing real administrative workflows.",
-                    "Review your practice-management, appointment, telephony, messaging and billing systems.",
-                    "Confirm the supported integration requirements for your environment.",
-                    "Agree which tasks can run automatically, which need approval and what must always be escalated.",
-                    "Discuss which AI employee to introduce first, and how to measure the result.",
-                  ]}
-                />
-
-                <div className="mt-10">
-                  {/*
-                   * 🔴 PLACEHOLDER, NOT A CALENDAR. See the file header.
-                   * The founder is supplying this offer's demo calendar
-                   * separately, and until the id exists this page has NO
-                   * embed rather than a borrowed one:
-                   * practices-revenue-audit and
-                   * practices-patient-booking each feed their own
-                   * pipeline, so pointing this page at either would file
-                   * an AI Workforce enquiry against a different offer,
-                   * in a different pipeline, with a different
-                   * confirmation page. A booking that cannot be made is
-                   * recoverable. A booking filed against the wrong offer
-                   * is not.
-                   *
-                   * ⚠️ IT IS NOT A BUTTON AND MUST NOT BECOME ONE.
-                   */}
-                  <div className="rounded-xl border border-dashed border-white/20 bg-white/[0.04] p-7 md:p-10">
-                    <p className={`${MICRO} text-brand-200`}>
-                      Demo booking opens shortly
-                    </p>
-                    <p className="mt-4 max-w-[60ch] text-base text-white/75">
-                      The AI Workforce demo calendar is being set up. Until it
-                      is live, email{" "}
-                      <a
-                        href="mailto:support@novadatech.com.au?subject=Novada%20AI%20Workforce%20demo%20for%20practices"
-                        className="font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
-                      >
-                        support@novadatech.com.au
-                      </a>{" "}
-                      and we will arrange a time.
-                    </p>
-                  </div>
-                </div>
-
-                <p className="mt-6 text-sm text-white/55">
-                  See how Novada AI employees can support your practice&apos;s
-                  existing systems and administrative workflows. No obligation
-                  to proceed.
-                </p>
-
-                {/* The copy's closing secondary button.
-                    ⚠️ min-h-11 is not decoration: without it a
-                    bordered-bottom link is 27px tall and fails the 44px
-                    tap floor the whole site holds. */}
-                <a
-                  href="#employees"
-                  className="mt-8 inline-flex min-h-11 items-center gap-2 border-b border-white/25 pb-1 text-sm font-semibold text-white transition-colors duration-150 hover:border-white"
-                >
-                  Find the right AI employee for your practice
-                </a>
               </div>
             </div>
           </div>
@@ -1751,8 +1379,8 @@ export default function AiWorkforcePage() {
       <div aria-hidden className="h-28 sm:h-20" />
 
       <StickyCta
-        label="Book your live AI Workforce demo"
-        tagline="See your own workflows, with your systems."
+        label="Book your AI Workforce discovery call"
+        tagline="Free 30-minute discovery conversation."
         href="#book"
       />
     </div>
