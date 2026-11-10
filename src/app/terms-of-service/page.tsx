@@ -72,7 +72,12 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
-import DeskNav from "@/components/desk/DeskNav";
+/* ⚠️ LpHeader, NOT DeskNav, since 10 November 2026. The site is
+   four pages and the header names them; a visitor who lands here
+   from a footer link would otherwise get a different nav from
+   every other page. ctaHref points at an offer because this page
+   has no #book to scroll to. */
+import { LpHeader } from "@/components/lp/kit";
 import DeskFooter from "@/components/desk/DeskFooter";
 
 export const metadata: Metadata = {
@@ -1197,7 +1202,7 @@ function Body() {
 export default function TermsOfServicePage() {
   return (
     <div data-theme="desk" className="min-h-screen bg-white font-sans">
-      <DeskNav />
+      <LpHeader cta="See the offers" ctaHref="/care/ai-workforce" />
       <StatusStrip />
 
       <main>

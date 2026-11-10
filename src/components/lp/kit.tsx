@@ -218,7 +218,16 @@ const NAV = [
  * ⚠️ min-h-11 ON EVERY NAV LINK. A bare inline link is about 20px tall
  * and the site holds a 44px tap floor.
  */
-export function LpHeader({ cta = "Book a discovery call" }: { cta?: string }) {
+export function LpHeader({
+  cta = "Book a discovery call",
+  /** ⚠️ The legal pages have no #book section, so the button has to be
+      able to point somewhere real. A button that scrolls nowhere reads
+      as broken. */
+  ctaHref = "#book",
+}: {
+  cta?: string;
+  ctaHref?: string;
+}) {
   return (
     <header
       className="sticky top-0 z-40 border-b border-ink-100/70 backdrop-blur"
@@ -259,7 +268,7 @@ export function LpHeader({ cta = "Book a discovery call" }: { cta?: string }) {
         {/* ⚠️ TWO LABELS, ONE BUTTON. The long one wraps to three lines
             in a phone's 186px header slot, which makes the sticky
             header 65px tall and pushes the hero down the screen. */}
-        <Cta href="#book">
+        <Cta href={ctaHref}>
           <span className="sm:hidden">Book a call</span>
           <span className="hidden sm:inline">{cta}</span>
         </Cta>
