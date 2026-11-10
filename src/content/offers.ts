@@ -547,17 +547,26 @@ export const AI_WORKFORCE: Offer = {
  * belongs to the two practices pillars and the pathway is the founder's
  * three-step shape; this offer is neither.
  *
- * 🔴 `indexed: false` UNTIL THE DEMO CALENDAR ARRIVES.
+ * ✅ INDEXED SINCE 10 NOVEMBER 2026, on founder instruction, and the
+ * `robots` block came off ./page.tsx in the same change.
+ *
+ * ⚠️ IT WENT PUBLIC BEFORE ITS CALENDAR EXISTED. #book still carries a
+ * placeholder and an email address. The founder is supplying the
+ * calendar separately and made the call to publish ahead of it, so a
+ * visitor arriving from search today can read the offer and email, but
+ * cannot book. Wire the calendar as soon as it lands.
  * ══════════════════════════════════════════════════════════════════════
  */
 export const AI_WORKFORCE_PRACTICES: Offer = {
   name: "Novada AI Workforce",
+  /* The full name does not fit a nav slot, and "AI Workforce" is what
+     a practice manager will say out loud. */
   navLabel: "AI Workforce",
   slug: "ai-workforce",
   href: "/practices/ai-workforce",
   audience: "practices",
   who: "For practices",
-  indexed: false,
+  indexed: true,
   summary:
     "Specialised AI employees that connect to your existing practice systems and complete authorised administrative work: answering patient enquiries, recovering cancelled appointments, chasing referral paperwork, running clinician-approved recalls and resolving billing exceptions. Every clinical and billing decision stays with an authorised professional.",
   scope: [

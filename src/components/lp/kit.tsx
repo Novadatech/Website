@@ -194,8 +194,8 @@ export function SectionHead({
    the founder asked for that word in the nav, and renaming the route
    would break every inbound link to it. */
 const NAV = [
-  { href: "/care/ai-workforce", label: "Care AI Workforce" },
-  { href: "/practices/ai-workforce", label: "Practice AI Workforce" },
+  { href: "/care/ai-workforce", label: "Care Providers" },
+  { href: "/practices/ai-workforce", label: "Practices" },
   { href: "/why-novada", label: "About" },
 ];
 

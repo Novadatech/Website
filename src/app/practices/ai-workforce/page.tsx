@@ -33,24 +33,18 @@ const bitter = Bitter({
  * confirmation page ends up titled like a sales page.
  *
  * ══════════════════════════════════════════════════════════════════════
- * 🔴 THE `robots` BLOCK IS TEMPORARY AND DELIBERATE, and the opposite
- * of its care twin, which is indexed. The founder is supplying this
- * offer's demo calendar separately, so #book carries a placeholder. A
- * page whose only action cannot be taken should not collect search
- * traffic.
+ * ✅ PUBLIC SINCE 10 NOVEMBER 2026. The `robots` block is gone and
+ * `indexed: true` in offers.ts puts the route in the sitemap. The
+ * founder made the call to publish ahead of the calendar.
  *
- * WHEN THE CALENDAR ARRIVES, four steps, all or none:
+ * 🔴 SO THE PAGE IS IN SEARCH AND CANNOT TAKE A BOOKING. #book carries
+ * a placeholder and an email address. TWO STEPS REMAIN, both or
+ * neither:
  *   1. add a `practices-ai-workforce` key to Desk and CALENDARS in
  *      src/components/desk/BookingEmbed.tsx with the supplied id
  *   2. swap the placeholder in #book for <BookingEmbed
  *      desk="practices-ai-workforce" source="practices-ai-workforce"
  *      tone="dark" />
- *   3. delete the `robots` block below
- *   4. set `indexed: true` on AI_WORKFORCE_PRACTICES in offers.ts
- *
- * ⚠️ STEPS 3 AND 4 TRAVEL TOGETHER. One without the other produces a
- * page that is in the sitemap and refuses to be indexed, which Search
- * Console reports against the whole property.
  *
  * ⚠️ AND IT MUST BE AN AUSTRALIAN CALENDAR. novadatech.com has its own
  * US practices page and its own calendars; pointing this domain at one
@@ -58,7 +52,6 @@ const bitter = Bitter({
  * ══════════════════════════════════════════════════════════════════════
  */
 export const metadata: Metadata = {
-  robots: { index: false, follow: false },
   title: "Novada AI Workforce for Australian practices | Novada Tech",
   description:
     "AI employees for Australian GP, specialist and allied health practices. They answer patient calls, refill cancelled appointments, chase referral documents, run recalls and work billing exceptions inside your existing systems. Clinical and billing decisions stay with your clinicians.",

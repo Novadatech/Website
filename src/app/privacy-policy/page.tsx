@@ -255,7 +255,7 @@ function Hero() {
         </h1>
 
         <p className={`${LEAD} mt-6 max-w-[68ch]`}>
-          Novada Tech runs back office functions for Australian healthcare
+          Novada Tech provides an AI workforce to Australian healthcare
           businesses. For practices we answer enquiries, make and change
           bookings, work the recall lists their practitioners set and
           administer billing. For care providers we read rosters, recruit and
@@ -312,13 +312,24 @@ function Contents() {
             <span className={`${MICRO_TIGHT} ${NUM} pt-[3px] text-[#C3CAD5]`}>
               {String(i + 1).padStart(2, "0")}
             </span>
-            /* ⚠️ min-h-11 AND THE VERTICAL PADDING ARE THE TAP TARGET.
-                 A link in a dense contents rail is only as tall as
-                 its own line box, which measured 20-21px and fails
-                 the 44px floor the rest of the site holds. The rail
-                 is the main way a phone reads a document this long,
-                 so it is the one place it matters most. */
-              <a
+            {/* ⚠️ min-h-11 AND THE VERTICAL PADDING ARE THE TAP
+                TARGET. A link in a dense contents rail is only as tall
+                as its own line box, which measured 20-21px and fails
+                the 44px floor the rest of the site holds. The rail is
+                the main way a phone reads a document this long.
+
+                🔴 IT MUST BE A JSX COMMENT, in braces, NOT A BARE
+                block comment. A bare block comment inside JSX is not a
+                comment at all: it is a text child, and React renders
+                it. This shipped to production on 10 November 2026 and
+                printed six lines of source into the contents rail of
+                both legal pages.
+
+                ⚠️ AND DO NOT WRITE A CLOSING COMMENT MARKER INSIDE A
+                COMMENT. The first fix for this carried one in its own
+                prose and closed itself three lines early, which is the
+                same bug a second time. */}
+            <a
               href={`#${s.id}`}
               className="flex min-h-11 items-center py-1.5 text-[13.5px] leading-[1.5] text-[#5B6472] transition-colors hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2 lg:min-h-0 lg:py-0"
             >
@@ -380,7 +391,7 @@ export default function PrivacyPolicyPage() {
                 <S id="who">
                   <P>
                     Novada Tech is an Australian owned and operated business.
-                    Our coordinators are onshore in Australia. We do not
+                    Our team is in Australia. We do not
                     offshore the desk work.
                   </P>
                   <List
@@ -744,7 +755,7 @@ export default function PrivacyPolicyPage() {
                   <H3>f. Our own people</H3>
                   <P>
                     We collect the information we need to recruit, employ or
-                    engage our coordinators and to meet our obligations as an
+                    engage our team and to meet our obligations as an
                     employer.
                   </P>
                 </S>
@@ -830,7 +841,7 @@ export default function PrivacyPolicyPage() {
                       <>
                         <Key>Directly from you</Key>, when you call us, email
                         us, use the booking widget or the chat widget on this
-                        website, or speak to one of our coordinators.
+                        website, or speak to us.
                       </>,
                       <>
                         <Key>Automatically from your device</Key>, through the
@@ -886,9 +897,11 @@ export default function PrivacyPolicyPage() {
                         system.
                       </>,
                       <>
-                        <Key>Our coordinators and staff</Key>, limited to the
-                        people assigned to that client, under written
-                        confidentiality obligations.
+                        <Key>Our team</Key>, limited to the people assigned
+                        to that client, under written confidentiality
+                        obligations, and <Key>the AI employees</Key> configured
+                        for that client, whose access is permission-scoped to
+                        the systems and workflows agreed with them.
                       </>,
                       <>
                         <Key>Technology suppliers</Key> that run this website,
@@ -896,7 +909,7 @@ export default function PrivacyPolicyPage() {
                         platform, and the analytics and advertising tools in
                         sections {numberOf("tracking")} and{" "}
                         {numberOf("embeds")}.{" "}
-                        Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their operations line to, so that calls reach our coordinators. If an engagement ever requires an additional tool, we tell the client before it is introduced.
+                        Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their operations line to, so that calls reach the AI employee configured to answer them. If an engagement ever requires an additional tool, we tell the client before it is introduced.
                       </>,
                       <>
                         <Key>Professional advisers</Key>, such as our
@@ -1448,7 +1461,31 @@ export default function PrivacyPolicyPage() {
                     involved. The obligation is a transparency measure.
                   </P>
                   <P>
-                    We do not use automated decision making. Our coordinators work inside our clients&apos; own systems, and where an automated feature exists in one of those systems it is configured and controlled by the client rather than by us. If we ever introduce a system of our own that makes, or substantially contributes to, a decision significantly affecting an individual, we will update this policy before it is used.
+                    <Key>
+                      We do use automated processing, and section{" "}
+                      {numberOf("automated")} describes it.
+                    </Key>{" "}
+                    AI employees carry out administrative tasks inside our
+                    clients&apos; own systems, and in doing so they process
+                    personal information and, in a care or practice setting,
+                    health information.
+                  </P>
+                  <P>
+                    What they do not do is make the decisions this obligation
+                    is concerned with. Clinical and care decisions, urgency and
+                    triage, worker suitability, hiring and disciplinary
+                    decisions, regulatory determinations, Medicare eligibility
+                    and the selection of billing codes are all reserved to
+                    authorised people at the client, and the client sets which
+                    actions may be taken automatically, which require a person
+                    to approve them first, and which must always be escalated.
+                    Those settings are recorded in the services agreement.
+                  </P>
+                  <P>
+                    If we ever introduce a system that makes, or substantially
+                    contributes to, a decision that could significantly affect
+                    an individual&apos;s rights or interests, we will update
+                    this policy before it is used.
                   </P>
                 </S>
 

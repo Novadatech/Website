@@ -416,7 +416,10 @@ const CLAUSES: Clause[] = [
         the entity responsible for that information under privacy law. Nothing migrates to
         us and nothing of yours is replaced.
       </>,
-      <>Our coordinators are located onshore in Australia.</>,
+      <>
+        Our team is in Australia, and the AI employees work inside your own
+        systems rather than copying your records out of them.
+      </>,
     ],
   },
 
@@ -488,9 +491,10 @@ const CLAUSES: Clause[] = [
         that kind goes to your own adviser.
       </>,
       <>
-        Our coordinators are our own personnel. Providing the services does not
-        make them your employees, contractors or workers, and does not create
-        an employment or agency relationship between you and them.
+        Our people are our own personnel and the AI employees are our own
+        systems. Providing the services does not make either of them your
+        employees, contractors or workers, and does not create an employment
+        or agency relationship between you and them.
       </>,
       <>
         Where we coordinate a shift, we are administering your roster, your
@@ -1056,7 +1060,7 @@ function Hero() {
 
         <p className="mt-6 max-w-[680px] text-[16px] leading-[1.7] text-[#454E5C] md:text-[17px]">
           These terms apply to your use of novadatech.com.au. They are not the
-          agreement under which we run the back office for your care
+          agreement under which we provide an AI workforce to your care
           organisation. That work is governed by a separate services agreement
           you sign with us.
         </p>
@@ -1099,13 +1103,24 @@ function Contents() {
       <ol className="mt-4 space-y-2.5 lg:mt-5">
         {CLAUSES.map((c) => (
           <li key={c.id}>
-            /* ⚠️ min-h-11 AND THE VERTICAL PADDING ARE THE TAP TARGET.
-                 A link in a dense contents rail is only as tall as
-                 its own line box, which measured 20-21px and fails
-                 the 44px floor the rest of the site holds. The rail
-                 is the main way a phone reads a document this long,
-                 so it is the one place it matters most. */
-              <a
+            {/* ⚠️ min-h-11 AND THE VERTICAL PADDING ARE THE TAP
+                TARGET. A link in a dense contents rail is only as tall
+                as its own line box, which measured 20-21px and fails
+                the 44px floor the rest of the site holds. The rail is
+                the main way a phone reads a document this long.
+
+                🔴 IT MUST BE A JSX COMMENT, in braces, NOT A BARE
+                block comment. A bare block comment inside JSX is not a
+                comment at all: it is a text child, and React renders
+                it. This shipped to production on 10 November 2026 and
+                printed six lines of source into the contents rail of
+                both legal pages.
+
+                ⚠️ AND DO NOT WRITE A CLOSING COMMENT MARKER INSIDE A
+                COMMENT. The first fix for this carried one in its own
+                prose and closed itself three lines early, which is the
+                same bug a second time. */}
+            <a
               href={`#${c.id}`}
               className="group grid min-h-11 grid-cols-[26px_minmax(0,1fr)] items-center gap-x-2 py-1.5 text-[13px] leading-[1.5] text-[#5B6472] transition-colors hover:text-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2 lg:min-h-0 lg:items-start lg:py-0"
             >
