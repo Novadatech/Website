@@ -2,6 +2,7 @@
 
 import { ArrowRight, Check, ChevronDown, Star } from "lucide-react";
 
+import BookingEmbed from "@/components/desk/BookingEmbed";
 import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
 import { FRAME, GUTTER, MICRO, MICRO_TIGHT } from "@/components/desk/tokens";
@@ -46,22 +47,20 @@ import { LpHeader } from "@/components/lp/kit";
  *    delete the role-card lines: the three above are specific in a way
  *    a three-column summary cannot be.
  *
- * 2. 🔴 THERE IS NO CALENDAR AND THE PAGE IS noindex. The founder is
- *    supplying the demo calendar separately. #book carries a
- *    placeholder. A page whose only action cannot be taken should not
- *    collect search traffic.
+ * 2. ✅ THE CALENDAR IS WIRED AND THE PAGE IS PUBLIC, since
+ *    11 November 2026. #book carries a real BookingEmbed and the
+ *    route is indexed and in the sitemap, so the page can now take
+ *    the action it asks for. This note used to say the opposite,
+ *    including after the page was already public.
  *
- *    FOUR STEPS WHEN THE CALENDAR ARRIVES. All or none:
- *      1. add a `practices-ai-workforce` key to Desk and CALENDARS in
- *         src/components/desk/BookingEmbed.tsx with the supplied id
- *      2. swap the placeholder in #book for <BookingEmbed
- *         desk="practices-ai-workforce"
- *         source="practices-ai-workforce" tone="dark" />
- *      3. delete the `robots` block in ./page.tsx
- *      4. set `indexed: true` on AI_WORKFORCE_PRACTICES in offers.ts
- *    ⚠️ Steps 3 and 4 travel together. One without the other puts the
- *    route in the sitemap and then refuses to index it, which Search
- *    Console reports against the whole property.
+ *    ⚠️ THE CALENDAR ID IS NOT INTERCHANGEABLE WITH THE OTHER
+ *    DOMAIN'S. The two practices calendars differ by a "(US)" suffix
+ *    in the name alone, so they are the easiest pair on this estate
+ *    to swap by accident, and a swap is invisible until a booker
+ *    lands on the wrong country's confirmation page at the wrong
+ *    country's times. The ids, and the reason each belongs to its own
+ *    domain, are in src/components/desk/BookingEmbed.tsx. Verify
+ *    against the API by id, never by name.
  *
  * 3. ⚠️ THE CLIENT LOGOS AND THE QUOTES ARE CARE PROVIDERS, NOT
  *    PRACTICES, and the copy around them says so. Founder instruction,
@@ -1349,36 +1348,27 @@ export default function AiWorkforcePage() {
               </div>
 
               <div className="min-w-0">
-                {/* 🔴 PLACEHOLDER. There is no practices demo calendar
-                    yet; the founder is supplying it separately. The
-                    four steps for wiring it are in the file header.
+                {/* ✅ practices-ai-workforce IS ITS OWN CALENDAR AND
+                    ITS OWN PIPELINE, wired 11 November 2026 after
+                    verifying the id against the API by name and by
+                    redirect. Never repoint this at another desk: each
+                    calendar feeds a different pipeline and a different
+                    confirmation page, so borrowing one files a
+                    practices enquiry against a different offer and
+                    sends the booker a confirmation for something they
+                    did not ask for. Unlike a booking that cannot be
+                    made, that one cannot be recovered.
 
-                    ⚠️ DO NOT POINT THIS AT ANOTHER OFFER'S CALENDAR to
-                    make the page "work". Every calendar feeds its own
-                    pipeline and its own confirmation page, so borrowing
-                    one files a practices enquiry against a different
-                    offer and sends the booker a confirmation for
-                    something they did not ask for. Unlike a booking
-                    that cannot be made, that one cannot be recovered. */}
-                <div className="flex min-h-[320px] flex-col items-center justify-center rounded-lg border border-dashed border-white/25 bg-white/[0.04] p-8 text-center">
-                  <p style={SERIF} className="text-xl font-bold text-white">
-                    Demo booking opens shortly
-                  </p>
-                  <p className="mt-3 max-w-[42ch] text-sm leading-relaxed text-white/65">
-                    In the meantime, email us and we will arrange a time.
-                  </p>
-                  {/* ⚠️ min-h-11 IS NOT DECORATION. A link inside a
-                      paragraph is only as tall as its own line box,
-                      which measured 17px here and fails the 44px tap
-                      floor the whole site holds. It has to come out of
-                      the paragraph to get a height of its own. */}
-                  <a
-                    href="mailto:admin@novadatech.com.au"
-                    className="mt-4 inline-flex min-h-11 items-center font-semibold text-brand-200 underline underline-offset-4 hover:text-white"
-                  >
-                    admin@novadatech.com.au
-                  </a>
-                </div>
+                    ⚠️ `source` is what the confirmation page and
+                    the CRM read to attribute the booking. Changing it
+                    silently breaks attribution without breaking the
+                    booking, which is the hardest kind of fault to
+                    notice. */}
+                <BookingEmbed
+                  desk="practices-ai-workforce"
+                  source="practices-ai-workforce"
+                  tone="dark"
+                />
               </div>
             </div>
           </div>

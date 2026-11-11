@@ -72,7 +72,7 @@ import { CTA_LABEL } from "@/content/offers";
  * ══════════════════════════════════════════════════════════════════════
  * ⚠️ ONE CALENDAR PER DESK. Not per offer, and not per domain.
  *
- * This domain loads FIVE calendars; which one appears is decided by the
+ * This domain loads SIX calendars; which one appears is decided by the
  * DESK the reader is standing on. Each redirects to its own confirmation
  * page on novadatech.com.au.
  *
@@ -105,10 +105,21 @@ import { CTA_LABEL } from "@/content/offers";
  * wrong pipeline. The hub recommends a starting half instead. If anyone
  * adds a calendar there, read the comment at the top of /care first.
  *
- * All five are live and each redirects to its own confirmation page on
- * novadatech.com.au. Five calendars, five confirmations: the desk a
- * booking belongs to is decided once, here, and carried all the way
- * through.
+ * 🔴 ONLY TWO OF THE SIX ARE LIVE, AND THIS BLOCK USED TO CLAIM
+ * ALL FIVE WERE. The four pillar offers were retired on 10 November
+ * 2026 and their calendars DISABLED in the booking platform, so
+ * practices-revenue-audit, practices-patient-booking, care-rostering
+ * and care-continuity are dead entries: no page embeds them, and a
+ * grep for `desk="` confirms it. They are kept because the archived
+ * routes are part of this estate's history, not because they work.
+ *
+ * The live pair is care-ai-workforce and practices-ai-workforce, each
+ * redirecting to its own confirmation page on novadatech.com.au: the
+ * desk a booking belongs to is decided once, here, and carried all the
+ * way through.
+ *
+ * ⚠️ DO NOT REVIVE A DEAD KEY BY POINTING IT AT A LIVE
+ * CALENDAR. The confirmation page it lands on names a retired offer.
  *
  * ⚠️ `desk` IS REQUIRED AND HAS NO DEFAULT. A default is how the wrong
  * calendar ships silently: the page compiles, the widget loads, and
@@ -130,7 +141,8 @@ export type Desk =
   | "practices-patient-booking"
   | "care-rostering"
   | "care-continuity"
-  | "care-ai-workforce";
+  | "care-ai-workforce"
+  | "practices-ai-workforce";
 
 const CALENDARS: Record<Desk, string> = {
   "practices-revenue-audit": "dkDB0IYyu8LRjFdUfsYb",
@@ -152,6 +164,24 @@ const CALENDARS: Record<Desk, string> = {
      this code sets that, so do not assume the next calendar arrives
      the same way. Read it back from the API. */
   "care-ai-workforce": "WP6oumjuphxHD9rJBNKX",
+
+  /* ✅ PRACTICES AI WORKFORCE, supplied and wired 11 November 2026.
+     VERIFIED AGAINST THE API BEFORE WIRING, by name AND by redirect:
+     it returns "Book an AI Practice Workforce Review", slug
+     novada-ai-practice-workforce-review, round robin, 30 minutes,
+     active, redirecting to
+     https://novadatech.com.au/practices/ai-workforce/confirmed.
+     Open hours Mon-Fri 08:00-17:00 Sydney; asked for real slots it
+     returns Mon-Fri 08:00-16:30, 18 a day.
+
+     🔴 THE US TWIN IS A DIFFERENT CALENDAR AND THE TWO NAMES
+     DIFFER BY A "(US)" SUFFIX ALONE: 5HSmC49oSRPz4uo5sbnW, "Book an
+     AI Practice Workforce Review (US)", which redirects to
+     novadatech.com. That makes this the easiest pair on the estate to
+     swap by accident, and a swap sends an Australian booker to a US
+     confirmation page offering US times. Check the id, never the
+     name. */
+  "practices-ai-workforce": "iQpl893fxMU0WVY5VGXr",
 };
 const RESIZER_SRC = "https://link.novadatech.com/js/form_embed.js";
 

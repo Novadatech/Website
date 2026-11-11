@@ -33,22 +33,21 @@ const bitter = Bitter({
  * confirmation page ends up titled like a sales page.
  *
  * ══════════════════════════════════════════════════════════════════════
- * ✅ PUBLIC SINCE 10 NOVEMBER 2026. The `robots` block is gone and
- * `indexed: true` in offers.ts puts the route in the sitemap. The
- * founder made the call to publish ahead of the calendar.
+ * ✅ PUBLIC SINCE 10 NOVEMBER 2026, AND BOOKABLE SINCE 11 NOVEMBER.
+ * The `robots` block is gone and `indexed: true` in offers.ts puts the
+ * route in the sitemap. The founder published ahead of the calendar,
+ * so for one day this page was in search and could not take a booking;
+ * that gap is closed.
  *
- * 🔴 SO THE PAGE IS IN SEARCH AND CANNOT TAKE A BOOKING. #book carries
- * a placeholder and an email address. TWO STEPS REMAIN, both or
- * neither:
- *   1. add a `practices-ai-workforce` key to Desk and CALENDARS in
- *      src/components/desk/BookingEmbed.tsx with the supplied id
- *   2. swap the placeholder in #book for <BookingEmbed
- *      desk="practices-ai-workforce" source="practices-ai-workforce"
- *      tone="dark" />
+ * ✅ THE CALENDAR IS THE AUSTRALIAN ONE, iQpl893fxMU0WVY5VGXr,
+ * "Book an AI Practice Workforce Review", confirmed against the API by
+ * name and by redirect before it was wired. It redirects to
+ * /practices/ai-workforce/confirmed on THIS domain.
  *
- * ⚠️ AND IT MUST BE AN AUSTRALIAN CALENDAR. novadatech.com has its own
- * US practices page and its own calendars; pointing this domain at one
- * of those puts an Australian booker into a US pipeline at a US time.
+ * ⚠️ IT MUST STAY AN AUSTRALIAN CALENDAR. novadatech.com has its own
+ * US practices page and its own calendar, 5HSmC49oSRPz4uo5sbnW, whose
+ * name differs only by a "(US)" suffix; pointing this domain at it puts
+ * an Australian booker into a US pipeline at a US time.
  * ══════════════════════════════════════════════════════════════════════
  */
 export const metadata: Metadata = {
