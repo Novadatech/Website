@@ -1375,7 +1375,11 @@ export default function AiWorkforcePage() {
         </section>
       </main>
 
-      <DeskFooter />
+      {/* 🔴 bookHref="#book", and it was missing here too. The default
+          "/#book" is the homepage offer chooser, so the footer's book
+          link sent a reader who had already chosen this offer back to
+          choose it again. See DeskFooter's own docstring. */}
+      <DeskFooter bookHref="#book" />
 
       {/* ⚠️ CLEARANCE FOR THE STICKY BAR. Without it the bar covers the
           last line of the footer on a phone. */}

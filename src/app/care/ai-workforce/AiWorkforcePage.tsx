@@ -1083,15 +1083,47 @@ const VISUALS: Record<string, React.ComponentType> = {
 
 /* ── THE PAGE ─────────────────────────────────────────────────────── */
 
-export default function AiWorkforcePage() {
+/*
+ * ══════════════════════════════════════════════════════════════════════
+ * 🔴 THIS COMPONENT SERVES TWO ROUTES, AND IS NOT DUPLICATED FOR THE
+ * SECOND ONE.
+ *
+ *   /care/ai-workforce      the organic page, indexed
+ *   /care/ai-workforce/lp   the Meta ads landing page, noindex
+ *
+ * The paid page was asked for as "duplicate it". It is rendered from
+ * this same file instead, with variant="ads", because a 1,670-line fork
+ * does not stay a duplicate: the next copy or price edit lands on one
+ * of the two and the paid page quietly goes on selling last month's
+ * claims to the only traffic anyone is paying for.
+ *
+ * ⚠️ EVERYTHING THE VARIANT CHANGES IS A WAY OFF THE PAGE, OR
+ * ATTRIBUTION. It changes no copy, no claim and no layout. If you find
+ * yourself adding copy behind `ads`, the fork has started anyway and
+ * the two pages are no longer the same offer.
+ * ══════════════════════════════════════════════════════════════════════
+ */
+export default function AiWorkforcePage({
+  variant = "organic",
+}: {
+  variant?: "organic" | "ads";
+}) {
+  const ads = variant === "ads";
+
   return (
     <div
+      id="top"
       data-theme="desk"
       data-lp="cream"
       className="min-h-screen font-sans"
       style={{ backgroundColor: CREAM }}
     >
-            <LpHeader />
+            {/* ⚠️ ON THE PAID ROUTE THE HEADER CARRIES NO NAV AND THE
+                LOGO DOES NOT LEAVE. "/" is the two-door router, so a
+                paid visitor tapping the logo out of habit is asked to
+                choose an audience they already chose by clicking the
+                ad. "#top" scrolls this page up instead. */}
+            <LpHeader showNav={!ads} logoHref={ads ? "#top" : "/"} />
 
       <main>
         {/* ── HERO ─────────────────────────────────────────────────── */}
@@ -1644,9 +1676,16 @@ export default function AiWorkforcePage() {
                     silently breaks attribution without breaking the
                     booking, which is the hardest kind of fault to
                     notice. */}
+                {/* ⚠️ THE PAID ROUTE BOOKS THE SAME CALENDAR AND THE
+                    SAME PIPELINE, and differs only by `source`. That
+                    string is the utm_content on the widget and the
+                    attribution the CRM reads, so it is the only thing
+                    that will let anyone answer whether the Meta spend
+                    produced a booking. Changing it silently breaks
+                    attribution without breaking the booking. */}
                 <BookingEmbed
                   desk="care-ai-workforce"
-                  source="care-ai-workforce"
+                  source={ads ? "care-ai-workforce-meta-lp" : "care-ai-workforce"}
                   tone="dark"
                 />
               </div>
@@ -1655,7 +1694,26 @@ export default function AiWorkforcePage() {
         </section>
       </main>
 
-      <DeskFooter />
+      {/* 🔴 bookHref="#book" ON BOTH VARIANTS, AND IT WAS MISSING.
+          DeskFooter defaults to "/#book", and the homepage #book is an
+          offer CHOOSER, not a calendar. So the footer link asked a
+          reader who was already on this offer page, had scrolled the
+          whole thing and was ready to book, to go back to the homepage
+          and pick an offer they had already picked. The component's own
+          docstring says pages that own a #book must pass it; HubPage,
+          ServicePage and PillarPage all did, and this page did not.
+
+          ⚠️ THE PHONE NUMBER IS PASSED ONLY ON THE PAID ROUTE, and only
+          because this is the Australian site. It was removed from this
+          footer on 6 September 2026 because +61 is a country signal to
+          a US visitor on novadatech.com. An Australian ad audience
+          reads a local number as reassurance instead. */}
+      <DeskFooter
+        bookHref="#book"
+        variant={ads ? "minimal" : "full"}
+        phone={ads ? "+61 485 000 813" : undefined}
+        ctaLabel={ads ? "Book a discovery call" : undefined}
+      />
 
       {/* ⚠️ CLEARANCE FOR THE STICKY BAR. Without it the bar covers the
           last line of the footer on a phone, where it is tallest

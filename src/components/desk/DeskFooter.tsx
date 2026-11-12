@@ -38,11 +38,33 @@ import { AUDIENCES, CTA_LABEL, POSITION } from "@/content/offers";
 export default function DeskFooter({
   tone = "light",
   bookHref = "/#book",
+  /**
+   * "minimal" is the paid-landing-page footer: the brand block in its
+   * usual place, contact, one booking action, the copyright and a
+   * single privacy link. The two navigation columns are gone, because
+   * every link in them is a way off a page an ad was paid for.
+   */
+  variant = "full",
+  /**
+   * ⚠️ AUSTRALIAN SITE ONLY, AND THAT IS THE WHOLE POINT. The phone
+   * number was removed from this footer on 6 September 2026 because a
+   * +61 number is a country signal to a US visitor, and novadatech.com
+   * is a US-market site. novadatech.com.au has no such problem and an
+   * Australian ad audience reads a local number as reassurance.
+   * 🔴 DO NOT carry this prop across to the .com footer.
+   */
+  phone,
+  /** The footer's booking action. Paid pages word it as the ad does. */
+  ctaLabel = CTA_LABEL,
 }: {
   tone?: "light" | "dark";
   bookHref?: string;
+  variant?: "full" | "minimal";
+  phone?: string;
+  ctaLabel?: string;
 }) {
   const dark = tone === "dark";
+  const minimal = variant === "minimal";
   const link = `inline-flex min-h-11 items-center text-sm transition-colors duration-150 ease-standard ${
     dark ? "text-white/70 hover:text-white" : "text-ink-700 hover:text-brand-500"
   }`;
@@ -85,23 +107,25 @@ export default function DeskFooter({
             </p>
           </div>
 
-          <div>
-            <h2 className={heading}>Who we run it for</h2>
-            <ul>
-              {AUDIENCES.map((a) => (
-                <li key={a.href}>
-                  <Link href={a.href} className={link}>
-                    {a.name}
+          {minimal ? null : (
+            <div>
+              <h2 className={heading}>Who we run it for</h2>
+              <ul>
+                {AUDIENCES.map((a) => (
+                  <li key={a.href}>
+                    <Link href={a.href} className={link}>
+                      {a.name}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link href="/why-novada" className={link}>
+                    Why Novada
                   </Link>
                 </li>
-              ))}
-              <li>
-                <Link href="/why-novada" className={link}>
-                  Why Novada
-                </Link>
-              </li>
-            </ul>
-          </div>
+              </ul>
+            </div>
+          )}
 
           <div>
             <h2 className={heading}>Contact</h2>
@@ -111,29 +135,56 @@ export default function DeskFooter({
                   support@novadatech.com.au
                 </a>
               </li>
-              <li>
-                <a href={bookHref} className={link}>
-                  {CTA_LABEL}
-                </a>
-              </li>
+              {phone ? (
+                <li>
+                  {/* ⚠️ tel: STRIPS THE SPACES, the label keeps them. A
+                      phone link with spaces in the href is dialled
+                      correctly by most phones and silently ignored by
+                      some desktop handlers. */}
+                  <a href={`tel:${phone.replace(/\s+/g, "")}`} className={link}>
+                    {phone}
+                  </a>
+                </li>
+              ) : null}
+              {minimal ? null : (
+                <li>
+                  <a href={bookHref} className={link}>
+                    {CTA_LABEL}
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
 
-          <div>
-            <h2 className={heading}>Legal</h2>
-            <ul>
-              <li>
-                <Link href="/privacy-policy" className={link}>
-                  Privacy policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-of-service" className={link}>
-                  Terms of service
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {minimal ? (
+            /* The single action. On a paid page the footer is the last
+               thing a reader who scrolled the whole offer sees, so it
+               ends with the same ask the ad made, not a link list. */
+            <div className="sm:col-span-2 lg:col-span-2 lg:flex lg:justify-end">
+              <a
+                href={bookHref}
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xs bg-brand-500 px-6 text-[13px] font-bold uppercase tracking-caps text-white shadow-cta transition-[background-color,box-shadow] duration-150 ease-standard hover:bg-brand-600 hover:shadow-lift sm:whitespace-nowrap"
+              >
+                {ctaLabel}
+              </a>
+            </div>
+          ) : (
+            <div>
+              <h2 className={heading}>Legal</h2>
+              <ul>
+                <li>
+                  <Link href="/privacy-policy" className={link}>
+                    Privacy policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms-of-service" className={link}>
+                    Terms of service
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
 
         <div
@@ -141,13 +192,31 @@ export default function DeskFooter({
             dark ? "border-white/10" : "border-ink-200"
           }`}
         >
-          <p
-            className={`text-sm font-semibold ${
-              dark ? "text-white" : "text-ink-950"
-            }`}
-          >
-            Our own team. Never a call centre.
-          </p>
+          {minimal ? (
+            /* ⚠️ NEW TAB, DELIBERATELY. This is the only link off a
+               paid landing page, and it exists because the booking
+               widget collects personal information and Meta reviews
+               the page. Opening it in place would abandon the visit
+               to read a legal document. */
+            <a
+              href="/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-xs ${
+                dark ? "text-white/60 hover:text-white" : "text-ink-500 hover:text-brand-500"
+              }`}
+            >
+              Privacy policy
+            </a>
+          ) : (
+            <p
+              className={`text-sm font-semibold ${
+                dark ? "text-white" : "text-ink-950"
+              }`}
+            >
+              Our own team. Never a call centre.
+            </p>
+          )}
           <p className={`text-xs ${dark ? "text-white/60" : "text-ink-500"}`}>
             © {new Date().getFullYear()} Novada Tech. All rights reserved.
           </p>

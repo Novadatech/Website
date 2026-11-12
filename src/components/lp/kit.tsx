@@ -231,10 +231,27 @@ export function LpHeader({
       able to point somewhere real. A button that scrolls nowhere reads
       as broken. */
   ctaHref = "#book",
+  /**
+   * 🔴 FALSE ON A PAID LANDING PAGE. The three nav links are three ways
+   * off a page an ad was paid for: "Practices" sends a care click to a
+   * different offer entirely, and "Care Providers" points at the
+   * organic twin of the ads page itself.
+   */
+  showNav = true,
+  /**
+   * 🔴 THE LOGO IS THE OTHER WAY OFF THE PAGE, and the worse one,
+   * because "/" is the two-door router that ads must never hit. A paid
+   * visitor who taps the logo out of habit lands on a page asking them
+   * to choose an audience they already chose by clicking the ad.
+   * Paid pages pass "#top", which scrolls this page up instead.
+   */
+  logoHref = "/",
 }: {
   cta?: string;
   ctaShort?: string;
   ctaHref?: string;
+  showNav?: boolean;
+  logoHref?: string;
 }) {
   return (
     <header
@@ -247,8 +264,10 @@ export function LpHeader({
             with the mark floating in the middle, so at nav height it
             renders as a 20px smudge. */}
         <a
-          href="/"
-          aria-label="Novada Tech, home"
+          href={logoHref}
+          aria-label={
+            logoHref === "/" ? "Novada Tech, home" : "Novada Tech, back to top"
+          }
           className="-mx-1.5 flex flex-shrink-0 items-center gap-2.5 rounded-xs px-1.5 py-2"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -257,7 +276,8 @@ export function LpHeader({
             Novada <span className="text-brand-500">Tech</span>
           </span>
         </a>
-        {/* The nav, inline from md up. */}
+        {/* The nav, inline from md up. Absent entirely on a paid page. */}
+        {showNav ? (
         <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-7 lg:gap-9">
             {NAV.map((n) => (
@@ -272,6 +292,7 @@ export function LpHeader({
             ))}
           </ul>
         </nav>
+        ) : null}
 
         {/* ⚠️ TWO LABELS, ONE BUTTON. The long one wraps to three lines
             in a phone's 186px header slot, which makes the sticky
@@ -286,6 +307,7 @@ export function LpHeader({
           safety net, not the design: at 320px the three labels are
           wider than the screen and without it they would widen the
           whole document. */}
+      {showNav ? (
       <nav
         aria-label="Primary"
         className="border-t border-ink-100/70 lg:hidden"
@@ -305,6 +327,7 @@ export function LpHeader({
           ))}
         </ul>
       </nav>
+      ) : null}
     </header>
   );
 }
