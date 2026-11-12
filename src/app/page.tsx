@@ -1,22 +1,18 @@
 import type { Metadata } from "next";
-import { Bitter } from "next/font/google";
+import { lpSerif } from "@/lib/fonts";
 
 import HomePage from "./HomePage";
 
 /*
- * ⚠️ THE SERIF DISPLAY FACE, FOR THIS ROUTE ONLY, matching the two
- * offer pages. 🔴 IT IS DECLARED HERE AND NOT IN src/app/layout.tsx:
- * the root layout is inherited by every page on the site, including
- * the confirmation pages, and putting it there downloads a fourth font
- * family everywhere to serve four routes. next/font dedupes the actual
- * file across the routes that declare it.
+ * ⚠️ THE SERIF DISPLAY FACE, APPLIED ON THIS ROUTE ONLY. The single
+ * declaration lives in src/lib/fonts.ts; applying `lpSerif.variable`
+ * here rather than in src/app/layout.tsx is what keeps the family off
+ * every route that does not use it.
+ *
+ * 🔴 DO NOT DECLARE Bitter() HERE AGAIN. Seven separate declarations
+ * raced at build time and broke the Vercel build twice. The note in
+ * src/lib/fonts.ts has the whole story.
  */
-const bitter = Bitter({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
-  variable: "--font-lp-serif",
-});
 
 /*
  * / — the main home page.
@@ -70,7 +66,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className={bitter.variable}>
+    <div className={lpSerif.variable}>
       <HomePage />
     </div>
   );

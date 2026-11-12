@@ -1,26 +1,18 @@
 import type { Metadata } from "next";
-import { Bitter } from "next/font/google";
+import { lpSerif } from "@/lib/fonts";
 
 import AiWorkforcePage from "../AiWorkforcePage";
 
 /*
- * ⚠️ THE SERIF FACE IS DECLARED PER ROUTE, AND THIS ROUTE NEEDS ITS OWN
- * COPY. `SERIF` in components/lp/kit.tsx resolves var(--font-lp-serif),
- * which is set by a next/font declaration in each route's own server
- * component, deliberately: the root layout is inherited by every page,
- * so declaring it there downloads a fourth family site-wide.
+ * ⚠️ THE SERIF DISPLAY FACE, APPLIED ON THIS ROUTE ONLY. The single
+ * declaration lives in src/lib/fonts.ts; applying `lpSerif.variable`
+ * here rather than in src/app/layout.tsx is what keeps the family off
+ * every route that does not use it.
  *
- * 🔴 A ROUTE THAT FORGETS THIS STILL COMPILES AND STILL RENDERS. Every
- * heading just falls back to Georgia and the page looks nearly right,
- * which on the one page an ad is paying for is the expensive kind of
- * nearly. next/font dedupes the actual download, so the copy is free.
+ * 🔴 DO NOT DECLARE Bitter() HERE AGAIN. Seven separate declarations
+ * raced at build time and broke the Vercel build twice. The note in
+ * src/lib/fonts.ts has the whole story.
  */
-const bitter = Bitter({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
-  variable: "--font-lp-serif",
-});
 
 /*
  * ══════════════════════════════════════════════════════════════════════
@@ -72,7 +64,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className={bitter.variable}>
+    <div className={lpSerif.variable}>
       <AiWorkforcePage variant="ads" />
     </div>
   );

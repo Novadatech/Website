@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bitter } from "next/font/google";
+import { lpSerif } from "@/lib/fonts";
 
 // noindex: reachable only via the calendar redirect, never from search.
 // It is a conversion page, so an indexed copy would leak the funnel and
@@ -14,29 +14,20 @@ export const metadata: Metadata = {
 };
 
 /*
- * ⚠️ THE SERIF DISPLAY FACE, FOR THIS ROUTE ONLY, matching the offer
- * page the booking came from. 🔴 It has to be declared HERE, in the
- * layout, because this route has no server page wrapper: the page
- * itself is a client component. Without it `var(--font-lp-serif)`
- * resolves to nothing and every heading silently falls back to
- * Georgia.
+ * ⚠️ THE SERIF DISPLAY FACE, APPLIED ON THIS ROUTE ONLY. The single
+ * declaration lives in src/lib/fonts.ts; applying `lpSerif.variable`
+ * here rather than in src/app/layout.tsx is what keeps the family off
+ * every route that does not use it.
  *
- * 🔴 And NOT in src/app/layout.tsx: the root layout is inherited by
- * every page on the site, so putting it there downloads a fourth font
- * family everywhere to serve a handful of routes. next/font dedupes
- * the file across the routes that declare it.
+ * 🔴 DO NOT DECLARE Bitter() HERE AGAIN. Seven separate declarations
+ * raced at build time and broke the Vercel build twice. The note in
+ * src/lib/fonts.ts has the whole story.
  */
-const bitter = Bitter({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
-  variable: "--font-lp-serif",
-});
 
 export default function ConfirmedLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <div className={bitter.variable}>{children}</div>;
+  return <div className={lpSerif.variable}>{children}</div>;
 }

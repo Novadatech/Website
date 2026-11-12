@@ -1,34 +1,18 @@
 import type { Metadata } from "next";
-import { Bitter } from "next/font/google";
+import { lpSerif } from "@/lib/fonts";
 
 import AiWorkforcePage from "./AiWorkforcePage";
 
 /*
- * ⚠️ A SERIF DISPLAY FACE, FOR THIS ROUTE ONLY, AND IT IS A BRAND
- * DEPARTURE THE FOUNDER ACCEPTED ON 10 NOVEMBER 2026.
+ * ⚠️ THE SERIF DISPLAY FACE, APPLIED ON THIS ROUTE ONLY. The single
+ * declaration lives in src/lib/fonts.ts; applying `lpSerif.variable`
+ * here rather than in src/app/layout.tsx is what keeps the family off
+ * every route that does not use it.
  *
- * The rest of this estate sets display type in Barlow Condensed,
- * uppercase. This page sets its headings in a slab serif, sentence
- * case, centred, because the founder asked for the headline treatment
- * of the page this one was modelled on. Bitter is the closest free
- * match to that page's Sentinel.
- *
- * 🔴 IT IS DECLARED HERE, IN THE SERVER WRAPPER, AND NOT IN
- * src/app/layout.tsx. Adding it to the root layout downloads a fourth
- * font family on every page of the site to serve one route. The
- * variable is attached to the wrapper below, so it exists only inside
- * this page's subtree.
- *
- * TO REVERT TO THE HOUSE FACE: delete this import, the `bitter` const
- * and the wrapper div, then swap the SERIF constant in
- * ./AiWorkforcePage.tsx for `font-condensed uppercase`.
+ * 🔴 DO NOT DECLARE Bitter() HERE AGAIN. Seven separate declarations
+ * raced at build time and broke the Vercel build twice. The note in
+ * src/lib/fonts.ts has the whole story.
  */
-const bitter = Bitter({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
-  variable: "--font-lp-serif",
-});
 
 /*
  * /care/ai-workforce — NOVADA AI WORKFORCE.
@@ -64,7 +48,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className={bitter.variable}>
+    <div className={lpSerif.variable}>
       <AiWorkforcePage />
     </div>
   );

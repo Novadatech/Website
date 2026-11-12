@@ -1,26 +1,18 @@
 import type { Metadata } from "next";
-import { Bitter } from "next/font/google";
+import { lpSerif } from "@/lib/fonts";
 
 import AiWorkforcePage from "./AiWorkforcePage";
 
 /*
- * ⚠️ A SERIF DISPLAY FACE, FOR THIS ROUTE ONLY, matching
- * /care/ai-workforce. The rest of this estate sets display type in
- * Barlow Condensed, uppercase; these two offer pages set theirs in a
- * slab serif, sentence case, centred.
+ * ⚠️ THE SERIF DISPLAY FACE, APPLIED ON THIS ROUTE ONLY. The single
+ * declaration lives in src/lib/fonts.ts; applying `lpSerif.variable`
+ * here rather than in src/app/layout.tsx is what keeps the family off
+ * every route that does not use it.
  *
- * 🔴 DECLARED HERE, NOT IN src/app/layout.tsx. Adding it to the root
- * layout downloads a fourth font family on every page of the site. The
- * variable is attached to the wrapper below, so it exists only inside
- * this page's subtree. /care/ai-workforce declares its own copy for
- * the same reason; next/font dedupes the actual download.
+ * 🔴 DO NOT DECLARE Bitter() HERE AGAIN. Seven separate declarations
+ * raced at build time and broke the Vercel build twice. The note in
+ * src/lib/fonts.ts has the whole story.
  */
-const bitter = Bitter({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
-  variable: "--font-lp-serif",
-});
 
 /*
  * /practices/ai-workforce — NOVADA AI WORKFORCE, AUSTRALIAN PRACTICES.
@@ -66,7 +58,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className={bitter.variable}>
+    <div className={lpSerif.variable}>
       <AiWorkforcePage />
     </div>
   );
