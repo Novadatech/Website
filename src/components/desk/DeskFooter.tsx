@@ -2,11 +2,18 @@
  * Footer for the Desk brand pages, per the Website Rebuild Brief section 3.
  * Four columns: the brand and its strapline, what we run, contact, legal.
  *
- * ⚠️ THE PHONE NUMBER WAS REMOVED on 6 September 2026, on the founder's
- * instruction, when the site went dual-market. A +61 number is a country
- * signal to a US visitor. Email and the booking calendar are the only
- * contact routes now. Note the trade-off that was accepted: a site
- * selling phone answering no longer offers a phone number.
+ * ✅ THE PHONE NUMBER IS BACK, 13 November 2026, on the founder's
+ * instruction, and the reason it left no longer exists. It was removed
+ * on 6 September 2026 because the site was dual-market and a +61 number
+ * is a country signal to a US visitor. The two sites were split by
+ * market on 10 November 2026, so each one now carries ITS OWN
+ * country's number and signals the right thing. That also ends the
+ * oddity the old note recorded here: a business selling phone
+ * answering that offered no phone number.
+ *
+ * 🔴 THE NUMBER IS PER SITE AND THIS IS THE AUSTRALIAN FOOTER: +61 485 000 813.
+ * Do not copy a number between the two repos. The support ADDRESS is
+ * still shared on purpose; the number is not.
  *
  * Tailored 6 September 2026 for novadatech.com. Same structure the care
  * site carries, pointed at this site's two pages. The phone number and
@@ -35,6 +42,24 @@ import { AUDIENCES, CTA_LABEL, POSITION } from "@/content/offers";
  * to the home calendar loses the single-offer context and misattributes the
  * booking. Every other route keeps the cross-page default. Added 2026-09-06.
  */
+/*
+ * The footer phone number. ⚠️ A CONSTANT, NOT A PROP: every page shows
+ * it, so a prop would only be a knob somebody can forget to pass. It
+ * was briefly a prop, for the ads landing page footer, before the
+ * founder asked for it site-wide on 13 November 2026.
+ *
+ * 🔴 AUSTRALIAN NUMBER. The other repo has its own; see the note above.
+ */
+const PHONE = "+61 485 000 813";
+
+/*
+ * ⚠️ tel: TAKES DIGITS, THE LABEL KEEPS ITS FORMATTING. Strip every
+ * non-digit except the leading +, not just spaces: the US number is
+ * written with dashes, and "tel:+1833-385-3923" is handled
+ * inconsistently by desktop dialers.
+ */
+const TEL = `tel:${PHONE.replace(/[^\d+]/g, "")}`;
+
 export default function DeskFooter({
   tone = "light",
   bookHref = "/#book",
@@ -45,22 +70,12 @@ export default function DeskFooter({
    * every link in them is a way off a page an ad was paid for.
    */
   variant = "full",
-  /**
-   * ⚠️ AUSTRALIAN SITE ONLY, AND THAT IS THE WHOLE POINT. The phone
-   * number was removed from this footer on 6 September 2026 because a
-   * +61 number is a country signal to a US visitor, and novadatech.com
-   * is a US-market site. novadatech.com.au has no such problem and an
-   * Australian ad audience reads a local number as reassurance.
-   * 🔴 DO NOT carry this prop across to the .com footer.
-   */
-  phone,
   /** The footer's booking action. Paid pages word it as the ad does. */
   ctaLabel = CTA_LABEL,
 }: {
   tone?: "light" | "dark";
   bookHref?: string;
   variant?: "full" | "minimal";
-  phone?: string;
   ctaLabel?: string;
 }) {
   const dark = tone === "dark";
@@ -135,17 +150,11 @@ export default function DeskFooter({
                   support@novadatech.com.au
                 </a>
               </li>
-              {phone ? (
-                <li>
-                  {/* ⚠️ tel: STRIPS THE SPACES, the label keeps them. A
-                      phone link with spaces in the href is dialled
-                      correctly by most phones and silently ignored by
-                      some desktop handlers. */}
-                  <a href={`tel:${phone.replace(/\s+/g, "")}`} className={link}>
-                    {phone}
-                  </a>
-                </li>
-              ) : null}
+              <li>
+                <a href={TEL} className={link}>
+                  {PHONE}
+                </a>
+              </li>
               {minimal ? null : (
                 <li>
                   <a href={bookHref} className={link}>

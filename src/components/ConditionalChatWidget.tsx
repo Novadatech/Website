@@ -54,6 +54,17 @@ const WIDGETS = {
 const CHAT_ROUTES: Record<string, keyof typeof WIDGETS> = {
   "/": "main",
   "/care/ai-workforce": "main",
+  /* ✅ THE META ADS LANDING PAGE, added 13 November 2026 on founder
+     instruction. It is the same page as /care/ai-workforce and the
+     same approved bot script, so the approval that covers the offer
+     page covers this one.
+
+     ⚠️ IT HAD TO BE ADDED HERE EXPLICITLY. This map is an ALLOW-LIST,
+     so a new route gets no widget until it is listed, and the CSS gate
+     hides one that appears anyway. That is why the widget was missing
+     from the paid page: gated, not broken. Do NOT answer a missing
+     widget by switching this back to a deny-list. */
+  "/care/ai-workforce/lp": "main",
   "/practices/ai-workforce": "main",
   "/why-novada": "main",
   "/privacy-policy": "main",

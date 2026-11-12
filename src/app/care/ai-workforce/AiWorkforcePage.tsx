@@ -1711,7 +1711,6 @@ export default function AiWorkforcePage({
       <DeskFooter
         bookHref="#book"
         variant={ads ? "minimal" : "full"}
-        phone={ads ? "+61 485 000 813" : undefined}
         ctaLabel={ads ? "Book a discovery call" : undefined}
       />
 
