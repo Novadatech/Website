@@ -827,23 +827,44 @@ function Avatar({ i }: { i: string }) {
 /**
  * THE HERO IMAGE.
  *
- * 🔴 THIS IS THE SOURCE PAGE'S OWN HERO IMAGE, REBUILT. Founder
- * instruction, 10 November 2026: use their exact hero image, remove
- * their logo and the award, tailor the dashboard to our brand, keep the
- * woman. The build script is hero_build.py in the session scratchpad
- * and public/ai-workforce/hero.png is its output. What it did:
+ * ✅ EVERY PART OF THIS IMAGE IS OURS OR LICENSED, since 17 November
+ * 2026. Build script: hero_build2.py (session scratchpad), output
+ * public/ai-workforce/hero-workforce.webp.
  *
- *   · recoloured the magenta family to Novada blue by rotating hue
- *     -117 degrees, so the art keeps its own light-to-dark structure
- *   · LEFT THE ORANGE BLOBS ALONE, because orange is already Novada's
- *     signal accent and they now read as brand rather than leftovers
- *   · protected her with a traced silhouette plus a saturation ceiling
- *     inside it. ⚠️ Without that, her lips, cheek highlights and the
- *     warm shadows on her hands all sit in the magenta band and the
- *     recolour puts blue blotches across her face
- *   · removed the "Bob" tile from the sidebar and the G2 award, which
- *     is not ours
- *   · replaced the banner greeting
+ * ⚠️ WEBP, NOT PNG, AND THAT IS DELIBERATE. The art is a photograph
+ * over flat shapes with an alpha channel. As PNG at this resolution it
+ * is 986 kB on the LCP element; as WebP q92 it is 184 kB with the
+ * alpha intact and the dashboard text still crisp. It is kept at 2x
+ * (1876x1308) because the <img> is 938 wide and renders ~590 CSS px,
+ * so a 1x file would be soft on every retina screen.
+ *
+ *   · the dashboard is NOVADA'S OWN Figma design, "01 - Overview
+ *     CURRENT", cropped to the two main cards
+ *   · the woman is Pexels 29995622 by Tran Nhu Tuan (@kooldark),
+ *     keyed out here. Pexels licence: free for marketing use,
+ *     modification allowed, NO attribution required
+ *   · the blobs are generated from our own tailwind tokens
+ *     (brand-200/400/500, signal-600)
+ *
+ * 🔴 WHAT IT REPLACED, SO NOBODY RESTORES IT. public/ai-workforce/
+ * hero.png was HiBob's own marketing image hue-rotated -117 degrees
+ * from magenta to blue: THEIR photograph of a real identifiable woman,
+ * THEIR dashboard UI, THEIR brand shapes. A recolour is a derivative
+ * work, not a clean-room rebuild, and three separate rights sat in it
+ * — the photographer's copyright, the model's likeness (her release
+ * covers HiBob, not us) and HiBob's UI design. Small real faces also
+ * survived in the feed rows. ⚠️ hero.png is STILL referenced by the
+ * homepage, /why-novada and the practices pages, and by the whole US
+ * repo. Those are queued, not cleared.
+ *
+ * ⚠️ THE PEXELS LICENCE FORBIDS IMPLYING ENDORSEMENT. She is set
+ * beside the product, unnamed and unquoted. Never place this image
+ * next to a testimonial, a name or a quotation.
+ *
+ * ⚠️ The composition (panel left, figure right breaking its edge,
+ * organic shapes) is a layout convention and is deliberately close to
+ * the source page's. The SHAPES are not: HiBob's petal marks are their
+ * brand artwork, so these are plain generated blobs.
  *
  * ⚠️ IT IS A SINGLE FLAT PNG. There is no detail card and no Blobs
  * component over it any more, because the image carries its own
@@ -856,8 +877,8 @@ function HeroVisual() {
   return (
     /* eslint-disable-next-line @next/next/no-img-element */
     <img
-      src="/ai-workforce/hero.png"
-      alt="The Novada AI Control Centre, with a care operations manager reviewing the overnight summary"
+      src="/ai-workforce/hero-workforce.webp"
+      alt="The Novada AI Workforce Control Centre, showing overnight verified work, open exceptions and the five AI employees, beside a care operations manager"
       width={938}
       height={654}
       fetchPriority="high"
