@@ -827,24 +827,38 @@ function Avatar({ i }: { i: string }) {
 /**
  * THE HERO IMAGE.
  *
- * ✅ EVERY PART OF THIS IMAGE IS OURS OR LICENSED, since 17 November
- * 2026. Build script: hero_build2.py (session scratchpad), output
- * public/ai-workforce/hero-workforce.webp.
+ * Founder instruction, 17 November 2026: **keep HiBob's design
+ * exactly. Only the dashboard and the lady change, and the lady is to
+ * be Caucasian and placed exactly where theirs is.** Build script:
+ * hero_build3.py (session scratchpad).
  *
- * ⚠️ WEBP, NOT PNG, AND THAT IS DELIBERATE. The art is a photograph
- * over flat shapes with an alpha channel. As PNG at this resolution it
- * is 986 kB on the LCP element; as WebP q92 it is 184 kB with the
- * alpha intact and the dashboard text still crisp. It is kept at 2x
- * (1876x1308) because the <img> is 938 wide and renders ~590 CSS px,
- * so a 1x file would be soft on every retina screen.
+ * So this is NOT a fresh composition. It starts from the old hero.png
+ * and makes three surgical swaps, leaving their arrangement untouched:
  *
  *   · the dashboard is NOVADA'S OWN Figma design, "01 - Overview
- *     CURRENT", cropped to the two main cards
- *   · the woman is Pexels 29995622 by Tran Nhu Tuan (@kooldark),
- *     keyed out here. Pexels licence: free for marketing use,
- *     modification allowed, NO attribution required
- *   · the blobs are generated from our own tailwind tokens
- *     (brand-200/400/500, signal-600)
+ *     CURRENT", cropped to THEIR panel ratio so it fills the rect
+ *   · the figure is Pexels 35696305 by Tran Nhu Tuan (@kooldark),
+ *     keyed out here, scaled so her head matches theirs and clipped at
+ *     the panel bottom exactly as theirs was
+ *   · their blobs, their placement, their colours, untouched
+ *
+ * 🔴 SO THE BLOBS ARE STILL HIBOB'S ARTWORK. This was raised with the
+ * founder and reaffirmed. The two dominant rights are gone — the
+ * model's likeness and their dashboard UI — and the shapes remain
+ * theirs. Do not record this file as fully clean.
+ *
+ * ⚠️ PANEL RECT IS MEASURED FROM THE ALPHA, NOT BY EYE: opaque runs
+ * cols 142..1810, rows 186..1078 at 2x. An eyeball reading said the
+ * right edge was 1806; four columns of their orange banner then
+ * survived and rendered as a stray orange hairline down the edge.
+ * Their model's hair also feathers out past the panel at alpha 8-20,
+ * so the right margin is cleared too and the blue shapes restored.
+ *
+ * ⚠️ WEBP, NOT PNG, AND THAT IS DELIBERATE. The art is a photograph
+ * over flat shapes with an alpha channel. As PNG it is ~1.2 MB on the
+ * LCP element; as WebP q92 it is 218 kB with the alpha intact and the
+ * dashboard text still crisp. Kept at 2x (1876x1308) because the
+ * <img> is 938 wide and renders ~590 CSS px.
  *
  * 🔴 WHAT IT REPLACED, SO NOBODY RESTORES IT. public/ai-workforce/
  * hero.png was HiBob's own marketing image hue-rotated -117 degrees
@@ -861,12 +875,7 @@ function Avatar({ i }: { i: string }) {
  * beside the product, unnamed and unquoted. Never place this image
  * next to a testimonial, a name or a quotation.
  *
- * ⚠️ The composition (panel left, figure right breaking its edge,
- * organic shapes) is a layout convention and is deliberately close to
- * the source page's. The SHAPES are not: HiBob's petal marks are their
- * brand artwork, so these are plain generated blobs.
- *
- * ⚠️ IT IS A SINGLE FLAT PNG. There is no detail card and no Blobs
+ * ⚠️ IT IS A SINGLE FLAT IMAGE. There is no detail card and no Blobs
  * component over it any more, because the image carries its own
  * shapes, exactly as the source page's does. Do not add the old code
  * mock back on top of it.
