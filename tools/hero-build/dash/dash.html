@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Novada AI Workforce</title>
+<!--
+  A parameterised replica of Novada's OWN dashboard design.
+
+  Ground truth is the Figma export
+    "Figma Design/01 • Overview — CURRENT.png"  (1440x1080)
+  and every colour below was SAMPLED out of that PNG, not guessed.
+
+  ⚠️ ONLY THE TOP 770px EVER SHIPS. The hero panel is 1669x893 at 2x,
+  ratio 1.869, so hero_build crops 1440x770 off the top. Anything below
+  y=770 is invisible on the site. The bottom table in the Figma original
+  is therefore DEAD SPACE on the web — screens that want a table as
+  their hero element must put it in the MAIN grid, not the bottom slot.
+
+  ⚠️ AND THE FIGURE COVERS x >= ~700. The message has to live in
+  x 0..690: sidebar, h1, subtitle, the first two-and-a-bit KPI cards
+  and the left card's rows. The right column is decoration only.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B195B; --navy-card:#182A80;
+    --blue:#2357F5; --purple:#7547F5; --teal:#1487AD;
+    --grey:#8792A9; --red:#D94158;
+    --crit-ink:#B4233C; --warn-ink:#8F5A00; --green:#067A52;
+    --ink:#101936; --ink-600:#5B6680; --ink-500:#818A9F;
+    --line:#E4E9F2; --line-soft:#EDF1F7;
+    --bg:#F6F8FC; --card:#FFFFFF;
+    --crit-bg:#FFF5F5; --warn-bg:#FFF9E9; --info-bg:#F1F5FF;
+    --amber:#C27C0E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1440px;height:1080px;overflow:hidden}
+  body{display:flex;background:var(--bg);
+       font-family:Inter,system-ui,sans-serif;
+       -webkit-font-smoothing:antialiased;color:var(--ink)}
+  .poppins{font-family:Poppins,Inter,sans-serif}
+
+  /* ── sidebar ─────────────────────────────────────────────── */
+  .side{width:248px;flex:none;background:var(--navy);
+        display:flex;flex-direction:column;padding:24px 0 24px}
+  .brand{display:flex;align-items:center;gap:14px;padding:0 24px;margin-bottom:34px}
+  .mark{width:36px;height:36px;border-radius:10px;overflow:hidden;
+        display:flex;gap:2px;flex:none}
+  .mark i{flex:1;display:block}
+  .mark i:first-child{background:var(--blue)}
+  .mark i:last-child{background:var(--purple)}
+  .brand b{font-family:Poppins,sans-serif;font-size:20px;font-weight:700;
+           color:#fff;line-height:1.1;display:block;letter-spacing:-.01em}
+  .brand span{display:block;font-size:9.5px;font-weight:700;letter-spacing:.14em;
+              color:#8EA8FF;margin-top:3px}
+  nav{display:flex;flex-direction:column;gap:2px;padding:0 14px}
+  .nav{display:flex;align-items:center;gap:14px;height:52px;padding:0 16px;
+       border-radius:10px;color:rgba(255,255,255,.72);font-size:15px;font-weight:500}
+  .nav svg{width:20px;height:20px;flex:none;opacity:.72}
+  .nav.on{background:var(--blue);color:#fff;font-weight:600}
+  .nav.on svg{opacity:1}
+  .rule{height:1px;background:rgba(255,255,255,.14);margin:22px 16px 0}
+  .live{margin:auto 16px 0;background:var(--navy-card);border-radius:10px;padding:14px 16px}
+  .live .hd{display:flex;align-items:center;gap:8px;color:#fff;font-size:13px;font-weight:600}
+  .live .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex:none}
+  .live p{font-size:11.5px;line-height:1.45;color:#A9B6DD;margin-top:8px}
+  .live a{display:block;font-size:11.5px;font-weight:600;color:#fff;margin-top:10px}
+
+  /* ── top bar ─────────────────────────────────────────────── */
+  main{flex:1;min-width:0;display:flex;flex-direction:column}
+  .top{height:88px;flex:none;background:#fff;border-bottom:1px solid var(--line);
+       display:flex;align-items:center;justify-content:space-between;padding:0 52px 0 36px}
+  .crumb{font-size:13px;color:var(--ink-500)}
+  .org{font-size:16px;font-weight:700;color:var(--ink);margin-top:6px}
+  .tools{display:flex;align-items:center;gap:22px}
+  .search{width:242px;height:40px;border:1px solid var(--line);background:var(--bg);
+          border-radius:8px;display:flex;align-items:center;gap:9px;padding:0 13px;
+          font-size:13px;color:var(--ink-500)}
+  .bell{width:32px;height:32px;border-radius:50%;background:#FDECEF;color:var(--crit-ink);
+        display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700}
+  .me{width:36px;height:36px;border-radius:50%;background:#EDE8FF;color:#5B4DCB;
+      display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+
+  /* ── page head ───────────────────────────────────────────── */
+  .wrap{padding:30px 52px 0 36px}
+  .headrow{display:flex;justify-content:space-between;align-items:flex-start}
+  .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.09em;color:var(--ink-600)}
+  .asof{font-size:12px;color:var(--ink-500)}
+  h1{font-family:Poppins,sans-serif;font-size:28.5px;font-weight:700;
+     letter-spacing:-.02em;color:var(--ink);margin-top:13px;line-height:1.14}
+  .sub{font-size:13.5px;color:var(--ink-600);margin-top:9px}
+  .filters{position:absolute;right:52px;top:50px;display:flex;flex-direction:column;
+           align-items:flex-end;gap:13px}
+  .chips{display:flex;gap:14px}
+  .chip{height:36px;border:1px solid var(--line);background:#fff;border-radius:8px;
+        display:flex;align-items:center;gap:10px;padding:0 15px;font-size:13px;
+        font-weight:600;color:var(--ink)}
+  .chip em{font-style:normal;color:var(--ink-500);font-size:9px}
+  .health{height:30px;border:1px solid var(--line);background:#fff;border-radius:8px;
+          display:flex;align-items:center;gap:9px;padding:0 15px;font-size:13px;
+          color:var(--ink-600);min-width:430px}
+  .health .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex:none}
+  .health span{margin-left:auto;color:var(--ink-500)}
+
+  /* ── kpis ────────────────────────────────────────────────── */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:29px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;height:123px}
+  .kpi .bar{width:32px;height:4px;border-radius:2px}
+  .kpi .lab{font-size:13px;color:var(--ink-600);margin-top:14px}
+  .kpi .val{font-family:Poppins,sans-serif;font-size:30px;font-weight:700;
+            color:var(--ink);line-height:1;margin-top:7px;letter-spacing:-.01em}
+  .kpi .foot{font-size:11.5px;color:var(--ink-500);margin-top:9px}
+  .kpi .foot.crit{color:var(--crit-ink)}
+
+  /* ── main grid ───────────────────────────────────────────── */
+  .grid{display:grid;grid-template-columns:718px 1fr;gap:18px;margin-top:19px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;height:430px;
+        padding:20px 22px;overflow:hidden}
+  .card.r{padding:20px}
+  .chd{display:flex;align-items:center;justify-content:space-between}
+  .chd h2{font-family:Poppins,sans-serif;font-size:18px;font-weight:600;color:var(--ink);line-height:1.05}
+  .chd a{font-size:13px;font-weight:600;color:var(--blue)}
+  .csub{font-size:12.5px;color:var(--ink-500);margin-top:6px}
+
+  /* role rows */
+  .row{display:flex;align-items:center;gap:14px;height:56px;border-top:1px solid var(--line-soft)}
+  .rows{margin-top:34px}
+  .rows .row:first-child{border-top:0}
+  .av{width:36px;height:36px;border-radius:10px;flex:none;display:flex;
+      align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700}
+  .nm{font-size:14px;font-weight:600;color:var(--ink)}
+  .sb{font-size:12.5px;color:var(--ink-500);margin-top:3px}
+  .st{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12.5px;
+      color:var(--ink);white-space:nowrap}
+  .st .dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex:none}
+  .st.hold{color:var(--warn-ink)} .st.hold .dot{background:var(--amber)}
+  .chev{color:#B6BFD0;font-size:13px;margin-left:2px}
+  .hub{display:flex;align-items:center;gap:14px;height:56px;border-top:1px solid var(--line-soft)}
+  .hub .av{background:#EDF1F7;color:var(--blue);font-size:16px}
+  .hub a{margin-left:auto;font-size:13px;font-weight:600;color:var(--blue);white-space:nowrap}
+
+  /* table rows */
+  .trow{display:flex;align-items:center;gap:0;height:48px;border-top:1px solid var(--line-soft);
+        font-size:13px}
+  .tbl{margin-top:28px}
+  .tbl .trow:first-child{border-top:0}
+  .trow .t{width:58px;flex:none;color:var(--ink-600);font-size:12.5px;
+           font-variant-numeric:tabular-nums}
+  .trow .a{width:118px;flex:none;font-weight:600;color:var(--ink)}
+  .trow .d{flex:1;min-width:0;color:var(--ink);overflow:hidden;
+           text-overflow:ellipsis;white-space:nowrap;padding-right:14px}
+  .trow .s{width:152px;flex:none;color:var(--ink-500);font-size:12.5px;
+           overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .trow .k{width:88px;flex:none;text-align:right;font-size:12.5px;
+           font-weight:600;color:var(--green);white-space:nowrap}
+  .trow .k.hold{color:var(--warn-ink)}
+
+  /* attention cards */
+  .att{border-radius:8px;padding:14px 16px;border-left:3px solid;margin-top:14px}
+  .att .lab{font-size:11px;font-weight:700;letter-spacing:.07em;margin-bottom:7px}
+  .att h3{font-size:15px;font-weight:700;color:var(--ink);line-height:1.3}
+  .att p{font-size:12.5px;color:var(--ink-600);margin-top:5px;line-height:1.45}
+  .att .lk{font-size:12.5px;font-weight:600;margin-top:11px;display:block}
+  .att.crit{background:var(--crit-bg);border-color:var(--red)}
+  .att.crit .lab,.att.crit .lk{color:var(--crit-ink)}
+  .att.warn{background:var(--warn-bg);border-color:#E8B23A}
+  .att.warn .lab,.att.warn .lk{color:var(--warn-ink)}
+  .att.info{background:var(--info-bg);border-color:var(--blue)}
+  .att.info .lab,.att.info .lk{color:var(--blue)}
+</style>
+</head>
+<body>
+<script src="variants.js"></script>
+<script>
+/* ── icons, drawn to match the Figma sidebar set ─────────────── */
+var P = {
+  grid:'M3 3h6v6H3zM11 3h6v6h-6zM3 11h6v6H3zM11 11h6v6h-6z',
+  diamond:'M10 2l8 8-8 8-8-8z M10 6.5l3.5 3.5L10 13.5 6.5 10z',
+  list:'M3 5h3M8 5h9M3 10h3M8 10h9M3 15h3M8 15h9',
+  target:'M10 17a7 7 0 100-14 7 7 0 000 14z M10 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z',
+  dna:'M6 3c0 4 8 4 8 7s-8 3-8 7 M14 3c0 4-8 4-8 7s8 3 8 7',
+  doc:'M4 3h12v14H4z M7 7h6M7 10h6M7 13h4',
+  gear:'M10 13a3 3 0 100-6 3 3 0 000 6z M10 1.5v2.2M10 16.3v2.2M18.5 10h-2.2M3.7 10H1.5M16 4l-1.6 1.6M5.6 14.4L4 16M16 16l-1.6-1.6M5.6 5.6L4 4',
+  cal:'M3.5 5h13v12h-13z M3.5 9h13 M7 2.5v3M13 2.5v3',
+  phone:'M5.5 3h3l1.5 3.5-2 1.5a10 10 0 004 4l1.5-2 3.5 1.5v3a1.5 1.5 0 01-1.7 1.5C8.5 15.3 4.7 11.5 4 5.2A1.5 1.5 0 015.5 3z',
+  card:'M2.5 5h15v10h-15z M2.5 8.5h15 M5.5 12h3',
+  shield:'M10 2.5l6 2.3v5c0 4-2.6 6.6-6 7.7-3.4-1.1-6-3.7-6-7.7v-5z M7.4 10l1.9 1.9 3.3-3.6'
+};
+function svg(k){
+  var fillish = (k==='grid');
+  return '<svg viewBox="0 0 20 20" fill="'+(fillish?'currentColor':'none')+
+         '" stroke="currentColor" stroke-width="'+(fillish?0:1.5)+
+         '" stroke-linecap="round" stroke-linejoin="round"><path d="'+P[k]+'"/></svg>';
+}
+var esc = function(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); };
+
+/* ── render ──────────────────────────────────────────────────── */
+var v = window.VARIANTS[location.hash.slice(1)];
+if(!v){ document.body.innerHTML = '<p style="padding:40px;font:16px Inter">'+
+        'unknown variant: '+esc(location.hash)+'</p>'; }
+else {
+  var nav = v.nav.map(function(n){
+    return '<div class="nav'+(n[2]?' on':'')+'">'+svg(n[1])+'<span>'+esc(n[0])+'</span></div>';
+  }).join('');
+
+  var kpis = v.kpis.map(function(k){
+    return '<div class="kpi"><div class="bar" style="background:'+k.c+'"></div>'+
+           '<div class="lab">'+esc(k.lab)+'</div><div class="val">'+esc(k.val)+'</div>'+
+           '<div class="foot'+(k.crit?' crit':'')+'">'+esc(k.foot)+'</div></div>';
+  }).join('');
+
+  var left;
+  if(v.left.kind === 'roles'){
+    left = '<div class="rows">'+ v.left.rows.map(function(r){
+      return '<div class="row"><div class="av" style="background:'+r.c+'">'+esc(r.l)+'</div>'+
+        '<div><div class="nm">'+esc(r.n)+'</div><div class="sb">'+esc(r.s)+'</div></div>'+
+        '<div class="st'+(r.hold?' hold':'')+'"><i class="dot"></i>'+esc(r.st)+
+        '<span class="chev">&#8250;</span></div></div>';
+    }).join('') + (v.left.hub ?
+      '<div class="hub"><div class="av">&#9678;</div><div><div class="nm">'+esc(v.left.hub.n)+
+      '</div><div class="sb">'+esc(v.left.hub.s)+'</div></div>'+
+      '<a>'+esc(v.left.hub.a)+' &#8594;</a></div>' : '') + '</div>';
+  } else {
+    left = '<div class="tbl">'+ v.left.rows.map(function(r){
+      return '<div class="trow"><div class="t">'+esc(r.t)+'</div><div class="a">'+esc(r.a)+
+        '</div><div class="d">'+esc(r.d)+'</div><div class="s">'+esc(r.s)+'</div>'+
+        '<div class="k'+(r.hold?' hold':'')+'">'+(r.hold?'':'&#10003; ')+esc(r.k)+'</div></div>';
+    }).join('') + '</div>';
+  }
+
+  var right = v.right.cards.map(function(c){
+    return '<div class="att '+c.tone+'"><div class="lab">'+esc(c.lab)+'</div>'+
+      '<h3>'+esc(c.h)+'</h3>'+ c.p.map(function(x){return '<p>'+esc(x)+'</p>';}).join('') +
+      '<span class="lk">'+esc(c.lk)+' &#8594;</span></div>';
+  }).join('');
+
+  document.body.innerHTML =
+  '<aside class="side">'+
+    '<div class="brand"><div class="mark"><i></i><i></i></div>'+
+      '<div><b>Novada</b><span>AI WORKFORCE</span></div></div>'+
+    '<nav>'+nav+'</nav><div class="rule"></div>'+
+    '<div class="live"><div class="hd"><i class="dot"></i>AI workforce live</div>'+
+      '<p>'+esc(v.live)+'</p><a>Need help? Contact Novada &#8599;</a></div>'+
+  '</aside>'+
+  '<main>'+
+    '<div class="top"><div><div class="crumb">'+esc(v.crumb)+'</div>'+
+      '<div class="org">'+esc(v.org)+'</div></div>'+
+      '<div class="tools"><div class="search">&#9906; '+esc(v.search)+'</div>'+
+      '<div class="bell">!</div><div class="me">'+esc(v.me)+'</div></div></div>'+
+    '<div class="wrap" style="position:relative">'+
+      '<div class="headrow"><div class="eyebrow">'+esc(v.date)+'</div>'+
+        '<div class="asof">'+esc(v.asof)+'</div></div>'+
+      '<h1>'+esc(v.h1)+'</h1><div class="sub">'+esc(v.sub)+'</div>'+
+      '<div class="filters"><div class="chips">'+
+        v.chips.map(function(c){return '<div class="chip">'+esc(c)+'<em>&#9660;</em></div>';}).join('')+
+        '</div><div class="health"><i class="dot"></i>'+esc(v.health)+'<span>&#8594;</span></div></div>'+
+      '<div class="kpis">'+kpis+'</div>'+
+      '<div class="grid">'+
+        '<div class="card"><div class="chd"><h2>'+esc(v.left.title)+'</h2>'+
+          '<a>'+esc(v.left.link)+' &#8594;</a></div>'+
+          (v.left.sub?'<div class="csub">'+esc(v.left.sub)+'</div>':'')+ left +'</div>'+
+        '<div class="card r"><div class="chd"><h2>'+esc(v.right.title)+'</h2>'+
+          '<a>'+esc(v.right.link)+' &#8594;</a></div>'+right+'</div>'+
+      '</div>'+
+    '</div>'+
+  '</main>';
+  document.title = 'Novada - ' + v.h1;
+}
+</script>
+</body>
+</html>
