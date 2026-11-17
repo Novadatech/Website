@@ -346,8 +346,20 @@ export default function HomePage() {
             <div className="min-w-0 lg:pl-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/ai-workforce/hero.png"
-                alt="The Novada AI Control Centre, with an operations manager reviewing the overnight summary"
+                /* ⚠️ ONE LAYOUT, SEVEN SCREENS. Founder instruction,
+                   17 Nov 2026: roll the hero across every page, and give
+                   each page its OWN dashboard so the pages do not read as
+                   the same picture with the words changed. The frame, the
+                   blobs, the placement and the figure are identical
+                   site-wide; only the screen inside the panel differs.
+                   This page shows the OVERNIGHT WORK QUEUE.
+                   Built by hero_build_all.py from dash/out/home-au.png.
+                   🔴 THE BLOB ARTWORK IS STILL HIBOB'S, kept by founder
+                   decision. The two dominant rights - their model's
+                   likeness and their dashboard UI - are gone; the shapes
+                   are not. Do not record this file as fully cleared. */
+                src="/ai-workforce/hero-home.webp"
+                alt="The Novada AI Workforce control centre, showing the overnight work queue and the items held for a person, beside an operations manager"
                 width={938}
                 height={654}
                 fetchPriority="high"

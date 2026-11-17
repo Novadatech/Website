@@ -930,8 +930,20 @@ export default function AiWorkforcePage() {
             <div className="min-w-0 lg:pl-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/ai-workforce/hero-practices.png"
-                alt="The Novada AI Control Centre, with a practice manager reviewing the morning's front desk summary"
+                /* ⚠️ ONE LAYOUT, SEVEN SCREENS. Founder instruction,
+                   17 Nov 2026: roll the hero across every page, and give
+                   each page its OWN dashboard so the pages do not read as
+                   the same picture with the words changed. The frame, the
+                   blobs, the placement and the figure are identical
+                   site-wide; only the screen inside the panel differs.
+                   This page shows the PATIENT ACCESS screen.
+                   Built by hero_build_all.py from dash/out/practices-au.png.
+                   🔴 THE BLOB ARTWORK IS STILL HIBOB'S, kept by founder
+                   decision. The two dominant rights - their model's
+                   likeness and their dashboard UI - are gone; the shapes
+                   are not. Do not record this file as fully cleared. */
+                src="/ai-workforce/hero-practices.webp"
+                alt="The Novada AI Workforce patient access screen, showing calls answered, slots refilled and the practice's six AI employees, beside a practice manager"
                 width={938}
                 height={654}
                 fetchPriority="high"
