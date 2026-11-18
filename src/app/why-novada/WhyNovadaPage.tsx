@@ -178,8 +178,7 @@ const TESTIMONIALS = [
    ⚠️ The confirmation card is hidden below sm. */
 function RecordVisual() {
   return (
-    <div>
-      <div className="relative pb-0 sm:pb-24 sm:pr-6">
+    <div className="relative pb-0 sm:pb-24 sm:pr-6">
         <ProductShot
           src="/product/why-history.webp"
           width={640}
@@ -194,10 +193,6 @@ function RecordVisual() {
           alt="Authoritative confirmation from the source system: read-back matched the requested worker and shift"
           className="absolute bottom-0 right-0 z-20 hidden w-[260px] sm:block"
         />
-      </div>
-      <p className="mt-4 text-[11px] text-ink-400">
-        Example screen. The provider, people and figures are illustrative.
-      </p>
     </div>
   );
 }
@@ -268,7 +263,7 @@ export default function WhyNovadaPage() {
                    likeness and their dashboard UI - are gone; the shapes
                    are not. Do not record this file as fully cleared. */
                 src="/ai-workforce/hero-why.webp"
-                alt="The Novada AI Operations Agent audit trail, showing every action beside the system that confirmed it, with an operations manager"
+                alt="One task in the Novada Control Centre, step by step: a sick call at 06:08, eligibility checked, offers sent, a replacement accepted and the outcome verified in the rostering system at 06:21, beside an operations manager"
                 width={938}
                 height={654}
                 fetchPriority="high"

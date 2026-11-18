@@ -169,6 +169,31 @@
   .att.warn .lab,.att.warn .lk{color:var(--warn-ink)}
   .att.info{background:var(--info-bg);border-color:var(--blue)}
   .att.info .lab,.att.info .lk{color:var(--blue)}
+
+  /* ── analytics + timeline panels (18 Nov 2026) ───────────────
+     Founder: each page's headline screen must be different, and the
+     homepage and practices screens should be the analytics ones with
+     graphs. Only the LEFT ~415px of the main card is ever visible
+     (the figure covers x >= ~700), so every chart starts at the left
+     and reads from its first few points. */
+  .chart{margin-top:14px}
+  .chart svg{display:block}
+  .chart text{font-family:Inter,sans-serif;font-size:11.5px;fill:var(--ink-500)}
+  .bignum{display:flex;align-items:baseline;gap:10px;margin-top:16px}
+  .bignum b{font-family:Poppins,sans-serif;font-size:30px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+  .bignum span{font-size:12.5px;font-weight:600;color:var(--green)}
+  .legend{display:flex;gap:18px;margin-top:10px;font-size:12px;color:var(--ink-600)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+  .tl{margin-top:22px;position:relative}
+  .tl:before{content:"";position:absolute;left:15px;top:16px;bottom:24px;width:2px;background:#E3F6EE}
+  .tev{display:flex;gap:16px;height:54px;position:relative}
+  .tev .ck{width:32px;height:32px;border-radius:50%;background:#E9FAF3;color:var(--green);flex:none;
+           display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;z-index:1}
+  .tev .ck.fin{background:#0A7A55;color:#fff}
+  .tev .tm{width:52px;flex:none;font-size:12.5px;font-weight:600;color:var(--ink-600);padding-top:7px;font-variant-numeric:tabular-nums}
+  .tev .tx{padding-top:6px;border-bottom:1px solid var(--line-soft);flex:1;min-width:0}
+  .tev .tx b{display:block;font-size:13.5px;font-weight:600;color:var(--ink)}
+  .tev .tx p{font-size:12px;color:var(--ink-500);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 </style>
 </head>
 <body>
@@ -222,6 +247,44 @@ else {
       '<div class="hub"><div class="av">&#9678;</div><div><div class="nm">'+esc(v.left.hub.n)+
       '</div><div class="sb">'+esc(v.left.hub.s)+'</div></div>'+
       '<a>'+esc(v.left.hub.a)+' &#8594;</a></div>' : '') + '</div>';
+  } else if(v.left.kind === 'line'){
+    /* one series, area under it, the last point emphasised */
+    var L = v.left, w = 674, h = 250, pl = 30, pr = 12, pt = 10, pb = 26;
+    var max = L.max, n = L.series.length;
+    var X = function(i){ return pl + i*(w-pl-pr)/(n-1); };
+    var Y = function(y){ return pt + (h-pt-pb)*(1 - y/max); };
+    var grid = L.ticks.map(function(t){ return '<line x1="'+pl+'" x2="'+(w-pr)+'" y1="'+Y(t)+'" y2="'+Y(t)+'" stroke="#EDF1F7"/>'+
+      '<text x="0" y="'+(Y(t)+4)+'">'+t+'</text>'; }).join('');
+    var pts = L.series.map(function(y,i){ return X(i)+','+Y(y); }).join(' ');
+    var area = 'M'+X(0)+','+Y(0)+' L'+pts.split(' ').join(' L')+' L'+X(n-1)+','+Y(0)+' Z';
+    var dots = L.series.map(function(y,i){ var last = i===n-1;
+      return '<circle cx="'+X(i)+'" cy="'+Y(y)+'" r="'+(last?6:4)+'" fill="'+(last?'#fff':'#2357F5')+'" stroke="#2357F5" stroke-width="'+(last?3:0)+'"/>'; }).join('');
+    var labs = L.days.map(function(d,i){ return '<text x="'+X(i)+'" y="'+(h-4)+'" text-anchor="middle">'+esc(d)+'</text>'; }).join('');
+    var vals = L.series.map(function(y,i){ return '<text x="'+X(i)+'" y="'+(Y(y)-12)+'" text-anchor="middle" style="fill:#101936;font-weight:600">'+y+'</text>'; }).join('');
+    left = '<div class="bignum"><b>'+esc(L.big)+'</b><span>'+esc(L.delta)+'</span></div>'+
+      '<div class="chart"><svg width="'+w+'" height="'+h+'"><defs><linearGradient id="ar" x1="0" x2="0" y1="0" y2="1">'+
+      '<stop offset="0" stop-color="#2357F5" stop-opacity=".18"/><stop offset="1" stop-color="#2357F5" stop-opacity="0"/></linearGradient></defs>'+
+      grid+'<path d="'+area+'" fill="url(#ar)"/><polyline points="'+pts+'" fill="none" stroke="#2357F5" stroke-width="2.5" stroke-linejoin="round"/>'+
+      dots+vals+labs+'</svg></div>';
+  } else if(v.left.kind === 'bars'){
+    /* stacked: what the AI handled, what went to a person */
+    var Bv = v.left, w2 = 674, h2 = 262, pl2 = 30, pb2 = 26, pt2 = 8, n2 = Bv.days.length, slot = (w2-pl2)/n2, bw = 34;
+    var Y2 = function(y){ return pt2 + (h2-pt2-pb2)*(1 - y/Bv.max); };
+    var g2 = Bv.ticks.map(function(t){ return '<line x1="'+pl2+'" x2="'+w2+'" y1="'+Y2(t)+'" y2="'+Y2(t)+'" stroke="#EDF1F7"/>'+
+      '<text x="0" y="'+(Y2(t)+4)+'">'+t+'</text>'; }).join('');
+    var bars = Bv.days.map(function(d,i){
+      var a = d[1], b = d[2], x = pl2 + i*slot + (slot-bw)/2;
+      return '<rect x="'+x+'" y="'+Y2(a)+'" width="'+bw+'" height="'+(Y2(0)-Y2(a))+'" rx="4" fill="#2357F5"/>'+
+             '<rect x="'+x+'" y="'+Y2(a+b)+'" width="'+bw+'" height="'+(Y2(a)-Y2(a+b)-2)+'" rx="4" fill="#C9D6FF"/>'+
+             '<text x="'+(x+bw/2)+'" y="'+(Y2(a+b)-8)+'" text-anchor="middle" style="fill:#101936;font-weight:600">'+(a+b)+'</text>'+
+             '<text x="'+(x+bw/2)+'" y="'+(h2-4)+'" text-anchor="middle">'+esc(d[0])+'</text>'; }).join('');
+    left = '<div class="legend"><span><i style="background:#2357F5"></i>'+esc(Bv.legend[0])+'</span>'+
+      '<span><i style="background:#C9D6FF"></i>'+esc(Bv.legend[1])+'</span></div>'+
+      '<div class="chart"><svg width="'+w2+'" height="'+h2+'">'+g2+bars+'</svg></div>';
+  } else if(v.left.kind === 'timeline'){
+    left = '<div class="tl">'+ v.left.rows.map(function(r,i){ var last = i===v.left.rows.length-1;
+      return '<div class="tev"><div class="ck'+(last?' fin':'')+'">&#10003;</div><div class="tm">'+esc(r.t)+'</div>'+
+        '<div class="tx"><b>'+esc(r.h)+'</b><p>'+esc(r.d)+'</p></div></div>'; }).join('') + '</div>';
   } else {
     left = '<div class="tbl">'+ v.left.rows.map(function(r){
       return '<div class="trow"><div class="t">'+esc(r.t)+'</div><div class="a">'+esc(r.a)+

@@ -1,0 +1,209 @@
+<!doctype html>
+<!--
+  Replica of single cards from Novada's product design, so the product
+  shots can be re-cut for an offer the Figma exports do not cover.
+
+  Founder instruction, 18 Nov 2026: "for the practice and U.S pages,
+  please edit the screens to fit the offer."
+
+  The exports are Australian CARE screens. Practices needs different
+  CONTENT (calls, bookings, recalls, billing) and the US site needs US
+  terms (scheduling, CST, 12-hour clock, US systems), so these cards are
+  rebuilt in the export's own design and filled from variants.js.
+
+  ⚠️ Calibrated against the real crops in ../out (care-au in variants.js
+  is a word-for-word copy of the export, for that diff only). The face is
+  DM Sans, measured as the export's face. Card widths equal the real
+  crops' widths, so each replica drops into the same slot on the page.
+
+  Usage: panels.html?v=<variant>&p=<panel>  -> renders #card
+-->
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101936; --ink-600:#5B6680; --ink-500:#818A9F; --ink-400:#9AA3B5;
+    --line:#E4E9F2; --line-soft:#EDF1F7; --head:#F8FAFD;
+    --blue:#2357F5; --blue-bg:#EEF3FF;
+    --green:#067A52; --green-bg:#E9FAF3; --green-solid:#0A7A55;
+    --crit:#B4233C; --crit-bar:#C0304A; --crit-bg:#FFF6F6; --crit-pill:#FDECEF;
+    --warn:#8F5A00; --warn-bar:#C27C0E; --warn-pill:#FFF5DC;
+    --purple:#6A3FE0; --purple-bg:#F1EBFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#F6F8FC;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);
+       -webkit-font-smoothing:antialiased;padding:20px;font-optical-sizing:none}
+  #card{background:#fff;border-radius:12px;overflow:hidden;position:relative}
+  .pad{padding:20px 20px 18px}
+  .hd{display:flex;justify-content:space-between;align-items:flex-start}
+  h2{font-size:17px;font-weight:600;line-height:22px;letter-spacing:-.005em}
+  .sub{font-size:12px;color:var(--ink-600);margin-top:5px;line-height:16px}
+  .pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 11px;border-radius:999px;
+        font-size:12.5px;font-weight:600;white-space:nowrap}
+  .pill.blue{background:var(--blue-bg);color:var(--blue)}
+  .pill i{width:7px;height:7px;border-radius:50%;display:block}
+  .crit{background:var(--crit-pill);color:var(--crit)} .crit i{background:var(--crit-bar)}
+  .rev{background:var(--warn-pill);color:var(--warn)} .rev i{background:var(--warn-bar)}
+  .prog{background:var(--blue-bg);color:var(--blue)} .prog i{background:var(--blue)}
+  .wait{background:var(--purple-bg);color:var(--purple)} .wait i{background:#7547F5}
+  .done{background:var(--green-bg);color:var(--green)} .done i{background:var(--green)}
+
+  /* timeline */
+  .tl{position:relative;margin-top:28px}
+  .tl:before{content:"";position:absolute;left:28px;top:22px;bottom:70px;width:2px;background:var(--green-bg)}
+  .ev{display:grid;grid-template-columns:56px 68px 1fr auto;padding:0 0 0 0;height:91px;position:relative}
+  .ev .ck{width:30px;height:30px;border-radius:50%;background:var(--green-bg);color:var(--green);
+          display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;margin:7px 0 0 15px;position:relative;z-index:1}
+  .ev .ck.spin{background:#EEF3FF;color:var(--blue);font-size:14px}
+  .ev .ck.fin{width:34px;height:34px;margin:4px 0 0 12px;background:var(--green-solid);color:#fff;font-size:17px}
+  .ev .t{font-size:12px;font-weight:600;color:var(--ink-600);padding-top:1px}
+  .ev .w{border-bottom:1px solid var(--line-soft);margin-right:22px}
+  .ev:last-child .w{border-bottom:0}
+  .ev .w b{display:block;font-size:13px;font-weight:600;line-height:17px}
+  .ev .w p{font-size:12px;color:var(--ink-600);margin-top:8px;line-height:16px}
+  .ev .w small{display:block;font-size:12px;color:var(--ink-600);margin-top:11px}
+  .ev .s{position:absolute;right:46px;top:55px;font-size:12px;font-weight:500;color:var(--ink-600)}
+  .ev .s.ok{color:var(--green)} .ev .s.go{color:var(--blue)}
+  .ev .w small.ok{color:var(--green)}
+
+  /* checklist */
+  .cl{margin-top:20px;display:flex;flex-direction:column;gap:14px}
+  .cl div{display:flex;gap:10px;font-size:12px;align-items:center;height:16px}
+  .cl span{color:var(--green);font-weight:700;width:18px;height:18px;border-radius:50%;background:var(--green-bg);font-size:11px;display:flex;align-items:center;justify-content:center;margin-left:-2px}
+
+  /* table */
+  .th,.tr{display:grid;grid-template-columns:330px 190px 1fr;align-items:center;padding-left:19px}
+  .th{background:var(--head);height:41px;margin-top:17px;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--ink-600)}
+  .tr{height:62px;border-bottom:1px solid var(--line-soft);position:relative}
+  .tr.c{background:var(--crit-bg)} .tr.c:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--crit-bar)}
+  .tr b{display:block;font-size:12.5px;font-weight:600;line-height:16px}
+  .tr p{font-size:11.5px;color:var(--ink-600);margin-top:6px}
+  .ag{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:600}
+  .ag i{width:26px;height:26px;border-radius:6px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-style:normal;font-weight:700}
+  .tf{font-size:12px;color:var(--ink-600);padding:12px 19px}
+
+  /* bar chart */
+  .lg{display:flex;justify-content:flex-end;gap:30px;margin:28px 74px 0 0;font-size:12px;color:var(--ink-600)}
+  .lg span:before{content:"";display:inline-block;width:9px;height:9px;margin-right:6px;background:#5B6680;border-radius:1px}
+  .lg span.cv{color:var(--blue)} .lg span.cv:before{background:var(--blue)}
+  .bars{display:flex;justify-content:space-between;align-items:flex-end;height:252px;padding:0 70px 0 38px;margin-top:16px}
+  .bg{display:flex;flex-direction:column;align-items:center;width:62px}
+  .bg em{font-style:normal;font-size:12px;font-weight:600;margin-bottom:8px}
+  .bg em.short{color:var(--crit)}
+  .bg .pr{display:flex;gap:4px;align-items:flex-end}
+  .bg .pr i{display:block;width:20px;border-radius:4px 4px 0 0}
+  .bg .pr i:first-child{background:#EEF2FD} .bg .pr i:last-child{background:var(--blue)}
+  .bg u{text-decoration:none;font-size:12px;color:var(--ink-600);margin-top:20px}
+  .fn{font-size:12px;padding:14px 18px 8px}
+
+  .dk .sub{color:var(--ink)}
+  /* systems */
+  .sy{margin-top:10px}
+  .sys h2{font-size:15.5px}
+  .sr{display:flex;align-items:center;gap:10px;height:38px;border-top:1px solid var(--line-soft)}
+  .sr:first-child{border-top:0}
+  .sr i{width:24px;height:24px;border-radius:6px;color:#fff;font-style:normal;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .sr b{display:block;font-size:12px;font-weight:600;line-height:15px}
+  .sr p{font-size:11px;color:var(--ink-600);line-height:14px}
+  .sr .h{margin-left:auto;font-size:12px;font-weight:600;color:var(--green)}
+  .sr .h.d{color:var(--warn)}
+
+  /* exception queue */
+  .tabs{display:flex;gap:52px;margin-top:28px;font-size:12.5px;color:var(--ink-600);border-bottom:1px solid var(--line);padding:0 0 12px}
+  .tabs .on{color:var(--blue);font-weight:600;position:relative}
+  .tabs .on:after{content:"";position:absolute;left:-3px;right:-10px;bottom:-14px;height:3px;background:var(--blue);border-radius:2px}
+  .flt{display:grid;grid-template-columns:341px 178px 1fr;gap:12px;margin-top:18px}
+  .flt div{height:41px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;padding:0 14px;font-size:12.5px;font-weight:500}
+  .flt div:first-child{color:var(--ink-600);font-weight:400;gap:8px}
+  .flt em{font-style:normal;font-size:8px;margin-left:10px}
+  .case{border:1px solid var(--line);border-radius:10px;margin-top:18px;padding:15px 15px 0 16px;position:relative;overflow:hidden}
+  .case:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+  .case.c{background:var(--crit-bg)} .case.c:before{background:var(--crit-bar)}
+  .case.r:before{background:var(--warn-bar)}
+  .case .tag{display:inline-flex;align-items:center;gap:8px;height:26px;padding:0 12px;border-radius:999px;font-size:12px;font-weight:500;letter-spacing:.02em}
+  .case .tag i{width:8px;height:8px;border-radius:50%}
+  .case .id{position:absolute;right:12px;top:22px;font-size:12px;font-weight:500;color:var(--ink-600)}
+  .case h3{font-size:15px;font-weight:600;margin-top:15px}
+  .case p{font-size:12px;color:var(--ink-600);margin-top:8px}
+  .case p.k{color:var(--ink)}
+  .case .ft{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin:12px 18px 0 0;padding:12px 40px 14px 0;font-size:12px;font-weight:600}
+  .case.c .ft{color:var(--crit)} .case.r .ft{color:var(--warn)} .case .ft span:last-child{color:var(--crit)}
+  .case.r .ft span:last-child{color:var(--blue)}
+
+  /* recovery */
+  .eyb{font-size:11.5px;font-weight:600;letter-spacing:.03em;color:var(--blue)}
+  .rc{display:flex;flex-direction:column;gap:16px;margin-top:14px;font-size:12px}
+  .rc div{display:flex;gap:12px;align-items:center}
+  .rc span{width:20px;height:20px;border-radius:50%;background:var(--green-bg);color:var(--green);font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center}
+  .rc span.x{color:var(--crit);background:#FDECEF}
+  .alert{background:#FFF0F2;border-radius:8px;padding:13px 12px 16px;margin-top:24px}
+  .alert b{display:block;font-size:12px;font-weight:600;color:var(--crit)}
+  .alert p{font-size:11.5px;margin-top:6px}
+
+  /* state history */
+  .hs{margin-top:17px}
+  .hr{display:grid;grid-template-columns:75px 256px 1fr;height:31px;align-items:center;border-bottom:1px solid var(--line-soft);font-size:12px}
+  .hr:last-child{border-bottom:0}
+  .hr span:first-child{color:var(--ink-600)}
+  .hr span:nth-child(2){font-weight:600}
+  .hr.v span:nth-child(2){color:var(--green)}
+  .hfoot{font-size:12px;color:var(--ink-600);margin-top:12px}
+
+  /* confirmation */
+  .okp{display:inline-flex;gap:6px;align-items:center;height:28px;padding:0 16px;border-radius:999px;background:var(--green-bg);color:var(--green);font-size:12.5px;font-weight:500;margin-top:12px}
+  .kv{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+  .kv div{display:grid;grid-template-columns:171px 1fr;font-size:11.5px}
+  .kv span:first-child{color:var(--ink-600)} .kv span:last-child{font-weight:600}
+  .cnote{border-top:1px solid var(--line);margin-top:12px;padding-top:12px;font-size:11.5px;color:var(--green)}
+</style></head>
+<body><div id="card"></div>
+<script src="variants.js"></script>
+<script>
+const q = new URLSearchParams(location.search);
+const VAR = window.VARIANTS[q.get('v')], CARD = VAR[q.get('p')];
+const el = document.getElementById('card');
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const head = (t, s, right) => `<div class="hd"><div><h2>${esc(t)}</h2>${s ? `<p class="sub">${esc(s)}</p>` : ''}</div>${right || ''}</div>`;
+const PILL = { crit:'Critical', rev:'Needs review', prog:'In progress', wait:'Awaiting response', done:'Verified complete' };
+
+const R = {
+  timeline: p => head(p.title, p.sub, `<span class="pill blue" style="margin:2px 2px 0 0">${p.events.length} events</span>`) +
+    `<div class="tl">${p.events.map((e, i) => {
+      const last = i === p.events.length - 1, spin = e.state === 'go';
+      return `<div class="ev"><div><div class="ck ${last ? 'fin' : spin ? 'spin' : ''}">${spin ? '↻' : '✓'}</div></div>
+        <div class="t">${esc(e.t)}</div>
+        <div class="w"><b>${esc(e.h)}</b><p>${esc(e.d)}</p><small class="${last ? 'ok' : ''}">↳ ${esc(e.src)}</small></div>
+        <div class="s ${last ? 'ok' : spin ? 'go' : ''}">${esc(e.s)}</div></div>`; }).join('')}</div>`,
+  checklist: p => head(p.title, p.sub) + `<div class="cl">${p.items.map(x => `<div><span>✓</span>${esc(x)}</div>`).join('')}</div>`,
+  table: p => `<div style="padding:20px 19px 0">${head(p.title, p.sub)}</div>` +
+    `<div class="th"><span>TASK</span><span>AGENT</span><span>STATUS</span></div>` +
+    p.rows.map(r => `<div class="tr ${r.st === 'crit' ? 'c' : ''}"><div><b>${esc(r.t)}</b><p>${esc(r.d)}</p></div>
+      <div class="ag"><i style="background:${r.c}">${r.a[0]}</i>${esc(r.a)}</div>
+      <div><span class="pill ${r.st}"><i></i>${PILL[r.st]}</span></div></div>`).join('') +
+    `<div class="tf">${esc(p.foot)}</div>`,
+  bars: p => `<div style="padding:18px 18px 0" class="dk">${head(p.title, p.sub, `<span class="pill blue" style="width:128px;justify-content:flex-start">${esc(p.chip)}</span>`)}</div>` +
+    `<div class="lg"><span>${esc(p.legend[0])}</span><span class="cv">${esc(p.legend[1])}</span></div>` +
+    `<div class="bars">${p.days.map(([d, a, b]) => `<div class="bg"><em class="${b < a ? 'short' : ''}">${b}/${a}</em>
+      <div class="pr"><i style="height:${a * p.scale}px"></i><i style="height:${b * p.scale - 10}px"></i></div><u>${esc(d)}</u></div>`).join('')}</div>` +
+    `<p class="fn">${esc(p.foot)}</p>`,
+  systems: p => `<div class="sys">` + head(p.title, p.sub) + `<div class="sy">${p.rows.map(r => `<div class="sr"><i style="background:${r.c}">${r.n[0]}</i>
+      <div><b>${esc(r.n)}</b><p>${esc(r.d)}</p></div><span class="h ${r.ok ? '' : 'd'}">${r.ok ? 'Healthy' : 'Degraded'}</span></div>`).join('')}</div></div>`,
+  queue: p => head(p.title, p.sub, `<span class="pill blue" style="height:28px;padding:0 18px;font-size:12.5px">${p.cases.length} active</span>`) +
+    `<div class="tabs"><span class="on">All active</span><span>Critical</span><span>Needs review</span></div>` +
+    `<div class="flt"><div><span style="font-size:10px">⌕</span>${esc(p.search)}</div><div>${esc(p.filter)}<em>▼</em></div><div>Severity<em>▼</em></div></div>` +
+    p.cases.map(c => `<div class="case ${c.k}"><span class="tag ${c.k === 'c' ? 'crit' : 'rev'}"><i style="background:${c.k === 'c' ? 'var(--crit-bar)' : 'var(--warn-bar)'}"></i>${c.k === 'c' ? 'CRITICAL' : 'NEEDS REVIEW'}</span>
+      <span class="id">${esc(c.id)}</span><h3>${esc(c.h)}</h3><p>${esc(c.a)}</p><p class="k">${esc(c.b)}</p>
+      <div class="ft"><span>${esc(c.owner)}</span><span>${esc(c.cta)} →</span></div></div>`).join(''),
+  recovery: p => `<p class="eyb">${esc(p.eyebrow)}</p><div class="rc">${p.steps.map(([ok, s]) => `<div><span class="${ok ? '' : 'x'}">${ok ? '✓' : '✕'}</span>${esc(s)}</div>`).join('')}</div>` +
+    `<div class="alert"><b>${esc(p.alert[0])}</b><p>${esc(p.alert[1])}</p></div>`,
+  history: p => `<div style="padding:31px 13px 0 13px">${head(p.title, p.sub)}<div class="hs">${p.rows.map(([t, s, a], i) =>
+      `<div class="hr ${i === p.rows.length - 1 ? 'v' : ''}"><span>${esc(t)}</span><span>${esc(s)}</span><span>${esc(a)}</span></div>`).join('')}</div>
+      <p class="hfoot">${esc(p.foot)}</p></div>`,
+  confirmation: p => head(p.title) + `<span class="okp">✓ ${esc(p.badge)}</span><div class="kv">${p.kv.map(([k, v]) => `<div><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join('')}</div><p class="cnote">${esc(p.note)}</p>`,
+};
+el.style.width = CARD.w + 'px';
+if (CARD.h) el.style.height = CARD.h + 'px';
+const noPad = ['table', 'bars', 'history'].includes(CARD.kind);
+el.innerHTML = noPad ? R[CARD.kind](CARD) : `<div class="pad">${R[CARD.kind](CARD)}</div>`;
+document.body.dataset.ready = '1';
+</script></body></html>

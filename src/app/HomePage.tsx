@@ -224,8 +224,7 @@ const FAQ = [
    most of the queue. */
 function ControlVisual() {
   return (
-    <div>
-      <div className="relative px-2 pb-0 pt-16 sm:px-6 sm:pb-20">
+    <div className="relative px-2 pb-0 pt-[80px] sm:px-6 sm:pb-20">
         <div className="absolute left-0 top-0 z-20 w-[250px] overflow-hidden rounded-lg border border-ink-100 bg-white shadow-float">
           <div
             className="px-4 py-3.5"
@@ -251,10 +250,6 @@ function ControlVisual() {
           alt="The recovery the agent attempted before escalating: eligibility checked, offers sent to two eligible workers, no acceptance in the offer window"
           className="absolute bottom-0 right-0 z-20 hidden w-[270px] sm:block"
         />
-      </div>
-      <p className="mt-4 text-[11px] text-ink-400">
-        Example screen. The provider, people and figures are illustrative.
-      </p>
     </div>
   );
 }
@@ -330,7 +325,7 @@ export default function HomePage() {
                    likeness and their dashboard UI - are gone; the shapes
                    are not. Do not record this file as fully cleared. */
                 src="/ai-workforce/hero-home.webp"
-                alt="The Novada AI Operations Agent control centre, showing the overnight work queue and the items held for a person, beside an operations manager"
+                alt="The Novada Control Centre performance report: 143 tasks verified in the last seven days, rising each day, with 89.4% read back from the source system, beside an operations manager"
                 width={938}
                 height={654}
                 fetchPriority="high"

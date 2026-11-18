@@ -58,7 +58,8 @@ for (const k of keys) {
   // one-line error page that is still a perfectly valid screenshot.
   const probe = await page.evaluate(() => ({
     h1: document.querySelector('h1')?.textContent || null,
-    rows: document.querySelectorAll('.row, .trow').length,
+    // a chart's marks count as its rows: bars, line points, timeline steps
+    rows: document.querySelectorAll('.row, .trow, .tev, .chart rect, .chart circle').length,
     kpis: document.querySelectorAll('.kpi').length,
     poppins: getComputedStyle(document.querySelector('h1') || document.body).fontFamily,
     // nothing may spill out of the 1440x1080 frame

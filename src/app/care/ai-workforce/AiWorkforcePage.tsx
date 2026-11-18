@@ -885,18 +885,9 @@ function HeroVisual() {
  * 390px it would cover most of the main one.
  */
 
-function ExampleNote() {
-  return (
-    <p className="mt-4 text-[11px] text-ink-400">
-      Example screen. The provider, people and figures are illustrative.
-    </p>
-  );
-}
-
 function ExecutionVisual() {
   return (
-    <div>
-      <div className="relative pb-0 pt-12 sm:pb-16 sm:pr-10">
+    <div className="relative pb-0 pt-12 sm:pb-16 sm:pr-10">
         <div className="absolute right-0 top-0 z-20 w-[200px] rounded-lg border border-ink-100 bg-white p-4 text-center shadow-float">
           <span className="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-white">
             <Check aria-hidden className="h-4 w-4" strokeWidth={3} />
@@ -922,16 +913,13 @@ function ExecutionVisual() {
           alt="Operating policy validation for the same task: all six checks passed"
           className="absolute bottom-0 right-0 z-20 hidden w-[240px] sm:block"
         />
-      </div>
-      <ExampleNote />
     </div>
   );
 }
 
 function TaskTableVisual() {
   return (
-    <div>
-      <div className="relative px-2 pb-16 pt-[88px] sm:px-6">
+    <div className="relative px-2 pb-16 pt-[88px] sm:px-6">
         <div className="absolute left-0 top-0 z-20 w-[172px] rounded-lg border border-ink-100 bg-white p-4 shadow-float">
           <div className="flex items-baseline justify-between gap-2">
             <p style={SERIF} className="text-2xl font-bold text-ink-950">
@@ -964,16 +952,13 @@ function TaskTableVisual() {
             ))}
           </div>
         </div>
-      </div>
-      <ExampleNote />
     </div>
   );
 }
 
 function SystemsVisual() {
   return (
-    <div>
-      <div className="relative pb-0 sm:pb-24">
+    <div className="relative pb-0 sm:pb-24">
         <div className="relative z-20 mb-4 flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-ink-100 bg-white px-3 py-1.5 shadow-raise">
             <span aria-hidden className="h-2 w-2 rounded-full bg-brand-500" />
@@ -998,8 +983,6 @@ function SystemsVisual() {
           className="absolute bottom-0 right-0 z-20 hidden w-[300px] sm:block"
         />
         <Blobs flip />
-      </div>
-      <ExampleNote />
     </div>
   );
 }

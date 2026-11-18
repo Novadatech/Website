@@ -158,245 +158,223 @@ window.VARIANTS = {
   }
 },
 
-/* ══ SCREEN 2 · PATIENT ACCESS ═══════════════════ practices ═════ */
-
+/* ══ SCREEN 2 · FRONT DESK PERFORMANCE ═══════════════ practices ══
+ * Founder, 18 Nov 2026: the practices headline screen is an ANALYTICS
+ * screen with a graph. Stacked bars: what the AI answered, and what it
+ * passed to reception, so the people stay in the picture. */
 'practices-au': {
-  nav: NAV_PRAC('Patient Access'), crumb: 'Patient Access', org: 'Marlowe Family Practice',
+  nav: NAV_PRAC('Reports'), crumb: 'Reports / Front desk performance', org: 'Marlowe Family Practice',
   search: 'Search patients, calls...', me: 'SR',
-  date: 'TUESDAY 17 NOVEMBER 2026', asof: 'As of 11:40 AEDT',
-  h1: 'Your front desk this morning',
-  sub: 'Calls, bookings and referrals, across six agents.',
+  date: 'THIS WEEK · 10-15 NOVEMBER', asof: 'As of 08:50 AEDT',
+  h1: 'Front desk performance',
+  sub: 'Every call answered, and who handled it.',
   chips: ['Clinic: All sites', 'Agent: All'],
-  health: '6 of 7 sources healthy · Claims queue degraded',
-  live: 'Claims queue slow · affected work held',
+  health: '6 of 6 sources healthy · Best Practice read-back current',
+  live: 'All sources healthy · nothing held',
   kpis: [
-    { c: K[0], lab: 'Calls answered', val: '86', foot: 'Since 07:00 · 0 missed' },
-    { c: K[1], lab: 'Handled without you', val: '91.4%', foot: '79 of 86 calls' },
-    { c: K[2], lab: 'Slots refilled', val: '14', foot: 'From the waitlist' },
-    { c: K[3], lab: 'Referrals waiting', val: '0', foot: 'Every file complete' },
-    { c: K[4], lab: 'Claims held', val: '2', foot: 'BIL-4411 · above limit', crit: 1 }
+    { c: K[0], lab: 'Calls answered', val: '412', foot: '0 missed this week' },
+    { c: K[1], lab: 'Handled by the AI', val: '87.6%', foot: '361 of 412 calls' },
+    { c: K[2], lab: 'Slots refilled', val: '59', foot: 'From the waitlist' },
+    { c: K[3], lab: 'Recalls booked', val: '31', foot: 'Of 44 due' },
+    { c: K[4], lab: 'Claims held', val: '2', foot: 'BIL-1807 · rejection', crit: 1 }
   ],
   left: {
-    kind: 'roles', title: 'Your AI Operations Agents', link: 'View all agents',
-    rows: [
-      { l: 'R', c: B, n: 'Reception & Patient Access Agent', s: '86 calls · 0 missed', st: 'Active' },
-      { l: 'A', c: P, n: 'Appointment & Cancellation Recovery Agent', s: '14 slots refilled today', st: 'Active' },
-      { l: 'I', c: T, n: 'Referrals & Intake Agent', s: '7 referrals · all complete', st: 'Active' },
-      { l: 'F', c: V, n: 'Recalls & Follow-Up Agent', s: '31 recalls booked', st: 'Active' },
-      { l: 'B', c: D, n: 'Billing & Claims Agent', s: '2 exceptions · 1 rejection', st: 'Active · 2 held', hold: 1 },
-      { l: 'P', c: '#5B4DCB', n: 'Practice Operations Agent', s: 'Daily summary prepared', st: 'Active' }
-    ]
+    kind: 'bars', title: 'Calls answered by day', link: 'View report',
+    sub: 'Answered by the AI, and passed to reception.',
+    legend: ['Answered by the AI', 'Passed to reception'], max: 80, ticks: [0, 20, 40, 60, 80],
+    days: [['Mon', 66, 9], ['Tue', 63, 8], ['Wed', 58, 11], ['Thu', 65, 7], ['Fri', 61, 10], ['Sat', 48, 6]]
   },
   right: {
     title: 'Needs your attention', link: 'View all',
     cards: [
-      { tone: 'crit', lab: 'REJECTED · BIL-4411', h: 'Claim rejected · $212',
-        p: ['Item 23 · referral date mismatch', 'Nothing resubmitted without you', 'Dr Ellery · due today 15:00'], lk: 'Open claim' },
-      { tone: 'warn', lab: 'NEEDS APPROVAL · REF-0912', h: 'Referral missing a provider number',
-        p: ['Requested twice · no reply', 'Patient booked · Thu 09:20'], lk: 'Review' }
+      { tone: 'crit', lab: 'TRANSFERRED · CALL-2048', h: 'Urgent symptoms reported',
+        p: ['Passed to the practice nurse', '08:12 · within 40 seconds'], lk: 'Open call' },
+      { tone: 'warn', lab: 'NEEDS REVIEW · BIL-1807', h: 'Medicare claim rejected',
+        p: ['1 item rejected · claim held', 'Billing · due today'], lk: 'Review' }
     ]
   }
 },
 
 'practices-us': {
-  nav: NAV_PRAC('Patient Access'), crumb: 'Patient Access', org: 'Westbrook Family Medicine',
+  nav: NAV_PRAC('Reports'), crumb: 'Reports / Front desk performance', org: 'Westbrook Family Medicine',
   search: 'Search patients, calls...', me: 'SR',
-  date: 'TUESDAY, NOVEMBER 17, 2026', asof: 'As of 11:40 AM CST',
-  h1: 'Your front desk this morning',
-  sub: 'Calls, bookings and claims, across seven agents.',
+  date: 'THIS WEEK · NOVEMBER 10-15', asof: 'As of 8:50 AM CST',
+  h1: 'Front desk performance',
+  sub: 'Every call answered, and who handled it.',
   chips: ['Location: All', 'Agent: All'],
-  health: '6 of 7 sources healthy · Claims queue degraded',
-  live: 'Claims queue slow · affected work held',
+  health: '7 of 7 sources healthy · EHR read-back current',
+  live: 'All sources healthy · nothing held',
   kpis: [
-    { c: K[0], lab: 'Calls answered', val: '86', foot: 'Since 7:00 AM · 0 missed' },
-    { c: K[1], lab: 'Handled without you', val: '91.4%', foot: '79 of 86 calls' },
-    { c: K[2], lab: 'Slots refilled', val: '14', foot: 'From the waitlist' },
-    { c: K[3], lab: 'Auths pending', val: '0', foot: 'Every request current' },
-    { c: K[4], lab: 'Claims held', val: '2', foot: 'RCM-4411 · above limit', crit: 1 }
+    { c: K[0], lab: 'Calls answered', val: '412', foot: '0 missed this week' },
+    { c: K[1], lab: 'Handled by the AI', val: '87.6%', foot: '361 of 412 calls' },
+    { c: K[2], lab: 'Slots refilled', val: '59', foot: 'From the waitlist' },
+    { c: K[3], lab: 'Eligibility verified', val: '284', foot: 'Before the visit' },
+    { c: K[4], lab: 'Claims held', val: '2', foot: 'RCM-1807 · denial', crit: 1 }
   ],
   left: {
-    kind: 'roles', title: 'Your AI Operations Agents', link: 'View all agents',
-    rows: [
-      { l: 'F', c: B, n: 'Front Desk & Patient Access Agent', s: '86 calls · 0 missed', st: 'Active' },
-      { l: 'S', c: P, n: 'Scheduling & Cancellation Recovery Agent', s: '14 slots refilled today', st: 'Active' },
-      { l: 'I', c: T, n: 'Referrals & Patient Intake Agent', s: '7 referrals · all complete', st: 'Active' },
-      { l: 'V', c: V, n: 'Insurance Verification & Prior Auth Agent', s: '22 verified · 0 pending', st: 'Active' },
-      { l: 'C', c: D, n: 'Patient Follow-Up & Care Gaps Agent', s: '31 outreach tasks closed', st: 'Active' },
-      { l: 'R', c: '#5B4DCB', n: 'Revenue Cycle & Claims Agent', s: '2 exceptions · 1 denial', st: 'Active · 2 held', hold: 1 },
-      { l: 'P', c: '#1487AD', n: 'Practice Operations Agent', s: 'Daily summary prepared', st: 'Active' }
-    ]
+    kind: 'bars', title: 'Calls answered by day', link: 'View report',
+    sub: 'Answered by the AI, and passed to your front desk.',
+    legend: ['Answered by the AI', 'Passed to front desk'], max: 80, ticks: [0, 20, 40, 60, 80],
+    days: [['Mon', 66, 9], ['Tue', 63, 8], ['Wed', 58, 11], ['Thu', 65, 7], ['Fri', 61, 10], ['Sat', 48, 6]]
   },
   right: {
     title: 'Needs your attention', link: 'View all',
     cards: [
-      { tone: 'crit', lab: 'DENIED · RCM-4411', h: 'Claim denied · $212',
-        p: ['CO-16 · missing referral date', 'Nothing resubmitted without you', 'Dr Ellery · due today 3:00 PM'], lk: 'Open claim' },
-      { tone: 'warn', lab: 'NEEDS APPROVAL · AUTH-0912', h: 'Prior auth awaiting a decision',
-        p: ['Requested twice · no reply', 'Patient booked · Thu 9:20 AM'], lk: 'Review' }
+      { tone: 'crit', lab: 'TRANSFERRED · CALL-2048', h: 'Urgent symptoms reported',
+        p: ['Passed to the nurse line', '8:12 AM · within 40 seconds'], lk: 'Open call' },
+      { tone: 'warn', lab: 'NEEDS REVIEW · RCM-1807', h: 'Claim denied · CO-16',
+        p: ['Missing information · claim held', 'Revenue cycle · due today'], lk: 'Review' }
     ]
   }
 },
 
-/* ══ SCREEN 3 · WORK QUEUE ═══════════════════════ homepages ═════ */
-
+/* ══ SCREEN 3 · WORKFORCE PERFORMANCE ═══════════════ homepages ══
+ * Founder, 18 Nov 2026: the homepage headline screen is an ANALYTICS
+ * screen with a graph, not another list like the care page's. */
 'home-au': {
-  nav: NAV_CARE('Tasks & Exceptions'), crumb: 'Tasks & Exceptions', org: 'Riverlea Health Group',
+  nav: NAV_CARE('Reports'), crumb: 'Reports / Performance', org: 'Riverlea Health Group',
   search: 'Search tasks, agents...', me: 'AK',
-  date: 'TUESDAY 17 NOVEMBER 2026', asof: 'As of 06:50 AEDT',
-  h1: 'Overnight work, already done',
-  sub: 'What they finished, and the three they held for you.',
-  chips: ['Team: All', 'Status: All'],
-  health: 'All 7 sources healthy · nothing waiting on a system',
+  date: 'LAST 7 DAYS · 11-17 NOVEMBER', asof: 'As of 06:50 AEDT',
+  h1: 'Work completed, verified',
+  sub: 'Every task read back from the system it ran in.',
+  chips: ['Period: 7 days', 'Agent: All'],
+  health: 'All 7 sources healthy · read-back current',
   live: 'All sources healthy · nothing held',
   kpis: [
-    { c: K[0], lab: 'Tasks completed', val: '143', foot: 'Since 18:00 · +12%' },
-    { c: K[1], lab: 'Finished without you', val: '88.1%', foot: '126 of 143 tasks' },
-    { c: K[2], lab: 'Held for a person', val: '3', foot: 'Waiting on approval' },
-    { c: K[3], lab: 'Escalated to on-call', val: '1', foot: 'Rostering · 06:52' },
+    { c: K[0], lab: 'Verified complete', val: '89.4%', foot: '143 of 160 tasks' },
+    { c: K[1], lab: 'Finished without you', val: '88.1%', foot: '141 of 160 eligible' },
+    { c: K[2], lab: 'Admin time released', val: '38.5 h', foot: 'Estimate, not a saving' },
+    { c: K[3], lab: 'Open exceptions', val: '2', foot: '1 critical · 1 review' },
     { c: K[4], lab: 'Reversed by a human', val: '0', foot: 'Since go-live' }
   ],
   left: {
-    kind: 'table', title: 'Overnight work queue', link: 'View audit trail',
-    sub: 'Confirmed by the source system, not by us.',
-    rows: [
-      { t: '23:14', a: 'After-Hours', d: 'Call answered · message logged', s: 'Telephony', k: 'Verified' },
-      { t: '01:02', a: 'Rostering', d: 'Shift replaced · ROS-2050', s: 'Rostering platform', k: 'Verified' },
-      { t: '03:40', a: 'Compliance', d: 'Training records synced (12)', s: 'HR register', k: 'Verified' },
-      { t: '04:15', a: 'HR', d: 'Leave recorded · 2 workers', s: 'HR register', k: 'Verified' },
-      { t: '05:58', a: 'Finance', d: 'Invoice above your limit', s: 'Accounting', k: 'Held', hold: 1 },
-      { t: '06:21', a: 'Operations', d: 'Daily readiness prepared', s: 'Operations', k: 'Verified' },
-      { t: '06:44', a: 'Rostering', d: 'Open shift offered · 4 workers', s: 'Rostering platform', k: 'Verified' }
-    ]
+    kind: 'line', title: 'Verified completions per day', link: 'View report',
+    sub: 'Read back from the source system.',
+    big: '143', delta: '+12% on last week', max: 30, ticks: [0, 10, 20, 30],
+    series: [12, 15, 18, 21, 22, 26, 29], days: ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue']
   },
   right: {
-    title: 'Held for you', link: 'View all',
+    title: 'Task outcome mix', link: 'View all',
     cards: [
-      { tone: 'crit', lab: 'NEEDS A DECISION · ROS-2048', h: 'No cover · SIL North 07:00',
-        p: ['2:1 protected · Jordan Davies on-call', 'Ack by 06:52 · 2 min'], lk: 'Open case' },
-      { tone: 'warn', lab: 'NEEDS APPROVAL · FIN-1807', h: 'Invoice above your limit · $346',
-        p: ['Held · nothing sent', 'Taylor Nguyen · due 18 Nov 12:00'], lk: 'Review' }
+      { tone: 'info', lab: 'VERIFIED COMPLETE', h: '143 tasks · 89.4%',
+        p: ['Read back from the source system'], lk: 'See the evidence' },
+      { tone: 'warn', lab: 'HELD FOR A PERSON', h: '2 open exceptions',
+        p: ['1 critical · 1 needs review'], lk: 'Review' }
     ]
   }
 },
 
 'home-us': {
-  nav: NAV_CARE('Tasks & Exceptions'), crumb: 'Tasks & Exceptions', org: 'Averly Health Group',
+  nav: NAV_CARE('Reports'), crumb: 'Reports / Performance', org: 'Averly Health Group',
   search: 'Search tasks, agents...', me: 'AK',
-  date: 'TUESDAY, NOVEMBER 17, 2026', asof: 'As of 6:50 AM CST',
-  h1: 'Overnight work, already done',
-  sub: 'What they finished, and the three they held for you.',
-  chips: ['Team: All', 'Status: All'],
-  health: 'All 7 sources healthy · nothing waiting on a system',
+  date: 'LAST 7 DAYS · NOVEMBER 11-17', asof: 'As of 6:50 AM CST',
+  h1: 'Work completed, verified',
+  sub: 'Every task read back from the system it ran in.',
+  chips: ['Period: 7 days', 'Agent: All'],
+  health: 'All 7 sources healthy · read-back current',
   live: 'All sources healthy · nothing held',
   kpis: [
-    { c: K[0], lab: 'Tasks completed', val: '143', foot: 'Since 6:00 PM · +12%' },
-    { c: K[1], lab: 'Finished without you', val: '88.1%', foot: '126 of 143 tasks' },
-    { c: K[2], lab: 'Held for a person', val: '3', foot: 'Waiting on approval' },
-    { c: K[3], lab: 'Escalated to on-call', val: '1', foot: 'Scheduling · 6:52' },
+    { c: K[0], lab: 'Verified complete', val: '89.4%', foot: '143 of 160 tasks' },
+    { c: K[1], lab: 'Finished without you', val: '88.1%', foot: '141 of 160 eligible' },
+    { c: K[2], lab: 'Admin time released', val: '38.5 h', foot: 'Estimate, not a saving' },
+    { c: K[3], lab: 'Open exceptions', val: '2', foot: '1 critical · 1 review' },
     { c: K[4], lab: 'Reversed by a human', val: '0', foot: 'Since go-live' }
   ],
   left: {
-    kind: 'table', title: 'Overnight work queue', link: 'View audit trail',
-    sub: 'Confirmed by the source system, not by us.',
-    rows: [
-      { t: '11:14p', a: 'After-Hours', d: 'Call answered · message logged', s: 'Telephony', k: 'Verified' },
-      { t: '1:02a', a: 'Scheduling', d: 'Shift replaced · SCH-2050', s: 'Scheduling platform', k: 'Verified' },
-      { t: '3:40a', a: 'Compliance', d: 'Credentials synced (12)', s: 'HR register', k: 'Verified' },
-      { t: '4:15a', a: 'HR', d: 'Time off recorded · 2 staff', s: 'HR register', k: 'Verified' },
-      { t: '5:58a', a: 'Finance', d: 'Invoice above your limit', s: 'Accounting', k: 'Held', hold: 1 },
-      { t: '6:21a', a: 'Operations', d: 'Daily readiness prepared', s: 'Operations', k: 'Verified' },
-      { t: '6:44a', a: 'Scheduling', d: 'Open shift offered · 4 staff', s: 'Scheduling platform', k: 'Verified' }
-    ]
+    kind: 'line', title: 'Verified completions per day', link: 'View report',
+    sub: 'Read back from the source system.',
+    big: '143', delta: '+12% on last week', max: 30, ticks: [0, 10, 20, 30],
+    series: [12, 15, 18, 21, 22, 26, 29], days: ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue']
   },
   right: {
-    title: 'Held for you', link: 'View all',
+    title: 'Task outcome mix', link: 'View all',
     cards: [
-      { tone: 'crit', lab: 'NEEDS A DECISION · SCH-2048', h: 'No cover · Cedar North 7:00',
-        p: ['2:1 staffing · Jordan Davies on-call', 'Ack by 6:52 · 2 min'], lk: 'Open case' },
-      { tone: 'warn', lab: 'NEEDS APPROVAL · FIN-1807', h: 'Invoice above your limit · $346',
-        p: ['Held · nothing sent', 'Taylor Nguyen · due Nov 18, 12:00'], lk: 'Review' }
+      { tone: 'info', lab: 'VERIFIED COMPLETE', h: '143 tasks · 89.4%',
+        p: ['Read back from the source system'], lk: 'See the evidence' },
+      { tone: 'warn', lab: 'HELD FOR A PERSON', h: '2 open exceptions',
+        p: ['1 critical · 1 needs review'], lk: 'Review' }
     ]
   }
 },
 
-/* ══ SCREEN 4 · AUDIT TRAIL ════════════════════ why-novada ══════ */
-
+/* ══ SCREEN 4 · ONE TASK, STEP BY STEP ══════════════ why-novada ══
+ * Founder, 18 Nov 2026: find another screen for the About page. This
+ * is the export's Task Execution Detail: the evidence trail of one task,
+ * which is the page's argument (measured, recorded, verified). */
 'why-au': {
-  nav: NAV_CARE('Reports'), crumb: 'Reports', org: 'Hartwell Care Group',
-  search: 'Search the record...', me: 'MO',
-  date: 'LAST 30 DAYS · TO 17 NOVEMBER 2026', asof: 'Updated 06:50 AEDT',
-  h1: 'Every action, with its evidence',
-  sub: 'Every record confirmed by the system it happened in.',
-  chips: ['Period: 30 days', 'Agent: All'],
-  health: '4,182 of 4,182 actions confirmed at source',
-  live: 'Recording · nothing unconfirmed',
+  nav: NAV_CARE('Tasks & Exceptions'), crumb: 'Tasks & Exceptions / ROS-2050', org: 'Hartwell Care Group',
+  search: 'Search tasks, agents...', me: 'MO',
+  date: 'AI ROSTERING AGENT / TASK ROS-2050', asof: 'Shift 07:00-15:00',
+  h1: 'Replace cancelled shift',
+  sub: 'Covered and verified by read-back. No approval needed.',
+  chips: ['Export'],
+  health: 'Verified complete · ShiftCare read-back 06:21',
+  live: 'All sources healthy · nothing held',
   kpis: [
-    { c: K[0], lab: 'Actions recorded', val: '4,182', foot: 'Last 30 days' },
-    { c: K[1], lab: 'Confirmed at source', val: '100%', foot: '4,182 of 4,182' },
-    { c: K[2], lab: 'Held for a person', val: '37', foot: '0.9% of actions' },
-    { c: K[3], lab: 'Median hold time', val: '4 min', foot: 'Held to decided' },
-    { c: K[4], lab: 'Reversed by a human', val: '0', foot: 'Since go-live' }
+    { c: K[0], lab: 'Execution duration', val: '13 min', foot: '06:08 to 06:21' },
+    { c: '#067A52', lab: 'Suitable replacement', val: '1', foot: 'Worker acceptance recorded' },
+    { c: K[1], lab: 'Policy checks passed', val: '6 / 6', foot: 'No eligibility exceptions' },
+    { c: K[2], lab: 'Manager interventions', val: '0', foot: 'Within authorised scope' },
+    { c: K[3], lab: 'Source verified', val: 'Yes', foot: 'ShiftCare · SRC-2050' }
   ],
   left: {
-    kind: 'table', title: 'Audit trail', link: 'Export the record',
-    sub: 'Every row names the system that confirmed it.',
+    kind: 'timeline', title: 'Autonomous execution timeline', link: 'Audit trail',
+    sub: 'Times AEDT · each step logged',
     rows: [
-      { t: '06:21', a: 'Rostering', d: 'Shift replaced · ROS-2050', s: 'Rostering platform', k: 'Confirmed' },
-      { t: '05:58', a: 'Compliance', d: 'Training records synced (12)', s: 'HR register', k: 'Confirmed' },
-      { t: '04:15', a: 'HR', d: 'Leave recorded · 2 workers', s: 'HR register', k: 'Confirmed' },
-      { t: '03:02', a: 'After-Hours', d: 'Call answered · message logged', s: 'Telephony', k: 'Confirmed' },
-      { t: '01:44', a: 'Operations', d: 'Readiness summary prepared', s: 'Operations', k: 'Confirmed' },
-      { t: '23:50', a: 'Finance', d: 'Invoice above approval limit', s: 'Accounting', k: 'Held', hold: 1 },
-      { t: '22:19', a: 'Rostering', d: 'Open shift offered · 4 workers', s: 'Rostering platform', k: 'Confirmed' }
+      { t: '06:08', h: 'Sick call received', d: 'Identity checked · matched to shift' },
+      { t: '06:09', h: 'Shift and service identified', d: 'ShiftCare shift lookup' },
+      { t: '06:10', h: 'Worker eligibility evaluated', d: 'Rules engine · 6/6 passed' },
+      { t: '06:12', h: 'Offers sent to eligible workers', d: 'SMS and voice' },
+      { t: '06:17', h: 'Replacement accepted', d: 'Conditions re-checked' },
+      { t: '06:21', h: 'Outcome verified in ShiftCare', d: 'Read-back matched worker and shift' }
     ]
   },
   right: {
-    title: 'Controls in force', link: 'View all',
+    title: 'Task summary', link: 'Export',
     cards: [
-      { tone: 'info', lab: 'STANDING RULE', h: 'Nothing clinical. Ever.',
-        p: ['The agents stop at the line where care begins.', 'Set by Hartwell · locked'], lk: 'See the rules' },
-      { tone: 'info', lab: 'APPROVAL LIMIT', h: 'Anything consequential waits',
-        p: ['Payments, contracts and exits are held for a named person.', 'Escalates to on-call after 2 minutes.'], lk: 'See the limits' }
+      { tone: 'info', lab: 'OPERATING MODE', h: 'Autonomous',
+        p: ['Within standing policy v2.4'], lk: 'See the policy' },
+      { tone: 'info', lab: 'SOURCE OF TRUTH', h: 'ShiftCare roster',
+        p: ['Read-back verified 06:21'], lk: 'See the evidence' }
     ]
   }
 },
 
 'why-us': {
-  nav: NAV_CARE('Reports'), crumb: 'Reports', org: 'Northvale Health Partners',
-  search: 'Search the record...', me: 'MO',
-  date: 'LAST 30 DAYS · TO NOVEMBER 17, 2026', asof: 'Updated 6:50 AM CST',
-  h1: 'Every action, with its evidence',
-  sub: 'Every record confirmed by the system it happened in.',
-  chips: ['Period: 30 days', 'Agent: All'],
-  health: '4,182 of 4,182 actions confirmed at source',
-  live: 'Recording · nothing unconfirmed',
+  nav: NAV_CARE('Tasks & Exceptions'), crumb: 'Tasks & Exceptions / SCH-2050', org: 'Northvale Health Partners',
+  search: 'Search tasks, agents...', me: 'MO',
+  date: 'AI SCHEDULING AGENT / TASK SCH-2050', asof: 'Visit 7:00 AM-3:00 PM',
+  h1: 'Replace canceled visit',
+  sub: 'Covered and verified by read-back. No approval needed.',
+  chips: ['Export'],
+  health: 'Verified complete · AxisCare read-back 6:21 AM',
+  live: 'All sources healthy · nothing held',
   kpis: [
-    { c: K[0], lab: 'Actions recorded', val: '4,182', foot: 'Last 30 days' },
-    { c: K[1], lab: 'Confirmed at source', val: '100%', foot: '4,182 of 4,182' },
-    { c: K[2], lab: 'Held for a person', val: '37', foot: '0.9% of actions' },
-    { c: K[3], lab: 'Median hold time', val: '4 min', foot: 'Held to decided' },
-    { c: K[4], lab: 'Reversed by a human', val: '0', foot: 'Since go-live' }
+    { c: K[0], lab: 'Execution duration', val: '13 min', foot: '6:08 to 6:21 AM' },
+    { c: '#067A52', lab: 'Suitable replacement', val: '1', foot: 'Caregiver acceptance recorded' },
+    { c: K[1], lab: 'Policy checks passed', val: '6 / 6', foot: 'No eligibility exceptions' },
+    { c: K[2], lab: 'Manager interventions', val: '0', foot: 'Within authorized scope' },
+    { c: K[3], lab: 'Source verified', val: 'Yes', foot: 'AxisCare · SRC-2050' }
   ],
   left: {
-    kind: 'table', title: 'Audit trail', link: 'Export the record',
-    sub: 'Every row names the system that confirmed it.',
+    kind: 'timeline', title: 'Autonomous execution timeline', link: 'Audit trail',
+    sub: 'Times CST · each step logged',
     rows: [
-      { t: '6:21a', a: 'Scheduling', d: 'Shift replaced · SCH-2050', s: 'Scheduling platform', k: 'Confirmed' },
-      { t: '5:58a', a: 'Compliance', d: 'Credentials synced (12)', s: 'HR register', k: 'Confirmed' },
-      { t: '4:15a', a: 'HR', d: 'Time off recorded · 2 staff', s: 'HR register', k: 'Confirmed' },
-      { t: '3:02a', a: 'After-Hours', d: 'Call answered · message logged', s: 'Telephony', k: 'Confirmed' },
-      { t: '1:44a', a: 'Operations', d: 'Readiness summary prepared', s: 'Operations', k: 'Confirmed' },
-      { t: '11:50p', a: 'Finance', d: 'Invoice above approval limit', s: 'Accounting', k: 'Held', hold: 1 },
-      { t: '10:19p', a: 'Scheduling', d: 'Open shift offered · 4 staff', s: 'Scheduling platform', k: 'Confirmed' }
+      { t: '6:08', h: 'Caregiver call-off received', d: 'Identity checked · matched to visit' },
+      { t: '6:09', h: 'Client and visit identified', d: 'AxisCare visit lookup' },
+      { t: '6:10', h: 'Caregiver eligibility evaluated', d: 'Rules engine · 6/6 passed' },
+      { t: '6:12', h: 'Offers sent to eligible caregivers', d: 'Text and voice' },
+      { t: '6:17', h: 'Replacement accepted', d: 'Conditions re-checked' },
+      { t: '6:21', h: 'Outcome verified in AxisCare', d: 'Read-back matched caregiver and visit' }
     ]
   },
   right: {
-    title: 'Controls in force', link: 'View all',
+    title: 'Task summary', link: 'Export',
     cards: [
-      { tone: 'info', lab: 'STANDING RULE', h: 'Nothing clinical. Ever.',
-        p: ['The agents stop at the line where care begins.', 'Set by Northvale · locked'], lk: 'See the rules' },
-      { tone: 'info', lab: 'APPROVAL LIMIT', h: 'Anything consequential waits',
-        p: ['Payments, contracts and exits are held for a named person.', 'Escalates to on-call after 2 minutes.'], lk: 'See the limits' }
+      { tone: 'info', lab: 'OPERATING MODE', h: 'Autonomous',
+        p: ['Within standing policy v2.4'], lk: 'See the policy' },
+      { tone: 'info', lab: 'SOURCE OF TRUTH', h: 'AxisCare schedule',
+        p: ['Read-back verified 6:21 AM'], lk: 'See the evidence' }
     ]
   }
 }

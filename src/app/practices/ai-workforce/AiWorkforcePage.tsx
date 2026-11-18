@@ -7,6 +7,7 @@ import DeskFooter from "@/components/desk/DeskFooter";
 import StickyCta from "@/components/desk/StickyCta";
 import { FRAME, GUTTER, MICRO, MICRO_TIGHT } from "@/components/desk/tokens";
 import { LpHeader } from "@/components/lp/kit";
+import ProductShot from "@/components/offer/ProductShot";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
@@ -615,41 +616,6 @@ function ExampleChip() {
   );
 }
 
-function Dots() {
-  return (
-    <span aria-hidden className="flex flex-shrink-0 gap-1.5">
-      <span className="h-2 w-2 rounded-full bg-ink-200" />
-      <span className="h-2 w-2 rounded-full bg-ink-200" />
-      <span className="h-2 w-2 rounded-full bg-ink-200" />
-    </span>
-  );
-}
-
-function Card({
-  title,
-  children,
-  chrome = true,
-}: {
-  title?: string;
-  children: React.ReactNode;
-  chrome?: boolean;
-}) {
-  return (
-    <div className="overflow-hidden rounded-lg border border-ink-100 bg-white shadow-float">
-      {chrome ? (
-        <div className="flex items-center justify-between gap-3 border-b border-ink-100 px-4 py-3">
-          <div className="flex min-w-0 items-center gap-3">
-            <Dots />
-            {title ? <p className={`${MICRO_TIGHT} truncate text-ink-500`}>{title}</p> : null}
-          </div>
-          <ExampleChip />
-        </div>
-      ) : null}
-      {children}
-    </div>
-  );
-}
-
 function Bar({ pct, tone = "brand" }: { pct: number; tone?: "brand" | "warm" }) {
   return (
     <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
@@ -669,53 +635,55 @@ function Avatar({ i }: { i: string }) {
   );
 }
 
-function CallsVisual() {
-  const tasks = [
-    ["Rebooked, Tuesday 9:40am", 100],
-    ["Referral documents requested", 60],
-    ["Recall list, 14 patients", 35],
-  ] as const;
+/* ── FEATURE VISUALS: THE PRODUCT ──────────────────────────────────
+ *
+ * Founder instruction, 18 Nov 2026: the product's own screens, with the
+ * floating cards kept over them, edited to fit this offer. Images:
+ * novada-website/tools/product-shots (panels/, practices).
+ *
+ *   work     -> one patient call handled end to end, plus its call policy checks
+ *   control  -> the task table: done, running, waiting, stuck
+ *   systems  -> cancelled appointments refilled, read back from the practice system, plus the connected systems
+ *
+ * ⚠️ The second, smaller screen is hidden below sm: at 390px it would
+ * cover most of the main one.
+ */
+
+function CallVisual() {
   return (
-    <div className="relative pt-16">
-      <div className="absolute right-4 top-0 z-20 w-[180px] rounded-lg border border-ink-100 bg-white p-4 text-center shadow-float">
-        <span className="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-white">
-          <Check aria-hidden className="h-4 w-4" strokeWidth={3} />
-        </span>
-        <p className="mt-2 text-[10px] font-semibold uppercase tracking-caps text-ink-400">
-          Handled on the call
-        </p>
-        <p style={SERIF} className="mt-1 text-sm font-bold text-ink-950">
-          Appointment booked
-        </p>
-      </div>
-      <div className="relative z-10">
-        <Card title="Today">
-          <div className="flex flex-col gap-4 p-5">
-            {tasks.map(([t, pct]) => (
-              <div key={t} className="flex items-start gap-3">
-                <span aria-hidden className="mt-1.5 flex flex-col gap-[3px]">
-                  <span className="h-[2px] w-3.5 rounded bg-ink-200" />
-                  <span className="h-[2px] w-3.5 rounded bg-ink-200" />
-                  <span className="h-[2px] w-3.5 rounded bg-ink-200" />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[13px] font-medium text-ink-800">{t}</p>
-                  <div className="mt-2">
-                    <Bar pct={pct} tone={pct === 100 ? "brand" : "warm"} />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
-      </div>
+    <div className="relative pb-0 pt-12 sm:pb-16 sm:pr-10">
+        <div className="absolute right-0 top-0 z-20 w-[200px] rounded-lg border border-ink-100 bg-white p-4 text-center shadow-float">
+          <span className="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-brand-500 text-white">
+            <Check aria-hidden className="h-4 w-4" strokeWidth={3} />
+          </span>
+          <p className="mt-2 text-[10px] font-semibold uppercase tracking-caps text-ink-400">
+            Handled on the call
+          </p>
+          <p style={SERIF} className="mt-1 text-sm font-bold text-ink-950 [text-wrap:balance]">
+            Appointment booked
+          </p>
+        </div>
+      <ProductShot
+        src="/product/practices-calls.webp"
+        width={708}
+        height={768}
+        alt="The call handling timeline in the Novada Control Centre: a patient call answered at 08:02 with the AI identifying itself, the patient matched, the reason checked as routine, an appointment found, offered and accepted, and the booking verified in Best Practice at 08:05"
+        className="relative z-10 sm:mr-8"
+      />
+      <ProductShot
+        src="/product/practices-policy.webp"
+        width={376}
+        height={283}
+        alt="The call handling policy for the same call: all six checks passed, including AI disclosure and nothing urgent or clinical raised"
+        className="absolute bottom-0 right-0 z-20 hidden w-[240px] sm:block"
+      />
     </div>
   );
 }
 
-function DashboardVisual() {
+function TaskTableVisual() {
   return (
-    <div className="relative px-2 pb-16 pt-14 sm:px-6">
+    <div className="relative px-2 pb-16 pt-[88px] sm:px-6">
       <div className="absolute left-0 top-0 z-20 w-[172px] rounded-lg border border-ink-100 bg-white p-4 shadow-float">
         <div className="flex items-baseline justify-between gap-2">
           <p style={SERIF} className="text-2xl font-bold text-ink-950">
@@ -729,33 +697,15 @@ function DashboardVisual() {
           <Bar pct={85} />
         </div>
       </div>
-      <div className="relative z-10">
-        <Card chrome={false}>
-          <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <Dots />
-            <ExampleChip />
-          </div>
-          <div
-            className="px-5 py-6"
-            style={{ background: "linear-gradient(110deg,#003DDB 0%,#0030AE 55%,#3A6CFF 100%)" }}
-          >
-            <p style={SERIF} className="text-base font-bold text-white">
-              Good morning. Here is your front desk.
-            </p>
-            <p className="mt-1.5 text-xs text-white/75">
-              11 calls handled, 2 escalations, 1 approval waiting
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-3 p-5">
-            {["Calls", "Cancellations", "Referrals", "Claims"].map((t) => (
-              <div key={t} className="rounded-xs bg-ink-50 p-3">
-                <p className="text-[10px] font-semibold uppercase tracking-caps text-ink-400">{t}</p>
-                <span aria-hidden className="mt-2 block h-1.5 w-2/3 rounded bg-ink-200" />
-              </div>
-            ))}
-          </div>
-        </Card>
-      </div>
+
+      <ProductShot
+        src="/product/practices-tasks.webp"
+        width={688}
+        height={658}
+        alt="The task table in the Novada Control Centre: each front desk task with the agent that ran it and its status, from urgent symptoms transferred to a nurse to reminders verified complete"
+        className="relative z-10"
+      />
+
       <div className="absolute bottom-0 right-0 z-20 w-[212px] rounded-lg border border-ink-100 bg-white p-4 text-center shadow-float">
         <p style={SERIF} className="text-sm font-bold text-ink-950">
           Escalated to the practice manager
@@ -770,95 +720,41 @@ function DashboardVisual() {
   );
 }
 
-function MetricsVisual() {
-  const bars = [62, 88, 74, 96, 81];
-  const R = 42;
-  const C = 2 * Math.PI * R;
-  const pct = 92;
+function SystemsVisual() {
   return (
-    <div className="relative pb-6">
-      <div className="relative z-10 flex flex-col gap-4">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-2 rounded-full border border-ink-100 bg-white px-3 py-1.5 shadow-raise">
-            <span aria-hidden className="h-2 w-2 rounded-full bg-brand-500" />
-            <span className="text-[11px] font-semibold text-ink-600">Front desk indicators</span>
+    <div className="relative pb-0 sm:pb-24">
+      <div className="relative z-20 mb-4 flex flex-wrap items-center gap-3">
+        <span className="inline-flex items-center gap-2 rounded-full border border-ink-100 bg-white px-3 py-1.5 shadow-raise">
+          <span aria-hidden className="h-2 w-2 rounded-full bg-brand-500" />
+          <span className="text-[11px] font-semibold text-ink-600">
+            Read back from your practice system
           </span>
-          <ExampleChip />
-        </div>
-        <div className="flex flex-wrap items-end gap-4">
-          <div className="min-w-[170px] flex-1 rounded-lg border border-ink-100 bg-white p-5 shadow-float">
-            <div aria-hidden className="flex h-[92px] items-end gap-2.5">
-              {bars.map((h, i) => (
-                <span
-                  key={i}
-                  className={`flex-1 rounded-t ${i % 2 ? "bg-brand-500" : "bg-brand-200"}`}
-                  style={{ height: `${h}%` }}
-                />
-              ))}
-            </div>
-            <p className="mt-4 text-[10px] font-bold uppercase tracking-caps text-ink-500">
-              Calls answered, by week
-            </p>
-          </div>
-          <div className="rounded-lg border border-ink-100 bg-white p-5 shadow-float">
-            <svg viewBox="0 0 110 110" className="h-[96px] w-[96px]" aria-hidden>
-              <circle cx="55" cy="55" r={R} fill="none" stroke="#DCE6FF" strokeWidth="13" />
-              <circle
-                cx="55"
-                cy="55"
-                r={R}
-                fill="none"
-                stroke="#003DDB"
-                strokeWidth="13"
-                strokeLinecap="round"
-                strokeDasharray={`${(C * pct) / 100} ${C}`}
-                transform="rotate(-90 55 55)"
-              />
-              <text
-                x="55"
-                y="63"
-                textAnchor="middle"
-                style={SERIF}
-                fill="#0B0E14"
-                fontSize="23"
-                fontWeight="700"
-              >
-                {pct}%
-              </text>
-            </svg>
-            <p className="mt-3 text-center text-[10px] font-bold uppercase tracking-caps text-ink-500">
-              Slots refilled
-            </p>
-          </div>
-        </div>
-        <div className="rounded-lg border border-ink-100 bg-white px-5 py-4 shadow-float">
-          <div aria-hidden className="relative h-5">
-            <span className="absolute inset-x-0 top-1/2 h-px bg-ink-200" />
-            {[4, 15, 23, 38, 47, 51, 55, 58, 66, 74, 83, 96].map((x, i) => (
-              <span
-                key={i}
-                className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-brand-400"
-                style={{ left: `${x}%` }}
-              />
-            ))}
-            <span className="absolute left-1/2 top-0 h-full w-px bg-ink-300" />
-          </div>
-          <div className="mt-2 flex justify-between text-[10px] font-semibold text-ink-400">
-            <span>Mon</span>
-            <span>Midweek</span>
-            <span>Sat</span>
-          </div>
-        </div>
+        </span>
+        <ExampleChip />
       </div>
+      <ProductShot
+        src="/product/practices-refills.webp"
+        width={698}
+        height={419}
+        alt="Cancelled appointments refilled by day in the Novada Control Centre: each day's cancellations against the slots rebooked from the waitlist and read back from Best Practice"
+        className="relative z-10 sm:mr-12"
+      />
+      <ProductShot
+        src="/product/practices-systems.webp"
+        width={364}
+        height={200}
+        alt="The systems the agents are connected to, each with its health: practice management healthy, telephony and SMS healthy, billing and claims degraded"
+        className="absolute bottom-0 right-0 z-20 hidden w-[300px] sm:block"
+      />
       <Blobs flip />
     </div>
   );
 }
 
 const VISUALS: Record<string, React.ComponentType> = {
-  work: CallsVisual,
-  control: DashboardVisual,
-  systems: MetricsVisual,
+  work: CallVisual,
+  control: TaskTableVisual,
+  systems: SystemsVisual,
 };
 
 /* ── THE PAGE ─────────────────────────────────────────────────────── */
@@ -943,7 +839,7 @@ export default function AiWorkforcePage() {
                    likeness and their dashboard UI - are gone; the shapes
                    are not. Do not record this file as fully cleared. */
                 src="/ai-workforce/hero-practices.webp"
-                alt="The Novada AI Operations Agent patient access screen, showing calls answered, slots refilled and the practice's six AI Operations Agents, beside a practice manager"
+                alt="The Novada front desk performance report: 412 calls answered this week with none missed, most handled by the AI and the rest passed to reception, beside a practice manager"
                 width={938}
                 height={654}
                 fetchPriority="high"
