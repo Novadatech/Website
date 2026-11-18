@@ -9,7 +9,7 @@ build: run it by hand when a hero needs to change, then commit the
 ```
 hero.png  ──►  frame: HiBob's layout, blobs, placement, colours  ── UNCHANGED
 dash/out  ──►  the dashboard inside the panel                    ── per page
-assets/   ──►  the figure                                        ── same everywhere
+assets/   ──►  the figure                                        ── per page (18 Nov)
 ```
 
 Only the dashboard changes between pages. The frame and the figure are
@@ -30,6 +30,27 @@ marketing, modification allowed, no attribution required, but: *"don't
 imply endorsement of your product by people or brands."* She appears
 beside the product, unnamed and unquoted. **Never place this image next
 to a testimonial, a name or a quotation.**
+
+## The figures (18 Nov 2026)
+
+Founder: a different woman on the home, practices and about heroes, same
+style. Care keeps `figure.webp` (Pexels 35696305). The others, all Pexels
+licence, matted with rembg `isnet-general-use` (flood-fill left white
+halos in the hair):
+
+| page | file | Pexels |
+|---|---|---|
+| home | `figure-home.webp` | 1587009 |
+| practices | `figure-practices.webp` | 19989572, Weijia MA |
+| about | `figure-why.webp` | 30479371 |
+
+⚠️ Placed by FACE size and position (brow-to-chin ~210px, chin y~410,
+face centre x~1335), not hair-top-to-chin: the original's hair volume
+made the first attempt put every new face ~90px low. ⚠️ A close-up shot
+does not work: it ends mid-panel. Pick waist-up framing.
+
+rembg's model download fails behind the TLS proxy; fetch
+`isnet-general-use.onnx` with curl into `~/.u2net/`.
 
 ## The four screens
 

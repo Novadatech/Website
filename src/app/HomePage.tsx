@@ -285,7 +285,7 @@ export default function HomePage() {
                 style={SERIF}
                 className="mt-5 text-[clamp(2.1rem,1.35rem+3.2vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-ink-950"
               >
-                Deploy AI Operations Agents that do the work. Not just tell you what needs
+                AI Operations Agents that do the work. Not just tell you what needs
                 doing.
               </h1>
 
@@ -592,7 +592,7 @@ export default function HomePage() {
               dark
               sub="Both start with a free 30-minute conversation about your workload, your systems and which work could be handled safely. No obligation to proceed."
             >
-              Deploy your first AI Operations Agent
+              Launch your first AI Operations Agent
             </SectionHead>
 
             <div className="mx-auto mt-12 grid max-w-3xl gap-5 sm:grid-cols-2">

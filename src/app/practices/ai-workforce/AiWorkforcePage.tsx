@@ -788,7 +788,7 @@ export default function AiWorkforcePage() {
                 style={SERIF}
                 className="mt-5 text-[clamp(2.1rem,1.35rem+3.2vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-ink-950"
               >
-                Deploy AI Operations Agents that actually run your practice
+                AI Operations Agents that actually run your practice
                 administration.
               </h1>
 
@@ -1226,7 +1226,7 @@ export default function AiWorkforcePage() {
               dark
               sub="A free 30-minute conversation about your front desk, your systems, and which administrative work could be handled safely. No obligation to proceed."
             >
-              Deploy your next AI practice team
+              Launch your next AI practice team
             </SectionHead>
 
             <div className="mx-auto mt-12 grid max-w-5xl gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-12">

@@ -43,14 +43,14 @@ DASH = os.path.join(HERE, "dash", "out", "%s.png")
 # variant -> output files. The AU care hero is NOT in this table: it was
 # approved on the real Figma export and is left exactly as it shipped.
 JOBS = [
-    ("care-au",      [os.path.join(AU, "hero-workforce.webp")]),
-    ("practices-au", [os.path.join(AU, "hero-practices.webp")]),
-    ("home-au",      [os.path.join(AU, "hero-home.webp")]),
-    ("why-au",       [os.path.join(AU, "hero-why.webp")]),
-    ("care-us",      [os.path.join(US, "hero-workforce.webp")]),
-    ("practices-us", [os.path.join(US, "hero-practices.webp")]),
-    ("home-us",      [os.path.join(US, "hero-home.webp")]),
-    ("why-us",       [os.path.join(US, "hero-why.webp")]),
+    ("care-au",      [os.path.join(AU, "hero-workforce.webp")], "figure"),
+    ("practices-au", [os.path.join(AU, "hero-practices.webp")], "practices"),
+    ("home-au",      [os.path.join(AU, "hero-home.webp")], "home"),
+    ("why-au",       [os.path.join(AU, "hero-why.webp")], "why"),
+    ("care-us",      [os.path.join(US, "hero-workforce.webp")], "figure"),
+    ("practices-us", [os.path.join(US, "hero-practices.webp")], "practices"),
+    ("home-us",      [os.path.join(US, "hero-home.webp")], "home"),
+    ("why-us",       [os.path.join(US, "hero-why.webp")], "why"),
 ]
 
 # Panel rect, measured from hero.png's ALPHA, not by eye.
@@ -64,6 +64,40 @@ RADIUS = 6 * S
 
 HEAD_TOP, CHIN, HAIR_RIGHT = 12 * S, 245 * S, 905 * S
 CHIN_FRAC = 0.373            # chin height as a fraction of the cutout
+
+# ── THE FIGURES ──────────────────────────────────────────────────────
+# Founder, 18 Nov 2026: a DIFFERENT woman on the home, practices and
+# about heroes, same style. Care keeps the original (figure.webp).
+# Each new one is placed by matching FACE SIZE and FACE POSITION to the
+# original, measured on a shared ruler in the finished heroes: the
+# original's brow-to-chin is ~210px and her chin sits at y~410, face
+# centre x~1335 (2x hero px). ⚠️ NOT hair-top-to-chin: the original has
+# a lot of hair and her head is tipped back laughing, so a hair-based
+# match made every new face sit ~90px low and the practices one ~28% big.
+# Source px per figure: (file, hair top, chin, face centre x, size mult).
+# The practices shot is full-length, so her head is small in frame; the
+# mult brings her face to the same size, which also keeps her shoulders
+# off the bar chart. home + why are 0.92 so their hair clears the top
+# edge of the image (at 1.00 it ran ~16px past y=0 and was cut flat).
+#   Pexels 1587009  -> figure-home       (folder, navy sweater)
+#   Pexels 19989572 -> figure-practices  Weijia MA (navy blazer)
+#   Pexels 30479371 -> figure-why        (black blazer)
+#   all matted with rembg isnet-general-use; Pexels licence
+HEAD_SPAN, FACE_X, CHIN_Y = 427, 1335, 410
+FIGS = {
+    "home":      ("figure-home.webp",      38, 914, 1025, 0.92),
+    "practices": ("figure-practices.webp", 20, 539,  857, 0.69),
+    "why":       ("figure-why.webp",       22, 867,  933, 0.92),
+}
+
+def place(key):
+    if key == "figure":
+        return lady, LX, LY
+    f, top, chin, cx, mult = FIGS[key]
+    im = Image.open(os.path.join(HERE, "assets", f)).convert("RGBA")
+    sc = HEAD_SPAN / (chin - top) * mult
+    im = im.resize((round(im.width * sc), round(im.height * sc)), Image.LANCZOS)
+    return im, round(FACE_X - cx * sc), round(CHIN_Y - chin * sc)
 
 base0 = Image.open(HERO).convert("RGBA").resize((W, H), Image.LANCZOS)
 orig = np.array(base0)
@@ -110,7 +144,7 @@ ImageDraw.Draw(mask).rounded_rectangle([0, 0, PW * 2 - 1, PH * 2 - 1], RADIUS * 
 mask = mask.resize((PW, PH), Image.LANCZOS)
 
 fail = 0
-for variant, outs in JOBS:
+for variant, outs, figkey in JOBS:
     src = DASH % variant
     if not os.path.exists(src):
         print("  MISSING dashboard:", src); fail += 1; continue
@@ -139,9 +173,12 @@ for variant, outs in JOBS:
     base.alpha_composite(panel, (PX0, PY0))
 
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    layer.alpha_composite(lady, (LX, LY))
+    fig, fx, fy = place(figkey)
+    layer.alpha_composite(fig, (fx, fy))
     clip = np.array(layer)
     clip[PY1:, :, 3] = 0                        # cut her at the panel bottom
+    if figkey != "figure":
+        clip[:, PX1:, 3] = 0                    # and at its right edge
     base.alpha_composite(Image.fromarray(clip, "RGBA"))
     base.alpha_composite(blob_img)
 
