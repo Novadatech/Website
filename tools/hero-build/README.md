@@ -38,8 +38,8 @@ not repeat one picture eight times.
 
 | screen | pages | main panel |
 |---|---|---|
-| Overview | `/care/ai-workforce` (+ `/lp`) | the AI employee list |
-| Patient Access | `/practices/ai-workforce` | the AI employee list |
+| Overview | `/care/ai-workforce` (+ `/lp`) | the agent list |
+| Patient Access | `/practices/ai-workforce` | the agent list |
 | Work queue | `/` | a task table |
 | Audit trail | `/why-novada` | a log table |
 
@@ -50,7 +50,7 @@ AU and US variants. Defined in `dash/variants.js`.
 
 ```sh
 node dash/render.mjs          # variants.js -> dash/out/*.png  (2880x2160)
-python dash/metrics.py        # calibration: replica vs the Figma export
+python dash/metrics.py        # calibration: care-au-calib vs the Figma export
 python hero_build_all.py      # composites -> public/ai-workforce/*.webp
 node verify_all.mjs <base-url> '{"/":"hero-home.webp", ...}'
 ```
@@ -98,6 +98,17 @@ figure's hair.** Every subtitle in the first draft was too long.
   every hero is built from. Do not delete it. `hero-practices.png` is
   the same picture with different banner wording (1,895 pixels) and is
   no longer needed.
+
+## Naming (18 Nov 2026)
+
+The founder renamed the product: **AI employees / AI workforce -> AI
+Operations Agents**, care roles **Coordinator -> Agent** (the operations
+role is **Operations Lead Agent**, so it does not collide with the product
+name), and every practice role gains **Agent**. The dashboards follow.
+
+The Figma export still carries the old names, so **every hero, AU care
+included, now ships from the replica**. `care-au-calib` is the untouched
+copy kept only for `metrics.py`; never ship it.
 
 ## Known defect in the source dashboard
 

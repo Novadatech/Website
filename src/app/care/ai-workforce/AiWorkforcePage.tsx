@@ -186,7 +186,7 @@ const WHY = [
   {
     img: "/ai-workforce/why-employees.png",
     h: "It does the work",
-    b: "Not a dashboard that tells your team what is outstanding. An AI employee that completes the task and records what it did.",
+    b: "Not a dashboard that tells your team what is outstanding. An AI Operations Agent that completes the task and records what it did.",
   },
   {
     img: "/ai-workforce/why-control.png",
@@ -211,9 +211,9 @@ const FEATURES = [
     bullets: [
       "Traditional software stores the information. Your team still does the work of moving it.",
       "Traditional automation fires one action when one condition is met.",
-      "A Novada AI employee runs the whole sequence: checks your systems, takes the permitted actions, asks for approval, confirms the result and escalates what it cannot resolve.",
+      "A Novada AI Operations Agent runs the whole sequence: checks your systems, takes the permitted actions, asks for approval, confirms the result and escalates what it cannot resolve.",
     ],
-    link: { label: "Meet your AI employees", href: "#employees" },
+    link: { label: "Meet your AI Operations Agents", href: "#employees" },
   },
   {
     key: "control",
@@ -221,7 +221,7 @@ const FEATURES = [
     bullets: [
       "Which tasks are done, running, waiting or stuck.",
       "Which actions are sitting on your approval.",
-      "A traceable record of what each AI employee did, when, and in which system.",
+      "A traceable record of what each AI Operations Agent did, when, and in which system.",
     ],
     link: { label: "See how the Control Centre works", href: "#book" },
     /* 🔴 LOAD-BEARING, floor item 11. Without it the Control Centre
@@ -355,7 +355,7 @@ const TALK = [
   {
     img: "/ai-workforce/talk-start.png",
     h: "Start with one role",
-    b: "Hire a single AI employee and add others into the same Control Centre later.",
+    b: "Deploy a single AI Operations Agent and add others into the same Control Centre later.",
   },
   {
     img: "/ai-workforce/talk-reach.png",
@@ -409,9 +409,9 @@ const OVERSIGHT = [
   },
 ];
 
-/* ── THE FIVE AI EMPLOYEES. ───────────────────────────────────────────
+/* ── THE FIVE AI OPERATIONS AGENTS. ───────────────────────────────────────────
  *
- * 🔴 WRITTEN FROM THE FOUNDER'S "End to End process for AI Employee"
+ * 🔴 WRITTEN FROM THE FOUNDER'S "End to End process for AI Operations Agent"
  * (10 November 2026), not from the old page copy, which UNDERSELLS THEM
  * BADLY: it has HR stopping at onboarding when the document runs it
  * through payroll processing, payslips, superannuation reporting and
@@ -430,7 +430,7 @@ const OVERSIGHT = [
  * ──────────────────────────────────────────────────────────────────── */
 const EMPLOYEES = [
   {
-    role: "AI Rostering Coordinator",
+    role: "AI Rostering Agent",
     stages: "18 stages",
     span: "Workforce demand to cost monitoring",
     lead: "Builds the roster, fills the gaps, and gets the hours to payroll.",
@@ -441,7 +441,7 @@ const EMPLOYEES = [
     ],
   },
   {
-    role: "AI Compliance Coordinator",
+    role: "AI Compliance Agent",
     stages: "18 stages",
     span: "Obligation register to governance reporting",
     lead: "Keeps the evidence current instead of assembling it the week before an audit.",
@@ -452,7 +452,7 @@ const EMPLOYEES = [
     ],
   },
   {
-    role: "AI HR Coordinator",
+    role: "AI HR Agent",
     stages: "23 stages",
     span: "Job advertisement to final pay run",
     lead: "The whole employment lifecycle, including the pay run.",
@@ -463,7 +463,7 @@ const EMPLOYEES = [
     ],
   },
   {
-    role: "AI After-Hours Coordinator",
+    role: "AI After-Hours Agent",
     stages: "18 stages",
     span: "The call to the morning handover",
     lead: "Answers the phone at 9:15 pm so your on-call manager does not have to.",
@@ -474,7 +474,7 @@ const EMPLOYEES = [
     ],
   },
   {
-    role: "AI Operations Coordinator",
+    role: "AI Operations Lead Agent",
     stages: "20 stages",
     span: "First enquiry to claim reconciliation",
     lead: "Runs the day, then makes sure the work that was delivered gets billed.",
@@ -523,25 +523,25 @@ const INTEGRATIONS = [
    and their answers are untouched. */
 const FAQ = [
   {
-    q: "What is Novada AI Workforce?",
-    a: "An AI-powered operational platform for Australian care providers. You engage specialised AI employees that coordinate and execute approved administrative workflows across your supported business systems.",
+    q: "What are Novada AI Operations Agents?",
+    a: "They run on an AI-powered operational platform for Australian care providers. You engage specialised AI Operations Agents that coordinate and execute approved administrative workflows across your supported business systems.",
   },
   {
     q: "How is it different from ChatGPT or a conventional AI chatbot?",
-    a: "A chatbot responds to questions or generates information. Novada AI Workforce performs authorised operational actions through connected systems, follows defined workflows, requests approvals, verifies outcomes and maintains activity records.",
+    a: "A chatbot responds to questions or generates information. Novada AI Operations Agents perform authorised operational actions through connected systems, follow defined workflows, request approvals, verify outcomes and maintain activity records.",
   },
   {
     /* 🔴 Floor item 1. */
-    q: "Can AI employees actually complete tasks?",
-    a: "That is the core purpose of the offering. A supported AI employee is designed to perform permitted actions rather than simply recommend them. Actual capabilities depend on the available integrations, configured workflows, system permissions and required approvals.",
+    q: "Can AI Operations Agents actually complete tasks?",
+    a: "That is the core purpose of the offering. A supported AI Operations Agent is designed to perform permitted actions rather than simply recommend them. Actual capabilities depend on the available integrations, configured workflows, system permissions and required approvals.",
   },
   {
     q: "Do we need to replace our current software?",
     a: "Not necessarily. The platform works alongside supported existing applications rather than requiring a wholesale system replacement, and your existing systems remain authoritative for their own business records unless explicitly agreed otherwise.",
   },
   {
-    q: "Can we hire just one AI employee?",
-    a: "Yes. You can engage a single specialised AI employee and add others later. The roles, service scope and subscription terms are confirmed in your proposal.",
+    q: "Can we deploy just one AI Operations Agent?",
+    a: "Yes. You can engage a single specialised AI Operations Agent and add others later. The roles, service scope and subscription terms are confirmed in your proposal.",
   },
   {
     /* 🔴 Floor item 3. The answer begins with "No" and must keep doing so. */
@@ -556,7 +556,7 @@ const FAQ = [
   {
     /* 🔴 Floor item 12. */
     q: "How is sensitive information protected?",
-    a: "The platform connects to your systems through authorised, permission-scoped access, and every action an AI employee takes is recorded in the Control Centre's audit and activity records. Access controls, data retention, auditing and incident response are set out in your service agreement, and we confirm the specific permissions and contractual protections with you before any system is connected.",
+    a: "The platform connects to your systems through authorised, permission-scoped access, and every action an AI Operations Agent takes is recorded in the Control Centre's audit and activity records. Access controls, data retention, auditing and incident response are set out in your service agreement, and we confirm the specific permissions and contractual protections with you before any system is connected.",
   },
   {
     /* 🔴 Floor item 2. The answer is "No" and it stays the first word. */
@@ -565,8 +565,8 @@ const FAQ = [
   },
   {
     /* ⚠️ NO FIGURE. Price does not appear in writing before a call. */
-    q: "How much does it cost to hire an AI employee?",
-    a: "Pricing is based on the selected AI employee, the required workflows, supported integrations, usage and implementation requirements. Your proposal sets out the applicable platform, implementation and ongoing subscription costs once the scope is understood.",
+    q: "How much does it cost to deploy an AI Operations Agent?",
+    a: "Pricing is based on the selected AI Operations Agent, the required workflows, supported integrations, usage and implementation requirements. Your proposal sets out the applicable platform, implementation and ongoing subscription costs once the scope is understood.",
   },
 ];
 
@@ -887,7 +887,7 @@ function HeroVisual() {
     /* eslint-disable-next-line @next/next/no-img-element */
     <img
       src="/ai-workforce/hero-workforce.webp"
-      alt="The Novada AI Workforce Control Centre, showing overnight verified work, open exceptions and the five AI employees, beside a care operations manager"
+      alt="The Novada AI Operations Agent Control Centre, showing overnight verified work, open exceptions and the five AI Operations Agents, beside a care operations manager"
       width={938}
       height={654}
       fetchPriority="high"
@@ -1178,14 +1178,14 @@ export default function AiWorkforcePage({
                 style={SERIF}
                 className="mt-5 text-[clamp(2.1rem,1.35rem+3.2vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-ink-950"
               >
-                Hire AI employees that actually run your care operations.
+                Deploy AI Operations Agents that actually run your care operations.
               </h1>
 
               {/* ⚠️ TWO SENTENCES. The live page runs 130 words here and
                   that is the clearest instance of the problem the
                   founder asked to fix. Do not grow it back. */}
               <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-ink-600">
-                Novada AI employees run rostering, compliance, HR and payroll,
+                Novada AI Operations Agents run rostering, compliance, HR and payroll,
                 after-hours calls and claims administration inside the systems
                 you already use. They complete approved work, ask before
                 anything consequential, and record every action in one place.
@@ -1200,7 +1200,7 @@ export default function AiWorkforcePage({
                      the floor for the whole column at 390px. */
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xs bg-brand-100 px-6 text-[13px] font-bold uppercase tracking-caps text-brand-700 transition-colors duration-150 ease-standard hover:bg-brand-200 sm:whitespace-nowrap"
                 >
-                  Meet your AI employees
+                  Meet your AI Operations Agents
                   <ChevronDown aria-hidden className="h-4 w-4" />
                 </a>
               </div>
@@ -1213,7 +1213,7 @@ export default function AiWorkforcePage({
                   FOUNDER INSTRUCTION, 10 November 2026. The scope point
                   the qualifier carried still appears twice further down,
                   in the integrations sub-line and in the FAQ answer
-                  "Can AI employees actually complete tasks?". Do not
+                  "Can AI Operations Agents actually complete tasks?". Do not
                   restore it here without checking those are still in
                   place. */}
               <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
@@ -1241,7 +1241,7 @@ export default function AiWorkforcePage({
         <section className="border-y border-ink-100/70" style={{ backgroundColor: CREAM_DEEP }}>
           <div className={`${FRAME} ${GUTTER} py-10`}>
             <p style={SERIF} className="text-center text-lg font-bold text-ink-800">
-              Australian care providers already run Novada AI employees
+              Australian care providers already run Novada AI Operations Agents
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-20">
               {PROVIDERS.map((p) => (
@@ -1259,7 +1259,7 @@ export default function AiWorkforcePage({
 
         {/* ── WHY ──────────────────────────────────────────────────── */}
         <Section>
-          <SectionHead>Why choose a Novada AI employee?</SectionHead>
+          <SectionHead>Why choose a Novada AI Operations Agent?</SectionHead>
           <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
             {WHY.map((w) => (
               <div key={w.h} className="reveal text-center">
@@ -1354,7 +1354,7 @@ export default function AiWorkforcePage({
             number. */}
         <section style={{ backgroundColor: DEEP }}>
           <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>
-            <SectionHead dark>The business impact of an AI workforce</SectionHead>
+            <SectionHead dark>The business impact of AI Operations Agents</SectionHead>
 
             <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
               {SECTOR.map((s, i) => (
@@ -1396,7 +1396,7 @@ export default function AiWorkforcePage({
             across Australia with the operations behind it.
           </SectionHead>
 
-          {/* ⚠️ THE "all three run Novada AI employees" SENTENCE WAS
+          {/* ⚠️ THE "all three run Novada AI Operations Agents" SENTENCE WAS
               REMOVED ON FOUNDER INSTRUCTION, 10 November 2026. It was
               Novada's own claim, deliberately kept outside the
               quotation marks because none of the three quotes mentions
@@ -1434,7 +1434,7 @@ export default function AiWorkforcePage({
 
         {/* ── LET US TALK ──────────────────────────────────────────── */}
         <Section bg={CREAM_DEEP}>
-          <SectionHead sub="See how an AI workforce would fit your operation:">
+          <SectionHead sub="See how AI Operations Agents would fit your operation:">
             Let us talk
           </SectionHead>
           <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
@@ -1489,7 +1489,7 @@ export default function AiWorkforcePage({
               it carry the point on their own, and the third column is
               still the one the reader finishes on. */}
           <SectionHead wide>
-            Your AI employees do the routine work. Your people keep the
+            Your AI Operations Agents do the routine work. Your people keep the
             decisions.
           </SectionHead>
 
@@ -1529,10 +1529,10 @@ export default function AiWorkforcePage({
           </p>
         </Section>
 
-        {/* ── THE FIVE AI EMPLOYEES ────────────────────────────────── */}
+        {/* ── THE FIVE AI OPERATIONS AGENTS ────────────────────────────────── */}
         <Section id="employees">
           <SectionHead sub="Each one runs a defined operational lifecycle end to end. Start with the role under the most pressure and add others into the same Control Centre later.">
-            Meet the five AI employees
+            Meet the five AI Operations Agents
           </SectionHead>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -1590,7 +1590,7 @@ export default function AiWorkforcePage({
                 All of them report to one Control Centre
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-ink-600">
-                Whichever roles you hire, their tasks, approvals, exceptions and
+                Whichever agents you deploy, their tasks, approvals, exceptions and
                 activity records sit in the same place.
               </p>
               <div className="mt-6">
@@ -1607,7 +1607,7 @@ export default function AiWorkforcePage({
             this list REPLACED the old "no named integrations until
             confirmed" position. */}
         <Section id="integrations" bg={CREAM_DEEP}>
-          <SectionHead sub="Your AI employees work inside the systems you already run. We confirm each system's permissions and capabilities during implementation.">
+          <SectionHead sub="Your AI Operations Agents work inside the systems you already run. We confirm each system's permissions and capabilities during implementation.">
             Integrates with the tools you already use
           </SectionHead>
 
@@ -1662,7 +1662,7 @@ export default function AiWorkforcePage({
               dark
               sub="A free 30-minute conversation about your operational workload, your systems, and which repetitive tasks could be handled safely. No obligation to proceed."
             >
-              Hire your next AI operations team
+              Deploy your next AI operations team
             </SectionHead>
 
             <div className="mx-auto mt-12 grid max-w-5xl gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:gap-12">
@@ -1750,7 +1750,7 @@ export default function AiWorkforcePage({
       <div aria-hidden className="h-28 sm:h-20" />
 
       <StickyCta
-        label="Book your AI Workforce discovery call"
+        label="Book your AI Operations Agent discovery call"
         tagline="Free 30-minute discovery conversation."
         href="#book"
       />

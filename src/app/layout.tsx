@@ -61,16 +61,16 @@ export const metadata: Metadata = {
      the founder confirmed on 15 October that it does not run. */
   title: "Novada | We streamline the work behind the care",
   description:
-    "AI employees for Australian healthcare practices and care providers. They run the administration behind your service, inside the systems you already use, alongside your people and never instead of them. Every action is recorded, the decisions stay with you, and nothing clinical, ever.",
+    "AI Operations Agents for Australian healthcare practices and care providers. They run the administration behind your service, inside the systems you already use, alongside your people and never instead of them. Every action is recorded, the decisions stay with you, and nothing clinical, ever.",
   /* ⚠️ REWRITTEN 10 NOVEMBER 2026 WITH THE REDUCTION TO TWO OFFERS.
      The previous list bought traffic for four service lines that no
      longer exist. A keyword naming a retired offer sends a visitor to
      a page that cannot sell it to them. */
   keywords: [
-    "AI employees for NDIS and aged care providers",
-    "AI workforce for Australian medical practices",
+    "AI Operations Agents for NDIS and aged care providers",
+    "AI Operations Agents for Australian medical practices",
     "AI receptionist for GP and allied health practices",
-    "AI rostering and compliance coordinator",
+    "AI rostering and compliance agent",
     "AI billing and claims administration Australia",
     "care provider back office automation",
     "practice administration automation Australia",

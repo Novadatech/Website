@@ -77,7 +77,7 @@ def metrics(a):
 
 
 real = metrics(load(REAL))
-rep = metrics(load(sys.argv[1] if len(sys.argv) > 1 else "out/care-au.png"))
+rep = metrics(load(sys.argv[1] if len(sys.argv) > 1 else "out/care-au-calib.png"))
 
 print("%-18s %-26s %-26s %s" % ("METRIC", "REAL", "REPLICA", "DELTA"))
 for k in real:

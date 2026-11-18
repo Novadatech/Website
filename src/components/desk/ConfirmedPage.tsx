@@ -197,7 +197,7 @@ export default function ConfirmedPage({
     {
       icon: FileText,
       title: "What you'll leave with",
-      body: "An honest assessment of whether this fits, including if it does not, and what the AI employees would take over, side by side and in writing.",
+      body: "An honest assessment of whether this fits, including if it does not, and what the AI Operations Agents would take over, side by side and in writing.",
     },
   ];
 

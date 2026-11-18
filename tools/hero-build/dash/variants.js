@@ -13,9 +13,14 @@
  * the panel TYPE changes too (role list vs table), so the pages do not
  * read as the same picture with the words moved around.
  *
- * ⚠️ care-au is NOT shipped from here. The AU care hero was approved on
- * the REAL Figma export and stays as it is. care-au exists only so the
- * replica can be diffed against that ground truth.
+ * care-au-calib is the untouched copy of the real Figma export, kept only so
+ * metrics.py can diff the replica against that ground truth. care-au is
+ * SHIPPED from here since 18 Nov 2026: the export says "AI employees" and
+ * "Coordinator", which the founder renamed to AI Operations Agents / Agent.
+ *
+ * NOTE: the shared nav now says "AI Agents", so the calibration copy
+ * differs from the export by that one nav label. It sits outside every
+ * probe metrics.py takes.
  *
  * ⚠️ ORG NAMES ARE INVENTED PLACEHOLDERS. Never put a real provider's
  * name in a product mock: it reads as a customer claim.
@@ -24,14 +29,14 @@ var B = '#2357F5', P = '#7547F5', T = '#3287B6', V = '#8484E0', D = '#0F7B8A';
 var K = ['#2357F5', '#7547F5', '#1487AD', '#8792A9', '#D94158'];
 
 var NAV_CARE = function (on) {
-  return [['Overview', 'grid'], ['AI Employees', 'diamond'],
+  return [['Overview', 'grid'], ['AI Agents', 'diamond'],
           ['Tasks & Exceptions', 'list'], ['Calls & Messages', 'target'],
           ['Integrations', 'dna'], ['Reports', 'doc'], ['Settings', 'gear']]
     .map(function (n) { return [n[0], n[1], n[0] === on]; });
 };
 var NAV_PRAC = function (on) {
   return [['Overview', 'grid'], ['Patient Access', 'phone'],
-          ['AI Employees', 'diamond'], ['Appointments', 'cal'],
+          ['AI Agents', 'diamond'], ['Appointments', 'cal'],
           ['Billing & Claims', 'card'], ['Reports', 'doc'], ['Settings', 'gear']]
     .map(function (n) { return [n[0], n[1], n[0] === on]; });
 };
@@ -40,7 +45,7 @@ window.VARIANTS = {
 
 /* ══ SCREEN 1 · OVERVIEW ════════════════════ care AI Workforce ══ */
 
-'care-au': {   /* calibration copy of the real Figma export */
+'care-au-calib': {   /* calibration copy of the real Figma export */
   nav: NAV_CARE('Overview'), crumb: 'Overview', org: 'Harmony Community Care',
   search: 'Search tasks, employees...', me: 'JD',
   date: 'WEDNESDAY 11 NOVEMBER 2026', asof: 'As of 06:50 AEDT',
@@ -77,14 +82,51 @@ window.VARIANTS = {
     ]
   }
 },
+'care-au': {   /* calibration copy of the real Figma export */
+  nav: NAV_CARE('Overview'), crumb: 'Overview', org: 'Harmony Community Care',
+  search: 'Search tasks, agents...', me: 'JD',
+  date: 'WEDNESDAY 11 NOVEMBER 2026', asof: 'As of 06:50 AEDT',
+  h1: 'Your operations overview',
+  sub: 'Verified work and exceptions across five agents.',
+  chips: ['Site: All locations', 'Agent: All'],
+  health: '5 of 6 sources healthy · Payroll degraded',
+  live: 'Source issue · affected work held',
+  kpis: [
+    { c: K[0], lab: 'Verified completed', val: '143', foot: 'Last 7 days · +12%' },
+    { c: K[1], lab: 'Autonomous completion', val: '88.1%', foot: '141 of 160 eligible' },
+    { c: K[2], lab: 'In progress now', val: '6', foot: '3 running · 3 awaiting reply' },
+    { c: K[3], lab: 'Overdue now', val: '0', foot: 'All cases on time' },
+    { c: K[4], lab: 'Critical exceptions', val: '1', foot: 'ROS-2048 · Ack by 06:52', crit: 1 }
+  ],
+  left: {
+    kind: 'roles', title: 'Your AI Operations Agents', link: 'View all agents',
+    rows: [
+      { l: 'R', c: B, n: 'Rostering Agent', s: '3 shifts verified · 1 critical', st: 'Active · export held', hold: 1 },
+      { l: 'C', c: P, n: 'Compliance Agent', s: 'Training sync verified', st: 'Active' },
+      { l: 'H', c: T, n: 'HR Agent', s: 'Timesheets reconciled · 1 review', st: 'Active' },
+      { l: 'A', c: V, n: 'After-Hours Agent', s: '4 contacts · 1 escalated', st: 'Active' },
+      { l: 'O', c: D, n: 'Operations Lead Agent', s: 'Daily readiness prepared', st: 'Active' }
+    ],
+    hub: { n: 'Voice & Communications Hub', s: 'Shared calls and SMS · Healthy', a: 'Manage communications' }
+  },
+  right: {
+    title: 'Needs your attention', link: 'View all',
+    cards: [
+      { tone: 'crit', lab: 'CRITICAL · ROS-2048', h: 'No cover · SIL North 07:00',
+        p: ['SH-704 · 2:1 protected', 'Jordan Davies · on-call', 'Ack by 06:52 · 2 min'], lk: 'Open case' },
+      { tone: 'warn', lab: 'NEEDS REVIEW · HR-1807', h: 'Payroll variance · $346',
+        p: ['2 records held · pay run continues', 'Taylor Nguyen · due 12 Nov 12:00'], lk: 'Review' }
+    ]
+  }
+},
 
 'care-us': {
   nav: NAV_CARE('Overview'), crumb: 'Overview', org: 'Northvale Home Care',
-  search: 'Search tasks, employees...', me: 'DM',
+  search: 'Search tasks, agents...', me: 'DM',
   date: 'TUESDAY, NOVEMBER 17, 2026', asof: 'As of 6:50 AM CST',
-  h1: 'Your AI Workforce overview',
-  sub: 'Verified work and exceptions across five AI employees.',
-  chips: ['Location: All', 'AI employee: All'],
+  h1: 'Your operations overview',
+  sub: 'Verified work and exceptions across five agents.',
+  chips: ['Location: All', 'Agent: All'],
   health: '5 of 6 sources healthy · Payroll degraded',
   live: 'Source issue · affected work held',
   kpis: [
@@ -95,13 +137,13 @@ window.VARIANTS = {
     { c: K[4], lab: 'Critical exceptions', val: '1', foot: 'SCH-2048 · Ack by 6:52', crit: 1 }
   ],
   left: {
-    kind: 'roles', title: 'Your AI workforce', link: 'View all employees',
+    kind: 'roles', title: 'Your AI Operations Agents', link: 'View all agents',
     rows: [
-      { l: 'S', c: B, n: 'Scheduling Coordinator', s: '3 shifts verified · 1 critical', st: 'Active · export held', hold: 1 },
-      { l: 'C', c: P, n: 'Compliance Coordinator', s: 'Credential sync verified', st: 'Active' },
-      { l: 'H', c: T, n: 'HR Coordinator', s: 'Timesheets reconciled · 1 review', st: 'Active' },
-      { l: 'A', c: V, n: 'After-Hours Coordinator', s: '4 contacts · 1 escalated', st: 'Active' },
-      { l: 'O', c: D, n: 'Operations Coordinator', s: 'Daily readiness prepared', st: 'Active' }
+      { l: 'S', c: B, n: 'Scheduling Agent', s: '3 shifts verified · 1 critical', st: 'Active · export held', hold: 1 },
+      { l: 'C', c: P, n: 'Compliance Agent', s: 'Credential sync verified', st: 'Active' },
+      { l: 'H', c: T, n: 'HR Agent', s: 'Timesheets reconciled · 1 review', st: 'Active' },
+      { l: 'A', c: V, n: 'After-Hours Agent', s: '4 contacts · 1 escalated', st: 'Active' },
+      { l: 'O', c: D, n: 'Operations Lead Agent', s: 'Daily readiness prepared', st: 'Active' }
     ],
     hub: { n: 'Voice & Communications Hub', s: 'Shared calls and SMS · Healthy', a: 'Manage communications' }
   },
@@ -123,8 +165,8 @@ window.VARIANTS = {
   search: 'Search patients, calls...', me: 'SR',
   date: 'TUESDAY 17 NOVEMBER 2026', asof: 'As of 11:40 AEDT',
   h1: 'Your front desk this morning',
-  sub: 'Calls, bookings and referrals, across six AI employees.',
-  chips: ['Clinic: All sites', 'AI employee: All'],
+  sub: 'Calls, bookings and referrals, across six agents.',
+  chips: ['Clinic: All sites', 'Agent: All'],
   health: '6 of 7 sources healthy · Claims queue degraded',
   live: 'Claims queue slow · affected work held',
   kpis: [
@@ -135,14 +177,14 @@ window.VARIANTS = {
     { c: K[4], lab: 'Claims held', val: '2', foot: 'BIL-4411 · above limit', crit: 1 }
   ],
   left: {
-    kind: 'roles', title: 'Your AI employees', link: 'View all employees',
+    kind: 'roles', title: 'Your AI Operations Agents', link: 'View all agents',
     rows: [
-      { l: 'R', c: B, n: 'Reception & Patient Access', s: '86 calls · 0 missed', st: 'Active' },
-      { l: 'A', c: P, n: 'Appointment & Cancellation Recovery', s: '14 slots refilled today', st: 'Active' },
-      { l: 'I', c: T, n: 'Referrals & Intake', s: '7 referrals · all complete', st: 'Active' },
-      { l: 'F', c: V, n: 'Recalls & Follow-Up', s: '31 recalls booked', st: 'Active' },
-      { l: 'B', c: D, n: 'Billing & Claims', s: '2 exceptions · 1 rejection', st: 'Active · 2 held', hold: 1 },
-      { l: 'P', c: '#5B4DCB', n: 'Practice Operations', s: 'Daily summary prepared', st: 'Active' }
+      { l: 'R', c: B, n: 'Reception & Patient Access Agent', s: '86 calls · 0 missed', st: 'Active' },
+      { l: 'A', c: P, n: 'Appointment & Cancellation Recovery Agent', s: '14 slots refilled today', st: 'Active' },
+      { l: 'I', c: T, n: 'Referrals & Intake Agent', s: '7 referrals · all complete', st: 'Active' },
+      { l: 'F', c: V, n: 'Recalls & Follow-Up Agent', s: '31 recalls booked', st: 'Active' },
+      { l: 'B', c: D, n: 'Billing & Claims Agent', s: '2 exceptions · 1 rejection', st: 'Active · 2 held', hold: 1 },
+      { l: 'P', c: '#5B4DCB', n: 'Practice Operations Agent', s: 'Daily summary prepared', st: 'Active' }
     ]
   },
   right: {
@@ -161,8 +203,8 @@ window.VARIANTS = {
   search: 'Search patients, calls...', me: 'SR',
   date: 'TUESDAY, NOVEMBER 17, 2026', asof: 'As of 11:40 AM CST',
   h1: 'Your front desk this morning',
-  sub: 'Calls, bookings and claims, across seven AI employees.',
-  chips: ['Location: All', 'AI employee: All'],
+  sub: 'Calls, bookings and claims, across seven agents.',
+  chips: ['Location: All', 'Agent: All'],
   health: '6 of 7 sources healthy · Claims queue degraded',
   live: 'Claims queue slow · affected work held',
   kpis: [
@@ -173,15 +215,15 @@ window.VARIANTS = {
     { c: K[4], lab: 'Claims held', val: '2', foot: 'RCM-4411 · above limit', crit: 1 }
   ],
   left: {
-    kind: 'roles', title: 'Your AI employees', link: 'View all employees',
+    kind: 'roles', title: 'Your AI Operations Agents', link: 'View all agents',
     rows: [
-      { l: 'F', c: B, n: 'Front Desk & Patient Access', s: '86 calls · 0 missed', st: 'Active' },
-      { l: 'S', c: P, n: 'Scheduling & Cancellation Recovery', s: '14 slots refilled today', st: 'Active' },
-      { l: 'I', c: T, n: 'Referrals & Patient Intake', s: '7 referrals · all complete', st: 'Active' },
-      { l: 'V', c: V, n: 'Insurance Verification & Prior Auth', s: '22 verified · 0 pending', st: 'Active' },
-      { l: 'C', c: D, n: 'Patient Follow-Up & Care Gaps', s: '31 outreach tasks closed', st: 'Active' },
-      { l: 'R', c: '#5B4DCB', n: 'Revenue Cycle & Claims', s: '2 exceptions · 1 denial', st: 'Active · 2 held', hold: 1 },
-      { l: 'P', c: '#1487AD', n: 'Practice Operations', s: 'Daily summary prepared', st: 'Active' }
+      { l: 'F', c: B, n: 'Front Desk & Patient Access Agent', s: '86 calls · 0 missed', st: 'Active' },
+      { l: 'S', c: P, n: 'Scheduling & Cancellation Recovery Agent', s: '14 slots refilled today', st: 'Active' },
+      { l: 'I', c: T, n: 'Referrals & Patient Intake Agent', s: '7 referrals · all complete', st: 'Active' },
+      { l: 'V', c: V, n: 'Insurance Verification & Prior Auth Agent', s: '22 verified · 0 pending', st: 'Active' },
+      { l: 'C', c: D, n: 'Patient Follow-Up & Care Gaps Agent', s: '31 outreach tasks closed', st: 'Active' },
+      { l: 'R', c: '#5B4DCB', n: 'Revenue Cycle & Claims Agent', s: '2 exceptions · 1 denial', st: 'Active · 2 held', hold: 1 },
+      { l: 'P', c: '#1487AD', n: 'Practice Operations Agent', s: 'Daily summary prepared', st: 'Active' }
     ]
   },
   right: {
@@ -199,7 +241,7 @@ window.VARIANTS = {
 
 'home-au': {
   nav: NAV_CARE('Tasks & Exceptions'), crumb: 'Tasks & Exceptions', org: 'Riverlea Health Group',
-  search: 'Search tasks, employees...', me: 'AK',
+  search: 'Search tasks, agents...', me: 'AK',
   date: 'TUESDAY 17 NOVEMBER 2026', asof: 'As of 06:50 AEDT',
   h1: 'Overnight work, already done',
   sub: 'What they finished, and the three they held for you.',
@@ -239,7 +281,7 @@ window.VARIANTS = {
 
 'home-us': {
   nav: NAV_CARE('Tasks & Exceptions'), crumb: 'Tasks & Exceptions', org: 'Averly Health Group',
-  search: 'Search tasks, employees...', me: 'AK',
+  search: 'Search tasks, agents...', me: 'AK',
   date: 'TUESDAY, NOVEMBER 17, 2026', asof: 'As of 6:50 AM CST',
   h1: 'Overnight work, already done',
   sub: 'What they finished, and the three they held for you.',
@@ -285,7 +327,7 @@ window.VARIANTS = {
   date: 'LAST 30 DAYS · TO 17 NOVEMBER 2026', asof: 'Updated 06:50 AEDT',
   h1: 'Every action, with its evidence',
   sub: 'Every record confirmed by the system it happened in.',
-  chips: ['Period: 30 days', 'AI employee: All'],
+  chips: ['Period: 30 days', 'Agent: All'],
   health: '4,182 of 4,182 actions confirmed at source',
   live: 'Recording · nothing unconfirmed',
   kpis: [
@@ -312,7 +354,7 @@ window.VARIANTS = {
     title: 'Controls in force', link: 'View all',
     cards: [
       { tone: 'info', lab: 'STANDING RULE', h: 'Nothing clinical. Ever.',
-        p: ['The workforce stops at the line where care begins.', 'Set by Hartwell · locked'], lk: 'See the rules' },
+        p: ['The agents stop at the line where care begins.', 'Set by Hartwell · locked'], lk: 'See the rules' },
       { tone: 'info', lab: 'APPROVAL LIMIT', h: 'Anything consequential waits',
         p: ['Payments, contracts and exits are held for a named person.', 'Escalates to on-call after 2 minutes.'], lk: 'See the limits' }
     ]
@@ -325,7 +367,7 @@ window.VARIANTS = {
   date: 'LAST 30 DAYS · TO NOVEMBER 17, 2026', asof: 'Updated 6:50 AM CST',
   h1: 'Every action, with its evidence',
   sub: 'Every record confirmed by the system it happened in.',
-  chips: ['Period: 30 days', 'AI employee: All'],
+  chips: ['Period: 30 days', 'Agent: All'],
   health: '4,182 of 4,182 actions confirmed at source',
   live: 'Recording · nothing unconfirmed',
   kpis: [
@@ -352,7 +394,7 @@ window.VARIANTS = {
     title: 'Controls in force', link: 'View all',
     cards: [
       { tone: 'info', lab: 'STANDING RULE', h: 'Nothing clinical. Ever.',
-        p: ['The workforce stops at the line where care begins.', 'Set by Northvale · locked'], lk: 'See the rules' },
+        p: ['The agents stop at the line where care begins.', 'Set by Northvale · locked'], lk: 'See the rules' },
       { tone: 'info', lab: 'APPROVAL LIMIT', h: 'Anything consequential waits',
         p: ['Payments, contracts and exits are held for a named person.', 'Escalates to on-call after 2 minutes.'], lk: 'See the limits' }
     ]

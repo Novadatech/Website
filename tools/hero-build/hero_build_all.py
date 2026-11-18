@@ -43,6 +43,7 @@ DASH = os.path.join(HERE, "dash", "out", "%s.png")
 # variant -> output files. The AU care hero is NOT in this table: it was
 # approved on the real Figma export and is left exactly as it shipped.
 JOBS = [
+    ("care-au",      [os.path.join(AU, "hero-workforce.webp")]),
     ("practices-au", [os.path.join(AU, "hero-practices.webp")]),
     ("home-au",      [os.path.join(AU, "hero-home.webp")]),
     ("why-au",       [os.path.join(AU, "hero-why.webp")]),

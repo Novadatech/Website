@@ -255,7 +255,7 @@ function Hero() {
         </h1>
 
         <p className={`${LEAD} mt-6 max-w-[68ch]`}>
-          Novada Tech provides an AI workforce to Australian healthcare
+          Novada Tech provides AI Operations Agents to Australian healthcare
           businesses. For practices we answer enquiries, make and change
           bookings, work the recall lists their practitioners set and
           administer billing. For care providers we read rosters, recruit and
@@ -280,7 +280,7 @@ function Hero() {
         <dl className="mt-9 grid gap-px overflow-hidden border border-[#E3E6EC] bg-[#E3E6EC] sm:grid-cols-3">
           {[
             { k: "Last updated", v: LAST_UPDATED },
-            { k: "Applies to", v: "novadatech.com.au and our AI workforce services" },
+            { k: "Applies to", v: "novadatech.com.au and our AI Operations Agent services" },
             { k: "Governing law", v: "Privacy Act 1988 (Cth)" },
           ].map((row) => (
             <div key={row.k} className="bg-white px-5 py-4">
@@ -661,7 +661,7 @@ export default function PrivacyPolicyPage() {
                     client&apos;s systems
                   </H3>
                   <P>
-                    For the <Key>care AI workforce</Key>, working inside a
+                    For the <Key>care AI Operations Agents</Key>, working inside a
                     provider&apos;s own rostering, HR, compliance and payroll
                     systems, this can include:
                     worker names, locations, availability, qualifications and
@@ -673,7 +673,7 @@ export default function PrivacyPolicyPage() {
                     resident, and some of that is health information.
                   </P>
                   <P>
-                    Still for the <Key>care AI workforce</Key>, and covering
+                    Still for the <Key>care AI Operations Agents</Key>, and covering
                     the recruitment, onboarding and payroll roles, this can
                     include candidate and worker names and contact details; work
                     history, qualifications and referee details; induction and
@@ -684,7 +684,7 @@ export default function PrivacyPolicyPage() {
                     under the Privacy Act.
                   </P>
                   <P>
-                    For the <Key>practices AI workforce</Key>, working inside
+                    For the <Key>practices AI Operations Agents</Key>, working inside
                     a practice&apos;s own software, this can include: patient names, contact details and appointment
                     details; enquiry, booking, cancellation and waiting list
                     records; the recall records the practice&apos;s own
@@ -899,7 +899,7 @@ export default function PrivacyPolicyPage() {
                       <>
                         <Key>Our team</Key>, limited to the people assigned
                         to that client, under written confidentiality
-                        obligations, and <Key>the AI employees</Key> configured
+                        obligations, and <Key>the AI Operations Agents</Key> configured
                         for that client, whose access is permission-scoped to
                         the systems and workflows agreed with them.
                       </>,
@@ -909,7 +909,7 @@ export default function PrivacyPolicyPage() {
                         platform, and the analytics and advertising tools in
                         sections {numberOf("tracking")} and{" "}
                         {numberOf("embeds")}.{" "}
-                        Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their operations line to, so that calls reach the AI employee configured to answer them. If an engagement ever requires an additional tool, we tell the client before it is introduced.
+                        Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their operations line to, so that calls reach the AI Operations Agent configured to answer them. If an engagement ever requires an additional tool, we tell the client before it is introduced.
                       </>,
                       <>
                         <Key>Professional advisers</Key>, such as our
@@ -1109,7 +1109,7 @@ export default function PrivacyPolicyPage() {
                     </Key>{" "}
                     Novada is Australian owned and our team is in Australia.
                     Participant and patient records stay in the client&apos;s
-                    own system: the AI employees described in section{" "}
+                    own system: the AI Operations Agents described in section{" "}
                     {numberOf("automated")} work inside those systems rather
                     than copying records out of them. We do not export a
                     client&apos;s records overseas as part of delivering the
@@ -1132,10 +1132,10 @@ export default function PrivacyPolicyPage() {
                   <H3>An automated system does this work</H3>
                   <P>
                     <Key>
-                      Our service is delivered by AI employees, not by a person
+                      Our service is delivered by AI Operations Agents, not by a person
                       performing each step.
                     </Key>{" "}
-                    An AI employee reads from and writes to the systems a client
+                    An AI Operations Agent reads from and writes to the systems a client
                     has authorised us to connect to, and completes administrative
                     tasks inside them. Where those systems hold personal
                     information, and in a care or practice setting they usually
@@ -1159,7 +1159,7 @@ export default function PrivacyPolicyPage() {
                     It is used to carry out the work that client engaged us to do.
                   </P>
                   <P>
-                    Where an AI employee speaks with a patient, a worker or any
+                    Where an AI Operations Agent speaks with a patient, a worker or any
                     other person, it identifies itself as an AI assistant, and
                     that person can ask to be put through to a human at any
                     point. Clinical matters, emergencies and anything else the
@@ -1465,7 +1465,7 @@ export default function PrivacyPolicyPage() {
                       We do use automated processing, and section{" "}
                       {numberOf("automated")} describes it.
                     </Key>{" "}
-                    AI employees carry out administrative tasks inside our
+                    AI Operations Agents carry out administrative tasks inside our
                     clients&apos; own systems, and in doing so they process
                     personal information and, in a care or practice setting,
                     health information.
