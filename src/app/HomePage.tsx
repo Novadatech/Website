@@ -4,17 +4,14 @@ import { ChevronDown } from "lucide-react";
 
 import DeskFooter from "@/components/desk/DeskFooter";
 import { MICRO } from "@/components/desk/tokens";
+import ProductShot from "@/components/offer/ProductShot";
 import {
-  Bar,
   Blobs,
-  Card,
   CREAM,
   CREAM_DEEP,
   Cta,
   CtaSoft,
   DEEP,
-  Dots,
-  ExampleChip,
   LpHeader,
   Rating,
   Section,
@@ -220,70 +217,44 @@ const FAQ = [
 
 /** The Control Centre mock. ⚠️ Every row names a real AI Operations Agent and a
     real status. No figure in here may describe a Novada outcome. */
+/* The real product: the exception queue, with the morning summary and
+   the agent's own recovery attempt floating over it. Founder instruction
+   18 Nov 2026. Images: tools/product-shots. AU care screens only.
+   ⚠️ The recovery card is hidden below sm: at 390px it would cover
+   most of the queue. */
 function ControlVisual() {
   return (
-    <div className="relative px-2 pb-16 pt-14 sm:px-6">
-      <div className="absolute left-0 top-0 z-20 w-[172px] rounded-lg border border-ink-100 bg-white p-4 shadow-float">
-        <div className="flex items-baseline justify-between gap-2">
-          <p style={SERIF} className="text-2xl font-bold text-ink-950">
-            85%
-          </p>
-          <span className="text-[10px] font-semibold uppercase tracking-caps text-ink-400">
-            Onboarding
-          </span>
-        </div>
-        <div className="mt-3">
-          <Bar pct={85} />
-        </div>
-      </div>
-
-      <div className="relative z-10">
-        <Card chrome={false}>
-          <div className="flex items-center justify-between gap-3 px-4 py-3">
-            <Dots />
-            <ExampleChip />
-          </div>
+    <div>
+      <div className="relative px-2 pb-0 pt-16 sm:px-6 sm:pb-20">
+        <div className="absolute left-0 top-0 z-20 w-[250px] overflow-hidden rounded-lg border border-ink-100 bg-white shadow-float">
           <div
-            className="px-5 py-6"
+            className="px-4 py-3.5"
             style={{ background: "linear-gradient(110deg,#003DDB 0%,#0030AE 55%,#3A6CFF 100%)" }}
           >
-            <p style={SERIF} className="text-base font-bold text-white">
+            <p style={SERIF} className="text-sm font-bold text-white">
               Good morning. Here is last night.
             </p>
-            <p className="mt-1.5 text-xs text-white/75">
-              3 calls handled, 1 escalation, 1 approval waiting
-            </p>
+            <p className="mt-1 text-[11px] text-white/75">8 resolved, 2 held for you</p>
           </div>
-          <div className="flex flex-col">
-            {[
-              ["AI Rostering Agent", "Evening shift reassigned", "Done"],
-              ["AI Compliance Agent", "Clearance reminder sent", "Done"],
-              ["AI Rostering Agent", "Exception to standard rules", "Approve"],
-            ].map(([role, task, label]) => (
-              <div
-                key={task}
-                className="flex items-center gap-3 border-b border-ink-100 px-4 py-3 last:border-b-0"
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-[11px] font-semibold uppercase tracking-caps text-ink-400">
-                    {role}
-                  </p>
-                  <p className="mt-1 truncate text-[13px] text-ink-800">{task}</p>
-                </div>
-                <span
-                  className={`flex-shrink-0 rounded-xs px-2 py-1 text-[10px] font-bold uppercase tracking-caps ring-1 ${
-                    label === "Approve"
-                      ? "bg-signal-50 text-signal-600 ring-signal-200"
-                      : "bg-brand-50 text-brand-700 ring-brand-200"
-                  }`}
-                >
-                  {label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </Card>
+        </div>
+        <ProductShot
+          src="/product/home-exceptions.webp"
+          width={698}
+          height={619}
+          alt="The exception queue in the Novada Control Centre: an uncovered morning shift escalated to the on-call manager, and a payroll variance held for review"
+          className="relative z-10"
+        />
+        <ProductShot
+          src="/product/home-recovery.webp"
+          width={385}
+          height={234}
+          alt="The recovery the agent attempted before escalating: eligibility checked, offers sent to two eligible workers, no acceptance in the offer window"
+          className="absolute bottom-0 right-0 z-20 hidden w-[270px] sm:block"
+        />
       </div>
+      <p className="mt-4 text-[11px] text-ink-400">
+        Example screen. The provider, people and figures are illustrative.
+      </p>
     </div>
   );
 }

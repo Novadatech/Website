@@ -4,16 +4,14 @@ import { ChevronDown } from "lucide-react";
 
 import DeskFooter from "@/components/desk/DeskFooter";
 import { FRAME, GUTTER, MICRO } from "@/components/desk/tokens";
+import ProductShot from "@/components/offer/ProductShot";
 import {
   Blobs,
-  Card,
   CREAM,
   CREAM_DEEP,
   Cta,
   CtaSoft,
   DEEP,
-  Dots,
-  ExampleChip,
   LpHeader,
   Rating,
   Section,
@@ -174,28 +172,33 @@ const TESTIMONIALS = [
 
 /** The audit record. ⚠️ No figure in a mock may describe a Novada
     outcome; this one shows the state of one fictional night. */
+/* The real product: one task's state history, every step with the
+   actor that took it, and the source system's confirmation floating
+   over it. Founder instruction 18 Nov 2026. Images: tools/product-shots.
+   ⚠️ The confirmation card is hidden below sm. */
 function RecordVisual() {
   return (
-    <Card title="Activity record">
-      <div className="flex flex-col">
-        {[
-          ["21:16", "Absence received", "Approved channel"],
-          ["21:17", "Roster checked", "Rostering system"],
-          ["21:19", "Offers sent to 3 workers", "SMS"],
-          ["21:34", "Acceptance recorded", "Rostering system"],
-          ["21:34", "Sent for approval", "Control Centre"],
-        ].map(([t, what, where]) => (
-          <div
-            key={t + what}
-            className="flex items-baseline gap-3 border-b border-ink-100 px-4 py-2.5 last:border-b-0"
-          >
-            <span className="tabular text-[11px] font-semibold text-ink-400">{t}</span>
-            <span className="flex-1 text-[13px] text-ink-800">{what}</span>
-            <span className="hidden text-[11px] text-ink-400 sm:block">{where}</span>
-          </div>
-        ))}
+    <div>
+      <div className="relative pb-0 sm:pb-24 sm:pr-6">
+        <ProductShot
+          src="/product/why-history.webp"
+          width={640}
+          height={358}
+          alt="The state history of one task in the Novada Control Centre: received, identified, rules checked, executing, verifying and verified, each with its time and the actor that took the step"
+          className="relative z-10"
+        />
+        <ProductShot
+          src="/product/why-confirmation.webp"
+          width={376}
+          height={213}
+          alt="Authoritative confirmation from the source system: read-back matched the requested worker and shift"
+          className="absolute bottom-0 right-0 z-20 hidden w-[260px] sm:block"
+        />
       </div>
-    </Card>
+      <p className="mt-4 text-[11px] text-ink-400">
+        Example screen. The provider, people and figures are illustrative.
+      </p>
+    </div>
   );
 }
 
