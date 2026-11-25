@@ -33,6 +33,9 @@ import { FunnelHeader, FunnelFooter } from "./desk/FunnelChrome";
 const SELF_CHROMED_ROUTES = [
   // Desk offer
   "/",
+  // The AI Workforce home, moved off "/" on 25 Nov 2026 when "/" became
+  // the neutral home for both offers. Self-chromed (LpHeader).
+  "/ai-workforce",
   "/operations-partner",
   "/workforce-partner",
   "/why-novada",
@@ -67,6 +70,9 @@ const SELF_CHROMED_PREFIXES = [
      day it is created. */
   "/practices",
   "/care",
+  /* 🔴 Workforce Continuity, 25 Nov 2026: nine self-chromed pages
+     (WcHeader/WcFooter). Unlisted, every one would ship two headers. */
+  "/workforce-continuity",
 ];
 
 export default function ConditionalNav({ children }: { children: React.ReactNode }) {

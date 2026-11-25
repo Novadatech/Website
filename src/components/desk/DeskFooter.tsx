@@ -62,7 +62,7 @@ const TEL = `tel:${PHONE.replace(/[^\d+]/g, "")}`;
 
 export default function DeskFooter({
   tone = "light",
-  bookHref = "/#book",
+  bookHref = "/ai-workforce#book",
   /**
    * "minimal" is the paid-landing-page footer: the brand block in its
    * usual place, contact, one booking action, the copyright and a

@@ -78,6 +78,22 @@ SHOTS = {
     # why-novada: the activity record
     "why-history":      ("task-execution.png", (285, 1613, 925, 1971)),
     "why-confirmation": ("task-execution.png", (1013, 1081, 1389, 1294)),
+
+    # ── WORKFORCE CONTINUITY (AU), 25 Nov 2026 ────────────────────────
+    # Founder: every page has its OWN screens; no screen is reused on a
+    # second page. So each source file below feeds exactly one page.
+    # /workforce-continuity            <- wc-workers.png
+    "wc-home-records":    ("wc-workers.png", (285, 672, 986, 1356)),
+    "wc-home-checks":     ("wc-workers.png", (1003, 1391, 1389, 1718)),
+    # /workforce-continuity/what-we-do <- wc-recruitment.png, wc-onboarding.png
+    "wc-wwd-requisitions": ("wc-recruitment.png", (285, 630, 983, 1255)),
+    "wc-wwd-reqdetail":    ("wc-recruitment.png", (1003, 639, 1389, 1246)),
+    "wc-wwd-readiness":    ("wc-onboarding.png", (285, 630, 983, 1255)),
+    # /workforce-continuity/ndis-aged-care <- candidate, training, escalation
+    "wc-ndis-evidence":   ("wc-candidate.png", (285, 630, 983, 1255)),
+    "wc-ndis-decision":   ("wc-candidate.png", (1003, 639, 1389, 1246)),
+    "wc-ndis-training":   ("wc-training.png", (285, 630, 983, 1255)),
+    "wc-ndis-escalation": ("wc-escalation.png", (285, 455, 1389, 963)),
 }
 
 cache = {}

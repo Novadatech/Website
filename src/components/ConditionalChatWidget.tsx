@@ -52,7 +52,11 @@ const WIDGETS = {
  * mounted, so a second widget would not give a page its own bot.
  */
 const CHAT_ROUTES: Record<string, keyof typeof WIDGETS> = {
-  "/": "main",
+  /* 25 Nov 2026: the AI Workforce home moved from "/" to /ai-workforce.
+     "/" is now the neutral home for both offers and is deliberately
+     NOT listed, nor is /workforce-continuity: the bot is not briefed on
+     Workforce Continuity and its intro asks care provider or practice. */
+  "/ai-workforce": "main",
   "/care/ai-workforce": "main",
   /* ✅ THE META ADS LANDING PAGE, added 13 November 2026 on founder
      instruction. It is the same page as /care/ai-workforce and the

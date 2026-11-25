@@ -1035,7 +1035,7 @@ export default function AiWorkforcePage({
                 paid visitor tapping the logo out of habit is asked to
                 choose an audience they already chose by clicking the
                 ad. "#top" scrolls this page up instead. */}
-            <LpHeader showNav={!ads} logoHref={ads ? "#top" : "/"} />
+            <LpHeader showNav={!ads} logoHref={ads ? "#top" : "/ai-workforce"} />
 
       <main>
         {/* ── HERO ─────────────────────────────────────────────────── */}

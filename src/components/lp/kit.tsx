@@ -245,7 +245,7 @@ export function LpHeader({
    * to choose an audience they already chose by clicking the ad.
    * Paid pages pass "#top", which scrolls this page up instead.
    */
-  logoHref = "/",
+  logoHref = "/ai-workforce",
 }: {
   cta?: string;
   ctaShort?: string;
@@ -266,7 +266,7 @@ export function LpHeader({
         <a
           href={logoHref}
           aria-label={
-            logoHref === "/" ? "Novada Tech, home" : "Novada Tech, back to top"
+            logoHref.startsWith("#") ? "Novada Tech, back to top" : "Novada Tech, home"
           }
           className="-mx-1.5 flex flex-shrink-0 items-center gap-2.5 rounded-xs px-1.5 py-2"
         >

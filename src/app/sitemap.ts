@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { OFFERS } from "@/content/offers";
+import { WC_BASE, WC_PAGES } from "@/content/wc";
 
 /*
  * ⚠️ BUILT FROM THE CONTENT MODEL, not a hand-written list. The previous
@@ -32,6 +33,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
    */
   return [
     { url: `${base}/`, lastModified: now, changeFrequency: "monthly", priority: 1 },
+    { url: `${base}/ai-workforce`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    /* Workforce Continuity, 25 Nov 2026 */
+    ...Object.keys(WC_PAGES).map((s) => ({
+      url: s === "home" ? `${base}${WC_BASE}` : `${base}${WC_BASE}/${s}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: s === "home" ? 0.9 : 0.7,
+    })),
     ...OFFERS.filter((o) => o.indexed !== false).map((o) => ({
       url: `${base}${o.href}`,
       lastModified: now,

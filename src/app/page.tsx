@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { lpSerif } from "@/lib/fonts";
 
-import HomePage from "./HomePage";
+import HomeChooser from "./HomeChooser";
 
 /*
  * ⚠️ THE SERIF DISPLAY FACE, APPLIED ON THIS ROUTE ONLY. The single
@@ -15,51 +15,30 @@ import HomePage from "./HomePage";
  */
 
 /*
- * / — the main home page.
+ * / — THE NEUTRAL HOME FOR BOTH OFFERS (founder instruction 25 Nov 2026).
  *
- * 🔴 IT IS NO LONGER A ROUTER. It used to send a visitor to /care or
- * /practices, each a hub listing two offers. Both hubs are archived
- * and both pairs of offers retired, so this page names the two
- * surviving offers directly.
+ * The AI Workforce home that lived here moved, unchanged, to
+ * /ai-workforce (app/ai-workforce/page.tsx). This page lets a visitor
+ * choose between the AI Workforce and Workforce Continuity.
  *
- * 🔴 THIS FILE IS A THIN SERVER WRAPPER AND NOTHING ELSE. The page
- * itself is ./HomePage.tsx, a client component, and Next does not allow
- * a `metadata` export from one. Same arrangement as the six pages
- * rebuilt before it.
+ * 🔴 DO NOT ADD A layout.tsx BESIDE THIS FILE for the metadata: this is
+ * the app root and every page would inherit it, including the
+ * confirmation pages whose own layouts carry noindex.
  *
- * 🔴 DO NOT ADD A layout.tsx BESIDE THIS FILE for the metadata. This is
- * the app root: every page on the site would inherit it, including the
- * five confirmation pages whose own layouts carry the noindex that
- * keeps them out of search.
- *
- * ══════════════════════════════════════════════════════════════════════
- * 🔴 THE TITLE AND DESCRIPTION ARE DELIBERATELY UNCHANGED, even though
- * the page's H1 is now an offer-led headline instead of the position
- * line.
- *
- * "We streamline the work behind the care." lives in five places, and
- * the H1 was one of them. The remaining four are the footer of every
- * page, the sticky bar's default tagline, THIS TITLE, and the share
- * image in opengraph-image.tsx. The last two are HARDCODED in separate
- * files, so changing one without the other is exactly the bug that let
- * a retired line survive three weeks on 21 of 29 pages.
- *
- * The founder's copy keeps the line as the brand sign-off, which is
- * what the footer, this title and the share card now carry. Changing
- * them is a brand decision, not a copy edit, and it is a two-file
- * change when it happens. Flagged to the founder.
- * ══════════════════════════════════════════════════════════════════════
+ * ⚠️ The share image (opengraph-image.tsx) still carries the care-only
+ * position line. Flagged to the founder: a brand decision.
  */
 export const metadata: Metadata = {
-  title: "Novada | We streamline the work behind the care",
+  title: "Novada Tech | AI Workforce and Workforce Continuity",
   description:
-    "Managed operations for healthcare practices and care providers. Run by our own team, inside the systems you already use, alongside your people and never instead of them. Nothing clinical, ever.",
+    "Two services from Novada Tech. The AI Workforce completes the administration behind Australian care providers and medical practices. Workforce Continuity builds, prepares and coordinates your own casual workforce.",
+  alternates: { canonical: "/" },
   openGraph: {
     locale: "en_AU",
     siteName: "Novada",
-    title: "We streamline the work behind the care | Novada",
+    title: "Novada Tech | AI Workforce and Workforce Continuity",
     description:
-      "Two services for practices, two for care providers. Alongside your team, never instead of it, and never anything clinical.",
+      "AI that does the work, and a casual workforce ready for the shift. Choose the service you need.",
     type: "website",
   },
 };
@@ -67,7 +46,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className={lpSerif.variable}>
-      <HomePage />
+      <HomeChooser />
     </div>
   );
 }
