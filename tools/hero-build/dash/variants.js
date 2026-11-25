@@ -380,3 +380,350 @@ window.VARIANTS = {
 }
 
 };
+
+/* ══ WORKFORCE CONTINUITY HEROES (AU), 25 Nov 2026 ══════════════════
+ * Founder: build the Workforce Continuity pages exactly like the care
+ * page, with the dashboard-and-person hero, and make every page's
+ * screen unique. So each page below uses a DIFFERENT panel kind:
+ *   wc-home pool · wc-wwd kanban · wc-hiw timeline · wc-wws heatmap
+ *   wc-ndis shifts · wc-hosp bars · wc-con table · wc-mfg line
+ *   wc-min roles · home-both (the "/" landing page) pool+agents
+ * Same product, the Workforce Continuity side of it. Org names invented.
+ */
+var NAV_WC = function (on) {
+  return [['Overview', 'grid'], ['Casual pool', 'users'], ['Recruitment', 'list'],
+          ['Cover requests', 'target'], ['Readiness', 'shield'], ['Reports', 'doc'], ['Settings', 'gear']]
+    .map(function (n) { return [n[0], n[1], n[0] === on]; });
+};
+var WCB = { brandSub: 'WORKFORCE CONTINUITY', liveHd: 'Cover service live' };
+function wc(o) { for (var k in WCB) if (!(k in o)) o[k] = WCB[k]; return o; }
+
+window.VARIANTS['wc-home'] = wc({
+  nav: NAV_WC('Overview'), crumb: 'Overview', org: 'Brightwater Group',
+  search: 'Search workers, requests...', me: 'KL',
+  date: 'TUESDAY 25 NOVEMBER 2026', asof: 'As of 06:50 AEDT',
+  h1: 'Your casual pool, ready',
+  sub: 'Readiness and cover across your own team.',
+  chips: ['Site: All', 'Role: All'],
+  health: 'Roster handover current · nothing waiting',
+  live: 'All requests have an owner',
+  kpis: [
+    { c: K[0], lab: 'Pool members', val: '84', foot: 'Directly employed' },
+    { c: K[1], lab: 'Ready today', val: '76', foot: 'Credential-eligible' },
+    { c: K[2], lab: 'Cover confirmed', val: '31', foot: 'Last 7 days' },
+    { c: K[3], lab: 'Open gaps', val: '1', foot: 'With your contact' },
+    { c: K[4], lab: 'Renewals due', val: '9', foot: 'Next 30 days' }
+  ],
+  left: { kind: 'pool', title: 'Pool readiness', link: 'View pool', sub: 'Checked against role and site.',
+    pct: 90, big: '90%', cap: 'ready',
+    rows: [
+      { l: 'O', c: B, n: 'Olivia Hart', s: 'Support worker · North', st: 'Ready' },
+      { l: 'D', c: P, n: 'Daniel Lee', s: 'Support worker · North', st: 'Ready' },
+      { l: 'C', c: T, n: 'Chris Reid', s: 'Induction expired', st: 'Held', hold: 1 },
+      { l: 'A', c: V, n: 'Ava Nguyen', s: 'Team leader · All sites', st: 'Ready' },
+      { l: 'J', c: D, n: 'Jamie Patel', s: 'Onboarding in progress', st: 'Pending', hold: 1 }
+    ] },
+  right: { title: 'Needs your attention', link: 'View all', cards: [
+    { tone: 'crit', lab: 'OPEN GAP · CR-2048', h: 'Fri 07:00 · north site', p: ['3 contacted · no acceptance yet', 'Sent to your contact 05:40'], lk: 'Open request' },
+    { tone: 'warn', lab: 'RENEWAL · WRK-119', h: 'Induction expired', p: ['Held from new cover'], lk: 'Follow up' }] }
+});
+
+window.VARIANTS['wc-wwd'] = wc({
+  nav: NAV_WC('Recruitment'), crumb: 'Recruitment / Pipeline', org: 'Coastal Care Group',
+  search: 'Search candidates...', me: 'RS',
+  date: 'RECRUITMENT · THIS MONTH', asof: 'As of 09:10 AEDT',
+  h1: 'Recruiting into your gaps',
+  sub: 'You interview and approve. We run the rest.',
+  chips: ['Role: All', 'Site: All'],
+  health: 'Job board receipts current · 2 awaiting approval',
+  live: 'Pipeline current',
+  kpis: [
+    { c: K[0], lab: 'Applications', val: '46', foot: 'This month' },
+    { c: K[1], lab: 'Screened', val: '19', foot: 'Against your criteria' },
+    { c: K[2], lab: 'Interviews', val: '8', foot: 'Booked with you' },
+    { c: K[3], lab: 'Onboarding', val: '5', foot: 'Documents in progress' },
+    { c: K[4], lab: 'Hired by you', val: '4', foot: 'Your decision' }
+  ],
+  left: { kind: 'kanban', title: 'Candidate pipeline', link: 'View all', sub: 'Every move to Hired is your decision.',
+    cols: [
+      { h: 'Screening', cards: [{ n: 'Priya S.', s: 'Support worker · North', tag: 'References', bg: '#EEF3FF', fg: '#2357F5' }, { n: 'Tom W.', s: 'Support worker · East', tag: 'Checks', bg: '#EEF3FF', fg: '#2357F5' }] },
+      { h: 'Interview', cards: [{ n: 'Hana K.', s: 'Thu 10:30 with you', tag: 'Booked', bg: '#E9FAF3', fg: '#067A52' }, { n: 'Leo M.', s: 'Awaiting your slot', tag: 'Pending', bg: '#FFF5DC', fg: '#8F5A00' }] },
+      { h: 'Onboarding', cards: [{ n: 'Grace T.', s: 'Induction 2 of 4', tag: 'In progress', bg: '#EEF3FF', fg: '#2357F5' }] },
+      { h: 'Ready', cards: [{ n: 'Sam B.', s: 'Joined the pool', tag: 'Ready', bg: '#E9FAF3', fg: '#067A52' }] }
+    ] },
+  right: { title: 'Waiting on you', link: 'View all', cards: [
+    { tone: 'info', lab: 'INTERVIEW · LEO M.', h: 'Pick a time', p: ['Support worker · east site'], lk: 'Choose slot' },
+    { tone: 'warn', lab: 'HIRING DECISION', h: 'Hana K. interviewed', p: ['Evidence packet ready'], lk: 'Decide' }] }
+});
+
+window.VARIANTS['wc-hiw'] = wc({
+  nav: NAV_WC('Cover requests'), crumb: 'Cover requests / CR-2050', org: 'Ashford Community Care',
+  search: 'Search requests...', me: 'MO',
+  date: 'COVER REQUEST · CR-2050', asof: 'Fri 17:00–23:00',
+  h1: 'Friday evening, covered',
+  sub: 'Request to recorded outcome in 24 minutes.',
+  chips: ['Export'],
+  health: 'Accepted · roster handover sent 15:12',
+  live: 'All requests have an owner',
+  kpis: [
+    { c: K[0], lab: 'Request to cover', val: '24 min', foot: '14:48 to 15:12' },
+    { c: '#067A52', lab: 'Workers contacted', val: '3', foot: 'All eligible' },
+    { c: K[1], lab: 'Checks passed', val: '4 / 4', foot: 'Role, site, hours, evidence' },
+    { c: K[2], lab: 'Your time needed', val: '0 min', foot: 'Within the agreed rules' },
+    { c: K[3], lab: 'Outcome', val: 'Covered', foot: 'Handover sent' }
+  ],
+  left: { kind: 'timeline', title: 'Request timeline', link: 'History', sub: 'Every step recorded',
+    rows: [
+      { t: '14:48', h: 'Request received', d: 'Friday evening · north location' },
+      { t: '14:50', h: 'Pool checked', d: 'Preparation, availability, commitments' },
+      { t: '14:51', h: 'Offers sent to 3 workers', d: 'SMS and phone' },
+      { t: '15:06', h: 'Sam accepted the shift', d: 'Requirements re-checked' },
+      { t: '15:08', h: 'Assignment recorded', d: 'You and the worker notified' },
+      { t: '15:12', h: 'Roster handover sent', d: 'To your roster owner' }
+    ] },
+  right: { title: 'Request detail', link: 'Export', cards: [
+    { tone: 'info', lab: 'REQUESTED BY', h: 'Operations lead', p: ['Through Novada'], lk: 'View request' },
+    { tone: 'info', lab: 'ESCALATION', h: 'Not needed', p: ['Deadline was 15:00 Fri'], lk: 'See the rules' }] }
+});
+
+window.VARIANTS['wc-wws'] = wc({
+  nav: NAV_WC('Reports'), crumb: 'Reports / Demand', org: 'Meridian Group',
+  search: 'Search the record...', me: 'AK',
+  date: 'LAST 12 WEEKS', asof: 'As of 08:00 AEDT',
+  h1: 'Where cover is needed',
+  sub: 'Recurring requests, by location and day.',
+  chips: ['Period: 12 weeks', 'Role: All'],
+  health: 'Demand recalculated weekly',
+  live: 'Pool plan current',
+  kpis: [
+    { c: K[0], lab: 'Requests', val: '148', foot: 'Last 12 weeks' },
+    { c: K[1], lab: 'Busiest day', val: 'Sat', foot: 'Evenings' },
+    { c: K[2], lab: 'Locations', val: '4', foot: 'In scope' },
+    { c: K[3], lab: 'Pool target', val: '24', foot: 'Workers' },
+    { c: K[4], lab: 'To recruit', val: '10', foot: 'Weekend gaps' }
+  ],
+  left: { kind: 'heatmap', title: 'Demand by location', link: 'View report', sub: 'Darker means more requests.',
+    days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    rows: [['North', [1, 1, 2, 1, 3, 4, 3]], ['Central', [0, 1, 1, 1, 2, 3, 2]], ['East', [1, 0, 1, 2, 2, 4, 4]], ['South', [0, 0, 1, 1, 1, 2, 1]], ['West', [0, 1, 0, 1, 2, 3, 2]]] },
+  right: { title: 'Pool plan', link: 'Edit', cards: [
+    { tone: 'info', lab: 'START WITH', h: 'Weekend evenings', p: ['North and east first'], lk: 'See the plan' },
+    { tone: 'warn', lab: 'GAP', h: '10 workers to recruit', p: ['Support worker roles'], lk: 'Start recruiting' }] }
+});
+
+window.VARIANTS['wc-ndis'] = wc({
+  nav: NAV_WC('Cover requests'), crumb: 'Cover requests / Open', org: 'Harbourside Support',
+  search: 'Search shifts, workers...', me: 'JD',
+  date: 'TODAY · 25 NOVEMBER', asof: 'As of 06:50 AEDT',
+  h1: 'Shift cover, this morning',
+  sub: 'From your own casual support team.',
+  chips: ['Service: All', 'Site: All'],
+  health: 'ShiftCare handover current',
+  live: 'All requests have an owner',
+  kpis: [
+    { c: K[0], lab: 'Requests today', val: '6', foot: 'Since 05:00' },
+    { c: K[1], lab: 'Covered', val: '4', foot: 'Worker accepted' },
+    { c: K[2], lab: 'Contacting', val: '1', foot: '3 eligible workers' },
+    { c: K[3], lab: 'With your contact', val: '1', foot: 'Before deadline' },
+    { c: K[4], lab: 'Pool ready', val: '18', foot: 'Of 30 target' }
+  ],
+  left: { kind: 'shifts', title: 'Open and recent shifts', link: 'View all', sub: 'Confirmed only after the worker accepts.',
+    cards: [
+      { tone: 'ok', tag: 'COVERED', h: 'SIL North · 07:00', s: 'Olivia H. accepted 05:58', s2: 'Handover sent' },
+      { tone: 'info', tag: 'CONTACTING', h: 'Community · 09:00', s: '3 eligible workers', s2: 'Offers sent 06:31' },
+      { tone: 'crit', tag: 'OPEN GAP', h: 'SIL East · 14:00', s: 'No acceptance yet', s2: 'Sent to Jordan 06:40' },
+      { tone: 'ok', tag: 'COVERED', h: 'Home care · 08:30', s: 'Daniel L. accepted', s2: 'Handover sent' },
+      { tone: 'ok', tag: 'COVERED', h: 'SIL South · 15:00', s: 'Ava N. accepted', s2: 'Handover sent' },
+      { tone: 'warn', tag: 'PLANNED', h: 'Community · Sat 10:00', s: 'Requested in advance', s2: 'Offers go out Thu' }
+    ] },
+  right: { title: 'Needs your attention', link: 'View all', cards: [
+    { tone: 'crit', lab: 'OPEN GAP · CR-2061', h: 'SIL East 14:00', p: ['2:1 support · 1 confirmed'], lk: 'Open request' },
+    { tone: 'warn', lab: 'READINESS', h: '3 renewals due', p: ['First aid · this month'], lk: 'Follow up' }] }
+});
+
+window.VARIANTS['wc-hosp'] = wc({
+  nav: NAV_WC('Reports'), crumb: 'Reports / Event staffing', org: 'The Quayside Hotel',
+  search: 'Search staff, events...', me: 'EM',
+  date: 'THIS WEEK · 24-30 NOVEMBER', asof: 'As of 10:00 AEDT',
+  h1: 'Busy week, staffed',
+  sub: 'Your casual team, ready for every function.',
+  chips: ['Venue: All', 'Role: All'],
+  health: 'Venue inductions current',
+  live: 'All requests have an owner',
+  kpis: [
+    { c: K[0], lab: 'Shifts requested', val: '42', foot: 'This week' },
+    { c: K[1], lab: 'Accepted', val: '39', foot: 'From your pool' },
+    { c: K[2], lab: 'Functions', val: '5', foot: 'Incl. Saturday gala' },
+    { c: K[3], lab: 'Open positions', val: '1', foot: 'With your manager' },
+    { c: K[4], lab: 'Casuals inducted', val: '26', foot: 'Venue ready' }
+  ],
+  left: { kind: 'bars', title: 'Shifts by day', link: 'View report', sub: 'Accepted, and still open.',
+    legend: ['Accepted', 'Still open'], max: 12, ticks: [0, 4, 8, 12],
+    days: [['Mon', 4, 0], ['Tue', 5, 0], ['Wed', 6, 0], ['Thu', 7, 0], ['Fri', 8, 0], ['Sat', 9, 1]] },
+  right: { title: 'Saturday gala', link: 'Open', cards: [
+    { tone: 'warn', lab: 'F&B ATTENDANTS', h: '1 of 2 confirmed', p: ['3 casuals contacted'], lk: 'View request' },
+    { tone: 'info', lab: 'BAR STAFF', h: '3 of 3 confirmed', p: ['Venue induction current'], lk: 'View' }] }
+});
+
+window.VARIANTS['wc-con'] = wc({
+  nav: NAV_WC('Cover requests'), crumb: 'Cover requests / Sites', org: 'Ridgeline Builders',
+  search: 'Search crew, sites...', me: 'BT',
+  date: 'MONDAY · 07:00 STARTS', asof: 'As of 05:30 AEDT',
+  h1: 'Monday crew, confirmed',
+  sub: 'Readiness checked by task and site.',
+  chips: ['Site: All', 'Trade: All'],
+  health: 'Site inductions current · 1 replacement',
+  live: 'All requests have an owner',
+  kpis: [
+    { c: K[0], lab: 'Crew requested', val: '14', foot: '3 sites' },
+    { c: K[1], lab: 'Confirmed', val: '13', foot: 'Worker accepted' },
+    { c: K[2], lab: 'Replacements', val: '1', foot: 'Withdrawal Sun' },
+    { c: K[3], lab: 'Site-ready pool', val: '22', foot: 'Inducted' },
+    { c: K[4], lab: 'Tickets due', val: '3', foot: 'Next 30 days' }
+  ],
+  left: { kind: 'table', title: 'Monday assignments', link: 'View all', sub: 'Confirmed only after acceptance.',
+    rows: [
+      { t: '07:00', a: 'Riverside', d: 'Labourer · D. Moore (replacement)', s: 'Site induction', k: 'Confirmed' },
+      { t: '07:00', a: 'Riverside', d: 'Labourer · J. Lee', s: 'Site induction', k: 'Confirmed' },
+      { t: '07:00', a: 'Riverside', d: 'Trade assistant · A. Singh', s: 'Task briefing', k: 'Confirmed' },
+      { t: '06:30', a: 'Hilltop', d: 'Plant operator · R. Ford', s: 'Licence current', k: 'Confirmed' },
+      { t: '07:30', a: 'Bayview', d: 'Site clean-up · P. Wood', s: 'Site induction', k: 'Confirmed' },
+      { t: '07:30', a: 'Bayview', d: 'Labourer · open', s: '4 contacted', k: 'Open', hold: 1 }
+    ] },
+  right: { title: 'Site contacts', link: 'View all', cards: [
+    { tone: 'warn', lab: 'OPEN · BAYVIEW', h: 'Labourer 07:30', p: ['Deadline 06:00'], lk: 'Open request' },
+    { tone: 'info', lab: 'REPLACED · RIVERSIDE', h: 'D. Moore accepted', p: ['Sun 17:02'], lk: 'View' }] }
+});
+
+window.VARIANTS['wc-mfg'] = wc({
+  nav: NAV_WC('Reports'), crumb: 'Reports / Cover trend', org: 'Northgate Logistics',
+  search: 'Search workers, shifts...', me: 'PK',
+  date: 'LAST 7 WEEKS', asof: 'As of 06:00 AEDT',
+  h1: 'Cover across three sites',
+  sub: 'Factory, warehouse and north depot.',
+  chips: ['Site: All', 'Shift: All'],
+  health: 'Induction records current · 1 licence due',
+  live: 'All requests have an owner',
+  kpis: [
+    { c: K[0], lab: 'Shifts covered', val: '212', foot: 'Last 7 weeks' },
+    { c: K[1], lab: 'From your pool', val: '100%', foot: 'Directly employed' },
+    { c: K[2], lab: 'Ready workers', val: '34', foot: 'Inducted by site' },
+    { c: K[3], lab: 'Open now', val: '1', foot: 'North depot' },
+    { c: K[4], lab: 'Expiring items', val: '4', foot: 'Flagged' }
+  ],
+  left: { kind: 'line', title: 'Shifts covered per week', link: 'View report', sub: 'Accepted and recorded.',
+    big: '212', delta: '+18% on the prior 7 weeks', max: 40, ticks: [0, 10, 20, 30, 40],
+    series: [22, 26, 28, 30, 33, 35, 38], days: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7'] },
+  right: { title: 'North depot · today', link: 'Open', cards: [
+    { tone: 'warn', lab: 'WAREHOUSE ASSISTANT', h: '1 of 2 confirmed', p: ['06:00–14:00'], lk: 'View request' },
+    { tone: 'crit', lab: 'FORKLIFT LICENCE', h: 'K. Brown expires 12 Dec', p: ['Held from forklift shifts'], lk: 'Follow up' }] }
+});
+
+window.VARIANTS['wc-min'] = wc({
+  nav: NAV_WC('Readiness'), crumb: 'Readiness / By site', org: 'Red Range Resources',
+  search: 'Search workers, sites...', me: 'GH',
+  date: 'SITE READINESS', asof: 'As of 05:00 AWST',
+  h1: 'Ready for the right site',
+  sub: 'Credentials and induction, by location.',
+  chips: ['Site: All', 'Role: All'],
+  health: 'Site requirements current · 2 items expiring',
+  live: 'All requests have an owner',
+  kpis: [
+    { c: K[0], lab: 'Pool members', val: '28', foot: 'Directly employed' },
+    { c: K[1], lab: 'Ready for Site A', val: '19', foot: 'All items current' },
+    { c: K[2], lab: 'Ready for Site B', val: '12', foot: 'Confined space' },
+    { c: K[3], lab: 'Expiring', val: '2', foot: 'Next 14 days' },
+    { c: K[4], lab: 'Lead time', val: '72 h', foot: 'Agreed' }
+  ],
+  left: { kind: 'roles', title: 'Readiness by worker', link: 'View all',
+    rows: [
+      { l: 'R', c: B, n: 'R. Clarke · stores', s: 'Site A · Site B · Camp', st: 'Ready' },
+      { l: 'T', c: P, n: 'T. Nguyen · trade assist', s: 'Site B medical expiring', st: 'Expiring', hold: 1 },
+      { l: 'M', c: T, n: 'M. Evans · maintenance', s: 'Site A only', st: 'Ready' },
+      { l: 'S', c: V, n: 'S. Patel · site admin', s: 'Site B induction missing', st: 'Held', hold: 1 },
+      { l: 'K', c: D, n: 'K. Doyle · camp services', s: 'All sites', st: 'Ready' }
+    ] },
+  right: { title: 'Site A · next day shift', link: 'Open', cards: [
+    { tone: 'info', lab: 'STORES WORKER', h: 'R. Clarke accepted', p: ['Mobilisation confirmed'], lk: 'View request' },
+    { tone: 'warn', lab: 'EXPIRING', h: 'Site B medical', p: ['T. Nguyen · 9 days'], lk: 'Follow up' }] }
+});
+
+/* the "/" landing page: both services in one view */
+window.VARIANTS['home-both'] = wc({
+  brandSub: 'OPERATIONS', liveHd: 'All services live',
+  nav: [['Overview', 'grid', true], ['AI Workforce', 'diamond', false], ['Casual pool', 'users', false], ['Cover requests', 'target', false], ['Reports', 'doc', false], ['Settings', 'gear', false]],
+  crumb: 'Overview', org: 'Brightwater Group',
+  search: 'Search work, people...', me: 'KL',
+  date: 'THIS MORNING', asof: 'As of 06:50 AEDT',
+  h1: 'Work done. Shifts covered.',
+  sub: 'AI agents and your own people, in one view.',
+  chips: ['Site: All'],
+  health: 'All sources healthy',
+  live: 'Nothing waiting on a system',
+  kpis: [
+    { c: K[0], lab: 'Tasks verified', val: '143', foot: 'AI Workforce' },
+    { c: K[1], lab: 'Shifts covered', val: '31', foot: 'Your casual pool' },
+    { c: K[2], lab: 'Held for you', val: '2', foot: 'Needs a decision' },
+    { c: K[3], lab: 'Pool ready', val: '76', foot: 'Of 84 workers' },
+    { c: K[4], lab: 'Reversed', val: '0', foot: 'Since go-live' }
+  ],
+  left: { kind: 'pool', title: 'Overnight, at a glance', link: 'View all', sub: 'Both services report here.',
+    pct: 94, big: '94%', cap: 'handled',
+    rows: [
+      { l: 'R', c: B, n: 'Rostering Agent', s: 'Evening shift reassigned', st: 'Done' },
+      { l: 'S', c: P, n: 'Sam B. · casual pool', s: 'Accepted Fri 17:00', st: 'Covered' },
+      { l: 'C', c: T, n: 'Compliance Agent', s: 'Clearance reminder sent', st: 'Done' },
+      { l: 'O', c: V, n: 'Olivia H. · casual pool', s: 'Accepted Sat 07:00', st: 'Covered' },
+      { l: 'F', c: D, n: 'Finance', s: 'Invoice above your limit', st: 'Held', hold: 1 }
+    ] },
+  right: { title: 'Held for you', link: 'View all', cards: [
+    { tone: 'warn', lab: 'APPROVAL · FIN-1807', h: 'Invoice above your limit', p: ['Held · nothing sent'], lk: 'Review' },
+    { tone: 'crit', lab: 'OPEN GAP · CR-2048', h: 'Fri 07:00 · north', p: ['With your contact'], lk: 'Open' }] }
+});
+
+/* ── US versions of the WC + home dashboards (novadatech.com) ──────────
+ * Same layouts, US terms: flex not casual, orientation not induction,
+ * US spelling, 12-hour times, US time zones, US date order. */
+function usify(v, extra) {
+  var R = [
+    ['TUESDAY 25 NOVEMBER 2026', 'TUESDAY, NOVEMBER 25, 2026'], ['TODAY · 25 NOVEMBER', 'TODAY · NOVEMBER 25'],
+    ['THIS WEEK · 24-30 NOVEMBER', 'THIS WEEK · NOV 24-30'], ['expires 12 Dec', 'expires Dec 12'],
+    ['AEDT', 'ET'], ['AWST', 'MT'],
+    ['Casuals inducted', 'Flex staff oriented'], ['casuals contacted', 'flex staff contacted'],
+    ['Casual pool', 'Flex pool'], ['casual pool', 'flex pool'], ['casual support team', 'flex care team'],
+    ['casual team', 'flex team'], ['Casual', 'Flex'], ['casual', 'flex'],
+    ['Inductions', 'Orientations'], ['inductions', 'orientations'], ['Induction', 'Orientation'],
+    ['induction', 'orientation'], ['Inducted', 'Oriented'], ['inducted', 'oriented'],
+    ['Roster handover', 'Schedule handover'], ['roster handover', 'schedule handover'], ['roster owner', 'scheduler'],
+    ['ShiftCare handover', 'Scheduling system handover'], ['SMS and phone', 'Text and phone'],
+    ['SIL North', 'Home care North'], ['SIL East', 'Senior living East'], ['SIL South', 'Home care South'],
+    ['Home care · 08:30', 'Memory care · 08:30'], ['2:1 support', 'Two-person assist'], ['First aid', 'CPR and first aid'],
+    ['Labourer', 'Laborer'], ['Trade assistant', 'Trade helper'], ['trade assist', 'trade helper'],
+    ['Plant operator', 'Equipment operator'], ['Site clean-up', 'Site cleanup'], ['Licence current', 'License current'],
+    ['Tickets due', 'Certifications due'], ['F&B ATTENDANTS', 'BANQUET SERVERS'], ['Functions', 'Events'],
+    ['every function', 'every event'], ['Factory, warehouse and north depot', 'Plant, warehouse and north DC'],
+    ['North depot', 'North DC'], ['WAREHOUSE ASSISTANT', 'WAREHOUSE ASSOCIATE'], ['FORKLIFT LICENCE', 'FORKLIFT CERTIFICATION'],
+    ['licence', 'license'], ['Mobilisation', 'Mobilization'], ['STORES WORKER', 'WAREHOUSE WORKER'], [' · stores', ' · warehouse'],
+    ['Camp', 'Yard'], ['camp services', 'yard services'], ['Site B medical', 'Site B MSHA training'],
+    ['medical expiring', 'MSHA training expiring'], ['Job board receipts', 'Job board postings']
+  ];
+  var s = JSON.stringify(v);
+  R.forEach(function (r) { s = s.split(r[0]).join(r[1]); });
+  // 24-hour clock to 12-hour, US style
+  s = s.replace(/\b([01]\d|2[0-3]):([0-5]\d)\b/g, function (m, h, mm) {
+    h = +h; var ap = h < 12 ? 'AM' : 'PM'; var hh = h % 12 === 0 ? 12 : h % 12;
+    return hh + ':' + mm + ' ' + ap;
+  });
+  var o = JSON.parse(s);
+  if (extra) for (var k in extra) o[k] = extra[k];
+  return o;
+}
+window.VARIANTS['wc-us-home'] = usify(window.VARIANTS['wc-home'], { org: 'Brightwater Senior Living' });
+window.VARIANTS['wc-us-wwd'] = usify(window.VARIANTS['wc-wwd'], { org: 'Lakeshore Home Care' });
+window.VARIANTS['wc-us-hiw'] = usify(window.VARIANTS['wc-hiw'], { org: 'Ashford Home Health' });
+window.VARIANTS['wc-us-wws'] = usify(window.VARIANTS['wc-wws'], { org: 'Meridian Group' });
+window.VARIANTS['wc-us-ndis'] = usify(window.VARIANTS['wc-ndis'], { org: 'Harborview Senior Care' });
+window.VARIANTS['wc-us-hosp'] = usify(window.VARIANTS['wc-hosp'], { org: 'The Quayside Hotel' });
+window.VARIANTS['wc-us-con'] = usify(window.VARIANTS['wc-con'], { org: 'Ridgeline Builders' });
+window.VARIANTS['wc-us-mfg'] = usify(window.VARIANTS['wc-mfg'], { org: 'Northgate Logistics' });
+window.VARIANTS['wc-us-min'] = usify(window.VARIANTS['wc-min'], { org: 'Red Mesa Resources' });
+window.VARIANTS['home-both-us'] = usify(window.VARIANTS['home-both'], {});

@@ -53,6 +53,22 @@ JOBS = [
     ("why-us",       [os.path.join(US, "hero-why.webp")], "why"),
 ]
 
+# ── WORKFORCE CONTINUITY + the two-offer home (25 Nov 2026) ──────────
+# Founder: build the WC pages "the same way you built the care offer
+# page", with the dashboard hero, each page unique. One figure per page,
+# never reused; a WC dashboard (variants wc-*) per page.
+WC_AU = os.path.join(REPO, "novada-website", "public", "workforce-continuity")
+WC_US = os.path.join(REPO, "novadatech-com", "public", "workforce-continuity")
+HOME_AU = os.path.join(REPO, "novada-website", "public", "home")
+HOME_US = os.path.join(REPO, "novadatech-com", "public", "home")
+WC_PAGES = ["home", "wwd", "hiw", "wws", "ndis", "hosp", "con", "mfg", "min"]
+for pg in WC_PAGES:
+    JOBS.append(("wc-%s" % pg, [os.path.join(WC_AU, "hero-%s.webp" % pg)], "wc-" + pg))
+    JOBS.append(("wc-us-%s" % pg, [os.path.join(WC_US, "hero-%s.webp" % pg)], "wc-" + pg))
+JOBS.append(("home-both", [os.path.join(HOME_AU, "hero.webp")], "home-both"))
+JOBS.append(("home-both-us", [os.path.join(HOME_US, "hero.webp")], "home-both"))
+ONLY = sys.argv[1] if len(sys.argv) > 1 else ""   # optional variant prefix filter
+
 # Panel rect, measured from hero.png's ALPHA, not by eye.
 # ⚠️ Opaque runs cols 142..1810, rows 186..1078. An eyeball reading put
 # the right edge at 1806; four columns of their orange banner then
@@ -88,16 +104,33 @@ FIGS = {
     "home":      ("figure-home.webp",      38, 914, 1025, 0.92),
     "practices": ("figure-practices.webp", 20, 539,  857, 0.69),
     "why":       ("figure-why.webp",       22, 867,  933, 0.92),
+    # WC + home. Optional 6th value: chin y in the hero (default CHIN_Y).
+    # The two hard-hat figures sit lower so the HAT, not the face, takes
+    # the extra height and still clears the top edge.
+    #   Pexels 11396926 wc-home, 13802164 wwd, 7709190 hiw, 5186381 wws,
+    #   6129192 ndis, 3800514 hosp, 8487370 con, 8487402 mfg,
+    #   8486965 min, 18809829 home-both; Pexels licence
+    "wc-home":   ("figure-wc-home.webp",    6,  547,  505, 0.92),
+    "wc-wwd":    ("figure-wc-wwd.webp",    23,  535, 1060, 0.80),
+    "wc-hiw":    ("figure-wc-hiw.webp",   216, 1700, 1499, 0.92),
+    "wc-wws":    ("figure-wc-wws.webp",     9,  927, 1015, 0.92),
+    "wc-ndis":   ("figure-wc-ndis.webp",    8,  630,  650, 0.92),
+    "wc-hosp":   ("figure-wc-hosp.webp",    5,  440,  455, 0.92),
+    "wc-con":    ("figure-wc-con.webp",     3,  871,  782, 1.06, 470),
+    "wc-mfg":    ("figure-wc-mfg.webp",    10, 1215, 1680, 0.92),
+    "wc-min":    ("figure-wc-min.webp",     0, 1067, 1415, 1.175, 524),
+    "home-both": ("figure-home-both.webp", 232, 923,  950, 0.92),
 }
 
 def place(key):
     if key == "figure":
         return lady, LX, LY
-    f, top, chin, cx, mult = FIGS[key]
+    f, top, chin, cx, mult = FIGS[key][:5]
+    chin_y = FIGS[key][5] if len(FIGS[key]) > 5 else CHIN_Y
     im = Image.open(os.path.join(HERE, "assets", f)).convert("RGBA")
     sc = HEAD_SPAN / (chin - top) * mult
     im = im.resize((round(im.width * sc), round(im.height * sc)), Image.LANCZOS)
-    return im, round(FACE_X - cx * sc), round(CHIN_Y - chin * sc)
+    return im, round(FACE_X - cx * sc), round(chin_y - chin * sc)
 
 base0 = Image.open(HERO).convert("RGBA").resize((W, H), Image.LANCZOS)
 orig = np.array(base0)
@@ -145,6 +178,8 @@ mask = mask.resize((PW, PH), Image.LANCZOS)
 
 fail = 0
 for variant, outs, figkey in JOBS:
+    if ONLY and not variant.startswith(ONLY):
+        continue
     src = DASH % variant
     if not os.path.exists(src):
         print("  MISSING dashboard:", src); fail += 1; continue
@@ -183,6 +218,7 @@ for variant, outs, figkey in JOBS:
     base.alpha_composite(blob_img)
 
     for out in outs:
+        os.makedirs(os.path.dirname(out), exist_ok=True)
         tmp = out + ".tmp.webp"                 # atomic: never a half file
         base.save(tmp, "WEBP", quality=92, method=6)
         os.replace(tmp, out)

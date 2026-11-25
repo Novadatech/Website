@@ -194,6 +194,31 @@
   .tev .tx{padding-top:6px;border-bottom:1px solid var(--line-soft);flex:1;min-width:0}
   .tev .tx b{display:block;font-size:13.5px;font-weight:600;color:var(--ink)}
   .tev .tx p{font-size:12px;color:var(--ink-500);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* ── workforce continuity panels (25 Nov 2026) ──────────────── */
+  .pool{display:flex;gap:22px;align-items:center;margin-top:18px}
+  .ring{width:132px;height:132px;flex:none}
+  .ring text{font-family:Poppins,sans-serif}
+  .plist{flex:1;min-width:0}
+  .prow{display:flex;align-items:center;gap:12px;height:50px;border-top:1px solid var(--line-soft)}
+  .prow:first-child{border-top:0}
+  .prow .nm{font-size:13.5px}
+  .kan{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+  .col{background:#F4F6FB;border-radius:10px;padding:10px}
+  .col h4{font-size:12px;font-weight:700;color:var(--ink-600);letter-spacing:.04em;text-transform:uppercase;display:flex;justify-content:space-between}
+  .kc{background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 10px;margin-top:8px}
+  .kc b{display:block;font-size:12.5px;color:var(--ink)}
+  .kc span{display:block;font-size:11px;color:var(--ink-500);margin-top:3px}
+  .kc i{display:inline-block;margin-top:6px;font-style:normal;font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:999px}
+  .hm{margin-top:16px;border-collapse:separate;border-spacing:6px}
+  .hm th{font-size:11.5px;font-weight:600;color:var(--ink-500);text-align:center}
+  .hm th.l{text-align:left;color:var(--ink);font-size:12.5px;padding-right:6px}
+  .hm td span{display:block;width:44px;height:34px;border-radius:6px}
+  .sh{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  .sc{border:1px solid var(--line);border-radius:10px;padding:13px 14px;border-left:4px solid}
+  .sc .t{font-size:11px;font-weight:700;letter-spacing:.06em}
+  .sc b{display:block;font-size:14px;color:var(--ink);margin-top:5px}
+  .sc span{display:block;font-size:12px;color:var(--ink-500);margin-top:4px}
 </style>
 </head>
 <body>
@@ -211,7 +236,9 @@ var P = {
   cal:'M3.5 5h13v12h-13z M3.5 9h13 M7 2.5v3M13 2.5v3',
   phone:'M5.5 3h3l1.5 3.5-2 1.5a10 10 0 004 4l1.5-2 3.5 1.5v3a1.5 1.5 0 01-1.7 1.5C8.5 15.3 4.7 11.5 4 5.2A1.5 1.5 0 015.5 3z',
   card:'M2.5 5h15v10h-15z M2.5 8.5h15 M5.5 12h3',
-  shield:'M10 2.5l6 2.3v5c0 4-2.6 6.6-6 7.7-3.4-1.1-6-3.7-6-7.7v-5z M7.4 10l1.9 1.9 3.3-3.6'
+  shield:'M10 2.5l6 2.3v5c0 4-2.6 6.6-6 7.7-3.4-1.1-6-3.7-6-7.7v-5z M7.4 10l1.9 1.9 3.3-3.6',
+  users:'M7 9a3 3 0 100-6 3 3 0 000 6z M1.5 17c.5-3 2.7-5 5.5-5s5 2 5.5 5 M13.5 9a2.5 2.5 0 100-5 M14 12c2.3.3 4 2.1 4.5 5',
+  plus:'M10 3v14M3 10h14'
 };
 function svg(k){
   var fillish = (k==='grid');
@@ -247,6 +274,28 @@ else {
       '<div class="hub"><div class="av">&#9678;</div><div><div class="nm">'+esc(v.left.hub.n)+
       '</div><div class="sb">'+esc(v.left.hub.s)+'</div></div>'+
       '<a>'+esc(v.left.hub.a)+' &#8594;</a></div>' : '') + '</div>';
+  } else if(v.left.kind === 'pool'){
+    var Lp=v.left, R=54, C=2*Math.PI*R;
+    left = '<div class="pool"><svg class="ring" viewBox="0 0 132 132"><circle cx="66" cy="66" r="'+R+'" fill="none" stroke="#E6ECFB" stroke-width="14"/>'+
+      '<circle cx="66" cy="66" r="'+R+'" fill="none" stroke="#2357F5" stroke-width="14" stroke-linecap="round" stroke-dasharray="'+(C*Lp.pct/100)+' '+C+'" transform="rotate(-90 66 66)"/>'+
+      '<text x="66" y="66" text-anchor="middle" font-size="26" font-weight="700" fill="#101936">'+esc(Lp.big)+'</text>'+
+      '<text x="66" y="86" text-anchor="middle" font-size="11" fill="#818A9F" style="font-family:Inter">'+esc(Lp.cap)+'</text></svg>'+
+      '<div class="plist">'+Lp.rows.map(function(r){
+        return '<div class="prow"><div class="av" style="background:'+r.c+'">'+esc(r.l)+'</div><div style="min-width:0"><div class="nm">'+esc(r.n)+'</div><div class="sb">'+esc(r.s)+'</div></div>'+
+          '<div class="st'+(r.hold?' hold':'')+'"><i class="dot"></i>'+esc(r.st)+'</div></div>'; }).join('')+'</div></div>';
+  } else if(v.left.kind === 'kanban'){
+    left = '<div class="kan">'+v.left.cols.map(function(c){
+      return '<div class="col"><h4><span>'+esc(c.h)+'</span><span>'+c.cards.length+'</span></h4>'+c.cards.map(function(k){
+        return '<div class="kc"><b>'+esc(k.n)+'</b><span>'+esc(k.s)+'</span>'+(k.tag?'<i style="background:'+k.bg+';color:'+k.fg+'">'+esc(k.tag)+'</i>':'')+'</div>'; }).join('')+'</div>'; }).join('')+'</div>';
+  } else if(v.left.kind === 'heatmap'){
+    var Hm=v.left, sh=['#F1F4FA','#DCE6FF','#B9CCFF','#7C9DFF','#2357F5'];
+    left = '<table class="hm"><thead><tr><th></th>'+Hm.days.map(function(d){return '<th>'+esc(d)+'</th>';}).join('')+'</tr></thead><tbody>'+
+      Hm.rows.map(function(r){ return '<tr><th class="l">'+esc(r[0])+'</th>'+r[1].map(function(n){return '<td><span style="background:'+sh[n]+'"></span></td>';}).join('')+'</tr>'; }).join('')+
+      '</tbody></table>';
+  } else if(v.left.kind === 'shifts'){
+    var tone={crit:['#B4233C','#D94158'],warn:['#8F5A00','#E8B23A'],ok:['#067A52','#18A06A'],info:['#2357F5','#2357F5']};
+    left = '<div class="sh">'+v.left.cards.map(function(c){ var t=tone[c.tone];
+      return '<div class="sc" style="border-left-color:'+t[1]+'"><div class="t" style="color:'+t[0]+'">'+esc(c.tag)+'</div><b>'+esc(c.h)+'</b><span>'+esc(c.s)+'</span><span>'+esc(c.s2)+'</span></div>'; }).join('')+'</div>';
   } else if(v.left.kind === 'line'){
     /* one series, area under it, the last point emphasised */
     var L = v.left, w = 674, h = 250, pl = 30, pr = 12, pt = 10, pb = 26;
@@ -275,7 +324,7 @@ else {
     var bars = Bv.days.map(function(d,i){
       var a = d[1], b = d[2], x = pl2 + i*slot + (slot-bw)/2;
       return '<rect x="'+x+'" y="'+Y2(a)+'" width="'+bw+'" height="'+(Y2(0)-Y2(a))+'" rx="4" fill="#2357F5"/>'+
-             '<rect x="'+x+'" y="'+Y2(a+b)+'" width="'+bw+'" height="'+(Y2(a)-Y2(a+b)-2)+'" rx="4" fill="#C9D6FF"/>'+
+             (b > 0 ? '<rect x="'+x+'" y="'+Y2(a+b)+'" width="'+bw+'" height="'+Math.max(0, Y2(a)-Y2(a+b)-2)+'" rx="4" fill="#C9D6FF"/>' : '')+
              '<text x="'+(x+bw/2)+'" y="'+(Y2(a+b)-8)+'" text-anchor="middle" style="fill:#101936;font-weight:600">'+(a+b)+'</text>'+
              '<text x="'+(x+bw/2)+'" y="'+(h2-4)+'" text-anchor="middle">'+esc(d[0])+'</text>'; }).join('');
     left = '<div class="legend"><span><i style="background:#2357F5"></i>'+esc(Bv.legend[0])+'</span>'+
@@ -302,9 +351,9 @@ else {
   document.body.innerHTML =
   '<aside class="side">'+
     '<div class="brand"><div class="mark"><i></i><i></i></div>'+
-      '<div><b>Novada</b><span>AI WORKFORCE</span></div></div>'+
+      '<div><b>Novada</b><span>'+esc(v.brandSub||'AI WORKFORCE')+'</span></div></div>'+
     '<nav>'+nav+'</nav><div class="rule"></div>'+
-    '<div class="live"><div class="hd"><i class="dot"></i>AI workforce live</div>'+
+    '<div class="live"><div class="hd"><i class="dot"></i>'+esc(v.liveHd||'AI workforce live')+'</div>'+
       '<p>'+esc(v.live)+'</p><a>Need help? Contact Novada &#8599;</a></div>'+
   '</aside>'+
   '<main>'+
