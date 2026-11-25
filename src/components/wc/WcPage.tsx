@@ -7,7 +7,7 @@ import { CREAM, CREAM_DEEP, Cta, CtaSoft, DEEP, SERIF, Section, SectionHead, Tex
 import { WcFooter, WcHeader } from "@/components/wc/WcChrome";
 import { WC_VISUALS } from "@/components/wc/WcVisuals";
 import {
-  INDUSTRIES, LAUNCH_BANNER, WC_BASE, WC_CALENDAR, WC_EMAIL,
+  INDUSTRIES, LAUNCH_BANNER, WC_BASE, WC_CALENDAR, WC_EMAIL, WC_LIVE, WC_REVIEW_H3,
   type Block, type Closing, type Faq, type Flow, type Hero, type WcPage,
 } from "@/content/wc";
 
@@ -133,6 +133,9 @@ function WcFlow({ f }: { f: Flow }) {
 const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
   "ndis-aged-care": HeartHandshake, "hospitality-tourism": UtensilsCrossed, construction: HardHat,
   "manufacturing-transport-logistics": Factory, "mining-resources-energy": Mountain,
+  /* US slugs */
+  "home-care-senior-living": HeartHandshake, "hospitality-events": UtensilsCrossed,
+  "manufacturing-warehousing-logistics": Factory, "energy-mining-resources": Mountain,
 };
 
 function Industries({ b }: { b: Extract<Block, { kind: "industries" }> }) {
@@ -149,7 +152,7 @@ function Industries({ b }: { b: Extract<Block, { kind: "industries" }> }) {
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {INDUSTRIES.map((i) => {
           const Icon = ICONS[i.slug];
-          const live = i.slug === "ndis-aged-care";
+          const live = i.slug === WC_LIVE;
           return (
             <a key={i.slug} href={`${WC_BASE}/${i.slug}`}
               className={`reveal group flex flex-col rounded-lg border p-6 transition-[transform,box-shadow] duration-200 ease-standard hover:-translate-y-0.5 hover:shadow-lift ${live ? "border-brand-200 bg-white shadow-raise" : "border-ink-100 bg-white/70"}`}>
@@ -566,7 +569,7 @@ function WcClosing({ c }: { c: Closing }) {
         </div>
         <div className="rounded-lg bg-white p-8 shadow-float md:p-10">
           <p className={`${MICRO} text-brand-500`}>Free 30-minute workforce review</p>
-          <h3 style={SERIF} className="mt-3 text-2xl font-bold leading-snug text-ink-950">A practical starting point for your casual workforce.</h3>
+          <h3 style={SERIF} className="mt-3 text-2xl font-bold leading-snug text-ink-950">{WC_REVIEW_H3}</h3>
           <p className="mt-3 text-[15px] leading-relaxed text-ink-600">{c.boxP}</p>
           {WC_CALENDAR ? (
             /* 🔴 the founder's AU calendar, once provided */

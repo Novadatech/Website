@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 import { FRAME, GUTTER, MICRO } from "@/components/desk/tokens";
 import { Cta } from "@/components/lp/kit";
-import { INDUSTRIES, WC_BASE, WC_EMAIL } from "@/content/wc";
+import { INDUSTRIES, WC_BASE, WC_EMAIL, WC_LIVE, WC_TAGLINE } from "@/content/wc";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
@@ -67,7 +67,7 @@ function SolutionMenu({ current }: { current?: string }) {
               }`}
             >
               {i.name}
-              {i.slug === "ndis-aged-care" ? (
+              {i.slug === WC_LIVE ? (
                 <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-caps text-brand-600">
                   Now
                 </span>
@@ -205,7 +205,7 @@ export function WcFooter() {
               </span>
             </div>
             <p className="max-w-[34ch] text-sm text-ink-500">
-              Your own casual workforce. Recruited, prepared and coordinated for your business.
+              {WC_TAGLINE}
             </p>
           </div>
           <div>

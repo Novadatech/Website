@@ -28,6 +28,10 @@ export const WC_EMAIL = "support@novadatech.com.au";
 /** 🔴 Set to the founder's calendar embed URL when it arrives; the
     review card then renders the calendar instead of the email button. */
 export const WC_CALENDAR: string | null = null;
+/** The industry launching first, and the footer line. Per market. */
+export const WC_LIVE = "ndis-aged-care";
+export const WC_REVIEW_H3 = "A practical starting point for your casual workforce.";
+export const WC_TAGLINE = "Your own casual workforce. Recruited, prepared and coordinated for your business.";
 
 export type Industry = { slug: string; name: string; blurb: string };
 
