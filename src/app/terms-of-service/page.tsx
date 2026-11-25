@@ -1,6 +1,15 @@
 /*
  * /terms-of-service : website terms of use for Novada Tech.
  *
+ * 🔴 25 NOVEMBER 2026: WORKFORCE CONTINUITY ADDED (founder instruction,
+ * lawyer approval confirmed by the founder). New clause "continuity".
+ * Same-concept clauses brought into line: "desk" (two services),
+ * "workers" (the client is the employer; the old pool cross reference
+ * pointed at a clause that never described a pool), "alongside" (WC
+ * records ARE held in our platform), "regulatory" (employer and
+ * industry obligations), "outcomes", "ai", "privacy", and "ip", which
+ * listed Workforce Continuity as a FORMER name.
+ *
  * REBUILT 2026-08-27. The previous version was inherited boilerplate from
  * a different business (US SMS short codes, an AI model training licence,
  * "all payments strictly non-refundable", a chargeback penalty clause, a
@@ -111,7 +120,7 @@ const BODY = "text-[15px] leading-[1.75] text-[#454E5C] md:text-[16px]";
 const LINK =
   "text-[#003DDB] underline decoration-[#003DDB]/30 underline-offset-[3px] transition-colors hover:decoration-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
 
-const LAST_UPDATED = "15 October 2026";
+const LAST_UPDATED = "25 November 2026";
 
 /* ══════════════════════════════════════════════════════════════════
    CLAUSE NUMBERING
@@ -124,6 +133,7 @@ const ORDER = [
   "about",
   "boundary",
   "desk",
+  "continuity",
   "ai",
   "alongside",
   "clinical",
@@ -308,11 +318,13 @@ const CLAUSES: Clause[] = [
     title: "What we do",
     subs: [
       <>
-        We provide an AI Workforce to two kinds of Australian business:
-        healthcare practices, and care providers in disability, home care and
-        aged care. You engage one or more specialised AI Workforce agents, each of
-        which carries out a defined set of administrative tasks inside the
-        business systems you already run.
+        We provide two services. The first is an AI Workforce for two kinds of
+        Australian business: healthcare practices, and care providers in
+        disability, home care and aged care. You engage one or more
+        specialised AI Workforce agents, each of which carries out a defined
+        set of administrative tasks inside the business systems you already
+        run. The second is Workforce Continuity, a managed service for
+        employers that is described in clause {NO.continuity}.
       </>,
       <>
         For care providers, the AI Workforce covers rostering and shift
@@ -344,8 +356,9 @@ const CLAUSES: Clause[] = [
         is billed and for every claim made in your name.
       </>,
       <>
-        For care providers, we do not make or contribute to decisions about
-        worker suitability, competency, hiring or discipline, and we do not
+        For care providers, and for every Workforce Continuity client, we do
+        not make decisions about worker suitability, competency, hiring or
+        discipline, and we do not
         make regulatory determinations or carry your statutory reporting
         accountability. Those remain with your authorised people.
       </>,
@@ -353,6 +366,69 @@ const CLAUSES: Clause[] = [
         Where we write or speak in your name we are bound by the same
         advertising and professional restrictions that bind you, and you
         remain responsible for the content you approve.
+      </>,
+    ],
+  },
+  {
+    id: "continuity",
+    title: "Workforce Continuity",
+    subs: [
+      <>
+        Workforce Continuity is a managed service for employers. We recruit
+        candidates into a casual workforce that you employ directly, coordinate
+        their onboarding, keep their readiness and availability up to date, and
+        coordinate the shift cover you request from that pool within the
+        service hours your services agreement sets. The roles, locations,
+        requirements, service hours and escalation contacts are agreed in
+        writing before the service starts.
+      </>,
+      <>
+        The workers are yours. You interview candidates, decide whom to hire,
+        employ them and pay them, and you carry the obligations of an employer,
+        including those under the Fair Work Act 2009 (Cth), any modern award or
+        enterprise agreement that applies, work health and safety law,
+        superannuation, taxation and workers&apos; compensation law, and the
+        obligation to confirm a worker&apos;s right to work. We are not the
+        employer of any worker in your pool, we are not a labour hire provider,
+        we do not supply workers to you, and we do not set or advise on pay
+        rates, classifications or entitlements.
+      </>,
+      <>
+        Readiness is an administrative status, not a judgement of suitability.
+        We check the evidence recorded against the requirements you set for
+        each role and workplace. Competence assessments, supervision,
+        workplace and site approvals, and the decision that a worker is
+        suitable for particular work remain yours. Readiness for one role or
+        site does not establish readiness for another.
+      </>,
+      <>
+        A shift is confirmed only when an eligible worker accepts the specific
+        assignment and the acceptance is recorded. If no eligible pool member
+        accepts, we tell your nominated contact before the agreed deadline,
+        with the outreach history and the open gap. We cover only from your
+        own pool. Your regular roster, timekeeping and payroll stay with you,
+        and we update your systems only through a supported connection or an
+        agreed handover.
+      </>,
+      <>
+        Workforce Continuity is not an emergency service and not a general
+        operational, clinical or on-call service. Cover coordination outside
+        business hours is provided only where your services agreement includes
+        those hours.
+      </>,
+      <>
+        When we contact candidates and workers we do so on your behalf and in
+        your name. We do not charge candidates or workers any fee. You are
+        responsible for having the authority, and any consents your
+        arrangements with your existing workers require, for us to contact
+        them and to receive their information.
+      </>,
+      <>
+        Our initial launch is for care providers. Services for other
+        industries described on this website are in preparation, and whether
+        we can support your sector, roles and locations is confirmed in
+        writing before any engagement. Nothing on this website is an offer to
+        provide the service in a particular industry or place.
       </>,
     ],
   },
@@ -379,6 +455,14 @@ const CLAUSES: Clause[] = [
         must always be escalated to a person rather than actioned. Those
         settings are recorded in your services agreement and can be changed by
         you.
+      </>,
+      <>
+        Workforce Continuity&apos;s routine administration and communication,
+        including contacting workers about an assignment and recording their
+        answer, is performed by the same kind of automated system, within rules
+        you approve. When it contacts a candidate or worker it identifies you
+        and that it is an AI assistant, and a person can be asked for at any
+        point.
       </>,
       <>
         Actions taken, approvals given and exceptions raised are recorded, and
@@ -411,14 +495,20 @@ const CLAUSES: Clause[] = [
         escalate to. We do not act outside it.
       </>,
       <>
-        We work inside your systems. You remain the system of record for your
-        participant, client, resident and worker information, and you remain
-        the entity responsible for that information under privacy law. Nothing migrates to
-        us and nothing of yours is replaced.
+        For the AI Workforce, we work inside your systems. You remain the
+        system of record for your participant, client, resident and worker
+        information, and you remain the entity responsible for that
+        information under privacy law. Nothing migrates to us and nothing of
+        yours is replaced.
       </>,
       <>
         Our team is in Australia, and the AI Workforce works inside your own
-        systems rather than copying your records out of them.
+        systems rather than copying your records out of them. Workforce
+        Continuity is different in one respect: the records of your casual
+        pool, its recruitment pipeline and its cover requests are held in our
+        workforce platform on your behalf, as our Privacy Policy describes,
+        and are returned to you at the end of the engagement as your services
+        agreement provides.
       </>,
     ],
   },
@@ -467,14 +557,17 @@ const CLAUSES: Clause[] = [
     subs: [
       <>
         We do not employ, supply or direct the workers who deliver your
-        supports or care. We never have. Where we perform recruitment, we
-        source and screen candidates against criteria you set, for your own
-        workforce, and every hiring decision is yours. A worker you hire joins
-        your organisation, not ours.
+        supports or care, and we do not employ or supply the workers in a
+        Workforce Continuity pool. Where we perform recruitment, for either
+        service, we source and screen candidates against criteria you set, for
+        your own workforce, and every hiring decision is yours. A worker you
+        hire joins your organisation, not ours.
       </>,
       <>
-        Where you engage a worker from the pool described in clause{" "}
-        {NO.desk}, the service agreement is between you and that worker. You
+        Separately from Workforce Continuity, whose pool is made up of your own
+        employees, where you engage an independent worker from a pool of
+        self-employed workers we verify for you, the service agreement is
+        between you and that worker. You
         approve the engagement against your own criteria and you pay the worker
         directly. We verify screening and credentials, make availability
         visible to you, and record the evidence of the engagement. We do not
@@ -544,6 +637,13 @@ const CLAUSES: Clause[] = [
         obligation itself stays with you.
       </>,
       <>
+        If you engage us for Workforce Continuity, in any industry, you retain
+        your obligations as the employer, and the obligations that attach to
+        the work itself, including site and induction requirements, licensing
+        and ticket requirements, work health and safety duties, and, for
+        driving roles, the work and rest and fatigue rules that apply.
+      </>,
+      <>
         You are responsible for making sure that the delegated authority you
         give us, and the access you give us to your systems, is lawful and
         consistent with your own obligations and with your agreements with your
@@ -559,7 +659,8 @@ const CLAUSES: Clause[] = [
       <>
         We do not guarantee outcomes. We do not guarantee that a shift will be
         filled, that a call-off will be covered, that a candidate will be found
-        or hired, or that your revenue will change.
+        or hired, that a worker will accept an assignment, that a casual pool
+        will reach any size by any date, or that your revenue will change.
       </>,
       <>
         Outcomes depend on matters outside our control, including the
@@ -719,7 +820,8 @@ const CLAUSES: Clause[] = [
       </>,
       <>
         For the services, you hold the relationship with your participants,
-        clients and residents, you remain the entity responsible for their
+        clients and residents, and for Workforce Continuity with your
+        candidates and workers, you remain the entity responsible for their
         information, and our handling of it is governed by your services
         agreement rather than by these Terms.
       </>,
@@ -752,12 +854,13 @@ const CLAUSES: Clause[] = [
       </>,
       <>
         &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;Novada AI
-        Workforce&rdquo; and &ldquo;Novada AI Control Centre&rdquo;,
+        Workforce&rdquo;, &ldquo;Novada AI Control Centre&rdquo; and
+        &ldquo;Workforce Continuity&rdquo;,
         together with the former names &ldquo;Novada AI Operations
         Agents&rdquo;, &ldquo;Patient Revenue Leakage Audit&rdquo;,
         &ldquo;Patient Booking &amp; Retention Continuity&rdquo;,
-        &ldquo;Rostering Audit &amp; Efficiency&rdquo;, &ldquo;Workforce
-        Continuity&rdquo;, &ldquo;The Patient Access Desk&rdquo;, &ldquo;The
+        &ldquo;Rostering Audit &amp; Efficiency&rdquo;, &ldquo;The Patient
+        Access Desk&rdquo;, &ldquo;The
         Workforce Desk&rdquo;, &ldquo;The Operations Desk&rdquo;, &ldquo;The
         Operations Partner&rdquo; and &ldquo;The Workforce Partner&rdquo;, are
         used by us as trade marks. You must not use them without our written
@@ -1061,9 +1164,9 @@ function Hero() {
 
         <p className="mt-6 max-w-[680px] text-[16px] leading-[1.7] text-[#454E5C] md:text-[17px]">
           These terms apply to your use of novadatech.com.au. They are not the
-          agreement under which we provide an AI Workforce to your care
-          organisation. That work is governed by a separate services agreement
-          you sign with us.
+          agreement under which we provide an AI Workforce or Workforce
+          Continuity to your organisation. That work is governed by a separate
+          services agreement you sign with us.
         </p>
 
         <dl className="mt-9 grid max-w-[760px] gap-x-10 gap-y-5 border-t border-[#E3E6EC] pt-6 sm:grid-cols-3">

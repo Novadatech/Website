@@ -1,6 +1,14 @@
 /*
  * /privacy-policy : Australian Privacy Act privacy policy for Novada Tech.
  *
+ * 🔴 25 NOVEMBER 2026: WORKFORCE CONTINUITY ADDED (founder instruction,
+ * lawyer approval confirmed by the founder). That service holds pool,
+ * recruitment and cover-request records in OUR platform, which is the
+ * opposite of the AI Workforce's "nothing migrates to us". Every clause
+ * that said so is now scoped to the AI Workforce, and the new section
+ * "continuity" carries the candidate and pool-worker handling. Audit the
+ * same concepts together if either service changes.
+ *
  * REWRITTEN 2026-08-27. The previous version was a generic US-style SaaS
  * template (SMS shortcodes, "Facebook Login", a 30-day deletion promise,
  * an IP notice) that described a business Novada does not run and never
@@ -92,7 +100,7 @@ const LINK =
   "text-[#003DDB] underline decoration-[#B9CBFF] underline-offset-[3px] transition-colors hover:decoration-[#003DDB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#003DDB] focus-visible:ring-offset-2";
 
 /** Effective date. Update this and the version line together. */
-const LAST_UPDATED = "15 October 2026";
+const LAST_UPDATED = "25 November 2026";
 
 /* ══════════════════════════════════════════════════════════════════
    SECTION REGISTER
@@ -108,6 +116,7 @@ const SECTIONS: SectionDef[] = [
   { id: "laws", title: "The laws that apply to us" },
   { id: "collect", title: "The information we collect" },
   { id: "health", title: "Health information and other sensitive information" },
+  { id: "continuity", title: "Workforce Continuity: candidates and pool workers" },
   { id: "how", title: "How we collect it" },
   { id: "use", title: "How we use it, and who we disclose it to" },
   { id: "tracking", title: "Cookies, analytics and advertising tracking" },
@@ -255,32 +264,38 @@ function Hero() {
         </h1>
 
         <p className={`${LEAD} mt-6 max-w-[68ch]`}>
-          Novada Tech provides an AI Workforce to Australian healthcare
-          businesses. For practices we answer enquiries, make and change
+          Novada Tech provides two services. The first is an AI Workforce for
+          Australian healthcare businesses. For practices we answer enquiries, make and change
           bookings, work the recall lists their practitioners set and
           administer billing. For care providers we read rosters, recruit and
           screen workers, keep training and credential records current and run
           payroll. We do that work inside the systems our clients already run.
-          That means we come into contact with{" "}
+          The second is <Key>Workforce Continuity</Key>: we recruit, prepare
+          and coordinate a casual workforce that our client employs directly,
+          for employers in care and in other industries. Both services mean we
+          come into contact with{" "}
           <Key>health information</Key> about their patients, participants,
-          clients and residents,
-          which Australian privacy law treats as sensitive information and
+          clients and residents, and Workforce Continuity also means we handle
+          information about job candidates and workers, including screening
+          records, which Australian privacy law treats as sensitive information and
           protects more strictly than ordinary personal information.
         </p>
 
         <p className={`${BODY} mt-4 max-w-[68ch]`}>
           This policy explains what we collect, why we collect it, who we
           disclose it to, how long we keep it and what you can do about it. It
-          is written for two different readers: someone using this website, and
-          someone whose information we handle because their care
-          provider engaged us. Section {numberOf("who")} explains which one you
-          are.
+          is written for three different readers: someone using this website,
+          someone whose information we handle because their care provider
+          engaged us, and a candidate or worker in a casual pool we coordinate
+          for an employer. Section {numberOf("who")} explains which one you are,
+          and section {numberOf("continuity")} is written for candidates and
+          pool workers.
         </p>
 
         <dl className="mt-9 grid gap-px overflow-hidden border border-[#E3E6EC] bg-[#E3E6EC] sm:grid-cols-3">
           {[
             { k: "Last updated", v: LAST_UPDATED },
-            { k: "Applies to", v: "novadatech.com.au and our AI Workforce services" },
+            { k: "Applies to", v: "novadatech.com.au, our AI Workforce and Workforce Continuity services" },
             { k: "Governing law", v: "Privacy Act 1988 (Cth)" },
           ].map((row) => (
             <div key={row.k} className="bg-white px-5 py-4">
@@ -367,9 +382,10 @@ export default function PrivacyPolicyPage() {
                   <P>
                     This policy sets out how Novada Tech handles personal
                     information, including health information. It applies to
-                    this website, to enquiries and bookings made through it, and
-                    to the services we provide to Australian
-                    care providers.
+                    this website, to enquiries and bookings made through it, to
+                    the AI Workforce services we provide to Australian care
+                    providers and healthcare practices, and to the Workforce
+                    Continuity services we provide to Australian employers.
                   </P>
                   <P>
                     It describes our practices. It is not legal advice, and it
@@ -446,6 +462,16 @@ export default function PrivacyPolicyPage() {
                     handle that information as a service provider, for the
                     client&apos;s purposes, and not for our own.
                   </P>
+                  <P>
+                    <Key>Workforce Continuity is the exception to
+                    &ldquo;nothing migrates&rdquo;.</Key> For that service we
+                    still act for the client, who is the employer, but the
+                    records of the client&apos;s casual pool, its recruitment
+                    pipeline and its cover requests are held in our own
+                    workforce platform, on the client&apos;s behalf, because
+                    that is where the client follows the work. Section{" "}
+                    {numberOf("continuity")} explains what that covers.
+                  </P>
 
                   <Note label="If you are a participant, client or resident">
                     <P>
@@ -455,6 +481,16 @@ export default function PrivacyPolicyPage() {
                       they can act on it. If you contact us instead, we will
                       pass your request on to them promptly and tell you we have
                       done so.
+                    </P>
+                  </Note>
+
+                  <Note label="If you are a job candidate or a worker in a casual pool">
+                    <P>
+                      The business you applied to, or that employs you, is your
+                      employer and makes the hiring decision. We coordinate the
+                      recruitment, readiness and cover work for them. You can
+                      ask either of us about your information, and section{" "}
+                      {numberOf("continuity")} sets out how we handle it.
                     </P>
                   </Note>
 
@@ -752,7 +788,15 @@ export default function PrivacyPolicyPage() {
                     We do not record telephone calls. If a client chooses to record calls on their own service, that recording is the client&apos;s own arrangement. The client is responsible for it, including for meeting the notification and consent obligations that apply under the Telecommunications (Interception and Access) Act 1979 (Cth) and the surveillance and listening devices legislation of the relevant State or Territory.
                   </P>
 
-                  <H3>f. Our own people</H3>
+                  <H3>f. Workforce Continuity</H3>
+                  <P>
+                    For Workforce Continuity we collect information about job
+                    candidates, the workers in a client&apos;s casual pool and
+                    the cover requests a client sends us. Section{" "}
+                    {numberOf("continuity")} lists it.
+                  </P>
+
+                  <H3>g. Our own people</H3>
                   <P>
                     We collect the information we need to recruit, employ or
                     engage our team and to meet our obligations as an
@@ -827,6 +871,131 @@ export default function PrivacyPolicyPage() {
                   </Note>
                 </S>
 
+                {/* ══════════════ WORKFORCE CONTINUITY ══════════════
+                    🔴 ADDED 25 NOVEMBER 2026 WITH THE SERVICE. Candidates
+                    and pool workers are a third audience with records in
+                    OUR platform. Keep this section and the scoped
+                    sentences in "who", "overseas", "security",
+                    "retention" and "adm" consistent with each other. */}
+                <S id="continuity">
+                  <P>
+                    Workforce Continuity is a managed service for employers.
+                    We recruit candidates into a casual workforce that{" "}
+                    <Key>the client employs directly</Key>, coordinate their
+                    onboarding, keep their readiness and availability up to
+                    date, and coordinate the shift cover the client requests
+                    from that pool. The client is the employer. The client
+                    interviews, decides whom to hire, employs and pays its
+                    workers, and keeps its own roster, timekeeping and payroll.
+                    We are not the employer, we do not supply workers, and we do
+                    not charge candidates or workers any fee.
+                  </P>
+
+                  <H3>What we collect</H3>
+                  <List
+                    items={[
+                      <>
+                        <Key>From candidates:</Key> name and contact details,
+                        location and willingness to travel, the roles you apply
+                        for, your availability, your right to work in Australia,
+                        work history, qualifications, licences and tickets,
+                        referee details, your answers to the application
+                        questions the client approves, and interview scheduling
+                        details.
+                      </>,
+                      <>
+                        <Key>Checks and evidence the role requires:</Key> the
+                        outcome, reference and expiry of the checks a client
+                        sets for a role and workplace, such as a police check,
+                        NDIS Worker Screening, a Working with Children Check, a
+                        construction induction card, a licence, a first aid
+                        certificate or a site induction, together with
+                        reference check responses and induction and training
+                        completion records.
+                      </>,
+                      <>
+                        <Key>About pool workers:</Key> readiness status for
+                        each agreed role and site, credentials and their expiry
+                        dates, availability updates, the assignments offered to
+                        you, whether you accepted or declined, and the calls and
+                        messages about them.
+                      </>,
+                      <>
+                        <Key>About cover requests:</Key> who made the request,
+                        the role, location, date, hours and requirements, which
+                        workers were contacted, the outcome, and any escalation
+                        to the client&apos;s nominated contact.
+                      </>,
+                    ]}
+                  />
+
+                  <H3>Sensitive information</H3>
+                  <P>
+                    Some checks produce sensitive information. A police check
+                    can include criminal record information, and a role may
+                    require health information, for example a fitness for work
+                    or medical assessment, vaccination evidence a client
+                    requires for a care setting, or fitness to drive for a
+                    driving role. We collect sensitive information only where
+                    the client&apos;s approved requirements for the role make it
+                    reasonably necessary, and only with your consent, given when
+                    you provide it or authorise the check. Where we can, we
+                    record the outcome, reference and expiry of a check rather
+                    than the detail behind it.
+                  </P>
+
+                  <H3>Where it comes from</H3>
+                  <P>
+                    From you, when you apply, message or speak with us; from
+                    your referees, with your agreement; from screening bodies
+                    and the issuers of licences and credentials, when you
+                    authorise a check or a verification; from the job board or
+                    advertisement you responded to; and from the client, for
+                    example when the client brings existing casual workers into
+                    the pool.
+                  </P>
+
+                  <H3>What we use it for, and who sees it</H3>
+                  <P>
+                    We use it to run the recruitment administration, onboarding
+                    coordination, readiness follow-ups and cover coordination
+                    the client has engaged us for, and to report to the client
+                    on that work. <Key>We give it to the client</Key>, because
+                    the client makes the hiring decision and employs the
+                    workers: that includes your application, reference
+                    responses, check outcomes, readiness status and your
+                    responses to assignment offers. We also disclose it, as the
+                    work requires, to the job boards and advertising platforms
+                    that carry the client&apos;s job advertisements, to
+                    screening and verification providers, and to the
+                    telecommunications providers that carry our calls and text
+                    messages. We do not use it for any other client, and we do
+                    not use it for our own marketing.
+                  </P>
+
+                  <H3>Where it is held</H3>
+                  <P>
+                    Candidate, pool and cover-request records are held in our
+                    customer relationship management and workforce platform, on
+                    the client&apos;s behalf, and the client&apos;s authorised
+                    people can see them there. Where the client&apos;s roster
+                    needs an update, we make it through a supported connection
+                    to the client&apos;s system or send the client an agreed
+                    handover. Section {numberOf("retention")} explains how long
+                    the records are kept and what happens at the end of an
+                    engagement.
+                  </P>
+
+                  <H3>Existing employees in the pool</H3>
+                  <P>
+                    Where a client brings its existing casual employees into the
+                    pool, those employees&apos; records may be exempt employee
+                    records in the client&apos;s hands under section 7B(3) of
+                    the <Act name="Privacy Act 1988" juris="Cth" />. In our
+                    hands they are not, and we handle them under this policy.
+                  </P>
+                </S>
+
                 {/* ══════════════ 06 ══════════════ */}
                 <S id="how">
                   <P>
@@ -855,6 +1024,12 @@ export default function PrivacyPolicyPage() {
                         us.
                       </>,
                       <>
+                        <Key>For Workforce Continuity</Key>, from candidates and
+                        pool workers themselves, their referees, screening and
+                        credential bodies, and the job boards they applied
+                        through, as section {numberOf("continuity")} describes.
+                      </>,
+                      <>
                         <Key>From a third party at a client&apos;s
                         direction</Key>, for example a referrer or another
                         provider, where the client&apos;s own arrangements allow
@@ -879,6 +1054,7 @@ export default function PrivacyPolicyPage() {
                       "administer rosters, coordinate call-offs, shift changes and cover across the hours a client operates, process intake and service change administration, and maintain the statutory records a client is required to keep;",
                       "source and screen candidates against a client's criteria for the client's own workforce, administer onboarding, and maintain induction, training, screening and credential records;",
                       "verify screening and credentials for workers in the pool, make availability visible to a client, and record the evidence of an engagement a client enters into directly with a worker;",
+                      "for Workforce Continuity, administer recruitment for a client's casual pool, coordinate onboarding, keep readiness and availability current, contact pool workers about assignments the client requests, record their acceptance or decline, and update the client's roster or send an agreed handover;",
                       "produce the monthly report we give each client, covering what came in, what we did, what was escalated and what was recorded, measured against the baseline taken at onboarding;",
                       "respond to your enquiry, prepare for a review call and follow up with you;",
                       "operate, secure, measure and improve this website;",
@@ -910,6 +1086,14 @@ export default function PrivacyPolicyPage() {
                         sections {numberOf("tracking")} and{" "}
                         {numberOf("embeds")}.{" "}
                         Beyond those, we work inside the systems our clients already run. The only system we supply is a telephone number that a client forwards their operations line to, so that calls reach the AI Workforce agent configured to answer them. If an engagement ever requires an additional tool, we tell the client before it is introduced.
+                      </>,
+                      <>
+                        <Key>For Workforce Continuity</Key>, the job boards
+                        and advertising platforms that carry a client&apos;s
+                        job advertisements, screening and verification
+                        providers, and the telecommunications providers that
+                        carry our calls and text messages to candidates and
+                        pool workers.
                       </>,
                       <>
                         <Key>Professional advisers</Key>, such as our
@@ -1099,7 +1283,14 @@ export default function PrivacyPolicyPage() {
                         </Key>{" "}
                         Enquiries, bookings and chat messages made through this
                         website are stored in that platform.{" "}
-                        Enquiry and booking records submitted through this website are held in our customer relationship management and booking platform, which stores that data in Australia.
+                        Enquiry and booking records submitted through this website are held in our customer relationship management and booking platform, which stores that data in Australia. Workforce Continuity candidate, pool and cover-request records are held in the same platform.
+                      </>,
+                      <>
+                        <Key>Telecommunications providers.</Key> Calls and text
+                        messages to candidates and pool workers are carried by
+                        telecommunications providers, some of which route or
+                        process message data outside Australia, including in
+                        the United States.
                       </>,
                     ]}
                   />
@@ -1108,8 +1299,8 @@ export default function PrivacyPolicyPage() {
                       The service itself is delivered from Australia.
                     </Key>{" "}
                     Novada is Australian owned and our team is in Australia.
-                    Participant and patient records stay in the client&apos;s
-                    own system: the AI Workforce described in section{" "}
+                    For the AI Workforce, participant and patient records stay
+                    in the client&apos;s own system: the AI Workforce described in section{" "}
                     {numberOf("automated")} work inside those systems rather
                     than copying records out of them. We do not export a
                     client&apos;s records overseas as part of delivering the
@@ -1176,6 +1367,18 @@ export default function PrivacyPolicyPage() {
                     by the system: those stay with authorised people, and the
                     Terms of Service set out where that line sits.
                   </P>
+                  <H3>In Workforce Continuity</H3>
+                  <P>
+                    The same kind of automated system runs the routine
+                    administration and communication of Workforce Continuity,
+                    within rules the client approves: following up documents
+                    and checks, refreshing availability, contacting pool workers
+                    about an assignment and recording their answer. When it
+                    calls or messages a candidate or worker it identifies the
+                    client it is acting for and that it is an AI assistant, and
+                    you can ask for a person at any point. Section{" "}
+                    {numberOf("adm")} describes the decisions involved.
+                  </P>
                 </S>
 
                 {/* ══════════════ 11 ══════════════ */}
@@ -1218,7 +1421,11 @@ export default function PrivacyPolicyPage() {
                     client&apos;s messages, sent from the client&apos;s system,
                     under the client&apos;s own consent records and
                     instructions, and opt-outs are recorded in the
-                    client&apos;s system.
+                    client&apos;s system. For Workforce Continuity, messages to
+                    candidates and pool workers are sent from our platform, in
+                    the client&apos;s name, and opt-outs are recorded there and
+                    passed to the client. Messages about an assignment you have
+                    been offered are operational, not marketing.
                   </P>
                   <Note label="If you want a client's messages to stop">
                     <P>
@@ -1250,8 +1457,9 @@ export default function PrivacyPolicyPage() {
                   <P>The measures we rely on are:</P>
                   <List
                     items={[
-                      "working inside the client's own system, using credentials the client issues and permissions the client sets, so the record stays in the client's system of record rather than being copied into ours;",
-                      "limiting access to the coordinators assigned to that client;",
+                      "for the AI Workforce, working inside the client's own system, using credentials the client issues and permissions the client sets, so the record stays in the client's system of record rather than being copied into ours;",
+                      "for Workforce Continuity, holding pool and candidate records in our platform with access limited to the client's authorised people and the team assigned to that client, and keeping each client's pool separate from every other client's;",
+                      "limiting access to the people assigned to that client;",
                       "written confidentiality obligations on everyone who works for us, and onshore Australian staffing;",
                       "access controls and authentication on the systems we use, and encryption in transit on this website; and",
                       "returning or revoking system access at the end of an engagement.",
@@ -1338,6 +1546,18 @@ export default function PrivacyPolicyPage() {
                         of the client&apos;s file, and we do not assemble one.
                       </>,
                       <>
+                        <Key>Workforce Continuity records.</Key> We hold a
+                        client&apos;s candidate, pool and cover-request records
+                        for as long as the engagement runs. At the end of it we
+                        give the client a copy in the form our services
+                        agreement sets out, and then delete our copy within{" "}
+                        <Fill>90 days</Fill>, unless the law requires us to keep
+                        it longer. Records of a candidate who is not hired are
+                        deleted <Fill>12 months</Fill> after our last contact
+                        with them, unless the candidate asks to stay in
+                        consideration for future roles with that client.
+                      </>,
+                      <>
                         <Key>Business records.</Key> Contracts, invoices and
                         accounting records are kept for as long as our tax,
                         corporate and limitation period obligations require.
@@ -1420,6 +1640,13 @@ export default function PrivacyPolicyPage() {
                       </a>{" "}
                       and tell us what you are looking for.
                     </P>
+                    <P>
+                      If you are a <Key>candidate or a worker in a casual
+                      pool we coordinate</Key>, you can ask us or the employer.
+                      We hold the record on the employer&apos;s behalf, so we
+                      will tell the employer about your request and work with
+                      them to answer it.
+                    </P>
                   </Note>
                 </S>
 
@@ -1437,7 +1664,8 @@ export default function PrivacyPolicyPage() {
                     We cannot coordinate a shift or update a record in a
                     provider&apos;s system anonymously, because the
                     provider&apos;s record has to identify the person it
-                    belongs to.
+                    belongs to. For the same reason you cannot apply for a role,
+                    or join a casual pool, anonymously.
                   </P>
                 </S>
 
@@ -1471,8 +1699,8 @@ export default function PrivacyPolicyPage() {
                     health information.
                   </P>
                   <P>
-                    What they do not do is make the decisions this obligation
-                    is concerned with. Clinical and care decisions, urgency and
+                    For the AI Workforce, what they do not do is make the
+                    decisions this obligation is concerned with. Clinical and care decisions, urgency and
                     triage, worker suitability, hiring and disciplinary
                     decisions, regulatory determinations, Medicare eligibility
                     and the selection of billing codes are all reserved to
@@ -1480,6 +1708,43 @@ export default function PrivacyPolicyPage() {
                     actions may be taken automatically, which require a person
                     to approve them first, and which must always be escalated.
                     Those settings are recorded in the services agreement.
+                  </P>
+                  <H3>Workforce Continuity: the decisions we disclose</H3>
+                  <P>
+                    Workforce Continuity uses a computer program to do things
+                    that can affect a candidate or worker, and we disclose them
+                    here so you know:
+                  </P>
+                  <List
+                    items={[
+                      <>
+                        <Key>Checking applications against minimum
+                        criteria.</Key> Applications may be checked
+                        automatically against the minimum criteria the client
+                        approves for a role, such as right to work, a required
+                        licence or check, location and availability. The
+                        information used is what you give in your application
+                        and the outcome of any check. Whether to interview or
+                        hire you is decided by the client, not by the program.
+                      </>,
+                      <>
+                        <Key>Choosing whom to contact about an
+                        assignment.</Key> When a client requests cover, the
+                        program identifies which pool members meet the recorded
+                        requirements for that role and site and are recorded as
+                        available, and contacts them. The information used is
+                        your recorded readiness, credentials and their expiry,
+                        availability, location and commitments. A worker who is
+                        not shown as meeting a requirement is not contacted for
+                        that assignment.
+                      </>,
+                    ]}
+                  />
+                  <P>
+                    The rules the program applies are set by the client. If you
+                    think a record about you is wrong, or you want to know how
+                    an application or an assignment was handled, ask us and a
+                    person will review it with the client.
                   </P>
                   <P>
                     If we ever introduce a system that makes, or substantially
