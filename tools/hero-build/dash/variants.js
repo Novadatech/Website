@@ -29,14 +29,14 @@ var B = '#2357F5', P = '#7547F5', T = '#3287B6', V = '#8484E0', D = '#0F7B8A';
 var K = ['#2357F5', '#7547F5', '#1487AD', '#8792A9', '#D94158'];
 
 var NAV_CARE = function (on) {
-  return [['Overview', 'grid'], ['AI Agents', 'diamond'],
+  return [['Overview', 'grid'], ['AI Workforce', 'diamond'],
           ['Tasks & Exceptions', 'list'], ['Calls & Messages', 'target'],
           ['Integrations', 'dna'], ['Reports', 'doc'], ['Settings', 'gear']]
     .map(function (n) { return [n[0], n[1], n[0] === on]; });
 };
 var NAV_PRAC = function (on) {
   return [['Overview', 'grid'], ['Patient Access', 'phone'],
-          ['AI Agents', 'diamond'], ['Appointments', 'cal'],
+          ['AI Workforce', 'diamond'], ['Appointments', 'cal'],
           ['Billing & Claims', 'card'], ['Reports', 'doc'], ['Settings', 'gear']]
     .map(function (n) { return [n[0], n[1], n[0] === on]; });
 };
@@ -99,7 +99,7 @@ window.VARIANTS = {
     { c: K[4], lab: 'Critical exceptions', val: '1', foot: 'ROS-2048 · Ack by 06:52', crit: 1 }
   ],
   left: {
-    kind: 'roles', title: 'Your AI Operations Agents', link: 'View all agents',
+    kind: 'roles', title: 'Your AI Workforce', link: 'View all agents',
     rows: [
       { l: 'R', c: B, n: 'Rostering Agent', s: '3 shifts verified · 1 critical', st: 'Active · export held', hold: 1 },
       { l: 'C', c: P, n: 'Compliance Agent', s: 'Training sync verified', st: 'Active' },
@@ -137,7 +137,7 @@ window.VARIANTS = {
     { c: K[4], lab: 'Critical exceptions', val: '1', foot: 'SCH-2048 · Ack by 6:52', crit: 1 }
   ],
   left: {
-    kind: 'roles', title: 'Your AI Operations Agents', link: 'View all agents',
+    kind: 'roles', title: 'Your AI Workforce', link: 'View all agents',
     rows: [
       { l: 'S', c: B, n: 'Scheduling Agent', s: '3 shifts verified · 1 critical', st: 'Active · export held', hold: 1 },
       { l: 'C', c: P, n: 'Compliance Agent', s: 'Credential sync verified', st: 'Active' },

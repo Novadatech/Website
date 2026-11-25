@@ -48,16 +48,16 @@ import AiWorkforcePage from "../AiWorkforcePage";
  * ══════════════════════════════════════════════════════════════════════
  */
 export const metadata: Metadata = {
-  title: "Novada AI Operations Agents for NDIS and aged care | Novada Tech",
+  title: "Novada AI Workforce for NDIS and aged care | Novada Tech",
   description:
-    "AI Operations Agents for Australian NDIS, aged care and home care providers. They run rostering, compliance, HR and payroll, after-hours calls and claims administration inside the systems you already use, with every action recorded and the decisions still yours.",
+    "AI Workforce agents for Australian NDIS, aged care and home care providers. They run rostering, compliance, HR and payroll, after-hours calls and claims administration inside the systems you already use, with every action recorded and the decisions still yours.",
   robots: { index: false, follow: false },
   openGraph: {
     locale: "en_AU",
     siteName: "Novada",
-    title: "Novada AI Operations Agents for NDIS and aged care | Novada Tech",
+    title: "Novada AI Workforce for NDIS and aged care | Novada Tech",
     description:
-      "Five specialised AI Operations Agents for rostering, compliance, HR, after-hours and operations. You keep every important decision.",
+      "Five specialised AI Workforce agents for rostering, compliance, HR, after-hours and operations. You keep every important decision.",
     type: "website",
   },
 };

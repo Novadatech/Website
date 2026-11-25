@@ -308,14 +308,14 @@ const CLAUSES: Clause[] = [
     title: "What we do",
     subs: [
       <>
-        We provide AI Operations Agents to two kinds of Australian business:
+        We provide an AI Workforce to two kinds of Australian business:
         healthcare practices, and care providers in disability, home care and
-        aged care. You engage one or more specialised AI Operations Agents, each of
+        aged care. You engage one or more specialised AI Workforce agents, each of
         which carries out a defined set of administrative tasks inside the
         business systems you already run.
       </>,
       <>
-        For care providers, the AI Operations Agents cover rostering and shift
+        For care providers, the AI Workforce covers rostering and shift
         coordination, compliance and worker documentation, recruitment,
         onboarding and payroll administration, after-hours operational
         coordination, and cross-function operations administration. For
@@ -325,7 +325,7 @@ const CLAUSES: Clause[] = [
         practice operations administration.
       </>,
       <>
-        What each AI Operations Agent is permitted to do in your business is set out
+        What each AI Workforce agent is permitted to do in your business is set out
         in your services agreement. Capability depends on the systems you
         authorise us to connect to, the permissions those systems grant, the
         workflows configured for you and the approvals you require. Nothing on
@@ -363,12 +363,12 @@ const CLAUSES: Clause[] = [
       <>
         The work described in the previous clause is performed by an automated
         system. That is the nature of the service and not an implementation
-        detail: an AI Operations Agent reads from and writes to the systems you
+        detail: an AI Workforce agent reads from and writes to the systems you
         authorise, sends communications you have approved, and completes tasks
         without a person performing each step.
       </>,
       <>
-        Where an AI Operations Agent speaks with a patient, a worker or any other
+        Where an AI Workforce agent speaks with a patient, a worker or any other
         person on your behalf, it identifies itself as an AI assistant. A
         person can ask to be put through to a human at any point, and that
         request is honoured.
@@ -383,7 +383,7 @@ const CLAUSES: Clause[] = [
       <>
         Actions taken, approvals given and exceptions raised are recorded, and
         that record is available to you. It is a record of what the AI
-        Operations Agents did. It does not replace your own systems of record, which
+        Workforce did. It does not replace your own systems of record, which
         remain authoritative for their own business functions unless your
         services agreement expressly says otherwise.
       </>,
@@ -391,7 +391,7 @@ const CLAUSES: Clause[] = [
         Automated systems can fail, misread information, or act on information
         that is wrong or out of date in a connected system. The approval and
         escalation settings above exist because of that. We do not represent
-        that an AI Operations Agent will be free of error, and nothing in this
+        that the AI Workforce will be free of error, and nothing in this
         agreement transfers to us a responsibility the law places on you.
       </>,
     ],
@@ -417,7 +417,7 @@ const CLAUSES: Clause[] = [
         us and nothing of yours is replaced.
       </>,
       <>
-        Our team is in Australia, and the AI Operations Agents work inside your own
+        Our team is in Australia, and the AI Workforce works inside your own
         systems rather than copying your records out of them.
       </>,
     ],
@@ -491,7 +491,7 @@ const CLAUSES: Clause[] = [
         that kind goes to your own adviser.
       </>,
       <>
-        Our people are our own personnel and the AI Operations Agents are our own
+        Our people are our own personnel and the AI Workforce agents are our own
         systems. Providing the services does not make either of them your
         employees, contractors or workers, and does not create an employment
         or agency relationship between you and them.
@@ -752,9 +752,9 @@ const CLAUSES: Clause[] = [
       </>,
       <>
         &ldquo;Novada&rdquo;, &ldquo;Novada Tech&rdquo;, &ldquo;Novada AI
-        Operations Agents&rdquo; and &ldquo;Novada AI Control Centre&rdquo;,
-        together with the former names &ldquo;Novada AI Workforce&rdquo;,
-        &ldquo;Patient Revenue Leakage Audit&rdquo;,
+        Workforce&rdquo; and &ldquo;Novada AI Control Centre&rdquo;,
+        together with the former names &ldquo;Novada AI Operations
+        Agents&rdquo;, &ldquo;Patient Revenue Leakage Audit&rdquo;,
         &ldquo;Patient Booking &amp; Retention Continuity&rdquo;,
         &ldquo;Rostering Audit &amp; Efficiency&rdquo;, &ldquo;Workforce
         Continuity&rdquo;, &ldquo;The Patient Access Desk&rdquo;, &ldquo;The
@@ -1061,7 +1061,7 @@ function Hero() {
 
         <p className="mt-6 max-w-[680px] text-[16px] leading-[1.7] text-[#454E5C] md:text-[17px]">
           These terms apply to your use of novadatech.com.au. They are not the
-          agreement under which we provide AI Operations Agents to your care
+          agreement under which we provide an AI Workforce to your care
           organisation. That work is governed by a separate services agreement
           you sign with us.
         </p>

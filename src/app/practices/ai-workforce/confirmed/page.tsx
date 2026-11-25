@@ -37,7 +37,7 @@ export default function Page() {
       offer="practices"
       eventName="AI Workforce demo"
       backHref="/practices/ai-workforce"
-      backLabel="Back to Novada AI Operations Agents"
+      backLabel="Back to Novada AI Workforce"
       contactEmail="support@novadatech.com.au"
       numbers={{
         neutral:

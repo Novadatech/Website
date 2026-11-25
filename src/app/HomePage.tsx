@@ -60,10 +60,10 @@ import { FRAME, GUTTER } from "@/components/desk/tokens";
 const OFFERS = [
   {
     eyebrow: "For NDIS, aged care & home care providers",
-    name: "Novada AI Operations Agents for care",
+    name: "Novada AI Workforce for care",
     lead: "Rostering, compliance, HR and payroll, after-hours calls and claims administration.",
     points: [
-      "Five specialised AI Operations Agents, deployed on their own or together.",
+      "Five specialised AI Workforce agents, deployed on their own or together.",
       "They fill the shift, chase the clearance and get the hours to payroll.",
       "Every action recorded in one Control Centre.",
     ],
@@ -73,10 +73,10 @@ const OFFERS = [
   },
   {
     eyebrow: "For GP, specialist & allied health practices",
-    name: "Novada AI Operations Agents for practices",
+    name: "Novada AI Workforce for practices",
     lead: "Patient calls, cancelled appointments, referrals, recalls and billing exceptions.",
     points: [
-      "Six specialised AI Operations Agents, deployed on their own or together.",
+      "Six specialised AI Workforce agents, deployed on their own or together.",
       "They answer the call, refill the slot and work the claim.",
       "Your clinicians keep every clinical and billing decision.",
     ],
@@ -96,7 +96,7 @@ const WHY = [
   {
     img: "/ai-workforce/why-employees.png",
     h: "It does the work",
-    b: "Not a dashboard that tells your team what is outstanding. An AI Operations Agent that completes the task and records what it did.",
+    b: "Not a dashboard that tells your team what is outstanding. An AI Workforce that completes the task and records what it did.",
   },
   {
     img: "/ai-workforce/why-control.png",
@@ -189,16 +189,16 @@ const TESTIMONIALS = [
 
 const FAQ = [
   {
-    q: "What are Novada AI Operations Agents?",
-    a: "They run on an AI-powered operational platform for Australian healthcare organisations. You engage specialised AI Operations Agents that coordinate and execute approved administrative workflows across your supported business systems.",
+    q: "What is the Novada AI Workforce?",
+    a: "It runs on an AI-powered operational platform for Australian healthcare organisations. You engage specialised AI Workforce agents that coordinate and execute approved administrative workflows across your supported business systems.",
   },
   {
     q: "How is it different from ChatGPT or a conventional AI chatbot?",
-    a: "A chatbot responds to questions or generates information. Novada AI Operations Agents perform authorised operational actions through connected systems, follow defined workflows, request approvals, verify outcomes and maintain activity records.",
+    a: "A chatbot responds to questions or generates information. The Novada AI Workforce performs authorised operational actions through connected systems, follows defined workflows, requests approvals, verifies outcomes and maintains activity records.",
   },
   {
-    q: "Can AI Operations Agents actually complete tasks?",
-    a: "That is the core purpose of the offering. A supported AI Operations Agent is designed to perform permitted actions rather than simply recommend them. Actual capabilities depend on the available integrations, configured workflows, system permissions and required approvals.",
+    q: "Can the AI Workforce actually complete tasks?",
+    a: "That is the core purpose of the offering. A supported AI Workforce agent is designed to perform permitted actions rather than simply recommend them. Actual capabilities depend on the available integrations, configured workflows, system permissions and required approvals.",
   },
   {
     q: "Do we need to replace our current software?",
@@ -210,12 +210,12 @@ const FAQ = [
   },
   {
     /* ⚠️ NO FIGURE. Price does not appear in writing before a call. */
-    q: "How much does it cost to deploy an AI Operations Agent?",
-    a: "Pricing is based on the selected AI Operations Agent, the required workflows, supported integrations, usage and implementation requirements. Your proposal sets out the applicable costs once the scope is understood.",
+    q: "How much does it cost to deploy the AI Workforce?",
+    a: "Pricing is based on the selected AI Workforce agents, the required workflows, supported integrations, usage and implementation requirements. Your proposal sets out the applicable costs once the scope is understood.",
   },
 ];
 
-/** The Control Centre mock. ⚠️ Every row names a real AI Operations Agent and a
+/** The Control Centre mock. ⚠️ Every row names a real AI Workforce agent and a
     real status. No figure in here may describe a Novada outcome. */
 /* The real product: the exception queue, with the morning summary and
    the agent's own recovery attempt floating over it. Founder instruction
@@ -285,12 +285,12 @@ export default function HomePage() {
                 style={SERIF}
                 className="mt-5 text-[clamp(2.1rem,1.35rem+3.2vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-ink-950"
               >
-                AI Operations Agents that do the work. Not just tell you what needs
+                AI Workforce that does the work. Not just tells you what needs
                 doing.
               </h1>
 
               <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-ink-600">
-                Novada AI Operations Agents run the administration behind Australian
+                The Novada AI Workforce runs the administration behind Australian
                 healthcare, inside the systems you already use. They complete
                 approved work, ask before anything consequential, and record
                 every action in one place.
@@ -340,7 +340,7 @@ export default function HomePage() {
         <section className="border-y border-ink-100/70" style={{ backgroundColor: CREAM_DEEP }}>
           <div className={`${FRAME} ${GUTTER} py-10`}>
             <p style={SERIF} className="text-center text-lg font-bold text-ink-800">
-              Australian healthcare providers already run Novada AI Operations Agents
+              Australian healthcare providers already run the Novada AI Workforce
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-20">
               {PROVIDERS.map((p) => (
@@ -361,7 +361,7 @@ export default function HomePage() {
             to be sent to /care or /practices and choose an offer there.
             Both hubs are archived, so the choice happens here. */}
         <Section id="offers">
-          <SectionHead sub="Two teams of AI Operations Agents, built for the two kinds of organisation we serve. Pick the one that sounds like you.">
+          <SectionHead sub="Two AI Workforces, built for the two kinds of organisation we serve. Pick the one that sounds like you.">
             Which one are you?
           </SectionHead>
 
@@ -402,7 +402,7 @@ export default function HomePage() {
 
         {/* ── WHY ──────────────────────────────────────────────────── */}
         <Section bg={CREAM_DEEP}>
-          <SectionHead>Why choose a Novada AI Operations Agent?</SectionHead>
+          <SectionHead>Why choose the Novada AI Workforce?</SectionHead>
           <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
             {WHY.map((w) => (
               <div key={w.h} className="reveal text-center">
@@ -444,7 +444,7 @@ export default function HomePage() {
                 {[
                   "Which tasks are done, running, waiting or stuck.",
                   "Which actions are sitting on your approval.",
-                  "A traceable record of what each AI Operations Agent did, when, and in which system.",
+                  "A traceable record of what each AI Workforce agent did, when, and in which system.",
                 ].map((b) => (
                   <li key={b} className="flex items-start gap-3">
                     <span
@@ -490,7 +490,7 @@ export default function HomePage() {
         {/* ── THE DEEP BAND ────────────────────────────────────────── */}
         <section style={{ backgroundColor: DEEP }}>
           <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>
-            <SectionHead dark>The business impact of AI Operations Agents</SectionHead>
+            <SectionHead dark>The business impact of an AI Workforce</SectionHead>
             <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
               {SECTOR.map((s, i) => (
                 <div
@@ -592,7 +592,7 @@ export default function HomePage() {
               dark
               sub="Both start with a free 30-minute conversation about your workload, your systems and which work could be handled safely. No obligation to proceed."
             >
-              Launch your first AI Operations Agent
+              Launch your AI Workforce
             </SectionHead>
 
             <div className="mx-auto mt-12 grid max-w-3xl gap-5 sm:grid-cols-2">

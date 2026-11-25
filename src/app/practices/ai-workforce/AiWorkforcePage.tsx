@@ -67,7 +67,7 @@ import ProductShot from "@/components/offer/ProductShot";
  *    PRACTICES, and the copy around them says so. Founder instruction,
  *    10 November 2026, was to use them here. They are real Novada
  *    clients, so the strip and the quote band are true as written:
- *    "Australian healthcare providers already run Novada AI Operations Agents"
+ *    "Australian healthcare providers already run the Novada AI Workforce"
  *    and "Care and disability providers already trust Novada with the
  *    operations behind their service."
  *    🔴 DO NOT reword either to imply these are medical practices. The
@@ -110,7 +110,7 @@ const WHY = [
   {
     img: "/ai-workforce/why-employees.png",
     h: "It does the work",
-    b: "Not a reminder list for your practice manager. An AI Operations Agent that answers the call, sends the offer and records what it did.",
+    b: "Not a reminder list for your practice manager. An AI Workforce that answers the call, sends the offer and records what it did.",
   },
   {
     img: "/ai-workforce/why-control.png",
@@ -133,7 +133,7 @@ const FEATURES = [
       "The AI answers through your supported telephony, identifies itself as an AI assistant, and handles the routine enquiry end to end.",
       "Anything urgent or clinical goes to a person through your own escalation procedure, and a patient can always ask for one.",
     ],
-    link: { label: "Meet your AI Operations Agents", href: "#employees" },
+    link: { label: "Meet your AI Workforce", href: "#employees" },
   },
   {
     key: "control",
@@ -141,7 +141,7 @@ const FEATURES = [
     bullets: [
       "Which tasks are done, running, waiting or stuck.",
       "Which actions are sitting on your approval.",
-      "A traceable record of what each AI Operations Agent did, when, and in which system.",
+      "A traceable record of what each AI Workforce agent did, when, and in which system.",
     ],
     link: { label: "See how the Control Centre works", href: "#book" },
     /* 🔴 LOAD-BEARING. Without it the Control Centre reads as a
@@ -252,7 +252,7 @@ const TALK = [
   {
     img: "/ai-workforce/talk-start.png",
     h: "Start with one role",
-    b: "Deploy a single AI Operations Agent and add others into the same Control Centre later.",
+    b: "Deploy a single AI Workforce agent and add others into the same Control Centre later.",
   },
   {
     img: "/ai-workforce/talk-reach.png",
@@ -311,7 +311,7 @@ const OVERSIGHT = [
   },
 ];
 
-/* ── THE SIX AI OPERATIONS AGENTS. ────────────────────────────────────────────
+/* ── THE SIX AI WORKFORCE AGENTS. ────────────────────────────────────────────
  *
  * 🔴 EVERY `limit` LINE HERE STAYS. Read note 1 in the file header
  * before touching one. Three of them are legal, clinical-safety or
@@ -375,7 +375,7 @@ const EMPLOYEES = [
     lead: "Keeps practice administration moving from one central place.",
     does: [
       "Monitors administrative tasks across supported systems and identifies overdue or incomplete workflows.",
-      "Coordinates follow-ups between the other AI Operations Agents and your team.",
+      "Coordinates follow-ups between the rest of your AI Workforce and your team.",
       "Prepares the daily summary and escalates what needs a management decision.",
     ],
   },
@@ -421,16 +421,16 @@ const INTEGRATIONS = [
 
 const FAQ = [
   {
-    q: "What are Novada AI Operations Agents?",
-    a: "They run on an AI-powered operational platform for Australian practices. You engage specialised AI Operations Agents that coordinate and execute approved administrative workflows across your supported practice systems.",
+    q: "What is the Novada AI Workforce?",
+    a: "It runs on an AI-powered operational platform for Australian practices. You engage specialised AI Workforce agents that coordinate and execute approved administrative workflows across your supported practice systems.",
   },
   {
     q: "Will patients know they are speaking to an AI?",
     a: "Yes. The AI identifies itself as an AI assistant on every call, and a patient can ask to be put through to a person at any point. Urgent or potentially clinical matters are escalated through your approved procedures rather than handled by the AI.",
   },
   {
-    q: "Can AI Operations Agents actually complete tasks?",
-    a: "That is the core purpose of the offering. A supported AI Operations Agent is designed to perform permitted actions rather than simply recommend them. Actual capabilities depend on the available integrations, configured workflows, system permissions and required approvals.",
+    q: "Can the AI Workforce actually complete tasks?",
+    a: "That is the core purpose of the offering. A supported AI Workforce agent is designed to perform permitted actions rather than simply recommend them. Actual capabilities depend on the available integrations, configured workflows, system permissions and required approvals.",
   },
   {
     q: "Do we need to replace our practice management software?",
@@ -445,12 +445,12 @@ const FAQ = [
     a: "It can support the administration: identifying completed services awaiting billing, checking permitted administrative fields, flagging inconsistencies, tracking claim statuses and coordinating follow-up on rejections. It does not invent billable services, determine Medicare eligibility, select clinical billing codes independently or guarantee claim approval or revenue recovery.",
   },
   {
-    q: "Can we deploy just one AI Operations Agent?",
-    a: "Yes. You can engage a single specialised AI Operations Agent and add others later. The roles, service scope and subscription terms are confirmed in your proposal.",
+    q: "Can we deploy just one AI Workforce agent?",
+    a: "Yes. You can engage a single specialised AI Workforce agent and add others later. The roles, service scope and subscription terms are confirmed in your proposal.",
   },
   {
     q: "How is patient information protected?",
-    a: "The platform connects to your systems through authorised, permission-scoped access, and every action an AI Operations Agent takes is recorded in the Control Centre's audit and activity records. Access controls, data retention, auditing and incident response are set out in your service agreement, and we confirm the specific permissions and contractual protections with you before any system is connected.",
+    a: "The platform connects to your systems through authorised, permission-scoped access, and every action the AI Workforce takes is recorded in the Control Centre's audit and activity records. Access controls, data retention, auditing and incident response are set out in your service agreement, and we confirm the specific permissions and contractual protections with you before any system is connected.",
   },
   {
     q: "Does Novada guarantee more revenue or fewer no-shows?",
@@ -458,8 +458,8 @@ const FAQ = [
   },
   {
     /* ⚠️ NO FIGURE. Price does not appear in writing before a call. */
-    q: "How much does it cost to deploy an AI Operations Agent?",
-    a: "Pricing is based on the selected AI Operations Agent, the required workflows, supported integrations, usage and implementation requirements. Your proposal sets out the applicable platform, implementation and ongoing subscription costs once the scope is understood.",
+    q: "How much does it cost to deploy the AI Workforce?",
+    a: "Pricing is based on the selected AI Workforce agents, the required workflows, supported integrations, usage and implementation requirements. Your proposal sets out the applicable platform, implementation and ongoing subscription costs once the scope is understood.",
   },
 ];
 
@@ -788,14 +788,14 @@ export default function AiWorkforcePage() {
                 style={SERIF}
                 className="mt-5 text-[clamp(2.1rem,1.35rem+3.2vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.02em] text-ink-950"
               >
-                AI Operations Agents that actually run your practice
+                AI Workforce that actually runs your practice
                 administration.
               </h1>
 
               {/* ⚠️ TWO SENTENCES. The page this replaced opened with a
                   paragraph four times this long. Do not grow it back. */}
               <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-ink-600">
-                Novada AI Operations Agents answer patient calls, refill cancelled
+                The Novada AI Workforce answers patient calls, refill cancelled
                 appointments, chase referral documents, run recalls and work
                 your billing exceptions, inside the systems you already use.
                 Your clinicians keep every clinical and billing decision.
@@ -807,7 +807,7 @@ export default function AiWorkforcePage() {
                   href="#employees"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xs bg-brand-100 px-6 text-[13px] font-bold uppercase tracking-caps text-brand-700 transition-colors duration-150 ease-standard hover:bg-brand-200 sm:whitespace-nowrap"
                 >
-                  Meet your AI Operations Agents
+                  Meet your AI Workforce
                   <ChevronDown aria-hidden className="h-4 w-4" />
                 </a>
               </div>
@@ -860,7 +860,7 @@ export default function AiWorkforcePage() {
         <section className="border-y border-ink-100/70" style={{ backgroundColor: CREAM_DEEP }}>
           <div className={`${FRAME} ${GUTTER} py-10`}>
             <p style={SERIF} className="text-center text-lg font-bold text-ink-800">
-              Australian healthcare providers already run Novada AI Operations Agents
+              Australian healthcare providers already run the Novada AI Workforce
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-20">
               {PROVIDERS.map((p) => (
@@ -878,7 +878,7 @@ export default function AiWorkforcePage() {
 
         {/* ── WHY ──────────────────────────────────────────────────── */}
         <Section>
-          <SectionHead>Why choose a Novada AI Operations Agent?</SectionHead>
+          <SectionHead>Why choose the Novada AI Workforce?</SectionHead>
           <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
             {WHY.map((w) => (
               <div key={w.h} className="reveal text-center">
@@ -957,7 +957,7 @@ export default function AiWorkforcePage() {
         {/* ── THE DEEP BAND ────────────────────────────────────────── */}
         <section style={{ backgroundColor: DEEP }}>
           <div className={`${FRAME} ${GUTTER} py-16 md:py-24`}>
-            <SectionHead dark>The business impact of AI Operations Agents</SectionHead>
+            <SectionHead dark>The business impact of an AI Workforce</SectionHead>
 
             <div className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
               {SECTOR.map((s, i) => (
@@ -1026,7 +1026,7 @@ export default function AiWorkforcePage() {
 
         {/* ── LET US TALK ──────────────────────────────────────────── */}
         <Section bg={CREAM_DEEP}>
-          <SectionHead sub="See how AI Operations Agents would fit your practice:">
+          <SectionHead sub="See how an AI Workforce would fit your practice:">
             Let us talk
           </SectionHead>
           <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
@@ -1061,7 +1061,7 @@ export default function AiWorkforcePage() {
             were the five lines on the role cards. */}
         <Section bg={CREAM}>
           <SectionHead wide>
-            Your AI Operations Agents do the administration. Your clinicians keep the
+            Your AI Workforce does the administration. Your clinicians keep the
             clinical calls.
           </SectionHead>
 
@@ -1101,10 +1101,10 @@ export default function AiWorkforcePage() {
           </p>
         </Section>
 
-        {/* ── THE SIX AI OPERATIONS AGENTS ─────────────────────────────────── */}
+        {/* ── THE SIX AI WORKFORCE AGENTS ─────────────────────────────────── */}
         <Section id="employees" bg={CREAM_DEEP}>
           <SectionHead sub="Each one runs a defined administrative process end to end. Start with the one under the most pressure and add others into the same Control Centre later.">
-            Meet the six AI Operations Agents
+            Meet the six agents in your AI Workforce
           </SectionHead>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -1171,7 +1171,7 @@ export default function AiWorkforcePage() {
             NDIS and aged care software and does not belong here. The
             practice management systems have been asked for. */}
         <Section id="integrations">
-          <SectionHead sub="Your AI Operations Agents work inside the systems you already run. We confirm each system's permissions and capabilities during implementation.">
+          <SectionHead sub="Your AI Workforce works inside the systems you already run. We confirm each system's permissions and capabilities during implementation.">
             Integrates with the tools you already use
           </SectionHead>
 
@@ -1294,7 +1294,7 @@ export default function AiWorkforcePage() {
       <div aria-hidden className="h-28 sm:h-20" />
 
       <StickyCta
-        label="Book your AI Operations Agent discovery call"
+        label="Book your AI Workforce discovery call"
         tagline="Free 30-minute discovery conversation."
         href="#book"
       />

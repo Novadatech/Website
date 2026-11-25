@@ -42,7 +42,7 @@ import {
  *
  * ⚠️ THEY SURVIVED THE REPOSITIONING INTACT AND THAT IS DELIBERATE.
  * They were written when Novada ran these functions with its own
- * people. The offer is now AI Operations Agents doing the same work under the
+ * people. The offer is now an AI Workforce doing the same work under the
  * same boundaries, so the rules did not need rewriting, only the
  * sentence that introduces them. If a future change makes one of them
  * untrue, the fix is to change the service, not the page.
@@ -94,7 +94,7 @@ const PRINCIPLES = [
 const OFFERS = [
   {
     eyebrow: "For NDIS, aged care & home care providers",
-    name: "Novada AI Operations Agents for care",
+    name: "Novada AI Workforce for care",
     body: "The rosters and what they cost, the hiring, the screening, the training records and the payroll, inside your own systems.",
     href: "/care/ai-workforce",
     cta: "See the care offer",
@@ -102,7 +102,7 @@ const OFFERS = [
   },
   {
     eyebrow: "For GP, specialist & allied health practices",
-    name: "Novada AI Operations Agents for practices",
+    name: "Novada AI Workforce for practices",
     body: "The enquiries nobody got back to, the bookings, the recall list and the billing behind them, inside your own practice software.",
     href: "/practices/ai-workforce",
     cta: "See the practices offer",
@@ -229,7 +229,7 @@ export default function WhyNovadaPage() {
               </h1>
 
               <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-ink-600">
-                Novada builds AI Operations Agents that run that work for Australian
+                Novada builds an AI Workforce that runs that work for Australian
                 care providers and medical practices. We take the function, not
                 the people, and we stop at the line where care begins.
               </p>
@@ -278,7 +278,7 @@ export default function WhyNovadaPage() {
         <section className="border-y border-ink-100/70" style={{ backgroundColor: CREAM_DEEP }}>
           <div className={`${FRAME} ${GUTTER} py-10`}>
             <p style={SERIF} className="text-center text-lg font-bold text-ink-800">
-              Australian healthcare providers already run Novada AI Operations Agents
+              Australian healthcare providers already run the Novada AI Workforce
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-20">
               {PROVIDERS.map((p) => (
@@ -298,7 +298,7 @@ export default function WhyNovadaPage() {
             🔴 VERBATIM. Read the file header: 02 is in the service
             agreement, not in the copy deck. */}
         <Section id="rules">
-          <SectionHead sub="They were written when we ran this work with our own people. The offer is AI Operations Agents now, doing the same work under the same boundaries, so the rules did not need rewriting.">
+          <SectionHead sub="They were written when we ran this work with our own people. The offer is an AI Workforce now, doing the same work under the same boundaries, so the rules did not need rewriting.">
             Four rules we do not bend
           </SectionHead>
 
@@ -323,7 +323,7 @@ export default function WhyNovadaPage() {
 
         {/* ── WHAT WE RUN ──────────────────────────────────────────── */}
         <Section bg={CREAM_DEEP}>
-          <SectionHead sub="Two teams of AI Operations Agents, built for the two kinds of organisation we serve.">
+          <SectionHead sub="Two AI Workforces, built for the two kinds of organisation we serve.">
             What we run for you
           </SectionHead>
 
@@ -371,7 +371,7 @@ export default function WhyNovadaPage() {
               </h2>
               <ul className="mt-7 flex flex-col gap-4">
                 {[
-                  "Every action an AI Operations Agent takes is recorded: what it did, when, and in which system.",
+                  "Every action the AI Workforce takes is recorded: what it did, when, and in which system.",
                   "Approvals and escalations are recorded alongside them.",
                   "You set what runs automatically, what needs sign-off and what must always reach a person.",
                 ].map((b) => (
@@ -406,7 +406,7 @@ export default function WhyNovadaPage() {
         {/* ── HUMAN OVERSIGHT ──────────────────────────────────────── */}
         <Section bg={CREAM_DEEP}>
           <SectionHead wide>
-            Your AI Operations Agents do the routine work. Your people keep the
+            Your AI Workforce does the routine work. Your people keep the
             decisions.
           </SectionHead>
 

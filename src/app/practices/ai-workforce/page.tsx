@@ -43,15 +43,15 @@ import AiWorkforcePage from "./AiWorkforcePage";
  * ══════════════════════════════════════════════════════════════════════
  */
 export const metadata: Metadata = {
-  title: "Novada AI Operations Agents for Australian practices | Novada Tech",
+  title: "Novada AI Workforce for Australian practices | Novada Tech",
   description:
-    "AI Operations Agents for Australian GP, specialist and allied health practices. They answer patient calls, refill cancelled appointments, chase referral documents, run recalls and work billing exceptions inside your existing systems. Clinical and billing decisions stay with your clinicians.",
+    "AI Workforce agents for Australian GP, specialist and allied health practices. They answer patient calls, refill cancelled appointments, chase referral documents, run recalls and work billing exceptions inside your existing systems. Clinical and billing decisions stay with your clinicians.",
   openGraph: {
     locale: "en_AU",
     siteName: "Novada",
-    title: "Novada AI Operations Agents for Australian practices | Novada Tech",
+    title: "Novada AI Workforce for Australian practices | Novada Tech",
     description:
-      "Six specialised AI Operations Agents for reception, cancellations, referrals, recalls, billing and practice operations. Your clinicians keep every clinical call.",
+      "Six specialised AI Workforce agents for reception, cancellations, referrals, recalls, billing and practice operations. Your clinicians keep every clinical call.",
     type: "website",
   },
 };
