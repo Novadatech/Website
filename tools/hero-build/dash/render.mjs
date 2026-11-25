@@ -30,7 +30,9 @@ mkdirSync(OUT, { recursive: true });
 // read the variant keys straight out of the data file, so this never
 // drifts from variants.js
 const src = readFileSync(DIR + '/variants.js', 'utf8');
-const keys = [...src.matchAll(/^'([a-z-]+)':\s*\{/gm)].map(m => m[1]);
+const keys = [...src.matchAll(/^'([a-z-]+)':\s*\{/gm), ...src.matchAll(/^window\.VARIANTS\['([a-z-]+)'\]\s*=/gm)].map(m => m[1]);
+// optional filter: node render.mjs wc-  renders only keys starting with it
+const only = process.argv[2];
 if (!keys.length) { console.error('no variants found'); process.exit(1); }
 console.log('variants:', keys.join(', '));
 
@@ -48,6 +50,7 @@ const base = pathToFileURL(DIR + '/dash.html').href;
 let bad = 0;
 
 for (const k of keys) {
+  if (only && !k.startsWith(only)) continue;
   errs.length = 0;
   await page.goto(base + '#' + k, { waitUntil: 'networkidle' });
   // the hash alone will not re-run the script on a same-document nav
@@ -59,7 +62,7 @@ for (const k of keys) {
   const probe = await page.evaluate(() => ({
     h1: document.querySelector('h1')?.textContent || null,
     // a chart's marks count as its rows: bars, line points, timeline steps
-    rows: document.querySelectorAll('.row, .trow, .tev, .chart rect, .chart circle').length,
+    rows: document.querySelectorAll('.row, .trow, .tev, .chart rect, .chart circle, .prow, .kc, .hm td, .sc').length,
     kpis: document.querySelectorAll('.kpi').length,
     poppins: getComputedStyle(document.querySelector('h1') || document.body).fontFamily,
     // nothing may spill out of the 1440x1080 frame

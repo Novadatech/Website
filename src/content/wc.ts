@@ -33,6 +33,27 @@ export const WC_LIVE = "ndis-aged-care";
 export const WC_REVIEW_H3 = "A practical starting point for your casual workforce.";
 export const WC_TAGLINE = "Your own casual workforce. Recruited, prepared and coordinated for your business.";
 
+/* ── PROOF, shared with the AI Workforce pages ─────────────────────────
+ * 🔴 The same three founder-supplied client quotes the care page runs,
+ * VERBATIM. They are about working with Novada Tech, not about this
+ * offer, and the strip line says only that these providers work with
+ * Novada Tech. Never edit a quote to mention casual pools or cover.
+ * ⚠️ EMMANUELLA, TWO LS. */
+export const WC_STRIP = "Care providers across Australia already work with Novada Tech";
+export const WC_TESTIMONIALS = [
+  { org: "Maxicare Plus", name: "Founder, Josh",
+    quote: "One thing we value about Novada Tech is that they understand the operational challenges NDIS providers face. Building a care business requires more than finding workers. It requires reliable processes, proper planning and consistent support. Novada brings a practical, proactive approach and genuinely takes the time to understand what our organisation needs." },
+  { org: "Morning Star Community Services", name: "Founder, Emmanuella",
+    quote: "In the care sector, having reliable people and well-managed processes makes a real difference. What stands out about Novada Tech is their professionalism, attention to detail and focus on making operations more manageable. They understand the importance of accountability, consistency and having the right support behind service delivery." },
+  { org: "Support Link", name: "Founder, Peter",
+    quote: "Novada Tech takes a structured and professional approach to understanding business needs. They recognise the importance of strong workforce processes, clear communication and dependable administrative support. Their commitment to practical solutions and ongoing improvement is what makes them a valuable partner." },
+];
+export const WC_PROVIDERS = [
+  { name: "Maxicare Plus", file: "maxicare.png", h: "h-9 md:h-10" },
+  { name: "Morning Star Community Services", file: "morningstar.png", h: "h-14 md:h-16" },
+  { name: "Supportslink", file: "supportslink.png", h: "h-9 md:h-11" },
+];
+
 export type Industry = { slug: string; name: string; blurb: string };
 
 export const INDUSTRIES: Industry[] = [
@@ -508,7 +529,7 @@ function industry(c: IndustryCopy): WcPage {
         rule: RULE, visual: c.visuals.example },
       { kind: "roles", eyebrow: "Roles to discuss", h2: c.roles.h2, p: c.roles.p, roles: c.roles.roles,
         note: "Role coverage, preparation requirements and service availability are confirmed for your business during the review.", visual: c.visuals.roles },
-      CONTROL_INDUSTRY("white"),
+      CONTROL_INDUSTRY("deep"),
     ],
     faq: { eyebrow: "FAQ", h2: "Your industry. Your questions.", sub: c.faqSub, askSubject: "Question about Novada", items: c.faq },
     closing: { eyebrow: "Start with your workforce needs", h2: c.closing.h2, p: c.closing.p, li: c.closing.li, boxP: BOX_P, subject: c.closing.subject },
