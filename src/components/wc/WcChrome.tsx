@@ -75,7 +75,12 @@ function SolutionMenu({ current }: { current?: string }) {
   );
 }
 
-export function WcHeader({ current }: { current?: string }) {
+/** `cta` overrides the header button. The booking confirmation passes
+    one so a person who has just booked is not invited to book again. */
+export function WcHeader({ current, cta, anchorBase = "" }: { current?: string; cta?: { href: string; label: string; short: string }; anchorBase?: string }) {
+  /* On a page without #faq / #review (the booking confirmation) the
+     in-page anchors point at the WC home's sections instead. */
+  const fix = (h: string) => (h.startsWith("#") ? anchorBase + h : h);
   const [open, setOpen] = useState(false);
   const [mOpen, setMOpen] = useState(false);
   const ref = useOutside(open, () => setOpen(false));
@@ -131,7 +136,7 @@ export function WcHeader({ current }: { current?: string }) {
             </li>
             {LINKS.map((n) => (
               <li key={n.href}>
-                <a href={n.href} className={link}>
+                <a href={fix(n.href)} className={link}>
                   {n.label}
                 </a>
               </li>
@@ -139,9 +144,9 @@ export function WcHeader({ current }: { current?: string }) {
           </ul>
         </nav>
 
-        <Cta href="#review">
-          <span className="sm:hidden">Free review</span>
-          <span className="hidden sm:inline">Free workforce review</span>
+        <Cta href={cta?.href ?? "#review"}>
+          <span className="sm:hidden">{cta?.short ?? "Free review"}</span>
+          <span className="hidden sm:inline">{cta?.label ?? "Free workforce review"}</span>
         </Cta>
       </div>
 
@@ -163,7 +168,7 @@ export function WcHeader({ current }: { current?: string }) {
             {LINKS.map((n) => (
               <li key={n.href}>
                 <a
-                  href={n.href}
+                  href={fix(n.href)}
                   className="inline-flex min-h-11 items-center whitespace-nowrap text-[13px] font-semibold text-ink-700"
                 >
                   {n.label}
@@ -184,7 +189,7 @@ export function WcHeader({ current }: { current?: string }) {
   );
 }
 
-export function WcFooter() {
+export function WcFooter({ anchorBase = "" }: { anchorBase?: string } = {}) {
   const link = "inline-flex min-h-11 items-center text-sm text-ink-700 transition-colors duration-150 hover:text-brand-500";
   const heading = `${MICRO} mb-2 text-ink-500`;
   return (
@@ -210,7 +215,7 @@ export function WcFooter() {
               {LINKS.slice(0, 3).map((n) => (
                 <li key={n.href}><a href={n.href} className={link}>{n.label}</a></li>
               ))}
-              <li><a href="#faq" className={link}>FAQ on this page</a></li>
+              <li><a href={anchorBase + "#faq"} className={link}>{anchorBase ? "FAQ" : "FAQ on this page"}</a></li>
             </ul>
           </div>
           <div>
@@ -225,7 +230,7 @@ export function WcFooter() {
             <h2 className={heading}>Contact</h2>
             <ul>
               <li><a href={`mailto:${WC_EMAIL}`} className={link}>{WC_EMAIL}</a></li>
-              <li><a href="#review" className={link}>Get a free workforce review</a></li>
+              <li><a href={anchorBase + "#review"} className={link}>Get a free workforce review</a></li>
               <li><a href="/privacy-policy" className={link}>Privacy policy</a></li>
               <li><a href="/terms-of-service" className={link}>Terms of use</a></li>
             </ul>
