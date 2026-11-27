@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { ArrowRight, Check, ChevronDown, Factory, HardHat, HeartHandshake, Mail, Mountain, UtensilsCrossed } from "lucide-react";
 
 import StickyCta from "@/components/desk/StickyCta";
@@ -526,12 +527,38 @@ function renderBlocks(page: WcPage): Rendered[] {
 
 /* ── THE PAGE ───────────────────────────────────────────────────────── */
 
+/*
+ * ⚠️ BOOKING CALENDAR RESIZER, added 27 Nov 2026. The provider's widget
+ * grows from ~700px to ~1,100-1,340px once a date is picked (the time
+ * slots open below the calendar). Without its resizer script the frame
+ * stays at the fixed height and the visitor scrolls INSIDE it to reach
+ * the times. form_embed.js runs iFrame Resizer, which handshakes with the
+ * widget and keeps the frame at its real height (measured live).
+ * Same rules as components/desk/BookingEmbed.tsx, which learned them the
+ * hard way: load the script ONCE per document and never remove it, and
+ * never lazy-load the frame (a frame that has not fetched when the
+ * script scans misses the handshake). scrolling="auto" stays as the
+ * fallback if the handshake ever fails.
+ */
+const RESIZER_SRC = "https://link.novadatech.com/js/form_embed.js";
+function ensureResizer() {
+  if (typeof document === "undefined") return;
+  if (document.querySelector(`script[src="${RESIZER_SRC}"]`)) return;
+  const script = document.createElement("script");
+  script.src = RESIZER_SRC;
+  script.async = true;
+  document.body.appendChild(script);
+}
+
 export default function WcPageView({ page }: { page: WcPage }) {
   const h = page.hero;
   const f = page.flow;
   const c = page.closing;
   const heroKey = HERO_KEY[page.slug] ?? "home";
   const bookingSrc = wcCalendarSrc(page.slug);
+  useEffect(() => {
+    if (bookingSrc) ensureResizer();
+  }, [bookingSrc]);
   const blocks = renderBlocks(page);
   const hasDeep = page.blocks.some((b) => b.kind === "trio" && b.bg === "deep" && !b.visual);
 
@@ -717,7 +744,6 @@ export default function WcPageView({ page }: { page: WcPage }) {
                     title="Book a free workforce review"
                     className="mt-6 h-[780px] w-full rounded-lg border-0"
                     scrolling="auto"
-                    loading="lazy"
                   />
                 ) : (
                   <>
