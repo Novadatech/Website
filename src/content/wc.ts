@@ -17,17 +17,33 @@
  * edit made in porting: headings that the draft split over two lines
  * with no space ("beforethe") are joined with a space.
  *
- * ⚠️ BOOKING: one calendar for AU, still to come from the founder. Until
- * it arrives every "review" CTA opens an email with the page's own
- * subject line, exactly as the draft does. See WC_CALENDAR below.
+ * ⚠️ BOOKING: ONE calendar serves all nine AU pages. The per-page slug is
+ * carried in utm_content by wcCalendarSrc() below, so a single calendar
+ * still reports which industry page produced the booking. Set
+ * WC_CALENDAR to null to fall back to the email CTA.
  * ══════════════════════════════════════════════════════════════════════
  */
 
 export const WC_BASE = "/workforce-continuity";
 export const WC_EMAIL = "support@novadatech.com.au";
-/** 🔴 Set to the founder's calendar embed URL when it arrives; the
-    review card then renders the calendar instead of the email button. */
-export const WC_CALENDAR: string | null = null;
+/** Workforce Continuity review calendar (AU). One calendar for every
+    industry page; null falls back to the email CTA. */
+export const WC_CALENDAR: string | null = "https://link.novadatech.com/widget/booking/Qhg9M4VLp4IvIQPjk7l3";
+/** utm_source for the booking embed. This repo is the AU site; never
+    copy the .com value here. */
+export const WC_UTM_SOURCE = "novadatech.com.au";
+/** Booking src for one page. One shared calendar, but utm_content carries
+    the page slug so bookings are still attributable to an industry. */
+export function wcCalendarSrc(slug: string): string | null {
+  if (!WC_CALENDAR) return null;
+  const q = new URLSearchParams({
+    utm_source: WC_UTM_SOURCE,
+    utm_medium: "website",
+    utm_campaign: "workforce-continuity",
+    utm_content: slug || "home",
+  });
+  return `${WC_CALENDAR}?${q.toString()}`;
+}
 /** 🔴 27 NOV 2026: ALL FIVE INDUSTRIES ARE LIVE (founder). Never label an
     industry as first, launching, in preparation or coming soon. Kept only
     as the per-market care slug. */

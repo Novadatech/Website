@@ -8,8 +8,8 @@ import { Blobs, CREAM, CREAM_DEEP, Cta, DEEP, SERIF, Stars, TextLink } from "@/c
 import { WcFooter, WcHeader } from "@/components/wc/WcChrome";
 import { WC_VISUALS } from "@/components/wc/WcVisuals";
 import {
-  INDUSTRIES, LAUNCH_BANNER, WC_BASE, WC_CALENDAR, WC_EMAIL, WC_PROVIDERS, WC_REVIEW_H3,
-  WC_STRIP, WC_TESTIMONIALS,
+  INDUSTRIES, LAUNCH_BANNER, WC_BASE, WC_EMAIL, WC_PROVIDERS, WC_REVIEW_H3,
+  WC_STRIP, WC_TESTIMONIALS, wcCalendarSrc,
   type Block, type WcPage,
 } from "@/content/wc";
 
@@ -531,6 +531,7 @@ export default function WcPageView({ page }: { page: WcPage }) {
   const f = page.flow;
   const c = page.closing;
   const heroKey = HERO_KEY[page.slug] ?? "home";
+  const bookingSrc = wcCalendarSrc(page.slug);
   const blocks = renderBlocks(page);
   const hasDeep = page.blocks.some((b) => b.kind === "trio" && b.bg === "deep" && !b.visual);
 
@@ -709,8 +710,15 @@ export default function WcPageView({ page }: { page: WcPage }) {
                 <p className={`${MICRO} text-brand-500`}>Free 30-minute workforce review</p>
                 <h3 style={SERIF} className="mt-3 text-2xl font-bold leading-snug text-ink-950">{WC_REVIEW_H3}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-600">{c.boxP}</p>
-                {WC_CALENDAR ? (
-                  <iframe src={WC_CALENDAR} title="Book a free workforce review" className="mt-6 h-[640px] w-full rounded-lg border-0" loading="lazy" />
+                {bookingSrc ? (
+                  <iframe
+                    src={bookingSrc}
+                    id={`wc-booking-${page.slug || "home"}`}
+                    title="Book a free workforce review"
+                    className="mt-6 h-[780px] w-full rounded-lg border-0"
+                    scrolling="auto"
+                    loading="lazy"
+                  />
                 ) : (
                   <>
                     <div className="mt-7"><Cta href={mailto(c.subject)}>Request your review</Cta></div>
