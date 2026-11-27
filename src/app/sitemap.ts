@@ -41,8 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: s === "home" ? 0.9 : 0.7,
     })),
-    /* WC booking confirmation: INDEXED by founder instruction, 27 Nov 2026 */
-    { url: `${base}${WC_BASE}/confirmed`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.3 },
     ...OFFERS.filter((o) => o.indexed !== false).map((o) => ({
       url: `${base}${o.href}`,
       lastModified: now,

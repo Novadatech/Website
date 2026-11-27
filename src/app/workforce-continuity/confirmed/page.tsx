@@ -11,17 +11,16 @@ import WcConfirmed from "@/components/wc/WcConfirmed";
  * 🔴 Point the Australian WC calendar's redirect at
  *    https://novadatech.com.au/workforce-continuity/confirmed
  *
- * 🔴 INDEXED, founder instruction 27 Nov 2026 ("make it live"), unlike
- * the AI Workforce confirmations, and listed in sitemap.ts. Trade-off
- * the founder accepted: a search visitor who lands here fires the Meta
- * Schedule event without having booked.
+ * 🔴 HIDDEN FROM SEARCH, founder 27 Nov 2026 ("I hope the confirmed pages
+ * don't show up in search"). Never index it or add it to sitemap.ts.
+ * noindex, and NOT listed in robots.ts on purpose: allow the crawl,
+ * refuse the index (see the note in care/ai-workforce/confirmed).
  * A static folder beside [slug] wins over the dynamic route.
  */
 export const metadata: Metadata = {
   title: "Booking confirmed | Novada Tech",
   description: "Your free Workforce Continuity review is booked.",
-  alternates: { canonical: "/workforce-continuity/confirmed" },
-  openGraph: { locale: "en_AU", siteName: "Novada", title: "Booking confirmed | Novada Tech", description: "Your free Workforce Continuity review is booked.", type: "website" },
+  robots: { index: false, follow: false },
 };
 
 export default function Page() {
