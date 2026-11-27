@@ -28,7 +28,9 @@ export const WC_EMAIL = "support@novadatech.com.au";
 /** 🔴 Set to the founder's calendar embed URL when it arrives; the
     review card then renders the calendar instead of the email button. */
 export const WC_CALENDAR: string | null = null;
-/** The industry launching first, and the footer line. Per market. */
+/** 🔴 27 NOV 2026: ALL FIVE INDUSTRIES ARE LIVE (founder). Never label an
+    industry as first, launching, in preparation or coming soon. Kept only
+    as the per-market care slug. */
 export const WC_LIVE = "ndis-aged-care";
 export const WC_REVIEW_H3 = "A practical starting point for your casual workforce.";
 export const WC_TAGLINE = "Your own casual workforce. Recruited, prepared and coordinated for your business.";
@@ -65,8 +67,8 @@ export const INDUSTRIES: Industry[] = [
 ];
 
 export const LAUNCH_BANNER = {
-  strong: "Starting with care providers.",
-  p: "Our initial launch focuses on NDIS, aged care and home care. We’re preparing the other industry solutions and confirm support for your roles and locations during your review.",
+  strong: "Every industry is available now.",
+  p: "Tell us your sector, roles and locations. In your review we agree the requirements, service hours and starting scope for your business.",
 };
 
 /* ── section shapes ─────────────────────────────────────────────────── */
@@ -338,14 +340,13 @@ const howItWorks: WcPage = {
 const whoWeSupport: WcPage = {
   slug: "who-we-support",
   title: "Who We Support | Novada Tech",
-  description: "Explore Novada workforce solutions by industry. Initial focus on NDIS, aged care and home care, with other industry availability confirmed in a review.",
+  description: "Explore Novada workforce solutions by industry: NDIS, aged care and home care, hospitality and tourism, construction, manufacturing, transport and logistics and mining, resources and energy.",
   hero: {
     audience: "Workforce support by industry",
     h1: "A stronger casual workforce.", h1b: "For your business.",
     lead: "For organisations with recurring staffing gaps, directly employed casual workers and a need for more consistent recruitment, readiness and cover coordination.",
     reassurance: "Start with suitable casual workers you already employ, recruit additional people, or combine both.",
     secondary: { label: "Choose your industry", href: "#industries" },
-    availability: "Our initial launch focuses on NDIS, aged care and home care. Other industry solutions are being prepared; support for your roles and locations is confirmed during your review.",
     visual: "wws-hero",
   },
   flow: {
@@ -381,7 +382,7 @@ const whoWeSupport: WcPage = {
     askSubject: "Question about Novada",
     items: [
       { q: "Which industries are represented?", a: "NDIS and aged care, including home care; hospitality and tourism; construction; manufacturing, transport and logistics; and mining, resources and energy." },
-      { q: "Are all industry services available now?", a: "Care providers are the initial launch focus. We are preparing other industry solutions and confirm availability for your sector, roles and locations during the review." },
+      { q: "Are all industry services available now?", a: "Yes. Every industry on this site is available now. During the review we agree the roles, locations, requirements and service hours for your business." },
       { q: "What makes a business a good fit?", a: "Recurring cover needs, a clear employment and preparation process, and enough suitable work to sustain an engaged casual pool." },
       { q: "Do we need a large workforce?", a: "Fit depends on your staffing patterns, required roles and how the pool will be used. We assess those factors during the review." },
       { q: "Can you support different sites and roles?", a: "We define the preparation and eligibility requirements for each agreed role and site. Support depends on the scope and availability confirmed for your business." },
@@ -496,9 +497,9 @@ const ndis: WcPage = {
   },
 };
 
-/* ══ 6-9 · THE FOUR INDUSTRIES IN PREPARATION ═════════════════════════ */
+/* ══ 6-9 · THE FOUR OTHER INDUSTRIES (ALL LIVE) ═════════════════════════ */
 type IndustryCopy = {
-  slug: string; title: string; description: string; audience: string; h1: string; h1b: string; lead: string; availability: string;
+  slug: string; title: string; description: string; audience: string; h1: string; h1b: string; lead: string; availability?: string;
   flow: { h2: string; intro: string; steps: { t: string; s: string }[] };
   pain: { eyebrow: string; h2: string; items: { h: string; p: string }[] };
   service: { h2: string; rows: { h: string; p: string; li: string[]; note: string }[] };
@@ -528,7 +529,7 @@ function industry(c: IndustryCopy): WcPage {
         b: { tag: "If the pool cannot cover", steps: [{ h: "Keep the gap visible", p: c.example.gap }] },
         rule: RULE, visual: c.visuals.example },
       { kind: "roles", eyebrow: "Roles to discuss", h2: c.roles.h2, p: c.roles.p, roles: c.roles.roles,
-        note: "Role coverage, preparation requirements and service availability are confirmed for your business during the review.", visual: c.visuals.roles },
+        note: "Role coverage, preparation requirements and service hours are agreed for your business during the review.", visual: c.visuals.roles },
       CONTROL_INDUSTRY("deep"),
     ],
     faq: { eyebrow: "FAQ", h2: "Your industry. Your questions.", sub: c.faqSub, askSubject: "Question about Novada", items: c.faq },
@@ -542,7 +543,6 @@ const hospitality = industry({
   description: "Plan a directly employed casual pool for your venue. Explore recruitment, worker readiness and requested shift cover with Novada.",
   audience: "For hospitality and tourism businesses", h1: "Build a casual team", h1b: "that knows your venue.",
   lead: "Recruit, onboard and keep your own casual team connected to your business. When a busy period or cancellation creates a gap, Novada coordinates requested cover from eligible members of your directly employed pool.",
-  availability: "We're preparing our hospitality and tourism service. Discuss your roles, locations and service availability during your review.",
   flow: { h2: "A familiar team for busy shifts", intro: "A managed process around the people your business hires and employs.", steps: [
     { t: "Build your team", s: "Recruit around your venues, roles and busy periods." },
     { t: "Keep workers ready", s: "Coordinate venue induction and keep availability current." },
@@ -574,9 +574,9 @@ const hospitality = industry({
     { q: "Can we start with the casuals we already have?", a: "Yes. We can assess how your existing directly employed casuals fit the agreed pool, reconcile their information and identify recruitment or preparation gaps." },
     { q: "How do you handle venue induction and role requirements?", a: "We agree the requirements for each role and location, coordinate the necessary evidence and your approved induction, and track outstanding tasks. Your business retains workplace supervision and required competence assessments." },
     { q: "Do we need to change our rostering or payroll system?", a: "Your regular roster, timekeeping and payroll stay with your business. We confirm any supported connections and handover arrangements during scoping." },
-    { q: "Is the service available now, and is cover guaranteed?", a: "We're preparing this industry service, so roles, locations and availability are confirmed during your review. Cover depends on eligible pool members accepting. If a request remains unfilled, your nominated contact receives the gap, outreach history and next step." }],
+    { q: "Is the service available now, and is cover guaranteed?", a: "Yes, the service is available now. Your roles, locations and requirements are agreed during your review. Cover depends on eligible pool members accepting. If a request remains unfilled, your nominated contact receives the gap, outreach history and next step." }],
   closing: { h2: "Prepare your casual team for the busy periods ahead.", p: "Use a free 30-minute workforce review to discuss your venues, recurring staffing gaps and the casual pool your business needs.",
-    li: ["Your busiest periods and recurring shift gaps", "Existing casuals and the roles you need to recruit", "Venue preparation, service hours and launch availability"], subject: "Free workforce review — Hospitality & Tourism" },
+    li: ["Your busiest periods and recurring shift gaps", "Existing casuals and the roles you need to recruit", "Venue preparation, service hours and a start date"], subject: "Free workforce review — Hospitality & Tourism" },
   visuals: { hero: "hosp-hero", example: "hosp-function", roles: "hosp-roles" },
 });
 
@@ -586,7 +586,6 @@ const construction = industry({
   description: "Plan a casual workforce around your construction tasks and sites. Explore recruitment, worker readiness and cover from your own employed pool.",
   audience: "For builders and construction businesses", h1: "Your casual crew.", h1b: "Prepared for the job and site.",
   lead: "Build and maintain a directly employed casual pool around your tasks, sites and project needs. Novada coordinates recruitment and readiness administration, then manages requested cover from eligible members of your own pool.",
-  availability: "We're preparing our construction service. Discuss your roles, locations and service availability during your review.",
   flow: { h2: "A casual crew around your work", intro: "A managed process for the people your business employs, with readiness assessed for the relevant job and site.", steps: [
     { t: "Build your team", s: "Recruit for agreed roles, locations and project needs." },
     { t: "Keep workers ready", s: "Coordinate task requirements, site induction and availability." },
@@ -610,7 +609,7 @@ const construction = industry({
       { h: "Check and contact eligible workers", p: "Assess relevant pool members against the assignment and contact those who may be available." },
       { h: "Confirm the accepted assignment", p: "Recheck the required details, record the worker's acceptance and notify the nominated site contact." }],
     gap: "If no eligible pool member accepts, the slot stays open. The nominated site contact receives the search history, deadline and next action. An available person is not automatically eligible for every task or site." },
-  roles: { h2: "Start with the roles your projects need", p: "Examples to discuss during your review. The service scope depends on the work, location, verification requirements and planned availability.",
+  roles: { h2: "Start with the roles your projects need", p: "Examples to discuss during your review. The service scope depends on the work, location, verification requirements and service hours you need.",
     roles: ["General construction labourers", "Trade assistants", "Qualified tradespeople", "Site clean-up workers", "Plant or equipment operators, subject to agreed task requirements"] },
   faqSub: "Understand how a managed casual pool could fit your projects.",
   faq: [
@@ -618,9 +617,9 @@ const construction = industry({
     { q: "Can readiness differ between sites and tasks?", a: "Yes. We agree the relevant role, task, location and site requirements during scoping. A worker's readiness for one assignment does not automatically establish readiness for another. Your business retains site supervision and required competence decisions." },
     { q: "Can we include existing casual workers?", a: "Yes. Existing directly employed casuals can be included after their information, availability and relevant preparation have been reviewed against the agreed requirements." },
     { q: "Does Novada take over the project roster or payroll?", a: "Your regular crew planning, timekeeping and payroll remain with your business. Novada coordinates the cover requests submitted within scope. Any system connection or handover is confirmed before activation." },
-    { q: "When can we start, and what happens if nobody accepts?", a: "We're preparing our construction service. The review establishes whether your roles and locations fit the planned scope and confirms availability. If no eligible pool member accepts a request, the slot remains unresolved and your nominated contact receives the history, deadline and next action." }],
+    { q: "When can we start, and what happens if nobody accepts?", a: "Once the review has agreed your roles, sites and requirements, we set a start date together. If no eligible pool member accepts a request, the slot remains unresolved and your nominated contact receives the history, deadline and next action." }],
   closing: { h2: "Build your casual crew around the work coming up.", p: "Bring your recurring gaps, upcoming jobs and site requirements to a free 30-minute workforce review.",
-    li: ["Upcoming jobs and recurring crew gaps", "Roles, tasks and site preparation requirements", "Your existing casual pool and planned service availability"], subject: "Free workforce review — Construction" },
+    li: ["Upcoming jobs and recurring crew gaps", "Roles, tasks and site preparation requirements", "Your existing casual pool and the service hours you need"], subject: "Free workforce review — Construction" },
   visuals: { hero: "con-hero", example: "con-replace", roles: "con-roles" },
 });
 
@@ -630,7 +629,6 @@ const manufacturing = industry({
   description: "Explore a managed casual workforce for manufacturing, transport and logistics. Recruit your own pool, maintain readiness and coordinate requested shift cover.",
   audience: "For manufacturing, transport & logistics businesses", h1: "A casual workforce.", h1b: "Built around your operation.",
   lead: "We recruit and prepare your own casual workers, maintain their readiness and availability records, and coordinate the cover you request across production, warehouse, depot and transport roles.",
-  availability: "We’re preparing this industry service. We confirm support for your roles and locations during the review.",
   flow: { h2: "A pool built for your operation", intro: "Your business employs the workers. Your regular roster and payroll stay in place.", steps: [
     { t: "Build your team", s: "Recruit around agreed roles, locations and shift patterns." },
     { t: "Keep workers ready", s: "Track availability, required credentials and site induction." },
@@ -674,7 +672,6 @@ const mining = industry({
   description: "Explore a managed casual workforce for mining, resources and energy. Build your own pool around role and site requirements and coordinate requested cover.",
   audience: "For mining, resources & energy businesses", h1: "Build your casual workforce.", h1b: "Before the next crew gap.",
   lead: "We recruit and prepare your own casual pool around agreed roles and site requirements, maintain readiness records and coordinate the cover you request.",
-  availability: "We’re preparing this industry service. We confirm support for your roles and locations during the review.",
   flow: { h2: "Readiness before assignment", intro: "Your business employs the workers and approves hires and site assignments. We help keep the pool organised and the next steps clear.", steps: [
     { t: "Build your team", s: "Recruit around agreed duties, locations and site requirements." },
     { t: "Keep workers ready", s: "Track credentials, induction, training and outstanding items." },

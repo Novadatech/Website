@@ -424,9 +424,7 @@ const CLAUSES: Clause[] = [
         them and to receive their information.
       </>,
       <>
-        Our initial launch is for care providers. Services for other
-        industries described on this website are in preparation, and whether
-        we can support your sector, roles and locations is confirmed in
+        Whether we can support your sector, roles and locations is confirmed in
         writing before any engagement. Nothing on this website is an offer to
         provide the service in a particular industry or place.
       </>,

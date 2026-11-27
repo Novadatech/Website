@@ -8,7 +8,7 @@ import { Blobs, CREAM, CREAM_DEEP, Cta, DEEP, SERIF, Stars, TextLink } from "@/c
 import { WcFooter, WcHeader } from "@/components/wc/WcChrome";
 import { WC_VISUALS } from "@/components/wc/WcVisuals";
 import {
-  INDUSTRIES, LAUNCH_BANNER, WC_BASE, WC_CALENDAR, WC_EMAIL, WC_LIVE, WC_PROVIDERS, WC_REVIEW_H3,
+  INDUSTRIES, LAUNCH_BANNER, WC_BASE, WC_CALENDAR, WC_EMAIL, WC_PROVIDERS, WC_REVIEW_H3,
   WC_STRIP, WC_TESTIMONIALS,
   type Block, type WcPage,
 } from "@/content/wc";
@@ -258,7 +258,7 @@ function CardBand({ id, eyebrow, h2, sub, items, foot, link, bg = CREAM_DEEP, re
   );
 }
 
-/** The care page's EMPLOYEES grid: five industries and the launch card. */
+/** The care page's EMPLOYEES grid: five industries, all live, and a closing card. */
 function IndustryGrid({ b }: { b: Extract<Block, { kind: "industries" }> }) {
   return (
     <Band id="industries">
@@ -266,15 +266,14 @@ function IndustryGrid({ b }: { b: Extract<Block, { kind: "industries" }> }) {
       <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {INDUSTRIES.map((i, n) => {
           const Icon = ICONS[i.slug] ?? HeartHandshake;
-          const live = i.slug === WC_LIVE;
           return (
             <a key={i.slug} href={`${WC_BASE}/${i.slug}`}
               className="reveal group flex flex-col rounded-lg border border-ink-100 bg-white p-7 shadow-lift transition-[transform,box-shadow] duration-200 ease-standard hover:-translate-y-0.5"
               style={{ ["--reveal-delay" as string]: `${Math.min(n, 4) * 60}ms` }}>
               <div className="flex items-center justify-between gap-3">
                 <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-50 text-brand-600"><Icon className="h-5 w-5" /></span>
-                <span className={`flex-shrink-0 rounded-xs px-2 py-1 text-[10px] font-bold uppercase tracking-caps ring-1 ${live ? "bg-brand-500 text-white ring-brand-500" : "bg-brand-50 text-brand-700 ring-brand-200"}`}>
-                  {live ? "Launching first" : "In preparation"}
+                <span className={`flex-shrink-0 rounded-xs px-2 py-1 text-[10px] font-bold uppercase tracking-caps ring-1 bg-brand-50 text-brand-700 ring-brand-200`}>
+                  Available now
                 </span>
               </div>
               <h3 style={SERIF} className="mt-5 text-lg font-bold leading-snug text-ink-950">{i.name}</h3>

@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 import { FRAME, GUTTER, MICRO } from "@/components/desk/tokens";
 import { Cta } from "@/components/lp/kit";
-import { INDUSTRIES, WC_BASE, WC_EMAIL, WC_LIVE, WC_TAGLINE } from "@/content/wc";
+import { INDUSTRIES, WC_BASE, WC_EMAIL, WC_TAGLINE } from "@/content/wc";
 
 /*
  * ══════════════════════════════════════════════════════════════════════
@@ -67,11 +67,6 @@ function SolutionMenu({ current }: { current?: string }) {
               }`}
             >
               {i.name}
-              {i.slug === WC_LIVE ? (
-                <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-caps text-brand-600">
-                  Now
-                </span>
-              ) : null}
             </a>
           </li>
         ))}

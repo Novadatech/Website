@@ -107,19 +107,24 @@ FIGS = {
     # WC + home. Optional 6th value: chin y in the hero (default CHIN_Y).
     # The two hard-hat figures sit lower so the HAT, not the face, takes
     # the extra height and still clears the top edge.
-    #   Pexels 11396926 wc-home, 13802164 wwd, 7709190 hiw, 5186381 wws,
-    #   6129192 ndis, 3800514 hosp, 8487370 con, 8487402 mfg,
-    #   8486965 min, 18809829 home-both; Pexels licence
-    "wc-home":   ("figure-wc-home.webp",    6,  547,  505, 0.92),
+    # 🔴 27 NOV 2026, founder: every woman in these heroes is Caucasian.
+    # Seven figures replaced. For a non-hat figure "top" is set from the
+    # FACE (chin minus 1.48 x the face height, the why-figure ratio), not
+    # the hair, so faces match in size; it can be negative.
+    #   Pexels 16846866 wc-home, 13802164 wwd, 7709235 hiw, 5186381 wws,
+    #   37476745 ndis, 29129767 hosp, 4872040 con, 32845671 mfg
+    #   (helmet logo painted out), 8486965 min, 7680207 home-both;
+    #   Pexels licence
+    "wc-home":   ("figure-wc-home.webp", -116,  695,  775, 0.92),
     "wc-wwd":    ("figure-wc-wwd.webp",    23,  535, 1060, 0.80),
-    "wc-hiw":    ("figure-wc-hiw.webp",   216, 1700, 1499, 0.92),
+    "wc-hiw":    ("figure-wc-hiw.webp",   -61,  717,  953, 0.92, 480),
     "wc-wws":    ("figure-wc-wws.webp",     9,  927, 1015, 0.92),
-    "wc-ndis":   ("figure-wc-ndis.webp",    8,  630,  650, 0.92),
-    "wc-hosp":   ("figure-wc-hosp.webp",    5,  440,  455, 0.92),
-    "wc-con":    ("figure-wc-con.webp",     3,  871,  782, 1.06, 470),
-    "wc-mfg":    ("figure-wc-mfg.webp",    10, 1215, 1680, 0.92),
+    "wc-ndis":   ("figure-wc-ndis.webp",   15,  700,  623, 0.92, 445),
+    "wc-hosp":   ("figure-wc-hosp.webp",  -67,  556, 1067, 0.92),
+    "wc-con":    ("figure-wc-con.webp",     2,  565,  505, 1.06, 505),
+    "wc-mfg":    ("figure-wc-mfg.webp",     1,  425,  817, 1.05, 495),
     "wc-min":    ("figure-wc-min.webp",     0, 1067, 1415, 1.175, 524),
-    "home-both": ("figure-home-both.webp", 232, 923,  950, 0.92),
+    "home-both": ("figure-home-both.webp",  7,  817, 1019, 0.92),
 }
 
 def place(key):
