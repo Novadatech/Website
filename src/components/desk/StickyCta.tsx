@@ -57,7 +57,10 @@ export default function StickyCta({
   const dark = tone === "dark";
 
   useEffect(() => {
-    const target = document.getElementById("book");
+    /* Hide over the section the bar links to. It used to look for "book"
+       only, so on Workforce Continuity (href "#review") the bar sat over
+       the calendar and covered time slots on phones (27 Nov 2026). */
+    const target = document.getElementById(href.startsWith("#") ? href.slice(1) : "book");
     let frame = 0;
 
     const measure = () => {
@@ -84,7 +87,7 @@ export default function StickyCta({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [href]);
 
   return (
     <div
